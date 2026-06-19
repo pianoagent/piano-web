@@ -64,10 +64,16 @@ import Footer from '../components/Footer.astro';
         <Button variant="secondary" size="lg">Sekundární LG</Button>
       </div>
 
-      <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center;">
+      <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center; margin-bottom: 16px;">
         <Button variant="ghost" size="sm">Ghost →</Button>
         <Button variant="ghost" size="md">Ghost →</Button>
         <Button href="/o-nas" variant="primary">Odkaz jako button</Button>
+      </div>
+
+      <!-- CTA pár — obě tlačítka musí mít shodné zkosení -->
+      <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center;">
+        <Button variant="primary">Domluvit demo</Button>
+        <Button variant="secondary">Více informací</Button>
       </div>
     </section>
 
@@ -154,7 +160,7 @@ import Footer from '../components/Footer.astro';
       </div>
       <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center;">
         <Button variant="primary">CTA na tmavém pozadí</Button>
-        <Button variant="secondary" style="border-color: var(--color-border-on-dark); color: var(--color-text-on-dark);">Outline on dark</Button>
+        <Button variant="ghost" style="color: var(--color-text-on-dark);">Ghost na tmavém →</Button>
       </div>
     </section>
 
