@@ -1,0 +1,125 @@
+---
+/**
+ * USPGrid — Piano sekční blok (mřížka výhod / funkcí)
+ *
+ * Props:
+ *   eyebrow?:     string   → verzálkový popisek nad nadpisem
+ *   title?:       string   → nadpis sekce (akcent přes <em> v `title` nelze; pro to použij slot "title")
+ *   lead?:        string   → perex pod nadpisem
+ *   align?:       "left" | "center"     hlavička (default "center")
+ *   items:        Item[]    → karty (icon? / title / text?)
+ *   columns?:     number    → pevný počet sloupců; bez něj auto-fit
+ *   minItemWidth?: string   → min. šířka karty pro auto-fit (default "240px")
+ *   background?:  "default" | "alt" | "invert" | "primary"   (default "default")
+ *   space?:       "sm" | "md" | "lg"
+ *
+ * Item = { icon?: string (název pro <Icon>), title: string, text?: string }
+ */
+import Section from './Section.astro';
+import Heading from './Heading.astro';
+import Text from './Text.astro';
+import Icon from './Icon.astro';
+
+interface Item { icon?: string; title: string; text?: string; }
+
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  lead?: string;
+  align?: 'left' | 'center';
+  items: Item[];
+  columns?: number;
+  minItemWidth?: string;
+  background?: 'default' | 'alt' | 'invert' | 'primary';
+  space?: 'sm' | 'md' | 'lg';
+}
+
+const {
+  eyebrow,
+  title,
+  lead,
+  align = 'center',
+  items = [],
+  columns,
+  minItemWidth = '240px',
+  background = 'default',
+  space = 'md',
+} = Astro.props;
+
+const onDark = background === 'invert' || background === 'primary';
+const hasTitle = Astro.slots.has('title');
+const hasHeader = eyebrow || title || lead || hasTitle;
+
+const gridStyle = columns
+  ? `grid-template-columns: repeat(${columns}, 1fr);`
+  : `grid-template-columns: repeat(auto-fit, minmax(${minItemWidth}, 1fr));`;
+---
+
+<Section background={background} space={space}>
+  {hasHeader && (
+    <div class:list={['usp__header', `usp__header--${align}`]}>
+      {eyebrow && <p class="usp__eyebrow">{eyebrow}</p>}
+      {hasTitle ? <slot name="title" /> : title && (
+        <Heading as="h2" size="h2" align={align} color={onDark ? 'on-dark' : 'default'}>{title}</Heading>
+      )}
+      {lead && (
+        <Text size="lead" align={align} color={onDark ? 'on-dark-muted' : 'muted'} class="usp__lead">{lead}</Text>
+      )}
+    </div>
+  )}
+
+  <div class:list={['usp__grid', onDark && 'usp__grid--on-dark']} style={gridStyle}>
+    {items.map((item) => (
+      <article class="usp__card">
+        {item.icon && (
+          <span class="usp__icon"><Icon name={item.icon} size="md" /></span>
+        )}
+        <Heading as="h3" size="h3" color={onDark ? 'on-dark' : 'default'}>{item.title}</Heading>
+        {item.text && (
+          <Text size="small" color={onDark ? 'on-dark-muted' : 'muted'} class="usp__text">{item.text}</Text>
+        )}
+      </article>
+    ))}
+  </div>
+</Section>
+
+<style>
+  .usp__header { margin-bottom: var(--space-7); }
+  .usp__header--center { text-align: center; max-width: 720px; margin-inline: auto; margin-bottom: var(--space-7); }
+
+  .usp__eyebrow {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-label);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide);
+    color: var(--color-text-accent);
+    margin-bottom: var(--space-3);
+  }
+  .usp__lead { margin-top: var(--space-4); }
+
+  .usp__grid { display: grid; gap: var(--space-5); }
+
+  .usp__card {
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-6) var(--space-5);
+    transition: var(--transition);
+  }
+  .usp__card:hover { border-color: var(--color-primary); }
+
+  /* Na tmavém pozadí karty zesvětlí povrch */
+  .usp__grid--on-dark .usp__card {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: var(--color-border-on-dark);
+  }
+  .usp__grid--on-dark .usp__card:hover { border-color: var(--color-primary); }
+
+  .usp__icon {
+    display: inline-flex;
+    color: var(--color-text-accent);
+    margin-bottom: var(--space-4);
+  }
+  .usp__text { margin-top: var(--space-2); }
+</style>

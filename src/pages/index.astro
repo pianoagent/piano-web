@@ -10,6 +10,17 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Hero from '../components/Hero.astro';
 import HeroCarousel from '../components/HeroCarousel.astro';
+import USPGrid from '../components/USPGrid.astro';
+
+// Funkce pro USP grid (zdroj: Septim)
+const septimFeatures = [
+  { icon: 'lucide:monitor', title: 'Pokladna', text: 'Intuitivní dotykové rozhraní pro obsluhu. Mobilní číšník Septim.Go pro orderpad.' },
+  { icon: 'lucide:package', title: 'Skladové hospodářství', text: 'Hlídání stavu surovin, dodacích listů a zásob v reálném čase.' },
+  { icon: 'lucide:bar-chart-3', title: 'Manažerské přehledy', text: 'Tržby, marže, výkon personálu — v appce MySeptim odkudkoliv.' },
+  { icon: 'lucide:award', title: 'Věrnostní systém (CRM)', text: 'Loajalitní programy pro zákazníky přímo v systému.' },
+  { icon: 'lucide:bike', title: 'Rozvoz jídla', text: 'Přímá integrace s Foodora a Wolt. Objednávky z rozvozu automaticky.' },
+  { icon: 'lucide:smartphone', title: 'MySeptim App', text: 'iOS + Android. Klíčová data provozu vždy po ruce, kdekoliv jste.' },
+];
 
 // Bannery pro carousel (zdroj: grason-bannery.tsv)
 const grasonSlides = [
@@ -48,6 +59,18 @@ const grasonSlides = [
 
   <!-- TYP 2: Hero carousel bannerů -->
   <HeroCarousel slides={grasonSlides} background="primary" />
+
+  <!-- USP / feature grid -->
+  <USPGrid
+    eyebrow="Funkce"
+    title="Vše, co váš provoz potřebuje"
+    lead="Septim není jen pokladna — je to operační centrum vašeho podniku."
+    items={septimFeatures}
+    background="alt"
+  />
+
+  <!-- USP grid na tmavém pozadí -->
+  <USPGrid title="Proč Piano" items={septimFeatures} columns={3} background="invert" />
 
   <main style="padding: 48px 24px; display: flex; flex-direction: column; gap: 48px; max-width: 1200px; margin: 0 auto;">
 
