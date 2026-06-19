@@ -320,6 +320,8 @@ const classes = ['header', transparent && 'header--transparent'].filter(Boolean)
   @media (max-width: 880px) {
     .header__nav, .header__cta { display: none; }
     .header__burger { display: flex; }
+    /* hamburger zarovnat doprava (nav je skrytá, tak ji nahradí actions) */
+    .header__actions { margin-left: auto; }
   }
 </style>
 

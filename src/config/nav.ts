@@ -35,3 +35,33 @@ export const mainNav: NavItem[] = [
 ];
 
 export const headerCta: NavLink = { label: 'Domluvit demo', href: '/kontakt' };
+
+/** Sekundární odkazy (firma) — používá Footer */
+export const companyNav: NavLink[] = [
+  { label: 'Řešení', href: '/reseni' },
+  { label: 'Ceník', href: '/cenik' },
+  { label: 'Blog', href: '/blog' },
+  { label: 'O nás', href: '/o-nas' },
+  { label: 'Kontakt', href: '/kontakt' },
+];
+
+/** Právní odkazy — spodní lišta footeru */
+export const legalNav: NavLink[] = [
+  { label: 'Zásady ochrany osobních údajů', href: '/ochrana-udaju' },
+  { label: 'Cookies', href: '/cookies' },
+];
+
+/** Sociální sítě — `icon` je název ikony pro <Icon> (sada Lucide) */
+export const socialLinks: { label: string; href: string; icon: string }[] = [
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/company/piano-solutions', icon: 'lucide:linkedin' },
+  { label: 'Instagram', href: 'https://www.instagram.com/', icon: 'lucide:instagram' },
+  { label: 'YouTube', href: 'https://www.youtube.com/', icon: 'lucide:youtube' },
+];
+
+/** Kontaktní údaje */
+export const contact = {
+  email: 'obchod@piano.cz',
+  phone: '+420 222 222 222',
+  address: 'Piano Solutions s.r.o., Praha',
+};
+
