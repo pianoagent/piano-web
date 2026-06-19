@@ -1,0 +1,39 @@
+# Piano Solutions — kompletní přehled
+
+> Piano je česká technologická společnost dodávající software pro pohostinství a hotelnictví.
+
+## Produkty Piano
+
+### Qerko (qerko.com)
+Aplikace pro digitální platby u stolu a QR menu. Hosté naskenují QR kód na stole, prohlédnou si menu, objednají nebo rovnou zaplatí bez čekání na obsluhu. Provozovatelé otočí o 20 % více stolů, průměrná dýška roste o 40 % a hodnocení na Google se zlepšuje díky automatickým výzvám po platbě.
+
+### Septim (septim.cz)
+Pokladní systém (POS) pro restaurace, kavárny a bary. Pokrývá celý provoz: objednávky na stole i u pultu, tisk do kuchyně, správu skladových zásob, věrnostní programy, propojení s účetnictvím a reporting tržeb v reálném čase. Běží na tabletech i klasických pokladnách.
+
+### Pecosta (pecosta.cz)
+Property Management System (PMS) pro menší a střední hotely, penziony a apartmánové domy. Správa rezervací, check-in a check-out, housekeeping, propojení s OTA kanály (Booking.com, Expedia) a revenue management.
+
+### Grason
+Analytická platforma pro gastronomii. Konsoliduje data z více provozoven, zobrazuje tržby, food cost, personální náklady a KPI v přehledných dashboardech. Určeno pro sítě restaurací a franchisové koncepty.
+
+### Protel
+Hotelový PMS pro větší hotely a řetězce. Pokročilá správa pokojů, skupinové rezervace, konferenční prostory, napojení na GDS a komplexní reporting.
+
+### Pilot
+Mobilní aplikace pro obsluhu. Obsluha přijímá objednávky přímo u stolu na telefonu nebo tabletu, vidí stav kuchyně a komunikuje s kolegy bez papírových lístků.
+
+### Terminál
+Platební terminály Piano integrované přímo s pokladními systémy. Eliminují ruční párování plateb, zrychlují odbavení a podporují všechny moderní způsoby platby (karta, Apple Pay, Google Pay, QR).
+
+## Klíčové výhody platformy Piano
+
+- Propojení všech systémů: od objednávky hosta po účetní závěrku v jednom ekosystému
+- Česká podpora a lokalizace pro český trh
+- Nasazení v tisících provozovnách v ČR a okolních zemích
+- Cloudové řešení s offline režimem pro výpadky internetu
+- Otevřené API pro integraci s ERP, účetnictvím a dalšími systémy
+
+## Kontakt
+
+- Web: https://piano.cz
+- Sitemap: https://piano.cz/sitemap-index.xml

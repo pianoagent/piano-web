@@ -1,23 +1,39 @@
 ---
 import Base from '../layouts/Base.astro';
-const buildTime = new Date().toLocaleString('cs-CZ', { timeZone: 'Europe/Prague' });
+import Button from '../components/Button.astro';
 ---
-<Base title="Piano — pipeline test">
-  <main style="max-width: 680px; margin: 0 auto; padding: 80px 24px;">
-    <span style="display:inline-block; background:var(--red); color:#fff; font-size:13px; font-weight:700; padding:4px 12px; border-radius:999px;">
-      Piano · pipeline test
-    </span>
-    <h1 style="font-size:40px; line-height:1.15; margin:20px 0 12px;">
-      Potrubí šlape. 🎹
-    </h1>
-    <p style="font-size:18px; color:var(--muted); margin:0 0 28px;">
-      Tahle stránka jede přes Astro → GitHub → Cloudflare. Když ji vidíš živou,
-      znamená to, že se každá změna v repu sama postaví a nasadí. Tady začneme
-      stavět komponenty.
-    </p>
-    <div style="display:inline-block; border:1px solid #e4ddd0; border-radius:var(--radius); padding:14px 18px; background:#fff;">
-      <div style="font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.06em;">Build</div>
-      <div style="font-size:15px; font-weight:600;">{buildTime}</div>
-    </div>
+
+<Base title="Piano — komponenty">
+  <main style="padding: 48px; display: flex; flex-direction: column; gap: 48px; max-width: 800px;">
+
+    <section>
+      <h2 style="font: var(--text-h3); font-family: var(--font-sans); margin-bottom: 24px; color: var(--color-text-muted);">Button</h2>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center; margin-bottom: 16px;">
+        <Button variant="primary" size="sm">Primární SM</Button>
+        <Button variant="primary" size="md">Primární MD</Button>
+        <Button variant="primary" size="lg">Primární LG</Button>
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center; margin-bottom: 16px;">
+        <Button variant="secondary" size="sm">Sekundární SM</Button>
+        <Button variant="secondary" size="md">Sekundární MD</Button>
+        <Button variant="secondary" size="lg">Sekundární LG</Button>
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center;">
+        <Button variant="ghost" size="sm">Ghost →</Button>
+        <Button variant="ghost" size="md">Ghost →</Button>
+        <Button href="/o-nas" variant="primary">Odkaz jako button</Button>
+      </div>
+    </section>
+
+    <section style="background: var(--color-bg-invert); padding: 32px;">
+      <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center;">
+        <Button variant="primary">CTA na tmavém pozadí</Button>
+        <Button variant="secondary" style="border-color: var(--color-border-on-dark); color: var(--color-text-on-dark);">Outline on dark</Button>
+      </div>
+    </section>
+
   </main>
 </Base>

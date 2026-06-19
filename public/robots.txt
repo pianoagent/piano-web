@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+
+# AI crawlers — povolen přístup pro indexaci
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: GoogleBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+Sitemap: https://piano.cz/sitemap-index.xml
