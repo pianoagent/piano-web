@@ -37,11 +37,11 @@ const classes = ['btn', `btn--${variant}`, `btn--${size}`, full && 'btn--full', 
 
 {tag === 'a' ? (
   <a href={href} class={classes} {...rest}>
-    <slot />
+    <span class="btn__label"><slot /></span>
   </a>
 ) : (
   <button type={type} class={classes} {...rest}>
-    <slot />
+    <span class="btn__label"><slot /></span>
   </button>
 )}
 
@@ -75,9 +75,14 @@ const classes = ['btn', `btn--${variant}`, `btn--${size}`, full && 'btn--full', 
     transition: var(--transition);
     pointer-events: none;
   }
-  /* Obsah (text/ikona) nad vrstvou výplně */
-  .btn > :global(*),
-  .btn { z-index: 0; }
+  /* Obsah (text/ikona) nad vrstvou výplně ::before */
+  .btn__label {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
 
   .btn:focus-visible {
     outline: none;
