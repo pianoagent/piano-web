@@ -1,0 +1,370 @@
+---
+/**
+ * Header — Piano (sticky navigace + mobilní drawer)
+ *
+ *   transparent: boolean → overlay přes hero (světlý text), po scrollu zpevní na bílou
+ *
+ * Navigace se čte z src/config/nav.ts (obsah oddělen od vzhledu).
+ * Logo je prozatím textový wordmark + piano-mark ikona — výměna za reálné SVG
+ * je triviální (nahradit obsah .header__logo).
+ */
+import Icon from './Icon.astro';
+import Button from './Button.astro';
+import { mainNav, headerCta } from '../config/nav';
+
+interface Props {
+  transparent?: boolean;
+}
+const { transparent = false } = Astro.props;
+
+const classes = ['header', transparent && 'header--transparent'].filter(Boolean).join(' ');
+---
+
+<header class={classes} data-header>
+  <div class="header__inner">
+    <!-- Logo -->
+    <a href="/" class="header__logo" aria-label="Piano — domů">
+      <Icon name="piano-mark" size="md" />
+      <span class="header__wordmark">Piano</span>
+    </a>
+
+    <!-- Desktop navigace -->
+    <nav class="header__nav" aria-label="Hlavní navigace">
+      <ul class="header__menu">
+        {mainNav.map((item) => (
+          item.children ? (
+            <li class="header__item header__item--has-dropdown">
+              <button class="header__link header__link--toggle" aria-expanded="false" aria-haspopup="true">
+                {item.label}
+                <Icon name="lucide:chevron-down" size="xs" class="header__chevron" />
+              </button>
+              <div class="header__dropdown">
+                <ul class="header__dropdown-list">
+                  {item.children.map((child) => (
+                    <li>
+                      <a href={child.href} class="header__dropdown-link">
+                        <span class="header__dropdown-label">{child.label}</span>
+                        {child.description && <span class="header__dropdown-desc">{child.description}</span>}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </li>
+          ) : (
+            <li class="header__item">
+              <a href={item.href} class="header__link">{item.label}</a>
+            </li>
+          )
+        ))}
+      </ul>
+    </nav>
+
+    <!-- CTA + hamburger -->
+    <div class="header__actions">
+      <Button href={headerCta.href} variant="primary" size="sm" class="header__cta">{headerCta.label}</Button>
+      <button class="header__burger" aria-label="Otevřít menu" aria-expanded="false" aria-controls="mobile-drawer" data-burger>
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobilní drawer -->
+  <div class="drawer" id="mobile-drawer" data-drawer hidden>
+    <div class="drawer__overlay" data-drawer-overlay></div>
+    <div class="drawer__panel" role="dialog" aria-modal="true" aria-label="Menu">
+      <div class="drawer__head">
+        <span class="header__wordmark">Piano</span>
+        <button class="drawer__close" aria-label="Zavřít menu" data-drawer-close>
+          <Icon name="lucide:x" size="md" />
+        </button>
+      </div>
+      <nav class="drawer__nav" aria-label="Mobilní navigace">
+        <ul class="drawer__menu">
+          {mainNav.map((item) => (
+            item.children ? (
+              <li class="drawer__item">
+                <button class="drawer__link drawer__link--toggle" aria-expanded="false" data-accordion>
+                  {item.label}
+                  <Icon name="lucide:chevron-down" size="sm" class="drawer__chevron" />
+                </button>
+                <ul class="drawer__sublist" hidden>
+                  {item.children.map((child) => (
+                    <li><a href={child.href} class="drawer__sublink">{child.label}</a></li>
+                  ))}
+                </ul>
+              </li>
+            ) : (
+              <li class="drawer__item">
+                <a href={item.href} class="drawer__link">{item.label}</a>
+              </li>
+            )
+          ))}
+        </ul>
+        <Button href={headerCta.href} variant="primary" full class="drawer__cta">{headerCta.label}</Button>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+    transition: background var(--duration-base) var(--easing), border-color var(--duration-base) var(--easing);
+  }
+
+  .header__inner {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--space-3) var(--space-5);
+  }
+
+  /* Logo */
+  .header__logo {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--color-text);
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+  .header__wordmark {
+    font-family: var(--font-sans);
+    font-weight: var(--font-weight-semibold);
+    font-size: 22px;
+    letter-spacing: var(--letter-spacing-tight);
+  }
+
+  /* Desktop navigace */
+  .header__nav { margin-left: auto; }
+  .header__menu {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    list-style: none;
+  }
+  .header__item { position: relative; }
+
+  .header__link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: var(--space-2) var(--space-3);
+    font-family: var(--font-sans);
+    font-size: var(--font-size-body);
+    color: var(--color-text);
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    transition: var(--transition);
+  }
+  .header__link:hover { color: var(--color-text-accent); }
+  .header__chevron { transition: transform var(--duration-fast) var(--easing); }
+
+  /* Dropdown */
+  .header__dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    min-width: 300px;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    padding: var(--space-2);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px);
+    transition: var(--transition);
+  }
+  .header__item--has-dropdown:hover .header__dropdown,
+  .header__item--has-dropdown:focus-within .header__dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .header__item--has-dropdown:hover .header__chevron,
+  .header__item--has-dropdown:focus-within .header__chevron {
+    transform: rotate(180deg);
+  }
+  .header__dropdown-list { list-style: none; }
+  .header__dropdown-link {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: var(--space-3);
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    transition: var(--transition);
+  }
+  .header__dropdown-link:hover { background: var(--color-bg-alt); }
+  .header__dropdown-label { font-weight: var(--font-weight-medium); color: var(--color-text); }
+  .header__dropdown-desc { font-size: var(--font-size-small); color: var(--color-text-muted); }
+
+  /* Actions */
+  .header__actions { display: flex; align-items: center; gap: var(--space-3); }
+
+  /* Hamburger */
+  .header__burger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    padding: 0 8px;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  .header__burger span {
+    display: block;
+    height: 2px;
+    width: 100%;
+    background: var(--color-text);
+    transition: var(--transition);
+  }
+
+  /* ---- Transparent varianta (overlay přes hero) ---- */
+  .header--transparent:not(.is-scrolled) {
+    background: transparent;
+    border-bottom-color: transparent;
+  }
+  .header--transparent:not(.is-scrolled) .header__logo,
+  .header--transparent:not(.is-scrolled) .header__link,
+  .header--transparent:not(.is-scrolled) .header__wordmark { color: var(--color-text-on-dark); }
+  .header--transparent:not(.is-scrolled) .header__link:hover { color: var(--color-text-on-dark); opacity: 0.8; }
+  .header--transparent:not(.is-scrolled) .header__burger span { background: var(--color-text-on-dark); }
+
+  /* ---- Mobilní drawer ---- */
+  .drawer { position: fixed; inset: 0; z-index: 200; }
+  .drawer__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(38, 38, 38, 0.5);
+    opacity: 0;
+    transition: opacity var(--duration-base) var(--easing);
+  }
+  .drawer__panel {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: min(360px, 86vw);
+    background: var(--color-bg);
+    box-shadow: var(--shadow-lg);
+    padding: var(--space-5);
+    display: flex;
+    flex-direction: column;
+    transform: translateX(100%);
+    transition: transform var(--duration-base) var(--easing);
+    overflow-y: auto;
+  }
+  .drawer.is-open .drawer__overlay { opacity: 1; }
+  .drawer.is-open .drawer__panel { transform: translateX(0); }
+
+  .drawer__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-5);
+  }
+  .drawer__close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text);
+    display: inline-flex;
+    padding: var(--space-1);
+  }
+  .drawer__menu { list-style: none; display: flex; flex-direction: column; }
+  .drawer__item { border-bottom: 1px solid var(--color-border); }
+  .drawer__link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: var(--space-4) 0;
+    font-family: var(--font-sans);
+    font-size: var(--font-size-lead);
+    color: var(--color-text);
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+  }
+  .drawer__chevron { transition: transform var(--duration-fast) var(--easing); }
+  .drawer__link--toggle[aria-expanded="true"] .drawer__chevron { transform: rotate(180deg); }
+  .drawer__sublist { list-style: none; padding: 0 0 var(--space-3) var(--space-3); }
+  .drawer__sublink {
+    display: block;
+    padding: var(--space-2) 0;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    font-size: var(--font-size-body);
+  }
+  .drawer__sublink:hover { color: var(--color-text-accent); }
+  .drawer__cta { margin-top: var(--space-6); }
+
+  /* ---- Responsive přepínač ---- */
+  @media (max-width: 880px) {
+    .header__nav, .header__cta { display: none; }
+    .header__burger { display: flex; }
+  }
+</style>
+
+<script>
+  const header = document.querySelector('[data-header]');
+  const burger = document.querySelector('[data-burger]');
+  const drawer = document.querySelector('[data-drawer]') as HTMLElement | null;
+  const overlay = document.querySelector('[data-drawer-overlay]');
+  const closeBtn = document.querySelector('[data-drawer-close]');
+
+  function openDrawer() {
+    if (!drawer) return;
+    drawer.hidden = false;
+    // vynutit reflow, pak animovat
+    requestAnimationFrame(() => drawer.classList.add('is-open'));
+    burger?.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeDrawer() {
+    if (!drawer) return;
+    drawer.classList.remove('is-open');
+    burger?.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+    setTimeout(() => { if (drawer && !drawer.classList.contains('is-open')) drawer.hidden = true; }, 200);
+  }
+
+  burger?.addEventListener('click', openDrawer);
+  overlay?.addEventListener('click', closeDrawer);
+  closeBtn?.addEventListener('click', closeDrawer);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeDrawer(); });
+
+  // Accordion produktů v draweru
+  document.querySelectorAll('[data-accordion]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!expanded));
+      const sublist = btn.nextElementSibling as HTMLElement | null;
+      if (sublist) sublist.hidden = expanded;
+    });
+  });
+
+  // Transparent header → zpevnění po scrollu
+  if (header?.classList.contains('header--transparent')) {
+    const onScroll = () => header.classList.toggle('is-scrolled', window.scrollY > 20);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
+</script>
