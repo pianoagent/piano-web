@@ -8,9 +8,8 @@
  *   href:    string  → renderuje jako <a>, jinak <button>
  *   full:    boolean → 100% šířka
  *
- * Signature zkosený roh má JEN primary (akcent). Secondary je obyčejný
- * obdélník s rámečkem, ghost je jen text. V CTA páru tak primary nese
- * zkosení a secondary má normální rohy.
+ * Primary nese signature zkosený roh. Secondary a ghost mají ostré rohy (0px),
+ * žádné zaoblení.
  */
 
 interface Props {
@@ -61,7 +60,7 @@ const classes = ['btn', `btn--${variant}`, `btn--${size}`, full && 'btn--full', 
     text-transform: uppercase;
     text-decoration: none;
     border: 1px solid transparent;
-    border-radius: var(--radius-sm);
+    border-radius: 0;
     cursor: pointer;
     transition: var(--transition);
     white-space: nowrap;
@@ -97,7 +96,6 @@ const classes = ['btn', `btn--${variant}`, `btn--${size}`, full && 'btn--full', 
     background: var(--color-primary);
     color: var(--color-text-on-dark);
     border-color: var(--color-primary);
-    border-radius: 0;
     clip-path: var(--chamfer-clip-sm);
   }
   .btn--primary:hover {
