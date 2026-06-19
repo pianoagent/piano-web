@@ -1,0 +1,103 @@
+---
+/**
+ * Text — Piano typografický primitiv (běžný text)
+ *
+ *   as:     "p" | "span" | "div" | "li" | "label" | "small"  → HTML tag (default "p")
+ *   size:   "lead" | "body" | "small" | "caption" | "label"  → vizuální velikost (default "body")
+ *   color:  "default" | "muted" | "accent" | "on-dark" | "on-dark-muted"
+ *   weight: "regular" | "medium" | "semibold" | "bold"        → přepíše výchozí váhu velikosti
+ *   align:  "left" | "center" | "right"
+ *   balance: boolean → text-wrap: balance (vhodné pro krátké perexy)
+ *
+ * Pozn.: "label" je verzálkový popisek (uppercase + tracking), shodný se styčným stylem Buttonu.
+ */
+
+type Tag = 'p' | 'span' | 'div' | 'li' | 'label' | 'small';
+type Size = 'lead' | 'body' | 'small' | 'caption' | 'label';
+
+interface Props {
+  as?: Tag;
+  size?: Size;
+  color?: 'default' | 'muted' | 'accent' | 'on-dark' | 'on-dark-muted';
+  weight?: 'regular' | 'medium' | 'semibold' | 'bold';
+  align?: 'left' | 'center' | 'right';
+  balance?: boolean;
+  class?: string;
+  [key: string]: any;
+}
+
+const {
+  as = 'p',
+  size = 'body',
+  color = 'default',
+  weight,
+  align = 'left',
+  balance = false,
+  class: className,
+  ...rest
+} = Astro.props;
+
+const Tag = as;
+
+const classes = [
+  'text',
+  `text--${size}`,
+  `text--align-${align}`,
+  `text--${color}`,
+  weight && `text--weight-${weight}`,
+  balance && 'text--balance',
+  className,
+]
+  .filter(Boolean)
+  .join(' ');
+---
+
+<Tag class={classes} {...rest}><slot /></Tag>
+
+<style>
+  .text {
+    font-family: var(--font-sans);
+  }
+
+  /* Zvýraznění uvnitř textu */
+  .text :global(strong) { font-weight: var(--font-weight-semibold); }
+  .text :global(a) {
+    color: var(--color-text-accent);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: var(--transition);
+  }
+  .text :global(a:hover) { color: var(--color-primary-hover); }
+
+  /* Velikosti */
+  .text--lead    { font: var(--text-lead); font-family: var(--font-sans); }
+  .text--body    { font: var(--text-body); font-family: var(--font-sans); }
+  .text--small   { font: var(--text-small); font-family: var(--font-sans); }
+  .text--caption { font: var(--text-caption); font-family: var(--font-sans); color: var(--color-text-muted); }
+  .text--label {
+    font: var(--text-label);
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide);
+  }
+
+  /* Váha (přepis) */
+  .text--weight-regular  { font-weight: var(--font-weight-regular); }
+  .text--weight-medium   { font-weight: var(--font-weight-medium); }
+  .text--weight-semibold { font-weight: var(--font-weight-semibold); }
+  .text--weight-bold     { font-weight: var(--font-weight-bold); }
+
+  /* Zarovnání */
+  .text--align-left   { text-align: left; }
+  .text--align-center { text-align: center; }
+  .text--align-right  { text-align: right; }
+
+  .text--balance { text-wrap: balance; }
+
+  /* Barevné role */
+  .text--default        { color: var(--color-text); }
+  .text--muted          { color: var(--color-text-muted); }
+  .text--accent         { color: var(--color-text-accent); }
+  .text--on-dark        { color: var(--color-text-on-dark); }
+  .text--on-dark-muted  { color: var(--color-text-on-dark-muted); }
+</style>

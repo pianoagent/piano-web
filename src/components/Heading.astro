@@ -1,0 +1,93 @@
+---
+/**
+ * Heading — Piano typografický primitiv (nadpisy)
+ *
+ * Sémantika a vizuální velikost jsou oddělené:
+ *   as:    "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "div"  → HTML tag (SEO/struktura)
+ *   size:  "display" | "h1" | "h2" | "h3"                          → vizuální velikost (default odvozen z `as`)
+ *   align: "left" | "center" | "right"
+ *   color: "default" | "muted" | "accent" | "on-dark"
+ *   balance: boolean → text-wrap: balance (vyvážené zalomení, default true)
+ *
+ * Akcent jedním slovem: použij <em> uvnitř obsahu → vykreslí se písmem PP Eiko.
+ *   <Heading>Pomocná síla, se kterou <em>otočíte</em> více stolů</Heading>
+ */
+
+type Tag = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'div';
+type Size = 'display' | 'h1' | 'h2' | 'h3';
+
+interface Props {
+  as?: Tag;
+  size?: Size;
+  align?: 'left' | 'center' | 'right';
+  color?: 'default' | 'muted' | 'accent' | 'on-dark';
+  balance?: boolean;
+  class?: string;
+  [key: string]: any;
+}
+
+const {
+  as = 'h2',
+  size,
+  align = 'left',
+  color = 'default',
+  balance = true,
+  class: className,
+  ...rest
+} = Astro.props;
+
+const Tag = as;
+
+// Default vizuální velikosti odvozená ze sémantického tagu
+const sizeFromTag: Record<string, Size> = { h1: 'h1', h2: 'h2', h3: 'h3' };
+const resolvedSize: Size = size ?? sizeFromTag[as] ?? 'h2';
+
+const classes = [
+  'heading',
+  `heading--${resolvedSize}`,
+  `heading--align-${align}`,
+  `heading--${color}`,
+  balance && 'heading--balance',
+  className,
+]
+  .filter(Boolean)
+  .join(' ');
+---
+
+<Tag class={classes} {...rest}><slot /></Tag>
+
+<style>
+  .heading {
+    font-family: var(--font-sans);
+    letter-spacing: var(--letter-spacing-tight);
+    text-wrap: pretty;
+  }
+
+  /* Akcent jedním slovem — PP Eiko serif */
+  .heading :global(em) {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: var(--font-weight-regular);
+    letter-spacing: var(--letter-spacing-normal);
+  }
+
+  /* Velikosti */
+  .heading--display { font: var(--text-display); font-family: var(--font-sans); }
+  .heading--h1      { font: var(--text-h1);      font-family: var(--font-sans); }
+  .heading--h2      { font: var(--text-h2);      font-family: var(--font-sans); }
+  .heading--h3      { font: var(--text-h3);      font-family: var(--font-sans); }
+
+  /* Zarovnání */
+  .heading--align-left   { text-align: left; }
+  .heading--align-center { text-align: center; }
+  .heading--align-right  { text-align: right; }
+
+  /* Vyvážené zalomení (krátké, víceřádkové nadpisy) */
+  .heading--balance { text-wrap: balance; }
+
+  /* Barevné role */
+  .heading--default { color: var(--color-text); }
+  .heading--muted   { color: var(--color-text-muted); }
+  .heading--accent  { color: var(--color-text-accent); }
+  .heading--on-dark { color: var(--color-text-on-dark); }
+</style>

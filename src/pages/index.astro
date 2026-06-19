@@ -1,10 +1,46 @@
 ---
 import Base from '../layouts/Base.astro';
 import Button from '../components/Button.astro';
+import Heading from '../components/Heading.astro';
+import Text from '../components/Text.astro';
 ---
 
 <Base title="Piano — komponenty">
   <main style="padding: 48px; display: flex; flex-direction: column; gap: 48px; max-width: 800px;">
+
+    <section>
+      <h2 style="font: var(--text-h3); font-family: var(--font-sans); margin-bottom: 24px; color: var(--color-text-muted);">Heading</h2>
+
+      <div style="display: flex; flex-direction: column; gap: 16px; margin-bottom: 24px;">
+        <Heading as="h1" size="display">Display nadpis</Heading>
+        <Heading as="h1">Nadpis úrovně H1</Heading>
+        <Heading as="h2">Nadpis úrovně H2</Heading>
+        <Heading as="h3">Nadpis úrovně H3</Heading>
+      </div>
+
+      <div style="margin-bottom: 24px;">
+        <Heading as="h2" size="h1">Pomocná síla, se kterou <em>otočíte</em> více stolů</Heading>
+        <Text size="caption" color="muted" style="margin-top: 8px;">↑ akcent jedním slovem přes &lt;em&gt; (PP Eiko)</Text>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <Heading as="h3" color="accent">Akcentní barva</Heading>
+        <Heading as="h3" color="muted">Tlumená barva</Heading>
+        <Heading as="h3" align="center">Zarovnání na střed</Heading>
+      </div>
+    </section>
+
+    <section>
+      <h2 style="font: var(--text-h3); font-family: var(--font-sans); margin-bottom: 24px; color: var(--color-text-muted);">Text</h2>
+
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <Text size="lead">Lead — perex sekce, větší řádek pro úvodní odstavec pod nadpisem.</Text>
+        <Text size="body">Body — výchozí text odstavce. Lorem ipsum dolor sit amet, <strong>zvýraznění</strong> a <a href="#">odkaz</a> v textu.</Text>
+        <Text size="small" color="muted">Small — drobnější doplňkový text, často tlumený.</Text>
+        <Text size="caption">Caption — popisek pod obrázkem nebo metadaty.</Text>
+        <Text size="label">Label — verzálkový štítek</Text>
+      </div>
+    </section>
 
     <section>
       <h2 style="font: var(--text-h3); font-family: var(--font-sans); margin-bottom: 24px; color: var(--color-text-muted);">Button</h2>
@@ -28,7 +64,11 @@ import Button from '../components/Button.astro';
       </div>
     </section>
 
-    <section style="background: var(--color-bg-invert); padding: 32px;">
+    <section style="background: var(--color-bg-invert); padding: 32px; display: flex; flex-direction: column; gap: 24px;">
+      <div>
+        <Heading as="h2" color="on-dark">Nadpis na tmavém pozadí</Heading>
+        <Text size="lead" color="on-dark-muted" style="margin-top: 8px;">Perex v tlumené světlé barvě pro tmavé sekce.</Text>
+      </div>
       <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center;">
         <Button variant="primary">CTA na tmavém pozadí</Button>
         <Button variant="secondary" style="border-color: var(--color-border-on-dark); color: var(--color-text-on-dark);">Outline on dark</Button>
