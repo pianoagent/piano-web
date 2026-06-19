@@ -46,7 +46,6 @@ const productsMega: MegaPanel = {
     ],
   },
   columns: [{ label: 'Všechny produkty', links: products }],
-  footer: { label: 'Zobrazit všechny produkty', href: '/produkty' },
 };
 
 /** Mega menu — Řešení (podle problému) */

@@ -78,6 +78,8 @@
   --color-bg:        #FFFFFF;
   --color-bg-alt:    #F5F4F2;
   --color-bg-invert: #94002A;
+  /* Neutrální chladný hover pro akční prvky (řádky menu, odkazy) — ne teplá béžová */
+  --color-bg-hover:  color-mix(in srgb, var(--color-neutral-900) 4%, #FFFFFF);
 
   --color-border:        #E3E1DE;
   --color-border-strong: #CFCDCA;
