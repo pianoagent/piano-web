@@ -1,0 +1,130 @@
+---
+/**
+ * Hero — Piano sekční blok (úvodní sekce stránky)
+ *
+ * Props:
+ *   eyebrow?:    string  → malý verzálkový popisek nad nadpisem
+ *   title?:      string  → nadpis (pro akcent PP Eiko použij slot "title")
+ *   lead?:       string  → perex pod nadpisem
+ *   align?:      "left" | "center"   (default "left"; ignorováno u split layoutu)
+ *   background?: "default" | "alt" | "invert" | "primary"
+ *   space?:      "sm" | "md" | "lg"  (default "lg")
+ *
+ * Sloty:
+ *   "title"   → vlastní nadpis (např. <Heading> s <em> akcentem)
+ *   "actions" → CTA tlačítka
+ *   "media"   → obrázek/grafika vpravo (zapne split layout)
+ */
+import Section from './Section.astro';
+import Heading from './Heading.astro';
+import Text from './Text.astro';
+
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  lead?: string;
+  align?: 'left' | 'center';
+  background?: 'default' | 'alt' | 'invert' | 'primary';
+  space?: 'sm' | 'md' | 'lg';
+}
+
+const { eyebrow, title, lead, align = 'left', background = 'default', space = 'lg' } = Astro.props;
+
+const hasTitle = Astro.slots.has('title');
+const hasActions = Astro.slots.has('actions');
+const hasMedia = Astro.slots.has('media');
+const onDark = background === 'invert' || background === 'primary';
+
+const innerClasses = [
+  'hero__inner',
+  hasMedia ? 'hero__inner--split' : 'hero__inner--single',
+  !hasMedia && `hero__inner--align-${align}`,
+  onDark && 'hero__inner--on-dark',
+]
+  .filter(Boolean)
+  .join(' ');
+---
+
+<Section background={background} space={space}>
+  <div class={innerClasses}>
+    <div class="hero__text">
+      {eyebrow && <p class="hero__eyebrow">{eyebrow}</p>}
+
+      {hasTitle ? (
+        <slot name="title" />
+      ) : (
+        title && <Heading as="h1" size="display" color={onDark ? 'on-dark' : 'default'}>{title}</Heading>
+      )}
+
+      {lead && (
+        <Text size="lead" color={onDark ? 'on-dark-muted' : 'muted'} class="hero__lead">{lead}</Text>
+      )}
+
+      {hasActions && (
+        <div class="hero__actions"><slot name="actions" /></div>
+      )}
+    </div>
+
+    {hasMedia && <div class="hero__media"><slot name="media" /></div>}
+  </div>
+</Section>
+
+<style>
+  .hero__inner { display: flex; flex-direction: column; }
+
+  /* Split — text vlevo, média vpravo */
+  .hero__inner--split {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: var(--space-8);
+    align-items: center;
+  }
+
+  /* Single — sloupec, volitelně vycentrovaný */
+  .hero__inner--single .hero__text { max-width: 720px; }
+  .hero__inner--align-center {
+    align-items: center;
+    text-align: center;
+  }
+  .hero__inner--align-center .hero__text { margin-inline: auto; }
+  .hero__inner--align-center .hero__actions { justify-content: center; }
+
+  /* Eyebrow */
+  .hero__eyebrow {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-label);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide);
+    color: var(--color-text-accent);
+    margin-bottom: var(--space-4);
+  }
+  .hero__inner--on-dark .hero__eyebrow { color: var(--color-secondary-gold); }
+
+  /* Lead + akce */
+  .hero__lead { margin-top: var(--space-5); max-width: 620px; }
+  .hero__inner--align-center .hero__lead { margin-inline: auto; }
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    margin-top: var(--space-7);
+  }
+
+  /* Média */
+  .hero__media { display: block; }
+  .hero__media :global(img) {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  /* Responsive — split se skládá pod sebe */
+  @media (max-width: 880px) {
+    .hero__inner--split {
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+    }
+    .hero__inner--split .hero__media { order: -1; }
+  }
+</style>

@@ -8,10 +8,33 @@ import Badge from '../components/Badge.astro';
 import Card from '../components/Card.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Hero from '../components/Hero.astro';
 ---
 
 <Base title="Piano — komponenty">
   <Header />
+
+  <!-- Hero — centrovaný, s PP Eiko akcentem -->
+  <Hero eyebrow="Platby u stolu" align="center" background="alt"
+        lead="Hosté zaplatí přes QR kód během chvilky. Vy otočíte více stolů a získáte vyšší dýška.">
+    <Heading slot="title" as="h1" size="display" align="center">
+      Pomocná síla, se kterou <em>otočíte</em> více stolů
+    </Heading>
+    <Fragment slot="actions">
+      <Button>Domluvit demo</Button>
+      <Button variant="secondary">Více informací</Button>
+    </Fragment>
+  </Hero>
+
+  <!-- Hero — split layout s médiem -->
+  <Hero eyebrow="Pokladní systém"
+        lead="Septim propojí objednávky, kuchyni, sklad i účetnictví do jednoho systému.">
+    <Heading slot="title" as="h1" size="h1">Provoz restaurace <em>pod kontrolou</em></Heading>
+    <Fragment slot="actions">
+      <Button>Vyzkoušet Septim</Button>
+    </Fragment>
+    <div slot="media" style="aspect-ratio: 4/3; background: var(--color-neutral-200); display: grid; place-items: center; color: var(--color-text-muted); font: var(--text-small);">obrázek / grafika</div>
+  </Hero>
 
   <main style="padding: 48px 24px; display: flex; flex-direction: column; gap: 48px; max-width: 1200px; margin: 0 auto;">
 

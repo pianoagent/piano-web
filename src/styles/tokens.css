@@ -127,6 +127,14 @@
   --text-label:   var(--font-weight-semibold) var(--font-size-label)/var(--line-height-tight) var(--font-sans);
 
   /* =========================================================
+     LAYOUT — sdílená šířka obsahu (Container, Header, Footer, sekce)
+     ========================================================= */
+  --container-max:        1200px;
+  --container-max-narrow: 760px;
+  --container-max-wide:   1360px;
+  --container-pad:        24px;   /* horizontální odsazení od kraje */
+
+  /* =========================================================
      3. SPACING (4px base scale)
      ========================================================= */
   --space-0: 0;

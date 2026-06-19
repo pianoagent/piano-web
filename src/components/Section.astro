@@ -1,0 +1,65 @@
+---
+/**
+ * Section — Piano layout primitiv (sekce stránky)
+ *
+ *   background: "default" | "alt" | "invert" | "primary"   (default "default")
+ *   space:      "sm" | "md" | "lg"                          vertikální padding (default "md")
+ *   container:  "default" | "narrow" | "wide" | "full" | false
+ *               false = bez Containeru (full-bleed obsah)   (default "default")
+ *   as:         HTML tag (default "section")
+ *   id:         kotva pro odkazy
+ *
+ * Pozadí je full-bleed (přes celou šířku), obsah uvnitř drží Container.
+ * Tmavá pozadí (invert/primary) automaticky přepnou text na světlou barvu.
+ */
+import Container from './Container.astro';
+
+interface Props {
+  background?: 'default' | 'alt' | 'invert' | 'primary';
+  space?: 'sm' | 'md' | 'lg';
+  container?: 'default' | 'narrow' | 'wide' | 'full' | false;
+  as?: string;
+  id?: string;
+  class?: string;
+  [key: string]: any;
+}
+
+const {
+  background = 'default',
+  space = 'md',
+  container = 'default',
+  as = 'section',
+  id,
+  class: className,
+  ...rest
+} = Astro.props;
+
+const Tag = as;
+const classes = [
+  'section',
+  `section--bg-${background}`,
+  `section--space-${space}`,
+  className,
+]
+  .filter(Boolean)
+  .join(' ');
+---
+
+<Tag class={classes} id={id} {...rest}>
+  {container === false ? <slot /> : <Container size={container}><slot /></Container>}
+</Tag>
+
+<style>
+  .section { position: relative; }
+
+  /* Vertikální rytmus (responzivní) */
+  .section--space-sm { padding-block: clamp(32px, 5vw, 48px); }
+  .section--space-md { padding-block: clamp(48px, 7vw, 80px); }
+  .section--space-lg { padding-block: clamp(64px, 10vw, 120px); }
+
+  /* Pozadí */
+  .section--bg-default { background: var(--color-bg); }
+  .section--bg-alt     { background: var(--color-bg-alt); }
+  .section--bg-invert  { background: var(--color-neutral-900); color: var(--color-text-on-dark); }
+  .section--bg-primary { background: var(--color-primary-bg); color: var(--color-text-on-dark); }
+</style>
