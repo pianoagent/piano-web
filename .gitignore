@@ -1,0 +1,15 @@
+# build výstup
+dist/
+.astro/
+
+# závislosti
+node_modules/
+
+# logy a systémové soubory
+npm-debug.log*
+.DS_Store
+
+# lokální proměnné / tajné klíče (NIKDY do gitu)
+.env
+.env.*
+!.env.example

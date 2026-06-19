@@ -1,0 +1,23 @@
+---
+import Base from '../layouts/Base.astro';
+const buildTime = new Date().toLocaleString('cs-CZ', { timeZone: 'Europe/Prague' });
+---
+<Base title="Piano — pipeline test">
+  <main style="max-width: 680px; margin: 0 auto; padding: 80px 24px;">
+    <span style="display:inline-block; background:var(--red); color:#fff; font-size:13px; font-weight:700; padding:4px 12px; border-radius:999px;">
+      Piano · pipeline test
+    </span>
+    <h1 style="font-size:40px; line-height:1.15; margin:20px 0 12px;">
+      Potrubí šlape. 🎹
+    </h1>
+    <p style="font-size:18px; color:var(--muted); margin:0 0 28px;">
+      Tahle stránka jede přes Astro → GitHub → Cloudflare. Když ji vidíš živou,
+      znamená to, že se každá změna v repu sama postaví a nasadí. Tady začneme
+      stavět komponenty.
+    </p>
+    <div style="display:inline-block; border:1px solid #e4ddd0; border-radius:var(--radius); padding:14px 18px; background:#fff;">
+      <div style="font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.06em;">Build</div>
+      <div style="font-size:15px; font-weight:600;">{buildTime}</div>
+    </div>
+  </main>
+</Base>
