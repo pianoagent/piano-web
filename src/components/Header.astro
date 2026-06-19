@@ -10,7 +10,8 @@
  */
 import Icon from './Icon.astro';
 import Button from './Button.astro';
-import { mainNav, headerCta } from '../config/nav';
+import Badge from './Badge.astro';
+import { mainNav, headerCta, megaToLinks } from '../config/nav';
 
 interface Props {
   transparent?: boolean;
@@ -32,23 +33,58 @@ const classes = ['header', transparent && 'header--transparent'].filter(Boolean)
     <nav class="header__nav" aria-label="Hlavní navigace">
       <ul class="header__menu">
         {mainNav.map((item) => (
-          item.children ? (
-            <li class="header__item header__item--has-dropdown">
+          item.mega ? (
+            <li class="header__item header__item--mega">
               <button class="header__link header__link--toggle" aria-expanded="false" aria-haspopup="true">
                 {item.label}
                 <Icon name="lucide:chevron-down" size="xs" class="header__chevron" />
               </button>
-              <div class="header__dropdown">
-                <ul class="header__dropdown-list">
-                  {item.children.map((child) => (
-                    <li>
-                      <a href={child.href} class="header__dropdown-link">
-                        <span class="header__dropdown-label">{child.label}</span>
-                        {child.description && <span class="header__dropdown-desc">{child.description}</span>}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
+
+              <div class="header__mega">
+                <div class:list={['header__mega-inner', !item.mega.featured && 'header__mega-inner--no-featured']}>
+                  {item.mega.featured && (
+                    <div class="mega__featured">
+                      {item.mega.featured.label && <p class="mega__label">{item.mega.featured.label}</p>}
+                      {item.mega.featured.items.map((f) => (
+                        <a href={f.href} class="mega__feat">
+                          {f.icon && <span class="mega__feat-icon"><Icon name={f.icon} size="md" /></span>}
+                          <span class="mega__feat-body">
+                            <span class="mega__feat-title">
+                              {f.label}
+                              {f.badge && <Badge variant="primary" size="sm">{f.badge}</Badge>}
+                            </span>
+                            {f.description && <span class="mega__feat-desc">{f.description}</span>}
+                          </span>
+                        </a>
+                      ))}
+                    </div>
+                  )}
+
+                  <div class="mega__cols">
+                    {item.mega.columns.map((col) => (
+                      <div class="mega__col">
+                        {col.label && <p class="mega__label">{col.label}</p>}
+                        <ul class="mega__list">
+                          {col.links.map((l) => (
+                            <li>
+                              <a href={l.href} class="mega__row">
+                                {l.icon && <span class="mega__row-icon"><Icon name={l.icon} size="sm" /></span>}
+                                <span class="mega__row-body">
+                                  <span class="mega__row-name">{l.label}</span>
+                                  {l.description && <span class="mega__row-desc">{l.description}</span>}
+                                </span>
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {item.mega.footer && (
+                  <a href={item.mega.footer.href} class="mega__footer">{item.mega.footer.label} →</a>
+                )}
               </div>
             </li>
           ) : (
@@ -81,15 +117,16 @@ const classes = ['header', transparent && 'header--transparent'].filter(Boolean)
       </div>
       <nav class="drawer__nav" aria-label="Mobilní navigace">
         <ul class="drawer__menu">
-          {mainNav.map((item) => (
-            item.children ? (
+          {mainNav.map((item) => {
+            const sub = megaToLinks(item);
+            return sub.length > 0 ? (
               <li class="drawer__item">
                 <button class="drawer__link drawer__link--toggle" aria-expanded="false" data-accordion>
                   {item.label}
                   <Icon name="lucide:chevron-down" size="sm" class="drawer__chevron" />
                 </button>
                 <ul class="drawer__sublist" hidden>
-                  {item.children.map((child) => (
+                  {sub.map((child) => (
                     <li><a href={child.href} class="drawer__sublink">{child.label}</a></li>
                   ))}
                 </ul>
@@ -98,8 +135,8 @@ const classes = ['header', transparent && 'header--transparent'].filter(Boolean)
               <li class="drawer__item">
                 <a href={item.href} class="drawer__link">{item.label}</a>
               </li>
-            )
-          ))}
+            );
+          })}
         </ul>
         <Button href={headerCta.href} variant="primary" full class="drawer__cta">{headerCta.label}</Button>
       </nav>
@@ -151,6 +188,7 @@ const classes = ['header', transparent && 'header--transparent'].filter(Boolean)
     list-style: none;
   }
   .header__item { position: relative; }
+  .header__item--mega { position: static; }
 
   .header__link {
     display: inline-flex;
@@ -170,45 +208,114 @@ const classes = ['header', transparent && 'header--transparent'].filter(Boolean)
   .header__link:hover { color: var(--color-text-accent); }
   .header__chevron { transition: transform var(--duration-fast) var(--easing); }
 
-  /* Dropdown */
-  .header__dropdown {
+  /* ---- Mega menu ---- */
+  .header__mega {
     position: absolute;
-    top: calc(100% + 8px);
-    right: 0;
-    min-width: 300px;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-6px);
+    width: min(880px, calc(100vw - 48px));
     background: var(--color-bg);
     border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
     box-shadow: var(--shadow-lg);
-    padding: var(--space-2);
     opacity: 0;
     visibility: hidden;
-    transform: translateY(-6px);
     transition: var(--transition);
+    z-index: 300;
   }
-  .header__item--has-dropdown:hover .header__dropdown,
-  .header__item--has-dropdown:focus-within .header__dropdown {
+  /* Neviditelný „most" přes mezeru pod lištou — udrží hover při přejezdu kurzoru */
+  .header__mega::before {
+    content: "";
+    position: absolute;
+    top: -16px;
+    left: 0;
+    right: 0;
+    height: 16px;
+  }
+  .header__item--mega:hover .header__mega,
+  .header__item--mega:focus-within .header__mega {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0);
+    transform: translateX(-50%) translateY(0);
   }
-  .header__item--has-dropdown:hover .header__chevron,
-  .header__item--has-dropdown:focus-within .header__chevron {
-    transform: rotate(180deg);
+  .header__item--mega:hover .header__chevron,
+  .header__item--mega:focus-within .header__chevron { transform: rotate(180deg); }
+
+  .header__mega-inner { display: grid; grid-template-columns: 280px 1fr; }
+  .header__mega-inner--no-featured { grid-template-columns: 1fr; }
+
+  .mega__label {
+    font-size: var(--font-size-caption);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-3);
   }
-  .header__dropdown-list { list-style: none; }
-  .header__dropdown-link {
+
+  /* Featured sloupec */
+  .mega__featured {
+    background: var(--color-bg-alt);
+    padding: var(--space-5);
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: var(--space-1);
+  }
+  .mega__feat {
+    display: flex;
+    gap: var(--space-3);
+    align-items: flex-start;
     padding: var(--space-3);
     text-decoration: none;
-    border-radius: var(--radius-sm);
+    color: inherit;
     transition: var(--transition);
   }
-  .header__dropdown-link:hover { background: var(--color-bg-alt); }
-  .header__dropdown-label { font-weight: var(--font-weight-medium); color: var(--color-text); }
-  .header__dropdown-desc { font-size: var(--font-size-small); color: var(--color-text-muted); }
+  .mega__feat:hover { background: var(--color-bg); }
+  .mega__feat-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    color: var(--color-text-accent);
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+  }
+  .mega__feat-body { display: flex; flex-direction: column; gap: 2px; }
+  .mega__feat-title { display: flex; align-items: center; gap: var(--space-2); font-weight: var(--font-weight-medium); color: var(--color-text); }
+  .mega__feat-desc { font-size: var(--font-size-small); color: var(--color-text-muted); }
+
+  /* Sloupce odkazů */
+  .mega__cols { padding: var(--space-5); display: flex; gap: var(--space-6); }
+  .mega__col { flex: 1; }
+  .mega__list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-1); }
+  .mega__row {
+    display: flex;
+    gap: var(--space-3);
+    align-items: flex-start;
+    padding: var(--space-3);
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition);
+  }
+  .mega__row:hover { background: var(--color-bg-alt); }
+  .mega__row-icon { display: inline-flex; color: var(--color-text-accent); flex-shrink: 0; margin-top: 1px; }
+  .mega__row-body { display: flex; flex-direction: column; gap: 2px; }
+  .mega__row-name { font-weight: var(--font-weight-medium); color: var(--color-text); font-size: var(--font-size-small); }
+  .mega__row-desc { font-size: var(--font-size-caption); color: var(--color-text-muted); }
+
+  /* Footer mega panelu */
+  .mega__footer {
+    display: block;
+    padding: var(--space-3) var(--space-5);
+    border-top: 1px solid var(--color-border);
+    font-size: var(--font-size-small);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-accent);
+    text-decoration: none;
+  }
+  .mega__footer:hover { background: var(--color-bg-alt); }
 
   /* Actions */
   .header__actions { display: flex; align-items: center; gap: var(--space-3); }
