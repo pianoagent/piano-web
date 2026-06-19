@@ -6,30 +6,37 @@
  *   variant="full"     → jméno, e-mail, telefon, název podniku, město (+ souhlas)
  *   variant="callback" → jen telefon ("zavolejte mi")
  *
+ * Layout: formulář je úzký, vedle něj sloupec s „proofs" (důvody důvěry).
+ * Telefon je bez předvolby — přijme i SK a jiná zahraniční čísla.
+ *
  * Props:
  *   variant?:     "full" | "callback"     (default "full")
  *   title?:       string
  *   lead?:        string
+ *   proofs?:      Proof[]  → body důvěry vedle formuláře (icon? / title / text?)
  *   action?:      string  → endpoint (Cloudflare Function → Odoo); default "/api/lead"
- *   submitLabel?: string  → text tlačítka (default dle varianty)
+ *   submitLabel?: string
  *   background?:  "default" | "alt" | "invert" | "primary"   (default "alt")
  *   space?:       "sm" | "md" | "lg"
- *   id?:          string  → kotva pro odkazy
+ *   id?:          string
  *
  * Odesílá se přes fetch (progressive enhancement) — skryté pole `form_variant`
- * rozliší zdroj v CRM, honeypot `website` filtruje boty. Backend (Odoo) se
- * dopojí později; formulář zatím korektně zobrazí stav úspěch/chyba.
+ * rozliší zdroj v CRM, honeypot `website` filtruje boty.
  */
 import Section from './Section.astro';
 import Heading from './Heading.astro';
 import Text from './Text.astro';
 import Button from './Button.astro';
 import Field from './Field.astro';
+import Icon from './Icon.astro';
+
+interface Proof { icon?: string; title: string; text?: string; }
 
 interface Props {
   variant?: 'full' | 'callback';
   title?: string;
   lead?: string;
+  proofs?: Proof[];
   action?: string;
   submitLabel?: string;
   background?: 'default' | 'alt' | 'invert' | 'primary';
@@ -37,10 +44,18 @@ interface Props {
   id?: string;
 }
 
+const defaultProofs: Proof[] = [
+  { icon: 'lucide:headset', title: 'Podpora 24/7', text: 'Česká podpora každý den v roce.' },
+  { icon: 'lucide:store', title: '6 000+ provozů', text: 'Důvěřují nám restaurace i hotely v celé ČR.' },
+  { icon: 'lucide:calendar-check', title: '30 let na trhu', text: 'Zkušenosti s gastro a hotelovým provozem.' },
+  { icon: 'lucide:gift', title: 'Konzultace zdarma', text: 'Nezávazně a bez rizika.' },
+];
+
 const {
   variant = 'full',
   title,
   lead,
+  proofs = defaultProofs,
   action = '/api/lead',
   submitLabel,
   background = 'alt',
@@ -51,87 +66,124 @@ const {
 const isCallback = variant === 'callback';
 const onDark = background === 'invert' || background === 'primary';
 const submitText = submitLabel ?? (isCallback ? 'Zavolejte mi' : 'Odeslat poptávku');
-const containerSize = isCallback ? 'narrow' : 'default';
 ---
 
-<Section background={background} space={space} container={containerSize} id={id}>
-  {(title || lead) && (
-    <div class="leadform__header">
+<Section background={background} space={space} id={id}>
+  <div class:list={['leadform__layout', isCallback && 'leadform__layout--callback']}>
+
+    <!-- Levý sloupec: nadpis + proofs -->
+    <div class="leadform__intro">
       {title && <Heading as="h2" size="h2" color={onDark ? 'on-dark' : 'default'}>{title}</Heading>}
       {lead && <Text size="lead" color={onDark ? 'on-dark-muted' : 'muted'} class="leadform__lead">{lead}</Text>}
+
+      {proofs.length > 0 && (
+        <ul class:list={['leadform__proofs', onDark && 'leadform__proofs--on-dark']}>
+          {proofs.map((p) => (
+            <li class="leadform__proof">
+              {p.icon && <span class="leadform__proof-icon"><Icon name={p.icon} size="md" /></span>}
+              <span class="leadform__proof-body">
+                <span class="leadform__proof-title">{p.title}</span>
+                {p.text && <span class="leadform__proof-text">{p.text}</span>}
+              </span>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
-  )}
 
-  <form
-    class:list={['leadform', `leadform--${variant}`]}
-    action={action}
-    method="POST"
-    data-leadform
-    novalidate
-  >
-    <input type="hidden" name="form_variant" value={variant} />
-    {/* Honeypot — skryté pole pro boty */}
-    <div class="leadform__hp" aria-hidden="true">
-      <label>Web<input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
-    </div>
-
-    {isCallback ? (
-      <Field
-        label="Telefon"
-        name="phone"
-        type="tel"
-        prefix="+420"
-        placeholder="123 456 789"
-        helper="Zavoláme vám zpět, jakmile to půjde."
-        autocomplete="tel"
-        inputmode="tel"
-        required
-      />
-    ) : (
-      <div class="leadform__grid">
-        <Field label="Jméno" name="name" placeholder="John Doe" autocomplete="name" required />
-        <Field label="E-mail" name="email" type="email" placeholder="info@podnik.cz" autocomplete="email" required />
-        <Field label="Telefon" name="phone" type="tel" prefix="+420" placeholder="123 456 789" helper="Vložte celé číslo" autocomplete="tel" inputmode="tel" />
-        <Field label="Název podniku" name="company" placeholder="Restaurace U Lva" autocomplete="organization" />
-        <Field label="Město" name="city" placeholder="Praha" autocomplete="address-level2" class="field--full" />
-
-        <label class="leadform__consent field--full">
-          <input type="checkbox" name="consent" required />
-          <span class="leadform__check" aria-hidden="true"></span>
-          <span class="leadform__consent-text">
-            Souhlasím se zpracováním osobních údajů dle <a href="/ochrana-udaju">zásad ochrany údajů</a>.
-          </span>
-        </label>
+    <!-- Pravý sloupec: úzký formulář -->
+    <form
+      class:list={['leadform', `leadform--${variant}`]}
+      action={action}
+      method="POST"
+      data-leadform
+      novalidate
+    >
+      <input type="hidden" name="form_variant" value={variant} />
+      <div class="leadform__hp" aria-hidden="true">
+        <label>Web<input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
       </div>
-    )}
 
-    <div class="leadform__footer">
-      <Button type="submit" variant="primary" data-submit>{submitText}</Button>
-    </div>
+      <div class="leadform__fields">
+        {isCallback ? (
+          <Field
+            label="Telefon"
+            name="phone"
+            type="tel"
+            placeholder="+420 123 456 789"
+            helper="Zavoláme vám zpět, jakmile to půjde."
+            autocomplete="tel"
+            inputmode="tel"
+            required
+          />
+        ) : (
+          <>
+            <Field label="Jméno" name="name" placeholder="John Doe" autocomplete="name" required />
+            <Field label="E-mail" name="email" type="email" placeholder="info@podnik.cz" autocomplete="email" required />
+            <Field label="Telefon" name="phone" type="tel" placeholder="+420 123 456 789" autocomplete="tel" inputmode="tel" />
+            <Field label="Název podniku" name="company" placeholder="Restaurace U Lva" autocomplete="organization" />
+            <Field label="Město" name="city" placeholder="Praha" autocomplete="address-level2" />
 
-    <p class="leadform__status leadform__status--ok" data-success hidden>
-      Děkujeme! Ozveme se vám co nejdříve.
-    </p>
-    <p class="leadform__status leadform__status--err" data-error hidden>
-      Něco se nepovedlo. Zkuste to prosím znovu, nebo nám zavolejte.
-    </p>
-  </form>
+            <label class="leadform__consent">
+              <input type="checkbox" name="consent" required />
+              <span class="leadform__check" aria-hidden="true"></span>
+              <span class="leadform__consent-text">
+                Souhlasím se zpracováním osobních údajů dle <a href="/ochrana-udaju">zásad ochrany údajů</a>.
+              </span>
+            </label>
+          </>
+        )}
+      </div>
+
+      <div class="leadform__footer">
+        <Button type="submit" variant="primary" full data-submit>{submitText}</Button>
+      </div>
+
+      <p class="leadform__status leadform__status--ok" data-success hidden>
+        Děkujeme! Ozveme se vám co nejdříve.
+      </p>
+      <p class="leadform__status leadform__status--err" data-error hidden>
+        Něco se nepovedlo. Zkuste to prosím znovu, nebo nám zavolejte.
+      </p>
+    </form>
+  </div>
 </Section>
 
 <style>
-  .leadform__header { margin-bottom: var(--space-6); max-width: 620px; }
-  .leadform__lead { margin-top: var(--space-3); }
-
-  .leadform__grid {
+  /* Layout — proofs vlevo, úzký formulář vpravo */
+  .leadform__layout {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-4);
+    grid-template-columns: 1fr minmax(0, 420px);
+    gap: var(--space-8);
+    align-items: start;
   }
-  .leadform :global(.field--full) { grid-column: 1 / -1; }
+  .leadform__layout--callback {
+    grid-template-columns: 1fr minmax(0, 360px);
+  }
 
+  .leadform__lead { margin-top: var(--space-3); max-width: 460px; }
+
+  /* Proofs */
+  .leadform__proofs {
+    list-style: none;
+    display: grid;
+    gap: var(--space-5);
+    margin-top: var(--space-6);
+    max-width: 460px;
+  }
+  .leadform__proof { display: flex; align-items: flex-start; gap: var(--space-3); }
+  .leadform__proof-icon { display: inline-flex; color: var(--color-text-accent); flex-shrink: 0; }
+  .leadform__proofs--on-dark .leadform__proof-icon { color: var(--color-secondary-gold); }
+  .leadform__proof-body { display: flex; flex-direction: column; gap: 2px; }
+  .leadform__proof-title { font-family: var(--font-sans); font-weight: var(--font-weight-medium); }
+  .leadform__proof-text { font-size: var(--font-size-small); color: var(--color-text-muted); }
+  .leadform__proofs--on-dark .leadform__proof-text { color: var(--color-text-on-dark-muted); }
+
+  /* Formulář */
+  .leadform__fields { display: flex; flex-direction: column; gap: var(--space-4); }
   .leadform__footer { margin-top: var(--space-5); }
 
-  /* Honeypot — mimo obrazovku, ne display:none (boti to vyplní) */
+  /* Honeypot */
   .leadform__hp {
     position: absolute;
     left: -9999px;
@@ -140,7 +192,7 @@ const containerSize = isCallback ? 'narrow' : 'default';
     overflow: hidden;
   }
 
-  /* Souhlas — vlastní checkbox */
+  /* Souhlas — vlastní checkbox (ostré rohy) */
   .leadform__consent {
     display: flex;
     align-items: flex-start;
@@ -148,12 +200,7 @@ const containerSize = isCallback ? 'narrow' : 'default';
     cursor: pointer;
     margin-top: var(--space-1);
   }
-  .leadform__consent input {
-    position: absolute;
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
+  .leadform__consent input { position: absolute; opacity: 0; width: 0; height: 0; }
   .leadform__check {
     flex-shrink: 0;
     width: 20px;
@@ -161,7 +208,7 @@ const containerSize = isCallback ? 'narrow' : 'default';
     margin-top: 1px;
     background: var(--color-bg);
     border: 1.5px solid var(--color-border-strong);
-    border-radius: var(--radius-sm);
+    border-radius: 0;
     transition: var(--transition);
     position: relative;
   }
@@ -180,9 +227,7 @@ const containerSize = isCallback ? 'narrow' : 'default';
     border-width: 0 2px 2px 0;
     transform: rotate(45deg);
   }
-  .leadform__consent input:focus-visible ~ .leadform__check {
-    box-shadow: var(--shadow-focus);
-  }
+  .leadform__consent input:focus-visible ~ .leadform__check { box-shadow: var(--shadow-focus); }
   .leadform__consent-text {
     font-family: var(--font-sans);
     font-size: var(--font-size-small);
@@ -201,9 +246,10 @@ const containerSize = isCallback ? 'narrow' : 'default';
   .leadform__status--ok { color: var(--color-success); }
   .leadform__status--err { color: var(--color-error); }
 
-  @media (max-width: 560px) {
-    .leadform__grid { grid-template-columns: 1fr; }
-    .leadform :global(.field--full) { grid-column: 1; }
+  /* Responsive — sloupce pod sebe */
+  @media (max-width: 880px) {
+    .leadform__layout,
+    .leadform__layout--callback { grid-template-columns: 1fr; gap: var(--space-6); }
   }
 </style>
 
@@ -218,10 +264,8 @@ const containerSize = isCallback ? 'narrow' : 'default';
       ok && (ok.hidden = true);
       err && (err.hidden = true);
 
-      // Nativní validace
       if (!form.checkValidity()) { form.reportValidity(); return; }
 
-      // Honeypot vyplněn → tváříme se úspěšně, nic neodesíláme
       const hp = form.querySelector<HTMLInputElement>('input[name="website"]');
       if (hp && hp.value) { form.reset(); if (ok) ok.hidden = false; return; }
 
