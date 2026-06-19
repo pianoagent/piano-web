@@ -9,6 +9,16 @@ import Card from '../components/Card.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Hero from '../components/Hero.astro';
+import HeroCarousel from '../components/HeroCarousel.astro';
+
+// Bannery pro carousel (zdroj: grason-bannery.tsv)
+const grasonSlides = [
+  { eyebrow: 'Brigádníci', headline: 'Volná směna?', sub: 'Vyplňte ji ještě dnes.', body: 'Tisíce ověřených brigádníků připravených nastoupit.', cta: { label: 'Sehnat brigádníka', href: '#' } },
+  { eyebrow: 'Plánování směn', headline: 'Rozvrh bez Excelu a skupinových chatů.', sub: 'Plánujte směny, spravujte dovolené a záskoky — přehledně v jedné appce.', cta: { label: 'Vyzkoušet zdarma', href: '#' } },
+  { eyebrow: 'GPS docházka', headline: 'Přesně víte, kdo přišel a kdy.', sub: 'Digitální píchačky s GPS okruhem 30 m.', body: 'Žádné dohady, jen fakta.', cta: { label: 'Zjistit více', href: '#' } },
+  { eyebrow: 'Checklisty', headline: 'Každá směna podle pravidel.', sub: 'Zaměstnanci odklikají úkoly a doloží je fotkou přímo z appky.', cta: { label: 'Zjistit více', href: '#' } },
+  { eyebrow: 'Podklady pro mzdy', headline: 'Mzdová účetní vám poděkuje.', sub: 'Exportujte podklady pro mzdy jedním kliknutím.', body: 'Bez ručního přepisování.', cta: { label: 'Zjistit více', href: '#' } },
+];
 ---
 
 <Base title="Piano — komponenty">
@@ -26,15 +36,18 @@ import Hero from '../components/Hero.astro';
     </Fragment>
   </Hero>
 
-  <!-- Hero — split layout s médiem -->
+  <!-- TYP 1: Hero split — text vlevo, video vpravo (16:9) -->
   <Hero eyebrow="Pokladní systém"
         lead="Septim propojí objednávky, kuchyni, sklad i účetnictví do jednoho systému.">
     <Heading slot="title" as="h1" size="h1">Provoz restaurace <em>pod kontrolou</em></Heading>
     <Fragment slot="actions">
       <Button>Vyzkoušet Septim</Button>
     </Fragment>
-    <div slot="media" style="aspect-ratio: 4/3; background: var(--color-neutral-200); display: grid; place-items: center; color: var(--color-text-muted); font: var(--text-small);">obrázek / grafika</div>
+    <div slot="media" style="aspect-ratio: 16/9; background: var(--color-neutral-200); display: grid; place-items: center; color: var(--color-text-muted); font: var(--text-small);">video 16:9 (placeholder)</div>
   </Hero>
+
+  <!-- TYP 2: Hero carousel bannerů -->
+  <HeroCarousel slides={grasonSlides} background="primary" />
 
   <main style="padding: 48px 24px; display: flex; flex-direction: column; gap: 48px; max-width: 1200px; margin: 0 auto;">
 

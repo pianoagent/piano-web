@@ -1,0 +1,270 @@
+---
+/**
+ * HeroCarousel — Piano sekční blok (rotující carousel bannerů)
+ *
+ * Props:
+ *   slides:      Slide[]  → bannery (viz typ Slide níže)
+ *   background?: "default" | "alt" | "invert" | "primary"   (default "primary")
+ *   space?:      "sm" | "md" | "lg"                          (default "lg")
+ *   interval?:   number   → ms mezi přepnutími (default 6000); 0 = bez autoplay
+ *
+ * Slide = { eyebrow?, headline, sub?, body?, cta?, ctaSecondary? }
+ *   cta / ctaSecondary = { label, href }
+ *
+ * Chování: autoplay s pauzou na hover/focus, šipky, tečky, ovládání klávesnicí
+ * (←/→), přístupné (aria-roledescription, aria-hidden neaktivních). Respektuje
+ * prefers-reduced-motion (vypne autoplay i animaci).
+ */
+import Section from './Section.astro';
+import Heading from './Heading.astro';
+import Text from './Text.astro';
+import Button from './Button.astro';
+import Icon from './Icon.astro';
+
+interface Cta { label: string; href: string; }
+export interface Slide {
+  eyebrow?: string;
+  headline: string;
+  sub?: string;
+  body?: string;
+  cta?: Cta;
+  ctaSecondary?: Cta;
+}
+
+interface Props {
+  slides?: Slide[];
+  background?: 'default' | 'alt' | 'invert' | 'primary';
+  space?: 'sm' | 'md' | 'lg';
+  interval?: number;
+}
+
+const {
+  slides = [],
+  background = 'primary',
+  space = 'lg',
+  interval = 6000,
+} = Astro.props;
+
+const onDark = background === 'invert' || background === 'primary';
+const count = slides.length;
+---
+
+<Section background={background} space={space}>
+  <div
+    class="carousel"
+    data-carousel
+    data-interval={interval}
+    aria-roledescription="carousel"
+    aria-label="Bannery"
+  >
+    <div class="carousel__stage">
+      {slides.map((s, i) => (
+        <div
+          class:list={['carousel__slide', i === 0 && 'is-active']}
+          data-slide
+          role="group"
+          aria-roledescription="slide"
+          aria-label={`${i + 1} z ${count}`}
+          aria-hidden={i !== 0 ? 'true' : undefined}
+        >
+          {s.eyebrow && <p class="carousel__eyebrow">{s.eyebrow}</p>}
+          <Heading as="h2" size="h1" align="center" color={onDark ? 'on-dark' : 'default'}>{s.headline}</Heading>
+          {s.sub && (
+            <Text size="lead" align="center" color={onDark ? 'on-dark' : 'default'} class="carousel__sub">{s.sub}</Text>
+          )}
+          {s.body && (
+            <Text align="center" color={onDark ? 'on-dark-muted' : 'muted'} class="carousel__body">{s.body}</Text>
+          )}
+          {(s.cta || s.ctaSecondary) && (
+            <div class="carousel__actions">
+              {s.cta && <Button href={s.cta.href} variant="primary">{s.cta.label}</Button>}
+              {s.ctaSecondary && <Button href={s.ctaSecondary.href} variant="secondary">{s.ctaSecondary.label}</Button>}
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+
+    {count > 1 && (
+      <>
+        <button class="carousel__arrow carousel__arrow--prev" data-prev aria-label="Předchozí banner" type="button">
+          <Icon name="lucide:chevron-left" size="md" />
+        </button>
+        <button class="carousel__arrow carousel__arrow--next" data-next aria-label="Další banner" type="button">
+          <Icon name="lucide:chevron-right" size="md" />
+        </button>
+
+        <div class="carousel__dots" role="tablist" aria-label="Výběr banneru">
+          {slides.map((_, i) => (
+            <button
+              class:list={['carousel__dot', i === 0 && 'is-active']}
+              data-dot
+              type="button"
+              role="tab"
+              aria-label={`Banner ${i + 1}`}
+              aria-selected={i === 0 ? 'true' : 'false'}
+            ></button>
+          ))}
+        </div>
+      </>
+    )}
+  </div>
+</Section>
+
+<style>
+  .carousel { position: relative; }
+
+  /* Slidy se překrývají v jedné mřížkové buňce → výška = nejvyšší slide, bez skoků */
+  .carousel__stage { display: grid; }
+  .carousel__slide {
+    grid-area: 1 / 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 720px;
+    margin-inline: auto;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    transition: opacity var(--duration-base) var(--easing), transform var(--duration-base) var(--easing);
+    pointer-events: none;
+  }
+  .carousel__slide.is-active {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    pointer-events: auto;
+  }
+
+  .carousel__eyebrow {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-label);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide);
+    color: var(--color-secondary-gold);
+    margin-bottom: var(--space-4);
+  }
+  .carousel__sub { margin-top: var(--space-4); }
+  .carousel__body { margin-top: var(--space-3); max-width: 560px; }
+  .carousel__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    justify-content: center;
+    margin-top: var(--space-6);
+  }
+
+  /* Šipky */
+  .carousel__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    color: inherit;
+    background: transparent;
+    border: 1px solid var(--color-border-on-dark);
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  .carousel__arrow:hover { background: rgba(255, 255, 255, 0.12); }
+  .carousel__arrow:focus-visible { outline: none; box-shadow: var(--shadow-focus); }
+  .carousel__arrow--prev { left: 0; }
+  .carousel__arrow--next { right: 0; }
+
+  /* Tečky */
+  .carousel__dots {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-2);
+    margin-top: var(--space-7);
+  }
+  .carousel__dot {
+    width: 10px;
+    height: 10px;
+    padding: 0;
+    background: rgba(255, 255, 255, 0.35);
+    border: none;
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  .carousel__dot:hover { background: rgba(255, 255, 255, 0.6); }
+  .carousel__dot.is-active { background: var(--color-text-on-dark); transform: scale(1.15); }
+  .carousel__dot:focus-visible { outline: none; box-shadow: var(--shadow-focus); }
+
+  /* Skrýt šipky tam, kde by se kryly s obsahem (úzké viewporty) */
+  @media (max-width: 880px) {
+    .carousel__arrow { display: none; }
+  }
+
+  /* Bez animace pro uživatele s omezeným pohybem */
+  @media (prefers-reduced-motion: reduce) {
+    .carousel__slide { transition: none; transform: none; }
+  }
+</style>
+
+<script>
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  document.querySelectorAll<HTMLElement>('[data-carousel]').forEach((root) => {
+    const slides = Array.from(root.querySelectorAll<HTMLElement>('[data-slide]'));
+    const dots = Array.from(root.querySelectorAll<HTMLElement>('[data-dot]'));
+    const prev = root.querySelector<HTMLElement>('[data-prev]');
+    const next = root.querySelector<HTMLElement>('[data-next]');
+    const interval = Number(root.dataset.interval || 0);
+    if (slides.length < 2) return;
+
+    let index = 0;
+    let timer: number | undefined;
+
+    function show(i: number) {
+      index = (i + slides.length) % slides.length;
+      slides.forEach((s, n) => {
+        const active = n === index;
+        s.classList.toggle('is-active', active);
+        if (active) s.removeAttribute('aria-hidden');
+        else s.setAttribute('aria-hidden', 'true');
+      });
+      dots.forEach((d, n) => {
+        const active = n === index;
+        d.classList.toggle('is-active', active);
+        d.setAttribute('aria-selected', String(active));
+      });
+    }
+
+    function start() {
+      if (reduceMotion || !interval) return;
+      stop();
+      timer = window.setInterval(() => show(index + 1), interval);
+    }
+    function stop() {
+      if (timer) { window.clearInterval(timer); timer = undefined; }
+    }
+
+    next?.addEventListener('click', () => { show(index + 1); start(); });
+    prev?.addEventListener('click', () => { show(index - 1); start(); });
+    dots.forEach((d, n) => d.addEventListener('click', () => { show(n); start(); }));
+
+    root.addEventListener('mouseenter', stop);
+    root.addEventListener('mouseleave', start);
+    root.addEventListener('focusin', stop);
+    root.addEventListener('focusout', start);
+    root.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') { show(index + 1); start(); }
+      if (e.key === 'ArrowLeft') { show(index - 1); start(); }
+    });
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) stop(); else start();
+    });
+
+    start();
+  });
+</script>

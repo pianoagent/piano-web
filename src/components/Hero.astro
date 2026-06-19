@@ -111,12 +111,18 @@ const innerClasses = [
     margin-top: var(--space-7);
   }
 
-  /* Média */
+  /* Média (obrázek nebo video) */
   .hero__media { display: block; }
-  .hero__media :global(img) {
+  .hero__media :global(img),
+  .hero__media :global(video) {
     display: block;
     width: 100%;
     height: auto;
+  }
+  /* Video v poměru 16:9 vyplní rámeček (cover) */
+  .hero__media :global(video) {
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
   }
 
   /* Responsive — split se skládá pod sebe */
