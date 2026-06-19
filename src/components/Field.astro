@@ -1,0 +1,136 @@
+---
+/**
+ * Field — Piano formulářové pole (label + input)
+ *
+ * Props:
+ *   label:        string   → popisek nad polem
+ *   name:         string   → name atribut (povinné pro odeslání)
+ *   type?:        "text" | "email" | "tel"      (default "text")
+ *   placeholder?: string
+ *   required?:    boolean
+ *   prefix?:      string   → pevná předpona uvnitř pole (např. "+420")
+ *   icon?:        string   → název ikony (Icon) na začátku pole
+ *   helper?:      string   → nápověda pod polem
+ *   autocomplete?: string
+ *   inputmode?:   string
+ *   value?:       string
+ *   class?:       string   → např. "field--full" pro span přes 2 sloupce v mřížce
+ */
+import Icon from './Icon.astro';
+
+interface Props {
+  label: string;
+  name: string;
+  type?: 'text' | 'email' | 'tel';
+  placeholder?: string;
+  required?: boolean;
+  prefix?: string;
+  icon?: string;
+  helper?: string;
+  autocomplete?: string;
+  inputmode?: string;
+  value?: string;
+  class?: string;
+  [key: string]: any;
+}
+
+const {
+  label,
+  name,
+  type = 'text',
+  placeholder,
+  required = false,
+  prefix,
+  icon,
+  helper,
+  autocomplete,
+  inputmode,
+  value,
+  class: className,
+  ...rest
+} = Astro.props;
+
+const id = `field-${name}`;
+const helperId = helper ? `${id}-helper` : undefined;
+const hasAdornment = Boolean(prefix || icon);
+---
+
+<div class:list={['field', className]}>
+  <label class="field__label" for={id}>
+    {label}{required && <span class="field__req" aria-hidden="true">*</span>}
+  </label>
+
+  <div class:list={['field__control', hasAdornment && 'field__control--adorned']}>
+    {icon && <span class="field__icon"><Icon name={icon} size="sm" /></span>}
+    {prefix && <span class="field__prefix">{prefix}</span>}
+    <input
+      class="field__input"
+      id={id}
+      name={name}
+      type={type}
+      placeholder={placeholder}
+      required={required}
+      autocomplete={autocomplete}
+      inputmode={inputmode}
+      value={value}
+      aria-describedby={helperId}
+      {...rest}
+    />
+  </div>
+
+  {helper && <p class="field__helper" id={helperId}>{helper}</p>}
+</div>
+
+<style>
+  .field { display: flex; flex-direction: column; gap: var(--space-2); }
+
+  .field__label {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-small);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text);
+  }
+  .field__req { color: var(--color-text-accent); margin-left: 2px; }
+
+  .field__control {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    background: var(--color-bg);
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding-inline: var(--space-4);
+    transition: border-color var(--duration-fast) var(--easing), box-shadow var(--duration-fast) var(--easing);
+  }
+  .field__control:focus-within {
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-focus);
+  }
+
+  .field__icon { display: inline-flex; color: var(--color-text-muted); flex-shrink: 0; }
+  .field__prefix {
+    font-family: var(--font-sans);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+    flex-shrink: 0;
+  }
+
+  .field__input {
+    flex: 1;
+    width: 100%;
+    padding-block: var(--space-3);
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: var(--font-sans);
+    font-size: 15px;
+    color: var(--color-text);
+  }
+  .field__input::placeholder { color: var(--color-neutral-300); }
+
+  .field__helper {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-caption);
+    color: var(--color-text-muted);
+  }
+</style>

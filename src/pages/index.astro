@@ -11,6 +11,7 @@ import Footer from '../components/Footer.astro';
 import Hero from '../components/Hero.astro';
 import HeroCarousel from '../components/HeroCarousel.astro';
 import USPGrid from '../components/USPGrid.astro';
+import LeadForm from '../components/LeadForm.astro';
 
 // Funkce pro USP grid (zdroj: Septim)
 const septimFeatures = [
@@ -71,6 +72,21 @@ const grasonSlides = [
 
   <!-- USP grid na tmavém pozadí -->
   <USPGrid title="Proč Piano" items={septimFeatures} columns={3} background="invert" />
+
+  <!-- LeadForm — varianta A (plný) -->
+  <LeadForm
+    variant="full"
+    title="Máte zájem? Ozvěte se nám"
+    lead="Vyplňte formulář a my se vám ozveme s nabídkou na míru."
+  />
+
+  <!-- LeadForm — varianta B (jen telefon, pro A/B test) -->
+  <LeadForm
+    variant="callback"
+    title="Nechte nám číslo, zavoláme"
+    lead="Stačí telefon — zbytek probereme po telefonu."
+    background="primary"
+  />
 
   <main style="padding: 48px 24px; display: flex; flex-direction: column; gap: 48px; max-width: 1200px; margin: 0 auto;">
 

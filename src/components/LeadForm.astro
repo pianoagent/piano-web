@@ -1,0 +1,247 @@
+---
+/**
+ * LeadForm — Piano sekční blok (poptávkový formulář → CRM)
+ *
+ * Dvě varianty pro A/B testování (lze je v sekci jednoduše prohodit):
+ *   variant="full"     → jméno, e-mail, telefon, název podniku, město (+ souhlas)
+ *   variant="callback" → jen telefon ("zavolejte mi")
+ *
+ * Props:
+ *   variant?:     "full" | "callback"     (default "full")
+ *   title?:       string
+ *   lead?:        string
+ *   action?:      string  → endpoint (Cloudflare Function → Odoo); default "/api/lead"
+ *   submitLabel?: string  → text tlačítka (default dle varianty)
+ *   background?:  "default" | "alt" | "invert" | "primary"   (default "alt")
+ *   space?:       "sm" | "md" | "lg"
+ *   id?:          string  → kotva pro odkazy
+ *
+ * Odesílá se přes fetch (progressive enhancement) — skryté pole `form_variant`
+ * rozliší zdroj v CRM, honeypot `website` filtruje boty. Backend (Odoo) se
+ * dopojí později; formulář zatím korektně zobrazí stav úspěch/chyba.
+ */
+import Section from './Section.astro';
+import Heading from './Heading.astro';
+import Text from './Text.astro';
+import Button from './Button.astro';
+import Field from './Field.astro';
+
+interface Props {
+  variant?: 'full' | 'callback';
+  title?: string;
+  lead?: string;
+  action?: string;
+  submitLabel?: string;
+  background?: 'default' | 'alt' | 'invert' | 'primary';
+  space?: 'sm' | 'md' | 'lg';
+  id?: string;
+}
+
+const {
+  variant = 'full',
+  title,
+  lead,
+  action = '/api/lead',
+  submitLabel,
+  background = 'alt',
+  space = 'md',
+  id,
+} = Astro.props;
+
+const isCallback = variant === 'callback';
+const onDark = background === 'invert' || background === 'primary';
+const submitText = submitLabel ?? (isCallback ? 'Zavolejte mi' : 'Odeslat poptávku');
+const containerSize = isCallback ? 'narrow' : 'default';
+---
+
+<Section background={background} space={space} container={containerSize} id={id}>
+  {(title || lead) && (
+    <div class="leadform__header">
+      {title && <Heading as="h2" size="h2" color={onDark ? 'on-dark' : 'default'}>{title}</Heading>}
+      {lead && <Text size="lead" color={onDark ? 'on-dark-muted' : 'muted'} class="leadform__lead">{lead}</Text>}
+    </div>
+  )}
+
+  <form
+    class:list={['leadform', `leadform--${variant}`]}
+    action={action}
+    method="POST"
+    data-leadform
+    novalidate
+  >
+    <input type="hidden" name="form_variant" value={variant} />
+    {/* Honeypot — skryté pole pro boty */}
+    <div class="leadform__hp" aria-hidden="true">
+      <label>Web<input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
+    </div>
+
+    {isCallback ? (
+      <Field
+        label="Telefon"
+        name="phone"
+        type="tel"
+        prefix="+420"
+        placeholder="123 456 789"
+        helper="Zavoláme vám zpět, jakmile to půjde."
+        autocomplete="tel"
+        inputmode="tel"
+        required
+      />
+    ) : (
+      <div class="leadform__grid">
+        <Field label="Jméno" name="name" placeholder="John Doe" autocomplete="name" required />
+        <Field label="E-mail" name="email" type="email" placeholder="info@podnik.cz" autocomplete="email" required />
+        <Field label="Telefon" name="phone" type="tel" prefix="+420" placeholder="123 456 789" helper="Vložte celé číslo" autocomplete="tel" inputmode="tel" />
+        <Field label="Název podniku" name="company" placeholder="Restaurace U Lva" autocomplete="organization" />
+        <Field label="Město" name="city" placeholder="Praha" autocomplete="address-level2" class="field--full" />
+
+        <label class="leadform__consent field--full">
+          <input type="checkbox" name="consent" required />
+          <span class="leadform__check" aria-hidden="true"></span>
+          <span class="leadform__consent-text">
+            Souhlasím se zpracováním osobních údajů dle <a href="/ochrana-udaju">zásad ochrany údajů</a>.
+          </span>
+        </label>
+      </div>
+    )}
+
+    <div class="leadform__footer">
+      <Button type="submit" variant="primary" data-submit>{submitText}</Button>
+    </div>
+
+    <p class="leadform__status leadform__status--ok" data-success hidden>
+      Děkujeme! Ozveme se vám co nejdříve.
+    </p>
+    <p class="leadform__status leadform__status--err" data-error hidden>
+      Něco se nepovedlo. Zkuste to prosím znovu, nebo nám zavolejte.
+    </p>
+  </form>
+</Section>
+
+<style>
+  .leadform__header { margin-bottom: var(--space-6); max-width: 620px; }
+  .leadform__lead { margin-top: var(--space-3); }
+
+  .leadform__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+  }
+  .leadform :global(.field--full) { grid-column: 1 / -1; }
+
+  .leadform__footer { margin-top: var(--space-5); }
+
+  /* Honeypot — mimo obrazovku, ne display:none (boti to vyplní) */
+  .leadform__hp {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  /* Souhlas — vlastní checkbox */
+  .leadform__consent {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    cursor: pointer;
+    margin-top: var(--space-1);
+  }
+  .leadform__consent input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  .leadform__check {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    margin-top: 1px;
+    background: var(--color-bg);
+    border: 1.5px solid var(--color-border-strong);
+    border-radius: var(--radius-sm);
+    transition: var(--transition);
+    position: relative;
+  }
+  .leadform__consent input:checked ~ .leadform__check {
+    background: var(--color-neutral-900);
+    border-color: var(--color-neutral-900);
+  }
+  .leadform__consent input:checked ~ .leadform__check::after {
+    content: "";
+    position: absolute;
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid var(--color-text-on-dark);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+  .leadform__consent input:focus-visible ~ .leadform__check {
+    box-shadow: var(--shadow-focus);
+  }
+  .leadform__consent-text {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-small);
+    color: var(--color-text-muted);
+    line-height: var(--line-height-body);
+  }
+  .leadform__consent-text a { color: var(--color-text-accent); }
+
+  /* Stavové hlášky */
+  .leadform__status {
+    margin-top: var(--space-4);
+    font-family: var(--font-sans);
+    font-size: var(--font-size-body);
+    font-weight: var(--font-weight-medium);
+  }
+  .leadform__status--ok { color: var(--color-success); }
+  .leadform__status--err { color: var(--color-error); }
+
+  @media (max-width: 560px) {
+    .leadform__grid { grid-template-columns: 1fr; }
+    .leadform :global(.field--full) { grid-column: 1; }
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLFormElement>('[data-leadform]').forEach((form) => {
+    const submit = form.querySelector<HTMLButtonElement>('[data-submit]');
+    const ok = form.querySelector<HTMLElement>('[data-success]');
+    const err = form.querySelector<HTMLElement>('[data-error]');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      ok && (ok.hidden = true);
+      err && (err.hidden = true);
+
+      // Nativní validace
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+
+      // Honeypot vyplněn → tváříme se úspěšně, nic neodesíláme
+      const hp = form.querySelector<HTMLInputElement>('input[name="website"]');
+      if (hp && hp.value) { form.reset(); if (ok) ok.hidden = false; return; }
+
+      const original = submit?.textContent;
+      if (submit) { submit.disabled = true; submit.textContent = 'Odesílám…'; }
+
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body: new FormData(form),
+        });
+        if (!res.ok) throw new Error(String(res.status));
+        form.reset();
+        if (ok) ok.hidden = false;
+      } catch {
+        if (err) err.hidden = false;
+      } finally {
+        if (submit) { submit.disabled = false; submit.textContent = original ?? ''; }
+      }
+    });
+  });
+</script>
