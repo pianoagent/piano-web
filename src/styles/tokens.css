@@ -149,12 +149,17 @@
   --radius-lg:   4px;
   --radius-full: 9999px;
 
-  /* Signature chamfer — seříznutý levý horní roh (~18.85°) */
-  --chamfer:             12px;
-  --chamfer-clip:        polygon(calc(var(--chamfer) * 2.93) 0, 100% 0, 100% 100%, 0 100%, 0 var(--chamfer));
-  --chamfer-clip-sm:     polygon(calc(8px  * 2.93) 0, 100% 0, 100% 100%, 0 100%, 0 8px);
-  --chamfer-clip-lg:     polygon(calc(15px * 2.93) 0, 100% 0, 100% 100%, 0 100%, 0 15px);
-  --chamfer-clip-accent: polygon(calc(18px * 2.93) 0, 100% 0, 100% 100%, 0 100%, 0 18px);
+  /* Signature chamfer — seříznutý levý horní roh, VŽDY pod úhlem 18,85°.
+     Úhel je zafixovaný jediným poměrem (kotangens 18,85° = vodorovné/svislé
+     odsazení). Mění se jen hloubka — úhel zůstává identický na všech prvcích. */
+  --chamfer-cot:   2.9296;   /* 1 / tan(18,85°) — NEMĚNIT, drží úhel */
+  --chamfer-depth: 10px;     /* jednotná hloubka (svislé odsazení) */
+
+  --chamfer-clip:    polygon(calc(var(--chamfer-depth) * var(--chamfer-cot)) 0, 100% 0, 100% 100%, 0 100%, 0 var(--chamfer-depth));
+  /* Alias pro menší prvky (tlačítka) — stejná hloubka i úhel jako základ */
+  --chamfer-clip-sm: var(--chamfer-clip);
+  /* Větší plochy (hero, bannery) — stejný úhel, jen hlubší řez */
+  --chamfer-clip-lg: polygon(calc(16px * var(--chamfer-cot)) 0, 100% 0, 100% 100%, 0 100%, 0 16px);
 
   /* =========================================================
      5. SHADOWS
