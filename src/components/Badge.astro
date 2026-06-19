@@ -1,0 +1,101 @@
+---
+/**
+ * Badge — Piano primitiv (štítek)
+ *
+ *   variant: "neutral" | "primary" | "success" | "warning" | "info"   (default "neutral")
+ *   tone:    "soft" | "solid"                                          (default "soft")
+ *   size:    "sm" | "md"                                               (default "md")
+ *   icon:    string → název ikony (Icon) zobrazený před textem
+ *
+ * Sharp brand: radius 4px. Text verzálkami s trackingem (jako Button label).
+ */
+import Icon from './Icon.astro';
+
+interface Props {
+  variant?: 'neutral' | 'primary' | 'success' | 'warning' | 'info';
+  tone?: 'soft' | 'solid';
+  size?: 'sm' | 'md';
+  icon?: string;
+  class?: string;
+  [key: string]: any;
+}
+
+const {
+  variant = 'neutral',
+  tone = 'soft',
+  size = 'md',
+  icon,
+  class: className,
+  ...rest
+} = Astro.props;
+
+const classes = [
+  'badge',
+  `badge--${variant}`,
+  `badge--${tone}`,
+  `badge--${size}`,
+  className,
+]
+  .filter(Boolean)
+  .join(' ');
+---
+
+<span class={classes} {...rest}>
+  {icon && <Icon name={icon} size={size === 'sm' ? 12 : 14} />}
+  <slot />
+</span>
+
+<style>
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    font-family: var(--font-sans);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide);
+    line-height: 1;
+    border-radius: var(--radius-sm);
+    border: 1px solid transparent;
+    white-space: nowrap;
+  }
+
+  /* Velikosti */
+  .badge--sm { font-size: 11px; padding: 4px 8px; }
+  .badge--md { font-size: 12px; padding: 6px 10px; }
+
+  /* ---- SOFT (tónované pozadí) ---- */
+  .badge--soft.badge--neutral {
+    background: var(--color-neutral-50);
+    color: var(--color-text-muted);
+    border-color: var(--color-border);
+  }
+  .badge--soft.badge--primary {
+    background: color-mix(in srgb, var(--color-primary) 10%, white);
+    color: var(--color-primary);
+    border-color: color-mix(in srgb, var(--color-primary) 24%, white);
+  }
+  .badge--soft.badge--success {
+    background: color-mix(in srgb, var(--color-success) 12%, white);
+    color: var(--color-success);
+    border-color: color-mix(in srgb, var(--color-success) 26%, white);
+  }
+  .badge--soft.badge--warning {
+    background: color-mix(in srgb, var(--color-warning) 16%, white);
+    color: #7a5a00;
+    border-color: color-mix(in srgb, var(--color-warning) 40%, white);
+  }
+  .badge--soft.badge--info {
+    background: color-mix(in srgb, var(--color-info) 12%, white);
+    color: color-mix(in srgb, var(--color-info) 70%, black);
+    border-color: color-mix(in srgb, var(--color-info) 30%, white);
+  }
+
+  /* ---- SOLID (plná výplň) ---- */
+  .badge--solid { color: var(--color-text-on-dark); }
+  .badge--solid.badge--neutral { background: var(--color-neutral-900); }
+  .badge--solid.badge--primary { background: var(--color-primary); }
+  .badge--solid.badge--success { background: var(--color-success); }
+  .badge--solid.badge--warning { background: var(--color-warning); color: var(--color-neutral-900); }
+  .badge--solid.badge--info    { background: var(--color-info); }
+</style>

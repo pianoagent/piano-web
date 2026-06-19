@@ -3,6 +3,9 @@ import Base from '../layouts/Base.astro';
 import Button from '../components/Button.astro';
 import Heading from '../components/Heading.astro';
 import Text from '../components/Text.astro';
+import Icon from '../components/Icon.astro';
+import Badge from '../components/Badge.astro';
+import Card from '../components/Card.astro';
 ---
 
 <Base title="Piano — komponenty">
@@ -61,6 +64,82 @@ import Text from '../components/Text.astro';
         <Button variant="ghost" size="sm">Ghost →</Button>
         <Button variant="ghost" size="md">Ghost →</Button>
         <Button href="/o-nas" variant="primary">Odkaz jako button</Button>
+      </div>
+    </section>
+
+    <section>
+      <h2 style="font: var(--text-h3); font-family: var(--font-sans); margin-bottom: 24px; color: var(--color-text-muted);">Icon</h2>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: center; margin-bottom: 16px;">
+        <Icon name="piano-mark" size="xs" />
+        <Icon name="piano-mark" size="sm" />
+        <Icon name="piano-mark" size="md" />
+        <Icon name="piano-mark" size="lg" />
+        <Icon name="piano-mark" size="xl" color="accent" />
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: center;">
+        <Icon name="lucide:check" color="accent" />
+        <Icon name="lucide:credit-card" color="default" />
+        <Icon name="lucide:calendar-check" color="muted" />
+        <Icon name="lucide:bar-chart-3" color="accent" />
+        <Icon name="lucide:arrow-right" />
+      </div>
+    </section>
+
+    <section>
+      <h2 style="font: var(--text-h3); font-family: var(--font-sans); margin-bottom: 24px; color: var(--color-text-muted);">Badge</h2>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 16px;">
+        <Badge variant="neutral">Neutral</Badge>
+        <Badge variant="primary">Primary</Badge>
+        <Badge variant="success">Success</Badge>
+        <Badge variant="warning">Warning</Badge>
+        <Badge variant="info">Info</Badge>
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 16px;">
+        <Badge variant="neutral" tone="solid">Neutral</Badge>
+        <Badge variant="primary" tone="solid">Primary</Badge>
+        <Badge variant="success" tone="solid">Success</Badge>
+        <Badge variant="warning" tone="solid">Warning</Badge>
+        <Badge variant="info" tone="solid">Info</Badge>
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center;">
+        <Badge variant="success" icon="lucide:check">Aktivní</Badge>
+        <Badge variant="primary" icon="lucide:sparkles">Novinka</Badge>
+        <Badge variant="neutral" size="sm">SM</Badge>
+      </div>
+    </section>
+
+    <section>
+      <h2 style="font: var(--text-h3); font-family: var(--font-sans); margin-bottom: 24px; color: var(--color-text-muted);">Card</h2>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px;">
+        <Card variant="default">
+          <Badge variant="primary" style="margin-bottom: 12px;">Default</Badge>
+          <Heading as="h3">Základní karta</Heading>
+          <Text size="small" color="muted" style="margin-top: 8px;">Jemný rámeček, výchozí varianta.</Text>
+        </Card>
+
+        <Card variant="elevated">
+          <Badge variant="info" style="margin-bottom: 12px;">Elevated</Badge>
+          <Heading as="h3">Se stínem</Heading>
+          <Text size="small" color="muted" style="margin-top: 8px;">Zdvižená karta se stínem.</Text>
+        </Card>
+
+        <Card variant="filled" chamfer>
+          <Badge variant="success" style="margin-bottom: 12px;">Filled + chamfer</Badge>
+          <Heading as="h3">Signature roh</Heading>
+          <Text size="small" color="muted" style="margin-top: 8px;">Tónované pozadí se seříznutým rohem.</Text>
+        </Card>
+
+        <Card href="#" variant="bordered">
+          <Heading as="h3">Klikací karta</Heading>
+          <Text size="small" color="muted" style="margin-top: 8px;">Hover zdvih + odkaz.</Text>
+          <Text size="label" color="accent" style="margin-top: 16px; display: inline-flex; align-items: center; gap: 6px;">Více <Icon name="lucide:arrow-right" size="xs" /></Text>
+        </Card>
       </div>
     </section>
 

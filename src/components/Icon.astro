@@ -1,0 +1,61 @@
+---
+/**
+ * Icon — Piano primitiv (wrapper nad astro-icon)
+ *
+ *   name:  "piano-mark" (lokální src/icons/*.svg) | "lucide:check" (sada Lucide)
+ *   size:  "xs" | "sm" | "md" | "lg" | "xl"  nebo  číslo v px   (default "md")
+ *   color: "inherit" | "default" | "muted" | "accent" | "on-dark"  (default "inherit")
+ *   title: string → přístupný popisek; bez něj je ikona dekorativní (aria-hidden)
+ *
+ * Ikony kreslí přes currentColor → barvu přebírají z rodiče, nebo přepiš `color`.
+ */
+import { Icon as AstroIcon } from 'astro-icon/components';
+
+type SizeToken = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+
+interface Props {
+  name: string;
+  size?: SizeToken | number;
+  color?: 'inherit' | 'default' | 'muted' | 'accent' | 'on-dark';
+  title?: string;
+  class?: string;
+  [key: string]: any;
+}
+
+const {
+  name,
+  size = 'md',
+  color = 'inherit',
+  title,
+  class: className,
+  ...rest
+} = Astro.props;
+
+const sizeMap: Record<SizeToken, number> = { xs: 16, sm: 20, md: 24, lg: 32, xl: 48 };
+const px = typeof size === 'number' ? size : sizeMap[size];
+
+const classes = ['icon', `icon--${color}`, className].filter(Boolean).join(' ');
+---
+
+<AstroIcon
+  name={name}
+  width={px}
+  height={px}
+  class={classes}
+  title={title}
+  aria-hidden={title ? undefined : 'true'}
+  {...rest}
+/>
+
+<style>
+  .icon {
+    display: inline-block;
+    flex-shrink: 0;
+    vertical-align: middle;
+  }
+  .icon--inherit { color: inherit; }
+  .icon--default { color: var(--color-text); }
+  .icon--muted   { color: var(--color-text-muted); }
+  .icon--accent  { color: var(--color-text-accent); }
+  .icon--on-dark { color: var(--color-text-on-dark); }
+</style>
