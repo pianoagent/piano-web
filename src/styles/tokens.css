@@ -1,0 +1,174 @@
+/* Piano Design Tokens
+   =========================================================
+   Pravidla značky:
+   - --color-primary (#B8093B) = text, ikony, akcenty, CTA — nikdy jako výplň pozadí
+   - --color-primary-bg (#94002A) = bloky pozadí — nikdy jako text
+   - Sharp brand: poloměry 0px nebo 4px (kulaté jen radio dot)
+   - Chamfer = seříznutý levý horní roh (~18.85°) přes clip-path
+   - Fonty: Borna (nadpisy, Medium 500), PP Eiko (jedno zvýrazněné slovo v nadpisu)
+*/
+
+@font-face {
+  font-family: "Borna";
+  src: url("/fonts/borna-regular-webfont.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Borna";
+  src: url("/fonts/borna-semibold-webfont.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PP Eiko";
+  src: url("/fonts/PPEiko-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* =========================================================
+     1. COLORS
+     ========================================================= */
+
+  /* Primary (brand) */
+  --color-primary:          #B8093B;
+  --color-primary-hover:    #94002A;
+  --color-primary-active:   #7A0021;
+  --color-primary-bg:       #94002A;
+  --color-primary-bg-hover: #7A0021;
+
+  /* Secondary palette */
+  --color-secondary:            #AB5630;
+  --color-secondary-terracotta: #D67017;
+  --color-secondary-gold:       #ECAF04;
+  --color-secondary-azure:      #14A0DC;
+
+  /* Neutrals */
+  --color-neutral-0:   #FFFFFF;
+  --color-neutral-50:  #F5F4F2;
+  --color-neutral-100: #FEF4E6;
+  --color-neutral-200: #E3E1DE;
+  --color-neutral-300: #CFCDCA;
+  --color-neutral-400: #BCC0C7;
+  --color-neutral-500: #6E6B68;
+  --color-neutral-900: #262626;
+
+  /* Feedback / status */
+  --color-success:       #275F2A;
+  --color-success-hover: #16401A;
+  --color-warning:       #ECAF04;
+  --color-info:          #14A0DC;
+  --color-error:         #B8093B;
+  --color-error-hover:   #94002A;
+
+  /* Semantic roles */
+  --color-text:              #262626;
+  --color-text-muted:        #6E6B68;
+  --color-text-accent:       #B8093B;
+  --color-text-on-dark:      #FFFFFF;
+  --color-text-on-dark-muted: rgba(255, 255, 255, 0.72);
+
+  --color-bg:        #FFFFFF;
+  --color-bg-alt:    #F5F4F2;
+  --color-bg-invert: #94002A;
+
+  --color-border:        #E3E1DE;
+  --color-border-strong: #CFCDCA;
+  --color-border-on-dark: rgba(255, 255, 255, 0.24);
+
+  /* =========================================================
+     2. TYPOGRAPHY
+     ========================================================= */
+
+  --font-sans:  "Borna", "Host Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-serif: "PP Eiko", Georgia, "Times New Roman", serif;
+
+  --font-weight-regular:  400;
+  --font-weight-medium:   500;
+  --font-weight-semibold: 600;
+  --font-weight-bold:     700;
+
+  --font-size-display: clamp(40px, 6vw, 88px);
+  --font-size-h1:      clamp(34px, 4.4vw, 60px);
+  --font-size-h2:      clamp(27px, 3vw, 40px);
+  --font-size-h3:      22px;
+  --font-size-lead:    clamp(18px, 1.5vw, 22px);
+  --font-size-body:    16px;
+  --font-size-small:   14px;
+  --font-size-caption: 12px;
+  --font-size-label:   13px;
+
+  --line-height-display: 0.98;
+  --line-height-heading: 1.06;
+  --line-height-snug:    1.12;
+  --line-height-lead:    1.45;
+  --line-height-body:    1.55;
+  --line-height-tight:   1.3;
+
+  --letter-spacing-tight:  -0.01em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide:   0.08em;
+
+  --text-display: var(--font-weight-medium) var(--font-size-display)/var(--line-height-display) var(--font-sans);
+  --text-h1:      var(--font-weight-medium) var(--font-size-h1)/1.02 var(--font-sans);
+  --text-h2:      var(--font-weight-medium) var(--font-size-h2)/var(--line-height-heading) var(--font-sans);
+  --text-h3:      var(--font-weight-medium) var(--font-size-h3)/var(--line-height-snug) var(--font-sans);
+  --text-lead:    var(--font-weight-regular) var(--font-size-lead)/var(--line-height-lead) var(--font-sans);
+  --text-body:    var(--font-weight-regular) var(--font-size-body)/var(--line-height-body) var(--font-sans);
+  --text-small:   var(--font-weight-regular) var(--font-size-small)/1.5 var(--font-sans);
+  --text-caption: var(--font-weight-regular) var(--font-size-caption)/1.4 var(--font-sans);
+  --text-label:   var(--font-weight-semibold) var(--font-size-label)/var(--line-height-tight) var(--font-sans);
+
+  /* =========================================================
+     3. SPACING (4px base scale)
+     ========================================================= */
+  --space-0: 0;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+
+  /* =========================================================
+     4. BORDER RADIUS (sharp brand: 0 or 4px)
+     ========================================================= */
+  --radius-none: 0px;
+  --radius-sm:   4px;
+  --radius-md:   4px;
+  --radius-lg:   4px;
+  --radius-full: 9999px;
+
+  /* Signature chamfer — seříznutý levý horní roh (~18.85°) */
+  --chamfer:             12px;
+  --chamfer-clip:        polygon(calc(var(--chamfer) * 2.93) 0, 100% 0, 100% 100%, 0 100%, 0 var(--chamfer));
+  --chamfer-clip-sm:     polygon(calc(8px  * 2.93) 0, 100% 0, 100% 100%, 0 100%, 0 8px);
+  --chamfer-clip-lg:     polygon(calc(15px * 2.93) 0, 100% 0, 100% 100%, 0 100%, 0 15px);
+  --chamfer-clip-accent: polygon(calc(18px * 2.93) 0, 100% 0, 100% 100%, 0 100%, 0 18px);
+
+  /* =========================================================
+     5. SHADOWS
+     ========================================================= */
+  --shadow-sm:    0 1px 2px rgba(38, 38, 38, 0.06), 0 1px 1px rgba(38, 38, 38, 0.04);
+  --shadow-md:    0 4px 16px rgba(38, 38, 38, 0.08);
+  --shadow-lg:    0 12px 40px rgba(38, 38, 38, 0.12);
+  --shadow-focus: 0 0 0 3px rgba(184, 9, 59, 0.18);
+
+  /* =========================================================
+     6. MOTION
+     ========================================================= */
+  --duration-fast: 140ms;
+  --duration-base: 180ms;
+  --easing:        ease-out;
+  --transition:    all var(--duration-base) var(--easing);
+}
