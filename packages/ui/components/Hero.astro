@@ -24,7 +24,7 @@ interface Props {
   title?: string;
   lead?: string;
   align?: 'left' | 'center';
-  background?: 'default' | 'alt' | 'invert' | 'primary';
+  background?: 'default' | 'alt' | 'invert' | 'primary' | 'gradient';
   space?: 'sm' | 'md' | 'lg';
 }
 
@@ -33,7 +33,7 @@ const { eyebrow, title, lead, align = 'left', background = 'default', space = 'l
 const hasTitle = Astro.slots.has('title');
 const hasActions = Astro.slots.has('actions');
 const hasMedia = Astro.slots.has('media');
-const onDark = background === 'invert' || background === 'primary';
+const onDark = background === 'invert' || background === 'primary' || background === 'gradient';
 
 const innerClasses = [
   'hero__inner',

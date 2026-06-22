@@ -15,7 +15,7 @@
 import Container from './Container.astro';
 
 interface Props {
-  background?: 'default' | 'alt' | 'invert' | 'primary';
+  background?: 'default' | 'alt' | 'invert' | 'primary' | 'gradient';
   space?: 'sm' | 'md' | 'lg';
   container?: 'default' | 'narrow' | 'wide' | 'full' | false;
   as?: string;
@@ -62,4 +62,5 @@ const classes = [
   .section--bg-alt     { background: var(--color-bg-alt); }
   .section--bg-invert  { background: var(--color-neutral-900); color: var(--color-text-on-dark); }
   .section--bg-primary { background: var(--color-primary-bg); color: var(--color-text-on-dark); }
+  .section--bg-gradient { background: var(--color-bg-gradient, var(--color-primary-bg)); color: var(--color-text-on-dark); }
 </style>

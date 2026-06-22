@@ -95,6 +95,9 @@
   --color-bg-invert: #06038D;
   --color-bg-hover:  color-mix(in srgb, var(--color-neutral-900) 4%, #FFFFFF);
 
+  /* Signature gradient (hero) — hloubka: tmavé indigo vlevo → cyan vpravo */
+  --color-bg-gradient: linear-gradient(115deg, #06038D 0%, #0C2A9E 36%, #0E86D9 78%, #16B5F0 100%);
+
   /* ----- Okraje ----- */
   --color-border:         #DDE3EC;
   --color-border-strong:  #C4CCD9;

@@ -15,8 +15,11 @@ import { mainNav, headerCta, megaToLinks } from '../config/nav';
 
 interface Props {
   transparent?: boolean;
+  brand?: string;       // název pro aria-label / wordmark (default "Piano")
+  logoSrc?: string;     // cesta k obrázku loga; bez něj piano-mark + wordmark
+  homeHref?: string;    // odkaz loga (default "/")
 }
-const { transparent = false } = Astro.props;
+const { transparent = false, brand = 'Piano', logoSrc, homeHref = '/' } = Astro.props;
 
 const classes = ['header', transparent && 'header--transparent'].filter(Boolean).join(' ');
 ---
@@ -24,9 +27,15 @@ const classes = ['header', transparent && 'header--transparent'].filter(Boolean)
 <header class={classes} data-header>
   <div class="header__inner">
     <!-- Logo -->
-    <a href="/" class="header__logo" aria-label="Piano — domů">
-      <Icon name="piano-mark" size="md" />
-      <span class="header__wordmark">Piano</span>
+    <a href={homeHref} class="header__logo" aria-label={`${brand} — domů`}>
+      {logoSrc ? (
+        <img class="header__logo-img" src={logoSrc} alt={brand} />
+      ) : (
+        <>
+          <Icon name="piano-mark" size="md" />
+          <span class="header__wordmark">{brand}</span>
+        </>
+      )}
     </a>
 
     <!-- Desktop navigace -->
@@ -110,7 +119,7 @@ const classes = ['header', transparent && 'header--transparent'].filter(Boolean)
     <div class="drawer__overlay" data-drawer-overlay></div>
     <div class="drawer__panel" role="dialog" aria-modal="true" aria-label="Menu">
       <div class="drawer__head">
-        <span class="header__wordmark">Piano</span>
+        {logoSrc ? <img class="header__logo-img" src={logoSrc} alt={brand} /> : <span class="header__wordmark">{brand}</span>}
         <button class="drawer__close" aria-label="Zavřít menu" data-drawer-close>
           <Icon name="lucide:x" size="md" />
         </button>
@@ -178,6 +187,7 @@ const classes = ['header', transparent && 'header--transparent'].filter(Boolean)
     font-size: 22px;
     letter-spacing: var(--letter-spacing-tight);
   }
+  .header__logo-img { height: 34px; width: auto; display: block; }
 
   /* Desktop navigace */
   .header__nav { margin-left: auto; }
