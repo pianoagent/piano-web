@@ -38,6 +38,7 @@ interface Props {
   lead?: string;
   proofs?: Proof[];
   action?: string;
+  successUrl?: string;   // přesměrování po úspěšném odeslání (analytika); default "/dekujeme"
   submitLabel?: string;
   background?: 'default' | 'alt' | 'invert' | 'primary';
   space?: 'sm' | 'md' | 'lg';
@@ -57,6 +58,7 @@ const {
   lead,
   proofs = defaultProofs,
   action = '/api/lead',
+  successUrl = '/dekujeme',
   submitLabel,
   background = 'alt',
   space = 'md',
@@ -97,6 +99,7 @@ const submitText = submitLabel ?? (isCallback ? 'Zavolejte mi' : 'Odeslat poptá
       action={action}
       method="POST"
       data-leadform
+      data-success-url={successUrl}
       novalidate
     >
       <input type="hidden" name="form_variant" value={variant} />
@@ -258,6 +261,7 @@ const submitText = submitLabel ?? (isCallback ? 'Zavolejte mi' : 'Odeslat poptá
     const submit = form.querySelector<HTMLButtonElement>('[data-submit]');
     const ok = form.querySelector<HTMLElement>('[data-success]');
     const err = form.querySelector<HTMLElement>('[data-error]');
+    const successUrl = form.getAttribute('data-success-url') || '';
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -280,6 +284,7 @@ const submitText = submitLabel ?? (isCallback ? 'Zavolejte mi' : 'Odeslat poptá
         });
         if (!res.ok) throw new Error(String(res.status));
         form.reset();
+        if (successUrl) { window.location.assign(successUrl); return; }
         if (ok) ok.hidden = false;
       } catch {
         if (err) err.hidden = false;
