@@ -77,6 +77,10 @@
   --radius-lg:   4px;
   --radius-full: 9999px;
 
+  /* Tlačítka — tvar (téma může přepsat; výchozí = Piano ostrý roh + chamfer) */
+  --btn-radius: 0;
+  --btn-clip:   var(--chamfer-clip-sm);
+
   /* =========================================================
      CHAMFER — signature seříznutý roh, vždy 18,85°
      ========================================================= */

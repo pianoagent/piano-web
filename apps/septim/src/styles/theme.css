@@ -109,6 +109,10 @@
   /* ----- Chamfer vypnut (Septim nemá seříznutý roh) ----- */
   --chamfer-depth: 0px;
 
+  /* ----- Tlačítka — plné pilulky (radius-pill 999px), bez chamferu ----- */
+  --btn-radius: var(--radius-full);
+  --btn-clip:   none;
+
   /* ----- Stíny — měkké, indigo-tónované ----- */
   --shadow-sm: 0 2px 8px rgba(6, 3, 141, 0.08);
   --shadow-md: 0 8px 24px rgba(6, 3, 141, 0.10);
