@@ -1,0 +1,69 @@
+---
+/**
+ * Base — layout webu Grason.
+ * Načte téma Grason + sdílenou SEO hlavičku. Definuje Organization schema.
+ */
+import '../styles/theme.css';
+import BaseHead from '@piano/ui/layouts/BaseHead.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  type?: 'website' | 'article';
+  noindex?: boolean;
+  schema?: object;
+}
+
+const SITE_NAME = 'Grason';
+const SITE_URL = 'https://grason.cz';
+
+const {
+  title,
+  description = 'Grason — odborník na personál. Brigádníci na poslední chvíli, plánování směn vlastního týmu, docházka a podklady pro mzdy. Vše na jednom místě.',
+  image = '/og-default.jpg',
+  type = 'website',
+  noindex = false,
+  schema,
+} = Astro.props;
+
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Grason',
+  legalName: 'Grason Solutions s.r.o.',
+  url: SITE_URL,
+  logo: `${SITE_URL}/logos/grason-logo.svg`,
+  email: 'info@grason.cz',
+  telephone: '+420739877799',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Thámova 166/18',
+    addressLocality: 'Praha',
+    postalCode: '186 00',
+    addressCountry: 'CZ',
+  },
+  parentOrganization: { '@type': 'Organization', name: 'Piano Solutions', url: 'https://piano.cz' },
+};
+
+const schemas = [organizationSchema, ...(schema ? [schema] : [])];
+---
+
+<!doctype html>
+<html lang="cs">
+  <head>
+    <BaseHead
+      title={title}
+      description={description}
+      image={image}
+      type={type}
+      noindex={noindex}
+      siteName={SITE_NAME}
+      siteUrl={SITE_URL}
+      schemas={schemas}
+    />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

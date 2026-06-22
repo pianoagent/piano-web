@@ -1,0 +1,26 @@
+# AWS Amplify Hosting — build spec (monorepo / npm workspaces)
+# Web Grason je statický Astro výstup; mění se jen deploy config (ne kód).
+# Formát ověřen dle aktuální dokumentace AWS Amplify:
+#   - monorepo => seznam `applications` s povinným `appRoot`
+#   - `artifacts.baseDirectory` je relativní k `appRoot` (apps/grason/dist)
+# Pozn.: v Amplify konzoli nastav AMPLIFY_MONOREPO_APP_ROOT = apps/grason
+# (musí se shodovat s `appRoot` níže). amplify.yml má přednost před nastavením
+# v konzoli.
+version: 1
+applications:
+  - appRoot: apps/grason
+    frontend:
+      phases:
+        preBuild:
+          commands:
+            - cd ../.. && npm ci
+        build:
+          commands:
+            - cd ../.. && npm run build:grason
+      artifacts:
+        baseDirectory: dist
+        files:
+          - "**/*"
+      cache:
+        paths:
+          - ../../node_modules/**/*
