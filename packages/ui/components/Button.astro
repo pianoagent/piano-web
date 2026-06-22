@@ -17,6 +17,7 @@ interface Props {
   size?: 'sm' | 'md' | 'lg';
   href?: string;
   full?: boolean;
+  onDark?: boolean;     // čitelnost na tmavém pozadí (světlý text/rámeček)
   type?: 'button' | 'submit' | 'reset';
   class?: string;
   [key: string]: any;
@@ -27,13 +28,14 @@ const {
   size = 'md',
   href,
   full = false,
+  onDark = false,
   type = 'button',
   class: className,
   ...rest
 } = Astro.props;
 
 const tag = href ? 'a' : 'button';
-const classes = ['btn', `btn--${variant}`, `btn--${size}`, full && 'btn--full', className]
+const classes = ['btn', `btn--${variant}`, `btn--${size}`, full && 'btn--full', onDark && 'btn--on-dark', className]
   .filter(Boolean)
   .join(' ');
 ---
@@ -132,4 +134,17 @@ const classes = ['btn', `btn--${variant}`, `btn--${size}`, full && 'btn--full', 
   .btn--ghost:hover {
     color: var(--color-primary-hover);
   }
+
+  /* Na tmavém pozadí — světlý text / rámeček */
+  .btn--on-dark.btn--secondary {
+    color: var(--color-text-on-dark);
+    border-color: rgba(255, 255, 255, 0.55);
+  }
+  .btn--on-dark.btn--secondary:hover {
+    color: var(--color-text-on-dark);
+    border-color: #fff;
+    background: rgba(255, 255, 255, 0.12);
+  }
+  .btn--on-dark.btn--ghost { color: var(--color-text-on-dark); }
+  .btn--on-dark.btn--ghost:hover { color: var(--color-text-on-dark); opacity: 0.85; }
 </style>

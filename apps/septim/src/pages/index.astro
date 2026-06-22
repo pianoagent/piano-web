@@ -96,15 +96,15 @@ const leadProofs = [
   <!-- HERO -->
   <Hero eyebrow="Pokladní a provozní systém Septim" background="gradient"
         lead="Septim není jen pokladna. Je to systém, který řídí celý váš provoz — od naskladnění surovin přes výdej jídel až po finanční přehledy. Využívají ho michelinské restaurace i kavárny za rohem.">
-    <Heading slot="title" as="h1" size="display">Pravá ruka <em>každého manažera</em></Heading>
+    <Heading slot="title" as="h1" size="display" color="on-dark">Pravá ruka <em>každého manažera</em></Heading>
     <Fragment slot="actions">
       <Button href="#poptavka">Chci Septim</Button>
-      <Button href="#rada" variant="secondary">Vyberte variantu</Button>
+      <Button href="#rada" variant="secondary" onDark>Vyberte variantu</Button>
     </Fragment>
-    <div slot="media" class="hero-video" role="img" aria-label="Placeholder — hero video Septim">
-      <Icon name="lucide:play-circle" size="xl" />
-      <span>Hero video Septim<br><small>(placeholder — doplní se později)</small></span>
-    </div>
+    <figure slot="media" class="hero-figure">
+      <img src="/images/hero-septim.jpg" alt="My Septim — manažerské přehledy na tabletu, mobilu i pokladně" width="720" height="400" />
+      <figcaption class="hero-badge"><Icon name="lucide:badge-check" size="sm" /> Připraveno na EET 2.0</figcaption>
+    </figure>
   </Hero>
 
   <!-- LOGA KLIENTŮ — hned pod hero -->
@@ -274,26 +274,33 @@ const leadProofs = [
 </Base>
 
 <style>
-  /* Hero video — placeholder (video se doplní později) */
-  .hero-video {
+  /* Hero obrázek + EET 2.0 štítek */
+  .hero-figure {
+    position: relative;
+    margin: 0;
     width: 100%;
     border-radius: var(--radius-lg);
     overflow: hidden;
     box-shadow: var(--shadow-lg);
-    aspect-ratio: 16 / 10;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: var(--space-3);
-    text-align: center;
-    color: var(--color-text-on-dark);
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.22);
-    backdrop-filter: blur(2px);
+    line-height: 0;
   }
-  .hero-video span { font-size: var(--font-size-small); opacity: 0.92; }
-  .hero-video small { opacity: 0.7; }
+  .hero-figure img { width: 100%; height: auto; display: block; }
+  .hero-badge {
+    position: absolute;
+    top: var(--space-4);
+    left: var(--space-4);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-full);
+    background: var(--color-secondary);
+    color: var(--color-text-on-dark);
+    font-size: var(--font-size-small);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1;
+    box-shadow: var(--shadow-md);
+  }
 
   /* Sdílená hlavička sekce */
   .head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-7); }
