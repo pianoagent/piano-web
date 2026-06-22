@@ -1,11 +1,10 @@
 ---
 /**
- * Septim — SEO landing: Pokladní a provozní systém pro restaurace.
- * Migrace z www.septim.cz. Obsah: septim-obsah/pokladni-provozni-system-pro-restaurace.md.
- * SEO meta napsané nově.
+ * Septim — Řešení: Restaurace (segmentová landing). (IA: /reseni/*.)
+ * Obsah: septim-obsah/pokladni-provozni-system-pro-restaurace.md. SEO meta nově.
  */
-import Base from '../layouts/Base.astro';
-import Header from '@piano/ui/components/Header.astro';
+import Base from '../../layouts/Base.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
 import Footer from '@piano/ui/components/Footer.astro';
 import Section from '@piano/ui/components/Section.astro';
 import Hero from '@piano/ui/components/Hero.astro';
@@ -15,14 +14,14 @@ import Button from '@piano/ui/components/Button.astro';
 import Card from '@piano/ui/components/Card.astro';
 import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
-import StatsBand from '../components/StatsBand.astro';
-import LogoWall from '../components/LogoWall.astro';
-import Faq from '../components/Faq.astro';
+import StatsBand from '../../components/StatsBand.astro';
+import LogoWall from '../../components/LogoWall.astro';
+import Faq from '../../components/Faq.astro';
 
 const types = [
-  { title: 'Septim.4', text: 'Restaurace a sítě restaurací.', href: '/produkty/septim-4-system-pro-restaurace' },
-  { title: 'Septim.Jídelna', text: 'Kantýny, jídelny, závodní stravování.', href: '/produkty/septim-jidelna-system-pro-zavodni-stravovani' },
-  { title: 'Septim.Air', text: 'Bistra, kavárny a bary v cloudu.', href: '/produkty/septim-air-system-pro-kavarnu-bistro-bar' },
+  { title: 'Septim.4', text: 'Restaurace a sítě restaurací.', href: '/produkty/septim-4' },
+  { title: 'Septim.Jídelna', text: 'Kantýny, jídelny, závodní stravování.', href: '/produkty/septim-jidelna' },
+  { title: 'Septim.Air', text: 'Bistra, kavárny a bary v cloudu.', href: '/produkty/septim-air' },
 ];
 
 const criticalPoints = [
@@ -32,15 +31,12 @@ const criticalPoints = [
 ];
 
 const modules = [
-  { title: 'Pokladna', href: '/produkty/pokladna' },
-  { title: 'Manažer', href: '/produkty/manazer' },
-  { title: 'Skladové hospodářství', href: '/produkty/skladove-hospodarstvi' },
-  { title: 'Reporty a přehledy', href: '/produkty/reporty-prehledy' },
-  { title: 'Věrnostní systém', href: '/produkty/vernostni-system-crm' },
-  { title: 'Automatické naskladňování', href: '/produkty/automaticke-naskladnovani' },
-  { title: 'Kuchyňské displeje', href: '/produkty/kuchynske-displeje' },
-  { title: 'Platby a objednávky QR', href: '/produkty/platby-objednavky-qr-kodem' },
-  { title: 'E-shop restaurace', href: '/produkty/eshop-restaurace' },
+  { title: 'Pokladna', href: '/funkce/pokladna' },
+  { title: 'Manažer', href: '/funkce/manazer' },
+  { title: 'Skladové hospodářství', href: '/funkce/skladove-hospodarstvi' },
+  { title: 'Reporty a přehledy', href: '/funkce/reporty-prehledy' },
+  { title: 'Věrnostní systém', href: '/funkce/vernostni-system' },
+  { title: 'E-shop restaurace', href: '/funkce/eshop-restaurace' },
 ];
 
 const faqs = [
@@ -52,14 +48,14 @@ const faqs = [
 
 <Base title="Pokladní a provozní systém pro restaurace | Septim"
       description="Septim není jen pokladna — řídí celý provoz restaurace: sklady, kuchyň, prodej, finance i personál. Provozní systém, kterému věří michelinské restaurace i sítě v ČR.">
-  <Header brand="Septim" logoSrc="/logos/septim_color.svg" homeHref="/" />
+  <SiteHeader />
   <main>
     <Hero eyebrow="Řešení pro restaurace" background="alt"
           lead="Restaurační systém Septim není zdaleka jen pokladna. Stará se od naskladnění přes zpracování surovin, výdej jídel a prodej až po inventury a finanční přehledy. Proto nám věří špičky českého gastra.">
       <Heading slot="title" as="h1" size="display">Pokladní a provozní systém pro <em>restaurace</em></Heading>
       <Fragment slot="actions">
         <Button href="#poptavka">Chci Septim</Button>
-        <Button href="/produkty/septim-4-system-pro-restaurace" variant="secondary">Septim.4 detailně</Button>
+        <Button href="/produkty/septim-4" variant="secondary">Septim.4 detailně</Button>
       </Fragment>
     </Hero>
 
@@ -100,7 +96,7 @@ const faqs = [
 
     <Section background="default" space="lg">
       <div class="head head--center">
-        <Text size="label" color="accent" align="center">Moduly řešení</Text>
+        <Text size="label" color="accent" align="center">Funkce řešení</Text>
         <Heading as="h2" size="h2" align="center">Co může řešení pro restauraci obsahovat</Heading>
       </div>
       <div class="cards cards--compact">

@@ -5,7 +5,7 @@
  * noindex — nemá se objevit ve vyhledávání.
  */
 import Base from '../layouts/Base.astro';
-import Header from '@piano/ui/components/Header.astro';
+import SiteHeader from '../components/SiteHeader.astro';
 import Footer from '@piano/ui/components/Footer.astro';
 import Section from '@piano/ui/components/Section.astro';
 import Heading from '@piano/ui/components/Heading.astro';
@@ -17,7 +17,7 @@ const PIANO_URL = 'https://piano.cz';
 ---
 
 <Base title="Děkujeme — Septim" noindex>
-  <Header brand="Septim" logoSrc="/logos/septim_color.svg" homeHref="/" />
+  <SiteHeader />
 
   <main>
 

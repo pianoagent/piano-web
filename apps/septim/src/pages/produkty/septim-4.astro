@@ -1,10 +1,10 @@
 ---
 /**
- * Septim — Septim.4 (produktová řada). Migrace z www.septim.cz.
+ * Septim — Produkt (edice): Septim.4. (IA: /produkty/septim-4.)
  * Obsah: septim-obsah/produkty/septim-4-system-pro-restaurace.md. SEO meta nově.
  */
 import Base from '../../layouts/Base.astro';
-import Header from '@piano/ui/components/Header.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
 import Footer from '@piano/ui/components/Footer.astro';
 import Section from '@piano/ui/components/Section.astro';
 import Hero from '@piano/ui/components/Hero.astro';
@@ -19,12 +19,12 @@ import LogoWall from '../../components/LogoWall.astro';
 import Faq from '../../components/Faq.astro';
 
 const segments = [
-  { title: 'Restaurace', text: 'Jeden systém, který poroste s vámi.', href: '/pokladni-provozni-system-pro-restaurace' },
-  { title: 'Sítě restaurací', text: 'Sdílené receptury, sklady i finanční řízení.', href: '/pokladni-provozni-system-pro-sit-restauraci' },
-  { title: 'Jídelny', text: 'Objednávky, výdej a anketa pro strávníky.', href: '/pokladni-provozni-system-pro-jidelny' },
-  { title: 'Kavárny, bistra, bary', text: 'Rychlý provoz i přehled o nákladech.', href: '/pokladni-system-pro-kavarny-bistra-bary' },
-  { title: 'Hotely', text: 'Propojení s hotelovým systémem Protel.', href: '/pokladni-provozni-system-pro-hotely' },
-  { title: 'Lázně a resorty', text: 'Komplexní řízení velkých provozů.', href: '/pokladni-provozni-system-pro-lazne-resorty' },
+  { title: 'Restaurace', text: 'Jeden systém, který poroste s vámi.', href: '/reseni/restaurace' },
+  { title: 'Sítě restaurací', text: 'Sdílené receptury, sklady i finanční řízení.', href: '/reseni/site-restauraci' },
+  { title: 'Jídelny', text: 'Objednávky, výdej a anketa pro strávníky.', href: '/reseni/jidelny' },
+  { title: 'Kavárny, bistra, bary', text: 'Rychlý provoz i přehled o nákladech.', href: '/reseni/kavarny-bistra-bary' },
+  { title: 'Hotely', text: 'Propojení s hotelovým systémem Protel.', href: '/reseni/hotely' },
+  { title: 'Lázně a resorty', text: 'Komplexní řízení velkých provozů.', href: '/reseni/lazne-resorty' },
 ];
 
 const benefits = [
@@ -62,9 +62,9 @@ const faqs = [
 
 <Base title="Septim.4 – provozní a pokladní systém pro restaurace a sítě"
       description="Septim.4 je nejrespektovanější provozní systém pro restaurace v ČR. Pokladna, sklady, manažerské přehledy, věrnostní systém a podpora 24/7. Používají ho Ambiente, FIELD i Kolkovna.">
-  <Header brand="Septim" logoSrc="/logos/septim_color.svg" homeHref="/" />
+  <SiteHeader />
   <main>
-    <Hero eyebrow="Produktová řada" background="alt"
+    <Hero eyebrow="Produkt — edice" background="alt"
           lead="Komplexní provozní systém Septim ve verzi 4.1 — nejnovější a nejrespektovanější software pro restaurace v ČR. Michelinské restaurace, přední sítě i známí šéfkuchaři: většina používá právě Septim.">
       <Heading slot="title" as="h1" size="display">Septim<em>.4</em></Heading>
       <Fragment slot="actions">

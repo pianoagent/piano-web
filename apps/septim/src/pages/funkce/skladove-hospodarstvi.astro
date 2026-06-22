@@ -1,10 +1,10 @@
 ---
 /**
- * Septim — Skladové hospodářství (modul). Migrace z www.septim.cz.
+ * Septim — Funkce: Skladové hospodářství. (IA: /funkce/*, ne /produkty/*.)
  * Obsah: septim-obsah/produkty/skladove-hospodarstvi.md. SEO meta napsané nově.
  */
 import Base from '../../layouts/Base.astro';
-import Header from '@piano/ui/components/Header.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
 import Footer from '@piano/ui/components/Footer.astro';
 import Section from '@piano/ui/components/Section.astro';
 import Hero from '@piano/ui/components/Hero.astro';
@@ -43,15 +43,15 @@ const faqs = [
 ---
 
 <Base title="Skladové hospodářství v Septimu – sklady, příjemky a inventury pod kontrolou"
-      description="Modul Skladové hospodářství systému Septim: evidence zásob, příjem a převody mezi sklady, receptury, odpisy a inventury. Mějte tok surovin i náklady restaurace pod 100% kontrolou.">
-  <Header brand="Septim" logoSrc="/logos/septim_color.svg" homeHref="/" />
+      description="Funkce Skladové hospodářství systému Septim: evidence zásob, příjem a převody mezi sklady, receptury, odpisy a inventury. Mějte tok surovin i náklady restaurace pod 100% kontrolou.">
+  <SiteHeader />
   <main>
-    <Hero eyebrow="Modul systému Septim" background="alt"
+    <Hero eyebrow="Funkce systému Septim" background="alt"
           lead="Sklady v manažerském pohledu jsou klíčová funkce provozního systému Septim. Modul řeší kompletní skladové hospodářství vaší restaurace — od dodacích listů a receptur přes odpisy až po inventury.">
       <Heading slot="title" as="h1" size="display">Skladové <em>hospodářství</em></Heading>
       <Fragment slot="actions">
         <Button href="#poptavka">Chci Septim</Button>
-        <Button href="/produkty" variant="secondary">Všechny moduly</Button>
+        <Button href="/produkty/septim-4" variant="secondary">Součást Septim.4</Button>
       </Fragment>
     </Hero>
 
