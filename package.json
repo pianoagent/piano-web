@@ -16,6 +16,9 @@
     "preview:septim": "npm run preview -w @piano/app-septim",
     "dev:grason": "npm run dev -w @piano/app-grason",
     "build:grason": "npm run build -w @piano/app-grason",
-    "preview:grason": "npm run preview -w @piano/app-grason"
+    "preview:grason": "npm run preview -w @piano/app-grason",
+    "dev:savarin": "npm run dev -w @piano/app-savarin",
+    "build:savarin": "npm run build -w @piano/app-savarin",
+    "preview:savarin": "npm run preview -w @piano/app-savarin"
   }
 }
