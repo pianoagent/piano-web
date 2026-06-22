@@ -27,10 +27,10 @@ const stats = [
 ];
 
 const steps = [
-  { icon: 'lucide:boxes', title: 'Naskladnění a sklady', text: 'Sledování stavu surovin, dodacích listů a zásob v reálném čase. Automatické napojení na Autset.' },
-  { icon: 'lucide:credit-card', title: 'Prodej a pokladna', text: 'Intuitivní dotykové rozhraní, mobilní číšník Septim.Go, integrované platby přes Qerko.' },
-  { icon: 'lucide:line-chart', title: 'Přehledy a reporty', text: 'Tržby, výkon personálu, marže produktů — vše v MySeptim appce kdekoliv a kdykoliv.' },
-  { icon: 'lucide:blocks', title: 'Integrace ekosystému', text: 'Foodora, Wolt, Qerko, Protel, Autset, GrasonPlan — vše komunikuje se Septimem.' },
+  { img: '/icons/sklady-naskladnovani.svg', title: 'Naskladnění a sklady', text: 'Sledování stavu surovin, dodacích listů a zásob v reálném čase. Automatické napojení na Autset.' },
+  { img: '/icons/platebni-reseni.svg', title: 'Prodej a pokladna', text: 'Intuitivní dotykové rozhraní, mobilní číšník Septim.Go, integrované platby přes Qerko.' },
+  { img: '/icons/financni-prehledy.svg', title: 'Přehledy a reporty', text: 'Tržby, výkon personálu, marže produktů — vše v MySeptim appce kdekoliv a kdykoliv.' },
+  { img: '/icons/napojeni-systemu.svg', title: 'Integrace ekosystému', text: 'Foodora, Wolt, Qerko, Protel, Autset, GrasonPlan — vše komunikuje se Septimem.' },
 ];
 
 const variants = [
@@ -41,14 +41,14 @@ const variants = [
 ];
 
 const features = [
-  { icon: 'lucide:monitor', title: 'Pokladna', text: 'Intuitivní dotykové rozhraní pro obsluhu. Mobilní číšník Septim.Go pro orderpad.' },
-  { icon: 'lucide:package', title: 'Skladové hospodářství', text: 'Hlídání stavu surovin, dodacích listů a zásob v reálném čase.' },
-  { icon: 'lucide:bar-chart-3', title: 'Manažerské přehledy', text: 'Tržby, marže, výkon personálu — v appce MySeptim odkudkoliv.' },
-  { icon: 'lucide:award', title: 'Věrnostní systém (CRM)', text: 'Loajalitní programy pro zákazníky přímo v systému.' },
-  { icon: 'lucide:bike', title: 'Rozvoz jídla', text: 'Přímá integrace s Foodora a Wolt. Objednávky z rozvozu v systému automaticky.' },
-  { icon: 'lucide:smartphone', title: 'MySeptim App', text: 'iOS + Android. Klíčová data provozu vždy po ruce, kdekoliv se nacházíte.' },
-  { icon: 'lucide:bed-double', title: 'Room Service', text: 'Propojení s Protelem — host objedná z pokoje, kuchyně to vidí automaticky.' },
-  { icon: 'lucide:headset', title: 'Podpora 24/7', text: 'Česká podpora v reálném čase. Konzultanti s praxí z gastro provozu.' },
+  { image: '/icons/vice-pokladen.svg', title: 'Pokladna', text: 'Intuitivní dotykové rozhraní pro obsluhu. Mobilní číšník Septim.Go pro orderpad.' },
+  { image: '/icons/sklady-inventura.svg', title: 'Skladové hospodářství', text: 'Hlídání stavu surovin, dodacích listů a zásob v reálném čase.' },
+  { image: '/icons/revenue-reporting.svg', title: 'Manažerské přehledy', text: 'Tržby, marže, výkon personálu — v appce MySeptim odkudkoliv.' },
+  { image: '/icons/osobni-pristup.svg', title: 'Věrnostní systém (CRM)', text: 'Loajalitní programy pro zákazníky přímo v systému.' },
+  { image: '/icons/partnerstvi.svg', title: 'Rozvoz jídla', text: 'Přímá integrace s Foodora a Wolt. Objednávky z rozvozu v systému automaticky.' },
+  { image: '/icons/vzdaleny-servis.svg', title: 'MySeptim App', text: 'iOS + Android. Klíčová data provozu vždy po ruce, kdekoliv se nacházíte.' },
+  { image: '/icons/protel-septim.svg', title: 'Room Service', text: 'Propojení s Protelem — host objedná z pokoje, kuchyně to vidí automaticky.' },
+  { image: '/icons/podpora-24-7.svg', title: 'Podpora 24/7', text: 'Česká podpora v reálném čase. Konzultanti s praxí z gastro provozu.' },
 ];
 
 const integrations = [
@@ -132,7 +132,7 @@ const leadProofs = [
       {steps.map((s, i) => (
         <li class="step">
           <span class="step__num">{i + 1}</span>
-          <span class="step__icon"><Icon name={s.icon} size="md" /></span>
+          <img class="step__icon" src={s.img} alt="" loading="lazy" width="72" height="72" />
           <Heading as="h3" size="h3">{s.title}</Heading>
           <Text size="small" color="muted">{s.text}</Text>
         </li>
@@ -308,12 +308,7 @@ const leadProofs = [
     font-size: var(--font-size-h2); font-weight: var(--font-weight-bold);
     color: var(--color-neutral-200); line-height: 1;
   }
-  .step__icon {
-    display: inline-flex; align-items: center; justify-content: center;
-    width: 48px; height: 48px; border-radius: var(--radius-md);
-    background: color-mix(in srgb, var(--color-primary) 12%, #fff);
-    color: var(--color-primary);
-  }
+  .step__icon { display: block; width: 72px; height: 72px; }
 
   /* Variant table */
   .table-wrap { overflow-x: auto; border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); }

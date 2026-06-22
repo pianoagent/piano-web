@@ -20,7 +20,7 @@ import Heading from './Heading.astro';
 import Text from './Text.astro';
 import Icon from './Icon.astro';
 
-interface Item { icon?: string; title: string; text?: string; }
+interface Item { icon?: string; image?: string; imageAlt?: string; title: string; text?: string; }
 
 interface Props {
   eyebrow?: string;
@@ -71,7 +71,9 @@ const gridStyle = columns
   <div class:list={['usp__grid', onDark && 'usp__grid--on-dark']} style={gridStyle}>
     {items.map((item) => (
       <article class="usp__card">
-        {item.icon && (
+        {item.image ? (
+          <span class="usp__icon usp__icon--img"><img src={item.image} alt={item.imageAlt ?? ''} loading="lazy" width="72" height="72" /></span>
+        ) : item.icon && (
           <span class="usp__icon"><Icon name={item.icon} size="md" /></span>
         )}
         <Heading as="h3" size="h3" color={onDark ? 'on-dark' : 'default'}>{item.title}</Heading>
@@ -121,5 +123,6 @@ const gridStyle = columns
     color: var(--color-text-accent);
     margin-bottom: var(--space-4);
   }
+  .usp__icon--img img { width: 72px; height: 72px; display: block; }
   .usp__text { margin-top: var(--space-2); }
 </style>
