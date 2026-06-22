@@ -1,0 +1,149 @@
+---
+/**
+ * Septim — Septim.4 (produktová řada). Migrace z www.septim.cz.
+ * Obsah: septim-obsah/produkty/septim-4-system-pro-restaurace.md. SEO meta nově.
+ */
+import Base from '../../layouts/Base.astro';
+import Header from '@piano/ui/components/Header.astro';
+import Footer from '@piano/ui/components/Footer.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Card from '@piano/ui/components/Card.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import StatsBand from '../../components/StatsBand.astro';
+import LogoWall from '../../components/LogoWall.astro';
+import Faq from '../../components/Faq.astro';
+
+const segments = [
+  { title: 'Restaurace', text: 'Jeden systém, který poroste s vámi.', href: '/pokladni-provozni-system-pro-restaurace' },
+  { title: 'Sítě restaurací', text: 'Sdílené receptury, sklady i finanční řízení.', href: '/pokladni-provozni-system-pro-sit-restauraci' },
+  { title: 'Jídelny', text: 'Objednávky, výdej a anketa pro strávníky.', href: '/pokladni-provozni-system-pro-jidelny' },
+  { title: 'Kavárny, bistra, bary', text: 'Rychlý provoz i přehled o nákladech.', href: '/pokladni-system-pro-kavarny-bistra-bary' },
+  { title: 'Hotely', text: 'Propojení s hotelovým systémem Protel.', href: '/pokladni-provozni-system-pro-hotely' },
+  { title: 'Lázně a resorty', text: 'Komplexní řízení velkých provozů.', href: '/pokladni-provozni-system-pro-lazne-resorty' },
+];
+
+const benefits = [
+  { icon: 'lucide:trending-up', title: 'Škálovatelnost a růst', text: 'Řídí malé bistro i síť restaurací — bez bolestivé výměny systému, když rostete.' },
+  { icon: 'lucide:warehouse', title: 'Funkční skladové hospodářství', text: 'Dělení skladů, odpisy a koeficienty odpadů, podchycené inventury.' },
+  { icon: 'lucide:line-chart', title: 'Kontrola a plánování financí', text: 'Food-cost, obrat, zisk, výkon směn i lidí — vše pod kontrolou.' },
+  { icon: 'lucide:hand', title: 'Jednoduché ovládání', text: 'Pokladnu si s konzultantem nastavíte přesně podle vašeho provozu.' },
+  { icon: 'lucide:headset', title: 'Podpora 24/7', text: 'Ručíme za chod těch největších restaurací i gastro sekce O2 areny.' },
+  { icon: 'lucide:settings-2', title: 'Chytré nastavení', text: 'Konzultanti s praxí z gastra nastaví systém na míru vašemu konceptu.' },
+];
+
+const funkce = [
+  { icon: 'lucide:users', title: 'Uživatelé a práva', text: 'Různá práva pro různé role, každý chráněný vlastním heslem.' },
+  { icon: 'lucide:layout-grid', title: 'Markování', text: 'Přehled stolů a místností, vyhledávání i seskupování produktů.' },
+  { icon: 'lucide:credit-card', title: 'Placení', text: 'Karta, hotovost, stravenka i faktura. Více plateb na účtu, spropitné.' },
+  { icon: 'lucide:receipt', title: 'Práce s účty', text: 'Úpravy účtu, cenové hladiny, slevy, přesun i rozdělení účtu.' },
+  { icon: 'lucide:bar-chart-3', title: 'Reporty a přehledy', text: 'Uzávěrky a reporty přímo v aplikaci jako u top podniků.' },
+  { icon: 'lucide:wifi-off', title: 'Offline režim', text: 'Při výpadku internetu funguje aplikace dál, bez omezení obsluhy.' },
+  { icon: 'lucide:boxes', title: 'Sklady, inventury, uzávěrky', text: 'Naskladnění, odtěžování, odpisy, denní závěrky i inventury.' },
+  { icon: 'lucide:smartphone', title: 'Přehledy v mobilu', text: 'Podrobná data z provozu i vzdáleně v aplikaci MySeptim.' },
+];
+
+const steps = [
+  { n: '1', title: 'Konzultace', text: 'Konzultant projde vaše potřeby, koncept, počet pokladen a moduly — a navrhne řešení i cenu.' },
+  { n: '2', title: 'Instalace', text: 'Sehraný tým připraví systém na testovacím serveru a v domluvený termín spustí ostrý provoz.' },
+  { n: '3', title: 'Školení', text: 'Zaškolíme manažera i personál a jsme k dispozici i po spuštění k doškolení a dotazům.' },
+];
+
+const faqs = [
+  { q: 'Jak dlouho trvá instalace Septim.4?', a: 'Zpravidla v rámci několika týdnů. Záleží na velikosti provozu, počtu pokladen a modulech — a zda startujete novou restauraci, nebo přecházíte za běhu z jiného systému.' },
+  { q: 'Proběhne zaškolení personálu?', a: 'Ano. Konzultant prochází s manažerem i personálem správné používání systému a je k dispozici i po spuštění k doškolení nebo dotazům.' },
+  { q: 'Kolik Septim.4 stojí?', a: 'Cena se odvíjí od velikosti provozu, využití hardwaru a počtu licencí a modulů. Pro menší provozy je vhodný Septim.Air s měsíčním paušálem, pro větší Septim.4 na míru.' },
+];
+---
+
+<Base title="Septim.4 – provozní a pokladní systém pro restaurace a sítě"
+      description="Septim.4 je nejrespektovanější provozní systém pro restaurace v ČR. Pokladna, sklady, manažerské přehledy, věrnostní systém a podpora 24/7. Používají ho Ambiente, FIELD i Kolkovna.">
+  <Header brand="Septim" logoSrc="/logos/septim_color.svg" homeHref="/" />
+  <main>
+    <Hero eyebrow="Produktová řada" background="alt"
+          lead="Komplexní provozní systém Septim ve verzi 4.1 — nejnovější a nejrespektovanější software pro restaurace v ČR. Michelinské restaurace, přední sítě i známí šéfkuchaři: většina používá právě Septim.">
+      <Heading slot="title" as="h1" size="display">Septim<em>.4</em></Heading>
+      <Fragment slot="actions">
+        <Button href="#poptavka">Chci Septim</Button>
+        <Button href="/cenik" variant="secondary">Kolik to stojí?</Button>
+      </Fragment>
+    </Hero>
+
+    <Section background="default" space="lg">
+      <div class="prose">
+        <Heading as="h2" size="h2">Pokladní, nebo provozní systém?</Heading>
+        <Text size="lead" color="muted">
+          Septim zdaleka není jen pokladna. Jeho největší přínos je ve finančním, skladovém a lidském
+          řízení celého provozu. Proto je to provozní systém, nikoliv jen pokladní — a to jako jeden z mála na trhu.
+        </Text>
+        <Text color="muted">
+          Septim je skvělý pro velké restaurace i řetězce, ale využije ho i mnoho drobných restaurací,
+          bister a kaváren. Díky modulům a nastavitelným funkcím využije jeho přednosti malý i velký podnik.
+        </Text>
+      </div>
+    </Section>
+
+    <Section background="alt" space="lg">
+      <div class="head head--center">
+        <Text size="label" color="accent" align="center">Pro koho</Text>
+        <Heading as="h2" size="h2" align="center">Řešení pro každý typ provozu</Heading>
+      </div>
+      <div class="cards">
+        {segments.map((s) => (
+          <Card href={s.href} variant="bordered" padding="md">
+            <Heading as="h3" size="h3">{s.title}</Heading>
+            <Text size="small" color="muted" class="cards__text">{s.text}</Text>
+          </Card>
+        ))}
+      </div>
+    </Section>
+
+    <USPGrid eyebrow="Výhody" title="Proč Septim.4" items={benefits} background="default" space="lg" minItemWidth="280px" />
+
+    <USPGrid eyebrow="Funkce" title="Co Septim.4 umí" lead="Stavíme na 30 letech zkušeností z českých a slovenských restaurací." items={funkce} background="alt" space="lg" minItemWidth="260px" />
+
+    <Section background="default" space="lg">
+      <div class="head head--center">
+        <Text size="label" color="accent" align="center">Přechod na Septim</Text>
+        <Heading as="h2" size="h2" align="center">Jak to probíhá</Heading>
+      </div>
+      <ol class="steps">
+        {steps.map((s) => (
+          <li class="step">
+            <span class="step__num">{s.n}</span>
+            <Heading as="h3" size="h3">{s.title}</Heading>
+            <Text size="small" color="muted">{s.text}</Text>
+          </li>
+        ))}
+      </ol>
+    </Section>
+
+    <LogoWall label="Důvěřují nám ti nejlepší v oboru" background="alt" />
+
+    <StatsBand />
+
+    <Faq items={faqs} title="Často kladené dotazy k Septim.4" background="default" />
+
+    <LeadForm id="poptavka" variant="full" background="alt"
+              title="Mám zájem o systém Septim"
+              lead="Kontaktujte nás pomocí formuláře — rádi se vám ozveme." />
+  </main>
+  <Footer />
+</Base>
+
+<style>
+  .prose { max-width: 760px; }
+  .prose > * + * { margin-top: var(--space-4); }
+  .head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-7); text-align: center; }
+  .head > * + * { margin-top: var(--space-3); }
+  .cards { display: grid; gap: var(--space-5); grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+  .cards__text { margin-top: var(--space-2); }
+  .steps { list-style: none; display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  .step { position: relative; padding: var(--space-6); background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); box-shadow: var(--shadow-sm); }
+  .step > * + * { margin-top: var(--space-3); }
+  .step__num { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: var(--radius-full); background: var(--color-primary); color: var(--color-text-on-dark); font-weight: var(--font-weight-bold); }
+</style>

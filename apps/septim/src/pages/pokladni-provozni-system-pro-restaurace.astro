@@ -1,0 +1,132 @@
+---
+/**
+ * Septim — SEO landing: Pokladní a provozní systém pro restaurace.
+ * Migrace z www.septim.cz. Obsah: septim-obsah/pokladni-provozni-system-pro-restaurace.md.
+ * SEO meta napsané nově.
+ */
+import Base from '../layouts/Base.astro';
+import Header from '@piano/ui/components/Header.astro';
+import Footer from '@piano/ui/components/Footer.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Card from '@piano/ui/components/Card.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import StatsBand from '../components/StatsBand.astro';
+import LogoWall from '../components/LogoWall.astro';
+import Faq from '../components/Faq.astro';
+
+const types = [
+  { title: 'Septim.4', text: 'Restaurace a sítě restaurací.', href: '/produkty/septim-4-system-pro-restaurace' },
+  { title: 'Septim.Jídelna', text: 'Kantýny, jídelny, závodní stravování.', href: '/produkty/septim-jidelna-system-pro-zavodni-stravovani' },
+  { title: 'Septim.Air', text: 'Bistra, kavárny a bary v cloudu.', href: '/produkty/septim-air-system-pro-kavarnu-bistro-bar' },
+];
+
+const criticalPoints = [
+  { icon: 'lucide:network', title: 'Růst do více provozoven', text: 'Sdílejte receptury a sklady, nebo je veďte zvlášť a finance vidíte celkově. Většina systémů selhává právě ve chvíli, kdy rostete — Septim ne.' },
+  { icon: 'lucide:shield-check', title: 'Precizní kontrola surovin', text: 'Sklady musíte mít pod kontrolou buď na 100 %, nebo vůbec. Septim drží kontrolu od naskladnění přes odpisy a storna až po inventury.' },
+  { icon: 'lucide:line-chart', title: 'Sledování finančních toků', text: 'Food-cost, statistiky prodejů, výsledky číšníků a směn, ziskovost i náklady v čase — podrobné přehledy pro řízení ziskovosti.' },
+];
+
+const modules = [
+  { title: 'Pokladna', href: '/produkty/pokladna' },
+  { title: 'Manažer', href: '/produkty/manazer' },
+  { title: 'Skladové hospodářství', href: '/produkty/skladove-hospodarstvi' },
+  { title: 'Reporty a přehledy', href: '/produkty/reporty-prehledy' },
+  { title: 'Věrnostní systém', href: '/produkty/vernostni-system-crm' },
+  { title: 'Automatické naskladňování', href: '/produkty/automaticke-naskladnovani' },
+  { title: 'Kuchyňské displeje', href: '/produkty/kuchynske-displeje' },
+  { title: 'Platby a objednávky QR', href: '/produkty/platby-objednavky-qr-kodem' },
+  { title: 'E-shop restaurace', href: '/produkty/eshop-restaurace' },
+];
+
+const faqs = [
+  { q: 'Kolik stojí pokladní systém pro restauraci?', a: 'Pokladní systémy se pohybují od stovek korun po miliony. Zásadní otázka je, co vše má systém řešit — kolik máte pokladen, jaké manažerské funkce potřebujete a jaké nástroje je nutné napojit.' },
+  { q: 'Jak probíhá instalace?', a: 'Doporučujeme asistovanou instalaci, kterou u Septimu děláme zpravidla u všech zákazníků. Chceme, abyste systém využili na 100 % — proto ho správně nastavíme a zaškolíme personál.' },
+  { q: 'Koupě, nebo pronájem?', a: 'Buď koupíte licenci i zařízení jednorázově a platíte servisní poplatek, nebo platíte minimální vstupní náklady a zbytek si pronajímáte — podobně jako auto na operativní leasing.' },
+];
+---
+
+<Base title="Pokladní a provozní systém pro restaurace | Septim"
+      description="Septim není jen pokladna — řídí celý provoz restaurace: sklady, kuchyň, prodej, finance i personál. Provozní systém, kterému věří michelinské restaurace i sítě v ČR.">
+  <Header brand="Septim" logoSrc="/logos/septim_color.svg" homeHref="/" />
+  <main>
+    <Hero eyebrow="Řešení pro restaurace" background="alt"
+          lead="Restaurační systém Septim není zdaleka jen pokladna. Stará se od naskladnění přes zpracování surovin, výdej jídel a prodej až po inventury a finanční přehledy. Proto nám věří špičky českého gastra.">
+      <Heading slot="title" as="h1" size="display">Pokladní a provozní systém pro <em>restaurace</em></Heading>
+      <Fragment slot="actions">
+        <Button href="#poptavka">Chci Septim</Button>
+        <Button href="/produkty/septim-4-system-pro-restaurace" variant="secondary">Septim.4 detailně</Button>
+      </Fragment>
+    </Hero>
+
+    <LogoWall label="Restaurace, které používají Septim" background="default" />
+
+    <Section background="alt" space="lg">
+      <div class="prose">
+        <Heading as="h2" size="h2">Co je provozní systém Septim?</Heading>
+        <Text size="lead" color="muted">
+          Provozní systém je jádro restaurace. Septim hlídá dodávky zboží, sklady, výdej jídel a stav
+          surovin, vidí výsledky personálu podle směn i jednotlivců — a připravuje vám podklad k efektivnímu řízení.
+        </Text>
+        <Text color="muted">
+          Specializujeme se na gastro provozy od malých bister přes velké restaurace až po sítě restaurací
+          a jídelen. Každý provoz má jiné požadavky, proto máme připravené různé funkční celky a nastavení.
+        </Text>
+      </div>
+    </Section>
+
+    <Section background="default" space="lg">
+      <div class="head head--center">
+        <Text size="label" color="accent" align="center">Typy systému</Text>
+        <Heading as="h2" size="h2" align="center">Vyberte variantu pro váš provoz</Heading>
+      </div>
+      <div class="cards">
+        {types.map((t) => (
+          <Card href={t.href} variant="bordered" padding="md">
+            <Heading as="h3" size="h3">{t.title}</Heading>
+            <Text size="small" color="muted" class="cards__text">{t.text}</Text>
+          </Card>
+        ))}
+      </div>
+    </Section>
+
+    <USPGrid eyebrow="Kde se láme chleba" title="Na co si dát při výběru pozor"
+             lead="Tato místa restauratéři často objeví až po nákupu systému — a změna pak bývá bolestivá."
+             items={criticalPoints} background="alt" space="lg" minItemWidth="280px" />
+
+    <Section background="default" space="lg">
+      <div class="head head--center">
+        <Text size="label" color="accent" align="center">Moduly řešení</Text>
+        <Heading as="h2" size="h2" align="center">Co může řešení pro restauraci obsahovat</Heading>
+      </div>
+      <div class="cards cards--compact">
+        {modules.map((m) => (
+          <Card href={m.href} variant="bordered" padding="sm"><Text weight="semibold">{m.title}</Text></Card>
+        ))}
+      </div>
+    </Section>
+
+    <StatsBand />
+
+    <Faq items={faqs} title="Často kladené otázky k systémům pro restaurace" background="default" />
+
+    <LeadForm id="poptavka" variant="full" background="alt"
+              title="Pojďme to probrat"
+              lead="Nechte nám kontakt — naši konzultanti s vámi proberou specifika vašeho provozu." />
+  </main>
+  <Footer />
+</Base>
+
+<style>
+  .prose { max-width: 760px; }
+  .prose > * + * { margin-top: var(--space-4); }
+  .head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-7); text-align: center; }
+  .head > * + * { margin-top: var(--space-3); }
+  .cards { display: grid; gap: var(--space-5); grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+  .cards--compact { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-3); }
+  .cards__text { margin-top: var(--space-2); }
+</style>

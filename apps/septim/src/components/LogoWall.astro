@@ -1,0 +1,37 @@
+---
+/**
+ * LogoWall — Septim app partial (marquee referenčních log).
+ * Skládá @piano/ui Section. Loga z public/logos.
+ */
+import Section from '@piano/ui/components/Section.astro';
+import Text from '@piano/ui/components/Text.astro';
+
+interface Props { label?: string; background?: 'default' | 'alt'; }
+const { label = 'Důvěřují nám michelinské restaurace, hotely i kavárny za rohem', background = 'alt' } = Astro.props;
+
+const logos = [
+  'ref-field-michelin-restaurant', 'ref-cafe-savoy', 'ref-kolkovna', 'ref-sasazu',
+  'ref-O2-arena', 'ref-clarion-hotel', 'ref-zatisi-group', 'ref-420-restaurant',
+  'ref-pizza-coloseum', 'ref-entree', 'ref-100-chuti-brna', 'ref-sisters-bistro',
+];
+---
+
+<Section background={background} space="md" container={false}>
+  <Text size="label" color="muted" align="center" class="logos__label">{label}</Text>
+  <div class="logos">
+    <div class="logos__track">
+      {[...logos, ...logos].map((l, i) => (
+        <img src={`/logos/${l}.svg`} alt={i < logos.length ? l.replace('ref-', '').replace(/-/g, ' ') : ''} aria-hidden={i >= logos.length ? 'true' : undefined} loading="lazy" />
+      ))}
+    </div>
+  </div>
+</Section>
+
+<style>
+  .logos__label { margin-bottom: var(--space-5); }
+  .logos { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+  .logos__track { display: flex; align-items: center; gap: var(--space-8); width: max-content; animation: logos-scroll 48s linear infinite; }
+  .logos__track img { height: 34px; width: auto; opacity: 0.62; filter: grayscale(1); flex-shrink: 0; }
+  @keyframes logos-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) { .logos__track { animation: none; flex-wrap: wrap; justify-content: center; } }
+</style>

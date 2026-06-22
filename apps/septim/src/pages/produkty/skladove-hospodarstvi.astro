@@ -1,0 +1,112 @@
+---
+/**
+ * Septim — Skladové hospodářství (modul). Migrace z www.septim.cz.
+ * Obsah: septim-obsah/produkty/skladove-hospodarstvi.md. SEO meta napsané nově.
+ */
+import Base from '../../layouts/Base.astro';
+import Header from '@piano/ui/components/Header.astro';
+import Footer from '@piano/ui/components/Footer.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import StatsBand from '../../components/StatsBand.astro';
+import LogoWall from '../../components/LogoWall.astro';
+import Faq from '../../components/Faq.astro';
+
+const features = [
+  'Evidence skladových zásob', 'Různé měrné jednotky', 'Práce s různým balením položek',
+  'Evidence více skladů', 'Příjem na sklad / dodací listy', 'Převody mezi sklady',
+  'Evidence minimálních zásob', 'Aktuální zásoby podle skladů i položek', 'Výpočet aktuálních skladových cen',
+  'Automatizovaný import dodacích listů', 'Evidence dodavatelů', 'Výdej vyřazením i prodejem',
+  'Substituce surovin', 'Výdej dle receptur a odpisů', 'Výpočet spotřebního koše',
+  'Normování jídel pro hromadný výdej', 'Inventurní tiskové sestavy',
+];
+
+const benefits = [
+  { icon: 'lucide:shield-check', title: 'Kontrola skladů', text: 'Přehled o tocích surovin a zboží v reálném čase.' },
+  { icon: 'lucide:package-plus', title: 'Snadné naskladňování', text: 'Příjemky a dodací listy bez ručního opisování.' },
+  { icon: 'lucide:scale', title: 'Přesné odtěžování', text: 'Suroviny se odečítají ze skladu dle prodejů online.' },
+  { icon: 'lucide:warehouse', title: 'Více skladů', text: 'Snadné přesouvání zásob mezi sklady a provozy.' },
+  { icon: 'lucide:clipboard-check', title: 'Inventury, které fungují', text: 'Pokročilá funkcionalita pro běžný provoz.' },
+];
+
+const faqs = [
+  { q: 'Čím se Septim liší od ostatních skladových systémů?', a: 'Je připravený na míru gastro podniku — počítá s různými rolemi při práci se surovinami, s reálným odtěžováním ze skladu a s inventurami, které v praxi fungují.' },
+  { q: 'Jak začít se skladovým hospodářstvím v Septimu?', a: 'V prvním kroku kontaktujte naše konzultanty. Proberou s vámi specifika provozu a navrhnou implementaci systému Septim včetně nastavení skladového hospodářství.' },
+  { q: 'Eviduje systém změny ve skladu?', a: 'Ano. Septim zaznamenává každou změnu včetně času a uživatele, který ji provedl — maximální dohledatelnost a přenesení odpovědnosti na personál.' },
+];
+---
+
+<Base title="Skladové hospodářství v Septimu – sklady, příjemky a inventury pod kontrolou"
+      description="Modul Skladové hospodářství systému Septim: evidence zásob, příjem a převody mezi sklady, receptury, odpisy a inventury. Mějte tok surovin i náklady restaurace pod 100% kontrolou.">
+  <Header brand="Septim" logoSrc="/logos/septim_color.svg" homeHref="/" />
+  <main>
+    <Hero eyebrow="Modul systému Septim" background="alt"
+          lead="Sklady v manažerském pohledu jsou klíčová funkce provozního systému Septim. Modul řeší kompletní skladové hospodářství vaší restaurace — od dodacích listů a receptur přes odpisy až po inventury.">
+      <Heading slot="title" as="h1" size="display">Skladové <em>hospodářství</em></Heading>
+      <Fragment slot="actions">
+        <Button href="#poptavka">Chci Septim</Button>
+        <Button href="/produkty" variant="secondary">Všechny moduly</Button>
+      </Fragment>
+    </Hero>
+
+    <Section background="default" space="lg">
+      <div class="prose">
+        <Heading as="h2" size="h2">Co je skladové hospodářství v Septimu?</Heading>
+        <Text size="lead" color="muted">
+          Modul Sklady řeší kompletní skladové hospodářství vaší restaurace. Evidence dodacích listů,
+          receptur, odpisy ze skladu i vyhodnocování inventur — to vše směřuje k tomu být nákladově
+          co nejefektivnější a mít přehled o tocích surovin a zboží.
+        </Text>
+        <Text color="muted">
+          Ke každé prodejní položce se přiřadí ingredience, které pokladna v okamžiku namarkování odečte
+          ze skladu. Odtěžování probíhá ve většině případů ihned, v on-line režimu.
+        </Text>
+      </div>
+    </Section>
+
+    <Section background="alt" space="lg">
+      <div class="head head--center">
+        <Text size="label" color="accent" align="center">Funkce</Text>
+        <Heading as="h2" size="h2" align="center">Vše pro evidenci toku surovin</Heading>
+      </div>
+      <ul class="checklist">
+        {features.map((f) => (
+          <li><Icon name="lucide:check" size="sm" class="checklist__icon" />{f}</li>
+        ))}
+      </ul>
+    </Section>
+
+    <USPGrid eyebrow="Výhody" title="Proč modul sklady" items={benefits} background="default" space="lg" minItemWidth="240px" />
+
+    <LogoWall label="Respektované provozy, které využívají Septim" background="alt" />
+
+    <StatsBand />
+
+    <Faq items={faqs} title="Často kladené otázky ke skladům" background="default" />
+
+    <LeadForm id="poptavka" variant="callback" background="alt"
+              title="Proberte sklady s našimi konzultanty"
+              lead="Nechte nám telefon — ukážeme vám skladové hospodářství přímo na vašem provozu." />
+  </main>
+  <Footer />
+</Base>
+
+<style>
+  .prose { max-width: 760px; }
+  .prose > * + * { margin-top: var(--space-4); }
+  .head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-7); text-align: center; }
+  .head > * + * { margin-top: var(--space-3); }
+  .checklist {
+    list-style: none; display: grid; gap: var(--space-3);
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    max-width: 960px; margin-inline: auto;
+  }
+  .checklist li { display: flex; align-items: flex-start; gap: var(--space-2); font-size: var(--font-size-small); }
+  .checklist__icon { color: var(--color-primary); flex-shrink: 0; margin-top: 2px; }
+</style>
