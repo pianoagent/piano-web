@@ -62,10 +62,13 @@
   --text-h2:      600 var(--font-size-h2)/var(--line-height-heading) var(--font-sans);
   --text-h3:      600 var(--font-size-h3)/var(--line-height-snug) var(--font-sans);
 
-  /* ----- Primary — modrošedá (brandová identita, CTA, odkazy) ----- */
-  --color-primary:          #587E92;
-  --color-primary-hover:    #4A6B7D;
-  --color-primary-active:   #3D5A6A;
+  /* ----- Primary — modrošedá (brandová identita, CTA, odkazy) -----
+     Ztmaveno z brandové #587E92 na #4E7286 kvůli WCAG AA: bílý text na
+     tlačítku má kontrast 5.15:1 (≥4.5). Světlou brandovou #587E92 dál
+     drží --color-secondary pro dekorativní velký text. */
+  --color-primary:          #4E7286;
+  --color-primary-hover:    #456578;
+  --color-primary-active:   #3F6276;
   --color-primary-bg:       #222F40;  /* tmavá navy — pozadí sekcí */
   --color-primary-bg-hover: #2C3B4F;
 

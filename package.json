@@ -19,6 +19,9 @@
     "preview:grason": "npm run preview -w @piano/app-grason",
     "dev:savarin": "npm run dev -w @piano/app-savarin",
     "build:savarin": "npm run build -w @piano/app-savarin",
-    "preview:savarin": "npm run preview -w @piano/app-savarin"
+    "preview:savarin": "npm run preview -w @piano/app-savarin",
+    "dev:harsys": "npm run dev -w @piano/app-harsys",
+    "build:harsys": "npm run build -w @piano/app-harsys",
+    "preview:harsys": "npm run preview -w @piano/app-harsys"
   }
 }

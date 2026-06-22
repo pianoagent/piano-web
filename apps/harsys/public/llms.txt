@@ -1,0 +1,19 @@
+# Grason
+
+> Grason je odborník na personál pro gastronomii. Ekosystém pro řízení lidí v provozu: brigádníci na poslední chvíli, plánování směn vlastního týmu (GrasonPlan), digitální píchačky, docházka a podklady pro mzdy — vše na jednom místě.
+
+## Pro koho
+
+- [Pro firmy](https://grason.cz/pro-firmy): obsazení směn ověřenými brigádníky, plánování směn (GrasonPlan), digitální píchačky přes WiFi/GPS, reporty pro mzdy a ceník bez poplatků ze mzdy.
+- [Pro brigádníky](https://grason.cz/pro-brigadniky): nabídky směn v okolí, výplata po směně a vyřízené papírování.
+- [O nás](https://grason.cz/o-nas): kdo za Grasonem stojí a jak vznikl.
+
+## O společnosti
+
+Grason je součástí rodiny Piano (Piano Solutions). Databáze 3 357+ ověřených brigádníků, pokrytí 82+ měst v ČR, statisíce naplánovaných směn. Důvěřují mu restaurace, hotely i sklady po celé ČR.
+
+## Kontakt a dokumentace
+
+- Web: https://grason.cz
+- Sitemap: https://grason.cz/sitemap-index.xml
+- E-mail: info@grason.cz, telefon +420 739 877 799

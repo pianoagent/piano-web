@@ -54,6 +54,8 @@ const leadProofs = [
       description="Savarin je modulární software pro stravovací a ubytovací provozy: pokladna, mobilní pokladna, recepce, sklady a kalkulace. Vývoj, dodávka a servis od roku 1990 (ComInn s.r.o.).">
   <Header brand="Savarin" logoSrc="/logos/savarin-logo.svg" homeHref="/" nav={savarinNav} cta={savarinCta} />
 
+  <main>
+
   <!-- HERO — split: text vlevo, POS účtenka vpravo (placeholder) -->
   <Hero eyebrow="Restaurační a hotelový systém" background="gradient"
         lead="Savarin je modulární systém pro stravovací a ubytovací provozy — pokladna, recepce, sklady a kalkulace na jednom místě. Vyvíjíme, dodáváme a servisujeme ho od roku 1990.">
@@ -177,6 +179,8 @@ const leadProofs = [
             lead="Napište nám pár slov o svém provozu a my vám připravíme cenovou nabídku na míru. Rádi zašleme i bezplatnou demoverzi."
             proofs={leadProofs} successUrl="/dekujeme" />
 
+  </main>
+
   <Footer />
 </Base>
 
@@ -204,7 +208,7 @@ const leadProofs = [
   .receipt__total {
     display: flex; justify-content: space-between; margin-top: var(--space-3);
     padding-top: var(--space-3); border-top: 1px dashed var(--color-border-strong);
-    font-weight: var(--font-weight-bold); color: var(--color-secondary);
+    font-weight: var(--font-weight-bold); color: var(--color-text);
   }
   @media (max-width: 480px) { .pos__body { grid-template-columns: 1fr; } }
 

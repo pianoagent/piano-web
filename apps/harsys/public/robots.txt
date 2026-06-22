@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://abxharsys.cz/sitemap-index.xml
