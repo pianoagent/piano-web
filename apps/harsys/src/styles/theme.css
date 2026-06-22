@@ -1,131 +1,125 @@
-/* TÉMA — Grason
+/* TÉMA — ABX HARSYS
    =========================================================
-   Reálné brandové tokeny Grason (modrá identita + tyrkysový accent,
-   doplňky žlutá + růžová). Písmo Neue Plak; velké nadpisy Neue Plak
-   Extended Black.
-   Zdroj barev: grason-web-develop/assets/scss/core/variables.scss
-   Zdroj fontů: grason-web-develop/assets/scss/core/fonts.scss
+   Reálné brandové tokeny Harsysu: modro-červená identita
+   (primární modrá #004a96, červený accent #e30613, amber + zelená
+   jako doplňky). Písmo Ubuntu Sans (variabilní, váha 100–800).
+   Zdroj: podklady starých webů/Harsys/DESIGN-TOKENY.md (extrakt z abxharsys.cz).
    Komponenty se NEMĚNÍ — pouze hodnoty zde. Base struktura (typo škála,
-   spacing) zůstává z @piano/ui; Grason přebarvuje + zaobluje (pilulky).
+   spacing) zůstává z @piano/ui; Harsys přebarvuje + mírně zaobluje.
 */
 @import "@piano/ui/styles/base.css";
 
 /* =========================================================
-   FONT — Neue Plak
-   - 400 (Regular) + 600 (SemiBold) = tělo i nadpisy h2/h3
-   - 900 = Neue Plak Extended Black, registrovaná POD STEJNOU rodinou
-     "Neue Plak" pod váhou 900 → nadpisy display/h1 (font-weight:900)
-     si ji vyzvednou automaticky, bez nutnosti měnit komponenty.
+   FONT — Ubuntu Sans (variabilní, wght 100–800)
+   Dva komplementární subsety: latin (UbuntuSans) + latin-ext
+   (UbuntuSansExt — nese české diakritiky č ř ž ě ů š). Oba pod
+   stejnou rodinou „Ubuntu Sans" → komponenty si je vyzvednou samy.
    ========================================================= */
 @font-face {
-  font-family: "Neue Plak"; font-style: normal; font-weight: 400; font-display: swap;
-  src: url("/fonts/neue-plak-400.woff2") format("woff2");
+  font-family: "Ubuntu Sans"; font-style: normal; font-weight: 100 800; font-display: swap;
+  src: url("/fonts/UbuntuSans.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
-  font-family: "Neue Plak"; font-style: normal; font-weight: 600; font-display: swap;
-  src: url("/fonts/neue-plak-600.woff2") format("woff2");
+  font-family: "Ubuntu Sans"; font-style: normal; font-weight: 100 800; font-display: swap;
+  src: url("/fonts/UbuntuSansExt.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 @font-face {
-  /* Neue Plak Extended Black — výrazné display nadpisy (váha 900) */
-  font-family: "Neue Plak"; font-style: normal; font-weight: 900; font-display: swap;
-  src: url("/fonts/neue-plak-extended-900.woff2") format("woff2");
+  font-family: "Ubuntu Sans"; font-style: italic; font-weight: 100 800; font-display: swap;
+  src: url("/fonts/UbuntuSansExtIt.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1E00-1E9F, U+1EF2-1EFF, U+2C60-2C7F, U+A720-A7FF;
 }
 
 :root {
   /* ----- Písmo ----- */
-  --font-sans:  "Neue Plak", "Segoe UI", system-ui, -apple-system, sans-serif;
-  --font-serif: "Neue Plak", "Segoe UI", system-ui, sans-serif;
+  --font-sans:  "Ubuntu Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-serif: "Ubuntu Sans", "Segoe UI", system-ui, sans-serif;
 
-  /* Neue Plak má 400 / 600 / 900 — bez 500/700.
-     medium/semibold → 600, bold → 900 (Extended Black, např. velká čísla). */
-  --font-weight-medium:   600;
-  --font-weight-semibold: 600;
-  --font-weight-bold:     900;
-
-  /* Display + H1 = Neue Plak Extended Black (váha 900).
-     H2/H3 = Neue Plak SemiBold (váha 600). */
-  --text-display: 900 var(--font-size-display)/var(--line-height-display) var(--font-sans);
-  --text-h1:      900 var(--font-size-h1)/1.02 var(--font-sans);
-  --text-h2:      600 var(--font-size-h2)/var(--line-height-heading) var(--font-sans);
+  /* Nadpisy Harsysu jsou výrazné — display/h1/h2 = bold (700),
+     h3 = semibold. Ubuntu Sans pokryje váhy plynule. */
+  --text-display: 700 var(--font-size-display)/var(--line-height-display) var(--font-sans);
+  --text-h1:      700 var(--font-size-h1)/1.02 var(--font-sans);
+  --text-h2:      700 var(--font-size-h2)/var(--line-height-heading) var(--font-sans);
   --text-h3:      600 var(--font-size-h3)/var(--line-height-snug) var(--font-sans);
 
-  /* ----- Primary — modrá (brandová identita, CTA) ----- */
-  --color-primary:          #343160;
-  --color-primary-hover:    #2A2850;
-  --color-primary-active:   #20203C;
-  --color-primary-bg:       #343160;  /* tmavé modré pozadí sekcí */
-  --color-primary-bg-hover: #2A2850;
+  /* ----- Primary — modrá (brand, CTA, nadpisy) ----- */
+  --color-primary:          #004a96;
+  --color-primary-hover:    #005cad;
+  --color-primary-active:   #003a78;
+  --color-primary-bg:       #004a96;
+  --color-primary-bg-hover: #005cad;
 
-  /* ----- Secondary — modrá (čísla, zvýraznění) + akcentní role ----- */
-  --color-secondary:            #343160;  /* deep brand modrá */
-  --color-secondary-terracotta: #F96797;  /* růžová — doplněk (badge / highlight) */
-  --color-secondary-gold:       #FAD531;  /* žlutá — doplněk (eyebrow / proof na tmavém) */
-  --color-secondary-azure:      #3CC1C8;  /* tyrkys — accent */
+  /* ----- Secondary — modrá (čísla, staty) + akcentní role ----- */
+  --color-secondary:            #1f55a3;  /* sekundární modrá (čísla/staty) */
+  --color-secondary-terracotta: #e30613;  /* červená — accent, badge, motiv „X" */
+  --color-secondary-gold:       #fdc00f;  /* amber — eyebrow/proof na tmavém */
+  --color-secondary-azure:      #17b471;  /* zelená — checkmarky, pozitivní stavy */
 
-  /* ----- Neutral (chladná šeď z brandu) ----- */
+  /* ----- Neutral (chladná modro-šedá z brandu) ----- */
   --color-neutral-0:   #FFFFFF;
-  --color-neutral-50:  #F6F7FA;
-  --color-neutral-100: #EEEFF2;
-  --color-neutral-200: #D4D6DD;
-  --color-neutral-300: #C3C2D0;
-  --color-neutral-400: #B8BBC7;
-  --color-neutral-500: #838895;
-  --color-neutral-900: #070707;
+  --color-neutral-50:  #F2F4F8;
+  --color-neutral-100: #EDF0F5;
+  --color-neutral-200: #DBE1E8;
+  --color-neutral-300: #C2CAD6;
+  --color-neutral-400: #9F9F9F;
+  --color-neutral-500: #6F7682;
+  --color-neutral-900: #1C1C1C;
 
   /* ----- Status ----- */
-  --color-success:       #2FA39A;
-  --color-success-hover: #23827B;
-  --color-warning:       #FAD531;
-  --color-info:          #3CC1C8;
-  --color-error:         #990000;
-  --color-error-hover:   #7A0000;
+  --color-success:       #17b471;
+  --color-success-hover: #139a60;
+  --color-warning:       #fdc00f;
+  --color-info:          #1f55a3;
+  --color-error:         #e30613;
+  --color-error-hover:   #c20510;
 
   /* ----- Text ----- */
-  --color-text:               #1E1C33; /* tmavá modročerná (nadpisy i body) */
-  --color-text-muted:         #838895;
-  --color-text-accent:        #2A9CA2; /* ztmavený tyrkys — čitelný na bílé (eyebrow / odkazy) */
+  --color-text:               #393939;
+  --color-text-muted:         #5e6470;
+  --color-text-accent:        #004a96; /* eyebrow / odkazy / ikony na světlém */
   --color-text-on-dark:       #FFFFFF;
-  --color-text-on-dark-muted: rgba(255, 255, 255, 0.74);
+  --color-text-on-dark-muted: rgba(255, 255, 255, 0.78);
 
   /* ----- Povrchy ----- */
   --color-bg:        #FFFFFF;
-  --color-bg-alt:    #F6F7FA;
-  --color-bg-invert: #343160;
-  --color-bg-hover:  color-mix(in srgb, var(--color-neutral-900) 4%, #FFFFFF);
+  --color-bg-alt:    #EDF0F5;
+  --color-bg-invert: #004a96;
+  --color-bg-hover:  color-mix(in srgb, var(--color-primary) 6%, #FFFFFF);
 
-  /* Signature gradient (hero) — modrá → tyrkys */
-  --color-bg-gradient: linear-gradient(118deg, #343160 0%, #3C396F 42%, #3CC1C8 100%);
+  /* Signature gradient (hero) — modrá → světlejší modrá */
+  --color-bg-gradient: linear-gradient(118deg, #0f559c 0%, #2060a3 100%);
 
   /* ----- Okraje ----- */
-  --color-border:         #EEEFF2;
-  --color-border-strong:  #C3C2D0;
-  --color-border-on-dark: rgba(255, 255, 255, 0.26);
+  --color-border:         #DBE1E8;
+  --color-border-strong:  #C2CAD6;
+  --color-border-on-dark: rgba(255, 255, 255, 0.24);
 
-  /* ----- Radius — Grason zaobluje (friendly app vibe) ----- */
-  --radius-sm:   8px;
-  --radius-md:   12px;
+  /* ----- Radius — Harsys mírně zaobluje (profesionální, ne pilulky) ----- */
+  --radius-sm:   6px;
+  --radius-md:   10px;
   --radius-lg:   16px;
-  --radius-full: 999px;
+  --radius-full: 9999px;
 
-  /* ----- Chamfer vypnut (Grason nemá seříznutý roh) ----- */
+  /* ----- Chamfer vypnut (Harsys nemá seříznutý roh) ----- */
   --chamfer-depth: 0px;
 
-  /* ----- Tlačítka — plné pilulky ----- */
-  --btn-radius: var(--radius-full);
+  /* ----- Tlačítka — zaoblený obdélník (bez chamferu) ----- */
+  --btn-radius: 8px;
   --btn-clip:   none;
 
-  /* ----- Formulářová pole — také pilulky ----- */
-  --field-radius: var(--radius-full);
+  /* ----- Formulářová pole ----- */
+  --field-radius: 8px;
 
   /* ----- Stíny — měkké, modře tónované ----- */
-  --shadow-sm: 0 2px 8px rgba(52, 49, 96, 0.08);
-  --shadow-md: 0 8px 24px rgba(52, 49, 96, 0.10);
-  --shadow-lg: 0 16px 48px rgba(52, 49, 96, 0.14);
+  --shadow-sm: 0 2px 8px rgba(0, 74, 150, 0.07);
+  --shadow-md: 0 8px 24px rgba(0, 74, 150, 0.10);
+  --shadow-lg: 0 16px 48px rgba(0, 74, 150, 0.14);
 
-  /* ----- Focus ring — tyrkys ----- */
-  --shadow-focus: 0 0 0 3px rgba(60, 193, 200, 0.45);
+  /* ----- Focus ring — modrá ----- */
+  --shadow-focus: 0 0 0 3px rgba(0, 74, 150, 0.30);
 }
 
 /* Akcentní slovo v nadpisu — <span class="accent"> uvnitř <Heading>.
-   (Grason nemá serif font; accent řešíme barvou v rámci stejné rodiny.) */
-.accent { color: var(--color-secondary-azure); }
+   Harsys = červený accent (brandový motiv „X"). */
+.accent { color: var(--color-secondary-terracotta); }
