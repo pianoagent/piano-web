@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1336 1536">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#Nepojmenovaný_přechod);
+        fill-rule: evenodd;
+      }
+    </style>
+    <linearGradient id="Nepojmenovaný_přechod" data-name="Nepojmenovaný přechod" x1="370.8" y1="469.3" x2="969.9" y2="1068.1" gradientTransform="translate(0 1536) scale(1 -1)" gradientUnits="userSpaceOnUse">
+      <stop offset=".2" stop-color="#140757"/>
+      <stop offset=".3" stop-color="#270953"/>
+      <stop offset=".4" stop-color="#6d1042"/>
+      <stop offset=".6" stop-color="#a41535"/>
+      <stop offset=".7" stop-color="#cc192c"/>
+      <stop offset=".7" stop-color="#e41b26"/>
+      <stop offset=".8" stop-color="#ed1c24"/>
+    </linearGradient>
+  </defs>
+  <!-- Generator: Adobe Illustrator 28.6.0, SVG Export Plug-In . SVG Version: 1.2.0 Build 709)  -->
+  <g>
+    <g id="Vrstva_1">
+      <path id="Layer" class="cls-1" d="M948.2,446.2v643.9l-230.4-223.1,51.8-50.2,106.8,102.8v-306l-158.7,153-53.4,50.9-275.8,267V448.6l277.4,267.7,279.9-270.1h2.4ZM455.5,613.5h0ZM455.5,613.5c0,0,0,306,0,306l158.7-153-158.7-153Z"/>
+    </g>
+  </g>
+</svg>

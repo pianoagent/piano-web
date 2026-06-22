@@ -1,22 +1,35 @@
 /**
- * Navigace — Grason (per-web). Předává se do sdíleného <Header nav cta>.
+ * Navigace — ABX HARSYS (per-web). Předává se do sdíleného <Header nav cta>.
  * Komponenta se NEFORKUJE — jen jí dodáme jiná data.
+ * Struktura dle IA původního webu (Program / Ceník / Hardware / Podpora / O nás).
+ * Pozn.: část položek zatím míří na nejbližší postavenou stránku nebo kotvu na
+ * homepage; samostatné podstránky (rozšíření, hardware, demoverze, přechod,
+ * instalace, o-nas…) doplníme později.
  */
 import type { NavItem, NavLink } from '@piano/ui/config/nav';
 
-export const grasonNav: NavItem[] = [
+export const harsysNav: NavItem[] = [
   {
-    label: 'Pro firmy',
-    href: '/pro-firmy',
+    label: 'Program',
+    href: '/funkce',
     children: [
-      { label: 'Brigádníci', href: '/pro-firmy#brigadnici', description: 'Flexibilní pracovníci na směnu', icon: 'lucide:users' },
-      { label: 'GrasonPlan', href: '/pro-firmy#grasonplan', description: 'Plánování směn vlastního týmu', icon: 'lucide:calendar-days' },
-      { label: 'Digitální píchačky', href: '/pro-firmy#pichacky', description: 'Docházka přes WiFi a GPS', icon: 'lucide:map-pin' },
-      { label: 'Ceník', href: '/pro-firmy#cenik', description: 'Předplatné bez poplatků ze mzdy', icon: 'lucide:tag' },
+      { label: 'Srovnání variant', href: '/srovnani-variant', description: 'Rozdíly mezi Lite, Gold, Gold+NET a Premium', icon: 'lucide:table-2' },
+      { label: 'Funkce programu', href: '/funkce', description: 'Co všechno Harsys umí', icon: 'lucide:layout-grid' },
+      { label: 'Reference', href: '/reference', description: 'Spokojení zákazníci po celé ČR', icon: 'lucide:star' },
+      { label: 'Časté dotazy', href: '/#faq', description: 'Odpovědi na nejčastější otázky', icon: 'lucide:help-circle' },
     ],
   },
-  { label: 'Pro brigádníky', href: '/pro-brigadniky' },
-  { label: 'O nás', href: '/o-nas' },
+  { label: 'Ceník', href: '/cenik' },
+  { label: 'Hardware', href: '/#hardware' },
+  {
+    label: 'Podpora',
+    href: '/kontakt',
+    children: [
+      { label: 'Demoverze zdarma', href: '/#poptavka', description: 'Vyzkoušejte Harsys nezávazně', icon: 'lucide:download' },
+      { label: 'Napište nám', href: '/kontakt', description: 'Kontaktní údaje a poptávka', icon: 'lucide:mail' },
+    ],
+  },
+  { label: 'O nás', href: '/kontakt' },
 ];
 
-export const grasonCta: NavLink = { label: 'Konzultace zdarma', href: '/#poptavka' };
+export const harsysCta: NavLink = { label: 'Konzultace zdarma', href: '/#poptavka' };

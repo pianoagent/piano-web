@@ -1,0 +1,130 @@
+---
+/**
+ * ABX HARSYS — Srovnání variant. Nejobsáhlejší stránka.
+ * Obsah z obsah/srovnani-variant-pokladni-system-pro-restaurace-harsys.md,
+ * matice z src/config/program.ts. Komponenty z @piano/ui.
+ */
+import Base from '../layouts/Base.astro';
+import Header from '@piano/ui/components/Header.astro';
+import Footer from '@piano/ui/components/Footer.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import { harsysNav, harsysCta } from '../config/nav';
+import { variants, compare } from '../config/program';
+
+const intro = [
+  'Systém lze rozšířit o další pokladní místa i sklady.',
+  'Počet kancelářských míst není omezen.',
+  'Z nižší na vyšší variantu lze později přejít.',
+  'Při přechodu z jiného systému poskytujeme slevu.',
+];
+const leadProofs = [
+  { icon: 'lucide:table-2', title: 'Nevíte, kterou variantu?', text: 'Doporučíme dle vašeho provozu.' },
+  { icon: 'lucide:headset', title: 'Nezávazná konzultace', text: 'Zdarma a bez závazku.' },
+  { icon: 'lucide:lightbulb', title: 'Nápady vítáme', text: 'Zajímavé funkce doprogramujeme zdarma.' },
+];
+---
+
+<Base title="Rozdíly a porovnání variant programu | ABX HARSYS"
+      description="Harsys nabízí 4 varianty programu — Lite, Gold, Gold+NET a Premium. Porovnejte si jejich funkce a ceny a vyberte tu pravou pro váš provoz.">
+  <Header brand="ABX HARSYS" logoSrc="/logos/abx-harsys.svg" homeHref="/" nav={harsysNav} cta={harsysCta} />
+
+  <Hero eyebrow="Srovnání variant" background="gradient"
+        lead="Harsys existuje ve 4 variantách, které se liší výbavou — funkcemi a moduly dostupnými dle varianty. Program lze dále rozšiřovat o příplatkové moduly (ceny na vyžádání).">
+    <Heading slot="title" as="h1" size="display" color="on-dark">Rozdíly a porovnání <span class="accent">variant</span></Heading>
+  </Hero>
+
+  <Section background="default" space="md">
+    <ul class="intro">
+      {intro.map((p) => (<li><Icon name="lucide:check" size="sm" class="intro__check" />{p}</li>))}
+    </ul>
+  </Section>
+
+  <!-- TABULKA -->
+  <Section background="default" space="md">
+    <div class="table-wrap">
+      <table class="cmp">
+        <thead>
+          <tr>
+            <th class="cmp__feat"></th>
+            {variants.map((v) => (
+              <th class={`cmp__head${v.popular ? ' is-popular' : ''}`}>
+                <span class="cmp__name">{v.name}</span>
+                <span class="cmp__price">{v.buy} Kč</span>
+                <span class="cmp__rent">/ {v.rent} Kč měsíčně</span>
+                {v.popular && <span class="cmp__tag">Nejoblíbenější</span>}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {compare.map((g) => (
+            <Fragment>
+              <tr class="cmp__group"><th colspan={variants.length + 1}>{g.group}</th></tr>
+              {g.rows.map((r) => (
+                <tr>
+                  <th class="cmp__feat" scope="row">{r.label}</th>
+                  {r.cells.map((c) => (
+                    <td class="cmp__cell">
+                      {c === true ? (
+                        <Icon name="lucide:check" size="sm" class="cmp__yes" />
+                      ) : c === false ? (
+                        <Icon name="lucide:minus" size="sm" class="cmp__no" />
+                      ) : (
+                        <span class="cmp__txt">{c}</span>
+                      )}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </Fragment>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <Text size="small" color="muted" align="center" class="legend">Ceny jsou bez DPH. „Příplatek" = funkce dostupná jako placené rozšíření. Plnou matici funkcí a ceny modulů rádi pošleme na vyžádání.</Text>
+    <div class="cta-row">
+      <Button href="#poptavka">Poradit s výběrem</Button>
+      <Button href="/cenik" variant="secondary">Přejít na ceník</Button>
+    </div>
+  </Section>
+
+  <LeadForm id="poptavka" variant="callback" background="primary"
+            title="Máte zájem o nezávaznou konzultaci?"
+            lead="Zanechte číslo a my se vám ozveme. Pomůžeme vybrat variantu přesně podle vašeho provozu."
+            proofs={leadProofs} successUrl="/dekujeme" />
+
+  <Footer />
+</Base>
+
+<style>
+  .intro { list-style: none; max-width: 900px; margin-inline: auto; display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3) var(--space-6); }
+  .intro li { display: flex; align-items: flex-start; gap: var(--space-2); color: var(--color-text); }
+  .intro :global(.intro__check) { color: var(--color-secondary-azure); flex-shrink: 0; margin-top: 3px; }
+  @media (max-width: 640px) { .intro { grid-template-columns: 1fr; } }
+
+  .table-wrap { overflow-x: auto; border: 1px solid var(--color-border); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); }
+  .cmp { width: 100%; border-collapse: collapse; min-width: 720px; background: var(--color-bg); }
+  .cmp th, .cmp td { padding: var(--space-3) var(--space-4); text-align: center; border-bottom: 1px solid var(--color-border); }
+  .cmp__feat { text-align: left; font-weight: var(--font-weight-regular); color: var(--color-text); font-size: var(--font-size-small); width: 40%; }
+  thead .cmp__feat { width: 40%; }
+  .cmp__head { vertical-align: bottom; position: relative; background: var(--color-bg-alt); }
+  .cmp__head.is-popular { background: color-mix(in srgb, var(--color-primary) 8%, #fff); }
+  .cmp__name { display: block; font-size: var(--font-size-lead); font-weight: var(--font-weight-bold); color: var(--color-primary); }
+  .cmp__price { display: block; font-size: var(--font-size-body); font-weight: var(--font-weight-bold); color: var(--color-text); margin-top: 2px; }
+  .cmp__rent { display: block; font-size: var(--font-size-caption); color: var(--color-text-muted); }
+  .cmp__tag { display: inline-block; margin-top: var(--space-2); background: var(--color-secondary-terracotta); color: #fff; font-size: 10px; font-weight: var(--font-weight-semibold); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide); padding: 2px var(--space-2); border-radius: var(--radius-full); }
+  .cmp__group th { text-align: left; background: var(--color-primary); color: #fff; font-size: var(--font-size-small); font-weight: var(--font-weight-semibold); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide); padding: var(--space-2) var(--space-4); }
+  .cmp__cell :global(.cmp__yes) { color: var(--color-secondary-azure); }
+  .cmp__cell :global(.cmp__no) { color: var(--color-neutral-300); }
+  .cmp__txt { font-size: var(--font-size-caption); color: var(--color-secondary); font-weight: var(--font-weight-medium); }
+  tbody tr:hover td, tbody tr:hover .cmp__feat { background: var(--color-bg-hover); }
+
+  .legend { max-width: 760px; margin: var(--space-4) auto 0; }
+  .cta-row { display: flex; gap: var(--space-3); justify-content: center; flex-wrap: wrap; margin-top: var(--space-6); }
+</style>

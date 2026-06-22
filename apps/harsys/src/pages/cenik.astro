@@ -1,0 +1,177 @@
+---
+/**
+ * ABX HARSYS — Ceník. Obsah z obsah/cenik-pokladni-system-pro-restaurace-abx-harsys.md.
+ * Komponenty z @piano/ui, varianty z src/config/program.ts.
+ */
+import Base from '../layouts/Base.astro';
+import Header from '@piano/ui/components/Header.astro';
+import Footer from '@piano/ui/components/Footer.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import { harsysNav, harsysCta } from '../config/nav';
+import { variants, variantFeatures } from '../config/program';
+
+const points = [
+  'Systém lze rozšířit o další pokladní místa i sklady.',
+  'Počet kancelářských míst není omezen.',
+  'Z nižší na vyšší variantu lze později přejít — doplácíte jen rozdíl.',
+  'Při přechodu z jiného systému poskytujeme slevu.',
+  'Nabídka splátek je součástí každé cenové nabídky.',
+];
+
+const fair = [
+  { icon: 'lucide:badge-check', title: 'Jsme fér', text: 'Za provoz programu vám neúčtujeme nic navíc. Žádné skryté poplatky.' },
+  { icon: 'lucide:monitor', title: 'Běží na Windows', text: 'Harsys provozujete na běžném počítači s OS Windows — není potřeba speciální hardware.' },
+  { icon: 'lucide:rocket', title: 'Jsme rychlí', text: 'Váš nový systém můžete mít už za pár dnů. Možná i zítra, nejpozději do týdne.' },
+  { icon: 'lucide:percent', title: 'Sleva za přechod', text: 'Přecházíte od jiného dodavatele? Získáte slevu na pořízení licence.' },
+];
+
+const faqs = [
+  { q: 'Uvažuji o Lite do začátku. Co když budu chtít vyšší variantu?', a: 'Při přechodu na vyšší variantu (např. z Lite na Gold) doplácíte jen rozdíl cen dle aktuálního ceníku — neplatíte celou cenu znovu.' },
+  { q: 'Když si Harsys nejdřív pronajmu, můžu licenci později koupit?', a: 'Ano. Na dodatečný nákup doživotní licence vám nabídneme slevu s ohledem na dobu pronájmu.' },
+  { q: 'Jsou v ceně skryté poplatky?', a: 'Nejsou. Za provoz programu neúčtujeme nic navíc.' },
+];
+
+const leadProofs = [
+  { icon: 'lucide:calculator', title: 'Cenová nabídka na míru', text: 'Včetně nabídky splátek.' },
+  { icon: 'lucide:percent', title: 'Sleva za přechod', text: 'Od jiného systému ušetříte.' },
+  { icon: 'lucide:headset', title: 'Poradíme s výběrem', text: 'Doporučíme vhodnou variantu.' },
+];
+---
+
+<Base title="Ceník pokladního systému Harsys | ABX HARSYS"
+      description="Ceník pokladního systému Harsys ve variantách Lite, Gold, Gold+NET a Premium — doživotní licence i měsíční pronájem. Z nižší na vyšší variantu lze kdykoli přejít.">
+  <Header brand="ABX HARSYS" logoSrc="/logos/abx-harsys.svg" homeHref="/" nav={harsysNav} cta={harsysCta} />
+
+  <Hero eyebrow="Ceník" background="gradient"
+        lead="Harsys existuje ve 4 variantách — od nejlevnější Lite po nejvyšší Premium. Liší se výbavou; vyberete si přesně to, co potřebujete. Ceny jsou bez DPH.">
+    <Heading slot="title" as="h1" size="display" color="on-dark">Ceník pokladního systému <span class="accent">Harsys</span></Heading>
+  </Hero>
+
+  <!-- VARIANTY -->
+  <Section background="default" space="lg">
+    <div class="variants">
+      {variants.map((v) => (
+        <article class={`variant${v.popular ? ' variant--popular' : ''}`}>
+          {v.popular && <span class="variant__badge">Nejoblíbenější</span>}
+          <span class="variant__name">Harsys {v.name}</span>
+          <Text size="small" color="muted" class="variant__desc">{v.desc}</Text>
+          <div class="variant__price">
+            <span class="variant__price-buy">{v.buy} Kč</span>
+            <span class="variant__price-note">doživotní licence</span>
+            <span class="variant__price-or">nebo {v.rent} Kč / měsíc</span>
+          </div>
+          <ul class="variant__feats">
+            {variantFeatures.map((f, i) => (
+              <li class={v.bits[i] ? 'is-on' : 'is-off'}>
+                <Icon name={v.bits[i] ? 'lucide:check' : 'lucide:minus'} size="sm" />{f}
+              </li>
+            ))}
+          </ul>
+          <Button href="#poptavka" full variant={v.popular ? 'primary' : 'secondary'}>Mám zájem o {v.name}</Button>
+        </article>
+      ))}
+    </div>
+    <ul class="notes">
+      {points.map((p) => (
+        <li><Icon name="lucide:check" size="sm" class="notes__check" />{p}</li>
+      ))}
+    </ul>
+    <div class="cta-row">
+      <Button href="/srovnani-variant" variant="secondary">Podrobné srovnání variant</Button>
+    </div>
+  </Section>
+
+  <!-- DOŽIVOTNÍ vs PRONÁJEM -->
+  <Section background="alt" space="lg">
+    <div class="head head--center">
+      <Text size="label" color="accent" align="center">Koupit, nebo pronajmout?</Text>
+      <Heading as="h2" size="h2" align="center">Doživotní licence i <span class="accent">měsíční pronájem</span></Heading>
+    </div>
+    <div class="two">
+      <article class="opt">
+        <span class="opt__icon"><Icon name="lucide:infinity" size="lg" /></span>
+        <Heading as="h3" size="h3">Doživotní licence</Heading>
+        <Text color="muted">Jednorázová investice bez měsíčních paušálů. Program je váš napořád. Prvních 6 měsíců podpory a nových verzí v ceně.</Text>
+      </article>
+      <article class="opt">
+        <span class="opt__icon"><Icon name="lucide:calendar-clock" size="lg" /></span>
+        <Heading as="h3" size="h3">Měsíční pronájem</Heading>
+        <Text color="muted">Nižší vstupní náklad a podpora v ceně paušálu. Kdykoli později můžete přejít na nákup licence se slevou dle doby pronájmu.</Text>
+      </article>
+    </div>
+  </Section>
+
+  <!-- BENEFITY -->
+  <USPGrid eyebrow="Bez starostí" title="Férové podmínky"
+           items={fair} columns={4} minItemWidth="230px" background="default" space="lg" />
+
+  <!-- FAQ -->
+  <Section background="alt" space="lg">
+    <div class="head head--center"><Heading as="h2" size="h2" align="center">Časté otázky k ceníku</Heading></div>
+    <div class="faq">
+      {faqs.map((f) => (
+        <details class="faq__item">
+          <summary>{f.q}<Icon name="lucide:chevron-down" size="sm" class="faq__chev" /></summary>
+          <div class="faq__a"><Text color="muted">{f.a}</Text></div>
+        </details>
+      ))}
+    </div>
+  </Section>
+
+  <LeadForm id="poptavka" variant="callback" background="primary"
+            title="Chcete poradit s výběrem varianty?"
+            lead="Zanechte číslo a my se vám ozveme. Připravíme cenovou nabídku na míru včetně nabídky splátek."
+            proofs={leadProofs} successUrl="/dekujeme" />
+
+  <Footer />
+</Base>
+
+<style>
+  .head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-7); text-align: center; }
+  .head > * + * { margin-top: var(--space-3); }
+
+  .variants { display: grid; gap: var(--space-5); grid-template-columns: repeat(4, 1fr); align-items: stretch; }
+  .variant { position: relative; display: flex; flex-direction: column; gap: var(--space-3); background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-6) var(--space-5); box-shadow: var(--shadow-sm); transition: var(--transition); }
+  .variant:hover { border-color: var(--color-primary); box-shadow: var(--shadow-md); }
+  .variant--popular { border-color: var(--color-primary); box-shadow: var(--shadow-md); }
+  .variant__badge { position: absolute; top: 0; right: var(--space-5); transform: translateY(-50%); background: var(--color-secondary-terracotta); color: #fff; font-size: var(--font-size-caption); font-weight: var(--font-weight-semibold); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide); padding: var(--space-1) var(--space-3); border-radius: var(--radius-full); }
+  .variant__name { font-size: var(--font-size-h3); font-weight: var(--font-weight-bold); color: var(--color-primary); }
+  .variant__desc { min-height: 3.4em; }
+  .variant__price { display: flex; flex-direction: column; gap: 2px; padding: var(--space-3) 0; border-block: 1px solid var(--color-border); }
+  .variant__price-buy { font-size: var(--font-size-h2); font-weight: var(--font-weight-bold); color: var(--color-text); line-height: 1; }
+  .variant__price-note { font-size: var(--font-size-caption); color: var(--color-text-muted); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide); }
+  .variant__price-or { font-size: var(--font-size-small); color: var(--color-secondary); font-weight: var(--font-weight-medium); margin-top: var(--space-1); }
+  .variant__feats { list-style: none; display: flex; flex-direction: column; gap: var(--space-2); flex: 1; }
+  .variant__feats li { display: flex; align-items: flex-start; gap: var(--space-2); font-size: var(--font-size-small); }
+  .variant__feats li.is-on { color: var(--color-text); }
+  .variant__feats li.is-on :global(svg) { color: var(--color-secondary-azure); flex-shrink: 0; margin-top: 2px; }
+  .variant__feats li.is-off { color: var(--color-neutral-400); }
+  .variant__feats li.is-off :global(svg) { color: var(--color-neutral-300); flex-shrink: 0; margin-top: 2px; }
+  @media (max-width: 980px) { .variants { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .variants { grid-template-columns: 1fr; } }
+
+  .notes { list-style: none; max-width: 760px; margin: var(--space-7) auto 0; display: grid; gap: var(--space-3); }
+  .notes li { display: flex; align-items: flex-start; gap: var(--space-2); color: var(--color-text); }
+  .notes :global(.notes__check) { color: var(--color-secondary-azure); flex-shrink: 0; margin-top: 3px; }
+  .cta-row { display: flex; justify-content: center; margin-top: var(--space-6); }
+
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-6); }
+  .opt { background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-7); display: flex; flex-direction: column; gap: var(--space-3); box-shadow: var(--shadow-sm); }
+  .opt__icon { display: inline-flex; align-items: center; justify-content: center; width: 56px; height: 56px; border-radius: var(--radius-md); background: color-mix(in srgb, var(--color-primary) 8%, #fff); color: var(--color-primary); }
+  @media (max-width: 720px) { .two { grid-template-columns: 1fr; } }
+
+  .faq { max-width: 800px; margin-inline: auto; display: flex; flex-direction: column; gap: var(--space-3); }
+  .faq__item { border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-bg); padding: 0 var(--space-5); }
+  .faq__item summary { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); padding: var(--space-4) 0; cursor: pointer; font-weight: var(--font-weight-semibold); list-style: none; }
+  .faq__item summary::-webkit-details-marker { display: none; }
+  .faq__chev { transition: transform var(--duration-base) var(--easing); color: var(--color-text-muted); }
+  .faq__item[open] .faq__chev { transform: rotate(180deg); }
+  .faq__a { padding-bottom: var(--space-5); }
+</style>

@@ -1,12 +1,11 @@
 ---
 /**
- * Grason — homepage.
- * Obsah z grason-context.md, blok #page-grason (piano-web-2026.html),
- * texty z grason-web-develop/i18n-config/locales/cs.json a bannery
- * z grason-bannery.tsv.
+ * ABX HARSYS — homepage.
+ * Obsah z podklady starých webů/Harsys/obsah/index.md (+ srovnani, funkce, cenik,
+ * reference), layout ověřen proti screenshots/index.png.
  * Vše ze SDÍLENÝCH komponent @piano/ui; téma řeší src/styles/theme.css.
- * Sekce bez vlastní komponenty (Stats, Pilíře, Steps, Reference, Logo wall,
- * FAQ, App split) jsou složené z primitivů — komponenty se NEFORKUJÍ.
+ * Sekce bez vlastní komponenty (Varianty, Pilíře, Stats, Hardware, Reference, FAQ)
+ * jsou složené z primitivů — komponenty se NEFORKUJÍ.
  */
 import Base from '../layouts/Base.astro';
 import Header from '@piano/ui/components/Header.astro';
@@ -19,125 +18,158 @@ import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
-import { grasonNav, grasonCta } from '../config/nav';
+import { harsysNav, harsysCta } from '../config/nav';
 
-const PHONE = '+420 739 877 799';
-const PHONE_HREF = 'tel:+420739877799';
+const PHONE = '774 719 494';
+const PHONE_HREF = 'tel:+420774719494';
+
+/* Varianty programu — 8 klíčových funkcí + bitmaska dostupnosti (z obsah/index.md) */
+const variantFeatures = [
+  'Adresář, skupiny, ceník',
+  'Uzávěrky a sumáře',
+  'Skladové hospodářství',
+  'Happy Hours',
+  'Vzdálený přístup',
+  'Denní nabídka',
+  'Bonus a kredit systém',
+  'Provizní systém pro obsluhu',
+];
+const variants = [
+  { name: 'Lite', desc: 'Pro malý provoz, kde stačí základní funkce a stručný přehled o tržbách', bits: [1,1,0,0,0,0,0,0], buy: '5 900', rent: '390', popular: false },
+  { name: 'Gold', desc: 'Pro ty, kteří chtějí vést sklady a mít podrobnější přehled o své restauraci', bits: [1,1,1,1,0,0,0,0], buy: '10 900', rent: '690', popular: true },
+  { name: 'Gold+NET', desc: 'Profi varianta s vyspělými funkcemi a možností přístupu přes internet', bits: [1,1,1,1,1,1,0,0], buy: '16 900', rent: '890', popular: false },
+  { name: 'Premium', desc: 'Komplexní profi řešení pro střední a větší provozy s maximem funkcí', bits: [1,1,1,1,1,1,1,1], buy: '22 900', rent: '1 290', popular: false },
+];
+
+const prednosti = [
+  { icon: 'lucide:headset', title: 'Nejlepší podpora na trhu', text: 'O své klienty se staráme. Od školení a vzdálené podpory až po následný servis — dostupná i o svátcích a víkendech.' },
+  { icon: 'lucide:line-chart', title: 'Manažerské nástroje', text: 'Umožňují efektivní chod podniku a plnou kontrolu nad tržbou, skladem i ceníkem.' },
+  { icon: 'lucide:mouse-pointer-click', title: 'Snadná a rychlá obsluha', text: 'Promyšlené rozhraní s potřebnými funkcemi, snadnou obsluhou a přizpůsobitelným designem.' },
+  { icon: 'lucide:shield-check', title: 'Data mimo cloud', text: 'Vaše data jsou ve vaší správě v bezpečí, nikoli v cloudu. Nikdo další je nezpracovává ani neprodává dál.' },
+];
+
+const moduly = [
+  { img: '/images/mod-mobilni-cisnik.webp', title: 'Mobilní číšník', text: 'Rychlá obsluha zákazníka přímo u stolu. NFC bezkontaktní platby, pro Android zařízení.' },
+  { img: '/images/mod-viewer.webp', title: 'Viewer', text: 'Náhled do vašeho pokladního systému z mobilu. Data k dispozici i offline — pro Android i iPhone.' },
+  { img: '/images/mod-rozvoz.webp', title: 'Aplikace pro rozvoz', text: 'Vytvoření objednávky v kase na základě telefonního hovoru, propojení s adresářem Harsys.' },
+  { img: '/images/mod-vazena-inventura.webp', title: 'Vážená inventura', text: 'Snadné vážení nápojů namísto pracného odměřování. Váží se při uzávěrce kasy a snižuje ztráty.' },
+];
 
 const stats = [
-  { num: '3 357+', lbl: 'brigádníků v databázi' },
-  { num: '82+', lbl: 'měst v ČR' },
-  { num: '220 000+', lbl: 'naplánovaných směn' },
-  { num: '0 Kč', lbl: 'za první měsíc' },
+  { num: '27+', lbl: 'let zkušeností s vývojem' },
+  { num: '11 535', lbl: 'registrovaných licencí' },
+  { num: '4 108', lbl: 'spokojených zákazníků' },
+  { num: '7', lbl: 'dní v týdnu podpora' },
 ];
 
-const pillars = [
-  {
-    img: '/images/for-companies-choose-candidates.png',
-    tag: 'Brigádníci',
-    title: 'Flexibilní pracovníci na směnu',
-    text: 'Potřebujete zaplnit směnu? Vypíšete ji v appce a ověření brigádníci se přihlásí. Vy vyberete, Grason vyřídí smlouvu i výplatu.',
-    points: ['3 357+ ověřených pracovníků', 'Výplata ihned po směně', 'DPP papírování řeší Grason', 'Gastro, sklady i maloobchod'],
-  },
-  {
-    img: '/images/illustration-calendar.png',
-    tag: 'GrasonPlan',
-    title: 'Plánování směn vlastního týmu',
-    text: 'Přehledný rozvrh pro stálé zaměstnance. Zadají dostupnost, vy potvrdíte plán. Náhradník za nemocného se najde sám.',
-    points: ['Plán na PC i v mobilu', 'Automatické notifikace', 'Sdílení personálu mezi podniky', '990 Kč/měsíc, 1. měsíc zdarma'],
-  },
-  {
-    img: '/images/for-companies-paycheck.png',
-    tag: 'Digitální píchačky',
-    badge: 'Nová funkce',
-    title: 'Docházka přes WiFi a GPS',
-    text: 'Zaměstnanec otevře appku — systém rozpozná, že je v provozovně (WiFi nebo GPS), a zaznamená příchod. Žádné kartičky, žádné papíry.',
-    points: ['Příchod/odchod přes mobil', 'Ověření polohou nebo WiFi sítí', 'Přehled v reálném čase', 'Podklad pro mzdové výpočty'],
-  },
-];
-
-const features = [
-  { icon: 'lucide:users', title: 'Databáze brigádníků', text: '3 357+ ověřených pracovníků připravených nastoupit. Profily s hodnoceními, zkušenostmi a dostupností.' },
-  { icon: 'lucide:clipboard-list', title: 'Inzerce stálých míst', text: 'Hledáte stálého kolegu na HPP nebo DPČ? Grason inzeruje vaši nabídku pracovníkům v gastru přímo v appce.' },
-  { icon: 'lucide:calendar-days', title: 'Plánování směn', text: 'Přehledný kalendář, šablony na opakující se týdny, sdílení rozvrhu se zaměstnanci — vše na pár kliknutí.' },
-  { icon: 'lucide:map-pin', title: 'Digitální píchačky', text: 'Zaměstnanec se přihlásí přes mobil — systém ověří jeho polohu přes WiFi nebo GPS a zaznamená docházku automaticky.' },
-  { icon: 'lucide:bell', title: 'Automatické notifikace', text: 'Připomínka směny, upozornění na náhradníka za nemocného, potvrzení brigádníka — vše proběhne samo.' },
-  { icon: 'lucide:banknote', title: 'Mzdové reporty', text: 'Odpracované hodiny z píchačky rovnou do reportu. Jeden klik a účetní má podklad pro výplaty.' },
-  { icon: 'lucide:check-check', title: 'Úkoly pro personál', text: 'Zadáte úkol ke směně, zaměstnanec potvrdí splnění fotkou. Přehled o tom, co bylo a nebylo uděláno.' },
-  { icon: 'lucide:building-2', title: 'Více provozoven', text: 'Sdílení personálu mezi vašimi podniky, jeden systém pro celou síť. Brigádník pokryje směnu kdekoliv.' },
-];
-
-const steps = [
-  { title: 'Vypíšete směnu', text: 'V appce nebo webovém rozhraní zadáte kdy, kde a koho potřebujete. Trvá to 2 minuty.' },
-  { title: 'Brigádníci se hlásí', text: 'Ověření pracovníci z vašeho okolí dostanou notifikaci a zájemci se přihlásí.' },
-  { title: 'Potvrdíte výběr', text: 'Vyberete vhodného kandidáta. Grason zařídí smlouvu, instrukce i platbu po směně.' },
-  { title: 'Píchačka potvrdí příchod', text: 'Zaměstnanec se ohlásí přes appku. GPS nebo WiFi ověří, že je opravdu v provozovně — bez kartičky, bez tužky.' },
-];
-
-const testimonials = [
-  { initials: 'MS', quote: 'Ke Grasonu nás dovedla zhoršující se situace na trhu práce a jejich inovativní přístup. Velkou výhodou je praktická aplikace a možnost operativního plánování směn 24/7.', author: 'Martin Savkulič', role: 'Manažer restaurace Pizza Nuova' },
-  { initials: 'DS', quote: 'Pracovníci z Grasonu u nás vykrývají nejen nárazové směny, ale stávají se i pravidelnou součástí týmu. Oceňujeme jejich spolehlivost a rychlost.', author: 'Denisa Srnková', role: 'HR Business Partner, DámeMarket' },
-  { initials: 'JK', quote: 'Velkou výhodu vidím v úspoře času, protože Grason za mě řeší byrokratické papírování.', author: 'Josef Kubíček', role: 'Manažer, Likér' },
-];
-
-const refLogos = [
-  'ref-field-michelin-restaurant', 'ref-cafe-savoy', 'ref-kolkovna', 'ref-sasazu',
-  'ref-O2-arena', 'ref-clarion-hotel', 'ref-zatisi-group', 'ref-420-restaurant',
-  'ref-pizza-coloseum', 'ref-entree', 'ref-100-chuti-brna', 'ref-sisters-bistro',
+const reference = [
+  { img: '/images/ref/jan-poloch.webp', name: 'Ing. Jan Poloch', role: 'Startronic Gastro Ostrava, 27+ provozoven', quote: 'Pokladní systém pro restaurace Harsys mi pomáhá úplně se vším. Mám ho rád! Je přehledný a spolehlivý.' },
+  { img: '/images/ref/long-story-short.webp', name: 'Petr Heneš', role: 'Long story short, Olomouc', quote: 'S firmou ABX spolupracujeme již celých 6 let. V celém našem podniku vždy maximálně využíváme všechny vychytávky, které jejich pokladní systém nabízí.' },
+  { img: '/images/ref/hana-ztratilova.webp', name: 'Hana Ztratilová', role: 'Restaurace Na Špici, Radošov', quote: 'Harsys používáme od roku 2009 a opravdu nám vyhovuje. Nabízí spoustu užitečných funkcí a oceňujeme i podporu, která je vždy připravena pomoci.' },
 ];
 
 const faqs = [
-  { q: 'Jak rychle obsadím směnu?', a: 'Brigádníky najdete na jedno kliknutí — ověření lidé, kteří směnu rovnou přijmou. Volnou směnu vyplníte i na poslední chvíli.' },
-  { q: 'Umí Grason i nábor stálých zaměstnanců?', a: 'Ano — inzerce stálých pracovních úvazků v gastronomii (HPP, DPČ) na jednom místě, přímo v appce mezi tisíci pracovníky.' },
-  { q: 'Co jsou digitální píchačky?', a: 'Zaměstnanec se odbaví v aplikaci a systém přes GPS nebo WiFi ověří, že opravdu přišel na místo (okruh 30 m). Žádné kartičky ani papíry.' },
-  { q: 'Umí Grason plánování směn?', a: 'Ano — GrasonPlan zvládne jednoduché plánování směn, dovolených i záskoků, přehledně na jednom místě. První měsíc zdarma.' },
-  { q: 'Pomůže Grason se mzdami?', a: 'Připraví podklady pro mzdy z odpracovaných směn jedním kliknutím — konec ručního přepisování a počítání.' },
-  { q: 'Co umí checklisty?', a: 'Personál odklikne úkoly směny a jako důkaz přiloží fotku přímo z aplikace — ne z galerie. Máte přehled, co bylo a nebylo splněno.' },
+  { q: 'Jaký je rozdíl mezi Harsysem a jinými pokladnami?', a: 'Rozdíl je v detailu. Harsys vznikl z osobních zkušeností s provozem restaurace — umíme se vžít do vaší situace a máme pochopení pro vaše problémy. Víme, kde v hospodách utíkají peníze, a pomůžeme vám je ohlídat.' },
+  { q: 'Všichni říkají, že nejlepší je mít data v cloudu. Opravdu?', a: 'Harsys ukládá data na vašem vlastním počítači, takže k nim nikdo jiný (ani my) nemá přístup. Jsou jen vaše. Zálohu si uložíte kamkoliv chcete — na USB, Google Drive, NAS či vlastní server — a kdykoli ji obnovíte.' },
+  { q: 'Můžu později přejít na vyšší variantu?', a: 'Ano. Při upgradu (např. z Lite na Gold) doplácíte jen rozdíl cen dle aktuálního ceníku, ne celou cenu znovu.' },
+  { q: 'Když si Harsys nejdřív pronajmu, můžu licenci později koupit?', a: 'Můžete. Na dodatečný nákup doživotní licence vám nabídneme slevu s ohledem na dobu pronájmu.' },
+  { q: 'Jak rychle můžu systém mít?', a: 'Váš nový systém můžete mít už za pár dnů — možná i zítra, nejpozději do týdne. Instalaci zvládnete sami, nebo vám asistujeme přes vzdálenou správu.' },
 ];
 
 const leadProofs = [
-  { icon: 'lucide:users', title: '3 357+ brigádníků', text: 'Ověření pracovníci připraveni nastoupit.' },
-  { icon: 'lucide:map-pin', title: '82+ měst v ČR', text: 'Gastro, sklady i maloobchod po celé republice.' },
-  { icon: 'lucide:gift', title: '1. měsíc zdarma', text: 'GrasonPlan vyzkoušíte bez rizika.' },
-  { icon: 'lucide:phone', title: 'Lidská podpora', text: PHONE + ' — voláte rovnou nám.' },
+  { icon: 'lucide:headset', title: 'Nejlepší podpora na trhu', text: 'Dostupná i o víkendech a svátcích.' },
+  { icon: 'lucide:server', title: 'Data ve vašich rukou', text: 'Bez cloudu — jen vy máte přístup.' },
+  { icon: 'lucide:calendar-check', title: '27+ let zkušeností', text: '11 535 licencí, 4 108 zákazníků.' },
+  { icon: 'lucide:zap', title: 'Rychlý start', text: 'Nový systém klidně už zítra.' },
 ];
 ---
 
-<Base title="Grason — odborník na personál"
-      description="Grason je ekosystém pro řízení personálu v gastru: brigádníci na poslední chvíli, plánování směn vlastního týmu (GrasonPlan), digitální píchačky, docházka a podklady pro mzdy. Vše na jednom místě.">
-  <Header brand="Grason" logoSrc="/logos/grason-logo.svg" homeHref="/" nav={grasonNav} cta={grasonCta} />
+<Base title="Spolehlivý pokladní systém pro restaurace | ABX HARSYS"
+      description="Získejte prémiový pokladní systém Harsys s jednoduchou a rychlou obsluhou a spoustou vychytávek, který usnadní provoz vaší restaurace. Vyzkoušejte zdarma.">
+  <Header brand="ABX HARSYS" logoSrc="/logos/abx-harsys.svg" homeHref="/" nav={harsysNav} cta={harsysCta} />
 
-  <main>
-
-  <!-- HERO — split: text vlevo, appka vpravo -->
-  <Hero eyebrow="Odborník na personál" background="gradient"
-        lead="Grason je nejrychlejší způsob, jak nárazově či dlouhodobě zaplnit volná místa, naplánovat rozpis směn a vyřešit papírování s tím spojené.">
-    <Heading slot="title" as="h1" size="display" color="on-dark">Obsaďte volné pozice a <span class="accent">naplánujte směny</span> na pár kliknutí</Heading>
+  <!-- HERO — split: text vlevo, foto pokladny vpravo -->
+  <Hero eyebrow="Pokladní systém pro restaurace" background="gradient"
+        lead="Prémiový pokladní systém s jednoduchou a rychlou obsluhou a spoustou vychytávek, který usnadní provoz vaší restaurace. Spolehlivý, s manažerskými nástroji a nejlepší podporou na trhu.">
+    <Heading slot="title" as="h1" size="display" color="on-dark">Profesionální pokladní systém pro <span class="accent">restaurace</span></Heading>
     <Fragment slot="actions">
-      <Button href="#poptavka">Vyzkoušet 14 dní zdarma</Button>
-      <Button href="#funkce" variant="secondary" onDark>Všechny funkce</Button>
+      <Button href="#poptavka">Konzultace zdarma</Button>
+      <Button href="/srovnani-variant" variant="secondary" onDark>Srovnání variant</Button>
     </Fragment>
     <figure slot="media" class="hero-figure">
-      <img src="/images/hp-hero.png" alt="Grason — mobilní aplikace s nabídkami volných směn" width="720" height="560" loading="eager" />
+      <img src="/images/hero-pokladna.webp" alt="Dotyková pokladna Harsys v restauračním provozu" width="720" height="540" loading="eager" />
     </figure>
   </Hero>
 
-  <!-- LOGA KLIENTŮ -->
-  <Section id="zakaznici" background="default" space="md" container={false}>
-    <Text size="label" color="muted" align="center" class="logos__label">
-      Důvěřují nám restaurace, hotely i sklady po celé ČR
-    </Text>
-    <div class="logos">
-      <div class="logos__track">
-        {[...refLogos, ...refLogos].map((l, i) => (
-          <img src={`/logos/${l}.svg`} alt={i < refLogos.length ? l.replace('ref-', '').replace(/-/g, ' ') : ''} aria-hidden={i >= refLogos.length ? 'true' : undefined} loading="lazy" />
-        ))}
-      </div>
+  <!-- VARIANTY PROGRAMU -->
+  <Section id="varianty" background="default" space="lg">
+    <div class="head head--center">
+      <Text size="label" color="accent" align="center">Varianty programu</Text>
+      <Heading as="h2" size="h2" align="center">Čtyři varianty — od <span class="accent">Lite</span> po <span class="accent">Premium</span></Heading>
+      <Text size="lead" color="muted" align="center" balance>
+        Varianty se liší výbavou. Z nižší na vyšší lze kdykoli přejít, dokupujete jen rozdíl. Ceny jsou uvedeny bez DPH.
+      </Text>
+    </div>
+    <div class="variants">
+      {variants.map((v) => (
+        <article class={`variant${v.popular ? ' variant--popular' : ''}`}>
+          {v.popular && <span class="variant__badge">Nejoblíbenější</span>}
+          <span class="variant__name">Harsys {v.name}</span>
+          <Text size="small" color="muted" class="variant__desc">{v.desc}</Text>
+          <div class="variant__price">
+            <span class="variant__price-buy">{v.buy} Kč</span>
+            <span class="variant__price-note">doživotní licence</span>
+            <span class="variant__price-or">nebo {v.rent} Kč / měsíc</span>
+          </div>
+          <ul class="variant__feats">
+            {variantFeatures.map((f, i) => (
+              <li class={v.bits[i] ? 'is-on' : 'is-off'}>
+                <Icon name={v.bits[i] ? 'lucide:check' : 'lucide:minus'} size="sm" />{f}
+              </li>
+            ))}
+          </ul>
+          <Button href="#poptavka" full variant={v.popular ? 'primary' : 'secondary'}>Mám zájem o {v.name}</Button>
+        </article>
+      ))}
+    </div>
+    <div class="variants__cta">
+      <Button href="/srovnani-variant" variant="secondary">Podrobné srovnání variant</Button>
+      <Button href="/cenik" variant="ghost">Kompletní ceník</Button>
+    </div>
+  </Section>
+
+  <!-- PŘEDNOSTI -->
+  <USPGrid eyebrow="Přednosti systému Harsys" title="Proč si vybrat Harsys"
+           lead="Spolehlivý systém, který vznikl z reálných zkušeností s provozem restaurace."
+           items={prednosti} columns={4} minItemWidth="240px" background="alt" space="lg" />
+
+  <!-- VOLITELNÁ ROZŠÍŘENÍ -->
+  <Section background="default" space="lg">
+    <div class="head head--center">
+      <Text size="label" color="accent" align="center">Volitelná rozšíření</Text>
+      <Heading as="h2" size="h2" align="center">Doplňkové moduly <span class="accent">na míru provozu</span></Heading>
+      <Text size="lead" color="muted" align="center" balance>
+        Harsys rozšíříte přesně podle potřeb vaší restaurace — od mobilního číšníka po vážené inventury.
+      </Text>
+    </div>
+    <div class="pillars">
+      {moduly.map((m) => (
+        <article class="pillar">
+          <div class="pillar__media"><img src={m.img} alt={m.title} loading="lazy" /></div>
+          <div class="pillar__body">
+            <Heading as="h3" size="h3">{m.title}</Heading>
+            <Text size="small" color="muted">{m.text}</Text>
+          </div>
+        </article>
+      ))}
+    </div>
+    <div class="variants__cta">
+      <Button href="/funkce" variant="secondary">Všechny funkce programu</Button>
     </div>
   </Section>
 
   <!-- STATS BAND -->
-  <Section background="alt" space="sm">
+  <Section background="invert" space="md">
     <ul class="stats">
       {stats.map((s) => (
         <li class="stats__item">
@@ -148,126 +180,81 @@ const leadProofs = [
     </ul>
   </Section>
 
-  <!-- TŘI PILÍŘE -->
+  <!-- FUNKCE SPLIT — stolová mapa -->
   <Section background="default" space="lg">
-    <div class="head head--center">
-      <Text size="label" color="accent" align="center">Tři pilíře personálního řízení</Text>
-      <Heading as="h2" size="h2" align="center">Všechno, co potřebujete <span class="accent">k řízení lidí</span></Heading>
-      <Text size="lead" color="muted" align="center" balance>
-        Personál je v gastru věčný problém. Grason ho řeší od základu — kdo přijde, kdy přijde a jestli přišel včas.
-      </Text>
-    </div>
-    <div class="pillars">
-      {pillars.map((p) => (
-        <article class="pillar">
-          <div class="pillar__media">
-            <img src={p.img} alt="" loading="lazy" />
-            {p.badge && <span class="pillar__badge">{p.badge}</span>}
-          </div>
-          <div class="pillar__body">
-            <span class="pillar__tag">{p.tag}</span>
-            <Heading as="h3" size="h3">{p.title}</Heading>
-            <Text size="small" color="muted">{p.text}</Text>
-            <ul class="pillar__points">
-              {p.points.map((pt) => (
-                <li><Icon name="lucide:check" size="sm" class="pillar__check" />{pt}</li>
-              ))}
-            </ul>
-          </div>
-        </article>
-      ))}
-    </div>
-  </Section>
-
-  <!-- VŠECHNY FUNKCE -->
-  <USPGrid id="funkce" eyebrow="Všechny funkce" title="Personál pod kontrolou od nabídky po výplatu"
-           lead="Grason není jedna appka — je to celý systém pro řízení lidí, od obsazení směny po podklady pro mzdy."
-           items={features} minItemWidth="260px" background="alt" space="lg" />
-
-  <!-- MOBILNÍ APLIKACE (split) -->
-  <Section background="default" space="lg">
-    <div class="app">
-      <div class="app__text">
-        <Text size="label" color="accent">Mobilní aplikace</Text>
-        <Heading as="h2" size="h2">Mějte Grason <span class="accent">stále po ruce</span></Heading>
+    <div class="split">
+      <div class="split__text">
+        <Text size="label" color="accent">Restkasa &amp; stolová mapa</Text>
+        <Heading as="h2" size="h2">Středobod celého <span class="accent">provozu</span></Heading>
         <Text size="lead" color="muted" balance>
-          S naší aplikací plánujete směny, sháníte brigádníky a hlídáte docházku odkudkoliv — od baru, z kanceláře i z gauče.
+          Účty na stoly, objednávky, bony, rozdělení i sloučení účtů, placení dohromady nebo zvlášť. Vlastní mapu stolů si navrhnete sami a účet přesunete jednoduše prstem.
         </Text>
-        <ul class="app__points">
-          <li><Icon name="lucide:smartphone" size="sm" class="pillar__check" />iOS i Android, zdarma ke stažení</li>
-          <li><Icon name="lucide:bell-ring" size="sm" class="pillar__check" />Notifikace o přihlášených i nástupech</li>
-          <li><Icon name="lucide:refresh-cw" size="sm" class="pillar__check" />Vše synchronizováno v reálném čase</li>
+        <ul class="checks">
+          <li><Icon name="lucide:check" size="sm" class="check" />Neomezený počet stolů, židlí i účtů</li>
+          <li><Icon name="lucide:check" size="sm" class="check" />Skladové hospodářství a receptury s food cost</li>
+          <li><Icon name="lucide:check" size="sm" class="check" />Přehledy prodejů, statistiky a online monitoring</li>
         </ul>
-        <div class="app__cta">
-          <Button href="#poptavka">Vyzkoušet 14 dní zdarma</Button>
-        </div>
+        <div class="split__cta"><Button href="/funkce">Prozkoumat funkce</Button></div>
       </div>
-      <figure class="app__media">
-        <img src="/images/for-companies-hero.png" alt="Grason — plánování směn a docházka v mobilní aplikaci" loading="lazy" />
+      <figure class="split__media">
+        <img src="/images/funkce-stolova-mapa.webp" alt="Markování ve stolové mapě pokladny Harsys" loading="lazy" />
       </figure>
     </div>
   </Section>
 
-  <!-- JAK TO FUNGUJE -->
-  <Section background="invert" space="lg">
-    <div class="head head--center">
-      <Text size="label" color="accent" align="center">Jak to funguje</Text>
-      <Heading as="h2" size="h2" align="center" color="on-dark">Od potřeby k obsazené <span class="accent">směně za minuty</span></Heading>
-    </div>
-    <ol class="steps steps--dark">
-      {steps.map((s, i) => (
-        <li class="step step--dark">
-          <span class="step__num">{i + 1}</span>
-          <Heading as="h3" size="h3" color="on-dark">{s.title}</Heading>
-          <Text size="small" color="on-dark-muted">{s.text}</Text>
-        </li>
-      ))}
-    </ol>
-  </Section>
-
-  <!-- REFERENCE -->
-  <Section background="alt" space="lg">
-    <div class="head head--center">
-      <Text size="label" color="accent" align="center">Reference</Text>
-      <Heading as="h2" size="h2" align="center">Co říkají <span class="accent">manažeři provozů</span></Heading>
-    </div>
-    <div class="quotes">
-      {testimonials.map((t, i) => (
-        <figure class={`quote quote--${i}`}>
-          <div class="quote__head">
-            <div class="quote__id">
-              <strong class="quote__name">{t.author}</strong>
-              <span class="quote__role">{t.role}</span>
-            </div>
-            <span class="quote__avatar" aria-hidden="true">{t.initials}</span>
-          </div>
-          <span class="quote__mark"><Icon name="lucide:quote" size="md" /></span>
-          <blockquote class="quote__text">{t.quote}</blockquote>
-        </figure>
-      ))}
-    </div>
-  </Section>
-
-  <!-- CTA -->
-  <Section background="primary" space="lg">
-    <div class="head head--center">
-      <Text size="label" color="on-dark-muted" align="center">Začít s Grasonem</Text>
-      <Heading as="h2" size="h2" align="center" color="on-dark">Personál bez starostí?</Heading>
-      <Text size="lead" color="on-dark-muted" align="center" balance>
-        Vyzkoušejte GrasonPlan první měsíc zdarma. Brigádníci k dispozici ihned po registraci.
-      </Text>
-      <div class="cta-actions">
-        <Button href="#poptavka">Vyzkoušet zdarma</Button>
-        <Button href={PHONE_HREF} variant="secondary" onDark>{PHONE}</Button>
+  <!-- HARDWARE -->
+  <Section id="hardware" background="alt" space="lg">
+    <div class="split split--reverse">
+      <figure class="split__media">
+        <img src="/images/nas-hardware.webp" alt="Pokladní hardware ABX vhodný do gastro provozu" loading="lazy" />
+      </figure>
+      <div class="split__text">
+        <Text size="label" color="accent">Pokladní hardware</Text>
+        <Heading as="h2" size="h2">Vyzkoušený hardware <span class="accent">do gastra</span></Heading>
+        <Text size="lead" color="muted" balance>
+          Nabízíme hardware, který známe a umíme s ním pomoci — opravdu vhodný do náročného restauračního provozu. S instalací a nastavením vám pomůžeme v rámci podpory.
+        </Text>
+        <ul class="checks">
+          <li><Icon name="lucide:check" size="sm" class="check" />Dotykové pokladny, tiskárny a příslušenství</li>
+          <li><Icon name="lucide:check" size="sm" class="check" />Ukázkové pokladní sestavy na míru</li>
+          <li><Icon name="lucide:check" size="sm" class="check" />Zápůjčka náhradní pokladny po dobu opravy</li>
+        </ul>
+        <div class="split__cta"><Button href="#poptavka" variant="secondary">Poradíme s hardwarem</Button></div>
       </div>
     </div>
   </Section>
 
-  <!-- FAQ -->
+  <!-- REFERENCE -->
   <Section background="default" space="lg">
     <div class="head head--center">
-      <Heading as="h2" size="h2" align="center">Často kladené dotazy</Heading>
-      <Text size="lead" color="muted" align="center">Nenašli jste odpověď? Ozvěte se nám, rádi vám poradíme.</Text>
+      <Text size="label" color="accent" align="center">Reference</Text>
+      <Heading as="h2" size="h2" align="center">Spokojené uživatele najdete <span class="accent">po celé ČR</span></Heading>
+    </div>
+    <div class="quotes">
+      {reference.map((t) => (
+        <figure class="quote">
+          <span class="quote__mark"><Icon name="lucide:quote" size="md" /></span>
+          <blockquote class="quote__text">{t.quote}</blockquote>
+          <figcaption class="quote__foot">
+            <img class="quote__photo" src={t.img} alt={t.name} loading="lazy" />
+            <span class="quote__id">
+              <strong class="quote__name">{t.name}</strong>
+              <span class="quote__role">{t.role}</span>
+            </span>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+    <div class="variants__cta">
+      <Button href="/reference" variant="secondary">Všechny reference</Button>
+    </div>
+  </Section>
+
+  <!-- FAQ -->
+  <Section id="faq" background="alt" space="lg">
+    <div class="head head--center">
+      <Heading as="h2" size="h2" align="center">Často kladené otázky</Heading>
+      <Text size="lead" color="muted" align="center">Nenašli jste odpověď? Zavolejte nebo nám napište, rádi poradíme.</Text>
     </div>
     <div class="faq">
       {faqs.map((f) => (
@@ -280,43 +267,59 @@ const leadProofs = [
   </Section>
 
   <!-- POPTÁVKA -->
-  <LeadForm id="poptavka" variant="full" background="alt"
-            title="Vyzkoušejte Grason 14 dní zdarma"
-            lead="Nechte nám kontakt — ozveme se, ukážeme Grason ve vašem provozu a pomůžeme s rozjezdem."
+  <LeadForm id="poptavka" variant="callback" background="primary"
+            title="Zaujal vás pokladní systém Harsys?"
+            lead="Zanechte číslo a my se vám ozveme. Nezávazně vám poradíme s výběrem varianty i hardwaru."
             proofs={leadProofs} successUrl="/dekujeme" />
-
-  </main>
 
   <Footer />
 </Base>
 
 <style>
-  /* Hero obrázek (appka) — transparentní ilustrace, jemný stín */
+  /* Hero foto */
   .hero-figure { margin: 0; width: 100%; line-height: 0; }
-  .hero-figure img { width: 100%; height: auto; display: block; filter: drop-shadow(0 24px 48px rgba(7, 7, 7, 0.22)); }
+  .hero-figure img { width: 100%; height: auto; display: block; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); }
 
   /* Sdílená hlavička sekce */
   .head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-7); }
   .head--center { text-align: center; }
   .head > * + * { margin-top: var(--space-3); }
 
-  /* Logo wall — marquee */
-  .logos__label { margin-bottom: var(--space-5); }
-  .logos { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
-  .logos__track { display: flex; align-items: center; gap: var(--space-8); width: max-content; animation: logos-scroll 48s linear infinite; }
-  .logos__track img { height: 34px; width: auto; opacity: 0.62; filter: grayscale(1); flex-shrink: 0; }
-  @keyframes logos-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-  @media (prefers-reduced-motion: reduce) { .logos__track { animation: none; flex-wrap: wrap; justify-content: center; } }
+  /* Varianty */
+  .variants { display: grid; gap: var(--space-5); grid-template-columns: repeat(4, 1fr); align-items: stretch; }
+  .variant {
+    position: relative; display: flex; flex-direction: column; gap: var(--space-3);
+    background: var(--color-bg); border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg); padding: var(--space-6) var(--space-5);
+    box-shadow: var(--shadow-sm); transition: var(--transition);
+  }
+  .variant:hover { border-color: var(--color-primary); box-shadow: var(--shadow-md); }
+  .variant--popular { border-color: var(--color-primary); box-shadow: var(--shadow-md); }
+  .variant__badge {
+    position: absolute; top: 0; right: var(--space-5); transform: translateY(-50%);
+    background: var(--color-secondary-terracotta); color: #fff;
+    font-size: var(--font-size-caption); font-weight: var(--font-weight-semibold);
+    text-transform: uppercase; letter-spacing: var(--letter-spacing-wide);
+    padding: var(--space-1) var(--space-3); border-radius: var(--radius-full);
+  }
+  .variant__name { font-size: var(--font-size-h3); font-weight: var(--font-weight-bold); color: var(--color-primary); }
+  .variant__desc { min-height: 3.4em; }
+  .variant__price { display: flex; flex-direction: column; gap: 2px; padding: var(--space-3) 0; border-block: 1px solid var(--color-border); }
+  .variant__price-buy { font-size: var(--font-size-h2); font-weight: var(--font-weight-bold); color: var(--color-text); line-height: 1; }
+  .variant__price-note { font-size: var(--font-size-caption); color: var(--color-text-muted); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide); }
+  .variant__price-or { font-size: var(--font-size-small); color: var(--color-secondary); font-weight: var(--font-weight-medium); margin-top: var(--space-1); }
+  .variant__feats { list-style: none; display: flex; flex-direction: column; gap: var(--space-2); flex: 1; }
+  .variant__feats li { display: flex; align-items: flex-start; gap: var(--space-2); font-size: var(--font-size-small); }
+  .variant__feats li.is-on { color: var(--color-text); }
+  .variant__feats li.is-on :global(svg) { color: var(--color-secondary-azure); flex-shrink: 0; margin-top: 2px; }
+  .variant__feats li.is-off { color: var(--color-neutral-400); }
+  .variant__feats li.is-off :global(svg) { color: var(--color-neutral-300); flex-shrink: 0; margin-top: 2px; }
+  .variants__cta { display: flex; gap: var(--space-3); justify-content: center; flex-wrap: wrap; margin-top: var(--space-7); }
+  @media (max-width: 980px) { .variants { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .variants { grid-template-columns: 1fr; } }
 
-  /* Stats band */
-  .stats { list-style: none; display: grid; gap: var(--space-5); grid-template-columns: repeat(4, 1fr); text-align: center; }
-  .stats__item { display: flex; flex-direction: column; gap: var(--space-1); }
-  .stats__num { font-size: var(--font-size-h1); font-weight: var(--font-weight-bold); line-height: 1; color: var(--color-secondary); }
-  .stats__lbl { font-size: var(--font-size-small); color: var(--color-text-muted); }
-  @media (max-width: 720px) { .stats { grid-template-columns: repeat(2, 1fr); gap: var(--space-6); } }
-
-  /* Pilíře */
-  .pillars { display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+  /* Pilíře (moduly) */
+  .pillars { display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
   .pillar {
     display: flex; flex-direction: column;
     background: var(--color-bg); border: 1px solid var(--color-border);
@@ -324,72 +327,44 @@ const leadProofs = [
     transition: var(--transition);
   }
   .pillar:hover { border-color: var(--color-primary); box-shadow: var(--shadow-md); }
-  .pillar__media { position: relative; background: var(--color-bg-alt); line-height: 0; }
-  .pillar__media img { width: 100%; height: 200px; object-fit: contain; display: block; padding: var(--space-5); }
-  .pillar__badge {
-    position: absolute; top: var(--space-4); right: var(--space-4);
-    background: var(--color-secondary-terracotta); color: #fff;
-    font-size: var(--font-size-caption); font-weight: var(--font-weight-semibold);
-    text-transform: uppercase; letter-spacing: var(--letter-spacing-wide);
-    padding: var(--space-1) var(--space-3); border-radius: var(--radius-full);
-  }
-  .pillar__body { padding: var(--space-6); display: flex; flex-direction: column; gap: var(--space-3); }
-  .pillar__tag {
-    align-self: flex-start; font-size: var(--font-size-caption); font-weight: var(--font-weight-semibold);
-    text-transform: uppercase; letter-spacing: var(--letter-spacing-wide);
-    color: var(--color-text-accent); background: color-mix(in srgb, var(--color-secondary-azure) 14%, #fff);
-    padding: var(--space-1) var(--space-3); border-radius: var(--radius-full);
-  }
-  .pillar__points { list-style: none; display: flex; flex-direction: column; gap: var(--space-2); margin-top: var(--space-2); }
-  .pillar__points li { display: flex; align-items: flex-start; gap: var(--space-2); font-size: var(--font-size-small); color: var(--color-text); }
-  .pillar__check { color: var(--color-secondary-azure); flex-shrink: 0; margin-top: 2px; }
+  .pillar__media { background: var(--color-bg-alt); line-height: 0; }
+  .pillar__media img { width: 100%; height: 180px; object-fit: cover; display: block; }
+  .pillar__body { padding: var(--space-5); display: flex; flex-direction: column; gap: var(--space-2); }
 
-  /* App split */
-  .app { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-8); align-items: center; }
-  .app__text > * + * { margin-top: var(--space-4); }
-  .app__points { list-style: none; display: flex; flex-direction: column; gap: var(--space-3); }
-  .app__points li { display: flex; align-items: flex-start; gap: var(--space-2); color: var(--color-text); }
-  .app__cta { margin-top: var(--space-6); }
-  .app__media { margin: 0; line-height: 0; }
-  .app__media img { width: 100%; height: auto; display: block; }
-  @media (max-width: 880px) { .app { grid-template-columns: 1fr; gap: var(--space-6); } .app__media { order: -1; } }
+  /* Stats band */
+  .stats { list-style: none; display: grid; gap: var(--space-5); grid-template-columns: repeat(4, 1fr); text-align: center; }
+  .stats__item { display: flex; flex-direction: column; gap: var(--space-1); }
+  .stats__num { font-size: var(--font-size-h1); font-weight: var(--font-weight-bold); line-height: 1; color: #fff; }
+  .stats__lbl { font-size: var(--font-size-small); color: var(--color-text-on-dark-muted); }
+  @media (max-width: 720px) { .stats { grid-template-columns: repeat(2, 1fr); gap: var(--space-6); } }
 
-  /* Steps */
-  .steps { list-style: none; display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
-  .step { position: relative; padding: var(--space-6); background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); box-shadow: var(--shadow-sm); }
-  .step > * + * { margin-top: var(--space-3); }
-  .step--dark { background: rgba(255,255,255,0.04); border-color: var(--color-border-on-dark); box-shadow: none; }
-  .step__num {
-    display: inline-flex; align-items: center; justify-content: center;
-    width: 40px; height: 40px; border-radius: var(--radius-full);
-    background: var(--color-secondary-azure); color: #07333a;
-    font-size: var(--font-size-lead); font-weight: var(--font-weight-bold); line-height: 1;
+  /* Split (funkce / hardware) */
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-8); align-items: center; }
+  .split__text > * + * { margin-top: var(--space-4); }
+  .split__media { margin: 0; line-height: 0; }
+  .split__media img { width: 100%; height: auto; display: block; border-radius: var(--radius-lg); box-shadow: var(--shadow-md); }
+  .split__cta { margin-top: var(--space-6); }
+  .checks { list-style: none; display: flex; flex-direction: column; gap: var(--space-3); }
+  .checks li { display: flex; align-items: flex-start; gap: var(--space-2); color: var(--color-text); }
+  .checks :global(.check) { color: var(--color-secondary-azure); flex-shrink: 0; margin-top: 3px; }
+  @media (max-width: 880px) {
+    .split { grid-template-columns: 1fr; gap: var(--space-6); }
+    .split__media { order: -1; }
   }
 
   /* Reference */
   .quotes { display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
   .quote { margin: 0; display: flex; flex-direction: column; background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-6); box-shadow: var(--shadow-sm); }
-  .quote__head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); margin-bottom: var(--space-4); }
+  .quote__mark { color: var(--color-secondary-terracotta); display: block; margin-bottom: var(--space-3); }
+  .quote__text { font-size: var(--font-size-body); color: var(--color-text); line-height: var(--line-height-body); flex: 1; }
+  .quote__foot { display: flex; align-items: center; gap: var(--space-3); margin-top: var(--space-5); }
+  .quote__photo { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
   .quote__id { display: flex; flex-direction: column; gap: 2px; }
-  .quote__name { font-size: var(--font-size-lead); font-weight: var(--font-weight-bold); color: var(--color-secondary); line-height: 1.15; }
+  .quote__name { font-size: var(--font-size-body); font-weight: var(--font-weight-bold); color: var(--color-primary); line-height: 1.15; }
   .quote__role { font-size: var(--font-size-small); color: var(--color-text-muted); }
-  .quote__avatar {
-    flex-shrink: 0; width: 60px; height: 60px; border-radius: 50%;
-    display: inline-flex; align-items: center; justify-content: center;
-    font-size: var(--font-size-lead); font-weight: var(--font-weight-bold);
-    color: #fff; letter-spacing: 0.02em; box-shadow: var(--shadow-sm);
-  }
-  .quote--0 .quote__avatar { background: linear-gradient(150deg, #3CC1C8, #343160); }
-  .quote--1 .quote__avatar { background: linear-gradient(150deg, #F96797, #343160); }
-  .quote--2 .quote__avatar { background: linear-gradient(150deg, #FAD531, #343160); }
-  .quote__mark { color: var(--color-secondary-azure); display: block; margin-bottom: var(--space-2); }
-  .quote__text { font-size: var(--font-size-body); color: var(--color-text); line-height: var(--line-height-body); }
-
-  /* CTA */
-  .cta-actions { display: flex; gap: var(--space-3); justify-content: center; flex-wrap: wrap; margin-top: var(--space-5); }
 
   /* FAQ */
-  .faq { max-width: 760px; margin-inline: auto; display: flex; flex-direction: column; gap: var(--space-3); }
+  .faq { max-width: 800px; margin-inline: auto; display: flex; flex-direction: column; gap: var(--space-3); }
   .faq__item { border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-bg); padding: 0 var(--space-5); }
   .faq__item summary { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); padding: var(--space-4) 0; cursor: pointer; font-weight: var(--font-weight-semibold); list-style: none; }
   .faq__item summary::-webkit-details-marker { display: none; }

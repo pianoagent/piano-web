@@ -1,0 +1,101 @@
+---
+/**
+ * ABX HARSYS — Reference. Obsah z obsah/pokladni-system-pro-restaurace-harsys-reference.md.
+ * Komponenty z @piano/ui.
+ */
+import Base from '../layouts/Base.astro';
+import Header from '@piano/ui/components/Header.astro';
+import Footer from '@piano/ui/components/Footer.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import { harsysNav, harsysCta } from '../config/nav';
+
+const reference = [
+  { img: '/images/ref/jan-poloch.webp', name: 'Ing. Jan Poloch', role: 'Startronic Gastro Ostrava, 27+ provozoven', quote: 'Pokladní systém pro restaurace Harsys mi pomáhá úplně se vším. Mám ho rád! Je přehledný a spolehlivý.' },
+  { img: '/images/ref/aneta-srncova.webp', name: 'Bc. Aneta Srncová', role: 'Třebovický mlýn, Ostrava', quote: 'Pokladní systém Harsys využíváme pro jeho přehlednost a snadné pochopení jeho fungování.' },
+  { img: '/images/ref/long-story-short.webp', name: 'Petr Heneš', role: 'Long story short, Olomouc', quote: 'S firmou ABX spolupracujeme již celých 6 let. V celém našem podniku vždy maximálně využíváme všechny vychytávky, které jejich pokladní systém nabízí.' },
+  { img: '/images/ref/hana-ztratilova.webp', name: 'Hana Ztratilová', role: 'Restaurace Na Špici, Radošov', quote: 'Harsys používáme od roku 2009 a opravdu nám vyhovuje. Systém nabízí spoustu užitečných funkcí, které nám usnadňují provoz. Oceňujeme také podporu, která je vždy připravena nám pomoci.' },
+  { img: '/images/ref/fabrika-pizzerie.webp', name: 'Pavel Marek', role: 'FABRIKA pizzerie, Havlíčkův Brod', quote: 'Spolehlivý a efektivní software pro podnikání. Ideální pro každého, kdo chce zefektivnit svůj podnik.' },
+];
+
+const stats = [
+  { num: '4 108', lbl: 'zákazníků nám dalo důvěru' },
+  { num: '11 535', lbl: 'registrovaných licencí' },
+  { num: '27+', lbl: 'let zkušeností s vývojem' },
+];
+
+const leadProofs = [
+  { icon: 'lucide:map-pin', title: 'Po celé ČR', text: 'Restaurace, bary i hotely v celé republice.' },
+  { icon: 'lucide:heart-handshake', title: 'Dlouhodobá spolupráce', text: 'Zákazníci s námi zůstávají roky.' },
+  { icon: 'lucide:headset', title: 'Nejlepší podpora', text: 'K nám se dovoláte snadno.' },
+];
+---
+
+<Base title="Reference pokladního systému Harsys | ABX HARSYS"
+      description="Pokladní systém Harsys má spokojené zákazníky po celé České republice. Podívejte se na reference restaurací, barů a hotelů.">
+  <Header brand="ABX HARSYS" logoSrc="/logos/abx-harsys.svg" homeHref="/" nav={harsysNav} cta={harsysCta} />
+
+  <Hero eyebrow="Reference" background="gradient"
+        lead="Naše spokojené uživatele najdete po celé České republice. Během let nám dalo důvěru přes 4 100 zákazníků a registrováno je více než 11 500 licencí.">
+    <Heading slot="title" as="h1" size="display" color="on-dark">Co říkají <span class="accent">naši zákazníci</span></Heading>
+  </Hero>
+
+  <Section background="default" space="lg">
+    <div class="quotes">
+      {reference.map((t) => (
+        <figure class="quote">
+          <span class="quote__mark"><Icon name="lucide:quote" size="md" /></span>
+          <blockquote class="quote__text">{t.quote}</blockquote>
+          <figcaption class="quote__foot">
+            <img class="quote__photo" src={t.img} alt={t.name} loading="lazy" />
+            <span class="quote__id">
+              <strong class="quote__name">{t.name}</strong>
+              <span class="quote__role">{t.role}</span>
+            </span>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </Section>
+
+  <Section background="invert" space="md">
+    <ul class="stats">
+      {stats.map((s) => (
+        <li class="stats__item">
+          <span class="stats__num">{s.num}</span>
+          <span class="stats__lbl">{s.lbl}</span>
+        </li>
+      ))}
+    </ul>
+  </Section>
+
+  <LeadForm id="poptavka" variant="callback" background="primary"
+            title="Přidejte se ke spokojeným provozům"
+            lead="Zanechte číslo a my se vám ozveme. Rádi vám Harsys předvedeme přímo ve vašem provozu."
+            proofs={leadProofs} successUrl="/dekujeme" />
+
+  <Footer />
+</Base>
+
+<style>
+  .quotes { display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+  .quote { margin: 0; display: flex; flex-direction: column; background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-6); box-shadow: var(--shadow-sm); }
+  .quote__mark { color: var(--color-secondary-terracotta); display: block; margin-bottom: var(--space-3); }
+  .quote__text { font-size: var(--font-size-body); color: var(--color-text); line-height: var(--line-height-body); flex: 1; }
+  .quote__foot { display: flex; align-items: center; gap: var(--space-3); margin-top: var(--space-5); }
+  .quote__photo { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+  .quote__id { display: flex; flex-direction: column; gap: 2px; }
+  .quote__name { font-size: var(--font-size-body); font-weight: var(--font-weight-bold); color: var(--color-primary); line-height: 1.15; }
+  .quote__role { font-size: var(--font-size-small); color: var(--color-text-muted); }
+
+  .stats { list-style: none; display: grid; gap: var(--space-5); grid-template-columns: repeat(3, 1fr); text-align: center; }
+  .stats__item { display: flex; flex-direction: column; gap: var(--space-1); }
+  .stats__num { font-size: var(--font-size-h1); font-weight: var(--font-weight-bold); line-height: 1; color: #fff; }
+  .stats__lbl { font-size: var(--font-size-small); color: var(--color-text-on-dark-muted); }
+  @media (max-width: 720px) { .stats { grid-template-columns: 1fr; gap: var(--space-6); } }
+</style>
