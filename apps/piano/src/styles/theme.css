@@ -1,0 +1,75 @@
+/* TÉMA — piano.cz
+   =========================================================
+   Barvy a fonty webu piano.cz. Importuje sdílené base tokeny.
+   Nový web = kopie tohoto souboru s jinými hodnotami.
+*/
+@import "@piano/ui/styles/base.css";
+
+@font-face {
+  font-family: "Borna";
+  src: url("/fonts/borna-regular-webfont.woff2") format("woff2");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Borna";
+  src: url("/fonts/borna-semibold-webfont.woff2") format("woff2");
+  font-weight: 600; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "PP Eiko";
+  src: url("/fonts/PPEiko-Regular.woff2") format("woff2");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+
+:root {
+  /* Fonty */
+  --font-sans:  "Borna", "Host Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-serif: "PP Eiko", Georgia, "Times New Roman", serif;
+
+  /* Primary (brand) */
+  --color-primary:          #B8093B;
+  --color-primary-hover:    #94002A;
+  --color-primary-active:   #7A0021;
+  --color-primary-bg:       #94002A;
+  --color-primary-bg-hover: #7A0021;
+
+  /* Secondary palette */
+  --color-secondary:            #AB5630;
+  --color-secondary-terracotta: #D67017;
+  --color-secondary-gold:       #ECAF04;
+  --color-secondary-azure:      #14A0DC;
+
+  /* Neutrals */
+  --color-neutral-0:   #FFFFFF;
+  --color-neutral-50:  #F5F4F2;
+  --color-neutral-100: #FEF4E6;
+  --color-neutral-200: #E3E1DE;
+  --color-neutral-300: #CFCDCA;
+  --color-neutral-400: #BCC0C7;
+  --color-neutral-500: #6E6B68;
+  --color-neutral-900: #262626;
+
+  /* Feedback / status */
+  --color-success:       #275F2A;
+  --color-success-hover: #16401A;
+  --color-warning:       #ECAF04;
+  --color-info:          #14A0DC;
+  --color-error:         #B8093B;
+  --color-error-hover:   #94002A;
+
+  /* Semantic roles */
+  --color-text:               #262626;
+  --color-text-muted:         #6E6B68;
+  --color-text-accent:        #B8093B;
+  --color-text-on-dark:       #FFFFFF;
+  --color-text-on-dark-muted: rgba(255, 255, 255, 0.72);
+
+  --color-bg:        #FFFFFF;
+  --color-bg-alt:    #F5F4F2;
+  --color-bg-invert: #94002A;
+  --color-bg-hover:  color-mix(in srgb, var(--color-neutral-900) 4%, #FFFFFF);
+
+  --color-border:         #E3E1DE;
+  --color-border-strong:  #CFCDCA;
+  --color-border-on-dark: rgba(255, 255, 255, 0.24);
+}

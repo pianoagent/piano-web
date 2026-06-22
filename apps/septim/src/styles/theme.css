@@ -1,0 +1,71 @@
+/* TÉMA — Septim
+   =========================================================
+   ⚠️ PLACEHOLDER: barvy zatím odvozené od Piano, primary změněn na ukázku,
+   že téma funguje. Nahraď reálnými Septim tokeny (barvy, případně font).
+   Komponenty se nepřepisují — mění se jen hodnoty zde.
+*/
+@import "@piano/ui/styles/base.css";
+
+@font-face {
+  font-family: "Borna";
+  src: url("/fonts/borna-regular-webfont.woff2") format("woff2");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Borna";
+  src: url("/fonts/borna-semibold-webfont.woff2") format("woff2");
+  font-weight: 600; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "PP Eiko";
+  src: url("/fonts/PPEiko-Regular.woff2") format("woff2");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+
+:root {
+  --font-sans:  "Borna", "Host Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-serif: "PP Eiko", Georgia, "Times New Roman", serif;
+
+  /* Primary — Septim placeholder (azure místo karmínu, ať je vidět odlišení) */
+  --color-primary:          #0F6FB5;
+  --color-primary-hover:    #0B5A93;
+  --color-primary-active:   #08456F;
+  --color-primary-bg:       #0B5A93;
+  --color-primary-bg-hover: #08456F;
+
+  --color-secondary:            #AB5630;
+  --color-secondary-terracotta: #D67017;
+  --color-secondary-gold:       #ECAF04;
+  --color-secondary-azure:      #14A0DC;
+
+  --color-neutral-0:   #FFFFFF;
+  --color-neutral-50:  #F4F6F8;
+  --color-neutral-100: #EAF2F8;
+  --color-neutral-200: #E1E5E9;
+  --color-neutral-300: #CBD2D8;
+  --color-neutral-400: #AEB7C0;
+  --color-neutral-500: #5F6B75;
+  --color-neutral-900: #1C2630;
+
+  --color-success:       #275F2A;
+  --color-success-hover: #16401A;
+  --color-warning:       #ECAF04;
+  --color-info:          #14A0DC;
+  --color-error:         #C0392B;
+  --color-error-hover:   #97291D;
+
+  --color-text:               #1C2630;
+  --color-text-muted:         #5F6B75;
+  --color-text-accent:        #0F6FB5;
+  --color-text-on-dark:       #FFFFFF;
+  --color-text-on-dark-muted: rgba(255, 255, 255, 0.72);
+
+  --color-bg:        #FFFFFF;
+  --color-bg-alt:    #F4F6F8;
+  --color-bg-invert: #0B5A93;
+  --color-bg-hover:  color-mix(in srgb, var(--color-neutral-900) 4%, #FFFFFF);
+
+  --color-border:         #E1E5E9;
+  --color-border-strong:  #CBD2D8;
+  --color-border-on-dark: rgba(255, 255, 255, 0.24);
+}

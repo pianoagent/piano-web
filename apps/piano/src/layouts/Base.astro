@@ -1,0 +1,65 @@
+---
+/**
+ * Base — layout webu piano.cz.
+ * Načte téma (barvy/fonty) + sdílenou SEO hlavičku. Definuje Organization schema.
+ */
+import '../styles/theme.css';
+import BaseHead from '@piano/ui/layouts/BaseHead.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  type?: 'website' | 'article';
+  noindex?: boolean;
+  schema?: object;   // JSON-LD per stránka
+}
+
+const SITE_NAME = 'Piano';
+const SITE_URL = 'https://piano.cz';
+
+const {
+  title,
+  description = 'Piano — technologie pro restaurace a hotely. Pokladní systémy, rezervace, online platby a analytika na jednom místě.',
+  image = '/og-default.jpg',
+  type = 'website',
+  noindex = false,
+  schema,
+} = Astro.props;
+
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Piano Solutions',
+  url: SITE_URL,
+  logo: `${SITE_URL}/logo.svg`,
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'sales',
+    areaServed: 'CZ',
+    availableLanguage: ['Czech', 'English'],
+  },
+  sameAs: ['https://www.linkedin.com/company/piano-solutions'],
+};
+
+const schemas = [organizationSchema, ...(schema ? [schema] : [])];
+---
+
+<!doctype html>
+<html lang="cs">
+  <head>
+    <BaseHead
+      title={title}
+      description={description}
+      image={image}
+      type={type}
+      noindex={noindex}
+      siteName={SITE_NAME}
+      siteUrl={SITE_URL}
+      schemas={schemas}
+    />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

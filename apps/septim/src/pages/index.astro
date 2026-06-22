@@ -1,0 +1,35 @@
+---
+/**
+ * Septim — starter homepage.
+ * Ukázka, že web používá SDÍLENÉ komponenty z @piano/ui, ale vlastní téma.
+ * Skutečný obsah Septim se doplní v samostatném vlákně (podklady:
+ * Piano/septim-context.md a blok #page-septim v Piano/piano-web-2026.html).
+ */
+import Base from '../layouts/Base.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Button from '@piano/ui/components/Button.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+
+const features = [
+  { icon: 'lucide:monitor', title: 'Pokladna', text: 'Intuitivní dotykové rozhraní pro obsluhu i mobilní orderpad.' },
+  { icon: 'lucide:package', title: 'Sklad', text: 'Stav surovin, dodací listy a zásoby v reálném čase.' },
+  { icon: 'lucide:bar-chart-3', title: 'Přehledy', text: 'Tržby, marže a výkon personálu odkudkoliv.' },
+];
+---
+
+<Base title="Septim — pravá ruka každého manažera">
+  <Hero eyebrow="Pokladní a provozní systém" align="center" background="alt"
+        lead="Septim není jen pokladna. Řídí celý váš provoz — od skladu po finanční přehledy.">
+    <Heading slot="title" as="h1" size="display" align="center">Pravá ruka <em>každého manažera</em></Heading>
+    <Fragment slot="actions">
+      <Button>Chci Septim</Button>
+      <Button variant="secondary">Kolik to stojí?</Button>
+    </Fragment>
+  </Hero>
+
+  <USPGrid eyebrow="Funkce" title="Vše, co váš provoz potřebuje" items={features} background="default" />
+
+  <LeadForm variant="callback" title="Nechte nám číslo, zavoláme" lead="Stačí telefon — zbytek probereme spolu." />
+</Base>

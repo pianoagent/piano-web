@@ -1,0 +1,68 @@
+---
+/**
+ * BaseHead — sdílené SEO meta + JSON-LD (vkládá se do <head>).
+ * Per-web hodnoty (název, doména, organizace) předává layout konkrétního webu.
+ *
+ * Props:
+ *   title       (povinné)
+ *   description, image, type, noindex
+ *   siteName    → název webu pro <title> a og:site_name
+ *   siteUrl     → doména (https://…) pro canonical + absolutní OG
+ *   locale      → og:locale (default "cs_CZ")
+ *   schemas     → pole JSON-LD objektů (org + per stránka)
+ */
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  type?: 'website' | 'article';
+  noindex?: boolean;
+  siteName?: string;
+  siteUrl?: string;
+  locale?: string;
+  schemas?: object[];
+}
+
+const {
+  title,
+  description = '',
+  image,
+  type = 'website',
+  noindex = false,
+  siteName = 'Piano',
+  siteUrl = 'https://piano.cz',
+  locale = 'cs_CZ',
+  schemas = [],
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, siteUrl).href;
+const fullTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
+const ogImage = image ? new URL(image, siteUrl).href : undefined;
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>{fullTitle}</title>
+{description && <meta name="description" content={description} />}
+<link rel="canonical" href={canonical} />
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+
+<meta property="og:type" content={type} />
+<meta property="og:title" content={fullTitle} />
+{description && <meta property="og:description" content={description} />}
+<meta property="og:url" content={canonical} />
+{ogImage && <meta property="og:image" content={ogImage} />}
+<meta property="og:site_name" content={siteName} />
+<meta property="og:locale" content={locale} />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={fullTitle} />
+{description && <meta name="twitter:description" content={description} />}
+{ogImage && <meta name="twitter:image" content={ogImage} />}
+
+{schemas.map((s) => (
+  <script type="application/ld+json" set:html={JSON.stringify(s)} />
+))}
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />

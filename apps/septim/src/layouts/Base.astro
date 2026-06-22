@@ -1,0 +1,59 @@
+---
+/**
+ * Base — layout webu Septim.
+ * Načte téma Septim + sdílenou SEO hlavičku. Definuje Organization schema.
+ */
+import '../styles/theme.css';
+import BaseHead from '@piano/ui/layouts/BaseHead.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  type?: 'website' | 'article';
+  noindex?: boolean;
+  schema?: object;
+}
+
+const SITE_NAME = 'Septim';
+const SITE_URL = 'https://septim.cz';
+
+const {
+  title,
+  description = 'Septim — pokladní a provozní systém pro restaurace, kavárny a hotely.',
+  image = '/og-default.jpg',
+  type = 'website',
+  noindex = false,
+  schema,
+} = Astro.props;
+
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Septim',
+  url: SITE_URL,
+  logo: `${SITE_URL}/logo.svg`,
+  parentOrganization: { '@type': 'Organization', name: 'Piano Solutions', url: 'https://piano.cz' },
+};
+
+const schemas = [organizationSchema, ...(schema ? [schema] : [])];
+---
+
+<!doctype html>
+<html lang="cs">
+  <head>
+    <BaseHead
+      title={title}
+      description={description}
+      image={image}
+      type={type}
+      noindex={noindex}
+      siteName={SITE_NAME}
+      siteUrl={SITE_URL}
+      schemas={schemas}
+    />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
