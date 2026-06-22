@@ -1,0 +1,132 @@
+---
+/**
+ * Pilot — produktová stránka piano.cz/pilot
+ * Obsah: wordpress-export/pages/pilot.md. Sdílené komponenty @piano/ui.
+ */
+import Base from '../layouts/Base.astro';
+import Header from '@piano/ui/components/Header.astro';
+import Footer from '@piano/ui/components/Footer.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Container from '@piano/ui/components/Container.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+
+const steps = [
+  { icon: 'lucide:plug', title: 'Napojte svůj systém', text: 'Napojení během 5 minut bez složité instalace (Septim, POS Expert, Harsys) — nebo fungujte bez pokladny v LITE verzi.' },
+  { icon: 'lucide:activity', title: 'Vidíte data v reálném čase', text: 'Tržby, nejprodávanější položky, stav skladu — vše v jedné appce, bez přepínání mezi systémy.' },
+  { icon: 'lucide:sparkles', title: 'AI vám poradí, co dělat líp', text: 'Gastropilot (Piano Brain) analyzuje vaše data a navrhuje, jak zvýšit marže, snížit náklady nebo přivést více hostů.' },
+];
+
+const features = [
+  { icon: 'lucide:line-chart', title: 'Přehled tržeb', text: 'Denní, týdenní a měsíční vývoj na jedné obrazovce. Srovnání s minulým obdobím okamžitě.' },
+  { icon: 'lucide:pie-chart', title: 'Analýza prodejů', text: 'Nejprodávanější i nejslabší položky a struktura tržeb. Víte přesně, co vám vydělává.' },
+  { icon: 'lucide:boxes', title: 'Stav skladu', text: 'Kontrola zásob, výkyvy a lepší plánování nákupů. Konec překvapení při inventuře.' },
+  { icon: 'lucide:message-circle', title: 'AI asistent', text: '„Co se v mém okolí prodává dráž?“ „Kde ztrácím nejvíc na marži?“ Ptáte se, AI odpovídá.' },
+  { icon: 'lucide:scan-line', title: 'Skenování účtenek', text: 'Vyfotíte dodací list, Pilot rozpozná položky i DPH a přenese je do systému. Žádné přepisování.' },
+  { icon: 'lucide:map-pin', title: 'Tržní data z okolí', text: 'Porovnání cen a poptávky ve vašem okolí — víte, kde máte rezervy.' },
+];
+---
+
+<Base title="Piano Pilot — celý provoz v mobilní aplikaci"
+      description="Pilot je mobilní aplikace pro majitele restaurací a barů. Tržby, prodeje, sklad a AI doporučení v reálném čase — jedno místo pro rozhodování.">
+  <Header />
+
+  <Hero eyebrow="Piano Pilot" background="primary"
+        lead="Mobilní aplikace pro majitele restaurací, provozní barů a bister. Jedna aplikace, jeden přehled, jedno místo pro rozhodování — kdykoliv a kdekoliv.">
+    <Heading slot="title" as="h1" size="display" color="on-dark">Řízení podle pocitu je drahé. S <em>daty</em> rozhodujete líp.</Heading>
+    <Fragment slot="actions">
+      <Button href="#poptavka">Chci vyzkoušet</Button>
+    </Fragment>
+  </Hero>
+
+  <USPGrid eyebrow="Jak to funguje" title="Tři kroky k přehledu nad provozem"
+           items={steps} columns={3} background="default" />
+
+  <USPGrid eyebrow="Klíčové funkce" title="Vše pro chytré rozhodování"
+           items={features} background="alt" />
+
+  <!-- Dvě verze produktu -->
+  <Section background="default" space="lg">
+    <Heading as="h2" size="h2" align="center">Dvě verze produktu</Heading>
+    <Text size="lead" color="muted" align="center" class="pilot-sub">
+      Vyberte si plán, který vám sedne. Začněte zdarma, upgradujte, když budete potřebovat víc.
+    </Text>
+    <div class="plans">
+      <article class="plan">
+        <Text size="label" color="accent">S napojenou Piano pokladnou</Text>
+        <Heading as="h3" size="h3">Pilot Pro</Heading>
+        <ul class="plan__list">
+          <li>Tržby a prodeje v reálném čase</li>
+          <li>Sklady napojené na pokladnu</li>
+          <li>Premium AI moduly: chat nad daty, skenování účtenek, trendy</li>
+        </ul>
+        <Button href="#poptavka" full>Chci Pilot Pro</Button>
+      </article>
+      <article class="plan">
+        <Text size="label" color="accent">Funguje samostatně, bez naší pokladny</Text>
+        <Heading as="h3" size="h3">Pilot Lite</Heading>
+        <ul class="plan__list">
+          <li>Data o trhu a přehled konkurence</li>
+          <li>Trendy a cenové porovnání</li>
+          <li>Skenování účtenek</li>
+        </ul>
+        <Button href="#poptavka" variant="secondary" full>Chci Pilot Lite</Button>
+      </article>
+    </div>
+  </Section>
+
+  <!-- Reference -->
+  <Section background="invert" space="lg" container="narrow">
+    <figure class="quote">
+      <Text size="lead" color="on-dark" align="center">
+        „Kukátko používám denně — rychle a přehledně mám na jednom místě data o tržbách
+        i četnosti prodeje, která jsem dřív získával složitě. Teď testuji GastroPilota
+        a těším se na další vývoj.“
+      </Text>
+      <figcaption class="quote__by">
+        <Text color="on-dark" weight="semibold">Přemysl Hejda</Text>
+        <Text size="small" color="on-dark-muted">majitel, Fresherie</Text>
+      </figcaption>
+    </figure>
+  </Section>
+
+  <LeadForm id="poptavka" variant="full"
+            title="Posuňte své podnikání na vyšší úroveň"
+            lead="Ozvěte se nám a uděláme vám nabídku šitou na míru vašim potřebám." />
+
+  <Footer />
+</Base>
+
+<style>
+  .pilot-sub { margin-top: var(--space-3); }
+  .plans {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-5);
+    margin-top: var(--space-7);
+  }
+  .plan {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding: var(--space-6);
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+  }
+  .plan__list { list-style: none; display: flex; flex-direction: column; gap: var(--space-2); margin: var(--space-2) 0 var(--space-4); }
+  .plan__list li { position: relative; padding-left: var(--space-5); color: var(--color-text-muted); }
+  .plan__list li::before { content: "✓"; position: absolute; left: 0; color: var(--color-text-accent); font-weight: 700; }
+  .plan :global(.btn) { margin-top: auto; }
+
+  .quote { display: flex; flex-direction: column; align-items: center; gap: var(--space-5); }
+  .quote__by { text-align: center; display: flex; flex-direction: column; gap: 2px; }
+
+  @media (max-width: 720px) {
+    .plans { grid-template-columns: 1fr; }
+  }
+</style>

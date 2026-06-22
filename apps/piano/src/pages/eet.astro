@@ -1,0 +1,104 @@
+---
+/**
+ * EET 2.0 — stránka piano.cz/eet
+ * Obsah: wordpress-export/pages/eet.md. Sdílené komponenty @piano/ui.
+ */
+import Base from '../layouts/Base.astro';
+import Header from '@piano/ui/components/Header.astro';
+import Footer from '@piano/ui/components/Footer.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+
+const novinky = [
+  { icon: 'lucide:hand-coins', title: 'Daňové zvýhodnění spropitného', text: 'Dobrovolné spropitné do 7 % tržeb bude nově osvobozeno od daní i odvodů.' },
+  { icon: 'lucide:percent', title: 'Nižší DPH na nealko', text: 'Daň u nealkoholických nápojů klesá z 21 % na 12 %.' },
+  { icon: 'lucide:receipt', title: 'Modernizace prodeje', text: 'Konec povinného tisku účtenek a jednodušší evidence bez zbytečného papírování.' },
+];
+
+const faqs = [
+  { q: 'Kdy začne platit EET 2.0 a musím to řešit už teď?', a: 'Od 1. ledna 2027. Do té doby musí mít každý podnik funkční pokladní systém připravený na nová pravidla, včetně instalace, nastavení a zaškolení obsluhy.' },
+  { q: 'Koho se EET 2.0 týká?', a: 'Prakticky každé restaurace, kavárny, baru nebo hotelu. Evidovat budete všechny platby přijaté při osobním kontaktu se zákazníkem — hotovost, kartu, QR kód i stravenky. Výjimku mají pouze OSVČ v prvním pásmu paušálního režimu s příjmy do 1 milionu Kč ročně.' },
+  { q: 'Musím si pořizovat nový pokladní systém?', a: 'Záleží na tom, co teď používáte. Moderní systémy zvládnou EET 2.0 softwarovým updatem. Zastaralý nebo nevhodný systém vás ale může přijít draho a čas na přechod se krátí.' },
+  { q: 'Co mi hrozí, když nebudu evidovat?', a: 'Pokuta až 500 000 Kč. Finanční správa navíc bude aktivně porovnávat tržby podnikatelů ve stejném oboru a regionu, takže anomálie automaticky přitáhnou pozornost kontrolorů.' },
+  { q: 'Je EET 2.0 složitější než to první?', a: 'Ne, naopak. Funguje pouze v online režimu bez výjimek a variant, účtenku vydáváte jen na vyžádání i digitálně a stát po vás chce méně dat než dřív. Pokud máte správný systém, většinu věcí nepoznáte.' },
+  { q: 'Proč nevyřešit EET 2.0 jen tou nejlevnější cestou?', a: 'Protože pokladní systém není jen zákonná povinnost. Správné řešení vám dá přehled o tržbách, zásobách i personálu na jednom místě, automatizuje administrativu a pomůže zvýšit marže. Naši klienti průměrně zvyšují marže o 7 %.' },
+  { q: 'Co se změní u spropitného?', a: 'Dobrovolné spropitné bude osvobozeno od daně i odvodů až do výše 7 % měsíčních tržeb. Detailní pravidla pro evidenci v pokladním systému se ještě upřesňují — jakmile budou jasná, sepíšeme přesný postup.' },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<Base title="EET 2.0 — s Pianem to zvládnete hladce"
+      description="EET 2.0 startuje v roce 2027. Jako technologický partner zajistíme vše potřebné — pokladní systém připravený na nová pravidla, instalaci i zaškolení. Konzultace zdarma."
+      schema={faqSchema}>
+  <Header />
+
+  <Hero eyebrow="EET 2.0" background="primary"
+        lead="Ohlášený start EET 2.0 v roce 2027 vás nemusí trápit. Jako technologický partner zajistíme vše potřebné, stejně jako před lety. Získejte náskok a vyřešte evidenci tržeb jednou provždy.">
+    <Heading slot="title" as="h1" size="display" color="on-dark">EET se vrací. S Pianem to zvládnete <em>hladce</em></Heading>
+    <Fragment slot="actions">
+      <Button href="#poptavka">Konzultace zdarma</Button>
+    </Fragment>
+  </Hero>
+
+  <USPGrid eyebrow="Co je nového" title="Klíčové novinky EET 2.0"
+           lead="Změny, které vám zjednoduší podnikání."
+           items={novinky} columns={3} background="default" />
+
+  <!-- FAQ -->
+  <Section background="alt" space="lg" container="narrow">
+    <Heading as="h2" size="h2" align="center">Často kladené dotazy</Heading>
+    <div class="faq">
+      {faqs.map((f) => (
+        <details class="faq__item">
+          <summary class="faq__q">{f.q}</summary>
+          <div class="faq__a"><Text color="muted">{f.a}</Text></div>
+        </details>
+      ))}
+    </div>
+  </Section>
+
+  <LeadForm id="poptavka" variant="callback"
+            title="Jde vám hlava kolem z nařízení?"
+            lead="Nechte nám kontakt a společně to vyřešíme — konzultace zdarma a nezávazně." />
+
+  <Footer />
+</Base>
+
+<style>
+  .faq { margin-top: var(--space-6); display: flex; flex-direction: column; gap: var(--space-3); }
+  .faq__item {
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-4) var(--space-5);
+  }
+  .faq__q {
+    cursor: pointer;
+    font-family: var(--font-sans);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-4);
+  }
+  .faq__q::-webkit-details-marker { display: none; }
+  .faq__q::after { content: "+"; color: var(--color-text-accent); font-size: 1.4em; line-height: 1; flex-shrink: 0; }
+  .faq__item[open] .faq__q::after { content: "−"; }
+  .faq__a { margin-top: var(--space-3); }
+</style>

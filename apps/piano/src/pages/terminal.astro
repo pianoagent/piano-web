@@ -1,0 +1,135 @@
+---
+/**
+ * Terminál — produktová stránka piano.cz/terminal
+ * Obsah: wordpress-export/pages/terminal.md. Sdílené komponenty @piano/ui.
+ */
+import Base from '../layouts/Base.astro';
+import Header from '@piano/ui/components/Header.astro';
+import Footer from '@piano/ui/components/Footer.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+
+const benefits = [
+  { icon: 'lucide:credit-card', title: 'Bezstarostné platby', text: 'Zapomeňte na hotovost pro závozníky a hlídání splatnosti faktur. Zaplatíte za zboží online na jedno kliknutí.' },
+  { icon: 'lucide:users', title: 'Data, která vydělávají', text: 'Zjistěte, jak často se k vám hosté vrací a kdo u vás utrácí nejvíc. Vidíte loajalitu zákazníků v čase.' },
+  { icon: 'lucide:headset', title: 'Česká podpora 24/7', text: 'Připojíme se na dálku a dotaz vyřešíme obratem. S námi na to nejste sami.' },
+  { icon: 'lucide:wallet', title: 'Vyplácíme každý pracovní den', text: 'Vaše peníze jsou v bezpečí — máme celoevropskou licenci ČNB a posíláme je každý pracovní den.' },
+];
+
+const data = [
+  { icon: 'lucide:eye', title: 'Konec dohadů', text: 'Poznejte své štamgasty a včas zjistěte, když k vám někdo přestane chodit.' },
+  { icon: 'lucide:trending-up', title: 'Jasné trendy', text: 'Vidíte černé na bílém, které dny táhnou nové tváře a kdy podnik drží stálá parta.' },
+  { icon: 'lucide:star', title: 'Klíčoví zákazníci', text: 'Systém sám vytipuje nejvěrnější hosty, kteří u vás nechávají nejvíc peněz.' },
+  { icon: 'lucide:heart-pulse', title: 'Zdraví podniku', text: 'Identifikujte, že se něco děje dřív, než to uvidíte v tržbách. Buďte napřed.' },
+];
+
+const supplier = [
+  { icon: 'lucide:hand-coins', title: 'Platíte z toho, co vyděláte', text: 'Žádné návštěvy bankomatů ani hotovost za dodávky — platby dodavateli probíhají bezhotovostně.' },
+  { icon: 'lucide:receipt', title: 'Jedno vyúčtování', text: 'Jedno vyúčtování za všechny transakce z terminálu, Qerka i plateb dodavatelům.' },
+  { icon: 'lucide:shield-check', title: 'Bez přístupu k bance', text: 'Autorizujete jen osoby, které mohou převzít a proplatit dodávku — bez přístupů k vaší kartě či bance.' },
+  { icon: 'lucide:repeat', title: 'Vše automaticky', text: 'Žádné dodatečné poplatky za přímé bezhotovostní platby dodavatelům.' },
+];
+
+const steps = [
+  { icon: 'lucide:truck', title: 'Dodavatel dodá zboží', text: 'Zboží dorazí na provozovnu jako obvykle.' },
+  { icon: 'lucide:smartphone', title: 'Autorizovaná osoba zaplatí přes Qerko', text: 'Platba proběhne na pár kliknutí, bez hotovosti.' },
+  { icon: 'lucide:check-check', title: 'Částka se odečte z vyúčtování', text: 'Automaticky, v jednom přehledném vyúčtování.' },
+];
+---
+
+<Base title="Piano Terminál — platby a data o hostech"
+      description="Piano Terminál není jen platební terminál. Přináší unikátní data o hostech, automatické platby dodavatelům a vyplácení každý pracovní den. Česká podpora 24/7.">
+  <Header />
+
+  <Hero eyebrow="Piano Terminál" background="primary"
+        lead="Běžné terminály končí zaplacením. Piano Terminál platbou teprve začíná.">
+    <Heading slot="title" as="h1" size="display" color="on-dark">Poznejte své hosty a plaťte faktury <em>automaticky</em></Heading>
+    <Fragment slot="actions">
+      <Button href="#poptavka">Chci vyzkoušet</Button>
+      <Button href="https://piano.cz/proces-plateb/" variant="secondary" onDark>Jak to funguje?</Button>
+    </Fragment>
+  </Hero>
+
+  <USPGrid eyebrow="Vše v jednom zařízení" title="Co Piano Terminál umí navíc"
+           items={benefits} columns={4} background="default" minItemWidth="220px" />
+
+  <USPGrid eyebrow="Data o hostech" title="Unikátní přehled o vašich zákaznících"
+           lead="Sledujte v reálném čase, kolik lidí k vám přišlo poprvé a kdo se pravidelně vrací."
+           items={data} columns={4} background="alt" minItemWidth="220px" />
+
+  <USPGrid eyebrow="Platby dodavatelům" title="Platím dodavatele automaticky"
+           items={supplier} columns={4} background="default" minItemWidth="220px" />
+
+  <USPGrid title="Krok za krokem" items={steps} columns={3} background="alt" />
+
+  <!-- Ceník -->
+  <Section background="default" space="lg">
+    <Heading as="h2" size="h2" align="center">Cenová nabídka</Heading>
+    <div class="prices">
+      <article class="price">
+        <Text size="label" color="muted">Samostatně</Text>
+        <Heading as="h3" size="h3">Terminál</Heading>
+        <dl class="price__rows">
+          <div><dt>Cena služby</dt><dd>Individuální nabídka</dd></div>
+          <div><dt>Cena hardware</dt><dd>380 Kč/měsíc nebo zdarma*</dd></div>
+          <div><dt>Závazek</dt><dd>24 měsíců</dd></div>
+        </dl>
+        <Button href="#poptavka" full>Chci tuto nabídku</Button>
+      </article>
+      <article class="price price--featured">
+        <Text size="label" color="accent">Kombinace</Text>
+        <Heading as="h3" size="h3">Terminál + Qerko</Heading>
+        <dl class="price__rows">
+          <div><dt>Cena služby</dt><dd>Individuální nabídka, sleva 15 % na první rok**</dd></div>
+          <div><dt>Cena hardware</dt><dd>380 Kč/měsíc nebo zdarma*</dd></div>
+          <div><dt>Závazek</dt><dd>24 měsíců</dd></div>
+        </dl>
+        <Button href="#poptavka" full>Chci tuto nabídku</Button>
+      </article>
+    </div>
+    <Text size="caption" color="muted" class="price__note">
+      *Na základě definovaného obratu přes Piano Terminál min. 1 ks zdarma.
+      **Sleva se vztahuje na řešení Piano Terminál i na případy, kdy podnik už Qerko využívá.
+    </Text>
+  </Section>
+
+  <LeadForm id="poptavka" variant="full"
+            title="Posuňte své podnikání na vyšší úroveň"
+            lead="Ozvěte se nám a připravíme nabídku šitou na míru vašemu provozu." />
+
+  <Footer />
+</Base>
+
+<style>
+  .prices {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-5);
+    margin-top: var(--space-7);
+  }
+  .price {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding: var(--space-6);
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+  }
+  .price--featured { border-color: var(--color-primary); box-shadow: var(--shadow-md); }
+  .price__rows { display: flex; flex-direction: column; gap: var(--space-3); margin: var(--space-2) 0 var(--space-4); }
+  .price__rows div { display: flex; flex-direction: column; gap: 2px; }
+  .price__rows dt { font-size: var(--font-size-small); color: var(--color-text-muted); }
+  .price__rows dd { font-weight: var(--font-weight-semibold); color: var(--color-text); }
+  .price :global(.btn) { margin-top: auto; }
+  .price__note { display: block; margin-top: var(--space-5); text-align: center; }
+
+  @media (max-width: 720px) {
+    .prices { grid-template-columns: 1fr; }
+  }
+</style>
