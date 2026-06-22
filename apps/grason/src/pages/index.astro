@@ -12,60 +12,17 @@ import Base from '../layouts/Base.astro';
 import Header from '@piano/ui/components/Header.astro';
 import Footer from '@piano/ui/components/Footer.astro';
 import Section from '@piano/ui/components/Section.astro';
-import HeroCarousel from '@piano/ui/components/HeroCarousel.astro';
+import Hero from '@piano/ui/components/Hero.astro';
 import Heading from '@piano/ui/components/Heading.astro';
 import Text from '@piano/ui/components/Text.astro';
 import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
+import { grasonNav, grasonCta } from '../config/nav';
 
 const PHONE = '+420 739 877 799';
 const PHONE_HREF = 'tel:+420739877799';
-
-// HERO bannery — zdroj: grason-bannery.tsv
-const slides = [
-  {
-    eyebrow: 'Odborník na personál',
-    headline: 'Personál pod kontrolou.',
-    sub: 'Brigádníci na poslední chvíli. Plánování vlastního týmu. Docházka, mzdy, checklisty.',
-    body: 'Vše na jednom místě.',
-    cta: { label: 'Chci Grason', href: '#poptavka' },
-    ctaSecondary: { label: 'Všechny funkce', href: '#funkce' },
-  },
-  {
-    eyebrow: 'Brigádníci',
-    headline: 'Volná směna? Vyplňte ji ještě dnes.',
-    sub: 'Tisíce ověřených brigádníků připravených nastoupit.',
-    cta: { label: 'Sehnat brigádníka', href: '#poptavka' },
-  },
-  {
-    eyebrow: 'Plánování směn',
-    headline: 'Rozvrh bez Excelu a skupinových chatů.',
-    sub: 'Plánujte směny, spravujte dovolené a záskoky — přehledně v jedné appce.',
-    cta: { label: 'Vyzkoušet zdarma', href: '#poptavka' },
-  },
-  {
-    eyebrow: 'GPS docházka',
-    headline: 'Přesně víte, kdo přišel a kdy.',
-    sub: 'Digitální píchačky s GPS okruhem 30 m.',
-    body: 'Žádné dohady, jen fakta.',
-    cta: { label: 'Zjistit více', href: '#funkce' },
-  },
-  {
-    eyebrow: 'Checklisty',
-    headline: 'Každá směna podle pravidel.',
-    sub: 'Zaměstnanci odklikají úkoly a doloží je fotkou přímo z appky.',
-    cta: { label: 'Zjistit více', href: '#funkce' },
-  },
-  {
-    eyebrow: 'Podklady pro mzdy',
-    headline: 'Mzdová účetní vám poděkuje.',
-    sub: 'Exportujte podklady pro mzdy jedním kliknutím.',
-    body: 'Bez ručního přepisování.',
-    cta: { label: 'Zjistit více', href: '#funkce' },
-  },
-];
 
 const stats = [
   { num: '3 357+', lbl: 'brigádníků v databázi' },
@@ -148,10 +105,20 @@ const leadProofs = [
 
 <Base title="Grason — odborník na personál"
       description="Grason je ekosystém pro řízení personálu v gastru: brigádníci na poslední chvíli, plánování směn vlastního týmu (GrasonPlan), digitální píchačky, docházka a podklady pro mzdy. Vše na jednom místě.">
-  <Header brand="Grason" logoSrc="/logos/grason-logo.svg" homeHref="/" />
+  <Header brand="Grason" logoSrc="/logos/grason-logo.svg" homeHref="/" nav={grasonNav} cta={grasonCta} />
 
-  <!-- HERO CAROUSEL — bannery z grason-bannery.tsv -->
-  <HeroCarousel slides={slides} background="gradient" interval={6000} />
+  <!-- HERO — split: text vlevo, appka vpravo -->
+  <Hero eyebrow="Odborník na personál" background="gradient"
+        lead="Grason je nejrychlejší způsob, jak nárazově či dlouhodobě zaplnit volná místa, naplánovat rozpis směn a vyřešit papírování s tím spojené.">
+    <Heading slot="title" as="h1" size="display" color="on-dark">Obsaďte volné pozice a <span class="accent">naplánujte směny</span> na pár kliknutí</Heading>
+    <Fragment slot="actions">
+      <Button href="#poptavka">Vyzkoušet 14 dní zdarma</Button>
+      <Button href="#funkce" variant="secondary" onDark>Všechny funkce</Button>
+    </Fragment>
+    <figure slot="media" class="hero-figure">
+      <img src="/images/hp-hero.png" alt="Grason — mobilní aplikace s nabídkami volných směn" width="720" height="560" loading="eager" />
+    </figure>
+  </Hero>
 
   <!-- LOGA KLIENTŮ -->
   <Section id="zakaznici" background="default" space="md" container={false}>
@@ -234,7 +201,7 @@ const leadProofs = [
         </div>
       </div>
       <figure class="app__media">
-        <img src="/images/hp-hero.png" alt="Grason — mobilní aplikace pro flexibilní práci a plánování směn" loading="lazy" />
+        <img src="/images/for-companies-hero.png" alt="Grason — plánování směn a docházka v mobilní aplikaci" loading="lazy" />
       </figure>
     </div>
   </Section>
@@ -320,6 +287,10 @@ const leadProofs = [
 </Base>
 
 <style>
+  /* Hero obrázek (appka) — transparentní ilustrace, jemný stín */
+  .hero-figure { margin: 0; width: 100%; line-height: 0; }
+  .hero-figure img { width: 100%; height: auto; display: block; filter: drop-shadow(0 24px 48px rgba(7, 7, 7, 0.22)); }
+
   /* Sdílená hlavička sekce */
   .head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-7); }
   .head--center { text-align: center; }
