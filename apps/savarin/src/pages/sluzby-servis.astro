@@ -1,0 +1,209 @@
+---
+/**
+ * Savarin — Služby a servis (+ #financovani formy prodeje/pronájem + demoverze).
+ * Obsah z legacy stránek sluzby-servis / formy-prodeje-multilicencni-slevy / demoverze.
+ * Ceny bez DPH, platné od 1. 1. 2026 (dle podkladu). Sdílené komponenty @piano/ui.
+ */
+import Base from '../layouts/Base.astro';
+import Header from '@piano/ui/components/Header.astro';
+import Footer from '@piano/ui/components/Footer.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import { savarinNav, savarinCta } from '../config/nav';
+
+const odkup = [
+  ['V prvním roce', '1–20 %'],
+  ['Ve druhém roce', '20–40 %'],
+  ['Ve třetím roce', '40–60 %'],
+  ['Ve čtvrtém roce', '60–80 %'],
+  ['V pátém roce', '80–100 %'],
+];
+
+const multilicence = [
+  ['2.–4. instalace', '25 %'],
+  ['5.–10. instalace', '30 %'],
+  ['10. a další instalace', '35 %'],
+];
+---
+
+<Base title="Služby a servis Savarin — ceník, financování, demoverze"
+      description="Servisní služby Savarin: garance zásahu do 24 h, hotline 24/7, školení a nové verze. Formy prodeje (přímý, splátkový, pronájem), multilicenční slevy a bezplatná demoverze.">
+  <Header brand="Savarin" logoSrc="/logos/savarin-logo.svg" homeHref="/" nav={savarinNav} cta={savarinCta} />
+
+  <Hero eyebrow="Služby a servis" background="gradient"
+        lead="Podstatnou součástí dodávky je servis. Smluvním zákazníkům garantujeme termín servisního zásahu do 24 hodin a hotline 24/7.">
+    <Heading slot="title" as="h1" size="display" color="on-dark">Servis, na který se <span class="accent">spolehnete</span></Heading>
+    <Fragment slot="actions">
+      <Button href="#poptavka">Nezávazná poptávka</Button>
+      <Button href="#financovani" variant="secondary" onDark>Formy prodeje</Button>
+    </Fragment>
+  </Hero>
+
+  <!-- GARANCE -->
+  <Section background="default" space="md">
+    <ul class="garance">
+      <li><span class="garance__icon"><Icon name="lucide:clock" size="md" /></span><strong>Zásah do 24 h</strong><span>garantujeme smluvním zákazníkům</span></li>
+      <li><span class="garance__icon"><Icon name="lucide:headset" size="md" /></span><strong>Hotline 24/7</strong><span>nepřetržitě pro smluvní zákazníky</span></li>
+      <li><span class="garance__icon"><Icon name="lucide:refresh-cw" size="md" /></span><strong>Nové verze 4× ročně</strong><span>v rámci paušálu, automaticky</span></li>
+    </ul>
+  </Section>
+
+  <!-- CENÍK SERVISU -->
+  <Section background="alt" space="lg">
+    <div class="head head--center">
+      <Text size="label" color="accent" align="center">Ceník servisu</Text>
+      <Heading as="h2" size="h2" align="center">Dva přístupy <span class="accent">podle smlouvy</span></Heading>
+    </div>
+    <div class="pricing">
+      <article class="price">
+        <span class="price__tag">Bez servisní smlouvy</span>
+        <Text color="muted" size="small">Zákazník hradí veškeré školení, servisní zásahy a cestovní náklady.</Text>
+        <ul class="rate">
+          <li><span>Do 30 minut</span><span>650 Kč</span></li>
+          <li><span>Každá započatá hodina</span><span>1 200 Kč</span></li>
+        </ul>
+        <p class="price__note">Příplatek +50 % o sobotách, nedělích a státních svátcích; +25 % ve večerních a nočních hodinách (17:00–07:00).</p>
+      </article>
+      <article class="price price--featured">
+        <span class="price__badge">Doporučeno</span>
+        <span class="price__tag">Se servisní smlouvou</span>
+        <Text color="muted" size="small">Pravidelný paušální poplatek dle smlouvy. Práce nad rámec smlouvy se slevou 10 %.</Text>
+        <ul class="rate">
+          <li><span>Do 15 minut</span><span>330 Kč</span></li>
+          <li><span>Do 30 minut</span><span>585 Kč</span></li>
+          <li><span>Každá započatá hodina</span><span>1 080 Kč</span></li>
+        </ul>
+        <p class="price__note">Telefonické porady i volání zdarma mimo pracovní dobu a ve dnech volna. Nové verze a aktualizace v ceně paušálu.</p>
+      </article>
+    </div>
+    <ul class="rate rate--extra">
+      <li><span>Datový analytik / konzultace vazeb na účetnictví</span><span>1 470 Kč/hod</span></li>
+      <li><span>Programátorské práce (dle typu)</span><span>1 550–1 990 Kč/hod</span></li>
+      <li><span>Cestovní náklady</span><span>15 Kč/km</span></li>
+    </ul>
+    <p class="disclaimer">Všechny ceny jsou uvedeny bez DPH a jsou platné od 1. 1. 2026.</p>
+  </Section>
+
+  <!-- FINANCOVÁNÍ -->
+  <Section id="financovani" background="default" space="lg">
+    <div class="head head--center">
+      <Text size="label" color="accent" align="center">Formy prodeje</Text>
+      <Heading as="h2" size="h2" align="center">Přímý prodej, splátky, nebo <span class="accent">pronájem</span></Heading>
+      <Text size="lead" color="muted" align="center" balance>
+        Systém je modulární, proto je cena závislá na konfiguraci (počet pokladen, pokojů, způsob komunikace s ústřednou).
+        Cenovou nabídku zašleme na vyžádání podle vaší specifikace.
+      </Text>
+    </div>
+    <div class="forms">
+      <article class="form-card">
+        <span class="form-card__icon"><Icon name="lucide:banknote" size="md" /></span>
+        <Heading as="h3" size="h3">Přímý a splátkový prodej</Heading>
+        <Text size="small" color="muted">Software koupíte přímo, nebo si individuálně dohodnete splátkový prodej.</Text>
+      </article>
+      <article class="form-card">
+        <span class="form-card__icon"><Icon name="lucide:key-round" size="md" /></span>
+        <Heading as="h3" size="h3">Pronájem</Heading>
+        <Text size="small" color="muted">
+          Měsíční nájem činí 4 % z ceny SW (2 % nájemné + 2 % paušál za služby). Před instalací hradíte alespoň první tři nájmy.
+          U provozoven v nájmu eliminujete riziko nevyužitého systému po skončení nájmu.
+        </Text>
+      </article>
+    </div>
+
+    <div class="tables">
+      <div class="tbl">
+        <h3 class="tbl__title">Odkup pronajatého SW — sleva dle doby pronájmu</h3>
+        <table>
+          <tbody>
+            {odkup.map(([a, b]) => (<tr><td>{a}</td><td>{b}</td></tr>))}
+          </tbody>
+        </table>
+        <p class="tbl__note">Vždy poměrným způsobem dle trvání nájmu.</p>
+      </div>
+      <div class="tbl">
+        <h3 class="tbl__title">Multilicenční slevy — více instalací</h3>
+        <table>
+          <tbody>
+            {multilicence.map(([a, b]) => (<tr><td>{a}</td><td>{b}</td></tr>))}
+          </tbody>
+        </table>
+        <p class="tbl__note">Sleva z ceny programů při objednávce více instalací systému.</p>
+      </div>
+    </div>
+  </Section>
+
+  <!-- DEMOVERZE -->
+  <Section background="invert" space="lg">
+    <div class="demo">
+      <span class="demo__icon"><Icon name="lucide:gift" size="lg" /></span>
+      <Heading as="h2" size="h2" color="on-dark">Demoverze zdarma</Heading>
+      <Text size="lead" color="on-dark-muted" balance>
+        Připraveny jsou demoverze Registrační pokladny, Skladů a kalkulací (HRMTZ + HRKALKUL) i Recepce.
+        Zašleme je bezplatně na CD-ROM nebo elektronicky — spolu se stručným manuálem.
+      </Text>
+      <div class="demo__cta"><Button href="#poptavka">Požádat o demoverzi</Button></div>
+    </div>
+  </Section>
+
+  <LeadForm id="poptavka" variant="full" background="alt"
+            title="Nezávazná poptávka"
+            lead="Napište nám o svém provozu a o demoverzi, kterou máte zájem vyzkoušet. Připravíme cenovou nabídku na míru."
+            successUrl="/dekujeme" />
+
+  <Footer />
+</Base>
+
+<style>
+  .head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-7); }
+  .head--center { text-align: center; }
+  .head > * + * { margin-top: var(--space-3); }
+
+  /* Garance */
+  .garance { list-style: none; display: grid; gap: var(--space-5); grid-template-columns: repeat(3, 1fr); }
+  .garance li { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-1); padding: var(--space-5); background: var(--color-bg-alt); border-radius: var(--radius-md); border-left: 3px solid var(--color-primary); }
+  .garance strong { color: var(--color-text); font-size: var(--font-size-lead); }
+  .garance span:last-child { color: var(--color-text-muted); font-size: var(--font-size-small); }
+  .garance__icon { display: inline-flex; color: var(--color-primary); margin-bottom: var(--space-2); }
+  @media (max-width: 720px) { .garance { grid-template-columns: 1fr; } }
+
+  /* Pricing */
+  .pricing { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-6); max-width: 900px; margin-inline: auto; }
+  .price { position: relative; background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-7); box-shadow: var(--shadow-sm); display: flex; flex-direction: column; gap: var(--space-3); }
+  .price--featured { border-color: var(--color-primary); box-shadow: var(--shadow-md); }
+  .price__tag { font-weight: var(--font-weight-bold); font-size: var(--font-size-lead); color: var(--color-secondary); }
+  .price__badge { position: absolute; top: var(--space-5); right: var(--space-5); background: var(--color-secondary-terracotta); color: #fff; font-size: var(--font-size-caption); font-weight: var(--font-weight-semibold); padding: var(--space-1) var(--space-3); border-radius: var(--radius-full); }
+  .price__note { font-size: var(--font-size-small); color: var(--color-text-muted); line-height: var(--line-height-body); }
+
+  .rate { list-style: none; display: flex; flex-direction: column; gap: var(--space-2); margin-top: var(--space-2); }
+  .rate li { display: flex; justify-content: space-between; gap: var(--space-4); padding: var(--space-2) 0; border-bottom: 1px solid var(--color-border); }
+  .rate li span:last-child { font-weight: var(--font-weight-bold); color: var(--color-text); white-space: nowrap; }
+  .rate--extra { max-width: 900px; margin: var(--space-6) auto 0; }
+
+  .disclaimer { text-align: center; margin-top: var(--space-5); font-size: var(--font-size-small); color: var(--color-text-muted); }
+
+  /* Formy prodeje */
+  .forms { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-6); max-width: 900px; margin-inline: auto; }
+  .form-card { background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-6); }
+  .form-card > * + * { margin-top: var(--space-3); }
+  .form-card__icon { display: inline-flex; color: var(--color-text-accent); }
+
+  /* Tabulky */
+  .tables { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-6); max-width: 900px; margin: var(--space-7) auto 0; }
+  .tbl__title { font-size: var(--font-size-h3); font-weight: var(--font-weight-semibold); margin-bottom: var(--space-3); }
+  .tbl table { width: 100%; border-collapse: collapse; }
+  .tbl td { padding: var(--space-3) var(--space-4); border-bottom: 1px solid var(--color-border); }
+  .tbl tr td:last-child { text-align: right; font-weight: var(--font-weight-bold); color: var(--color-secondary); white-space: nowrap; }
+  .tbl tr:nth-child(odd) td { background: var(--color-bg-alt); }
+  .tbl__note { margin-top: var(--space-3); font-size: var(--font-size-small); color: var(--color-text-muted); }
+
+  /* Demoverze */
+  .demo { max-width: 720px; margin-inline: auto; text-align: center; }
+  .demo > * + * { margin-top: var(--space-4); }
+  .demo__icon { display: inline-flex; align-items: center; justify-content: center; width: 80px; height: 80px; border-radius: 50%; background: rgba(255,255,255,0.08); color: var(--color-secondary-gold); }
+  .demo__cta { margin-top: var(--space-6); display: flex; justify-content: center; }
+</style>

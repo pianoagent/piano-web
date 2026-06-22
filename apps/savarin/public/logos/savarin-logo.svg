@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 156 36" role="img" aria-label="Savarin">
+  <!-- Mark: pokladní účtenka -->
+  <rect x="0" y="4" width="28" height="28" rx="6" fill="#587E92"/>
+  <rect x="8" y="11" width="12" height="2.6" rx="1.3" fill="#fff"/>
+  <rect x="8" y="16.7" width="12" height="2.6" rx="1.3" fill="#fff"/>
+  <rect x="8" y="22.4" width="7" height="2.6" rx="1.3" fill="#fff"/>
+  <!-- Wordmark -->
+  <text x="37" y="26" font-family="Figtree, 'Segoe UI', Arial, sans-serif" font-size="23" font-weight="700" letter-spacing="-0.3" fill="#222F40">Savarin</text>
+  <circle cx="150" cy="24" r="3" fill="#EE1625"/>
+</svg>

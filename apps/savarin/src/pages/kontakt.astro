@@ -1,0 +1,77 @@
+---
+/**
+ * Savarin — Kontakt. Údaje z legacy stránky kontakt (ComInn s.r.o., Zlín).
+ * Sdílené komponenty @piano/ui.
+ */
+import Base from '../layouts/Base.astro';
+import Header from '@piano/ui/components/Header.astro';
+import Footer from '@piano/ui/components/Footer.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import { savarinNav, savarinCta } from '../config/nav';
+---
+
+<Base title="Kontakt — Savarin / ComInn s.r.o."
+      description="Kontakt na ComInn s.r.o., Zlín — dodavatele restauračního a hotelového systému Savarin. Telefon 577 925 145, e-mail obchod@cominn.cz.">
+  <Header brand="Savarin" logoSrc="/logos/savarin-logo.svg" homeHref="/" nav={savarinNav} cta={savarinCta} />
+
+  <Hero eyebrow="Kontakt" align="center" background="gradient"
+        lead="Rádi zodpovíme vaše dotazy, připravíme cenovou nabídku na míru i bezplatnou demoverzi.">
+    <Heading slot="title" as="h1" size="display" color="on-dark">Ozvěte se nám</Heading>
+  </Hero>
+
+  <Section background="default" space="lg">
+    <div class="contact">
+      <article class="contact__card">
+        <span class="contact__icon"><Icon name="lucide:map-pin" size="md" /></span>
+        <Heading as="h2" size="h3">Adresa</Heading>
+        <Text color="muted">
+          ComInn, s.r.o.<br />
+          Fügnerovo nábřeží 5476<br />
+          760 01 Zlín
+        </Text>
+        <Text size="small" color="muted">
+          IČO: 47906499 · DIČ: CZ47906499<br />
+          Zapsaná v OR u KS v Brně, oddíl C, vložka 9523.
+        </Text>
+      </article>
+
+      <article class="contact__card">
+        <span class="contact__icon"><Icon name="lucide:phone" size="md" /></span>
+        <Heading as="h2" size="h3">Telefon / fax</Heading>
+        <Text color="muted">
+          <a href="tel:+420577925145">(+420) 577 925 145</a><br />
+          <a href="tel:+420577925407">(+420) 577 925 407</a>
+        </Text>
+        <Text size="small" color="muted">Hotline 24/7 pro smluvní zákazníky.</Text>
+      </article>
+
+      <article class="contact__card">
+        <span class="contact__icon"><Icon name="lucide:mail" size="md" /></span>
+        <Heading as="h2" size="h3">E-mail</Heading>
+        <Text color="muted"><a href="mailto:obchod@cominn.cz">obchod@cominn.cz</a></Text>
+        <Text size="small" color="muted">GPS: 49°13'48.69"N, 17°40'46.72"E</Text>
+      </article>
+    </div>
+  </Section>
+
+  <LeadForm id="poptavka" variant="full" background="alt"
+            title="Napište nám"
+            lead="Pomocí formuláře nás můžete kontaktovat. Stručně popište svůj provoz a my se vám co nejdříve ozveme."
+            successUrl="/dekujeme" />
+
+  <Footer />
+</Base>
+
+<style>
+  .contact { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-6); max-width: 1000px; margin-inline: auto; }
+  .contact__card { background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-6); }
+  .contact__card > * + * { margin-top: var(--space-3); }
+  .contact__icon { display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: var(--radius-md); background: var(--color-bg-alt); color: var(--color-primary); }
+  .contact__card a { color: var(--color-text-accent); text-decoration: none; }
+  .contact__card a:hover { color: var(--color-secondary-terracotta); }
+</style>

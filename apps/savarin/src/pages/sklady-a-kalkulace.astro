@@ -1,0 +1,79 @@
+---
+/**
+ * Savarin — Sklady a kalkulace (HRMTZ + HRKALKUL).
+ * Obsah z legacy stránky sklady-a-kalkulace (+ popis-programu).
+ * Sdílené komponenty @piano/ui.
+ */
+import Base from '../layouts/Base.astro';
+import Header from '@piano/ui/components/Header.astro';
+import Footer from '@piano/ui/components/Footer.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import { savarinNav, savarinCta } from '../config/nav';
+
+const funkce = [
+  { icon: 'lucide:warehouse', title: 'Skladová evidence', text: 'Pohyby zboží na hlavním skladu i na odbytových a výrobních střediscích (kuchyně, výčep, vinárna). Příjmy, převody i spotřeba zápisem dokladu.' },
+  { icon: 'lucide:tags', title: 'Cenové skupiny', text: 'Skladové karty v průměrované nákupní ceně, u odbytových středisek i v prodejních. Zboží může mít až 35 prodejních cen.' },
+  { icon: 'lucide:clipboard-check', title: 'Inventury', text: 'Položkové inventury a vyčíslení celkových rozdílů (položkově i korunově), včetně předávání mezi směnami na střediscích.' },
+  { icon: 'lucide:book-open', title: 'Deník tržeb', text: 'Evidence přijatých tržeb na střediscích a tisk přehledů. S připojenou Pokladnou se tržby doplňují automaticky při uzávěrce.' },
+  { icon: 'lucide:building', title: 'Deníky středisek', text: 'Korunová bilance střediska a uzávěrky — sumarizace pohybů na skladu a prodeje, dopočet konečného účetního stavu, manko/přebytek.' },
+  { icon: 'lucide:chef-hat', title: 'Kalkulace jídel', text: 'Státní normy teplé kuchyně jsou součástí programu. Tvorba vlastních receptur, skládání hotových jídel, tisk ceníků a hromadné přepočty cen.' },
+];
+---
+
+<Base title="Sklady a kalkulace Savarin — HRMTZ a HRKALKUL"
+      description="Modul HRMTZ a HRKALKUL: skladové hospodářství, evidence tržeb, inventury, deníky středisek, kalkulace jídel a komunikace s pokladnami. Jádro restauračního systému Savarin.">
+  <Header brand="Savarin" logoSrc="/logos/savarin-logo.svg" homeHref="/" nav={savarinNav} cta={savarinCta} />
+
+  <Hero eyebrow="Modul · Sklady a kalkulace" background="gradient"
+        lead="HRMTZ a HRKALKUL řeší evidenci skladového hospodářství, evidenci tržeb na střediscích, práci s recepturami jídel a komunikaci s pokladnami. Je to jádro celého systému.">
+    <Heading slot="title" as="h1" size="display" color="on-dark">Sklady a kalkulace — <span class="accent">jádro systému</span></Heading>
+    <Fragment slot="actions">
+      <Button href="#poptavka">Nezávazná poptávka</Button>
+      <Button href="#funkce" variant="secondary" onDark>Co modul umí</Button>
+    </Fragment>
+  </Hero>
+
+  <USPGrid id="funkce" eyebrow="HRMTZ + HRKALKUL" title="Od skladové karty po kalkulaci jídla"
+           lead="Kompletní skladová evidence až 99 středisek, příprava dat pro pokladní systém a odpis prodaného sortimentu z pokladen."
+           items={funkce} minItemWidth="300px" background="default" space="lg" />
+
+  <!-- ÚČETNÍ VAZBY -->
+  <Section background="alt" space="lg">
+    <div class="band">
+      <div class="band__icon"><Icon name="lucide:file-spreadsheet" size="lg" /></div>
+      <div class="band__text">
+        <Heading as="h2" size="h2">Podklady pro <span class="accent">účetnictví</span></Heading>
+        <Text size="lead" color="muted" balance>
+          Systém poskytuje informace pro zaúčtování v systémech podvojného účetnictví — pro externí systémy generuje
+          účetní věty ve formě textového nebo databázového souboru. K usnadnění práce s hotovostí je připravena
+          pokladna, která zakládá, eviduje a tiskne příjmové i výdajové doklady a hlídá zůstatek.
+        </Text>
+      </div>
+    </div>
+  </Section>
+
+  <LeadForm id="poptavka" variant="full" background="default"
+            title="Chcete sklady a kalkulace na míru?"
+            lead="Napište nám o počtu středisek a způsobu provozu — připravíme konfiguraci a cenovou nabídku. Rádi zašleme i demoverzi."
+            successUrl="/dekujeme" />
+
+  <Footer />
+</Base>
+
+<style>
+  .band { display: grid; grid-template-columns: auto 1fr; gap: var(--space-6); align-items: center; max-width: 920px; margin-inline: auto; }
+  .band__icon {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 80px; height: 80px; border-radius: var(--radius-lg);
+    background: var(--color-primary); color: #fff; flex-shrink: 0;
+  }
+  .band__text > * + * { margin-top: var(--space-3); }
+  @media (max-width: 640px) { .band { grid-template-columns: 1fr; } }
+</style>
