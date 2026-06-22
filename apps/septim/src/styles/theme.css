@@ -116,6 +116,9 @@
   --btn-radius: var(--radius-full);
   --btn-clip:   none;
 
+  /* ----- Formulářová pole — také pilulky ----- */
+  --field-radius: var(--radius-full);
+
   /* ----- Stíny — měkké, indigo-tónované ----- */
   --shadow-sm: 0 2px 8px rgba(6, 3, 141, 0.08);
   --shadow-md: 0 8px 24px rgba(6, 3, 141, 0.10);
