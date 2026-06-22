@@ -1,71 +1,119 @@
 /* TÉMA — Septim
    =========================================================
-   ⚠️ PLACEHOLDER: barvy zatím odvozené od Piano, primary změněn na ukázku,
-   že téma funguje. Nahraď reálnými Septim tokeny (barvy, případně font).
-   Komponenty se nepřepisují — mění se jen hodnoty zde.
+   Reálné brandové tokeny Septim (duotón indigo + cyan, písmo Poppins).
+   Zdroj: septim-tokens.md. Komponenty se NEMĚNÍ — pouze hodnoty zde.
+   Base struktura (typo škála, spacing, chamfer) zůstává z @piano/ui;
+   Septim přebarvuje + zaobluje (radius) a ruší signature chamfer (depth 0).
 */
 @import "@piano/ui/styles/base.css";
 
+/* =========================================================
+   FONT — Poppins (jediná rodina; 400 / 600 / 700)
+   latin + latin-ext (diakritika CZ/SK)
+   ========================================================= */
 @font-face {
-  font-family: "Borna";
-  src: url("/fonts/borna-regular-webfont.woff2") format("woff2");
-  font-weight: 400; font-style: normal; font-display: swap;
+  font-family: "Poppins"; font-style: normal; font-weight: 400; font-display: swap;
+  src: url("/fonts/poppins-400.woff2") format("woff2");
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
 }
 @font-face {
-  font-family: "Borna";
-  src: url("/fonts/borna-semibold-webfont.woff2") format("woff2");
-  font-weight: 600; font-style: normal; font-display: swap;
+  font-family: "Poppins"; font-style: normal; font-weight: 400; font-display: swap;
+  src: url("/fonts/poppins-ext-400.woff2") format("woff2");
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
 }
 @font-face {
-  font-family: "PP Eiko";
-  src: url("/fonts/PPEiko-Regular.woff2") format("woff2");
-  font-weight: 400; font-style: normal; font-display: swap;
+  font-family: "Poppins"; font-style: normal; font-weight: 600; font-display: swap;
+  src: url("/fonts/poppins-600.woff2") format("woff2");
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: "Poppins"; font-style: normal; font-weight: 600; font-display: swap;
+  src: url("/fonts/poppins-ext-600.woff2") format("woff2");
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+@font-face {
+  font-family: "Poppins"; font-style: normal; font-weight: 700; font-display: swap;
+  src: url("/fonts/poppins-700.woff2") format("woff2");
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: "Poppins"; font-style: normal; font-weight: 700; font-display: swap;
+  src: url("/fonts/poppins-ext-700.woff2") format("woff2");
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
 }
 
 :root {
-  --font-sans:  "Borna", "Host Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-serif: "PP Eiko", Georgia, "Times New Roman", serif;
+  /* ----- Písmo ----- */
+  --font-sans:  "Poppins", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-serif: "Poppins", "Segoe UI", system-ui, sans-serif; /* akcent <em> ve stejné rodině */
 
-  /* Primary — Septim placeholder (azure místo karmínu, ať je vidět odlišení) */
-  --color-primary:          #0F6FB5;
-  --color-primary-hover:    #0B5A93;
-  --color-primary-active:   #08456F;
-  --color-primary-bg:       #0B5A93;
-  --color-primary-bg-hover: #08456F;
+  /* Nadpisy bold (Septim: 700); Medium cut není dodán → 600 */
+  --font-weight-medium:   700;
+  --font-weight-semibold: 600;
 
-  --color-secondary:            #AB5630;
-  --color-secondary-terracotta: #D67017;
-  --color-secondary-gold:       #ECAF04;
-  --color-secondary-azure:      #14A0DC;
+  /* ----- Primary — cyan (signature accent) ----- */
+  --color-primary:          #00ADEE;
+  --color-primary-hover:    #008FCC;
+  --color-primary-active:   #0073A6;
+  --color-primary-bg:       #06038D;  /* tmavé indigo pozadí sekcí */
+  --color-primary-bg-hover: #040259;
 
+  /* ----- Secondary — indigo (deep brand) ----- */
+  --color-secondary:            #06038D;
+  --color-secondary-terracotta: #0073A6;
+  --color-secondary-gold:       #E8910C;
+  --color-secondary-azure:      #00ADEE;
+
+  /* ----- Neutral (cool, faintly-blue gray) ----- */
   --color-neutral-0:   #FFFFFF;
-  --color-neutral-50:  #F4F6F8;
-  --color-neutral-100: #EAF2F8;
-  --color-neutral-200: #E1E5E9;
-  --color-neutral-300: #CBD2D8;
-  --color-neutral-400: #AEB7C0;
-  --color-neutral-500: #5F6B75;
-  --color-neutral-900: #1C2630;
+  --color-neutral-50:  #F6F8FB;
+  --color-neutral-100: #EDF1F6;
+  --color-neutral-200: #DDE3EC;
+  --color-neutral-300: #C4CCD9;
+  --color-neutral-400: #9AA4B5;
+  --color-neutral-500: #6B7689;
+  --color-neutral-900: #11151B;
 
-  --color-success:       #275F2A;
-  --color-success-hover: #16401A;
-  --color-warning:       #ECAF04;
-  --color-info:          #14A0DC;
-  --color-error:         #C0392B;
-  --color-error-hover:   #97291D;
+  /* ----- Status ----- */
+  --color-success:       #1F9D6B;
+  --color-success-hover: #16774F;
+  --color-warning:       #E8910C;
+  --color-info:          #00ADEE;
+  --color-error:         #DC3B47;
+  --color-error-hover:   #B82E39;
 
-  --color-text:               #1C2630;
-  --color-text-muted:         #5F6B75;
-  --color-text-accent:        #0F6FB5;
+  /* ----- Text ----- */
+  --color-text:               #20262F; /* tmavá chladná (nadpisy i body) */
+  --color-text-muted:         #6B7689;
+  --color-text-accent:        #008FCC; /* cyan-600 — eyebrow / odkazy */
   --color-text-on-dark:       #FFFFFF;
   --color-text-on-dark-muted: rgba(255, 255, 255, 0.72);
 
+  /* ----- Povrchy ----- */
   --color-bg:        #FFFFFF;
-  --color-bg-alt:    #F4F6F8;
-  --color-bg-invert: #0B5A93;
+  --color-bg-alt:    #F6F8FB;
+  --color-bg-invert: #06038D;
   --color-bg-hover:  color-mix(in srgb, var(--color-neutral-900) 4%, #FFFFFF);
 
-  --color-border:         #E1E5E9;
-  --color-border-strong:  #CBD2D8;
+  /* ----- Okraje ----- */
+  --color-border:         #DDE3EC;
+  --color-border-strong:  #C4CCD9;
   --color-border-on-dark: rgba(255, 255, 255, 0.24);
+
+  /* ----- Radius — Septim zaobluje štědře ----- */
+  --radius-sm:   8px;
+  --radius-md:   12px;
+  --radius-lg:   16px;
+  --radius-full: 999px;
+
+  /* ----- Chamfer vypnut (Septim nemá seříznutý roh) ----- */
+  --chamfer-depth: 0px;
+
+  /* ----- Stíny — měkké, indigo-tónované ----- */
+  --shadow-sm: 0 2px 8px rgba(6, 3, 141, 0.08);
+  --shadow-md: 0 8px 24px rgba(6, 3, 141, 0.10);
+  --shadow-lg: 0 16px 48px rgba(6, 3, 141, 0.14);
+
+  /* ----- Focus ring — cyan ----- */
+  --shadow-focus: 0 0 0 3px rgba(0, 173, 238, 0.40);
 }
