@@ -1,19 +1,29 @@
-# Grason
+# ABX HARSYS
 
-> Grason je odborník na personál pro gastronomii. Ekosystém pro řízení lidí v provozu: brigádníci na poslední chvíli, plánování směn vlastního týmu (GrasonPlan), digitální píchačky, docházka a podklady pro mzdy — vše na jednom místě.
+> Harsys je spolehlivý pokladní systém pro restaurace od ABX software s.r.o. Snadná a rychlá obsluha, manažerské nástroje pro plnou kontrolu nad tržbou, skladem i ceníkem, data uložená mimo cloud (u vás) a nejlepší podpora na trhu. Více než 25 let na trhu, přes 11 500 licencí a 4 100+ zákazníků.
 
-## Pro koho
+## Klíčové stránky
 
-- [Pro firmy](https://grason.cz/pro-firmy): obsazení směn ověřenými brigádníky, plánování směn (GrasonPlan), digitální píchačky přes WiFi/GPS, reporty pro mzdy a ceník bez poplatků ze mzdy.
-- [Pro brigádníky](https://grason.cz/pro-brigadniky): nabídky směn v okolí, výplata po směně a vyřízené papírování.
-- [O nás](https://grason.cz/o-nas): kdo za Grasonem stojí a jak vznikl.
+- [Srovnání variant](https://abxharsys.cz/srovnani-variant): rozdíly mezi variantami Lite, Gold, Gold+NET a Premium.
+- [Funkce programu](https://abxharsys.cz/funkce): co Harsys umí — adresář, uzávěrky, skladové hospodářství, Happy Hours, vzdálený přístup, denní nabídka, bonus/kredit a provizní systém.
+- [Ceník](https://abxharsys.cz/cenik): doživotní licence i měsíční pronájem, financování a splátky.
+- [Reference](https://abxharsys.cz/reference): zkušenosti restaurací a provozoven po celé ČR.
+- [Kontakt](https://abxharsys.cz/kontakt): kontaktní údaje a poptávka.
+
+## Varianty programu
+
+- Harsys Lite — 5 900 Kč doživotní licence / 390 Kč měsíčně. Pro malý provoz se základními funkcemi.
+- Harsys Gold — 10 900 Kč / 690 Kč. Pro vedení skladů a podrobnější přehled.
+- Harsys Gold+NET — 16 900 Kč / 890 Kč. Profi varianta s přístupem přes internet.
+- Harsys Premium — 22 900 Kč / 1 290 Kč. Komplexní řešení pro větší provozy s maximem funkcí.
 
 ## O společnosti
 
-Grason je součástí rodiny Piano (Piano Solutions). Databáze 3 357+ ověřených brigádníků, pokrytí 82+ měst v ČR, statisíce naplánovaných směn. Důvěřují mu restaurace, hotely i sklady po celé ČR.
+ABX software s.r.o. je součástí rodiny Piano (Piano Solutions). Vyvíjí pokladní systém Harsys i další software (pro obchody, hotely, půjčovny, docházku). Sídlo: Závodu míru 739/9a, 360 17 Karlovy Vary.
 
 ## Kontakt a dokumentace
 
-- Web: https://grason.cz
-- Sitemap: https://grason.cz/sitemap-index.xml
-- E-mail: info@grason.cz, telefon +420 739 877 799
+- Web: https://abxharsys.cz
+- Sitemap: https://abxharsys.cz/sitemap-index.xml
+- Obchod: office@ab-x.cz, +420 774 719 494
+- Podpora: podpora@ab-x.cz, +420 353 034 111
