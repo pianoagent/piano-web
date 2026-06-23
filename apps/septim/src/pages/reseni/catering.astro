@@ -1,0 +1,33 @@
+---
+import SegmentPage from '../../components/SegmentPage.astro';
+const benefits = [
+  { icon: 'lucide:battery-charging', title: 'Stabilní výkon v pohybu', text: 'Spolehlivý provoz i mimo provozovnu — na akci, v hale i pod stanem.' },
+  { icon: 'lucide:gauge', title: 'Rychlost a přehled', text: 'Svižné markování a okamžitý přehled o tržbách napříč více stanovišti.' },
+  { icon: 'lucide:smartphone', title: 'Mobilita bez kompromisů', text: 'Mobilní číšník Septim.Go — objednávky a platby kartou přímo u hosta.' },
+  { icon: 'lucide:boxes', title: 'Kontrola surovin a nákladů', text: 'Sklady, spotřeba a kalkulace i u eventového provozu.' },
+];
+const modules = [
+  { title: 'Mobilní číšník Septim.Go', href: '/produkty/septim-go' },
+  { title: 'Pokladna', href: '/funkce/pokladna' },
+  { title: 'Reporty a přehledy', href: '/funkce/reporty-prehledy' },
+  { title: 'Skladové hospodářství', href: '/funkce/skladove-hospodarstvi' },
+];
+const faqs = [
+  { q: 'Funguje Septim i mimo provozovnu?', a: 'Ano. Pro catering a eventy je klíčová mobilita a spolehlivost — mobilní číšník Septim.Go přijímá objednávky i platby kartou přímo u hosta, kdekoliv.' },
+  { q: 'Udržím přehled na více akcích zároveň?', a: 'Ano. Tržby, sortiment i sklady vidíte za jednotlivá stanoviště i souhrnně — i vzdáleně v aplikaci MySeptim.' },
+  { q: 'Jak je to se spolehlivostí?', a: 'Septim vyvíjíme přes 30 let s důrazem na stabilitu a výkon i v náročných podmínkách.' },
+];
+---
+<SegmentPage
+  title="Pokladní systém pro catering a eventy | Septim"
+  description="Pokladní systém Septim pro catering a eventové služby: stabilní výkon v pohybu, mobilní číšník s platbou kartou, přehled o tržbách i surovinách na více stanovištích."
+  eyebrow="Řešení pro catering"
+  titleHtml="Pokladní systém pro <em>catering</em> a eventy"
+  lead="Catering je náročný — vyžaduje mobilitu, rychlost a maximální spolehlivost. Septim to zvládá: platby kartou přímo u hosta a přehled o tržbách i surovinách napříč akcemi."
+  logoLabel="Provozy, které používají Septim"
+  benefitsTitle="Proč Septim pro catering"
+  benefits={benefits}
+  edition={{ name: 'Septim.4', href: '/produkty/septim-4', text: 'Plná edice se sklady a reporty, doplněná mobilním číšníkem Septim.Go pro provoz v pohybu.' }}
+  modules={modules}
+  faqs={faqs}
+/>

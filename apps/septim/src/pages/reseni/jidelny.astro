@@ -1,0 +1,33 @@
+---
+import SegmentPage from '../../components/SegmentPage.astro';
+const benefits = [
+  { icon: 'lucide:clipboard-list', title: 'Objednávání jídel', text: 'Strávníci si objednají online i přes terminál v jídelně — i z domova přes WebCare.' },
+  { icon: 'lucide:message-square', title: 'Anketa pro strávníky', text: 'Zpětná vazba k jídlům přímo v systému — víte, co chutná.' },
+  { icon: 'lucide:boxes', title: 'Sklady a inventury', text: 'Promyšlené skladové hospodářství a podchycené inventury pro náročný provoz.' },
+  { icon: 'lucide:bar-chart-3', title: 'Manažer a statistiky', text: 'Podrobné přehledy provozu pro vedení i zřizovatele.' },
+];
+const modules = [
+  { title: 'Pokladna', href: '/funkce/pokladna' },
+  { title: 'Manažer', href: '/funkce/manazer' },
+  { title: 'Skladové hospodářství', href: '/funkce/skladove-hospodarstvi' },
+  { title: 'Reporty a přehledy', href: '/funkce/reporty-prehledy' },
+];
+const faqs = [
+  { q: 'Je Septim připravený přímo pro jídelny?', a: 'Ano. Septim se jako jeden z prvních v ČR přizpůsobil požadavkům závodních jídelen a téměř 20 let ladí řešení na míru tomuto odvětví — používají ho špičky v oboru.' },
+  { q: 'Jak funguje objednávání jídel?', a: 'Strávníci objednávají online (i z kanceláře nebo z domova) přes WebCare nebo přes terminál přímo v jídelně. Modul Anketa pak sbírá zpětnou vazbu.' },
+  { q: 'Zvládne síť jídelen?', a: 'Ano. Septim škáluje od jedné jídelny po řetězce se sdílenými recepturami, sklady a centrálním řízením.' },
+];
+---
+<SegmentPage
+  title="Pokladní a provozní systém pro jídelny a závodní stravování | Septim"
+  description="Septim.Jídelna řeší závodní stravování a kantýny: objednávání jídel online i přes terminál, anketa pro strávníky, sklady a manažerské přehledy. Používají ho špičky v ČR."
+  eyebrow="Řešení pro jídelny"
+  titleHtml="Provozní systém pro <em>jídelny</em> a závodní stravování"
+  lead="Systém Septim řeší závodní stravování a kantýny z provozního pohledu — objednávky, výdej, anketa i sklady. Software pro jídelny, který používají špičky v ČR."
+  logoLabel="Jídelny, které používají Septim"
+  benefitsTitle="Proč Septim pro jídelnu"
+  benefits={benefits}
+  edition={{ name: 'Septim.Jídelna', href: '/produkty/septim-jidelna', text: 'Speciální edice pro kantýny a závodní stravování — objednávání jídel, anketa a sklady na míru.' }}
+  modules={modules}
+  faqs={faqs}
+/>

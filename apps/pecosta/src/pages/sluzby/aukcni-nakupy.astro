@@ -1,0 +1,94 @@
+---
+/** Pecosta — Služba: Aukční nákupy surovin. Obsah: pecosta-context.md + #page-pecosta. */
+import Base from '../../layouts/Base.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import StatsBand from '../../components/StatsBand.astro';
+import LogoWall from '../../components/LogoWall.astro';
+import Faq from '../../components/Faq.astro';
+
+const features = [
+  'E-aukce od ověřených dodavatelů', 'Ceny srovnané u stovek dodavatelů najednou',
+  'Všechny objednávky na jednom místě', 'Nemusíte měnit stávající dodavatele',
+  'Hromadné ceny díky sdružené poptávce', 'Faktura a doklady z jednoho portálu',
+];
+const benefits = [
+  { icon: 'lucide:badge-percent', title: 'Úspora až 16 %', text: 'Průměrná úspora na nákladech na suroviny — každý měsíc, bez ztráty kvality.' },
+  { icon: 'lucide:gavel', title: 'Dodavatelé soutěží', text: 'V e-aukci se o vaši objednávku uchází více dodavatelů. Vy vybíráte nejlepší cenu.' },
+  { icon: 'lucide:layers', title: 'Vše na jednom místě', text: 'Objednávky, ceny i doklady z jednoho portálu — přehled bez papírování.' },
+  { icon: 'lucide:shield-check', title: 'Ověření partneři', text: 'Nakupujete jen od prověřených dodavatelů. Kvalita zůstává, cena jde dolů.' },
+];
+const faqs = [
+  { q: 'Jak funguje aukční nákup?', a: 'Pecosta sdruží poptávky stovek provozů a vyjedná hromadné ceny — dostanete ceny, na které byste jako jednotlivec nedosáhli. Dodavatelé soutěží, vy vyděláváte.' },
+  { q: 'Musím měnit dodavatele?', a: 'Ne nutně. Nákupy řešíte z jednoho místa a Pecosta vám najde nejlepší ceny od ověřených dodavatelů.' },
+  { q: 'Kolik reálně ušetřím?', a: 'V průměru až 16 % na surovinách. Konkrétní číslo pro váš provoz spočítáme v bezplatné analýze.' },
+  { q: 'Hodí se to i pro menší provoz?', a: 'Ano. Čím víc nakupujete, tím víc ušetříte, ale lepší ceny pomohou i menší kavárně nebo bistru.' },
+];
+---
+<Base title="Aukční nákupy surovin – ušetřete až 16 % | Pecosta"
+      description="Aukční nákupy surovin Pecosta: e-aukce od ověřených dodavatelů, ceny srovnané u stovek dodavatelů na jednom místě a průměrná úspora až 16 % na nákladech.">
+  <SiteHeader />
+  <main>
+    <Hero eyebrow="Služba Pecosta" background="alt"
+          lead="Pecosta sdruží poptávky stovek provozů a nakoupí suroviny formou e-aukce. Dodavatelé soutěží o vaši objednávku — vy získáváte ceny, na které byste sami nedosáhli.">
+      <Heading slot="title" as="h1" size="display"><em>Aukční nákupy</em> surovin</Heading>
+      <Fragment slot="actions">
+        <Button href="#poptavka">Chci analýzu zdarma</Button>
+        <Button href="/jak-to-funguje" variant="secondary">Jak to funguje</Button>
+      </Fragment>
+    </Hero>
+
+    <Section background="default" space="lg">
+      <div class="prose">
+        <Heading as="h2" size="h2">Nakupujte chytřeji, ne víc</Heading>
+        <Text size="lead" color="muted">
+          Místo individuálního smlouvání nakupujete přes platformu, kde se o každou objednávku
+          uchází více ověřených dodavatelů. Ročně přes Pecostu proteče nákupní objem 2,5 mld. Kč —
+          tu vyjednávací sílu dostáváte k dispozici i vy.
+        </Text>
+        <Text color="muted">
+          Nemusíte měnit dodavatele ani zvyklosti provozu. Objednávky, ceny i doklady máte
+          na jednom portálu a kvalita surovin zůstává stejná — mění se jen cena.
+        </Text>
+      </div>
+    </Section>
+
+    <Section background="alt" space="lg">
+      <div class="head head--center">
+        <Text size="label" color="accent" align="center">Co služba zahrnuje</Text>
+        <Heading as="h2" size="h2" align="center">Aukční nákup v kostce</Heading>
+      </div>
+      <ul class="checklist">
+        {features.map((f) => (<li><Icon name="lucide:check" size="sm" class="checklist__icon" />{f}</li>))}
+      </ul>
+    </Section>
+
+    <USPGrid eyebrow="Výhody" title="Proč aukční nákupy Pecosta" items={benefits} background="default" space="lg" minItemWidth="240px" />
+    <LogoWall label="Spoří s námi přední restaurace, hotely i instituce" background="alt" />
+    <StatsBand background="default" />
+    <Faq items={faqs} title="Časté otázky k aukčním nákupům" background="alt" />
+    <LeadForm id="poptavka" variant="full" background="default"
+              title="Zjistěte, kolik ušetříte"
+              lead="Připravíme cenové porovnání a kalkulaci úspor zdarma a bez závazků."
+              submitLabel="Chci analýzu zdarma" />
+  </main>
+  <SiteFooter />
+</Base>
+
+<style>
+  .prose { max-width: 760px; }
+  .prose > * + * { margin-top: var(--space-4); }
+  .head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-7); text-align: center; }
+  .head > * + * { margin-top: var(--space-3); }
+  .checklist { list-style: none; display: grid; gap: var(--space-3); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); max-width: 960px; margin-inline: auto; }
+  .checklist li { display: flex; align-items: flex-start; gap: var(--space-2); font-size: var(--font-size-small); }
+  .checklist__icon { color: var(--color-primary); flex-shrink: 0; margin-top: 2px; }
+</style>

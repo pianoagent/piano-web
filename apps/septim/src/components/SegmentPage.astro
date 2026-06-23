@@ -1,0 +1,90 @@
+---
+/**
+ * SegmentPage — Septim app šablona pro stránky Řešení (/reseni/*).
+ * Pohled „pro koho / bolest / výsledek" + doporučená edice + funkce. Data přes props.
+ */
+import Base from '../layouts/Base.astro';
+import SiteHeader from './SiteHeader.astro';
+import SiteFooter from './SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Card from '@piano/ui/components/Card.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import StatsBand from './StatsBand.astro';
+import LogoWall from './LogoWall.astro';
+import Faq from './Faq.astro';
+
+interface Item { icon?: string; title: string; text?: string; }
+interface Props {
+  title: string;
+  description: string;
+  eyebrow: string;
+  titleHtml: string;          // nadpis s <em> akcentem
+  lead: string;
+  logoLabel: string;
+  benefitsTitle: string;
+  benefits: Item[];
+  edition: { name: string; href: string; text: string };
+  modules: { title: string; href: string }[];
+  faqs: { q: string; a: string }[];
+}
+const { title, description, eyebrow, titleHtml, lead, logoLabel, benefitsTitle, benefits, edition, modules, faqs } = Astro.props;
+---
+<Base title={title} description={description}>
+  <SiteHeader />
+  <main>
+    <Hero eyebrow={eyebrow} background="alt" lead={lead}>
+      <Heading slot="title" as="h1" size="display"><Fragment set:html={titleHtml} /></Heading>
+      <Fragment slot="actions">
+        <Button href="#poptavka">Chci Septim</Button>
+        <Button href={edition.href} variant="secondary">{edition.name} detailně</Button>
+      </Fragment>
+    </Hero>
+
+    <LogoWall label={logoLabel} background="default" />
+
+    <USPGrid eyebrow="Proč Septim" title={benefitsTitle} items={benefits} background="alt" space="lg" minItemWidth="280px" />
+
+    <Section background="default" space="lg">
+      <div class="edition">
+        <div>
+          <Text size="label" color="accent">Doporučená edice</Text>
+          <Heading as="h2" size="h2">{edition.name}</Heading>
+          <Text color="muted" class="edition__text">{edition.text}</Text>
+        </div>
+        <Button href={edition.href}>Prohlédnout {edition.name}</Button>
+      </div>
+    </Section>
+
+    <Section background="alt" space="lg">
+      <div class="head head--center">
+        <Text size="label" color="accent" align="center">Funkce řešení</Text>
+        <Heading as="h2" size="h2" align="center">Co může řešení obsahovat</Heading>
+      </div>
+      <div class="cards">
+        {modules.map((m) => (
+          <Card href={m.href} variant="bordered" padding="sm"><Text weight="semibold">{m.title}</Text></Card>
+        ))}
+      </div>
+    </Section>
+
+    <StatsBand />
+    <Faq items={faqs} title="Často kladené otázky" background="default" />
+    <LeadForm id="poptavka" variant="full" background="alt"
+              title="Pojďme to probrat"
+              lead="Nechte nám kontakt — naši konzultanti s vámi proberou specifika vašeho provozu." />
+  </main>
+  <SiteFooter />
+</Base>
+
+<style>
+  .edition { max-width: 860px; margin-inline: auto; display: flex; align-items: center; justify-content: space-between; gap: var(--space-6); flex-wrap: wrap; background: var(--color-bg); border: 1px solid var(--color-border); border-left: 4px solid var(--color-primary); border-radius: var(--radius-md); box-shadow: var(--shadow-sm); padding: var(--space-6) var(--space-7); }
+  .edition__text { margin-top: var(--space-2); max-width: 520px; }
+  .head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-7); text-align: center; }
+  .head > * + * { margin-top: var(--space-3); }
+  .cards { display: grid; gap: var(--space-3); grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); max-width: 960px; margin-inline: auto; }
+</style>

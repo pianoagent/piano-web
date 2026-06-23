@@ -1,0 +1,34 @@
+---
+import SegmentPage from '../../components/SegmentPage.astro';
+const benefits = [
+  { icon: 'lucide:plug', title: 'Propojení s PMS Protel', text: 'Septim efektivně spolupracuje s hotelovým systémem Protel — jeden ekosystém.' },
+  { icon: 'lucide:receipt', title: 'Vše na účet pokoje', text: 'Útrata z restaurace, baru i pokojové služby se automaticky účtuje hostovi na pokoj.' },
+  { icon: 'lucide:bell-ring', title: 'Room service', text: 'Host objedná z pokoje, kuchyně to vidí automaticky — žádné přepisování.' },
+  { icon: 'lucide:line-chart', title: 'Přehled o provozu', text: 'Tržby a spotřeby napříč středisky hotelu i vzdáleně v mobilu.' },
+];
+const modules = [
+  { title: 'Pokladna', href: '/funkce/pokladna' },
+  { title: 'Manažer', href: '/funkce/manazer' },
+  { title: 'Skladové hospodářství', href: '/funkce/skladove-hospodarstvi' },
+  { title: 'Reporty a přehledy', href: '/funkce/reporty-prehledy' },
+  { title: 'Věrnostní systém', href: '/funkce/vernostni-system' },
+];
+const faqs = [
+  { q: 'Jak se Septim propojí s hotelovým systémem?', a: 'Septim.Hotel se jednoduše integruje na hotelový PMS Protel. Útrata hosta z restaurace, baru i pokojové služby se automaticky účtuje na jeho pokoj.' },
+  { q: 'Pro jaké hotely se hodí?', a: 'Od jednotlivých hotelů po sítě. Septim používají české hotelové špičky a díky modulům škáluje dle velikosti provozu.' },
+  { q: 'Pokryje celý hotel?', a: 'Ano — restauraci, bar, pokojovou službu i konference a bankety. Vše řídíte z jednoho místa.' },
+];
+---
+<SegmentPage
+  title="Pokladní a provozní systém pro hotely | Septim"
+  description="Septim přináší efektivitu do hotelového provozu: propojení s PMS Protel, útrata hosta na účet pokoje, room service a přehledy napříč středisky. Řízení hotelu z jednoho místa."
+  eyebrow="Řešení pro hotely"
+  titleHtml="Provozní systém pro <em>hotely</em>"
+  lead="Septim přináší efektivitu do hotelové restaurace, baru i pokojové služby. Propojený s hotelovým systémem Protel účtuje veškerou útratu hosta na jeho pokoj."
+  logoLabel="Hotely, které používají Protel a Septim"
+  benefitsTitle="Proč Septim pro hotel"
+  benefits={benefits}
+  edition={{ name: 'Septim.Hotel', href: '/produkty/septim-hotel', text: 'Hotelový POS pro restauraci, bar, pokoje i konference — s integrací na PMS Protel.' }}
+  modules={modules}
+  faqs={faqs}
+/>

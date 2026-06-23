@@ -1,0 +1,34 @@
+---
+import SegmentPage from '../../components/SegmentPage.astro';
+const benefits = [
+  { icon: 'lucide:zap', title: 'Rychlý provoz', text: 'Jednoduchá pokladna pro svižnou obsluhu v baru i u výdeje.' },
+  { icon: 'lucide:cloud', title: 'Cloud bez serveru', text: 'Septim.Air rozjedete hned — bez serveru a bez jednorázových nákladů na SW i HW.' },
+  { icon: 'lucide:wallet', title: 'Přehled o nákladech', text: 'I malý podnik potřebuje hlídat sklady, marže a ziskovost. Septim to umí.' },
+  { icon: 'lucide:smartphone', title: 'Mobilní číšník zdarma', text: 'Objednávky a platby u stolu — v ceně Air, platíte jen pronájem terminálu.' },
+];
+const modules = [
+  { title: 'Pokladna', href: '/funkce/pokladna' },
+  { title: 'Reporty a přehledy', href: '/funkce/reporty-prehledy' },
+  { title: 'Skladové hospodářství', href: '/funkce/skladove-hospodarstvi' },
+  { title: 'Věrnostní systém', href: '/funkce/vernostni-system' },
+  { title: 'Mobilní číšník Septim.Go', href: '/produkty/septim-go' },
+];
+const faqs = [
+  { q: 'Vyplatí se Septim i pro malý podnik?', a: 'Ano. I bistra, kavárny a bary dříve či později řeší sklady, náklady a ziskovost. Septim.Air dává přehled bez velké investice — od 1 990 Kč měsíčně.' },
+  { q: 'Jak rychle se dá spustit?', a: 'Septim.Air je cloudové řešení — rychlá instalace bez serveru. Základní instalace a 3 hodiny online školení jsou zdarma.' },
+  { q: 'Co když porosteme?', a: 'Přejdete na plnou edici Septim bez nutnosti měnit systém — data i návyky personálu zůstanou.' },
+];
+---
+<SegmentPage
+  title="Pokladní systém pro kavárny, bistra a bary | Septim"
+  description="Septim.Air je cloudová pokladna pro kavárny, bistra a bary: rychlý provoz, přehled o skladech a nákladech, mobilní číšník zdarma. Bez serveru, od 1 990 Kč/měsíc."
+  eyebrow="Řešení pro kavárny, bistra a bary"
+  titleHtml="Pokladní systém pro <em>kavárny, bistra a bary</em>"
+  lead="Menší provoz, který na první pohled nemá velké nároky? Přesto se vyplatí mít přehled o skladech, nákladech i ziskovosti. Septim.Air to umí — levně a hned."
+  logoLabel="Kavárny, bistra a bary, které používají Septim"
+  benefitsTitle="Proč Septim pro kavárnu, bistro nebo bar"
+  benefits={benefits}
+  edition={{ name: 'Septim.Air', href: '/produkty/septim-air', text: 'Cloudová edice pro menší provozy — all-in-one pokladna, podpora 24/7 a mobilní číšník zdarma od 1 990 Kč/měsíc.' }}
+  modules={modules}
+  faqs={faqs}
+/>

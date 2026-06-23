@@ -1,0 +1,33 @@
+---
+import SegmentPage from '../../components/SegmentPage.astro';
+const benefits = [
+  { icon: 'lucide:layers', title: 'Více středisek pod kontrolou', text: 'Restaurace, bary, wellness i obchody velkého komplexu v jednom systému.' },
+  { icon: 'lucide:plug', title: 'Napojení partnerských systémů', text: 'Integrace klíčových systémů (PMS, ski/wellness) pro řízení celého areálu.' },
+  { icon: 'lucide:award', title: 'Věrnost a karty hostů', text: 'Věrnostní systém a konta hostů napříč službami resortu.' },
+  { icon: 'lucide:package', title: 'Naskladňování a sklady', text: 'Automatické naskladňování a přehled o spotřebě ve velkém provozu.' },
+];
+const modules = [
+  { title: 'Pokladna', href: '/funkce/pokladna' },
+  { title: 'Manažer', href: '/funkce/manazer' },
+  { title: 'Reporty a přehledy', href: '/funkce/reporty-prehledy' },
+  { title: 'Věrnostní systém', href: '/funkce/vernostni-system' },
+];
+const faqs = [
+  { q: 'Zvládne Septim velký komplex?', a: 'Ano. Díky napojení dalších klíčových partnerských systémů Septim pomáhá řídit lázně, ski areály, zábavní resorty i další komplexní zařízení s mnoha středisky.' },
+  { q: 'Propojí se s hotelovým systémem?', a: 'Ano — ve spojení se Septim.Hotel a PMS Protel účtujete útratu hosta napříč službami resortu na jeden účet.' },
+  { q: 'Lze sledovat výsledky jednotlivých středisek?', a: 'Ano. Reporty ukážou tržby a spotřeby za jednotlivá střediska i souhrnně za celý areál.' },
+];
+---
+<SegmentPage
+  title="Pokladní a provozní systém pro lázně a resorty | Septim"
+  description="Septim řídí gastro provoz velkých komplexů — lázní, ski areálů a resortů. Více středisek pod kontrolou, napojení partnerských systémů, věrnostní karty hostů a sklady."
+  eyebrow="Řešení pro lázně a resorty"
+  titleHtml="Provozní systém pro <em>lázně a resorty</em>"
+  lead="Velké komplexy mají specifické požadavky. Septim díky napojení dalších klíčových systémů zásadně pomáhá při řízení lázní, ski areálů, zábavních resortů i dalších zařízení."
+  logoLabel="Lázně a resorty, které používají Septim"
+  benefitsTitle="Proč Septim pro lázně a resorty"
+  benefits={benefits}
+  edition={{ name: 'Septim.Hotel', href: '/produkty/septim-hotel', text: 'Edice pro komplexní provozy s napojením na PMS Protel a útratou hosta napříč středisky.' }}
+  modules={modules}
+  faqs={faqs}
+/>

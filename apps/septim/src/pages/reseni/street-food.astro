@@ -1,0 +1,33 @@
+---
+import SegmentPage from '../../components/SegmentPage.astro';
+const benefits = [
+  { icon: 'lucide:gauge', title: 'Rychlý prodej bez front', text: 'Pár dotyků k objednávce a platbě — zvládne i největší špičku.' },
+  { icon: 'lucide:bar-chart-3', title: 'Přehled o tržbách', text: 'Kolik jste prodali a čeho — okamžitě, i během akce.' },
+  { icon: 'lucide:tent', title: 'Připravený na festival', text: 'Provoz v terénu, vysoké tempo, food truck i stánek — bez výpadků.' },
+  { icon: 'lucide:credit-card', title: 'Platba u zákazníka', text: 'Karta i bezkontakt přímo na výdeji díky mobilnímu číšníkovi.' },
+];
+const modules = [
+  { title: 'Pokladna', href: '/funkce/pokladna' },
+  { title: 'Mobilní číšník Septim.Go', href: '/produkty/septim-go' },
+  { title: 'Reporty a přehledy', href: '/funkce/reporty-prehledy' },
+  { title: 'Skladové hospodářství', href: '/funkce/skladove-hospodarstvi' },
+];
+const faqs = [
+  { q: 'Zvládne Septim fronty a vysoké tempo?', a: 'Ano. Pokladna je navržená na rychlý prodej pár dotyky — proto Septim přes 30 let vyvíjíme i pro festivalový prodej, food trucky a stánky.' },
+  { q: 'Funguje v terénu?', a: 'Ano. Mobilní číšník Septim.Go přijímá objednávky i platby kartou přímo na výdeji, i mimo provozovnu.' },
+  { q: 'Budu mít přehled o tržbách z akce?', a: 'Okamžitě — kolik a čeho jste prodali vidíte během akce i zpětně, vzdáleně v MySeptim.' },
+];
+---
+<SegmentPage
+  title="Pokladní systém pro street food a festivaly | Septim"
+  description="Pokladní systém Septim pro street food, food trucky a festivalový prodej: rychlý prodej bez front, platba kartou u zákazníka a přehled o tržbách i v největší špičce."
+  eyebrow="Řešení pro street food"
+  titleHtml="Pokladní systém pro <em>street food</em>"
+  lead="Street food musí být rychlý, jednoduchý a spolehlivý i v největší špičce. Septim zvládne fronty, vysoké tempo i provoz v terénu — od stánku po food truck a festival."
+  logoLabel="Provozy, které používají Septim"
+  benefitsTitle="Proč Septim pro street food"
+  benefits={benefits}
+  edition={{ name: 'Septim.Air', href: '/produkty/septim-air', text: 'Rychlá cloudová pokladna doplněná mobilním číšníkem Septim.Go — ideální pro prodej v terénu.' }}
+  modules={modules}
+  faqs={faqs}
+/>

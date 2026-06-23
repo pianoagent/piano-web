@@ -1,0 +1,34 @@
+---
+/**
+ * StatsBand — Pecosta app partial (pruh se statistikami).
+ * Skládá @piano/ui Section. Výchozí čísla Pecosta, lze přepsat props `items`.
+ */
+import Section from '@piano/ui/components/Section.astro';
+
+interface Stat { num: string; lbl: string; }
+interface Props { items?: Stat[]; background?: 'default' | 'alt'; }
+
+const defaults: Stat[] = [
+  { num: '16 %', lbl: 'průměrná úspora na surovinách' },
+  { num: '960+', lbl: 'provozů nakupuje s Pecostou' },
+  { num: '400+', lbl: 'napojených dodavatelů' },
+  { num: '2,5 mld.', lbl: 'Kč nákupní objem ročně' },
+];
+const { items = defaults, background = 'alt' } = Astro.props;
+---
+
+<Section background={background} space="sm">
+  <ul class="stats">
+    {items.map((s) => (
+      <li class="stats__item"><span class="stats__num">{s.num}</span><span class="stats__lbl">{s.lbl}</span></li>
+    ))}
+  </ul>
+</Section>
+
+<style>
+  .stats { list-style: none; display: grid; gap: var(--space-5); grid-template-columns: repeat(4, 1fr); text-align: center; }
+  .stats__item { display: flex; flex-direction: column; gap: var(--space-1); }
+  .stats__num { font-size: var(--font-size-h2); font-weight: var(--font-weight-bold); line-height: 1; color: var(--color-secondary); }
+  .stats__lbl { font-size: var(--font-size-small); color: var(--color-text-muted); }
+  @media (max-width: 720px) { .stats { grid-template-columns: repeat(2, 1fr); } }
+</style>
