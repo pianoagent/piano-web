@@ -1,27 +1,15 @@
 # Qerko
 
-> Qerko je pomocník na place pro restaurace: hosté platí QR kódem z mobilu, objednávají z digitálního menu a dávají vyšší dýško. Provozům přináší o 20 % více otočených stolů, o 40 % vyšší spropitné a automatické Google recenze. Licencovaná platební instituce ČNB, součást skupiny Piano. Bez měsíčního paušálu.
+> Qerko je platba u stolu přes QR kód, digitální menu a komunikace s hosty.
 
-## Co Qerko umí
+## Piano ekosystém
 
-- [QR platba od stolu](https://qerko.com/#qr-platba): host zaplatí sám z telefonu — kartou, Apple Pay nebo stravenkou, s rozdělením účtu a spropitným.
-- [Digitální menu a objednávání](https://qerko.com/#objednavani): menu z pokladny, objednávky rovnou do POS a kuchyně, tržby až o 10 % vyšší.
-- [Rezervace](https://qerko.com/#rezervace): rezervace stolu z aplikace i z webového formuláře.
-- [Věrnostní program](https://qerko.com/#vernost): personalizované zprávy a nabídky, které přivedou hosty zpět.
-- [Hodnocení a reputace](https://qerko.com/#hodnoceni): soukromá zpětná vazba po platbě a automatické Google recenze i sledující na Instagramu.
-- [Qpoint](https://qerko.com/#qpoint): objednávky z rozvozu a e-shopu přehledně na jednom tabletu.
+- [Septim](https://septim-web.pages.dev): Pokladní a provozní systém
+- [Pecosta](https://pecosta-web.pages.dev): Aukční nákupy surovin
+- [Grason](https://grason-web.pages.dev): Personál, směny a docházka
+- [Protel](https://protel-web.pages.dev): Hotelový PMS
+- [ABX Harsys](https://harsys-web.pages.dev): Multifunkční pokladní systémy
+- [Savarin](https://savarin-web.pages.dev): Software pro gastro a ubytování
 
-## Ceník
-
-Bez měsíčního paušálu. Transakční poplatek 2,90 Kč + 1,35 % z částky, jednorázový starter pack od 2 890 Kč podle počtu stolů. Podrobnosti: https://qerko.com/cenik
-
-## O společnosti
-
-Qerko je fintech z Prahy a licencovaná platební instituce České národní banky s evropskou působností (PCI-DSS). Aplikaci používá přes 1,5 milionu hostů v ČR, na Slovensku, v anglické i maďarské mutaci. Napojení na 30+ POS systémů včetně Septimu. Qerko je součástí skupiny Piano.
-
-## Kontakt a dokumentace
-
-- Web: https://qerko.com
-- Ceník: https://qerko.com/cenik
-- Kontakt: https://qerko.com/kontakt
-- Sitemap: https://qerko.com/sitemap-index.xml
+## Více
+- [Piano — celý ekosystém](https://piano.cz): všechny nástroje pro pohostinství pod jednou střechou

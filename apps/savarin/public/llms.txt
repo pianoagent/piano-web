@@ -1,22 +1,15 @@
 # Savarin
 
-> Savarin je modulární restaurační a hotelový systém české firmy ComInn s.r.o. (Zlín). Vývoj, dodávka a servis software pro stravovací a ubytovací provozy od roku 1990. Systém pokrývá pokladnu, recepci i sklady a kalkulace a moduly spolu komunikují.
+> Savarin je komplexní software pro stravovací a ubytovací provozy.
 
-## Moduly
+## Piano ekosystém
 
-- [Pokladna](https://savarin.cz/pokladna): pokladní systém pro PC i POS — restaurační, hotelová a samoobslužná verze, dotykové ovládání, otevřené účty, denní uzávěrky.
-- [Mobilní pokladna](https://savarin.cz/pokladna#mobilni): mobilní číšník — objednávky, storna a úhrady přímo u stolu, včetně off-line režimu.
-- [Pokladní komponenty](https://savarin.cz/pokladna#komponenty): POS terminály, dotykové monitory, termální i jehličkové tiskárny a programovatelné klávesnice.
-- [Recepce](https://savarin.cz/recepce): rezervace, ubytování hostů i skupin, účty, směnárna a statistické výkazy pro hotelový provoz.
-- [Sklady a kalkulace](https://savarin.cz/sklady-a-kalkulace): HRMTZ a HRKALKUL — skladové hospodářství, evidence tržeb, receptury jídel a komunikace s pokladnami. Jádro systému.
-- [Služby a servis](https://savarin.cz/sluzby-servis): servis se zásahem do 24 hodin, školení, nové verze, formy prodeje (přímý, splátkový, pronájem) a multilicenční slevy.
+- [Septim](https://septim-web.pages.dev): Pokladní a provozní systém
+- [Qerko](https://qerko-web.pages.dev): QR platby a komunikace s hosty
+- [Pecosta](https://pecosta-web.pages.dev): Aukční nákupy surovin
+- [Grason](https://grason-web.pages.dev): Personál, směny a docházka
+- [Protel](https://protel-web.pages.dev): Hotelový PMS
+- [ABX Harsys](https://harsys-web.pages.dev): Multifunkční pokladní systémy
 
-## O společnosti
-
-ComInn, s.r.o. sídlí ve Zlíně (Fügnerovo nábřeží 5476, 760 01 Zlín, IČO 47906499). Software Savarin je nasazen u uživatelů po celé České i Slovenské republice. Systém je modulární — lze nasadit jen vybrané části a postupně rozšiřovat. Je certifikovaný pro provoz s fiskálním modulem na Slovensku.
-
-## Kontakt a dokumentace
-
-- [Kontakt](https://savarin.cz/kontakt): obchod@cominn.cz, telefon 577 925 145.
-- Web: https://savarin.cz
-- Sitemap: https://savarin.cz/sitemap-index.xml
+## Více
+- [Piano — celý ekosystém](https://piano.cz): všechny nástroje pro pohostinství pod jednou střechou

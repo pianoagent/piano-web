@@ -1,17 +1,15 @@
 # Septim
 
-> Septim je pokladní a provozní systém pro restaurace, jídelny, kavárny a hotely. Spojuje prodej, sklady a manažerské přehledy a integruje se do ekosystému Piano. Česká podpora 24/7.
+> Septim je pokladní a provozní systém pro restaurace, jídelny, kavárny a hotely.
 
-## Co Septim umí
+## Piano ekosystém
 
-- [Pokladní a provozní systém](https://septim.cz/): prodej a účtování, skladové hospodářství, manažerské přehledy a reporty pro celý provoz.
-- Integrace celého ekosystému Piano — pokladna, platby, personál a analytika pod jednou střechou.
+- [Qerko](https://qerko-web.pages.dev): QR platby a komunikace s hosty
+- [Pecosta](https://pecosta-web.pages.dev): Aukční nákupy surovin
+- [Grason](https://grason-web.pages.dev): Personál, směny a docházka
+- [Protel](https://protel-web.pages.dev): Hotelový PMS
+- [ABX Harsys](https://harsys-web.pages.dev): Multifunkční pokladní systémy
+- [Savarin](https://savarin-web.pages.dev): Software pro gastro a ubytování
 
-## O společnosti
-
-Septim je součástí rodiny Piano (Piano Solutions s.r.o.). Nasazen v restauracích, kavárnách, jídelnách i hotelech s českou podporou každý den v roce.
-
-## Kontakt a dokumentace
-
-- Web: https://septim.cz
-- Sitemap: https://septim.cz/sitemap-index.xml
+## Více
+- [Piano — celý ekosystém](https://piano.cz): všechny nástroje pro pohostinství pod jednou střechou

@@ -1,22 +1,16 @@
-# Piano Solutions
+# Piano
 
-> Piano je česká technologická společnost dodávající software pro pohostinství a hotelnictví. Pomáhá restauracím, hotelům a dalším provozovnám řídit provoz, přijímat platby a rozumět svému byznysu.
+> Piano je sehraný orchestr nástrojů pro pohostinství a hotelnictví — pokladny, platby, personál, sklady a analytika pod jednou střechou.
 
-## Produkty
+## Piano ekosystém
 
-- **Qerko** — aplikace pro platby u stolu a digitální menu. Hosté platí přes QR kód, provozovatelé otočí více stolů a získávají vyšší dýška.
-- **Septim** — pokladní systém pro restaurace a kavárny. Propojuje objednávky, kuchyni, sklad a účetnictví.
-- **Pecosta** — systém pro správu hotelů (PMS). Rezervace, check-in, housekeeping a revenue management.
-- **Grason** — analytika a reporting pro gastronomii. Přehled tržeb, nákladů a výkonu provozovny.
-- **Protel** — hotelový PMS pro větší hotely a řetězce.
-- **Pilot** — mobilní aplikace pro obsluhu a management.
-- **Terminál** — platební terminály integrované s pokladními systémy Piano.
+- [Septim](https://septim-web.pages.dev): Pokladní a provozní systém
+- [Qerko](https://qerko-web.pages.dev): QR platby a komunikace s hosty
+- [Pecosta](https://pecosta-web.pages.dev): Aukční nákupy surovin
+- [Grason](https://grason-web.pages.dev): Personál, směny a docházka
+- [Protel](https://protel-web.pages.dev): Hotelový PMS
+- [ABX Harsys](https://harsys-web.pages.dev): Multifunkční pokladní systémy
+- [Savarin](https://savarin-web.pages.dev): Software pro gastro a ubytování
 
-## O společnosti
-
-Piano Solutions s.r.o. je česká firma se sídlem v Praze. Produkty jsou nasazeny v tisících provozovnách v České republice a okolních zemích. Společnost klade důraz na propojení všech systémů v rámci jedné platformy — od objednávky hosta po účetní závěrku.
-
-## Kontakt a dokumentace
-
-- Web: https://piano.cz
-- Sitemap: https://piano.cz/sitemap-index.xml
+## Více
+- [Piano — celý ekosystém](https://piano.cz): všechny nástroje pro pohostinství pod jednou střechou

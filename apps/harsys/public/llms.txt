@@ -1,29 +1,15 @@
-# ABX HARSYS
+# ABX Harsys
 
-> Harsys je spolehlivý pokladní systém pro restaurace od ABX software s.r.o. Snadná a rychlá obsluha, manažerské nástroje pro plnou kontrolu nad tržbou, skladem i ceníkem, data uložená mimo cloud (u vás) a nejlepší podpora na trhu. Více než 25 let na trhu, přes 11 500 licencí a 4 100+ zákazníků.
+> ABX Harsys dodává multifunkční pokladní systémy a pokladny pro restaurace, hotely a obchody.
 
-## Klíčové stránky
+## Piano ekosystém
 
-- [Srovnání variant](https://abxharsys.cz/srovnani-variant): rozdíly mezi variantami Lite, Gold, Gold+NET a Premium.
-- [Funkce programu](https://abxharsys.cz/funkce): co Harsys umí — adresář, uzávěrky, skladové hospodářství, Happy Hours, vzdálený přístup, denní nabídka, bonus/kredit a provizní systém.
-- [Ceník](https://abxharsys.cz/cenik): doživotní licence i měsíční pronájem, financování a splátky.
-- [Reference](https://abxharsys.cz/reference): zkušenosti restaurací a provozoven po celé ČR.
-- [Kontakt](https://abxharsys.cz/kontakt): kontaktní údaje a poptávka.
+- [Septim](https://septim-web.pages.dev): Pokladní a provozní systém
+- [Qerko](https://qerko-web.pages.dev): QR platby a komunikace s hosty
+- [Pecosta](https://pecosta-web.pages.dev): Aukční nákupy surovin
+- [Grason](https://grason-web.pages.dev): Personál, směny a docházka
+- [Protel](https://protel-web.pages.dev): Hotelový PMS
+- [Savarin](https://savarin-web.pages.dev): Software pro gastro a ubytování
 
-## Varianty programu
-
-- Harsys Lite — 5 900 Kč doživotní licence / 390 Kč měsíčně. Pro malý provoz se základními funkcemi.
-- Harsys Gold — 10 900 Kč / 690 Kč. Pro vedení skladů a podrobnější přehled.
-- Harsys Gold+NET — 16 900 Kč / 890 Kč. Profi varianta s přístupem přes internet.
-- Harsys Premium — 22 900 Kč / 1 290 Kč. Komplexní řešení pro větší provozy s maximem funkcí.
-
-## O společnosti
-
-ABX software s.r.o. je součástí rodiny Piano (Piano Solutions). Vyvíjí pokladní systém Harsys i další software (pro obchody, hotely, půjčovny, docházku). Sídlo: Závodu míru 739/9a, 360 17 Karlovy Vary.
-
-## Kontakt a dokumentace
-
-- Web: https://abxharsys.cz
-- Sitemap: https://abxharsys.cz/sitemap-index.xml
-- Obchod: office@ab-x.cz, +420 774 719 494
-- Podpora: podpora@ab-x.cz, +420 353 034 111
+## Více
+- [Piano — celý ekosystém](https://piano.cz): všechny nástroje pro pohostinství pod jednou střechou
