@@ -33,10 +33,10 @@ const pains = [
 ];
 
 const categories = [
-  { icon: 'lucide:boxes', title: 'Nákupy a sklady', items: ['Skladové hospodářství', 'Automatické naskladňování', 'Lepší ceny u dodavatelů'] },
-  { icon: 'lucide:users', title: 'Lidé a personál', items: ['Více obsloužených hostů', 'Plánování směn', 'Nábor personálu'] },
-  { icon: 'lucide:monitor', title: 'Pokladní a manažerské systémy', items: ['Reporting dat', 'Pokladní systémy', 'Management hotelů'] },
-  { icon: 'lucide:credit-card', title: 'Platby a komunikace s hosty', items: ['Komunikace se zákazníkem', 'Rezervační systém', 'Věrnostní program'] },
+  { icon: 'lucide:boxes', title: 'Nákupy a sklady', headline: 'Nakupujte chytře, skladujte přesně', text: 'Skladové hospodářství, automatické naskladňování z dodacích listů a lepší ceny u dodavatelů — vše propojené.', items: ['Skladové hospodářství', 'Automatické naskladňování', 'Lepší ceny u dodavatelů'] },
+  { icon: 'lucide:users', title: 'Lidé a personál', headline: 'Personál, který nechybí', text: 'Více obsloužených hostů, plánování směn i nábor brigádníků na pár kliknutí.', items: ['Více obsloužených hostů', 'Plánování směn', 'Nábor personálu'] },
+  { icon: 'lucide:monitor', title: 'Pokladní a manažerské systémy', headline: 'Provoz pod kontrolou', text: 'Pokladní systémy, reporting dat a management hotelů — přehled o všem na jednom místě.', items: ['Reporting dat', 'Pokladní systémy', 'Management hotelů'] },
+  { icon: 'lucide:credit-card', title: 'Platby a komunikace s hosty', headline: 'Hosté, kteří se vracejí', text: 'Rychlé platby, rezervace, věrnostní program a komunikace se zákazníkem.', items: ['Komunikace se zákazníkem', 'Rezervační systém', 'Věrnostní program'] },
 ];
 
 // Ekosystém — odkazy: piano-hosté dovnitř, ostatní na demo pages.dev
@@ -110,23 +110,45 @@ const faqSchema = {
   <USPGrid eyebrow="Znáte to?" title="Co dnes brzdí váš provoz"
            items={pains} columns={4} background="default" minItemWidth="220px" />
 
-  <!-- KATEGORIE NÁSTROJŮ -->
-  <Section background="alt" space="lg">
-    <div class="head-center">
-      <Text size="label" color="accent">Každý provoz je jedinečný</Text>
-      <Heading as="h2" size="h2" align="center">Široká paleta nástrojů, která se přizpůsobí vám</Heading>
-      <Text size="lead" color="muted" align="center" class="head-sub">Věříme v propojenou gastronomii — od dodavatelů přes kuchaře až po hosty.</Text>
+  <!-- KATEGORIE NÁSTROJŮ — sticky scroll -->
+  <section class="solscroll" data-solscroll>
+    <div class="solscroll__pin" style={`height: ${(categories.length + 1) * 100}vh;`}>
+      <div class="solscroll__inner">
+        <div class="solscroll__content">
+
+          <!-- Levý sloupec: hlavička + nav + tečky -->
+          <div class="solscroll__nav-col">
+            <Text size="label" color="accent">Každý provoz je jedinečný</Text>
+            <Heading as="h2" size="h3" class="solscroll__title">Široká paleta nástrojů, která se přizpůsobí vám</Heading>
+            <nav class="solscroll__nav">
+              {categories.map((c, i) => (
+                <button class:list={['solscroll__navitem', i === 0 && 'is-active']} data-navitem data-idx={i} type="button">{c.title}</button>
+              ))}
+            </nav>
+            <div class="solscroll__dots">
+              {categories.map((_, i) => (<span class:list={['solscroll__dot', i === 0 && 'is-active']} data-dot></span>))}
+            </div>
+          </div>
+
+          <!-- Pravý sloupec: slidy -->
+          <div class="solscroll__slides">
+            {categories.map((c, i) => (
+              <article class:list={['solscroll__slide', i === 0 && 'is-active']} data-slide>
+                <div class="solscroll__visual"><Icon name={c.icon} size="xl" /></div>
+                <div class="solscroll__text">
+                  <Text size="label" color="accent">{c.title}</Text>
+                  <Heading as="h3" size="h2">{c.headline}</Heading>
+                  <Text size="lead" color="muted" class="solscroll__lead">{c.text}</Text>
+                  <ul class="solscroll__list">{c.items.map((it) => <li>{it}</li>)}</ul>
+                </div>
+              </article>
+            ))}
+          </div>
+
+        </div>
+      </div>
     </div>
-    <div class="cats">
-      {categories.map((c) => (
-        <article class="cat">
-          <span class="cat__icon"><Icon name={c.icon} size="md" /></span>
-          <Heading as="h3" size="h3">{c.title}</Heading>
-          <ul class="cat__list">{c.items.map((i) => <li>{i}</li>)}</ul>
-        </article>
-      ))}
-    </div>
-  </Section>
+  </section>
 
   <!-- EKOSYSTÉM -->
   <Section id="ekosystem" background="default" space="lg">
@@ -206,13 +228,63 @@ const faqSchema = {
   .stat__num { font-family: var(--font-sans); font-weight: var(--font-weight-semibold); font-size: clamp(28px, 4vw, 44px); color: var(--color-text-accent); letter-spacing: var(--letter-spacing-tight); }
   .stat__lbl { font-size: var(--font-size-small); color: var(--color-text-muted); }
 
-  /* Kategorie */
-  .cats { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--space-5); }
-  .cat { background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-6); }
-  .cat__icon { display: inline-flex; color: var(--color-text-accent); margin-bottom: var(--space-3); }
-  .cat__list { list-style: none; margin-top: var(--space-3); display: flex; flex-direction: column; gap: var(--space-2); }
-  .cat__list li { position: relative; padding-left: var(--space-5); color: var(--color-text-muted); font-size: var(--font-size-small); }
-  .cat__list li::before { content: "✓"; position: absolute; left: 0; color: var(--color-text-accent); font-weight: 700; }
+  /* Kategorie — sticky scroll */
+  .solscroll { background: var(--color-bg-alt); }
+  .solscroll__pin { position: relative; }
+  .solscroll__inner { position: sticky; top: 0; height: 100vh; display: flex; align-items: center; overflow: hidden; }
+  .solscroll__content { display: flex; gap: var(--space-8); width: 100%; max-width: var(--container-max); margin: 0 auto; padding-inline: var(--container-pad); height: min(560px, 80vh); }
+
+  /* Levý sloupec */
+  .solscroll__nav-col { flex: 0 0 280px; display: flex; flex-direction: column; justify-content: center; border-right: 1px solid var(--color-border); padding-right: var(--space-6); }
+  .solscroll__title { margin: var(--space-3) 0 var(--space-6); }
+  .solscroll__nav { display: flex; flex-direction: column; }
+  .solscroll__navitem {
+    text-align: left; background: none; border: none; cursor: pointer;
+    font-family: var(--font-sans); font-size: var(--font-size-body); font-weight: var(--font-weight-medium);
+    color: var(--color-text-muted); padding: var(--space-3) 0 var(--space-3) var(--space-4);
+    border-left: 2px solid var(--color-border); transition: var(--transition);
+  }
+  .solscroll__navitem:hover { color: var(--color-text); }
+  .solscroll__navitem.is-active { color: var(--color-text-accent); border-left-color: var(--color-primary); font-weight: var(--font-weight-semibold); }
+  .solscroll__dots { display: flex; gap: var(--space-2); margin-top: var(--space-5); padding-left: var(--space-4); }
+  .solscroll__dot { width: 7px; height: 7px; border-radius: var(--radius-full); background: var(--color-border-strong); transition: var(--transition); }
+  .solscroll__dot.is-active { background: var(--color-primary); transform: scale(1.4); }
+
+  /* Pravý sloupec — slidy */
+  .solscroll__slides { flex: 1; position: relative; }
+  .solscroll__slide {
+    position: absolute; inset: 0; display: flex; align-items: center; gap: var(--space-7);
+    opacity: 0; transform: translateY(24px); transition: opacity var(--duration-base) var(--easing), transform var(--duration-base) var(--easing);
+    pointer-events: none;
+  }
+  .solscroll__slide.is-active { opacity: 1; transform: none; pointer-events: auto; }
+  .solscroll__visual {
+    flex: 0 0 200px; aspect-ratio: 1; display: grid; place-items: center;
+    background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md);
+    color: var(--color-text-accent);
+  }
+  .solscroll__visual :global(svg) { width: 72px; height: 72px; }
+  .solscroll__text { flex: 1; }
+  .solscroll__text :global(h3) { margin: var(--space-2) 0 0; }
+  .solscroll__lead { margin: var(--space-4) 0; }
+  .solscroll__list { list-style: none; display: flex; flex-direction: column; gap: var(--space-2); }
+  .solscroll__list li { position: relative; padding-left: var(--space-5); color: var(--color-text-muted); }
+  .solscroll__list li::before { content: "✓"; position: absolute; left: 0; color: var(--color-text-accent); font-weight: 700; }
+
+  /* Mobil / tablet — pin se vypne, slidy se naskládají pod sebe */
+  @media (max-width: 880px) {
+    .solscroll__pin { height: auto !important; }
+    .solscroll__inner { position: static; height: auto; padding-block: var(--space-8); }
+    .solscroll__content { flex-direction: column; height: auto; gap: var(--space-6); }
+    .solscroll__nav-col { border-right: none; padding-right: 0; flex-basis: auto; }
+    .solscroll__nav, .solscroll__dots { display: none; }
+    .solscroll__slides { display: flex; flex-direction: column; gap: var(--space-6); }
+    .solscroll__slide { position: static; opacity: 1; transform: none; pointer-events: auto; flex-direction: column; align-items: flex-start; gap: var(--space-4); }
+    .solscroll__visual { flex-basis: auto; width: 96px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .solscroll__slide { transition: none; }
+  }
 
   /* Ekosystém */
   .eco { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-5); }
@@ -250,3 +322,41 @@ const faqSchema = {
     .stats { grid-template-columns: repeat(2, 1fr); gap: var(--space-6) var(--space-4); }
   }
 </style>
+
+<script>
+  const root = document.querySelector('[data-solscroll]') as HTMLElement | null;
+  if (root) {
+    const pin = root.querySelector('.solscroll__pin') as HTMLElement;
+    const slides = Array.from(root.querySelectorAll('[data-slide]'));
+    const navs = Array.from(root.querySelectorAll('[data-navitem]'));
+    const dots = Array.from(root.querySelectorAll('[data-dot]'));
+    const N = slides.length;
+    const desktop = window.matchMedia('(min-width: 881px)');
+    let current = -1;
+
+    const setActive = (i: number) => {
+      if (i === current) return;
+      current = i;
+      slides.forEach((s, n) => s.classList.toggle('is-active', n === i));
+      navs.forEach((s, n) => s.classList.toggle('is-active', n === i));
+      dots.forEach((s, n) => s.classList.toggle('is-active', n === i));
+    };
+
+    const onScroll = () => {
+      if (!desktop.matches) return;
+      const seg = (pin.offsetHeight - window.innerHeight) / N;
+      const scrolled = -pin.getBoundingClientRect().top;
+      setActive(Math.max(0, Math.min(N - 1, Math.floor(scrolled / seg))));
+    };
+
+    navs.forEach((btn, i) => btn.addEventListener('click', () => {
+      const seg = (pin.offsetHeight - window.innerHeight) / N;
+      window.scrollTo({ top: pin.offsetTop + i * seg + seg * 0.5, behavior: 'smooth' });
+    }));
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    setActive(0);
+    onScroll();
+  }
+</script>
