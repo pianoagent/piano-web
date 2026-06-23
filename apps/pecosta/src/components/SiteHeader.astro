@@ -1,0 +1,13 @@
+---
+/**
+ * SiteHeader — Pecosta wrapper nad sdíleným @piano/ui Header.
+ * Drží na jednom místě brand, logo a Pecosta navigaci (per-web data z config/nav).
+ */
+import Header from '@piano/ui/components/Header.astro';
+import { pecostaNav, pecostaCta } from '../config/nav';
+
+interface Props { transparent?: boolean; }
+const { transparent = false } = Astro.props;
+---
+<Header brand="Pecosta" logoSrc="/logos/pecosta_color.svg" homeHref="/"
+        nav={pecostaNav} cta={pecostaCta} transparent={transparent} />

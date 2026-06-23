@@ -1,0 +1,20 @@
+# Pecosta
+
+> Pecosta je platforma pro chytrý nákup surovin a energií pro gastro provozy, hotely a instituce. Spojuje aukční nákupy (lepší ceny) s automatickým naskladňováním (úspora práce). Průměrná úspora až 16 % na surovinách, 25 % na energiích a desítky hodin práce měsíčně. Od ledna 2026 součást skupiny Piano.
+
+## Co Pecosta umí
+
+- [Aukční nákupy surovin](https://pecosta.cz/): e-aukce od ověřených dodavatelů, ceny srovnané u stovek dodavatelů na jednom místě.
+- [Energie pro gastro](https://pecosta.cz/): burzovní nákup elektřiny a plynu, úspora až 25 %.
+- [Autset — automatické naskladnění](https://pecosta.cz/): dodací listy od 400+ dodavatelů se automaticky přenesou do skladového systému.
+- Analýza zdarma: kalkulace úspor a cenové porovnání ještě před zahájením spolupráce.
+
+## O společnosti
+
+Pecosta (PECOSTA, a.s.) působí na trhu 15 let, slouží 960+ provozům a ročně přes ni proteče nákupní objem 2,5 mld. Kč. Od ledna 2026 je součástí skupiny Piano.
+
+## Kontakt a dokumentace
+
+- Web: https://pecosta.cz
+- E-mail: pecosta@pecosta.cz
+- Sitemap: https://pecosta.cz/sitemap-index.xml

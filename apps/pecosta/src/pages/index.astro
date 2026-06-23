@@ -1,0 +1,353 @@
+---
+/**
+ * Pecosta — homepage (první verze).
+ * Obsah z pecosta-context.md + blok #page-pecosta (piano-web-2026.html).
+ * Vše ze SDÍLENÝCH komponent @piano/ui; téma řeší src/styles/theme.css.
+ * Sekce bez vlastní komponenty (Stats, Steps, Integrace, Reference, Logo wall,
+ * FAQ) jsou složené z primitivů (Section/Heading/Text/Button/Icon) —
+ * komponenty se NEFORKUJÍ.
+ */
+import Base from '../layouts/Base.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+
+const stats = [
+  { num: '16 %', lbl: 'průměrná úspora na surovinách' },
+  { num: '25 %', lbl: 'úspora na energiích' },
+  { num: '960+', lbl: 'provozů nakupuje s Pecostou' },
+  { num: '2,5 mld.', lbl: 'Kč nákupní objem ročně' },
+];
+
+const steps = [
+  { icon: 'lucide:calculator', title: 'Analýza zdarma', text: 'Připravíme cenové porovnání a kalkulaci úspor bez závazků. Vidíte reálná čísla ještě před podpisem.' },
+  { icon: 'lucide:plug', title: 'Napojení dodavatelů', text: 'Napojíme vaše stávající dodavatele na platformu. Nemusíte je měnit — soutěží o vaše objednávky.' },
+  { icon: 'lucide:shopping-cart', title: 'Nakupujete z jednoho místa', text: 'Vše na jednom portálu. Porovnáte ceny, objednáte a dostanete fakturu.' },
+  { icon: 'lucide:package-check', title: 'Automatické naskladnění', text: 'Dodací listy jdou automaticky do Septimu nebo vašeho skladového systému přes Autset.' },
+];
+
+const features = [
+  { icon: 'lucide:gavel', title: 'Aukční nákupy surovin', text: 'E-aukce od ověřených dodavatelů. Ceny srovnané u stovek dodavatelů najednou.' },
+  { icon: 'lucide:zap', title: 'Energie pro gastro', text: 'Úspora až 25 % na elektřině a plynu. Burzovní obchody přímo pro vaši provozovnu.' },
+  { icon: 'lucide:package', title: 'Autset — automatické naskladnění', text: 'Dodací listy od 400+ dodavatelů se automaticky přenesou do vašeho skladového systému.' },
+  { icon: 'lucide:bar-chart-3', title: 'Přehled nákladů', text: 'Jeden portál pro všechny nákupy. Vidíte, kde utrácíte a kde šetříte.' },
+  { icon: 'lucide:shield-check', title: 'Ověření dodavatelé', text: 'Nakupujete od prověřených partnerů. Kvalita se nemění, cena jde dolů.' },
+  { icon: 'lucide:badge-percent', title: 'Analýza zdarma', text: 'Víte, kolik ušetříte, ještě před zahájením spolupráce. Bez závazků.' },
+];
+
+const integrations = [
+  'Autset — automatické naskladnění dodacích listů',
+  'Septim — přímé napojení na skladový systém',
+  '400+ dodavatelů potravin a nápojů',
+];
+
+const testimonials = [
+  { initials: 'MŠ', headline: 'Šetříme miliony ročně', quote: 'Díky automatickému naskladňování v každém z našich hotelů každý den ušetříme svým lidem minimálně hodinu práce. 80 % nákupů realizujeme přes Pecostu a šetříme několik milionů ročně.', author: 'Maroš Šivec', role: 'Executive F&B Director, CPI Hotels (24 hotelů v ČR)' },
+  { initials: 'PH', headline: 'Úspora času je nedocenitelná', quote: 'Úspora času je nedocenitelná. Pecosta nám pomáhá mít náklady pod kontrolou a soustředit se na to, co nás baví.', author: 'Finanční ředitelka', role: 'Pytloun Hotels' },
+  { initials: 'HP', headline: 'Zlomili jsme tříletý trend', quote: 'Zlomili jsme tříletý trend růstu nákladů. Výsledky překonaly naše očekávání.', author: 'Tomáš Šico', role: 'HP Tronic' },
+];
+
+const refLogos = [
+  'ref-clarion-hotel', 'ref-cafe-savoy', 'ref-kolkovna', 'ref-zatisi-group',
+  'ref-O2-arena', 'ref-field-michelin-restaurant', 'ref-100-chuti-brna', 'ref-sasazu',
+  'ref-entree', 'ref-420-restaurant', 'ref-pizza-coloseum', 'ref-sisters-bistro',
+];
+
+const faqs = [
+  { q: 'Jak funguje aukční nákup?', a: 'Pecosta sdruží poptávky stovek provozů a vyjedná hromadné ceny — dostanete ceny, na které byste jako jednotlivec nedosáhli. Dodavatelé soutěží, vy vyděláváte.' },
+  { q: 'Kolik reálně ušetřím?', a: 'V průměru až 16 % na surovinách a 25 % na energiích. Konkrétní číslo pro váš provoz spočítáme v bezplatné analýze.' },
+  { q: 'Musím měnit dodavatele?', a: 'Ne nutně. Nákupy řešíte z jednoho místa a Pecosta vám najde nejlepší ceny od ověřených dodavatelů.' },
+  { q: 'Co je automatické naskladnění?', a: 'Dodací listy se naskladní automaticky (přes Autset), bez ručního přepisování — ušetříte hodiny administrativy každý měsíc.' },
+  { q: 'Hodí se Pecosta i pro menší provoz?', a: 'Ano. Čím víc nakupujete, tím víc ušetříte, ale benefit z lepších cen má i menší kavárna nebo bistro.' },
+];
+
+const leadProofs = [
+  { icon: 'lucide:badge-percent', title: 'Úspora až 16 %', text: 'Na surovinách, v průměru každý měsíc.' },
+  { icon: 'lucide:store', title: '960+ provozů', text: 'Restaurace, hotely i instituce v celé ČR.' },
+  { icon: 'lucide:calendar-check', title: '15 let na trhu', text: 'Zkušenosti s nákupem pro gastro.' },
+  { icon: 'lucide:gift', title: 'Analýza zdarma', text: 'Kalkulaci úspor máte do 48 hodin.' },
+];
+---
+
+<Base title="Pecosta — ušetřete až 16 % na surovinách"
+      description="Pecosta nakupuje za vás. Aukční nákupy surovin a energií od ověřených dodavatelů, srovnání cen na jednom místě a automatické naskladňování. 960+ provozů šetří v průměru 16 % měsíčně.">
+  <SiteHeader />
+
+  <main>
+
+  <!-- HERO -->
+  <Hero eyebrow="Aukční nákupy surovin a energií" background="gradient"
+        lead="Pecosta nakupuje za vás. Aukční nákupy od ověřených dodavatelů, srovnání cen na jednom místě a automatické naskladňování. 960+ provozů šetří v průměru 16 % měsíčně.">
+    <Heading slot="title" as="h1" size="display" color="on-dark">Ušetřete <em>až 16 %</em> na surovinách</Heading>
+    <Fragment slot="actions">
+      <Button href="#poptavka">Chci aukční nákupy</Button>
+      <Button href="#poptavka" variant="secondary" onDark>Kolik ušetřím?</Button>
+    </Fragment>
+    <figure slot="media" class="hero-figure">
+      <video src="/videos/hero-pecosta.mp4" poster="/images/hero-pecosta.jpg"
+             autoplay loop muted playsinline width="1280" height="720"
+             aria-label="Pecosta — chytrý nákup surovin a energií"></video>
+    </figure>
+  </Hero>
+
+  <!-- LOGA KLIENTŮ — hned pod hero -->
+  <Section id="zakaznici" background="default" space="md" container={false}>
+    <Text size="label" color="muted" align="center" class="logos__label">
+      Spoří s námi přední restaurace, hotely i instituce
+    </Text>
+    <div class="logos">
+      <div class="logos__track">
+        {[...refLogos, ...refLogos].map((l, i) => (
+          <img src={`/logos/${l}.svg`} alt={i < refLogos.length ? l.replace('ref-', '').replace(/-/g, ' ') : ''} aria-hidden={i >= refLogos.length ? 'true' : undefined} loading="lazy" />
+        ))}
+      </div>
+    </div>
+  </Section>
+
+  <!-- STATS BAND -->
+  <Section background="alt" space="sm">
+    <ul class="stats">
+      {stats.map((s) => (
+        <li class="stats__item">
+          <span class="stats__num">{s.num}</span>
+          <span class="stats__lbl">{s.lbl}</span>
+        </li>
+      ))}
+    </ul>
+  </Section>
+
+  <!-- JAK TO FUNGUJE -->
+  <Section id="jak-to-funguje" background="default" space="lg">
+    <div class="head head--center">
+      <Text size="label" color="accent" align="center">Jak to funguje</Text>
+      <Heading as="h2" size="h2" align="center">Začínáme <em>analýzou zdarma</em></Heading>
+      <Text size="lead" color="muted" align="center" balance>
+        Nejprve vám ukážeme, kolik ušetříte. Až pak se rozhodnete. Bez závazků, bez rizika.
+      </Text>
+    </div>
+    <ol class="steps">
+      {steps.map((s, i) => (
+        <li class="step">
+          <span class="step__num">{i + 1}</span>
+          <span class="step__icon"><Icon name={s.icon} size="lg" /></span>
+          <Heading as="h3" size="h3">{s.title}</Heading>
+          <Text size="small" color="muted">{s.text}</Text>
+        </li>
+      ))}
+    </ol>
+  </Section>
+
+  <!-- FUNKCE (USPGrid neforwarduje id → kotva na wrapperu) -->
+  <div id="funkce">
+    <USPGrid eyebrow="Co Pecosta umí" title="Nakupujte chytřeji, ne víc"
+             lead="Jeden portál pro nákup surovin i energií — a naskladnění, které proběhne samo."
+             items={features} minItemWidth="280px" background="alt" space="lg" />
+  </div>
+
+  <!-- INTEGRACE -->
+  <Section background="invert" space="lg">
+    <div class="head head--center">
+      <Text size="label" color="accent" align="center">Integrace</Text>
+      <Heading as="h2" size="h2" align="center" color="on-dark">Pecosta + Autset + Septim = <em>nákup bez práce</em></Heading>
+      <Text size="lead" color="on-dark-muted" align="center">Od objednávky po naskladnění bez ručního přepisování.</Text>
+    </div>
+    <ul class="chips">
+      {integrations.map((i) => (
+        <li class="chip"><span class="chip__dot"></span>{i}</li>
+      ))}
+    </ul>
+  </Section>
+
+  <!-- REFERENCE -->
+  <Section id="reference" background="alt" space="lg">
+    <div class="head head--center">
+      <Text size="label" color="accent" align="center">Reference</Text>
+      <Heading as="h2" size="h2" align="center">Spoří s námi <em>ti nejlepší</em></Heading>
+      <Text size="lead" color="muted" align="center" balance>
+        Od hotelových skupin po michelinské restaurace — Pecosta drží jejich náklady pod kontrolou.
+      </Text>
+    </div>
+    <div class="quotes">
+      {testimonials.map((t, i) => (
+        <figure class={`quote quote--${i}`}>
+          <div class="quote__head">
+            <div class="quote__id">
+              <strong class="quote__name">{t.author}</strong>
+              <span class="quote__role">{t.role}</span>
+            </div>
+            <span class="quote__avatar" aria-hidden="true">{t.initials}</span>
+          </div>
+          <span class="quote__mark"><Icon name="lucide:quote" size="md" /></span>
+          <p class="quote__headline">{t.headline}</p>
+          <blockquote class="quote__text">{t.quote}</blockquote>
+        </figure>
+      ))}
+    </div>
+    <div class="quotes__cta">
+      <Button href="#zakaznici" variant="secondary">Naši zákazníci</Button>
+    </div>
+  </Section>
+
+  <!-- CTA -->
+  <Section background="primary" space="lg">
+    <div class="head head--center">
+      <Text size="label" color="on-dark-muted" align="center">Začít s Pecostou</Text>
+      <Heading as="h2" size="h2" align="center" color="on-dark">Zjistěte, kolik ušetříte</Heading>
+      <Text size="lead" color="on-dark-muted" align="center" balance>
+        Analýza nákladů je zdarma a bez závazků. Výsledek máte do 48 hodin.
+      </Text>
+      <div class="cta-actions">
+        <Button href="#poptavka">Chci analýzu zdarma</Button>
+        <Button href="tel:+420734442683" variant="secondary">+420 734 442 683</Button>
+      </div>
+    </div>
+  </Section>
+
+  <!-- FAQ -->
+  <Section background="default" space="lg">
+    <div class="head head--center">
+      <Heading as="h2" size="h2" align="center">Často kladené dotazy</Heading>
+      <Text size="lead" color="muted" align="center">Nenašli jste odpověď? Ozvěte se nám, rádi vám poradíme.</Text>
+    </div>
+    <div class="faq">
+      {faqs.map((f) => (
+        <details class="faq__item">
+          <summary>{f.q}<Icon name="lucide:chevron-down" size="sm" class="faq__chev" /></summary>
+          <div class="faq__a"><Text color="muted">{f.a}</Text></div>
+        </details>
+      ))}
+    </div>
+  </Section>
+
+  <!-- POPTÁVKA -->
+  <LeadForm id="poptavka" variant="full" background="alt"
+            title="Zjistěte, kolik ušetříte"
+            lead="Nechte nám kontakt — připravíme cenové porovnání a kalkulaci úspor. Zdarma a bez závazků."
+            submitLabel="Chci analýzu zdarma"
+            proofs={leadProofs} />
+
+  </main>
+
+  <SiteFooter />
+</Base>
+
+<style>
+  /* Hero video */
+  .hero-figure {
+    position: relative;
+    margin: 0;
+    width: 100%;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    line-height: 0;
+  }
+  .hero-figure video { width: 100%; height: auto; display: block; }
+
+  /* Sdílená hlavička sekce */
+  .head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-7); }
+  .head--center { text-align: center; }
+  .head > * + * { margin-top: var(--space-3); }
+
+  /* Stats band */
+  .stats {
+    list-style: none; display: grid; gap: var(--space-5);
+    grid-template-columns: repeat(4, 1fr); text-align: center;
+  }
+  .stats__item { display: flex; flex-direction: column; gap: var(--space-1); }
+  .stats__num { font-size: var(--font-size-h2); font-weight: var(--font-weight-bold); line-height: 1; color: var(--color-secondary); }
+  .stats__lbl { font-size: var(--font-size-small); color: var(--color-text-muted); }
+  @media (max-width: 720px) { .stats { grid-template-columns: repeat(2, 1fr); } }
+
+  /* Steps */
+  .steps {
+    list-style: none; display: grid; gap: var(--space-6);
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+  .step {
+    position: relative; padding: var(--space-6);
+    background: var(--color-bg); border: 1px solid var(--color-border);
+    border-radius: var(--radius-md); box-shadow: var(--shadow-sm);
+  }
+  .step > * + * { margin-top: var(--space-3); }
+  .step__num {
+    position: absolute; top: var(--space-4); right: var(--space-5);
+    font-size: var(--font-size-h2); font-weight: var(--font-weight-bold);
+    color: var(--color-neutral-200); line-height: 1;
+  }
+  .step__icon {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 56px; height: 56px; border-radius: var(--radius-md);
+    background: color-mix(in srgb, var(--color-primary) 10%, #fff);
+    color: var(--color-primary);
+  }
+
+  /* Integrace chips */
+  .chips {
+    list-style: none; display: flex; flex-wrap: wrap; gap: var(--space-3);
+    justify-content: center;
+  }
+  .chip {
+    display: inline-flex; align-items: center; gap: var(--space-2);
+    padding: var(--space-3) var(--space-5); border-radius: var(--radius-full);
+    background: rgba(255, 255, 255, 0.06); border: 1px solid var(--color-border-on-dark);
+    color: var(--color-text-on-dark); font-size: var(--font-size-small);
+  }
+  .chip__dot { width: 8px; height: 8px; border-radius: 50%; background: var(--color-success); flex-shrink: 0; }
+
+  /* Reference */
+  .quotes { display: grid; gap: var(--space-8) var(--space-6); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+  .quote { margin: 0; display: flex; flex-direction: column; }
+  .quote__head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); margin-bottom: var(--space-5); }
+  .quote__id { display: flex; flex-direction: column; gap: 2px; }
+  .quote__name { font-size: var(--font-size-h3); font-weight: var(--font-weight-bold); color: var(--color-secondary); line-height: 1.1; }
+  .quote__role { font-size: var(--font-size-small); color: var(--color-text-muted); }
+  .quote__avatar {
+    flex-shrink: 0; width: 84px; height: 84px; border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: var(--font-size-h3); font-weight: var(--font-weight-bold);
+    color: #fff; letter-spacing: 0.02em;
+    box-shadow: var(--shadow-md);
+  }
+  .quote--0 .quote__avatar { background: linear-gradient(150deg, #2E8BD0, #1265A7); }
+  .quote--1 .quote__avatar { background: linear-gradient(150deg, #1265A7, #0D3D63); }
+  .quote--2 .quote__avatar { background: linear-gradient(150deg, #15A06B, #0E7A52); }
+  .quote__mark { color: var(--color-primary); display: block; margin-bottom: var(--space-2); }
+  .quote__headline { font-weight: var(--font-weight-bold); color: var(--color-secondary); margin-bottom: var(--space-2); }
+  .quote__text { font-size: var(--font-size-body); color: var(--color-text-muted); line-height: var(--line-height-body); }
+  .quotes__cta { display: flex; justify-content: center; margin-top: var(--space-8); }
+
+  /* Logo wall — marquee */
+  .logos__label { margin-bottom: var(--space-5); }
+  .logos { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+  .logos__track { display: flex; align-items: center; gap: var(--space-8); width: max-content; animation: logos-scroll 48s linear infinite; }
+  .logos__track img { height: 34px; width: auto; opacity: 0.62; filter: grayscale(1); flex-shrink: 0; }
+  @keyframes logos-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) { .logos__track { animation: none; flex-wrap: wrap; justify-content: center; } }
+
+  /* CTA */
+  .cta-actions { display: flex; gap: var(--space-3); justify-content: center; flex-wrap: wrap; margin-top: var(--space-5); }
+
+  /* FAQ */
+  .faq { max-width: 760px; margin-inline: auto; display: flex; flex-direction: column; gap: var(--space-3); }
+  .faq__item {
+    border: 1px solid var(--color-border); border-radius: var(--radius-md);
+    background: var(--color-bg); padding: 0 var(--space-5);
+  }
+  .faq__item summary {
+    display: flex; align-items: center; justify-content: space-between; gap: var(--space-4);
+    padding: var(--space-4) 0; cursor: pointer; font-weight: var(--font-weight-semibold);
+    list-style: none;
+  }
+  .faq__item summary::-webkit-details-marker { display: none; }
+  .faq__chev { transition: transform var(--duration-base) var(--easing); color: var(--color-text-muted); }
+  .faq__item[open] .faq__chev { transform: rotate(180deg); }
+  .faq__a { padding-bottom: var(--space-5); }
+</style>

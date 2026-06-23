@@ -22,6 +22,9 @@
     "preview:savarin": "npm run preview -w @piano/app-savarin",
     "dev:harsys": "npm run dev -w @piano/app-harsys",
     "build:harsys": "npm run build -w @piano/app-harsys",
-    "preview:harsys": "npm run preview -w @piano/app-harsys"
+    "preview:harsys": "npm run preview -w @piano/app-harsys",
+    "dev:pecosta": "npm run dev -w @piano/app-pecosta",
+    "build:pecosta": "npm run build -w @piano/app-pecosta",
+    "preview:pecosta": "npm run preview -w @piano/app-pecosta"
   }
 }
