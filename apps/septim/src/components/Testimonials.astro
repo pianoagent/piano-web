@@ -8,12 +8,12 @@ import Heading from '@piano/ui/components/Heading.astro';
 import Text from '@piano/ui/components/Text.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 
-interface Item { initials: string; headline: string; quote: string; author: string; role: string; michelin?: boolean; }
+interface Item { initials: string; headline: string; quote: string; author: string; role: string; michelin?: boolean; photo?: string; }
 interface Props { items?: Item[]; title?: string; lead?: string; eyebrow?: string; background?: 'default' | 'alt'; }
 
 const defaults: Item[] = [
   { initials: 'TK', headline: 'Výborný systém!', quote: 'Pokladní systém Septim a služba WebCare nám pomáhá být blíž našim zákazníkům.', author: 'Tomáš Karpíšek', role: 'Šéf restaurací Ambiente' },
-  { initials: 'RK', headline: 'Stabilita a efektivita', quote: 'Provozní systém Septim je zásadní součástí restaurace FIELD. Díky němu mám jistotu, že celý provoz běží stabilně a efektivně.', author: 'Radek Kašpárek', role: 'Šéfkuchař a zakladatel FIELD', michelin: true },
+  { initials: 'RK', headline: 'Stabilita a efektivita', quote: 'Provozní systém Septim je zásadní součástí restaurace FIELD. Díky němu mám jistotu, že celý provoz běží stabilně a efektivně.', author: 'Radek Kašpárek', role: 'Šéfkuchař a zakladatel FIELD', michelin: true, photo: '/images/ref-radek-kasparek.jpg' },
   { initials: 'VV', headline: 'Naprostý přehled', quote: 'Na Septimu mi nejvíce vyhovuje, že si mohu nadefinovat jakoukoli sestavu a okamžitě dostanu vyhodnocení. Mám pak naprostý přehled.', author: 'Václav Vojíř', role: "Majitel Bugsy's baru, Praha" },
 ];
 const { items = defaults, title = 'Důvěřují nám ti nejlepší', lead, eyebrow = 'Reference', background = 'default' } = Astro.props;
@@ -32,7 +32,9 @@ const { items = defaults, title = 'Důvěřují nám ti nejlepší', lead, eyebr
             <strong class="quote__name">{t.author}</strong>
             <span class="quote__role">{t.role}{t.michelin && <span class="quote__michelin"> · Michelin ★</span>}</span>
           </div>
-          <span class="quote__avatar" aria-hidden="true">{t.initials}</span>
+          {t.photo
+            ? <span class="quote__avatar quote__avatar--photo"><img src={t.photo} alt={t.author} loading="lazy" /></span>
+            : <span class="quote__avatar" aria-hidden="true">{t.initials}</span>}
         </div>
         <span class="quote__mark"><Icon name="lucide:quote" size="md" /></span>
         <p class="quote__headline">{t.headline}</p>
@@ -56,6 +58,8 @@ const { items = defaults, title = 'Důvěřují nám ti nejlepší', lead, eyebr
   .quote--0 .quote__avatar { background: linear-gradient(150deg, #16B5F0, #00ADEE); }
   .quote--1 .quote__avatar { background: linear-gradient(150deg, #2FC4F4, #0E86D9); }
   .quote--2 .quote__avatar { background: linear-gradient(150deg, #0C2A9E, #06038D); }
+  .quote__avatar--photo { padding: 0; overflow: hidden; background: none; }
+  .quote__avatar--photo img { width: 100%; height: 100%; object-fit: cover; }
   .quote__mark { color: var(--color-primary); display: block; margin-bottom: var(--space-2); }
   .quote__headline { font-weight: var(--font-weight-bold); color: var(--color-secondary); margin-bottom: var(--space-2); }
   .quote__text { font-size: var(--font-size-body); color: var(--color-text-muted); line-height: var(--line-height-body); }

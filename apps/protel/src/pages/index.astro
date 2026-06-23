@@ -1,0 +1,418 @@
+---
+/**
+ * Protel — homepage.
+ * Obsah vytěžen ze starého webu protelsystems.cz (podklady starých webů/protel)
+ * + protel-context.md. Vše ze SDÍLENÝCH komponent @piano/ui; téma řeší
+ * src/styles/theme.css. Sekce bez vlastní komponenty (Stats, Pillars, Produkty,
+ * Reference, FAQ) jsou složené z primitivů — komponenty se NEFORKUJÍ.
+ */
+import Base from '../layouts/Base.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+
+const stats = [
+  { num: 'Globální', lbl: 'standard PMS' },
+  { num: 'CZ / SK', lbl: 'lokální podpora' },
+  { num: 'Best Western', lbl: 'certifikovaný partner' },
+  { num: 'Michelin', lbl: 'v rodině Protel' },
+];
+
+const pillars = [
+  { icon: 'lucide:smartphone', title: 'Digitální recepce', text: 'Hotel zcela bez fyzické recepce. Host vyřídí check-in i check-out přes mobil, bez asistence recepčního.' },
+  { icon: 'lucide:refresh-cw', title: 'Automatizace rezervací', text: 'Žádné ruční zadávání. Aktuální dostupnost na všech prodejních kanálech, bez chyb a bez ztracených pokojů.' },
+  { icon: 'lucide:piggy-bank', title: 'Úspory v hotelu', text: 'Úspora energií, papíru a času. Efektivnější procesy napříč celým provozem.' },
+  { icon: 'lucide:line-chart', title: 'Čísla pod kontrolou', text: 'Obsazenost, hosté, výnosy, plnění rozpočtu i výhled — vše přehledně na jednom místě.' },
+];
+
+const produkty = [
+  { icon: 'lucide:layout-dashboard', title: 'Protel — hotelový systém (PMS)', text: 'Správa pokojů, rezervací, hostů a statistik. Snadné používání a zároveň pokročilé funkce pro kompletní přehled o provozu.' },
+  { icon: 'lucide:credit-card', title: 'Platební řešení hotelu', text: 'Vlastní integrované platby přímo v Protelu. Minimalizace chybovosti a nižší riziko vracení transakcí.' },
+  { icon: 'lucide:concierge-bell', title: 'Room Service', text: 'Rarita na trhu — host načte QR kód v pokoji a objednávka jde přímo do Septimu v kuchyni či baru. Plně automatizované.' },
+  { icon: 'lucide:presentation', title: 'Konference', text: 'Rezervace konferenčních místností, sledování dostupnosti, správa stravování, fakturace pronájmu a účastníků.' },
+  { icon: 'lucide:bed-double', title: 'Housekeeping', text: 'Digitální správa úklidu a stavu pokojů. Pokojská i recepce vidí aktuální stav v reálném čase.' },
+  { icon: 'lucide:soup', title: 'MealPlan', text: 'Správa stravovacích plánů hostů — od snídaní po plnou penzi, přehledně a bez chyb.' },
+];
+
+const recepce = [
+  { icon: 'lucide:smartphone', title: 'Online check-in/out', text: 'Host vše vyřídí přes mobil, bez fronty na recepci.' },
+  { icon: 'lucide:monitor-smartphone', title: 'Kiosek', text: 'Samoobslužný check-in terminál přímo v hotelu.' },
+  { icon: 'lucide:file-signature', title: 'Digitální registrační karta', text: 'Konec papírování — registrace hosta digitálně.' },
+  { icon: 'lucide:book-open', title: 'Digitální hotelová kniha', text: 'Hotelová kniha vedená elektronicky a vždy po ruce.' },
+  { icon: 'lucide:scan-line', title: 'Čtečka dokladů', text: 'Rychlé načtení dat z dokladů i platebních karet.' },
+];
+
+const doplnky = [
+  'Webové rezervace — přímé rezervace přes web hotelu',
+  'Automatický mailing — personalizované e-maily hostům',
+  'Hotelové řetězce — centrální správa více provozů',
+  'MealPlan — správa stravovacích plánů',
+  'Čtečka dokladů — načtení dokladů a karet',
+];
+
+const integrace = [
+  'Septim — POS systém pro Room Service a restauraci',
+  'Channel manager & CRS — distribuce na prodejní kanály',
+  'Business intelligence & revenue management',
+  'Uzamykací a televizní systémy',
+  'Účetní programy',
+  'Online check-in/out & kiosek (Straiv)',
+];
+
+const segmenty = [
+  { icon: 'lucide:hotel', title: 'Nezávislé hotely', text: 'Kompletní řízení provozu pro samostatné hotely a penziony.' },
+  { icon: 'lucide:building-2', title: 'Hotelové řetězce', text: 'Centralizace více provozů pod jednou správou.' },
+  { icon: 'lucide:waves', title: 'Lázně a resorty', text: 'Provoz s wellness, stravováním i delšími pobyty.' },
+  { icon: 'lucide:utensils-crossed', title: 'Hotely s restaurací', text: 'Propojení Protel PMS + Septim POS a Room Service.' },
+  { icon: 'lucide:badge-check', title: 'Best Western', text: 'Certifikovaný partner pro hotely Best Western.' },
+  { icon: 'lucide:graduation-cap', title: 'Školy hotelnictví', text: 'Protel pro školy — studenti na moderní technologie.' },
+];
+
+const testimonials = [
+  { initials: 'MB', headline: 'Spolehlivost a efektivita', quote: 'Protel je pro CPI Hotels vynikající volba. Jeho intuitivní rozhraní, spolehlivost a efektivita nám umožňují snadno řídit rezervace, spravovat hosty a sledovat statistiky.', author: 'Michaela Bieliková', role: 'CPI Hotels' },
+  { initials: 'IM', headline: 'Profesionální support', quote: 'Ďakujem firme Protel za profesionálny support a inštaláciu!', author: 'Ivona Meissner', role: 'BWH Group' },
+  { initials: 'ŠCH', headline: 'Připraveni na praxi', quote: 'Díky Protelu jsou naši studenti připraveni na moderní technologie v hotelnictví.', author: 'Štěpán Chalupa', role: 'UCP — škola hotelnictví' },
+];
+
+const refNames = [
+  'Grandhotel Pupp', 'Clarion Hotel Prague Old Town', 'CPI Hotels',
+  'BWH Group', 'Best Western', 'Michelin Guide hotely',
+];
+
+const faqs = [
+  { q: 'Pro jaké hotely se Protel hodí?', a: 'Od nezávislých hotelů a penzionů po hotelové řetězce, lázně a resorty. Protel je globální standard se silnou lokální podporou v CZ i SK.' },
+  { q: 'Je k dispozici česká podpora?', a: 'Ano — plnohodnotná česká a slovenská podpora. Hotline help@protelsystems.cz a telefonická linka pro provozní situace.' },
+  { q: 'Umí Protel fungovat bez fyzické recepce?', a: 'Ano. Díky online check-in/out, kiosku a digitální registrační kartě vyřídí host vše přes mobil — hotel může fungovat s digitální recepcí.' },
+  { q: 'Jak funguje Room Service přes Protel?', a: 'Host načte QR kód v pokoji, objednávka jde automaticky do systému Septim v kuchyni nebo baru. Plně automatizované, bez ručního přepisování.' },
+  { q: 'Lze Protel propojit s restaurací?', a: 'Ano — napojením na POS systém Septim. Hotely jako Grandhotel Pupp využívají Protel PMS i Septim POS současně.' },
+  { q: 'Zvládne Protel více hotelů najednou?', a: 'Ano. Funkce pro hotelové řetězce umožňují centrální správu více provozů z jednoho místa.' },
+];
+
+const leadProofs = [
+  { icon: 'lucide:globe', title: 'Globální standard', text: 'Mezinárodně respektovaný hotelový PMS.' },
+  { icon: 'lucide:headset', title: 'CZ / SK podpora', text: 'Plnohodnotná lokální podpora.' },
+  { icon: 'lucide:badge-check', title: 'Best Western', text: 'Certifikovaný partner.' },
+  { icon: 'lucide:gift', title: 'Vyzkoušení zdarma', text: 'Nezávazně a bez rizika.' },
+];
+---
+
+<Base title="Protel — hotelový systém skvělých hotelů"
+      description="Protel je globálně respektovaný hotelový systém (PMS) s plnohodnotnou českou a slovenskou podporou. Digitální recepce, automatizace rezervací, platby, Room Service a kompletní přehled o hotelovém provozu.">
+  <SiteHeader transparent />
+
+  <main>
+
+  <!-- HERO -->
+  <Hero eyebrow="Hotelový systém Protel" background="gradient" align="center"
+        lead="Globálně respektovaný hotelový systém s plnohodnotnou lokální podporou. I přes snadné používání vás překvapí množstvím pokročilých funkcí a tím, jak snadno udržíte celý hotelový provoz pod kontrolou.">
+    <Heading slot="title" as="h1" size="display" color="on-dark">Jsme hotelový systém <em>skvělých hotelů</em></Heading>
+    <Fragment slot="actions">
+      <Button href="#poptavka">Vyzkoušet Protel zdarma</Button>
+      <Button href="#produkty" variant="secondary" onDark>Prohlédnout produkty</Button>
+    </Fragment>
+  </Hero>
+
+  <!-- TRUST STRIP -->
+  <Section background="default" space="md">
+    <Text size="label" color="muted" align="center" class="trust__label">
+      Protel používají hotelové špičky
+    </Text>
+    <ul class="trust">
+      {refNames.map((n) => (
+        <li class="trust__item">{n}</li>
+      ))}
+    </ul>
+  </Section>
+
+  <!-- STATS BAND -->
+  <Section background="alt" space="sm">
+    <ul class="stats">
+      {stats.map((s) => (
+        <li class="stats__item">
+          <span class="stats__num">{s.num}</span>
+          <span class="stats__lbl">{s.lbl}</span>
+        </li>
+      ))}
+    </ul>
+  </Section>
+
+  <!-- VÝHODY / 4 PILÍŘE -->
+  <Section id="vyhody" background="default" space="lg">
+    <div class="head head--center">
+      <Text size="label" color="accent" align="center">Hotelový systém pro kompletní správu hotelu</Text>
+      <Heading as="h2" size="h2" align="center">Zvyšujeme hotelům <em>ziskovost</em></Heading>
+      <Text size="lead" color="muted" align="center" balance>
+        Naším cílem je zpříjemnit a zefektivnit provoz hotelů pro všechny, kdo se podílejí na hotelovém chodu.
+      </Text>
+    </div>
+    <ol class="steps">
+      {pillars.map((p, i) => (
+        <li class="step">
+          <span class="step__num">{i + 1}</span>
+          <span class="step__icon"><Icon name={p.icon} size="lg" /></span>
+          <Heading as="h3" size="h3">{p.title}</Heading>
+          <Text size="small" color="muted">{p.text}</Text>
+        </li>
+      ))}
+    </ol>
+  </Section>
+
+  <!-- PRODUKTY -->
+  <USPGrid id="produkty" eyebrow="Produkty" title="Vše pro řízení hotelu"
+           lead="Od rezervací a plateb po Room Service a konference — Protel pokrývá celý hotelový provoz."
+           items={produkty} minItemWidth="280px" background="alt" space="lg" />
+
+  <!-- PMS DETAIL -->
+  <Section id="pms" background="default" space="lg">
+    <div class="split">
+      <div class="split__text">
+        <Text size="label" color="accent">Protel — hotelový systém (PMS)</Text>
+        <Heading as="h2" size="h2">Celý hotel <em>na jedné obrazovce</em></Heading>
+        <Text size="lead" color="muted">
+          Správa pokojů, rezervací a hostů, statistiky a reporty. Snadné ovládání pro recepci i pokročilé funkce pro management — abyste měli kompletní přehled o provozu.
+        </Text>
+        <ul class="ticks">
+          <li><Icon name="lucide:check" size="sm" /> Přehledná správa rezervací a dostupnosti</li>
+          <li><Icon name="lucide:check" size="sm" /> Karty hostů, statistiky a reporty</li>
+          <li><Icon name="lucide:check" size="sm" /> Integrované platby přímo v systému</li>
+          <li><Icon name="lucide:check" size="sm" /> CZ / SK mutace a lokální podpora</li>
+        </ul>
+        <div class="split__cta"><Button href="#poptavka">Chci Protel</Button></div>
+      </div>
+      <div class="split__card">
+        <span class="split__mark"><Icon name="lucide:layout-dashboard" size="lg" /></span>
+        <p class="split__quote">„Zvyšujeme hotelům ziskovost a pomáháme jim k obchodnímu růstu.“</p>
+        <p class="split__author">Hedvika Trunečková · ředitelka protel systems s.r.o.</p>
+      </div>
+    </div>
+  </Section>
+
+  <!-- DIGITÁLNÍ RECEPCE -->
+  <USPGrid id="recepce" eyebrow="Digitální recepce" title="Hotel i bez fyzické recepce"
+           lead="Host vyřídí recepční úkony přes mobil — bez vaší fyzické asistence."
+           items={recepce} minItemWidth="240px" background="alt" space="lg" />
+
+  <!-- DOPLŇKY -->
+  <Section id="doplnky" background="default" space="lg">
+    <div class="head head--center">
+      <Text size="label" color="accent" align="center">Doplňky</Text>
+      <Heading as="h2" size="h2" align="center">Rozšiřte Protel <em>podle potřeby</em></Heading>
+    </div>
+    <ul class="chips chips--light">
+      {doplnky.map((d) => (
+        <li class="chip chip--light"><span class="chip__dot"></span>{d}</li>
+      ))}
+    </ul>
+  </Section>
+
+  <!-- INTEGRACE / NAPOJENÍ -->
+  <Section id="integrace" background="invert" space="lg">
+    <div class="head head--center">
+      <Text size="label" color="accent" align="center">Napojení</Text>
+      <Heading as="h2" size="h2" align="center" color="on-dark">Protel mluví s vaším <em>technologickým zázemím</em></Heading>
+      <Text size="lead" color="on-dark-muted" align="center">Channel managery, platby, zámky, TV systémy i POS Septim — vše propojené.</Text>
+    </div>
+    <ul class="chips">
+      {integrace.map((i) => (
+        <li class="chip"><span class="chip__dot"></span>{i}</li>
+      ))}
+    </ul>
+  </Section>
+
+  <!-- ŘEŠENÍ / SEGMENTY -->
+  <USPGrid id="reseni" eyebrow="Řešení" title="Pro každý typ hotelu"
+           lead="Protel se přizpůsobí provozu — od malého penzionu po hotelový řetězec."
+           items={segmenty} minItemWidth="260px" background="default" space="lg" />
+
+  <!-- REFERENCE -->
+  <Section id="reference" background="alt" space="lg">
+    <div class="head head--center">
+      <Text size="label" color="accent" align="center">Naši zákazníci</Text>
+      <Heading as="h2" size="h2" align="center">Co o nás <em>říkají</em></Heading>
+      <Text size="lead" color="muted" align="center" balance>
+        Protel řídí provoz hotelových špiček — Grandhotel Pupp, Clarion Hotel Prague Old Town i hotely Best Western.
+      </Text>
+    </div>
+    <div class="quotes">
+      {testimonials.map((t, i) => (
+        <figure class={`quote quote--${i}`}>
+          <div class="quote__head">
+            <div class="quote__id">
+              <strong class="quote__name">{t.author}</strong>
+              <span class="quote__role">{t.role}</span>
+            </div>
+            <span class="quote__avatar" aria-hidden="true">{t.initials}</span>
+          </div>
+          <span class="quote__mark"><Icon name="lucide:quote" size="md" /></span>
+          <p class="quote__headline">{t.headline}</p>
+          <blockquote class="quote__text">{t.quote}</blockquote>
+        </figure>
+      ))}
+    </div>
+  </Section>
+
+  <!-- O NÁS -->
+  <Section id="o-nas" background="default" space="lg">
+    <div class="head head--center">
+      <Text size="label" color="accent" align="center">O Protelu</Text>
+      <Heading as="h2" size="h2" align="center">Hotelový manažer s <em>mezinárodním zázemím</em></Heading>
+      <Text size="lead" color="muted" align="center" balance>
+        Protel je globálně respektovaný PMS s plnohodnotnou lokální podporou v Česku a na Slovensku. Víme, že konkurenční výhody hotelu dodají jen ty správné technologické nástroje — a my je máme.
+      </Text>
+    </div>
+  </Section>
+
+  <!-- CENÍK / CTA -->
+  <Section id="cenik" background="primary" space="lg">
+    <div class="head head--center">
+      <Text size="label" color="on-dark-muted" align="center">Ceník</Text>
+      <Heading as="h2" size="h2" align="center" color="on-dark">Co byste u vás v hotelu rádi zlepšili?</Heading>
+      <Text size="lead" color="on-dark-muted" align="center" balance>
+        Pojďme to probrat. Připravíme nabídku na míru vašemu provozu a ukážeme Protel v praxi.
+      </Text>
+      <div class="cta-actions">
+        <Button href="#poptavka">Vyzkoušet Protel zdarma</Button>
+        <Button href="tel:+420257011107" variant="secondary" onDark>+420 257 011 107</Button>
+      </div>
+    </div>
+  </Section>
+
+  <!-- FAQ -->
+  <Section background="default" space="lg">
+    <div class="head head--center">
+      <Heading as="h2" size="h2" align="center">Často kladené dotazy</Heading>
+      <Text size="lead" color="muted" align="center">Nenašli jste odpověď? Ozvěte se nám, rádi vám poradíme.</Text>
+    </div>
+    <div class="faq">
+      {faqs.map((f) => (
+        <details class="faq__item">
+          <summary>{f.q}<Icon name="lucide:chevron-down" size="sm" class="faq__chev" /></summary>
+          <div class="faq__a"><Text color="muted">{f.a}</Text></div>
+        </details>
+      ))}
+    </div>
+  </Section>
+
+  <!-- POPTÁVKA -->
+  <LeadForm id="poptavka" variant="full" background="alt"
+            title="Vyzkoušejte Protel zdarma"
+            lead="Nechte nám kontakt — ozveme se a ukážeme Protel přímo ve vašem hotelu."
+            proofs={leadProofs} />
+
+  </main>
+
+  <SiteFooter />
+</Base>
+
+<style>
+  /* Sdílená hlavička sekce */
+  .head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-7); }
+  .head--center { text-align: center; }
+  .head > * + * { margin-top: var(--space-3); }
+
+  /* Trust strip */
+  .trust__label { margin-bottom: var(--space-5); }
+  .trust { list-style: none; display: flex; flex-wrap: wrap; gap: var(--space-3) var(--space-4); justify-content: center; }
+  .trust__item {
+    font-weight: var(--font-weight-semibold); color: var(--color-secondary);
+    font-size: var(--font-size-body); opacity: 0.8;
+    padding: var(--space-2) var(--space-4); border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+  }
+
+  /* Stats band */
+  .stats { list-style: none; display: grid; gap: var(--space-5); grid-template-columns: repeat(4, 1fr); text-align: center; }
+  .stats__item { display: flex; flex-direction: column; gap: var(--space-1); }
+  .stats__num { font-size: var(--font-size-h2); font-weight: var(--font-weight-bold); line-height: 1; color: var(--color-secondary); }
+  .stats__lbl { font-size: var(--font-size-small); color: var(--color-text-muted); }
+  @media (max-width: 720px) { .stats { grid-template-columns: repeat(2, 1fr); } }
+
+  /* Steps / pilíře */
+  .steps { list-style: none; display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+  .step {
+    position: relative; padding: var(--space-6);
+    background: var(--color-bg); border: 1px solid var(--color-border);
+    border-radius: var(--radius-md); box-shadow: var(--shadow-sm);
+  }
+  .step > * + * { margin-top: var(--space-3); }
+  .step__num {
+    position: absolute; top: var(--space-4); right: var(--space-5);
+    font-size: var(--font-size-h2); font-weight: var(--font-weight-bold);
+    color: var(--color-neutral-200); line-height: 1;
+  }
+  .step__icon {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 56px; height: 56px; border-radius: var(--radius-md);
+    background: color-mix(in srgb, var(--color-primary) 10%, #fff);
+    color: var(--color-primary);
+  }
+
+  /* Split (PMS detail) */
+  .split { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: var(--space-8); align-items: center; }
+  .split__text > * + * { margin-top: var(--space-4); }
+  .ticks { list-style: none; display: flex; flex-direction: column; gap: var(--space-2); }
+  .ticks li { display: flex; align-items: center; gap: var(--space-2); color: var(--color-text); }
+  .ticks :global(svg) { color: var(--color-primary); flex-shrink: 0; }
+  .split__cta { margin-top: var(--space-5); }
+  .split__card {
+    background: var(--color-bg-gradient); color: var(--color-text-on-dark);
+    border-radius: var(--radius-lg); padding: var(--space-8); box-shadow: var(--shadow-lg);
+  }
+  .split__mark { display: inline-flex; margin-bottom: var(--space-5); opacity: 0.9; }
+  .split__quote { font-size: var(--font-size-h3); font-weight: var(--font-weight-semibold); line-height: 1.3; }
+  .split__author { margin-top: var(--space-4); font-size: var(--font-size-small); color: var(--color-text-on-dark-muted); }
+  @media (max-width: 760px) { .split { grid-template-columns: 1fr; } }
+
+  /* Chips (integrace + doplňky) */
+  .chips { list-style: none; display: flex; flex-wrap: wrap; gap: var(--space-3); justify-content: center; }
+  .chip {
+    display: inline-flex; align-items: center; gap: var(--space-2);
+    padding: var(--space-3) var(--space-5); border-radius: var(--radius-full);
+    background: rgba(255, 255, 255, 0.06); border: 1px solid var(--color-border-on-dark);
+    color: var(--color-text-on-dark); font-size: var(--font-size-small);
+  }
+  .chip--light { background: var(--color-bg-alt); border-color: var(--color-border); color: var(--color-text); }
+  .chip__dot { width: 8px; height: 8px; border-radius: 50%; background: var(--color-primary); flex-shrink: 0; }
+
+  /* Reference */
+  .quotes { display: grid; gap: var(--space-8) var(--space-6); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+  .quote { margin: 0; display: flex; flex-direction: column; }
+  .quote__head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); margin-bottom: var(--space-5); }
+  .quote__id { display: flex; flex-direction: column; gap: 2px; }
+  .quote__name { font-size: var(--font-size-h3); font-weight: var(--font-weight-bold); color: var(--color-secondary); line-height: 1.1; }
+  .quote__role { font-size: var(--font-size-small); color: var(--color-text-muted); }
+  .quote__avatar {
+    flex-shrink: 0; width: 84px; height: 84px; border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: var(--font-size-h3); font-weight: var(--font-weight-bold);
+    color: #fff; letter-spacing: 0.02em; box-shadow: var(--shadow-md);
+  }
+  .quote--0 .quote__avatar { background: linear-gradient(150deg, #FF0096, #D6006F); }
+  .quote--1 .quote__avatar { background: linear-gradient(150deg, #8A0A82, #5B57C7); }
+  .quote--2 .quote__avatar { background: linear-gradient(150deg, #2B0C8E, #06038D); }
+  .quote__mark { color: var(--color-primary); display: block; margin-bottom: var(--space-2); }
+  .quote__headline { font-weight: var(--font-weight-bold); color: var(--color-secondary); margin-bottom: var(--space-2); }
+  .quote__text { font-size: var(--font-size-body); color: var(--color-text-muted); line-height: var(--line-height-body); }
+
+  /* CTA */
+  .cta-actions { display: flex; gap: var(--space-3); justify-content: center; flex-wrap: wrap; margin-top: var(--space-5); }
+
+  /* FAQ */
+  .faq { max-width: 760px; margin-inline: auto; display: flex; flex-direction: column; gap: var(--space-3); }
+  .faq__item { border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-bg); padding: 0 var(--space-5); }
+  .faq__item summary {
+    display: flex; align-items: center; justify-content: space-between; gap: var(--space-4);
+    padding: var(--space-4) 0; cursor: pointer; font-weight: var(--font-weight-semibold); list-style: none;
+  }
+  .faq__item summary::-webkit-details-marker { display: none; }
+  .faq__chev { transition: transform var(--duration-base) var(--easing); color: var(--color-text-muted); }
+  .faq__item[open] .faq__chev { transform: rotate(180deg); }
+  .faq__a { padding-bottom: var(--space-5); }
+</style>

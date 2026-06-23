@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://protelsystems.cz/sitemap-index.xml

@@ -1,0 +1,423 @@
+---
+/**
+ * Septim — homepage.
+ * Obsah z septim-context.md + blok #page-septim (piano-web-2026.html).
+ * Vše ze SDÍLENÝCH komponent @piano/ui; téma řeší src/styles/theme.css.
+ * Sekce bez vlastní komponenty (Stats, Steps, Tabulka, Integrace, Reference,
+ * Logo wall, FAQ) jsou složené z primitivů (Section/Heading/Text/Button) —
+ * komponenty se NEFORKUJÍ.
+ */
+import Base from '../layouts/Base.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+
+const stats = [
+  { num: '30 let', lbl: 'na trhu' },
+  { num: '6 000+', lbl: 'provozů v ČR' },
+  { num: '24/7', lbl: 'česká podpora' },
+  { num: 'CZ / EN / SK', lbl: 'jazykové mutace' },
+];
+
+const steps = [
+  { img: '/icons/sklady-naskladnovani.svg', title: 'Naskladnění a sklady', text: 'Sledování stavu surovin, dodacích listů a zásob v reálném čase. Automatické napojení na Autset.' },
+  { img: '/icons/platebni-reseni.svg', title: 'Prodej a pokladna', text: 'Intuitivní dotykové rozhraní, mobilní číšník Septim.Go, integrované platby přes Qerko.' },
+  { img: '/icons/financni-prehledy.svg', title: 'Přehledy a reporty', text: 'Tržby, výkon personálu, marže produktů — vše v MySeptim appce kdekoliv a kdykoliv.' },
+  { img: '/icons/napojeni-systemu.svg', title: 'Integrace ekosystému', text: 'Foodora, Wolt, Qerko, Protel, Autset, GrasonPlan — vše komunikuje se Septimem.' },
+];
+
+const variants = [
+  { name: 'Septim.4', who: 'Restaurace, sítě', install: 'Na místě', net: true, loyalty: true, reports: true },
+  { name: 'Septim.Jídelna', who: 'Kantýny, závodní stravování', install: 'Na místě', net: true, loyalty: false, reports: true },
+  { name: 'Septim.Air', who: 'Kavárny, bistra, bary', install: 'Cloud', net: false, loyalty: false, reports: false },
+  { name: 'Septim.Hotel', who: 'Hotely (s Protelem)', install: 'Na místě', net: true, loyalty: true, reports: true },
+];
+
+const features = [
+  { image: '/icons/vice-pokladen.svg', title: 'Pokladna', text: 'Intuitivní dotykové rozhraní pro obsluhu. Mobilní číšník Septim.Go pro orderpad.' },
+  { image: '/icons/sklady-inventura.svg', title: 'Skladové hospodářství', text: 'Hlídání stavu surovin, dodacích listů a zásob v reálném čase.' },
+  { image: '/icons/revenue-reporting.svg', title: 'Manažerské přehledy', text: 'Tržby, marže, výkon personálu — v appce MySeptim odkudkoliv.' },
+  { image: '/icons/osobni-pristup.svg', title: 'Věrnostní systém (CRM)', text: 'Loajalitní programy pro zákazníky přímo v systému.' },
+  { image: '/icons/partnerstvi.svg', title: 'Rozvoz jídla', text: 'Přímá integrace s Foodora a Wolt. Objednávky z rozvozu v systému automaticky.' },
+  { image: '/icons/vzdaleny-servis.svg', title: 'MySeptim App', text: 'iOS + Android. Klíčová data provozu vždy po ruce, kdekoliv se nacházíte.' },
+  { image: '/icons/protel-septim.svg', title: 'Room Service', text: 'Propojení s Protelem — host objedná z pokoje, kuchyně to vidí automaticky.' },
+  { image: '/icons/podpora-24-7.svg', title: 'Podpora 24/7', text: 'Česká podpora v reálném čase. Konzultanti s praxí z gastro provozu.' },
+];
+
+const integrations = [
+  'Qerko — platby a QR objednávky',
+  'Protel — hotelový systém + Room Service',
+  'Autset — automatické naskladňování',
+  'GrasonPlan — plánování směn',
+  'Foodora & Wolt — rozvoz jídla',
+  'Kuchyňské displeje — QSR Automations',
+];
+
+const testimonials = [
+  { initials: 'TK', headline: 'Výborný systém!', quote: 'Pokladní systém Septim a služba WebCare nám pomáhá být blíž našim zákazníkům.', author: 'Tomáš Karpíšek', role: 'Šéf restaurací Ambiente' },
+  { initials: 'RK', headline: 'Stabilita a efektivita', quote: 'Provozní systém Septim je zásadní součástí restaurace FIELD. Díky němu mám jistotu, že celý provoz běží stabilně a efektivně.', author: 'Radek Kašpárek', role: 'Šéfkuchař a zakladatel FIELD', michelin: true },
+  { initials: 'VV', headline: 'Naprostý přehled', quote: 'Na Septimu mi nejvíce vyhovuje, že si mohu nadefinovat jakoukoli sestavu a okamžitě dostanu vyhodnocení. Mám pak naprostý přehled.', author: 'Václav Vojíř', role: "Majitel Bugsy's baru, Praha" },
+];
+
+const refLogos = [
+  'ref-field-michelin-restaurant', 'ref-cafe-savoy', 'ref-kolkovna', 'ref-sasazu',
+  'ref-O2-arena', 'ref-clarion-hotel', 'ref-zatisi-group', 'ref-420-restaurant',
+  'ref-pizza-coloseum', 'ref-entree', 'ref-100-chuti-brna', 'ref-sisters-bistro',
+];
+
+const faqs = [
+  { q: 'Pro jak velký provoz se Septim hodí?', a: 'Od malého bistra po michelinské restaurace a velké řetězce. Septim škáluje s vámi — využívají ho největší gastro provozy v ČR.' },
+  { q: 'Je k dispozici česká podpora?', a: 'Ano, česká podpora 24/7. Skuteční lidé, kteří vašemu provozu rozumí — i o víkendech a svátcích.' },
+  { q: 'Umí Septim skladové hospodářství?', a: 'Ano — kompletní skladovou evidenci, receptury, odpisy i inventury. Propojí se s nákupy přes Pecostu a automatickým naskladněním.' },
+  { q: 'Jaké manažerské funkce nabízí?', a: 'Reporty tržeb v reálném čase, výkon zaměstnanců, sledování marží a vzdálený přístup k provozu odkudkoliv.' },
+  { q: 'Propojí se Septim s ostatními nástroji Piano?', a: 'Ano — s Qerkem (platby), Grasonem (personál), Pecostou (nákupy), Piano Terminálem i Pilotem. Jedno přihlášení, jedno vyúčtování.' },
+  { q: 'Jak probíhá přechod ze stávajícího systému?', a: 'Převedeme data, nastavíme systém a zaškolíme obsluhu. Onboarding je zdarma a zvládneme ho za vás.' },
+];
+
+const leadProofs = [
+  { icon: 'lucide:headset', title: 'Podpora 24/7', text: 'Česká podpora každý den v roce.' },
+  { icon: 'lucide:store', title: '6 000+ provozů', text: 'Důvěřují nám restaurace i hotely v celé ČR.' },
+  { icon: 'lucide:calendar-check', title: '30 let na trhu', text: 'Zkušenosti s gastro a hotelovým provozem.' },
+  { icon: 'lucide:gift', title: 'Konzultace zdarma', text: 'Nezávazně a bez rizika.' },
+];
+---
+
+<Base title="Septim — pravá ruka každého manažera"
+      description="Septim je pokladní a provozní systém pro restaurace, jídelny, kavárny a hotely. Sklady, prodej, manažerské přehledy a integrace celého Piano ekosystému. Česká podpora 24/7.">
+  <SiteHeader />
+
+  <main>
+
+  <!-- HERO -->
+  <Hero eyebrow="Pokladní a provozní systém Septim" background="gradient"
+        lead="Septim není jen pokladna. Je to systém, který řídí celý váš provoz — od naskladnění surovin přes výdej jídel až po finanční přehledy. Využívají ho michelinské restaurace i kavárny za rohem.">
+    <Heading slot="title" as="h1" size="display" color="on-dark">Pravá ruka <em>každého manažera</em></Heading>
+    <Fragment slot="actions">
+      <Button href="#poptavka">Chci Septim</Button>
+      <Button href="#rada" variant="secondary" onDark>Vyberte variantu</Button>
+    </Fragment>
+    <figure slot="media" class="hero-figure">
+      <img src="/images/hero-septim.jpg" alt="My Septim — manažerské přehledy na tabletu, mobilu i pokladně" width="720" height="400" />
+      <figcaption class="hero-badge"><Icon name="lucide:badge-check" size="sm" /> Připraveno na EET 2.0</figcaption>
+    </figure>
+  </Hero>
+
+  <!-- LOGA KLIENTŮ — hned pod hero -->
+  <Section id="zakaznici" background="default" space="md" container={false}>
+    <Text size="label" color="muted" align="center" class="logos__label">
+      Důvěřují nám michelinské restaurace, hotely i kavárny za rohem
+    </Text>
+    <div class="logos">
+      <div class="logos__track">
+        {[...refLogos, ...refLogos].map((l, i) => (
+          <img src={`/logos/${l}.svg`} alt={i < refLogos.length ? l.replace('ref-', '').replace(/-/g, ' ') : ''} aria-hidden={i >= refLogos.length ? 'true' : undefined} loading="lazy" />
+        ))}
+      </div>
+    </div>
+  </Section>
+
+  <!-- STATS BAND -->
+  <Section background="alt" space="sm">
+    <ul class="stats">
+      {stats.map((s) => (
+        <li class="stats__item">
+          <span class="stats__num">{s.num}</span>
+          <span class="stats__lbl">{s.lbl}</span>
+        </li>
+      ))}
+    </ul>
+  </Section>
+
+  <!-- JAK TO FUNGUJE -->
+  <Section background="default" space="lg">
+    <div class="head head--center">
+      <Text size="label" color="accent" align="center">Jak to funguje</Text>
+      <Heading as="h2" size="h2" align="center">Provoz pod kontrolou. <em>Od skladu po výkaz.</em></Heading>
+      <Text size="lead" color="muted" align="center" balance>
+        Septim propojuje každou část vašeho provozu. Naskladníte, vydáte, prodáte, vyúčtujete — a na konci dne víte přesně, kde jste.
+      </Text>
+    </div>
+    <ol class="steps">
+      {steps.map((s, i) => (
+        <li class="step">
+          <span class="step__num">{i + 1}</span>
+          <img class="step__icon" src={s.img} alt="" loading="lazy" width="72" height="72" />
+          <Heading as="h3" size="h3">{s.title}</Heading>
+          <Text size="small" color="muted">{s.text}</Text>
+        </li>
+      ))}
+    </ol>
+  </Section>
+
+  <!-- PRODUKTOVÁ ŘADA -->
+  <Section id="rada" background="alt" space="lg">
+    <div class="head head--center">
+      <Text size="label" color="accent" align="center">Produktová řada</Text>
+      <Heading as="h2" size="h2" align="center">Vyberte variantu <em>pro váš provoz</em></Heading>
+    </div>
+    <div class="table-wrap">
+      <table class="variants">
+        <thead>
+          <tr>
+            <th>Varianta</th><th>Pro koho</th><th>Instalace</th>
+            <th>Síť provozoven</th><th>Věrnostní systém</th><th>Pokročilé reporty</th>
+          </tr>
+        </thead>
+        <tbody>
+          {variants.map((v) => (
+            <tr>
+              <td><strong>{v.name}</strong></td>
+              <td>{v.who}</td>
+              <td>{v.install}</td>
+              <td class={v.net ? 'yes' : 'no'}>{v.net ? '✓ ANO' : '—'}</td>
+              <td class={v.loyalty ? 'yes' : 'no'}>{v.loyalty ? '✓ ANO' : '—'}</td>
+              <td class={v.reports ? 'yes' : 'no'}>{v.reports ? '✓ ANO' : '—'}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </Section>
+
+  <!-- FUNKCE -->
+  <USPGrid id="funkce" eyebrow="Funkce" title="Vše, co váš provoz potřebuje"
+           lead="Septim není jen pokladna — je to operační centrum vašeho podniku."
+           items={features} minItemWidth="260px" background="default" space="lg" />
+
+  <!-- INTEGRACE -->
+  <Section background="invert" space="lg">
+    <div class="head head--center">
+      <Text size="label" color="accent" align="center">Integrace Piano ekosystému</Text>
+      <Heading as="h2" size="h2" align="center" color="on-dark">Septim mluví s celým <em>Piano portfoliem</em></Heading>
+      <Text size="lead" color="on-dark-muted" align="center">Každý nástroj funguje samostatně. Společně jsou mocnější.</Text>
+    </div>
+    <ul class="chips">
+      {integrations.map((i) => (
+        <li class="chip"><span class="chip__dot"></span>{i}</li>
+      ))}
+    </ul>
+  </Section>
+
+  <!-- REFERENCE -->
+  <Section background="alt" space="lg">
+    <div class="head head--center">
+      <Text size="label" color="accent" align="center">Reference</Text>
+      <Heading as="h2" size="h2" align="center">Důvěřují nám ti <em>nejlepší</em></Heading>
+      <Text size="lead" color="muted" align="center" balance>
+        Od michelinských restaurací po kavárny za rohem — Septim řídí provoz těch nejnáročnějších.
+      </Text>
+    </div>
+    <div class="quotes">
+      {testimonials.map((t, i) => (
+        <figure class={`quote quote--${i}`}>
+          <div class="quote__head">
+            <div class="quote__id">
+              <strong class="quote__name">{t.author}</strong>
+              <span class="quote__role">{t.role}{t.michelin && <span class="quote__michelin"> · Michelin ★</span>}</span>
+            </div>
+            <span class="quote__avatar" aria-hidden="true">{t.initials}</span>
+          </div>
+          <span class="quote__mark"><Icon name="lucide:quote" size="md" /></span>
+          <p class="quote__headline">{t.headline}</p>
+          <blockquote class="quote__text">{t.quote}</blockquote>
+        </figure>
+      ))}
+    </div>
+    <div class="quotes__cta">
+      <Button href="#zakaznici" variant="secondary">Naši zákazníci</Button>
+    </div>
+  </Section>
+
+  <!-- CTA -->
+  <Section background="primary" space="lg">
+    <div class="head head--center">
+      <Text size="label" color="on-dark-muted" align="center">Začít s Septimem</Text>
+      <Heading as="h2" size="h2" align="center" color="on-dark">Připraveni vidět Septim v praxi?</Heading>
+      <Text size="lead" color="on-dark-muted" align="center" balance>
+        Domluvte si bezplatnou konzultaci. Ukážeme vám, jak Septim funguje přímo ve vašem typu provozu.
+      </Text>
+      <div class="cta-actions">
+        <Button href="#poptavka">Chci konzultaci zdarma</Button>
+        <Button href="tel:+420776598696" variant="secondary">+420 776 598 696</Button>
+      </div>
+    </div>
+  </Section>
+
+  <!-- FAQ -->
+  <Section background="default" space="lg">
+    <div class="head head--center">
+      <Heading as="h2" size="h2" align="center">Často kladené dotazy</Heading>
+      <Text size="lead" color="muted" align="center">Nenašli jste odpověď? Ozvěte se nám, rádi vám poradíme.</Text>
+    </div>
+    <div class="faq">
+      {faqs.map((f) => (
+        <details class="faq__item">
+          <summary>{f.q}<Icon name="lucide:chevron-down" size="sm" class="faq__chev" /></summary>
+          <div class="faq__a"><Text color="muted">{f.a}</Text></div>
+        </details>
+      ))}
+    </div>
+  </Section>
+
+  <!-- POPTÁVKA -->
+  <LeadForm id="poptavka" variant="full" background="alt"
+            title="Domluvte si konzultaci zdarma"
+            lead="Nechte nám kontakt — ozveme se a ukážeme Septim přímo ve vašem provozu."
+            proofs={leadProofs} />
+
+  </main>
+
+  <SiteFooter />
+</Base>
+
+<style>
+  /* Hero obrázek + EET 2.0 štítek */
+  .hero-figure {
+    position: relative;
+    margin: 0;
+    width: 100%;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    line-height: 0;
+  }
+  .hero-figure img { width: 100%; height: auto; display: block; }
+  .hero-badge {
+    position: absolute;
+    top: var(--space-4);
+    left: var(--space-4);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-full);
+    background: var(--color-secondary);
+    color: var(--color-text-on-dark);
+    font-size: var(--font-size-small);
+    font-weight: var(--font-weight-semibold);
+    line-height: 1;
+    box-shadow: var(--shadow-md);
+  }
+
+  /* Sdílená hlavička sekce */
+  .head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-7); }
+  .head--center { text-align: center; }
+  .head > * + * { margin-top: var(--space-3); }
+
+  /* Stats band */
+  .stats {
+    list-style: none; display: grid; gap: var(--space-5);
+    grid-template-columns: repeat(4, 1fr); text-align: center;
+  }
+  .stats__item { display: flex; flex-direction: column; gap: var(--space-1); }
+  .stats__num { font-size: var(--font-size-h2); font-weight: var(--font-weight-bold); line-height: 1; color: var(--color-secondary); }
+  .stats__lbl { font-size: var(--font-size-small); color: var(--color-text-muted); }
+  @media (max-width: 720px) { .stats { grid-template-columns: repeat(2, 1fr); } }
+
+  /* Steps */
+  .steps {
+    list-style: none; display: grid; gap: var(--space-6);
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+  .step {
+    position: relative; padding: var(--space-6);
+    background: var(--color-bg); border: 1px solid var(--color-border);
+    border-radius: var(--radius-md); box-shadow: var(--shadow-sm);
+  }
+  .step > * + * { margin-top: var(--space-3); }
+  .step__num {
+    position: absolute; top: var(--space-4); right: var(--space-5);
+    font-size: var(--font-size-h2); font-weight: var(--font-weight-bold);
+    color: var(--color-neutral-200); line-height: 1;
+  }
+  .step__icon { display: block; width: 72px; height: 72px; }
+
+  /* Variant table */
+  .table-wrap { overflow-x: auto; border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); }
+  .variants {
+    width: 100%; border-collapse: collapse; background: var(--color-bg);
+    min-width: 640px; font-size: var(--font-size-small);
+  }
+  .variants th, .variants td {
+    padding: var(--space-4) var(--space-5); text-align: left;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .variants thead th {
+    background: var(--color-neutral-50); color: var(--color-text-muted);
+    font-weight: var(--font-weight-semibold); text-transform: uppercase;
+    letter-spacing: var(--letter-spacing-wide); font-size: var(--font-size-caption);
+  }
+  .variants tbody tr:last-child td { border-bottom: none; }
+  .variants td.yes { color: var(--color-success); font-weight: var(--font-weight-semibold); }
+  .variants td.no { color: var(--color-neutral-400); }
+
+  /* Integrace chips */
+  .chips {
+    list-style: none; display: flex; flex-wrap: wrap; gap: var(--space-3);
+    justify-content: center;
+  }
+  .chip {
+    display: inline-flex; align-items: center; gap: var(--space-2);
+    padding: var(--space-3) var(--space-5); border-radius: var(--radius-full);
+    background: rgba(255, 255, 255, 0.06); border: 1px solid var(--color-border-on-dark);
+    color: var(--color-text-on-dark); font-size: var(--font-size-small);
+  }
+  .chip__dot { width: 8px; height: 8px; border-radius: 50%; background: var(--color-primary); flex-shrink: 0; }
+
+  /* Reference */
+  .quotes { display: grid; gap: var(--space-8) var(--space-6); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+  .quote { margin: 0; display: flex; flex-direction: column; }
+  .quote__head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); margin-bottom: var(--space-5); }
+  .quote__id { display: flex; flex-direction: column; gap: 2px; }
+  .quote__name { font-size: var(--font-size-h3); font-weight: var(--font-weight-bold); color: var(--color-secondary); line-height: 1.1; }
+  .quote__role { font-size: var(--font-size-small); color: var(--color-text-muted); }
+  .quote__michelin { color: var(--color-text-accent); font-weight: var(--font-weight-semibold); }
+  .quote__avatar {
+    flex-shrink: 0; width: 84px; height: 84px; border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: var(--font-size-h3); font-weight: var(--font-weight-bold);
+    color: #fff; letter-spacing: 0.02em;
+    box-shadow: var(--shadow-md);
+  }
+  .quote--0 .quote__avatar { background: linear-gradient(150deg, #16B5F0, #00ADEE); }
+  .quote--1 .quote__avatar { background: linear-gradient(150deg, #2FC4F4, #0E86D9); }
+  .quote--2 .quote__avatar { background: linear-gradient(150deg, #0C2A9E, #06038D); }
+  .quote__mark { color: var(--color-primary); display: block; margin-bottom: var(--space-2); }
+  .quote__headline { font-weight: var(--font-weight-bold); color: var(--color-secondary); margin-bottom: var(--space-2); }
+  .quote__text { font-size: var(--font-size-body); color: var(--color-text-muted); line-height: var(--line-height-body); }
+  .quotes__cta { display: flex; justify-content: center; margin-top: var(--space-8); }
+
+  /* Logo wall — marquee */
+  .logos__label { margin-bottom: var(--space-5); }
+  .logos { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+  .logos__track { display: flex; align-items: center; gap: var(--space-8); width: max-content; animation: logos-scroll 48s linear infinite; }
+  .logos__track img { height: 34px; width: auto; opacity: 0.62; filter: grayscale(1); flex-shrink: 0; }
+  @keyframes logos-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) { .logos__track { animation: none; flex-wrap: wrap; justify-content: center; } }
+
+  /* CTA */
+  .cta-actions { display: flex; gap: var(--space-3); justify-content: center; flex-wrap: wrap; margin-top: var(--space-5); }
+
+  /* FAQ */
+  .faq { max-width: 760px; margin-inline: auto; display: flex; flex-direction: column; gap: var(--space-3); }
+  .faq__item {
+    border: 1px solid var(--color-border); border-radius: var(--radius-md);
+    background: var(--color-bg); padding: 0 var(--space-5);
+  }
+  .faq__item summary {
+    display: flex; align-items: center; justify-content: space-between; gap: var(--space-4);
+    padding: var(--space-4) 0; cursor: pointer; font-weight: var(--font-weight-semibold);
+    list-style: none;
+  }
+  .faq__item summary::-webkit-details-marker { display: none; }
+  .faq__chev { transition: transform var(--duration-base) var(--easing); color: var(--color-text-muted); }
+  .faq__item[open] .faq__chev { transform: rotate(180deg); }
+  .faq__a { padding-bottom: var(--space-5); }
+</style>

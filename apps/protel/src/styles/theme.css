@@ -1,0 +1,133 @@
+/* TÉMA — Protel
+   =========================================================
+   Reálné brandové tokeny Protel (magenta accent + Piano indigo, písmo Poppins).
+   Zdroj: protel-context.md + starý web protelsystems.cz (brand #FF0096, indigo #06038D).
+   Komponenty se NEMĚNÍ — pouze hodnoty zde. Base struktura (typo škála, spacing,
+   chamfer) zůstává z @piano/ui; Protel přebarvuje + zaobluje radius.
+
+   Kontrast: brandová magenta #FF0096 nesplňuje s bílým textem WCAG AA (3,69:1),
+   proto je --color-primary ztmavená na #D6006F (5,14:1). Brandová #FF0096 zůstává
+   jako --color-secondary pro velký dekorativní text / akcenty.
+*/
+@import "@piano/ui/styles/base.css";
+
+/* =========================================================
+   FONT — Poppins (jediná rodina; 400 / 600 / 700)
+   latin + latin-ext (diakritika CZ/SK). Poppins byl i ve fallback stacku
+   starého protel webu.
+   ========================================================= */
+@font-face {
+  font-family: "Poppins"; font-style: normal; font-weight: 400; font-display: swap;
+  src: url("/fonts/poppins-400.woff2") format("woff2");
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: "Poppins"; font-style: normal; font-weight: 400; font-display: swap;
+  src: url("/fonts/poppins-ext-400.woff2") format("woff2");
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+@font-face {
+  font-family: "Poppins"; font-style: normal; font-weight: 600; font-display: swap;
+  src: url("/fonts/poppins-600.woff2") format("woff2");
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: "Poppins"; font-style: normal; font-weight: 600; font-display: swap;
+  src: url("/fonts/poppins-ext-600.woff2") format("woff2");
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+@font-face {
+  font-family: "Poppins"; font-style: normal; font-weight: 700; font-display: swap;
+  src: url("/fonts/poppins-700.woff2") format("woff2");
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: "Poppins"; font-style: normal; font-weight: 700; font-display: swap;
+  src: url("/fonts/poppins-ext-700.woff2") format("woff2");
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+
+:root {
+  /* ----- Písmo ----- */
+  --font-sans:  "Poppins", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-serif: "Poppins", "Segoe UI", system-ui, sans-serif; /* akcent <em> ve stejné rodině */
+
+  --font-weight-medium:   700;
+  --font-weight-semibold: 600;
+
+  /* ----- Primary — magenta (brand accent, ztmavená na AA kontrast) ----- */
+  --color-primary:          #D6006F;  /* 5,14:1 s bílým textem */
+  --color-primary-hover:    #BD0066;
+  --color-primary-active:   #A30058;
+  --color-primary-bg:       #06038D;  /* tmavé indigo pozadí sekcí (Piano group) */
+  --color-primary-bg-hover: #040259;
+
+  /* ----- Secondary — brandová magenta + indigo ----- */
+  --color-secondary:            #06038D;  /* deep brand indigo */
+  --color-secondary-terracotta: #D6006F;
+  --color-secondary-gold:       #FF0096;  /* brandová magenta (dekorativní) */
+  --color-secondary-azure:      #5B57C7;
+
+  /* ----- Neutral (cool, faintly-blue gray) ----- */
+  --color-neutral-0:   #FFFFFF;
+  --color-neutral-50:  #F7F6FB;
+  --color-neutral-100: #EFEDF6;
+  --color-neutral-200: #E1DEEC;
+  --color-neutral-300: #C7C2D9;
+  --color-neutral-400: #9C96B5;
+  --color-neutral-500: #6E6889;
+  --color-neutral-900: #14121B;
+
+  /* ----- Status ----- */
+  --color-success:       #1F9D6B;
+  --color-success-hover: #16774F;
+  --color-warning:       #E8910C;
+  --color-info:          #06038D;
+  --color-error:         #DC3B47;
+  --color-error-hover:   #B82E39;
+
+  /* ----- Text ----- */
+  --color-text:               #20202F; /* tmavá chladná (nadpisy i body) */
+  --color-text-muted:         #6E6889;
+  --color-text-accent:        #BD0066; /* magenta-600 — eyebrow / odkazy (AA na bílé) */
+  --color-text-on-dark:       #FFFFFF;
+  --color-text-on-dark-muted: rgba(255, 255, 255, 0.72);
+
+  /* ----- Povrchy ----- */
+  --color-bg:        #FFFFFF;
+  --color-bg-alt:    #F7F6FB;
+  --color-bg-invert: #06038D;
+  --color-bg-hover:  color-mix(in srgb, var(--color-neutral-900) 4%, #FFFFFF);
+
+  /* Signature gradient (hero) — hloubka: tmavé indigo vlevo → magenta vpravo */
+  --color-bg-gradient: linear-gradient(115deg, #06038D 0%, #2B0C8E 40%, #8A0A82 78%, #D6006F 100%);
+
+  /* ----- Okraje ----- */
+  --color-border:         #E1DEEC;
+  --color-border-strong:  #C7C2D9;
+  --color-border-on-dark: rgba(255, 255, 255, 0.24);
+
+  /* ----- Radius — Protel zaobluje štědře ----- */
+  --radius-sm:   8px;
+  --radius-md:   12px;
+  --radius-lg:   16px;
+  --radius-full: 999px;
+
+  /* ----- Chamfer vypnut ----- */
+  --chamfer-depth: 0px;
+
+  /* ----- Tlačítka — plné pilulky ----- */
+  --btn-radius: var(--radius-full);
+  --btn-clip:   none;
+
+  /* ----- Formulářová pole — také pilulky ----- */
+  --field-radius: var(--radius-full);
+
+  /* ----- Stíny — měkké, indigo-tónované ----- */
+  --shadow-sm: 0 2px 8px rgba(6, 3, 141, 0.08);
+  --shadow-md: 0 8px 24px rgba(6, 3, 141, 0.10);
+  --shadow-lg: 0 16px 48px rgba(6, 3, 141, 0.14);
+
+  /* ----- Focus ring — magenta ----- */
+  --shadow-focus: 0 0 0 3px rgba(214, 0, 111, 0.38);
+}

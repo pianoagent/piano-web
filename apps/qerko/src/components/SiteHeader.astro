@@ -1,0 +1,15 @@
+---
+/**
+ * SiteHeader — Qerko wrapper nad sdíleným @piano/ui Header.
+ * Drží na jednom místě brand, logo a Qerko navigaci (per-web data z config/nav).
+ * logoHeight 34px = opticky zkalibrováno na rodinu (Qerko wordmark má descender
+ * u „Q", takže při 34px je výška verzálek ≈ 27px — sedí k mediánu rodiny).
+ */
+import Header from '@piano/ui/components/Header.astro';
+import { qerkoNav, qerkoCta } from '../config/nav';
+
+interface Props { transparent?: boolean; }
+const { transparent = false } = Astro.props;
+---
+<Header brand="Qerko" logoSrc="/logos/qerko_logo.svg" logoHeight="34px" homeHref="/"
+        nav={qerkoNav} cta={qerkoCta} transparent={transparent} />

@@ -1,0 +1,15 @@
+---
+/**
+ * SiteHeader — Protel wrapper nad sdíleným @piano/ui Header.
+ * Drží na jednom místě brand, logo a Protel navigaci (per-web data z config/nav).
+ * logoHeight 36px — opticky zkalibrováno přes sharp render proti ostatním webům
+ * (Septim ink ≈34,6 / Savarin 36 / Grason 28 / Harsys 23,4 / Pecosta 24).
+ */
+import Header from '@piano/ui/components/Header.astro';
+import { protelNav, protelCta } from '../config/nav';
+
+interface Props { transparent?: boolean; }
+const { transparent = false } = Astro.props;
+---
+<Header brand="Protel" logoSrc="/logos/protel_logo.svg" logoHeight="36px" homeHref="/"
+        nav={protelNav} cta={protelCta} transparent={transparent} />

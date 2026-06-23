@@ -1,0 +1,21 @@
+# Protel
+
+> Protel je globálně respektovaný hotelový systém (PMS) s plnohodnotnou českou a slovenskou podporou. Spojuje rezervace, platby, digitální recepci, Room Service a kompletní přehled o hotelovém provozu. Součást skupiny Piano.
+
+## Co Protel umí
+
+- [Hotelový systém (PMS)](https://protelsystems.cz/#pms): správa pokojů, rezervací, hostů, statistik a reportů.
+- [Digitální recepce](https://protelsystems.cz/#recepce): online check-in/out, kiosek, digitální registrační karta a hotelová kniha.
+- [Produkty](https://protelsystems.cz/#produkty): platební řešení hotelu, Room Service (napojení na Septim), konference, housekeeping, MealPlan.
+- [Napojení](https://protelsystems.cz/#integrace): channel manager, revenue management, uzamykací a TV systémy, účetní programy, POS Septim.
+
+## O společnosti
+
+Protel (protel systems s.r.o.) je součástí skupiny Piano. Mezinárodní standard se silnou lokální podporou v CZ i SK, certifikovaný partner pro hotely Best Western. Důvěřují mu hotelové špičky jako Grandhotel Pupp či Clarion Hotel Prague Old Town.
+
+## Kontakt a dokumentace
+
+- Web: https://protelsystems.cz
+- Obchod: sales@protelsystems.cz, +420 257 011 107
+- Hotline: help@protelsystems.cz, +420 778 776 835
+- Sitemap: https://protelsystems.cz/sitemap-index.xml

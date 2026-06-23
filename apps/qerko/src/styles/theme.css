@@ -1,0 +1,133 @@
+/* TÉMA — Qerko
+   =========================================================
+   Reálné brandové tokeny Qerko (signature zelená, písmo Poppins).
+   Zdroj: qerko-context.md + qerko_logo.svg (#00B579). Komponenty se NEMĚNÍ —
+   pouze hodnoty zde. Base struktura (typo škála, spacing) zůstává z @piano/ui;
+   Qerko je friendly/rounded → pilulková tlačítka, štědrý radius, chamfer 0.
+   POZN. kontrast: brandová zelená #00B579 má s bílým textem jen 2,66:1, proto
+   je --color-primary ztmavená na #008556 (4,68:1, splňuje WCAG AA). Brandová
+   #00B579 zůstává jako --color-secondary pro velký dekorativní text/akcenty.
+*/
+@import "@piano/ui/styles/base.css";
+
+/* =========================================================
+   FONT — Poppins (jediná rodina; 400 / 600 / 700)
+   latin + latin-ext (diakritika CZ/SK)
+   ========================================================= */
+@font-face {
+  font-family: "Poppins"; font-style: normal; font-weight: 400; font-display: swap;
+  src: url("/fonts/poppins-400.woff2") format("woff2");
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: "Poppins"; font-style: normal; font-weight: 400; font-display: swap;
+  src: url("/fonts/poppins-ext-400.woff2") format("woff2");
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+@font-face {
+  font-family: "Poppins"; font-style: normal; font-weight: 600; font-display: swap;
+  src: url("/fonts/poppins-600.woff2") format("woff2");
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: "Poppins"; font-style: normal; font-weight: 600; font-display: swap;
+  src: url("/fonts/poppins-ext-600.woff2") format("woff2");
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+@font-face {
+  font-family: "Poppins"; font-style: normal; font-weight: 700; font-display: swap;
+  src: url("/fonts/poppins-700.woff2") format("woff2");
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: "Poppins"; font-style: normal; font-weight: 700; font-display: swap;
+  src: url("/fonts/poppins-ext-700.woff2") format("woff2");
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+
+:root {
+  /* ----- Písmo ----- */
+  --font-sans:  "Poppins", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-serif: "Poppins", "Segoe UI", system-ui, sans-serif; /* akcent <em> ve stejné rodině */
+
+  /* Nadpisy bold (Qerko: 700); Medium cut není dodán → 600 */
+  --font-weight-medium:   700;
+  --font-weight-semibold: 600;
+
+  /* ----- Primary — zelená (signature). Ztmaveno kvůli kontrastu s bílým textem
+     (#008556 = 4,68:1, WCAG AA). Brandová #00B579 viz --color-secondary. ----- */
+  --color-primary:          #008556;
+  --color-primary-hover:    #00704A;
+  --color-primary-active:   #006644;
+  --color-primary-bg:       #06352A;  /* tmavě zelené pozadí sekcí */
+  --color-primary-bg-hover: #052A21;
+
+  /* ----- Secondary — brandová Qerko zelená (velký dekorativní text) ----- */
+  --color-secondary:            #00B579;
+  --color-secondary-terracotta: #00704A;
+  --color-secondary-gold:       #E8910C;
+  --color-secondary-azure:      #00B579;
+
+  /* ----- Neutral (cool, faintly-green gray) ----- */
+  --color-neutral-0:   #FFFFFF;
+  --color-neutral-50:  #F5F9F7;
+  --color-neutral-100: #EBF2EE;
+  --color-neutral-200: #DCE7E1;
+  --color-neutral-300: #C2D2C9;
+  --color-neutral-400: #97A89F;
+  --color-neutral-500: #6B7A72;
+  --color-neutral-900: #121815;
+
+  /* ----- Status ----- */
+  --color-success:       #008556;
+  --color-success-hover: #006644;
+  --color-warning:       #E8910C;
+  --color-info:          #00B579;
+  --color-error:         #DC3B47;
+  --color-error-hover:   #B82E39;
+
+  /* ----- Text ----- */
+  --color-text:               #1A241F; /* tmavá chladně-zelená (nadpisy i body) */
+  --color-text-muted:         #5E6E66;
+  --color-text-accent:        #00794F; /* green-700 — eyebrow / odkazy (5,4:1) */
+  --color-text-on-dark:       #FFFFFF;
+  --color-text-on-dark-muted: rgba(255, 255, 255, 0.74);
+
+  /* ----- Povrchy ----- */
+  --color-bg:        #FFFFFF;
+  --color-bg-alt:    #F5F9F7;
+  --color-bg-invert: #06352A;
+  --color-bg-hover:  color-mix(in srgb, var(--color-neutral-900) 4%, #FFFFFF);
+
+  /* Signature gradient (hero) — hloubka: tmavá zelená vlevo → brandová vpravo */
+  --color-bg-gradient: linear-gradient(115deg, #06352A 0%, #06754E 42%, #00A36B 78%, #15C285 100%);
+
+  /* ----- Okraje ----- */
+  --color-border:         #DCE7E1;
+  --color-border-strong:  #C2D2C9;
+  --color-border-on-dark: rgba(255, 255, 255, 0.24);
+
+  /* ----- Radius — Qerko zaobluje štědře (friendly/rounded) ----- */
+  --radius-sm:   8px;
+  --radius-md:   12px;
+  --radius-lg:   16px;
+  --radius-full: 999px;
+
+  /* ----- Chamfer vypnut (Qerko nemá seříznutý roh) ----- */
+  --chamfer-depth: 0px;
+
+  /* ----- Tlačítka — plné pilulky (radius-pill 999px), bez chamferu ----- */
+  --btn-radius: var(--radius-full);
+  --btn-clip:   none;
+
+  /* ----- Formulářová pole — také pilulky ----- */
+  --field-radius: var(--radius-full);
+
+  /* ----- Stíny — měkké, zeleně-tónované ----- */
+  --shadow-sm: 0 2px 8px rgba(0, 83, 54, 0.08);
+  --shadow-md: 0 8px 24px rgba(0, 83, 54, 0.10);
+  --shadow-lg: 0 16px 48px rgba(0, 83, 54, 0.14);
+
+  /* ----- Focus ring — zelená ----- */
+  --shadow-focus: 0 0 0 3px rgba(0, 181, 121, 0.40);
+}

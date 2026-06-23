@@ -1,0 +1,59 @@
+---
+/**
+ * Base — layout webu Qerko.
+ * Načte téma Qerko + sdílenou SEO hlavičku. Definuje Organization schema.
+ */
+import '../styles/theme.css';
+import BaseHead from '@piano/ui/layouts/BaseHead.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  type?: 'website' | 'article';
+  noindex?: boolean;
+  schema?: object;
+}
+
+const SITE_NAME = 'Qerko';
+const SITE_URL = 'https://qerko.com';
+
+const {
+  title,
+  description = 'Qerko — QR platby od stolu, digitální menu a objednávání, vyšší dýška a lepší Google recenze pro restaurace.',
+  image = '/og-default.jpg',
+  type = 'website',
+  noindex = false,
+  schema,
+} = Astro.props;
+
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Qerko',
+  url: SITE_URL,
+  logo: `${SITE_URL}/logos/qerko_logo.svg`,
+  parentOrganization: { '@type': 'Organization', name: 'Piano Solutions', url: 'https://piano.cz' },
+};
+
+const schemas = [organizationSchema, ...(schema ? [schema] : [])];
+---
+
+<!doctype html>
+<html lang="cs">
+  <head>
+    <BaseHead
+      title={title}
+      description={description}
+      image={image}
+      type={type}
+      noindex={noindex}
+      siteName={SITE_NAME}
+      siteUrl={SITE_URL}
+      schemas={schemas}
+    />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

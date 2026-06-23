@@ -31,8 +31,10 @@ interface Props {
   edition: { name: string; href: string; text: string };
   modules: { title: string; href: string }[];
   faqs: { q: string; a: string }[];
+  heroImage?: string;
+  heroImageAlt?: string;
 }
-const { title, description, eyebrow, titleHtml, lead, logoLabel, benefitsTitle, benefits, edition, modules, faqs } = Astro.props;
+const { title, description, eyebrow, titleHtml, lead, logoLabel, benefitsTitle, benefits, edition, modules, faqs, heroImage, heroImageAlt } = Astro.props;
 ---
 <Base title={title} description={description}>
   <SiteHeader />
@@ -43,6 +45,7 @@ const { title, description, eyebrow, titleHtml, lead, logoLabel, benefitsTitle, 
         <Button href="#poptavka">Chci Septim</Button>
         <Button href={edition.href} variant="secondary">{edition.name} detailně</Button>
       </Fragment>
+      {heroImage && <figure slot="media" class="hero-pic"><img src={heroImage} alt={heroImageAlt ?? ''} width="1300" height="1000" loading="eager" /></figure>}
     </Hero>
 
     <LogoWall label={logoLabel} background="default" />

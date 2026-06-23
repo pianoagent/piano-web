@@ -25,6 +25,9 @@
     "preview:harsys": "npm run preview -w @piano/app-harsys",
     "dev:pecosta": "npm run dev -w @piano/app-pecosta",
     "build:pecosta": "npm run build -w @piano/app-pecosta",
-    "preview:pecosta": "npm run preview -w @piano/app-pecosta"
+    "preview:pecosta": "npm run preview -w @piano/app-pecosta",
+    "dev:protel": "npm run dev -w @piano/app-protel",
+    "build:protel": "npm run build -w @piano/app-protel",
+    "preview:protel": "npm run preview -w @piano/app-protel"
   }
 }
