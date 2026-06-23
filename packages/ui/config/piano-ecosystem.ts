@@ -14,7 +14,7 @@ interface PianoProduct {
   label: string;
   href: string;          // externí web produktu (potvrdit)
   description: string;
-  icon: string;          // brandová favicon '/brand/<id>.svg' (Autset zatím lucide, čeká na mark)
+  icon: string;          // brandová favicon '/brand/<id>.svg'
   badge?: string;
   group: Group;
   path?: string;         // produkty, které ŽIJÍ na piano.cz (Pilot, Brain, Terminál)
@@ -30,7 +30,7 @@ export const PIANO_PRODUCTS: PianoProduct[] = [
   { id: 'septim',   label: 'Septim',         href: 'https://www.septim.cz',         description: 'Pokladní a provozní systém',     icon: '/brand/septim.svg',        group: 'pokladna' },
   { id: 'harsys',   label: 'ABX Harsys',     href: 'https://piano.cz',              description: 'Pokladní systém',                icon: '/brand/abx.svg', group: 'pokladna' },
   { id: 'savarin',  label: 'Savarin',        href: 'https://piano.cz',              description: 'Pokladní systém',                icon: '/brand/savarin.svg',        group: 'pokladna' },
-  { id: 'autset',   label: 'Autset',         href: 'https://piano.cz',              description: 'Automatické naskladňování',      icon: 'lucide:package',         group: 'pokladna' },
+  { id: 'autset',   label: 'Autset',         href: 'https://piano.cz',              description: 'Automatické naskladňování',      icon: '/brand/autset.svg',         group: 'pokladna' },
   { id: 'pecosta',  label: 'Pecosta',        href: 'https://www.pecosta.cz',        description: 'Aukční nákupy surovin',          icon: '/brand/pecosta.svg',           group: 'pokladna' },
 
   { id: 'protel',   label: 'Protel',         href: 'https://www.protelsystems.cz',  description: 'Hotelový PMS systém',            icon: '/brand/protel.svg',      group: 'hotely' },
