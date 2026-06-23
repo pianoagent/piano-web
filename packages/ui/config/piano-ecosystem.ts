@@ -5,7 +5,7 @@
  *
  * Odkazy vedou na weby produktů (externí). URL k potvrzení — uprav níže.
  */
-import type { MegaPanel, NavLink } from './nav';
+import type { MegaPanel, NavLink, NavItem } from './nav';
 
 type Group = 'novinky' | 'pokladna' | 'hotely' | 'hoste';
 
@@ -48,12 +48,20 @@ export function buildPianoMega(currentId?: string): MegaPanel {
 
   const columns = [
     { label: 'Pokladna & provoz', links: byGroup('pokladna') },
-    { label: 'Pro hotely',        links: byGroup('hotely') },
     { label: 'Hosté & personál',  links: byGroup('hoste') },
+    { label: 'Pro hotely',        links: byGroup('hotely') }, // samostatný → vpravo
   ].filter((c) => c.links.length > 0);
 
   return {
     featured: { label: 'Novinky', items: byGroup('novinky') },
     columns,
   };
+}
+
+/**
+ * Hotová položka menu „Piano" pro hlavičku — stejná na všech webech.
+ * Stačí přidat do nav daného webu: `pianoNavItem('septim')` (vynechá Septim).
+ */
+export function pianoNavItem(currentId?: string): NavItem {
+  return { label: 'Piano', href: 'https://piano.cz', mega: buildPianoMega(currentId) };
 }

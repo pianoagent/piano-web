@@ -3,7 +3,7 @@
  * Struktura dle IA: Řešení · Produkty (edice/funkce/integrace) · Piano (ekosystém, externí) · Ceník · O Septimu.
  */
 import type { NavItem, NavLink } from '@piano/ui/config/nav';
-import { buildPianoMega } from '@piano/ui/config/piano-ecosystem';
+import { pianoNavItem } from '@piano/ui/config/piano-ecosystem';
 
 const reseniMega = {
   columns: [
@@ -59,13 +59,11 @@ const produktyMega = {
   ],
 };
 
-// Piano ekosystém — sdílená data z @piano/ui; vynechá aktuální produkt (Septim).
-const pianoMega = buildPianoMega('septim');
 
 export const septimNav: NavItem[] = [
   { label: 'Řešení', href: '/reseni', mega: reseniMega },
   { label: 'Produkty', href: '/produkty', mega: produktyMega },
-  { label: 'Piano', href: 'https://piano.cz', mega: pianoMega },
+  pianoNavItem('septim'),
   { label: 'Ceník', href: '/cenik' },
   {
     label: 'O Septimu', href: '/o-spolecnosti',
