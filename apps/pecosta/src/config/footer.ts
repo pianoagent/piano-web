@@ -6,7 +6,8 @@ const year = new Date().getFullYear();
 
 export const pecostaFooter = {
   brand: 'Pecosta',
-  logoSrc: '/logos/pecosta_color.svg',
+  logoSrc: '/logos/pecosta_by_piano.svg',  // "by Piano" lockup; v patičce bíle (filtr), šířka 68px
+  logoAlt: 'Pecosta by Piano',
   tagline: 'Chytrý nákup surovin a energií pro gastro provozy, hotely a instituce. Aukční nákupy, úspora času i nákladů a automatické naskladňování.',
   parentNote: { text: 'Pecosta je součástí skupiny Piano', href: 'https://piano.cz' },
   columns: [
