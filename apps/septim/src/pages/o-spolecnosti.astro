@@ -1,0 +1,93 @@
+---
+/** Septim — O společnosti. Obsah: septim-obsah/o-spolecnosti.md. SEO meta nově. */
+import Base from '../layouts/Base.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import StatsBand from '../components/StatsBand.astro';
+import LogoWall from '../components/LogoWall.astro';
+
+const timeline = [
+  { year: '2025', title: 'Součástí skupiny Piano', text: 'Septim se stává hrdým členem ekosystému Piano Solutions.' },
+  { year: '2024', title: 'ASW Systems → Septim Systems', text: 'Společnost přejmenována podle svého nejsilnějšího produktu.' },
+  { year: '2023', title: 'Miton většinovým vlastníkem', text: 'Investiční skupina Miton navýšila podíl na 80 %. Stáváme se garantovaným partnerem AHR ČR.' },
+  { year: '2021–2022', title: 'Septim.4.1 a vstup Mitonu', text: 'Vydání release 4.1.32 a vstup investiční skupiny Miton.' },
+  { year: '2017–2018', title: 'Představení Septim.4', text: 'Nová generace systému; akvizice společnosti Spectu.' },
+  { year: '2009', title: 'Septim v SazkaAréně (O2 areně)', text: '250 pokladních míst — nejrozsáhlejší pokladní systém v ČR. Výhradní distribuce PMS Protel.' },
+  { year: '1994', title: 'První verze Septimu', text: 'Zakladatel Zbyněk Švec napsal první verzi pokladního softwaru.' },
+];
+---
+<Base title="O společnosti Septim Systems – 30 let nejrespektovanějšího systému"
+      description="Septim Systems a.s. (dříve ASW Systems) vyvíjí provozní systém Septim od roku 1994. Přes 3 000 pokladen, 60+ kolegů, člen skupiny Piano. Nejrespektovanější gastro systém v ČR.">
+  <SiteHeader />
+  <main>
+    <Hero eyebrow="O společnosti" background="alt"
+          lead="Septim Systems a.s. (dříve ASW Systems) vyvíjí a provozuje vlastní provozní systém Septim. Za téměř 30 let si vybudoval pozici nejrespektovanějšího systému pro gastro podniky v ČR.">
+      <Heading slot="title" as="h1" size="display">Příběh <em>Septimu</em></Heading>
+      <Fragment slot="actions">
+        <Button href="/kariera">Kariéra v Septimu</Button>
+        <Button href="/kontakt" variant="secondary">Kontakt</Button>
+      </Fragment>
+    </Hero>
+
+    <LogoWall label="Respektované provozy, které využívají Septim" background="default" />
+    <StatsBand />
+
+    <Section background="default" space="lg">
+      <div class="head head--center">
+        <Text size="label" color="accent" align="center">Milníky</Text>
+        <Heading as="h2" size="h2" align="center">Od roku 1994 dodnes</Heading>
+        <Text size="lead" color="muted" align="center" balance>
+          Začínali jsme u první verze pokladny, dnes provozujeme přes 3 000 pokladen a je nás víc než 60.
+        </Text>
+      </div>
+      <ol class="timeline">
+        {timeline.map((t) => (
+          <li class="tl">
+            <span class="tl__year">{t.year}</span>
+            <div class="tl__body">
+              <Heading as="h3" size="h3">{t.title}</Heading>
+              <Text size="small" color="muted">{t.text}</Text>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </Section>
+
+    <Section background="gradient" space="lg">
+      <div class="piano">
+        <Text size="label" color="on-dark" align="center">Septim je součástí skupiny Piano</Text>
+        <Heading as="h2" size="h2" align="center" color="on-dark">Jeden partner pro celý váš provoz</Heading>
+        <Text size="lead" color="on-dark-muted" align="center" balance>
+          Nově máte přístup ke všem klíčovým nástrojům pro gastro provoz pod jednou střechou — méně práce,
+          lepší přehled, vyšší zisk.
+        </Text>
+        <div class="piano__cta"><Button href="https://piano.cz">Prozkoumat Piano</Button></div>
+      </div>
+    </Section>
+
+    <LeadForm id="poptavka" variant="full" background="alt"
+              title="Chcete Septim do svého provozu?"
+              lead="Nechte nám kontakt — rádi se vám ozveme." />
+  </main>
+  <SiteFooter />
+</Base>
+
+<style>
+  .head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-7); text-align: center; }
+  .head > * + * { margin-top: var(--space-3); }
+  .timeline { list-style: none; max-width: 760px; margin-inline: auto; display: flex; flex-direction: column; gap: var(--space-5); }
+  .tl { display: grid; grid-template-columns: 110px 1fr; gap: var(--space-5); padding-left: var(--space-4); border-left: 2px solid var(--color-border); position: relative; }
+  .tl::before { content: ''; position: absolute; left: -7px; top: 4px; width: 12px; height: 12px; border-radius: 50%; background: var(--color-primary); }
+  .tl__year { font-weight: var(--font-weight-bold); color: var(--color-secondary); }
+  .tl__body > * + * { margin-top: var(--space-1); }
+  .piano { max-width: 720px; margin-inline: auto; text-align: center; }
+  .piano > * + * { margin-top: var(--space-3); }
+  .piano__cta { margin-top: var(--space-6); }
+  @media (max-width: 560px) { .tl { grid-template-columns: 1fr; gap: var(--space-1); } }
+</style>

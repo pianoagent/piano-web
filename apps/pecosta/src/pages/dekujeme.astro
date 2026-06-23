@@ -1,0 +1,77 @@
+---
+/**
+ * Děkovací stránka — cíl přesměrování po odeslání formuláře (analytika: /dekujeme).
+ * Krom poděkování krátce uvádí, že Pecosta je součástí Piana + CTA na Piano.
+ * noindex — nemá se objevit ve vyhledávání.
+ */
+import Base from '../layouts/Base.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+
+const PIANO_URL = 'https://piano.cz';
+---
+
+<Base title="Děkujeme — Pecosta" noindex>
+  <SiteHeader />
+
+  <main>
+
+  <Section background="default" space="lg" container="narrow">
+    <div class="ty">
+      <span class="ty__icon"><Icon name="lucide:thumbs-up" size="xl" /></span>
+      <Text size="h3" align="center" class="ty__hello">Děkujeme!</Text>
+      <Heading as="h1" size="h1" align="center">Formulář byl úspěšně odeslán</Heading>
+      <Text size="lead" color="muted" align="center" balance>
+        Připravíme pro vás cenové porovnání a kalkulaci úspor a ozveme se zpravidla do 48 hodin.
+        Děkujeme za váš zájem o Pecostu.
+      </Text>
+    </div>
+  </Section>
+
+  <Section background="gradient" space="lg">
+    <div class="piano">
+      <Text size="label" color="on-dark" align="center" class="piano__eyebrow">Pecosta je součástí Piana</Text>
+      <Heading as="h2" size="h2" align="center" color="on-dark">Jeden partner pro celý váš provoz</Heading>
+      <Text size="lead" color="on-dark-muted" align="center" balance class="piano__lead">
+        Pecosta funguje dál úplně stejně jako dřív — nově ale máte přístup ke všem klíčovým
+        nástrojům pro váš provoz pod jednou střechou.
+      </Text>
+      <Text color="on-dark-muted" align="center" balance class="piano__body">
+        Piano vzniklo z jednoduchého přesvědčení: majitel restaurace, kavárny nebo hotelu si
+        zaslouží jednoho partnera — ne několik dodavatelů, několik smluv a data, která spolu
+        nekomunikují. Méně práce, lepší přehled, vyšší zisk.
+      </Text>
+      <div class="piano__cta">
+        <Button href={PIANO_URL}>Prozkoumat Piano</Button>
+      </div>
+    </div>
+  </Section>
+
+  </main>
+
+  <SiteFooter />
+</Base>
+
+<style>
+  .ty { max-width: 640px; margin-inline: auto; text-align: center; }
+  .ty > * + * { margin-top: var(--space-4); }
+  .ty__icon {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 96px; height: 96px; border-radius: 50%;
+    background: var(--color-primary); color: var(--color-text-on-dark);
+    box-shadow: var(--shadow-md);
+    margin-bottom: var(--space-2);
+  }
+  .ty__hello { color: var(--color-primary); font-weight: var(--font-weight-bold); }
+
+  .piano { max-width: 720px; margin-inline: auto; text-align: center; }
+  .piano__eyebrow { opacity: 0.85; margin-bottom: var(--space-3); }
+  .piano__lead { margin-top: var(--space-4); }
+  .piano__body { margin-top: var(--space-4); }
+  .piano__cta { margin-top: var(--space-7); display: flex; justify-content: center; }
+</style>

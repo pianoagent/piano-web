@@ -1,0 +1,79 @@
+---
+/** Pecosta — Jak to funguje (proces). Obsah: pecosta-context.md + #page-pecosta. */
+import Base from '../layouts/Base.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import StatsBand from '../components/StatsBand.astro';
+import Faq from '../components/Faq.astro';
+
+const steps = [
+  { icon: 'lucide:calculator', title: 'Analýza zdarma', text: 'Připravíme cenové porovnání a kalkulaci úspor bez závazků. Vidíte reálná čísla ještě před podpisem — výsledek máte do 48 hodin.' },
+  { icon: 'lucide:plug', title: 'Napojení dodavatelů', text: 'Napojíme vaše stávající dodavatele na platformu. Nemusíte je měnit — naopak soutěží o vaše objednávky v e-aukcích.' },
+  { icon: 'lucide:shopping-cart', title: 'Nakupujete z jednoho místa', text: 'Vše na jednom portálu: porovnáte ceny, objednáte a dostanete fakturu. Přehled o nákladech bez papírování.' },
+  { icon: 'lucide:package-check', title: 'Automatické naskladnění', text: 'Dodací listy jdou automaticky do Septimu nebo vašeho skladového systému přes Autset — bez ručního přepisování.' },
+];
+const faqs = [
+  { q: 'Začíná spolupráce závazkem?', a: 'Ne. Začínáme bezplatnou analýzou — připravíme cenové porovnání a kalkulaci úspor. Teprve pak se rozhodnete, zda do toho jdete.' },
+  { q: 'Jak rychle uvidím výsledky analýzy?', a: 'Výsledek kalkulace úspor máte zpravidla do 48 hodin od předání podkladů.' },
+  { q: 'Musím kvůli tomu měnit dodavatele nebo systém?', a: 'Ne. Napojíme vaše stávající dodavatele i skladový systém. Provoz funguje dál jako dosud, jen levněji a s méně administrativou.' },
+];
+---
+<Base title="Jak Pecosta funguje – od analýzy zdarma po naskladnění"
+      description="Jak funguje spolupráce s Pecostou: bezplatná analýza úspor, napojení dodavatelů, nákup z jednoho portálu a automatické naskladnění přes Autset.">
+  <SiteHeader />
+  <main>
+    <Hero eyebrow="Jak to funguje" background="gradient"
+          lead="Nejprve vám ukážeme, kolik ušetříte. Až pak se rozhodnete. Celá spolupráce začíná analýzou zdarma a bez závazků.">
+      <Heading slot="title" as="h1" size="display" color="on-dark">Začínáme <em>analýzou zdarma</em></Heading>
+      <Fragment slot="actions">
+        <Button href="#poptavka">Chci analýzu zdarma</Button>
+        <Button href="/sluzby/aukcni-nakupy" variant="secondary" onDark>Služby Pecosty</Button>
+      </Fragment>
+    </Hero>
+
+    <Section background="default" space="lg">
+      <div class="head head--center">
+        <Text size="label" color="accent" align="center">Postup</Text>
+        <Heading as="h2" size="h2" align="center">Čtyři kroky k <em>nižším nákladům</em></Heading>
+        <Text size="lead" color="muted" align="center" balance>
+          Od první kalkulace po naskladnění, které proběhne samo — bez rizika a bez práce navíc.
+        </Text>
+      </div>
+      <ol class="steps">
+        {steps.map((s, i) => (
+          <li class="step">
+            <span class="step__num">{i + 1}</span>
+            <span class="step__icon"><Icon name={s.icon} size="lg" /></span>
+            <Heading as="h3" size="h3">{s.title}</Heading>
+            <Text size="small" color="muted">{s.text}</Text>
+          </li>
+        ))}
+      </ol>
+    </Section>
+
+    <StatsBand background="alt" />
+    <Faq items={faqs} title="Časté otázky k postupu" background="default" />
+    <LeadForm id="poptavka" variant="full" background="alt"
+              title="Začněte analýzou zdarma"
+              lead="Nechte nám kontakt — připravíme cenové porovnání a kalkulaci úspor do 48 hodin."
+              submitLabel="Chci analýzu zdarma" />
+  </main>
+  <SiteFooter />
+</Base>
+
+<style>
+  .head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-7); text-align: center; }
+  .head > * + * { margin-top: var(--space-3); }
+  .steps { list-style: none; display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+  .step { position: relative; padding: var(--space-6); background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); box-shadow: var(--shadow-sm); }
+  .step > * + * { margin-top: var(--space-3); }
+  .step__num { position: absolute; top: var(--space-4); right: var(--space-5); font-size: var(--font-size-h2); font-weight: var(--font-weight-bold); color: var(--color-neutral-200); line-height: 1; }
+  .step__icon { display: inline-flex; align-items: center; justify-content: center; width: 56px; height: 56px; border-radius: var(--radius-md); background: color-mix(in srgb, var(--color-primary) 10%, #fff); color: var(--color-primary); }
+</style>

@@ -26,14 +26,16 @@ export interface NavItem extends NavLink {
   mega?: MegaPanel;       // mega menu
 }
 
+// Pozn.: odkazy jsou PROZATÍM na nasazené demo weby (<produkt>-web.pages.dev),
+// aby šel ekosystém proklikat. Po nasazení na finální domény stačí změnit href.
 export const products: NavLink[] = [
-  { label: 'Qerko', href: '/produkty/qerko', description: 'Platby u stolu a digitální menu', icon: 'lucide:qr-code' },
-  { label: 'Septim', href: '/produkty/septim', description: 'Pokladní systém pro restaurace', icon: 'lucide:monitor' },
-  { label: 'Pecosta', href: '/produkty/pecosta', description: 'Hotelový systém (PMS)', icon: 'lucide:bed-double' },
-  { label: 'Grason', href: '/produkty/grason', description: 'Plánování personálu a docházka', icon: 'lucide:users' },
-  { label: 'Protel', href: '/produkty/protel', description: 'PMS pro hotelové řetězce', icon: 'lucide:building-2' },
-  { label: 'Pilot', href: '/produkty/pilot', description: 'Mobilní aplikace pro obsluhu', icon: 'lucide:smartphone' },
-  { label: 'Terminál', href: '/produkty/terminal', description: 'Platební terminály', icon: 'lucide:credit-card' },
+  { label: 'Qerko', href: 'https://qerko-web.pages.dev', description: 'Platby u stolu a digitální menu', icon: 'lucide:qr-code' },
+  { label: 'Septim', href: 'https://septim-web.pages.dev', description: 'Pokladní systém pro restaurace', icon: 'lucide:monitor' },
+  { label: 'Pecosta', href: 'https://pecosta-web.pages.dev', description: 'Hotelový systém (PMS)', icon: 'lucide:bed-double' },
+  { label: 'Grason', href: 'https://grason-web.pages.dev', description: 'Plánování personálu a docházka', icon: 'lucide:users' },
+  { label: 'Protel', href: 'https://protel-web.pages.dev', description: 'PMS pro hotelové řetězce', icon: 'lucide:building-2' },
+  { label: 'Pilot', href: 'https://pilot-web.pages.dev', description: 'Mobilní aplikace pro obsluhu', icon: 'lucide:smartphone' },
+  { label: 'Terminál', href: 'https://terminal-web.pages.dev', description: 'Platební terminály', icon: 'lucide:credit-card' },
 ];
 
 /** Mega menu — Produkty */
@@ -41,8 +43,8 @@ const productsMega: MegaPanel = {
   featured: {
     label: 'Doporučeno',
     items: [
-      { label: 'Qerko', href: '/produkty/qerko', description: 'Platby u stolu a QR objednávky', icon: 'lucide:qr-code', badge: 'Oblíbené' },
-      { label: 'Pilot', href: '/produkty/pilot', description: 'Celý provoz v mobilní appce', icon: 'lucide:smartphone', badge: 'Nový' },
+      { label: 'Qerko', href: 'https://qerko-web.pages.dev', description: 'Platby u stolu a QR objednávky', icon: 'lucide:qr-code', badge: 'Oblíbené' },
+      { label: 'Pilot', href: 'https://pilot-web.pages.dev', description: 'Celý provoz v mobilní appce', icon: 'lucide:smartphone', badge: 'Nový' },
     ],
   },
   columns: [{ label: 'Všechny produkty', links: products }],

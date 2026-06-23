@@ -1,0 +1,116 @@
+---
+/** Pecosta — Reference. Obsah: pecosta-context.md + autset-context.md + #page-pecosta. */
+import Base from '../layouts/Base.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import StatsBand from '../components/StatsBand.astro';
+import LogoWall from '../components/LogoWall.astro';
+
+const testimonials = [
+  { initials: 'MŠ', headline: 'Šetříme miliony ročně', quote: 'Díky automatickému naskladňování v každém z našich hotelů každý den ušetříme svým lidem minimálně hodinu práce. 80 % nákupů realizujeme přes Pecostu a šetříme několik milionů ročně.', author: 'Maroš Šivec', role: 'Executive F&B Director, CPI Hotels (24 hotelů v ČR)' },
+  { initials: 'PH', headline: 'Úspora času je nedocenitelná', quote: 'Úspora času je nedocenitelná. Pecosta nám pomáhá mít náklady pod kontrolou a soustředit se na to, co nás baví.', author: 'Finanční ředitelka', role: 'Pytloun Hotels' },
+  { initials: 'HP', headline: 'Zlomili jsme tříletý trend', quote: 'Zlomili jsme tříletý trend růstu nákladů. Výsledky překonaly naše očekávání.', author: 'Tomáš Šico', role: 'HP Tronic' },
+  { initials: 'KO', headline: 'Přesnější podklady', quote: 'Způsob zpracování naskladnění a dodacích listů přes Autset pomáhá i skladové účetní — podklady jsou přesnější a nemusí je kontrolovat položkově.', author: 'Kolkovna', role: 'Síť restaurací' },
+];
+
+const clients = [
+  { name: 'CPI Hotels', note: '24 hotelů v ČR, 80 % 4* a 5*. 80 % nákupů přes portál Pecosta.' },
+  { name: 'Pytloun Hotels', note: 'Hotelová skupina — náklady pod kontrolou a úspora času.' },
+  { name: 'Grandhotel Pupp', note: 'Karlovy Vary — ikonický hotel mezi klienty Pecosty.' },
+  { name: 'Kavárna Slávia', note: 'Pražská kavárna s tradicí.' },
+  { name: 'Kolkovna', note: 'Síť restaurací — naskladnění přes Autset.' },
+  { name: 'Počernický pivovar', note: 'Pivovar a jeho restaurace.' },
+  { name: 'Perfect Canteen', note: 'by Filip Sajler — moderní gastro koncept.' },
+  { name: 'Bistro V Zahradě', note: 'Úspora 60 tisíc Kč ročně na energiích.' },
+];
+---
+<Base title="Reference – komu Pecosta šetří náklady"
+      description="Reference Pecosty: CPI Hotels, Pytloun Hotels, Grandhotel Pupp, Kolkovna, Perfect Canteen a další. Restaurace, hotely i instituce, které šetří na surovinách a energiích.">
+  <SiteHeader />
+  <main>
+    <Hero eyebrow="Reference" background="alt"
+          lead="Hotelové skupiny, michelinské restaurace i instituce. Podívejte se, komu Pecosta drží náklady pod kontrolou — a kolik díky tomu šetří.">
+      <Heading slot="title" as="h1" size="display">Spoří s námi <em>ti nejlepší</em></Heading>
+      <Fragment slot="actions">
+        <Button href="#poptavka">Chci analýzu zdarma</Button>
+      </Fragment>
+    </Hero>
+
+    <StatsBand background="default" />
+
+    <Section background="alt" space="lg">
+      <div class="head head--center">
+        <Text size="label" color="accent" align="center">Co říkají klienti</Text>
+        <Heading as="h2" size="h2" align="center">Výsledky, ne sliby</Heading>
+      </div>
+      <div class="quotes">
+        {testimonials.map((t, i) => (
+          <figure class={`quote quote--${i % 3}`}>
+            <div class="quote__head">
+              <div class="quote__id">
+                <strong class="quote__name">{t.author}</strong>
+                <span class="quote__role">{t.role}</span>
+              </div>
+              <span class="quote__avatar" aria-hidden="true">{t.initials}</span>
+            </div>
+            <span class="quote__mark"><Icon name="lucide:quote" size="md" /></span>
+            <p class="quote__headline">{t.headline}</p>
+            <blockquote class="quote__text">{t.quote}</blockquote>
+          </figure>
+        ))}
+      </div>
+    </Section>
+
+    <Section background="default" space="lg">
+      <div class="head head--center">
+        <Text size="label" color="accent" align="center">Vybraní klienti</Text>
+        <Heading as="h2" size="h2" align="center">Restaurace, hotely i instituce</Heading>
+      </div>
+      <ul class="clients">
+        {clients.map((c) => (
+          <li class="client">
+            <Heading as="h3" size="h3">{c.name}</Heading>
+            <Text size="small" color="muted">{c.note}</Text>
+          </li>
+        ))}
+      </ul>
+    </Section>
+
+    <LogoWall label="Značky, které nakupují chytře s Pecostou" background="alt" />
+    <LeadForm id="poptavka" variant="full" background="default"
+              title="Chcete být další referencí?"
+              lead="Začněte analýzou zdarma — připravíme cenové porovnání a kalkulaci úspor pro váš provoz."
+              submitLabel="Chci analýzu zdarma" />
+  </main>
+  <SiteFooter />
+</Base>
+
+<style>
+  .head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-7); text-align: center; }
+  .head > * + * { margin-top: var(--space-3); }
+
+  .quotes { display: grid; gap: var(--space-8) var(--space-6); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+  .quote { margin: 0; display: flex; flex-direction: column; }
+  .quote__head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); margin-bottom: var(--space-5); }
+  .quote__id { display: flex; flex-direction: column; gap: 2px; }
+  .quote__name { font-size: var(--font-size-h3); font-weight: var(--font-weight-bold); color: var(--color-secondary); line-height: 1.1; }
+  .quote__role { font-size: var(--font-size-small); color: var(--color-text-muted); }
+  .quote__avatar { flex-shrink: 0; width: 84px; height: 84px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: var(--font-size-h3); font-weight: var(--font-weight-bold); color: #fff; letter-spacing: 0.02em; box-shadow: var(--shadow-md); }
+  .quote--0 .quote__avatar { background: linear-gradient(150deg, #2E8BD0, #1265A7); }
+  .quote--1 .quote__avatar { background: linear-gradient(150deg, #1265A7, #0D3D63); }
+  .quote--2 .quote__avatar { background: linear-gradient(150deg, #15A06B, #0E7A52); }
+  .quote__mark { color: var(--color-primary); display: block; margin-bottom: var(--space-2); }
+  .quote__headline { font-weight: var(--font-weight-bold); color: var(--color-secondary); margin-bottom: var(--space-2); }
+  .quote__text { font-size: var(--font-size-body); color: var(--color-text-muted); line-height: var(--line-height-body); }
+
+  .clients { list-style: none; display: grid; gap: var(--space-5); grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+  .client { padding: var(--space-6); background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); box-shadow: var(--shadow-sm); }
+  .client > * + * { margin-top: var(--space-2); }
+</style>

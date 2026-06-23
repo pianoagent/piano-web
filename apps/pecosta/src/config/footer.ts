@@ -13,17 +13,18 @@ export const pecostaFooter = {
     {
       heading: 'Služby',
       links: [
-        { label: 'Aukční nákupy', href: '/#funkce' },
-        { label: 'Energie pro gastro', href: '/#funkce' },
-        { label: 'Autset — naskladnění', href: '/#funkce' },
-        { label: 'Jak to funguje', href: '/#jak-to-funguje' },
+        { label: 'Aukční nákupy', href: '/sluzby/aukcni-nakupy' },
+        { label: 'Energie pro gastro', href: '/sluzby/energie' },
+        { label: 'Autset — naskladnění', href: '/sluzby/autset' },
+        { label: 'Burzovní obchody', href: '/sluzby/burzovni-obchody' },
       ],
     },
     {
       heading: 'Společnost',
       links: [
-        { label: 'Reference', href: '/#reference' },
-        { label: 'Analýza zdarma', href: '/#poptavka' },
+        { label: 'Jak to funguje', href: '/jak-to-funguje' },
+        { label: 'Reference', href: '/reference' },
+        { label: 'Kontakt', href: '/kontakt' },
         { label: 'Skupina Piano', href: 'https://piano.cz' },
       ],
     },

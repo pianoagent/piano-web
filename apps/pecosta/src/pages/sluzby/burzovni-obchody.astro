@@ -1,0 +1,88 @@
+---
+/** Pecosta — Služba: Burzovní obchody. Obsah: pecosta-context.md. */
+import Base from '../../layouts/Base.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import Faq from '../../components/Faq.astro';
+
+const features = [
+  'Obchodování přes Komoditní burzu Praha', 'Nákup energií za burzovní ceny',
+  'Načasování nákupu podle vývoje trhu', 'Objem stovek provozů na vaší straně',
+  'Transparentní burzovní mechanismus', 'Bez nutnosti vlastní expertízy na burzu',
+];
+const benefits = [
+  { icon: 'lucide:landmark', title: 'Komoditní burza Praha', text: 'Obchodujeme na regulované burze — transparentní ceny a jasná pravidla.' },
+  { icon: 'lucide:trending-down', title: 'Lepší ceny energií', text: 'Burzovní nákup elektřiny a plynu místo spotových cen znamená nižší a stabilnější náklady.' },
+  { icon: 'lucide:users', title: 'Síla objemu', text: 'Stojíte na straně stovek provozů. Objem otevírá ceny, na které jednotlivec nedosáhne.' },
+  { icon: 'lucide:timer', title: 'Správné načasování', text: 'Nakupujeme ve vhodný okamžik podle vývoje trhu — ne když zrovna dojde smlouva.' },
+];
+const faqs = [
+  { q: 'Co jsou burzovní obchody Pecosta?', a: 'Nákup energií (elektřina, plyn) přes Komoditní burzu Praha. Místo běžné dodavatelské smlouvy využíváme burzovní mechanismus, objem a načasování.' },
+  { q: 'Potřebuji vlastní znalost burzy?', a: 'Ne. Celý nákup řeší Pecosta za vás — vy jen čerpáte výslednou cenu a přehled.' },
+  { q: 'Jak to souvisí s energiemi pro gastro?', a: 'Burzovní obchody jsou mechanismus, kterým služba Energie pro gastro dosahuje úspory až 25 %.' },
+];
+---
+<Base title="Burzovní obchody – nákup energií přes burzu | Pecosta"
+      description="Burzovní obchody Pecosta: nákup energií přes Komoditní burzu Praha. Síla objemu, správné načasování a transparentní ceny pro gastro provozy a hotely.">
+  <SiteHeader />
+  <main>
+    <Hero eyebrow="Služba Pecosta" background="alt"
+          lead="Energie nakupujeme tam, kde se tvoří ceny — na Komoditní burze Praha. Díky objemu stovek provozů a správnému načasování získáte ceny, na které sami nedosáhnete.">
+      <Heading slot="title" as="h1" size="display"><em>Burzovní</em> obchody</Heading>
+      <Fragment slot="actions">
+        <Button href="#poptavka">Chci analýzu zdarma</Button>
+        <Button href="/sluzby/energie" variant="secondary">Energie pro gastro</Button>
+      </Fragment>
+    </Hero>
+
+    <Section background="default" space="lg">
+      <div class="prose">
+        <Heading as="h2" size="h2">Nakupujte energie jako velký hráč</Heading>
+        <Text size="lead" color="muted">
+          Jednotlivá restaurace na burzu nedosáhne. Pecosta ale sdružuje objem stovek provozů
+          a obchoduje na Komoditní burze Praha — s transparentními cenami a jasnými pravidly.
+        </Text>
+        <Text color="muted">
+          Nepotřebujete žádnou vlastní expertízu. Nákup, načasování i administrativu řešíme za vás;
+          vy jen čerpáte lepší a stabilnější ceny energií.
+        </Text>
+      </div>
+    </Section>
+
+    <Section background="alt" space="lg">
+      <div class="head head--center">
+        <Text size="label" color="accent" align="center">Co služba zahrnuje</Text>
+        <Heading as="h2" size="h2" align="center">Burzovní obchody v kostce</Heading>
+      </div>
+      <ul class="checklist">
+        {features.map((f) => (<li><Icon name="lucide:check" size="sm" class="checklist__icon" />{f}</li>))}
+      </ul>
+    </Section>
+
+    <USPGrid eyebrow="Výhody" title="Proč nakupovat přes burzu" items={benefits} background="default" space="lg" minItemWidth="240px" />
+    <Faq items={faqs} title="Časté otázky k burzovním obchodům" background="alt" />
+    <LeadForm id="poptavka" variant="full" background="default"
+              title="Zjistěte, kolik ušetříte na energiích"
+              lead="Nechte nám kontakt — připravíme kalkulaci podle vaší spotřeby. Zdarma a bez závazků."
+              submitLabel="Chci analýzu zdarma" />
+  </main>
+  <SiteFooter />
+</Base>
+
+<style>
+  .prose { max-width: 760px; }
+  .prose > * + * { margin-top: var(--space-4); }
+  .head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-7); text-align: center; }
+  .head > * + * { margin-top: var(--space-3); }
+  .checklist { list-style: none; display: grid; gap: var(--space-3); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); max-width: 960px; margin-inline: auto; }
+  .checklist li { display: flex; align-items: flex-start; gap: var(--space-2); font-size: var(--font-size-small); }
+  .checklist__icon { color: var(--color-primary); flex-shrink: 0; margin-top: 2px; }
+</style>

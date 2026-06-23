@@ -1,0 +1,97 @@
+---
+/** Pecosta — Služba: Energie pro gastro. Obsah: pecosta-context.md + #page-pecosta. */
+import Base from '../../layouts/Base.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import StatsBand from '../../components/StatsBand.astro';
+import Faq from '../../components/Faq.astro';
+
+const features = [
+  'Burzovní nákup elektřiny a plynu', 'Úspora až 25 % na energiích',
+  'Komoditní burza Praha', 'Nákup ve správný okamžik podle trhu',
+  'Bez starostí o smlouvy a dodavatele', 'Přehled spotřeby na jednom místě',
+];
+const benefits = [
+  { icon: 'lucide:zap', title: 'Úspora až 25 %', text: 'Na elektřině a plynu díky burzovnímu nákupu pro celé portfolio provozů.' },
+  { icon: 'lucide:line-chart', title: 'Burzovní obchody', text: 'Energie nakupujeme přes komoditní burzu — ve správný okamžik, ne za spotové ceny.' },
+  { icon: 'lucide:shield', title: 'Stabilní náklady', text: 'Méně překvapení na fakturách. Energie máte pod kontrolou jako každou jinou položku.' },
+  { icon: 'lucide:hand-coins', title: 'Bez vstupních nákladů', text: 'Začínáme analýzou zdarma — uvidíte potenciál úspory ještě před rozhodnutím.' },
+];
+const faqs = [
+  { q: 'Jak Pecosta nakupuje energie?', a: 'Energie nakupujeme přes komoditní burzu (Komoditní burza Praha). Díky objemu a načasování získáte lepší ceny než při běžné smlouvě s dodavatelem.' },
+  { q: 'Kolik ušetřím na energiích?', a: 'V průměru až 25 %. Konkrétní úsporu spočítáme podle vaší spotřeby v bezplatné analýze.' },
+  { q: 'Týká se to elektřiny i plynu?', a: 'Ano, burzovní nákup pokrývá elektřinu i plyn pro gastro provozy a hotely.' },
+];
+const energyStats = [
+  { num: '25 %', lbl: 'úspora na energiích' },
+  { num: '15 let', lbl: 'zkušeností na trhu' },
+  { num: '960+', lbl: 'provozů s Pecostou' },
+  { num: '0 Kč', lbl: 'za úvodní analýzu' },
+];
+---
+<Base title="Energie pro gastro – úspora až 25 % | Pecosta"
+      description="Energie pro gastro od Pecosty: burzovní nákup elektřiny a plynu přes Komoditní burzu Praha. Úspora až 25 % a stabilní náklady pro restaurace a hotely.">
+  <SiteHeader />
+  <main>
+    <Hero eyebrow="Služba Pecosta" background="alt"
+          lead="Energie nakupujeme přes komoditní burzu — ve správný okamžik a ve velkém objemu. Provozy s Pecostou tak šetří na elektřině a plynu v průměru až 25 %.">
+      <Heading slot="title" as="h1" size="display"><em>Energie</em> pro gastro</Heading>
+      <Fragment slot="actions">
+        <Button href="#poptavka">Chci analýzu zdarma</Button>
+        <Button href="/sluzby/burzovni-obchody" variant="secondary">Burzovní obchody</Button>
+      </Fragment>
+    </Hero>
+
+    <Section background="default" space="lg">
+      <div class="prose">
+        <Heading as="h2" size="h2">Energie jako každá jiná nákupní položka</Heading>
+        <Text size="lead" color="muted">
+          Restaurace a hotely platí za energie statisíce ročně — a přitom je často nakupují
+          za spotové ceny bez strategie. Pecosta energie obchoduje na komoditní burze, kde
+          rozhoduje objem a načasování.
+        </Text>
+        <Text color="muted">
+          Bistro V Zahradě díky tomu ušetřilo desítky tisíc korun ročně. Vy získáte stabilnější
+          náklady a méně překvapení na fakturách — bez starostí o smlouvy a dodavatele.
+        </Text>
+      </div>
+    </Section>
+
+    <Section background="alt" space="lg">
+      <div class="head head--center">
+        <Text size="label" color="accent" align="center">Co služba zahrnuje</Text>
+        <Heading as="h2" size="h2" align="center">Energie v kostce</Heading>
+      </div>
+      <ul class="checklist">
+        {features.map((f) => (<li><Icon name="lucide:check" size="sm" class="checklist__icon" />{f}</li>))}
+      </ul>
+    </Section>
+
+    <USPGrid eyebrow="Výhody" title="Proč energie přes Pecostu" items={benefits} background="default" space="lg" minItemWidth="240px" />
+    <StatsBand items={energyStats} background="alt" />
+    <Faq items={faqs} title="Časté otázky k energiím" background="default" />
+    <LeadForm id="poptavka" variant="full" background="alt"
+              title="Spočítáme vaši úsporu na energiích"
+              lead="Nechte nám kontakt — připravíme kalkulaci úspory podle vaší spotřeby. Zdarma a bez závazků."
+              submitLabel="Chci analýzu zdarma" />
+  </main>
+  <SiteFooter />
+</Base>
+
+<style>
+  .prose { max-width: 760px; }
+  .prose > * + * { margin-top: var(--space-4); }
+  .head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-7); text-align: center; }
+  .head > * + * { margin-top: var(--space-3); }
+  .checklist { list-style: none; display: grid; gap: var(--space-3); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); max-width: 960px; margin-inline: auto; }
+  .checklist li { display: flex; align-items: flex-start; gap: var(--space-2); font-size: var(--font-size-small); }
+  .checklist__icon { color: var(--color-primary); flex-shrink: 0; margin-top: 2px; }
+</style>

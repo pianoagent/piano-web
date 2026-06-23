@@ -1,0 +1,79 @@
+---
+/** Septim — Ceník licencí. Obsah: septim-obsah/cenik.md. SEO meta nově. */
+import Base from '../layouts/Base.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import Faq from '../components/Faq.astro';
+
+const tiers = [
+  { name: 'Air', price: '1 990 Kč', unit: '/měsíc', note: '10 % sleva při roční platbě · max. 1 pokladna',
+    feats: ['Skvělá pokladní aplikace', 'Evidence dodacích listů', 'Mobilní číšník s platbou', 'Integrace Protel, Qerko, Autset'], highlight: false },
+  { name: 'Flex', price: 'Na míru', unit: '', note: 'Pro rostoucí provozy',
+    feats: ['Vše z Air', 'Pokročilé skladové hospodářství', 'Inventury a kalkulace', 'Reporty a přehledy'], highlight: true },
+  { name: 'Prime', price: 'Na míru', unit: '', note: 'Pro náročné provozy',
+    feats: ['Vše z Flex', 'Věrnostní systém (CRM)', 'Pokročilé datové přehledy', 'Manažerské funkce'], highlight: false },
+  { name: 'Elite', price: 'Na míru', unit: '', note: 'Pro sítě a velké provozy',
+    feats: ['Vše z Prime', 'Centrální správa poboček', 'Databanka receptur a CRM', 'Řešení na míru'], highlight: false },
+];
+const faqs = [
+  { q: 'Platím velké vstupní poplatky?', a: 'Ne. Bez velkých vstupních nákladů můžete používat to, co je top pro české a slovenské gastro provozy. U Air platíte měsíční paušál, u větších edic řešení na míru.' },
+  { q: 'Co cena servisních služeb?', a: 'Servisní zásahy a podpora mají vlastní ceník. Zákazníci se zaplacenou systémovou podporou Maintenance mají zvýhodněné sazby. Ceny jsou bez DPH.' },
+  { q: 'Jak zjistím přesnou cenu pro můj provoz?', a: 'Nechte nám kontakt a spočítáme cenu na míru podle velikosti provozu, počtu pokladen a potřebných modulů.' },
+];
+---
+<Base title="Ceník licencí Septim – Air, Flex, Prime, Elite"
+      description="Ceník systému Septim: edice Air od 1 990 Kč/měsíc, vyšší edice Flex, Prime a Elite na míru. Bez velkých vstupních poplatků. Spočítáme cenu pro váš provoz.">
+  <SiteHeader />
+  <main>
+    <Hero eyebrow="Ceník" background="alt"
+          lead="Naše licence jsou uspořádané přehledně za sebou, ať snadno najdete to pravé. Bez velkých vstupních poplatků — od cloudové edice Air po řešení na míru pro sítě.">
+      <Heading slot="title" as="h1" size="display">Ceník <em>licencí</em></Heading>
+    </Hero>
+
+    <Section background="default" space="lg">
+      <div class="tiers">
+        {tiers.map((t) => (
+          <div class={`tier ${t.highlight ? 'tier--hl' : ''}`}>
+            {t.highlight && <span class="tier__badge">Nejoblíbenější</span>}
+            <Text size="label" color="accent">Septim.{t.name}</Text>
+            <p class="tier__price">{t.price}<span>{t.unit}</span></p>
+            <Text size="caption" color="muted" class="tier__note">{t.note}</Text>
+            <ul class="tier__list">
+              {t.feats.map((f) => (<li><Icon name="lucide:check" size="xs" class="tier__icon" />{f}</li>))}
+            </ul>
+            <Button href="#poptavka" variant={t.highlight ? 'primary' : 'secondary'} full>Chci {`Septim.${t.name}`}</Button>
+          </div>
+        ))}
+      </div>
+      <Text size="small" color="muted" align="center" class="vat">Ceny jsou uvedeny bez DPH. Hledáte <a href="#poptavka">ceník servisních služeb</a>?</Text>
+    </Section>
+
+    <Faq items={faqs} title="Často kladené otázky k ceníku" background="alt" />
+
+    <LeadForm id="poptavka" variant="full" background="default"
+              title="Spočítáme cenu pro váš provoz"
+              lead="Nechte nám kontakt — navrhneme edici a cenu na míru podle velikosti a potřeb vašeho provozu." />
+  </main>
+  <SiteFooter />
+</Base>
+
+<style>
+  .tiers { display: grid; gap: var(--space-5); grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); align-items: start; }
+  .tier { position: relative; background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); padding: var(--space-6); display: flex; flex-direction: column; gap: var(--space-3); }
+  .tier--hl { border: 2px solid var(--color-primary); }
+  .tier__badge { position: absolute; top: -12px; left: var(--space-6); background: var(--color-primary); color: #fff; font-size: var(--font-size-caption); font-weight: var(--font-weight-semibold); padding: 4px 12px; border-radius: var(--radius-full); }
+  .tier__price { font-size: var(--font-size-h2); font-weight: var(--font-weight-bold); color: var(--color-secondary); line-height: 1; }
+  .tier__price span { font-size: var(--font-size-base); font-weight: var(--font-weight-regular); color: var(--color-text-muted); }
+  .tier__note { min-height: 2.4em; }
+  .tier__list { list-style: none; display: flex; flex-direction: column; gap: var(--space-2); flex: 1; }
+  .tier__list li { display: flex; align-items: flex-start; gap: var(--space-2); font-size: var(--font-size-small); }
+  .tier__icon { color: var(--color-primary); flex-shrink: 0; margin-top: 3px; }
+  .vat { margin-top: var(--space-6); }
+</style>

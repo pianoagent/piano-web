@@ -1,0 +1,48 @@
+---
+/** Septim — Kariéra. Obsah: septim-obsah/kariera.md. SEO meta nově. */
+import Base from '../layouts/Base.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+
+const benefits = [
+  { icon: 'lucide:scale', title: 'Férové ohodnocení', text: 'Tvoje práce má hodnotu a podle toho ji odměňujeme.' },
+  { icon: 'lucide:trending-up', title: 'Kariérní růst', text: 'Pokud se chceš posouvat, dostaneš prostor i podporu.' },
+  { icon: 'lucide:credit-card', title: 'eBenefit karta', text: 'Přístup k aktivitám pro zdraví, rozvoj i relaxaci.' },
+  { icon: 'lucide:coffee', title: 'Pracovní pohoda', text: 'Přátelské prostředí a dobrá spolupráce v týmu.' },
+  { icon: 'lucide:building', title: 'Pevné zázemí', text: 'Stabilní firma s 30letou historií a jasným směrem.' },
+  { icon: 'lucide:map-pin', title: 'Karlín nebo Olomouc', text: 'Kanceláře máme v Praze v Karlíně i v Olomouci.' },
+];
+const why = [
+  { icon: 'lucide:utensils', title: 'Práce, se kterou se chlubíš', text: 'Naše řešení používají michelinské restaurace, velké provozy i malá bistra — potkáš ho skoro na každém kroku.' },
+  { icon: 'lucide:layers', title: 'Posuneš celý gastro byznys', text: 'Septim je součástí ekosystému Piano, přes který ročně protečou transakce za víc než 36 miliard korun.' },
+  { icon: 'lucide:rocket', title: 'Prostor dělat věci pořádně', text: 'Žádný korporát se schvalovacími kolečky — rozhodování v týmu je rychlé a dobré nápady se realizují.' },
+];
+---
+<Base title="Kariéra v Septimu – práce, kterou potkáš na každém rohu"
+      description="Kariéra v Septimu: ryze česká softwarová firma s 30letou tradicí, nejrespektovanější pokladní systém v ČR. Kanceláře v Praze-Karlíně a Olomouci, férové ohodnocení a růst.">
+  <SiteHeader />
+  <main>
+    <Hero eyebrow="Kariéra" background="gradient"
+          lead="Miluješ gastro a máš vztah k technologiím? Jsme ryze česká softwarová společnost s 30letou tradicí a vyvíjíme nejrespektovanější pokladní systém v ČR. Čekáme právě na tebe.">
+      <Heading slot="title" as="h1" size="display" color="on-dark">Septim<em>.Kariéra</em></Heading>
+      <Fragment slot="actions">
+        <Button href="#poptavka">Napiš nám</Button>
+      </Fragment>
+    </Hero>
+
+    <USPGrid eyebrow="Benefity" title="Co ti nabízíme" items={benefits} background="default" space="lg" minItemWidth="240px" />
+    <USPGrid eyebrow="Proč Septim" title="Práce, která má dopad" items={why} background="alt" space="lg" minItemWidth="280px" />
+
+    <LeadForm id="poptavka" variant="callback" background="default"
+              title="Můžeš být přínosem Septimu?"
+              lead="Nech nám na sebe kontakt a krátkou zprávu — ozveme se ti." />
+  </main>
+  <SiteFooter />
+</Base>
