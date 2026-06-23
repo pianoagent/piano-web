@@ -69,6 +69,7 @@ const reseniMega: MegaPanel = {
 export const mainNav: NavItem[] = [
   { label: 'Produkty', href: '/produkty', mega: produktyMega },
   { label: 'Řešení', href: '/reseni', mega: reseniMega },
+  { label: 'EET 2.0', href: '/eet' },
   { label: 'Ceník', href: '/cenik' },
   { label: 'Blog', href: '/blog' },
   { label: 'Kontakt', href: '/kontakt' },

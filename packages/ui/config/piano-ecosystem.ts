@@ -17,13 +17,15 @@ interface PianoProduct {
   icon: string;          // lucide ikona (dočasně místo loga)
   badge?: string;
   group: Group;
+  path?: string;         // produkty, které ŽIJÍ na piano.cz (Pilot, Brain, Terminál)
+                         // → odkaz dovnitř webu, ne na samostatný web
 }
 
 /** Zdroj pravdy pro celé portfolio. */
 export const PIANO_PRODUCTS: PianoProduct[] = [
-  { id: 'pilot',    label: 'Piano Pilot',    href: 'https://piano.cz',              description: 'Celý provoz v mobilní appce. Data, sklad, AI doporučení.', icon: 'lucide:smartphone',  badge: 'Nový', group: 'novinky' },
-  { id: 'brain',    label: 'Piano Brain',    href: 'https://piano.cz',              description: 'AI a market intelligence. Víte, co prodává konkurence?',    icon: 'lucide:brain',       badge: 'Beta', group: 'novinky' },
-  { id: 'terminal', label: 'Piano Terminál', href: 'https://piano.cz',              description: 'Terminál, který platbou začíná. Data i platby dodavatelům.', icon: 'lucide:credit-card', group: 'novinky' },
+  { id: 'pilot',    label: 'Piano Pilot',    href: 'https://piano.cz', path: '/pilot',    description: 'Celý provoz v mobilní appce. Data, sklad, AI doporučení.', icon: 'lucide:smartphone',  badge: 'Nový', group: 'novinky' },
+  { id: 'brain',    label: 'Piano Brain',    href: 'https://piano.cz', path: '/brain',    description: 'AI a market intelligence. Víte, co prodává konkurence?',    icon: 'lucide:brain',       badge: 'Beta', group: 'novinky' },
+  { id: 'terminal', label: 'Piano Terminál', href: 'https://piano.cz', path: '/terminal', description: 'Terminál, který platbou začíná. Data i platby dodavatelům.', icon: 'lucide:credit-card', group: 'novinky' },
 
   { id: 'septim',   label: 'Septim',         href: 'https://www.septim.cz',         description: 'Pokladní a provozní systém',     icon: 'lucide:monitor',        group: 'pokladna' },
   { id: 'harsys',   label: 'ABX Harsys',     href: 'https://piano.cz',              description: 'Pokladní systém',                icon: 'lucide:square-terminal', group: 'pokladna' },
@@ -40,8 +42,10 @@ export const PIANO_PRODUCTS: PianoProduct[] = [
 // DEMO: dočasně odkazujeme na nasazené weby <id>-web.pages.dev, ať jde ekosystém
 // proklikat. Finální URL jsou v `href` u každého produktu — po nasazení na domény
 // stačí přepnout `toLink` zpět na `p.href`.
+// Produkty s `path` žijí na piano.cz → odkaz dovnitř (funguje na piano webu).
+// Ostatní jdou DEMO na <id>-web.pages.dev (po nasazení na domény přepnout na p.href).
 const toLink = (p: PianoProduct): NavLink => ({
-  label: p.label, href: `https://${p.id}-web.pages.dev`, description: p.description, icon: p.icon, badge: p.badge,
+  label: p.label, href: p.path ?? `https://${p.id}-web.pages.dev`, description: p.description, icon: p.icon, badge: p.badge,
 });
 
 /** Sestaví Piano mega panel pro daný web; `currentId` se vynechá. */
