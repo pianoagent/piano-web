@@ -13,12 +13,12 @@ export const qerkoFooter = {
     {
       heading: 'Produkty',
       links: [
-        { label: 'Qerko platba', href: '/qr-platba' },
-        { label: 'Digitální menu a objednávka', href: '/objednavani' },
-        { label: 'Qpoint', href: '/q-point' },
-        { label: 'Rezervace', href: '/rezervace' },
-        { label: 'Věrnostní program', href: '/vernostni-program' },
-        { label: 'Hodnocení a recenze', href: '/hodnoceni' },
+        { label: 'Qerko platba', href: '/#qr-platba' },
+        { label: 'Digitální menu a objednávka', href: '/#objednavani' },
+        { label: 'Qpoint', href: '/#qpoint' },
+        { label: 'Rezervace', href: '/#rezervace' },
+        { label: 'Věrnostní program', href: '/#vernost' },
+        { label: 'Hodnocení a recenze', href: '/#hodnoceni' },
       ],
     },
     {
@@ -43,9 +43,9 @@ export const qerkoFooter = {
     { label: 'Instagram', href: 'https://www.instagram.com/qerko', icon: 'lucide:instagram' },
   ],
   legal: [
-    { label: 'Obchodní podmínky', href: '/legal' },
-    { label: 'Ochrana osobních údajů', href: '/legal' },
-    { label: 'Cookies', href: '/legal' },
+    { label: 'Obchodní podmínky', href: 'https://www.qerko.com/legal' },
+    { label: 'Ochrana osobních údajů', href: 'https://www.qerko.com/legal' },
+    { label: 'Cookies', href: 'https://www.qerko.com/legal' },
   ],
   copyright: `© ${year} Qerko s.r.o. · IČO 06678815 · Držitel licence ČNB (platební instituce).`,
 };

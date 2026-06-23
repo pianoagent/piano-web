@@ -12,8 +12,8 @@ const reseniMega = {
       links: [
         { label: 'Zvládnout špičky', href: '/#spicky', icon: 'lucide:gauge' },
         { label: 'Přivést nové hosty', href: '/#komunita', icon: 'lucide:user-plus' },
-        { label: 'Zlepšit reputaci', href: '/hodnoceni', icon: 'lucide:star' },
-        { label: 'Vytvořit komunitu hostů', href: '/vernostni-program', icon: 'lucide:heart-handshake' },
+        { label: 'Zlepšit reputaci', href: '/#hodnoceni', icon: 'lucide:star' },
+        { label: 'Vytvořit komunitu hostů', href: '/#vernost', icon: 'lucide:heart-handshake' },
       ],
     },
   ],
@@ -24,17 +24,17 @@ const produktyMega = {
     {
       label: 'Platba a objednávání',
       links: [
-        { label: 'Qerko platba', href: '/qr-platba', icon: 'lucide:qr-code' },
-        { label: 'Digitální menu a objednávka', href: '/objednavani', icon: 'lucide:utensils' },
-        { label: 'Rezervace', href: '/rezervace', icon: 'lucide:calendar-check' },
+        { label: 'Qerko platba', href: '/#qr-platba', icon: 'lucide:qr-code' },
+        { label: 'Digitální menu a objednávka', href: '/#objednavani', icon: 'lucide:utensils' },
+        { label: 'Rezervace', href: '/#rezervace', icon: 'lucide:calendar-check' },
       ],
     },
     {
       label: 'Hosté a reputace',
       links: [
-        { label: 'Věrnostní program', href: '/vernostni-program', icon: 'lucide:award' },
-        { label: 'Hodnocení a recenze', href: '/hodnoceni', icon: 'lucide:star' },
-        { label: 'Qpoint', href: '/q-point', icon: 'lucide:tablet-smartphone' },
+        { label: 'Věrnostní program', href: '/#vernost', icon: 'lucide:award' },
+        { label: 'Hodnocení a recenze', href: '/#hodnoceni', icon: 'lucide:star' },
+        { label: 'Qpoint', href: '/#qpoint', icon: 'lucide:tablet-smartphone' },
       ],
     },
   ],
@@ -42,7 +42,7 @@ const produktyMega = {
 
 export const qerkoNav: NavItem[] = [
   { label: 'S čím pomůžeme', href: '/#spicky', mega: reseniMega },
-  { label: 'Produkty', href: '/qr-platba', mega: produktyMega },
+  { label: 'Produkty', href: '/#qr-platba', mega: produktyMega },
   pianoNavItem('qerko'),
   { label: 'Ceník', href: '/cenik' },
   {

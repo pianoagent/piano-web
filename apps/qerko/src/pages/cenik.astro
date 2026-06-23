@@ -1,0 +1,104 @@
+---
+/**
+ * Qerko — Ceník. Obsah z qerko-context.md (transakční poplatky, starter packy, instalace).
+ * Vše ze sdílených komponent @piano/ui; sekce bez vlastní komponenty složené z primitivů.
+ */
+import Base from '../layouts/Base.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+
+const transakce = [
+  { item: 'Transakční poplatek', price: '2,90 Kč / platba + 1,35 %' },
+  { item: 'Stravenky Edenred', price: '+1,9 %' },
+  { item: 'Naše Stravenka', price: '+4,5 %' },
+  { item: 'Benefit Plus', price: '+5,3 %' },
+  { item: 'UP', price: '+5,5 %' },
+];
+
+const packs = [
+  { tier: 'do 10 stolů', price: '2 890 Kč' },
+  { tier: 'do 20 stolů', price: '4 790 Kč' },
+  { tier: 'do 40 stolů', price: '8 990 Kč' },
+  { tier: 'do 60 stolů', price: '12 590 Kč' },
+  { tier: '60+ stolů', price: 'individuálně' },
+];
+
+const included = [
+  'QR platby od stolu', 'Digitální menu a objednávání', 'Rozdělení účtu a spropitné',
+  'Věrnostní program', 'Rezervace', 'Hodnocení a Google recenze', 'Napojení na 30+ POS',
+];
+---
+
+<Base title="Ceník | Qerko"
+      description="Ceník Qerko: transakční poplatek 2,90 Kč + 1,35 %, starter packy od 2 890 Kč podle počtu stolů. Bez měsíčního paušálu — platby, objednávání, věrnostní program i rezervace jsou v ceně.">
+  <SiteHeader />
+  <main>
+    <Hero eyebrow="Ceník" background="gradient" align="center"
+          lead="Žádný měsíční paušál. Platíte jen transakční poplatek a jednorázový starter pack podle počtu stolů. Všechny funkce jsou v ceně.">
+      <Heading slot="title" as="h1" size="display" color="on-dark">Platíte jen za <em>reálné platby</em></Heading>
+    </Hero>
+
+    <Section background="default" space="lg">
+      <div class="cols">
+        <div class="pcard">
+          <Heading as="h2" size="h3">Transakční poplatky</Heading>
+          <ul class="rows">
+            {transakce.map((t) => (
+              <li class="row"><span>{t.item}</span><strong>{t.price}</strong></li>
+            ))}
+          </ul>
+          <Text size="small" color="muted">Bezkontaktní platba kartou, Apple Pay i stravenkami. Poplatek za stravenky se připočítává k základnímu transakčnímu poplatku.</Text>
+        </div>
+
+        <div class="pcard">
+          <Heading as="h2" size="h3">Starter pack (jednorázově)</Heading>
+          <ul class="rows">
+            {packs.map((p) => (
+              <li class="row"><span>{p.tier}</span><strong>{p.price}</strong></li>
+            ))}
+          </ul>
+          <Text size="small" color="muted">Profesionální instalace do 3 hodin za 4 900 Kč, nebo vlastní instalace zdarma.</Text>
+        </div>
+      </div>
+    </Section>
+
+    <Section background="alt" space="lg">
+      <div class="head head--center">
+        <Text size="label" color="accent" align="center">V ceně bez příplatku</Text>
+        <Heading as="h2" size="h2" align="center">Vše v jednom, <em>bez paušálu</em></Heading>
+      </div>
+      <ul class="ticks">
+        {included.map((t) => (
+          <li><Icon name="lucide:check" size="sm" class="ticks__ico" />{t}</li>
+        ))}
+      </ul>
+      <div class="cta-actions">
+        <Button href="/#poptavka">Chci Qerko</Button>
+        <Button href="tel:+420277277945" variant="secondary">+420 277 277 945</Button>
+      </div>
+    </Section>
+  </main>
+  <SiteFooter />
+</Base>
+
+<style>
+  .head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-7); text-align: center; }
+  .head > * + * { margin-top: var(--space-3); }
+  .cols { display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); max-width: 920px; margin-inline: auto; }
+  .pcard { background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); padding: var(--space-7); }
+  .pcard > * + * { margin-top: var(--space-4); }
+  .rows { list-style: none; display: flex; flex-direction: column; gap: var(--space-2); }
+  .row { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-4); padding: var(--space-3) 0; border-bottom: 1px solid var(--color-border); }
+  .row span { color: var(--color-text-muted); }
+  .row strong { color: var(--color-secondary); white-space: nowrap; }
+  .ticks { list-style: none; max-width: 720px; margin-inline: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--space-3); }
+  .ticks li { display: flex; align-items: center; gap: var(--space-2); }
+  .ticks__ico { color: var(--color-primary); flex-shrink: 0; }
+  .cta-actions { display: flex; gap: var(--space-3); justify-content: center; flex-wrap: wrap; margin-top: var(--space-7); }
+</style>

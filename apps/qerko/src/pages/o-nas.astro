@@ -1,0 +1,74 @@
+---
+/**
+ * Qerko — O nás. Obsah z qerko-context.md (fintech z Prahy, licence ČNB, součást Piana, trhy).
+ */
+import Base from '../layouts/Base.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+
+const facts = [
+  { icon: 'lucide:landmark', title: 'Licence ČNB', text: 'Qerko je licencovaná platební instituce s působností v celé EU. Platby jsou PCI-DSS compliant.' },
+  { icon: 'lucide:users', title: '1,5 mil.+ hostů', text: 'Aplikaci Qerko používají hosté ve třech evropských zemích.' },
+  { icon: 'lucide:globe', title: 'CZ · SK · EN · HU', text: 'Qerko funguje v Česku, na Slovensku, v anglické i maďarské mutaci.' },
+  { icon: 'lucide:plug', title: '30+ POS systémů', text: 'Napojení na pokladní systémy včetně Septimu, REST i WebSocket API.' },
+];
+---
+
+<Base title="O nás | Qerko"
+      description="Qerko je fintech z Prahy a licencovaná platební instituce ČNB. Pomáhá restauracím s QR platbami, objednáváním a komunikací s hosty. Součást skupiny Piano.">
+  <SiteHeader />
+  <main>
+    <Hero eyebrow="O nás" background="gradient" align="center"
+          lead="Qerko je fintech z Prahy. Stavíme nejpohodlnější způsob, jak v restauraci zaplatit — a nejsnazší způsob, jak zůstat v kontaktu s hosty.">
+      <Heading slot="title" as="h1" size="display" color="on-dark">Pomocník na place pro <em>moderní gastro</em></Heading>
+    </Hero>
+
+    <Section background="default" space="lg">
+      <div class="prose">
+        <Text size="lead" color="muted">
+          Qerko vzniklo z přesvědčení, že skvělí hosté si zaslouží skvělý servis. Místo aby obsluha
+          ztrácela čas kasírováním jednotlivých stolů, dáváme číšníkům čas na to podstatné —
+          věnovat se hostům. Hosté platí a objednávají z mobilu, dávají vyšší dýško a lepší recenze.
+        </Text>
+        <Text color="muted">
+          Jsme licencovaná platební instituce České národní banky s evropskou působností. Aplikaci
+          Qerko používá přes 1,5 milionu hostů a najdete ji v nejlépe hodnocených podnicích v Česku,
+          na Slovensku i dál. Qerko je součástí skupiny Piano — jednoho partnera pro celý provoz.
+        </Text>
+      </div>
+    </Section>
+
+    <Section background="alt" space="lg">
+      <div class="grid">
+        {facts.map((f) => (
+          <div class="fcard">
+            <span class="fcard__icon"><Icon name={f.icon} size="md" /></span>
+            <Heading as="h2" size="h3">{f.title}</Heading>
+            <Text size="small" color="muted">{f.text}</Text>
+          </div>
+        ))}
+      </div>
+      <div class="cta-actions">
+        <Button href="/#poptavka">Chci Qerko</Button>
+        <Button href="https://piano.cz" variant="secondary">Prozkoumat Piano</Button>
+      </div>
+    </Section>
+  </main>
+  <SiteFooter />
+</Base>
+
+<style>
+  .prose { max-width: 760px; margin-inline: auto; }
+  .prose > * + * { margin-top: var(--space-4); }
+  .grid { display: grid; gap: var(--space-5); grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  .fcard { background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); box-shadow: var(--shadow-sm); padding: var(--space-6); text-align: center; }
+  .fcard > * + * { margin-top: var(--space-3); }
+  .fcard__icon { display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: var(--radius-md); background: color-mix(in srgb, var(--color-primary) 12%, #fff); color: var(--color-primary); }
+  .cta-actions { display: flex; gap: var(--space-3); justify-content: center; flex-wrap: wrap; margin-top: var(--space-7); }
+</style>

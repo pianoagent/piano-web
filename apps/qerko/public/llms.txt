@@ -1,17 +1,27 @@
-# Septim
+# Qerko
 
-> Septim je pokladní a provozní systém pro restaurace, jídelny, kavárny a hotely. Spojuje prodej, sklady a manažerské přehledy a integruje se do ekosystému Piano. Česká podpora 24/7.
+> Qerko je pomocník na place pro restaurace: hosté platí QR kódem z mobilu, objednávají z digitálního menu a dávají vyšší dýško. Provozům přináší o 20 % více otočených stolů, o 40 % vyšší spropitné a automatické Google recenze. Licencovaná platební instituce ČNB, součást skupiny Piano. Bez měsíčního paušálu.
 
-## Co Septim umí
+## Co Qerko umí
 
-- [Pokladní a provozní systém](https://septim.cz/): prodej a účtování, skladové hospodářství, manažerské přehledy a reporty pro celý provoz.
-- Integrace celého ekosystému Piano — pokladna, platby, personál a analytika pod jednou střechou.
+- [QR platba od stolu](https://qerko.com/#qr-platba): host zaplatí sám z telefonu — kartou, Apple Pay nebo stravenkou, s rozdělením účtu a spropitným.
+- [Digitální menu a objednávání](https://qerko.com/#objednavani): menu z pokladny, objednávky rovnou do POS a kuchyně, tržby až o 10 % vyšší.
+- [Rezervace](https://qerko.com/#rezervace): rezervace stolu z aplikace i z webového formuláře.
+- [Věrnostní program](https://qerko.com/#vernost): personalizované zprávy a nabídky, které přivedou hosty zpět.
+- [Hodnocení a reputace](https://qerko.com/#hodnoceni): soukromá zpětná vazba po platbě a automatické Google recenze i sledující na Instagramu.
+- [Qpoint](https://qerko.com/#qpoint): objednávky z rozvozu a e-shopu přehledně na jednom tabletu.
+
+## Ceník
+
+Bez měsíčního paušálu. Transakční poplatek 2,90 Kč + 1,35 % z částky, jednorázový starter pack od 2 890 Kč podle počtu stolů. Podrobnosti: https://qerko.com/cenik
 
 ## O společnosti
 
-Septim je součástí rodiny Piano (Piano Solutions s.r.o.). Nasazen v restauracích, kavárnách, jídelnách i hotelech s českou podporou každý den v roce.
+Qerko je fintech z Prahy a licencovaná platební instituce České národní banky s evropskou působností (PCI-DSS). Aplikaci používá přes 1,5 milionu hostů v ČR, na Slovensku, v anglické i maďarské mutaci. Napojení na 30+ POS systémů včetně Septimu. Qerko je součástí skupiny Piano.
 
 ## Kontakt a dokumentace
 
-- Web: https://septim.cz
-- Sitemap: https://septim.cz/sitemap-index.xml
+- Web: https://qerko.com
+- Ceník: https://qerko.com/cenik
+- Kontakt: https://qerko.com/kontakt
+- Sitemap: https://qerko.com/sitemap-index.xml

@@ -1,5 +1,5 @@
 ---
-/** Septim — Kontakt. Obsah: septim-obsah/kontakt.md. SEO meta nově. */
+/** Qerko — Kontakt. Obsah ze staré stránky qerko.com/kontakt (telefon, e-mail). */
 import Base from '../layouts/Base.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
@@ -10,24 +10,18 @@ import Text from '@piano/ui/components/Text.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 
-const offices = [
-  { title: 'Centrála Praha', icon: 'lucide:building-2', lines: ['Thámova 166/18, Karlín', '186 00 Praha 8'],
-    contacts: [{ icon: 'lucide:phone', label: '+420 257 011 100', href: 'tel:+420257011100' }, { icon: 'lucide:mail', label: 'mail@septim.cz', href: 'mailto:mail@septim.cz' }] },
-  { title: 'Servisní pobočka Morava', icon: 'lucide:map-pin', lines: ['Wittgensteinova 886/10', '779 00 Olomouc'],
-    contacts: [{ icon: 'lucide:phone', label: '+420 255 712 552', href: 'tel:+420255712552' }, { icon: 'lucide:user', label: 'Roman Šidleja', href: 'mailto:roman.sidleja@septim.cz' }] },
-];
 const support = [
-  { title: 'Obchod', icon: 'lucide:shopping-bag', phone: '+420 257 011 100', tel: 'tel:+420257011100', mail: 'obchod@septim.cz' },
-  { title: 'Helpdesk', icon: 'lucide:headset', phone: '+420 257 011 101', tel: 'tel:+420257011101', mail: 'servis@septim.cz' },
-  { title: 'Hotline 24/7', icon: 'lucide:phone-call', phone: '+420 777 737 846', tel: 'tel:+420777737846' },
+  { title: 'Mám zájem o Qerko', icon: 'lucide:shopping-bag', phone: '+420 277 277 945', tel: 'tel:+420277277945', mail: 'info@qerko.com' },
+  { title: 'Podpora podniků', icon: 'lucide:headset', phone: '+420 277 277 945', tel: 'tel:+420277277945', mail: 'podpora@qerko.com' },
+  { title: 'Pro média', icon: 'lucide:newspaper', mail: 'pr@qerko.com' },
 ];
 ---
-<Base title="Kontakt | Septim"
-      description="Kontakt na Septim Systems a.s.: obchod, helpdesk a hotline 24/7, centrála v Praze-Karlíně a servisní pobočka v Olomouci. Napište nám nebo zavolejte — jsme tu pro vás.">
+<Base title="Kontakt | Qerko"
+      description="Kontakt na Qerko: obchod a podpora pro podniky. Napište nám nebo zavolejte — ukážeme vám, jak Qerko otočí víc stolů a zvedne dýška.">
   <SiteHeader />
   <main>
     <Hero eyebrow="Kontakt" background="alt"
-          lead="Zajímá vás Septim pro váš provoz, nebo už jste v rodině Septim? Rádi pomůžeme — jsme tu pro vás.">
+          lead="Zajímá vás Qerko pro váš podnik, nebo už Qerko používáte? Rádi pomůžeme — jsme tu pro vás.">
       <Heading slot="title" as="h1" size="display">Ozvěte se <em>nám</em></Heading>
     </Hero>
 
@@ -37,36 +31,17 @@ const support = [
           <div class="ccard">
             <span class="ccard__icon"><Icon name={s.icon} size="md" /></span>
             <Heading as="h2" size="h3">{s.title}</Heading>
-            <a class="ccard__phone" href={s.tel}>{s.phone}</a>
+            {s.phone && <a class="ccard__phone" href={s.tel}>{s.phone}</a>}
             {s.mail && <a class="ccard__mail" href={`mailto:${s.mail}`}>{s.mail}</a>}
           </div>
         ))}
       </div>
-    </Section>
-
-    <Section background="alt" space="lg">
-      <div class="head head--center">
-        <Text size="label" color="accent" align="center">Pobočky</Text>
-        <Heading as="h2" size="h2" align="center">Kde nás najdete</Heading>
-      </div>
-      <div class="grid grid--2">
-        {offices.map((o) => (
-          <div class="office">
-            <span class="ccard__icon"><Icon name={o.icon} size="md" /></span>
-            <Heading as="h3" size="h3">{o.title}</Heading>
-            {o.lines.map((l) => (<Text size="small" color="muted">{l}</Text>))}
-            <ul class="office__contacts">
-              {o.contacts.map((c) => (<li><Icon name={c.icon} size="xs" class="office__ico" /><a href={c.href}>{c.label}</a></li>))}
-            </ul>
-          </div>
-        ))}
-      </div>
       <Text size="small" color="muted" align="center" class="legal">
-        Septim Systems a.s., IČ: 28211189, DIČ: CZ28211189 · zapsána u Městského soudu v Praze, oddíl B, vložka 13285.
+        Qerko s.r.o., IČO 06678815, DIČ CZ06678815 · Praha · Držitel licence České národní banky (platební instituce).
       </Text>
     </Section>
 
-    <LeadForm id="poptavka" variant="full" background="default"
+    <LeadForm id="poptavka" variant="full" background="alt"
               title="Napište nám"
               lead="Nechte nám kontakt a krátkou zprávu — ozveme se co nejdříve." />
   </main>
@@ -75,17 +50,9 @@ const support = [
 
 <style>
   .grid { display: grid; gap: var(--space-5); grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
-  .grid--2 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); max-width: 820px; margin-inline: auto; }
-  .ccard, .office { background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); box-shadow: var(--shadow-sm); padding: var(--space-6); text-align: center; }
-  .office { text-align: left; }
+  .ccard { background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); box-shadow: var(--shadow-sm); padding: var(--space-6); text-align: center; }
   .ccard__icon { display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: var(--radius-md); background: color-mix(in srgb, var(--color-primary) 12%, #fff); color: var(--color-primary); margin-bottom: var(--space-3); }
   .ccard__phone { display: block; font-size: var(--font-size-h3); font-weight: var(--font-weight-bold); color: var(--color-secondary); text-decoration: none; margin-top: var(--space-2); }
   .ccard__mail { display: block; font-size: var(--font-size-small); color: var(--color-text-accent); text-decoration: none; margin-top: var(--space-1); }
-  .office__contacts { list-style: none; margin-top: var(--space-3); display: flex; flex-direction: column; gap: var(--space-2); }
-  .office__contacts li { display: flex; align-items: center; gap: var(--space-2); font-size: var(--font-size-small); }
-  .office__contacts a { color: var(--color-text-accent); text-decoration: none; }
-  .office__ico { color: var(--color-text-muted); }
-  .head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-7); text-align: center; }
-  .head > * + * { margin-top: var(--space-3); }
   .legal { margin-top: var(--space-7); }
 </style>

@@ -1,10 +1,11 @@
 ---
 /**
- * Septim — homepage.
- * Obsah z septim-context.md + blok #page-septim (piano-web-2026.html).
+ * Qerko — homepage (první verze).
+ * Obsah vytěžen ze starých stránek qerko.com (index, qr-platba, objednavani,
+ * vernostni-program, hodnoceni, q-point, rezervace) + qerko-context.md.
  * Vše ze SDÍLENÝCH komponent @piano/ui; téma řeší src/styles/theme.css.
- * Sekce bez vlastní komponenty (Stats, Steps, Tabulka, Integrace, Reference,
- * Logo wall, FAQ) jsou složené z primitivů (Section/Heading/Text/Button) —
+ * Sekce bez vlastní komponenty (Stats, Steps, Feature rows, Awards, Reference,
+ * FAQ) jsou složené z primitivů (Section/Heading/Text/Button/Icon) —
  * komponenty se NEFORKUJÍ.
  */
 import Base from '../layouts/Base.astro';
@@ -20,111 +21,119 @@ import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 
 const stats = [
-  { num: '30 let', lbl: 'na trhu' },
-  { num: '6 000+', lbl: 'provozů v ČR' },
-  { num: '24/7', lbl: 'česká podpora' },
-  { num: 'CZ / EN / SK', lbl: 'jazykové mutace' },
+  { num: '+20 %', lbl: 'více otočených stolů' },
+  { num: '+40 %', lbl: 'vyšší dýška pro obsluhu' },
+  { num: '4 min', lbl: 'ušetřené na každý stůl' },
+  { num: '1,5 mil.+', lbl: 'obsloužených hostů' },
 ];
 
 const steps = [
-  { img: '/icons/sklady-naskladnovani.svg', title: 'Naskladnění a sklady', text: 'Sledování stavu surovin, dodacích listů a zásob v reálném čase. Automatické napojení na Autset.' },
-  { img: '/icons/platebni-reseni.svg', title: 'Prodej a pokladna', text: 'Intuitivní dotykové rozhraní, mobilní číšník Septim.Go, integrované platby přes Qerko.' },
-  { img: '/icons/financni-prehledy.svg', title: 'Přehledy a reporty', text: 'Tržby, výkon personálu, marže produktů — vše v MySeptim appce kdekoliv a kdykoliv.' },
-  { img: '/icons/napojeni-systemu.svg', title: 'Integrace ekosystému', text: 'Foodora, Wolt, Qerko, Protel, Autset, GrasonPlan — vše komunikuje se Septimem.' },
-];
-
-const variants = [
-  { name: 'Septim.4', who: 'Restaurace, sítě', install: 'Na místě', net: true, loyalty: true, reports: true },
-  { name: 'Septim.Jídelna', who: 'Kantýny, závodní stravování', install: 'Na místě', net: true, loyalty: false, reports: true },
-  { name: 'Septim.Air', who: 'Kavárny, bistra, bary', install: 'Cloud', net: false, loyalty: false, reports: false },
-  { name: 'Septim.Hotel', who: 'Hotely (s Protelem)', install: 'Na místě', net: true, loyalty: true, reports: true },
+  { icon: 'lucide:qr-code', title: 'Host naskenuje QR', text: 'Na stole je QR kód nebo NFC. Host ho naskenuje telefonem — žádná aplikace navíc není potřeba.' },
+  { icon: 'lucide:utensils', title: 'Vidí menu a objednává', text: 'Digitální menu se načte z vaší pokladny. Host si může rovnou objednat další jídlo i pití.' },
+  { icon: 'lucide:smartphone', title: 'Zaplatí z mobilu', text: 'Rozdělí účet, přidá spropitné a zaplatí kartou, Apple Pay nebo stravenkou — kdykoliv chce.' },
+  { icon: 'lucide:monitor-check', title: 'Obsluha vše vidí v POS', text: 'Platba i objednávka se okamžitě propíší do pokladny. Číšník má čas na nově příchozí.' },
+  { icon: 'lucide:receipt', title: 'Účtenka e-mailem', text: 'Host dostane digitální účtenku automaticky. Žádné čekání, žádný papír navíc.' },
+  { icon: 'lucide:star', title: 'Qerko požádá o recenzi', text: 'Po platbě se Qerko zeptá na hodnocení a vybídne k recenzi na Googlu i follow na Instagramu.' },
 ];
 
 const features = [
-  { image: '/icons/vice-pokladen.svg', title: 'Pokladna', text: 'Intuitivní dotykové rozhraní pro obsluhu. Mobilní číšník Septim.Go pro orderpad.' },
-  { image: '/icons/sklady-inventura.svg', title: 'Skladové hospodářství', text: 'Hlídání stavu surovin, dodacích listů a zásob v reálném čase.' },
-  { image: '/icons/revenue-reporting.svg', title: 'Manažerské přehledy', text: 'Tržby, marže, výkon personálu — v appce MySeptim odkudkoliv.' },
-  { image: '/icons/osobni-pristup.svg', title: 'Věrnostní systém (CRM)', text: 'Loajalitní programy pro zákazníky přímo v systému.' },
-  { image: '/icons/partnerstvi.svg', title: 'Rozvoz jídla', text: 'Přímá integrace s Foodora a Wolt. Objednávky z rozvozu v systému automaticky.' },
-  { image: '/icons/vzdaleny-servis.svg', title: 'MySeptim App', text: 'iOS + Android. Klíčová data provozu vždy po ruce, kdekoliv se nacházíte.' },
-  { image: '/icons/protel-septim.svg', title: 'Room Service', text: 'Propojení s Protelem — host objedná z pokoje, kuchyně to vidí automaticky.' },
-  { image: '/icons/podpora-24-7.svg', title: 'Podpora 24/7', text: 'Česká podpora v reálném čase. Konzultanti s praxí z gastro provozu.' },
+  { icon: 'lucide:qr-code', title: 'Platba QR kódem od stolu', text: 'Host zaplatí sám z telefonu, kdykoliv chce. Obsluha nemusí kasírovat jednotlivé stoly.' },
+  { icon: 'lucide:split', title: 'Rozdělení účtu', text: 'Každý host zaplatí jen za své. Žádné počítání u stolu, žádné čekání na drobné.' },
+  { icon: 'lucide:hand-coins', title: 'Vyšší spropitné', text: 'Host přidá dýško jedním klikem. Provozy s Qerkem mají v průměru o 40 % vyšší tipy.' },
+  { icon: 'lucide:utensils', title: 'Digitální menu a objednávání', text: 'Menu s fotkami se načte z pokladny. Objednávky jdou rovnou do POS a kuchyně.' },
+  { icon: 'lucide:award', title: 'Věrnostní program', text: 'Hosté se stávají followery podniku. Personalizované nabídky je přivedou zpět.' },
+  { icon: 'lucide:star', title: 'Hodnocení a Google recenze', text: 'Qerko automaticky sbírá recenze od spokojených hostů. Buďte číslo 1 ve městě.' },
 ];
 
-const integrations = [
-  'Qerko — platby a QR objednávky',
-  'Protel — hotelový systém + Room Service',
-  'Autset — automatické naskladňování',
-  'GrasonPlan — plánování směn',
-  'Foodora & Wolt — rozvoz jídla',
-  'Kuchyňské displeje — QSR Automations',
+// Detailní bloky produktu — kotvy odpovídají navigaci a patičce
+const blocks = [
+  {
+    id: 'qr-platba', bg: 'default', icon: 'lucide:qr-code', eyebrow: 'Qerko platba',
+    title: 'Zaplatí sami. Vy markujete dál.',
+    text: '„Zaplatím!" je fráze, která běžně stojí obsluhu i hosty desítky minut. S Qerkem si hosté sami rozpočítají účet a zaplatí z mobilu — platba se propíše do pokladny a obsluha o všem ví.',
+    bullets: ['Bezkontaktní platba bez PIN', 'Visa, Mastercard, Apple Pay, stravenky', 'Rozdělení účtu mezi hosty'],
+  },
+  {
+    id: 'objednavani', bg: 'alt', icon: 'lucide:utensils', eyebrow: 'Digitální menu a objednávka',
+    title: 'Co takhle kávu nebo dezert?',
+    text: 'Na tuhle otázku je někdy zoufale málo času. Vaše menu si automaticky stáhneme z pokladny, ukážeme ho hostům a doporučíme položky na míru. Objednávky z telefonu jdou přímo do POS a kuchyně — tržby rostou až o 10 %.',
+    bullets: ['Menu s fotkami, vždy aktuální', 'Objednávky rovnou do POS a kuchyně', 'Předobjednávky i takeaway'],
+  },
+  {
+    id: 'rezervace', bg: 'default', icon: 'lucide:calendar-check', eyebrow: 'Rezervace',
+    title: 'Rezervace z mobilu i webu',
+    text: 'Hosté si rezervují stůl přímo z aplikace nebo z webového formuláře. Vy máte přehled o obsazenosti a méně práce s telefonáty.',
+    bullets: ['Rezervace přímo z appky Qerko', 'Webový rezervační formulář', 'Přehled obsazenosti na jednom místě'],
+  },
+  {
+    id: 'vernost', bg: 'alt', icon: 'lucide:heart-handshake', eyebrow: 'Věrnostní program',
+    title: 'Aby se k vám hosté vraceli',
+    text: 'Pomocí chytrých nástrojů přivedeme vaše hosty zpět a přimějeme je chodit častěji. Po platbě jim pošlete poděkování, voucher nebo pozvánku na nové menu — bez práce navíc.',
+    bullets: ['Personalizované zprávy po platbě', 'Vouchery a chytré nabídky', 'Hosté jako followeři podniku'],
+  },
+  {
+    id: 'hodnoceni', bg: 'default', icon: 'lucide:star', eyebrow: 'Hodnocení a reputace',
+    title: 'Staňte se podnikem číslo jedna',
+    text: 'Bylo vše v pořádku? Ve šrumci špičky někdy nezbyde čas se zeptat. Qerko se zákazníka zeptá hned po platbě — a vy na hodnocení reagujete poděkováním nebo omluvou. Spokojené hosty pak vybídneme k recenzi na Google Maps a follow na Instagramu.',
+    bullets: ['Soukromá zpětná vazba hned po platbě', 'Automatické Google recenze', 'Více sledujících na Instagramu'],
+  },
+  {
+    id: 'qpoint', bg: 'alt', icon: 'lucide:tablet-smartphone', eyebrow: 'Qpoint',
+    title: 'Rozvoz i e-shop v jednom tabletu',
+    text: 'Qpoint agreguje objednávky z rozvozu a vlastního online shopu přehledně na jednom tabletu. Žádné přepínání mezi platformami — vše na jednom místě.',
+    bullets: ['Objednávky z rozvozu i e-shopu', 'Vše přehledně na jednom tabletu', 'Vlastní online shop podniku'],
+  },
+];
+
+const awards = [
+  { title: 'Vítěz Startup Awards', note: 'Cena veřejnosti' },
+  { title: '2× Křišťálová Lupa', note: 'E-commerce inspirace' },
+  { title: 'Licence ČNB', note: 'Evropská platební instituce' },
+  { title: 'Banka roku — 2. místo', note: 'Kategorie Fintech' },
+  { title: 'Top 10 App Store', note: 'Jídlo a pití' },
+  { title: '1,5 mil.+ uživatelů', note: 've 3 evropských zemích' },
 ];
 
 const testimonials = [
-  { initials: 'TK', headline: 'Výborný systém!', quote: 'Pokladní systém Septim a služba WebCare nám pomáhá být blíž našim zákazníkům.', author: 'Tomáš Karpíšek', role: 'Šéf restaurací Ambiente' },
-  { initials: 'RK', headline: 'Stabilita a efektivita', quote: 'Provozní systém Septim je zásadní součástí restaurace FIELD. Díky němu mám jistotu, že celý provoz běží stabilně a efektivně.', author: 'Radek Kašpárek', role: 'Šéfkuchař a zakladatel FIELD', michelin: true },
-  { initials: 'VV', headline: 'Naprostý přehled', quote: 'Na Septimu mi nejvíce vyhovuje, že si mohu nadefinovat jakoukoli sestavu a okamžitě dostanu vyhodnocení. Mám pak naprostý přehled.', author: 'Václav Vojíř', role: "Majitel Bugsy's baru, Praha" },
-];
-
-const refLogos = [
-  'ref-field-michelin-restaurant', 'ref-cafe-savoy', 'ref-kolkovna', 'ref-sasazu',
-  'ref-O2-arena', 'ref-clarion-hotel', 'ref-zatisi-group', 'ref-420-restaurant',
-  'ref-pizza-coloseum', 'ref-entree', 'ref-100-chuti-brna', 'ref-sisters-bistro',
+  { initials: 'TH', headline: 'Super funkční Qerko', quote: 'Byl jsem několikrát a pokaždé skvělá návštěva. Super funkční Qerko — to se mi tam líbilo nejvíc.', author: 'Tomáš Hofmann', role: '199 recenzí · Google Maps' },
+  { initials: 'NL', headline: 'Platba přes Qerko je plus', quote: 'Moc milá obsluha, skvělé jídlo, fajn polední nabídky. Další plus je platba přes Qerko.', author: 'Nikola Lešková', role: '19 recenzí · Google Maps' },
+  { initials: 'JK', headline: 'Bonusové body za podporu', quote: 'Dobré pivo, dobré jídlo, bonusové body za podporu Qerka a velmi milí číšníci.', author: 'Jiří Kučera', role: '110 recenzí · Google Maps' },
 ];
 
 const faqs = [
-  { q: 'Pro jak velký provoz se Septim hodí?', a: 'Od malého bistra po michelinské restaurace a velké řetězce. Septim škáluje s vámi — využívají ho největší gastro provozy v ČR.' },
-  { q: 'Je k dispozici česká podpora?', a: 'Ano, česká podpora 24/7. Skuteční lidé, kteří vašemu provozu rozumí — i o víkendech a svátcích.' },
-  { q: 'Umí Septim skladové hospodářství?', a: 'Ano — kompletní skladovou evidenci, receptury, odpisy i inventury. Propojí se s nákupy přes Pecostu a automatickým naskladněním.' },
-  { q: 'Jaké manažerské funkce nabízí?', a: 'Reporty tržeb v reálném čase, výkon zaměstnanců, sledování marží a vzdálený přístup k provozu odkudkoliv.' },
-  { q: 'Propojí se Septim s ostatními nástroji Piano?', a: 'Ano — s Qerkem (platby), Grasonem (personál), Pecostou (nákupy), Piano Terminálem i Pilotem. Jedno přihlášení, jedno vyúčtování.' },
-  { q: 'Jak probíhá přechod ze stávajícího systému?', a: 'Převedeme data, nastavíme systém a zaškolíme obsluhu. Onboarding je zdarma a zvládneme ho za vás.' },
+  { q: 'Kolik Qerko stojí?', a: 'Žádný měsíční paušál. Platíte jen transakční poplatek 2,90 Kč + 1,35 % z částky a jednorázový starter pack podle počtu stolů (od 2 890 Kč). Platby, objednávání, věrnostní program i rezervace jsou v ceně.' },
+  { q: 'Musíme měnit pokladnu?', a: 'Ne. Qerko je napojené na 30+ POS systémů včetně Septimu. Menu i platby se propisují do vaší stávající pokladny.' },
+  { q: 'Co když host nechce platit přes telefon?', a: 'Qerko nic nenahrazuje násilím — funguje vedle běžné obsluhy. Host zaplatí přes Qerko, jen když chce. Obsluha má díky tomu víc času na ostatní stoly.' },
+  { q: 'Jaké platební metody hosté využijí?', a: 'Visa, Mastercard, Apple Pay, uložené karty, stravenky (Edenred, Sodexo, Benefit Plus, Naše Stravenka, UP) i Bitcoin.' },
+  { q: 'Jak dlouho trvá instalace?', a: 'Profesionální instalace zabere do 3 hodin (4 900 Kč), nebo si Qerko nasadíte sami zdarma. Stačí vytisknout QR kódy na stoly a napojit pokladnu.' },
 ];
 
 const leadProofs = [
-  { icon: 'lucide:headset', title: 'Podpora 24/7', text: 'Česká podpora každý den v roce.' },
-  { icon: 'lucide:store', title: '6 000+ provozů', text: 'Důvěřují nám restaurace i hotely v celé ČR.' },
-  { icon: 'lucide:calendar-check', title: '30 let na trhu', text: 'Zkušenosti s gastro a hotelovým provozem.' },
-  { icon: 'lucide:gift', title: 'Konzultace zdarma', text: 'Nezávazně a bez rizika.' },
+  { icon: 'lucide:repeat', title: '+20 % otočených stolů', text: 'Hosté platí sami, obsluha stíhá víc.' },
+  { icon: 'lucide:hand-coins', title: '+40 % vyšší dýška', text: 'Spropitné jedním klikem v telefonu.' },
+  { icon: 'lucide:store', title: '1,5 mil.+ hostů', text: 'Qerko zná hosté po celé ČR.' },
+  { icon: 'lucide:badge-check', title: 'Bez měsíčního paušálu', text: 'Platíte jen za reálné platby.' },
 ];
 ---
 
-<Base title="Septim — pravá ruka každého manažera"
-      description="Septim je pokladní a provozní systém pro restaurace, jídelny, kavárny a hotely. Sklady, prodej, manažerské přehledy a integrace celého Piano ekosystému. Česká podpora 24/7.">
+<Base title="Qerko — QR platby od stolu, vyšší dýška a lepší recenze"
+      description="Qerko je pomocník na place: hosté platí QR kódem z mobilu, objednávají z digitálního menu a dávají vyšší dýška. +20 % otočených stolů, +40 % tipů a automatické Google recenze. Bez měsíčního paušálu.">
   <SiteHeader />
 
   <main>
 
   <!-- HERO -->
-  <Hero eyebrow="Pokladní a provozní systém Septim" background="gradient"
-        lead="Septim není jen pokladna. Je to systém, který řídí celý váš provoz — od naskladnění surovin přes výdej jídel až po finanční přehledy. Využívají ho michelinské restaurace i kavárny za rohem.">
-    <Heading slot="title" as="h1" size="display" color="on-dark">Pravá ruka <em>každého manažera</em></Heading>
+  <Hero eyebrow="Pomocník na place" background="gradient" align="center"
+        lead="Qerko pomáhá číšníkům připravit pro hosty bezchybný zážitek. Hosté platí a objednávají z mobilu, dávají vyšší dýško a lepší recenze — a obsluha má čas na to podstatné.">
+    <Heading slot="title" as="h1" size="display" color="on-dark">Skvělí hosté si zaslouží <em>skvělý servis</em></Heading>
     <Fragment slot="actions">
-      <Button href="#poptavka">Chci Septim</Button>
-      <Button href="#rada" variant="secondary" onDark>Vyberte variantu</Button>
+      <Button href="#poptavka">Chci Qerko</Button>
+      <Button href="#jak-to-funguje" variant="secondary" onDark>Jak to funguje</Button>
     </Fragment>
-    <figure slot="media" class="hero-figure">
-      <img src="/images/hero-septim.jpg" alt="My Septim — manažerské přehledy na tabletu, mobilu i pokladně" width="720" height="400" />
-      <figcaption class="hero-badge"><Icon name="lucide:badge-check" size="sm" /> Připraveno na EET 2.0</figcaption>
-    </figure>
   </Hero>
 
-  <!-- LOGA KLIENTŮ — hned pod hero -->
-  <Section id="zakaznici" background="default" space="md" container={false}>
-    <Text size="label" color="muted" align="center" class="logos__label">
-      Důvěřují nám michelinské restaurace, hotely i kavárny za rohem
-    </Text>
-    <div class="logos">
-      <div class="logos__track">
-        {[...refLogos, ...refLogos].map((l, i) => (
-          <img src={`/logos/${l}.svg`} alt={i < refLogos.length ? l.replace('ref-', '').replace(/-/g, ' ') : ''} aria-hidden={i >= refLogos.length ? 'true' : undefined} loading="lazy" />
-        ))}
-      </div>
-    </div>
-  </Section>
-
   <!-- STATS BAND -->
-  <Section background="alt" space="sm">
+  <Section id="spicky" background="alt" space="sm">
     <ul class="stats">
       {stats.map((s) => (
         <li class="stats__item">
@@ -136,19 +145,19 @@ const leadProofs = [
   </Section>
 
   <!-- JAK TO FUNGUJE -->
-  <Section background="default" space="lg">
+  <Section id="jak-to-funguje" background="default" space="lg">
     <div class="head head--center">
       <Text size="label" color="accent" align="center">Jak to funguje</Text>
-      <Heading as="h2" size="h2" align="center">Provoz pod kontrolou. <em>Od skladu po výkaz.</em></Heading>
+      <Heading as="h2" size="h2" align="center">Od QR kódu po <em>recenzi</em> — bez práce navíc</Heading>
       <Text size="lead" color="muted" align="center" balance>
-        Septim propojuje každou část vašeho provozu. Naskladníte, vydáte, prodáte, vyúčtujete — a na konci dne víte přesně, kde jste.
+        Kde zrovna není číšník, tam pomůže Qerko. Šest kroků, které otočí víc stolů a zvednou dýška.
       </Text>
     </div>
     <ol class="steps">
       {steps.map((s, i) => (
         <li class="step">
           <span class="step__num">{i + 1}</span>
-          <img class="step__icon" src={s.img} alt="" loading="lazy" width="72" height="72" />
+          <span class="step__icon"><Icon name={s.icon} size="lg" /></span>
           <Heading as="h3" size="h3">{s.title}</Heading>
           <Text size="small" color="muted">{s.text}</Text>
         </li>
@@ -156,62 +165,57 @@ const leadProofs = [
     </ol>
   </Section>
 
-  <!-- PRODUKTOVÁ ŘADA -->
-  <Section id="rada" background="alt" space="lg">
-    <div class="head head--center">
-      <Text size="label" color="accent" align="center">Produktová řada</Text>
-      <Heading as="h2" size="h2" align="center">Vyberte variantu <em>pro váš provoz</em></Heading>
-    </div>
-    <div class="table-wrap">
-      <table class="variants">
-        <thead>
-          <tr>
-            <th>Varianta</th><th>Pro koho</th><th>Instalace</th>
-            <th>Síť provozoven</th><th>Věrnostní systém</th><th>Pokročilé reporty</th>
-          </tr>
-        </thead>
-        <tbody>
-          {variants.map((v) => (
-            <tr>
-              <td><strong>{v.name}</strong></td>
-              <td>{v.who}</td>
-              <td>{v.install}</td>
-              <td class={v.net ? 'yes' : 'no'}>{v.net ? '✓ ANO' : '—'}</td>
-              <td class={v.loyalty ? 'yes' : 'no'}>{v.loyalty ? '✓ ANO' : '—'}</td>
-              <td class={v.reports ? 'yes' : 'no'}>{v.reports ? '✓ ANO' : '—'}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  </Section>
-
   <!-- FUNKCE -->
-  <USPGrid id="funkce" eyebrow="Funkce" title="Vše, co váš provoz potřebuje"
-           lead="Septim není jen pokladna — je to operační centrum vašeho podniku."
-           items={features} minItemWidth="260px" background="default" space="lg" />
+  <div id="funkce">
+    <USPGrid eyebrow="Co Qerko umí" title="Všechny nástroje pro pohostinství pod jednou střechou"
+             lead="Platba, objednávání, věrnost i reputace — v jednom řešení napojeném na vaši pokladnu."
+             items={features} minItemWidth="280px" background="alt" space="lg" />
+  </div>
 
-  <!-- INTEGRACE -->
+  <!-- DETAILNÍ BLOKY PRODUKTU -->
+  {blocks.map((b, i) => (
+    <Section id={b.id} background={b.bg} space="lg">
+      <div class:list={['feature', i % 2 === 1 && 'feature--rev']}>
+        <div class="feature__media" aria-hidden="true">
+          <span class="feature__icon"><Icon name={b.icon} size="xl" /></span>
+        </div>
+        <div class="feature__body">
+          <Text size="label" color="accent">{b.eyebrow}</Text>
+          <Heading as="h2" size="h2">{b.title}</Heading>
+          <Text size="lead" color="muted">{b.text}</Text>
+          <ul class="ticks">
+            {b.bullets.map((t) => (
+              <li><Icon name="lucide:check" size="sm" class="ticks__ico" />{t}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </Section>
+  ))}
+
+  <!-- OCENĚNÍ -->
   <Section background="invert" space="lg">
     <div class="head head--center">
-      <Text size="label" color="accent" align="center">Integrace Piano ekosystému</Text>
-      <Heading as="h2" size="h2" align="center" color="on-dark">Septim mluví s celým <em>Piano portfoliem</em></Heading>
-      <Text size="lead" color="on-dark-muted" align="center">Každý nástroj funguje samostatně. Společně jsou mocnější.</Text>
+      <Text size="label" color="accent" align="center">Nechceme se chlubit, ale…</Text>
+      <Heading as="h2" size="h2" align="center" color="on-dark">Qerku <em>věří</em> hosté i porotci</Heading>
     </div>
-    <ul class="chips">
-      {integrations.map((i) => (
-        <li class="chip"><span class="chip__dot"></span>{i}</li>
+    <ul class="awards">
+      {awards.map((a) => (
+        <li class="award">
+          <span class="award__title">{a.title}</span>
+          <span class="award__note">{a.note}</span>
+        </li>
       ))}
     </ul>
   </Section>
 
   <!-- REFERENCE -->
-  <Section background="alt" space="lg">
+  <Section id="komunita" background="default" space="lg">
     <div class="head head--center">
-      <Text size="label" color="accent" align="center">Reference</Text>
-      <Heading as="h2" size="h2" align="center">Důvěřují nám ti <em>nejlepší</em></Heading>
+      <Text size="label" color="accent" align="center">Říkají hosté</Text>
+      <Heading as="h2" size="h2" align="center">Nejlépe hodnocené podniky <em>mají Qerko</em></Heading>
       <Text size="lead" color="muted" align="center" balance>
-        Od michelinských restaurací po kavárny za rohem — Septim řídí provoz těch nejnáročnějších.
+        Qerko obsloužilo přes 1 500 000 hostů. Tady je, co o podnicích s Qerkem píšou.
       </Text>
     </div>
     <div class="quotes">
@@ -220,7 +224,7 @@ const leadProofs = [
           <div class="quote__head">
             <div class="quote__id">
               <strong class="quote__name">{t.author}</strong>
-              <span class="quote__role">{t.role}{t.michelin && <span class="quote__michelin"> · Michelin ★</span>}</span>
+              <span class="quote__role">{t.role}</span>
             </div>
             <span class="quote__avatar" aria-hidden="true">{t.initials}</span>
           </div>
@@ -230,31 +234,28 @@ const leadProofs = [
         </figure>
       ))}
     </div>
-    <div class="quotes__cta">
-      <Button href="#zakaznici" variant="secondary">Naši zákazníci</Button>
-    </div>
   </Section>
 
   <!-- CTA -->
   <Section background="primary" space="lg">
     <div class="head head--center">
-      <Text size="label" color="on-dark-muted" align="center">Začít s Septimem</Text>
-      <Heading as="h2" size="h2" align="center" color="on-dark">Připraveni vidět Septim v praxi?</Heading>
+      <Text size="label" color="on-dark-muted" align="center">Máte skvělý podnik?</Text>
+      <Heading as="h2" size="h2" align="center" color="on-dark">Víme, jak ho udělat ještě lepší</Heading>
       <Text size="lead" color="on-dark-muted" align="center" balance>
-        Domluvte si bezplatnou konzultaci. Ukážeme vám, jak Septim funguje přímo ve vašem typu provozu.
+        Pojďme se na to spolu v rychlosti mrknout. Nezávazně a bez měsíčního paušálu.
       </Text>
       <div class="cta-actions">
-        <Button href="#poptavka">Chci konzultaci zdarma</Button>
-        <Button href="tel:+420776598696" variant="secondary">+420 776 598 696</Button>
+        <Button href="#poptavka">Chci vyzkoušet Qerko</Button>
+        <Button href="tel:+420277277945" variant="secondary" onDark>+420 277 277 945</Button>
       </div>
     </div>
   </Section>
 
   <!-- FAQ -->
-  <Section background="default" space="lg">
+  <Section background="alt" space="lg">
     <div class="head head--center">
       <Heading as="h2" size="h2" align="center">Často kladené dotazy</Heading>
-      <Text size="lead" color="muted" align="center">Nenašli jste odpověď? Ozvěte se nám, rádi vám poradíme.</Text>
+      <Text size="lead" color="muted" align="center">Nenašli jste odpověď? Ozvěte se nám, rádi poradíme.</Text>
     </div>
     <div class="faq">
       {faqs.map((f) => (
@@ -267,9 +268,10 @@ const leadProofs = [
   </Section>
 
   <!-- POPTÁVKA -->
-  <LeadForm id="poptavka" variant="full" background="alt"
-            title="Domluvte si konzultaci zdarma"
-            lead="Nechte nám kontakt — ozveme se a ukážeme Septim přímo ve vašem provozu."
+  <LeadForm id="poptavka" variant="full" background="default"
+            title="Chci vyzkoušet Qerko"
+            lead="Nechte nám kontakt — ukážeme vám, jak Qerko otočí víc stolů a zvedne dýška ve vašem podniku."
+            submitLabel="Chci Qerko"
             proofs={leadProofs} />
 
   </main>
@@ -278,34 +280,6 @@ const leadProofs = [
 </Base>
 
 <style>
-  /* Hero obrázek + EET 2.0 štítek */
-  .hero-figure {
-    position: relative;
-    margin: 0;
-    width: 100%;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    box-shadow: var(--shadow-lg);
-    line-height: 0;
-  }
-  .hero-figure img { width: 100%; height: auto; display: block; }
-  .hero-badge {
-    position: absolute;
-    top: var(--space-4);
-    left: var(--space-4);
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-1);
-    padding: var(--space-2) var(--space-4);
-    border-radius: var(--radius-full);
-    background: var(--color-secondary);
-    color: var(--color-text-on-dark);
-    font-size: var(--font-size-small);
-    font-weight: var(--font-weight-semibold);
-    line-height: 1;
-    box-shadow: var(--shadow-md);
-  }
-
   /* Sdílená hlavička sekce */
   .head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-7); }
   .head--center { text-align: center; }
@@ -324,7 +298,7 @@ const leadProofs = [
   /* Steps */
   .steps {
     list-style: none; display: grid; gap: var(--space-6);
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   }
   .step {
     position: relative; padding: var(--space-6);
@@ -337,39 +311,47 @@ const leadProofs = [
     font-size: var(--font-size-h2); font-weight: var(--font-weight-bold);
     color: var(--color-neutral-200); line-height: 1;
   }
-  .step__icon { display: block; width: 72px; height: 72px; }
+  .step__icon {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 56px; height: 56px; border-radius: var(--radius-md);
+    background: color-mix(in srgb, var(--color-primary) 10%, #fff);
+    color: var(--color-primary);
+  }
 
-  /* Variant table */
-  .table-wrap { overflow-x: auto; border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); }
-  .variants {
-    width: 100%; border-collapse: collapse; background: var(--color-bg);
-    min-width: 640px; font-size: var(--font-size-small);
+  /* Feature rows */
+  .feature { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: var(--space-8); align-items: center; }
+  .feature--rev .feature__media { order: 2; }
+  .feature__body > * + * { margin-top: var(--space-3); }
+  .feature__media {
+    display: flex; align-items: center; justify-content: center;
+    min-height: 220px; border-radius: var(--radius-lg);
+    background: var(--color-bg-gradient); box-shadow: var(--shadow-md);
   }
-  .variants th, .variants td {
-    padding: var(--space-4) var(--space-5); text-align: left;
-    border-bottom: 1px solid var(--color-border);
+  .feature__icon {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 96px; height: 96px; border-radius: var(--radius-full);
+    background: rgba(255,255,255,0.16); color: #fff;
   }
-  .variants thead th {
-    background: var(--color-neutral-50); color: var(--color-text-muted);
-    font-weight: var(--font-weight-semibold); text-transform: uppercase;
-    letter-spacing: var(--letter-spacing-wide); font-size: var(--font-size-caption);
+  .ticks { list-style: none; margin-top: var(--space-4); display: flex; flex-direction: column; gap: var(--space-2); }
+  .ticks li { display: flex; align-items: center; gap: var(--space-2); font-size: var(--font-size-body); }
+  .ticks__ico { color: var(--color-primary); flex-shrink: 0; }
+  @media (max-width: 760px) {
+    .feature { grid-template-columns: 1fr; gap: var(--space-5); }
+    .feature--rev .feature__media { order: 0; }
   }
-  .variants tbody tr:last-child td { border-bottom: none; }
-  .variants td.yes { color: var(--color-success); font-weight: var(--font-weight-semibold); }
-  .variants td.no { color: var(--color-neutral-400); }
 
-  /* Integrace chips */
-  .chips {
-    list-style: none; display: flex; flex-wrap: wrap; gap: var(--space-3);
-    justify-content: center;
+  /* Awards */
+  .awards {
+    list-style: none; display: grid; gap: var(--space-4);
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   }
-  .chip {
-    display: inline-flex; align-items: center; gap: var(--space-2);
-    padding: var(--space-3) var(--space-5); border-radius: var(--radius-full);
-    background: rgba(255, 255, 255, 0.06); border: 1px solid var(--color-border-on-dark);
-    color: var(--color-text-on-dark); font-size: var(--font-size-small);
+  .award {
+    display: flex; flex-direction: column; gap: 2px; padding: var(--space-5);
+    border: 1px solid var(--color-border-on-dark); border-radius: var(--radius-md);
+    background: rgba(255,255,255,0.05);
   }
-  .chip__dot { width: 8px; height: 8px; border-radius: 50%; background: var(--color-primary); flex-shrink: 0; }
+  .award__title { font-weight: var(--font-weight-bold); color: var(--color-text-on-dark); }
+  .award__note { font-size: var(--font-size-small); color: var(--color-text-on-dark-muted); }
 
   /* Reference */
   .quotes { display: grid; gap: var(--space-8) var(--space-6); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
@@ -378,29 +360,18 @@ const leadProofs = [
   .quote__id { display: flex; flex-direction: column; gap: 2px; }
   .quote__name { font-size: var(--font-size-h3); font-weight: var(--font-weight-bold); color: var(--color-secondary); line-height: 1.1; }
   .quote__role { font-size: var(--font-size-small); color: var(--color-text-muted); }
-  .quote__michelin { color: var(--color-text-accent); font-weight: var(--font-weight-semibold); }
   .quote__avatar {
     flex-shrink: 0; width: 84px; height: 84px; border-radius: 50%;
     display: inline-flex; align-items: center; justify-content: center;
     font-size: var(--font-size-h3); font-weight: var(--font-weight-bold);
-    color: #fff; letter-spacing: 0.02em;
-    box-shadow: var(--shadow-md);
+    color: #fff; letter-spacing: 0.02em; box-shadow: var(--shadow-md);
   }
-  .quote--0 .quote__avatar { background: linear-gradient(150deg, #16B5F0, #00ADEE); }
-  .quote--1 .quote__avatar { background: linear-gradient(150deg, #2FC4F4, #0E86D9); }
-  .quote--2 .quote__avatar { background: linear-gradient(150deg, #0C2A9E, #06038D); }
+  .quote--0 .quote__avatar { background: linear-gradient(150deg, #15C285, #008556); }
+  .quote--1 .quote__avatar { background: linear-gradient(150deg, #00A36B, #06754E); }
+  .quote--2 .quote__avatar { background: linear-gradient(150deg, #06754E, #06352A); }
   .quote__mark { color: var(--color-primary); display: block; margin-bottom: var(--space-2); }
   .quote__headline { font-weight: var(--font-weight-bold); color: var(--color-secondary); margin-bottom: var(--space-2); }
   .quote__text { font-size: var(--font-size-body); color: var(--color-text-muted); line-height: var(--line-height-body); }
-  .quotes__cta { display: flex; justify-content: center; margin-top: var(--space-8); }
-
-  /* Logo wall — marquee */
-  .logos__label { margin-bottom: var(--space-5); }
-  .logos { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
-  .logos__track { display: flex; align-items: center; gap: var(--space-8); width: max-content; animation: logos-scroll 48s linear infinite; }
-  .logos__track img { height: 34px; width: auto; opacity: 0.62; filter: grayscale(1); flex-shrink: 0; }
-  @keyframes logos-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-  @media (prefers-reduced-motion: reduce) { .logos__track { animation: none; flex-wrap: wrap; justify-content: center; } }
 
   /* CTA */
   .cta-actions { display: flex; gap: var(--space-3); justify-content: center; flex-wrap: wrap; margin-top: var(--space-5); }

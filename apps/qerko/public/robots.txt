@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://septim.cz/sitemap-index.xml
+Sitemap: https://qerko.com/sitemap-index.xml
