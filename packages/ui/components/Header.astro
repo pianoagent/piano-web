@@ -79,7 +79,7 @@ const classes = ['header', transparent && 'header--transparent'].filter(Boolean)
                     </div>
                   )}
 
-                  <div class="mega__cols">
+                  <div class:list={['mega__cols', item.mega.columns.length === 1 && 'mega__cols--single']}>
                     {item.mega.columns.map((col) => (
                       <div class="mega__col">
                         {col.label && <p class="mega__label">{col.label}</p>}
@@ -332,7 +332,10 @@ const classes = ['header', transparent && 'header--transparent'].filter(Boolean)
   /* Sloupce odkazů */
   .mega__cols { padding: var(--space-5); display: flex; gap: var(--space-6); }
   .mega__col { flex: 1; }
+  /* Více sloupců vedle sebe → každý seznam jednosloupcový (pod sebe).
+     Jediný sloupec → rozdělit do dvou, ať není vytáhlý a úzký. */
   .mega__list { list-style: none; display: grid; grid-template-columns: 1fr; gap: var(--space-1); align-content: start; }
+  .mega__cols--single .mega__list { grid-template-columns: 1fr 1fr; }
   .mega__row {
     display: flex;
     gap: var(--space-3);
