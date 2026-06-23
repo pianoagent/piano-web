@@ -3,6 +3,7 @@
  * Struktura dle IA: Řešení · Produkty (edice/funkce/integrace) · Piano (ekosystém, externí) · Ceník · O Septimu.
  */
 import type { NavItem, NavLink } from '@piano/ui/config/nav';
+import { buildPianoMega } from '@piano/ui/config/piano-ecosystem';
 
 const reseniMega = {
   columns: [
@@ -58,20 +59,8 @@ const produktyMega = {
   ],
 };
 
-// Piano ekosystém — externí odkazy na weby produktů (URL k potvrzení)
-const pianoMega = {
-  columns: [
-    {
-      label: 'Piano ekosystém',
-      links: [
-        { label: 'Qerko', href: 'https://www.qerko.com', description: 'Platby a objednávky QR kódem', icon: 'lucide:qr-code' },
-        { label: 'Protel', href: 'https://www.protelsystems.cz', description: 'Hotelový systém (PMS)', icon: 'lucide:building-2' },
-        { label: 'Pecosta', href: 'https://www.pecosta.cz', description: 'Automatické naskladňování', icon: 'lucide:package' },
-        { label: 'Grason', href: 'https://www.grason.cz', description: 'Plánování směn a personál', icon: 'lucide:users' },
-      ],
-    },
-  ],
-};
+// Piano ekosystém — sdílená data z @piano/ui; vynechá aktuální produkt (Septim).
+const pianoMega = buildPianoMega('septim');
 
 export const septimNav: NavItem[] = [
   { label: 'Řešení', href: '/reseni', mega: reseniMega },
