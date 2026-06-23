@@ -5,7 +5,7 @@ const year = new Date().getFullYear();
 
 export const septimFooter = {
   brand: 'Septim',
-  mark: false,
+  logoSrc: '/logos/septim_by_piano.svg',  // plný lockup; v patičce bíle (filtr) a větší
   tagline: 'Pokladní a provozní systém pro restaurace, jídelny, kavárny a hotely. 30 let na trhu, česká podpora 24/7.',
   parentNote: { text: 'Septim je součástí skupiny Piano', href: 'https://piano.cz' },
   columns: [
