@@ -18,6 +18,7 @@ interface Props {
   transparent?: boolean;
   brand?: string;       // název pro aria-label / wordmark (default "Piano")
   logoSrc?: string;     // cesta k obrázku loga; bez něj piano-mark + wordmark
+  logoHeight?: string;  // výška loga v liště (default 38px); brandové weby ~26px
   homeHref?: string;    // odkaz loga (default "/")
   nav?: NavItem[];      // per-web navigace (default sdílená mainNav)
   cta?: NavLink;        // per-web hlavní CTA (default sdílená headerCta)
@@ -26,6 +27,7 @@ const {
   transparent = false,
   brand = 'Piano',
   logoSrc,
+  logoHeight = '38px',
   homeHref = '/',
   nav = mainNav,
   cta = headerCta,
@@ -34,7 +36,7 @@ const {
 const classes = ['header', transparent && 'header--transparent'].filter(Boolean).join(' ');
 ---
 
-<header class={classes} data-header>
+<header class={classes} data-header style={`--logo-h: ${logoHeight};`}>
   <div class="header__inner">
     <!-- Logo -->
     <a href={homeHref} class="header__logo" aria-label={`${brand} — domů`}>
@@ -219,7 +221,7 @@ const classes = ['header', transparent && 'header--transparent'].filter(Boolean)
     font-size: 22px;
     letter-spacing: var(--letter-spacing-tight);
   }
-  .header__logo-img { height: 38px; width: auto; display: block; }
+  .header__logo-img { height: var(--logo-h, 38px); width: auto; display: block; }
 
   /* Desktop navigace */
   .header__nav { margin-left: auto; }
