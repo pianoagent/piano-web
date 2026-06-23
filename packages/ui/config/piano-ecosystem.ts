@@ -46,6 +46,8 @@ export const PIANO_PRODUCTS: PianoProduct[] = [
 // Ostatní jdou DEMO na <id>-web.pages.dev (po nasazení na domény přepnout na p.href).
 const toLink = (p: PianoProduct): NavLink => ({
   label: p.label, href: p.path ?? `https://${p.id}-web.pages.dev`, description: p.description, icon: p.icon, badge: p.badge,
+  // Odkaz na jiný produkt = jiný web → nová karta (interní piano.cz stránky s `path` zůstávají ve stejné kartě)
+  external: !p.path,
 });
 
 /** Sestaví Piano mega panel pro daný web; `currentId` se vynechá. */

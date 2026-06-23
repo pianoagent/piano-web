@@ -67,7 +67,7 @@ const classes = ['header', transparent && 'header--transparent'].filter(Boolean)
                     <div class="mega__featured">
                       {item.mega.featured.label && <p class="mega__label">{item.mega.featured.label}</p>}
                       {item.mega.featured.items.map((f) => (
-                        <a href={f.href} class="mega__feat">
+                        <a href={f.href} class="mega__feat" target={f.external ? '_blank' : undefined} rel={f.external ? 'noopener noreferrer' : undefined}>
                           {f.icon && <span class="mega__feat-icon">{f.icon.startsWith('/') ? <img class="mega__brand-ico" src={f.icon} alt="" loading="lazy" /> : <Icon name={f.icon} size="md" />}</span>}
                           <span class="mega__feat-body">
                             <span class="mega__feat-title">
@@ -88,7 +88,7 @@ const classes = ['header', transparent && 'header--transparent'].filter(Boolean)
                         <ul class="mega__list">
                           {col.links.map((l) => (
                             <li>
-                              <a href={l.href} class="mega__row">
+                              <a href={l.href} class="mega__row" target={l.external ? '_blank' : undefined} rel={l.external ? 'noopener noreferrer' : undefined}>
                                 {l.icon && <span class="mega__row-icon">{l.icon.startsWith('/') ? <img class="mega__brand-ico" src={l.icon} alt="" loading="lazy" /> : <Icon name={l.icon} size="sm" />}</span>}
                                 <span class="mega__row-body">
                                   <span class="mega__row-name">{l.label}</span>
@@ -118,7 +118,7 @@ const classes = ['header', transparent && 'header--transparent'].filter(Boolean)
                 <ul class="header__dropdown-list">
                   {item.children.map((c) => (
                     <li>
-                      <a href={c.href} class="header__dropdown-link">
+                      <a href={c.href} class="header__dropdown-link" target={c.external ? '_blank' : undefined} rel={c.external ? 'noopener noreferrer' : undefined}>
                         {c.icon && <span class="header__dropdown-icon">{c.icon.startsWith('/') ? <img class="mega__brand-ico" src={c.icon} alt="" loading="lazy" /> : <Icon name={c.icon} size="sm" />}</span>}
                         <span class="header__dropdown-body">
                           <span class="header__dropdown-name">{c.label}</span>
@@ -170,7 +170,7 @@ const classes = ['header', transparent && 'header--transparent'].filter(Boolean)
                 </button>
                 <ul class="drawer__sublist" hidden>
                   {sub.map((child) => (
-                    <li><a href={child.href} class="drawer__sublink">{child.label}</a></li>
+                    <li><a href={child.href} class="drawer__sublink" target={child.external ? '_blank' : undefined} rel={child.external ? 'noopener noreferrer' : undefined}>{child.label}</a></li>
                   ))}
                 </ul>
               </li>

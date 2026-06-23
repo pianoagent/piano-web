@@ -100,7 +100,7 @@ const topStyle = `--footer-cols: ${columns.length + 1};`;
           <h2 class="footer__heading">{col.heading}</h2>
           <ul class="footer__list">
             {col.links.map((l) => (
-              <li><a href={l.href} class="footer__link">{l.label}</a></li>
+              <li><a href={l.href} class="footer__link" target={l.external ? '_blank' : undefined} rel={l.external ? 'noopener noreferrer' : undefined}>{l.label}</a></li>
             ))}
           </ul>
         </nav>
