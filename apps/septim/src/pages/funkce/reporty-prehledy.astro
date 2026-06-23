@@ -1,0 +1,73 @@
+---
+/** Septim — Funkce: Reporty a přehledy. Obsah: septim-obsah/produkty/reporty-prehledy.md. SEO meta nově. */
+import Base from '../../layouts/Base.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import StatsBand from '../../components/StatsBand.astro';
+import LogoWall from '../../components/LogoWall.astro';
+import Faq from '../../components/Faq.astro';
+
+const features = [
+  'Vstupy a výstupy na skladech', 'Stav zásob', 'Tržby a obraty',
+  'Ziskovost produktů a receptur', 'Vyhodnocení kategorií produktů', 'Vyhodnocení uživatelů systému',
+];
+const benefits = [
+  { icon: 'lucide:line-chart', title: 'Řízení podle čísel', text: 'Surovin, personálu i financí — na základě konkrétních, aktuálních dat.' },
+  { icon: 'lucide:smartphone', title: 'Data v mobilu', text: 'Konkrétní datové sady kdykoliv v aplikaci MySeptim.' },
+  { icon: 'lucide:badge-check', title: 'Pravdivá čísla', text: 'Vychází z perfektně fungujícího skladového hospodářství — výstupy mají vypovídací hodnotu.' },
+];
+const faqs = [
+  { q: 'K čemu jsou reporty nejvíc?', a: 'Hlavní výhodou je řízení surovin, personálu a financí na základě konkrétních aktuálních dat — nástroj pro řízení ziskovosti restaurace.' },
+  { q: 'Jak nastavit ty správné přehledy?', a: 'Která čísla sledovat a jak je nastavit prakticky poradí naši konzultanti. Domluvte si schůzku a začněte řídit provoz podle dat.' },
+];
+---
+<Base title="Reporty a přehledy Septim – řízení restaurace podle dat"
+      description="Modul Reporty a přehledy systému Septim zobrazí veškerá data z provozu: tržby, obraty, stav skladu, ziskovost produktů i výkon uživatelů. Klíčové sady i v mobilu přes MySeptim.">
+  <SiteHeader />
+  <main>
+    <Hero eyebrow="Funkce systému Septim" background="alt"
+          lead="Data jsou pro řízení restaurace klíčová. Septim umí veškeré údaje statisticky posoudit, přehledně zobrazit a dát i podklady pro účetnictví.">
+      <Heading slot="title" as="h1" size="display">Reporty a <em>přehledy</em></Heading>
+      <Fragment slot="actions">
+        <Button href="#poptavka">Chci Septim</Button>
+        <Button href="/produkty/septim-4" variant="secondary">Součást Septim.4</Button>
+      </Fragment>
+    </Hero>
+
+    <Section background="default" space="lg">
+      <div class="prose">
+        <Heading as="h2" size="h2">Co reporty zobrazí</Heading>
+        <Text size="lead" color="muted">Modul Reporty a přehledy umí ukázat v podstatě veškerá data z vašeho provozu — přehledně:</Text>
+      </div>
+      <ul class="checklist">
+        {features.map((f) => (<li><Icon name="lucide:check" size="sm" class="checklist__icon" />{f}</li>))}
+      </ul>
+    </Section>
+
+    <USPGrid eyebrow="Výhody" title="Proč reporty Septim" items={benefits} background="alt" space="lg" minItemWidth="240px" />
+    <LogoWall label="Respektované provozy, které používají Septim" background="default" />
+    <StatsBand />
+    <Faq items={faqs} title="Často kladené otázky k reportům" background="default" />
+    <LeadForm id="poptavka" variant="callback" background="alt"
+              title="Začněte řídit provoz podle čísel"
+              lead="Nechte nám telefon — poradíme, která čísla sledovat a jak je nastavit." />
+  </main>
+  <SiteFooter />
+</Base>
+
+<style>
+  .prose { max-width: 760px; }
+  .prose > * + * { margin-top: var(--space-4); }
+  .prose { margin-bottom: var(--space-6); }
+  .checklist { list-style: none; display: grid; gap: var(--space-3); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); max-width: 960px; margin-inline: auto; }
+  .checklist li { display: flex; align-items: flex-start; gap: var(--space-2); font-size: var(--font-size-small); }
+  .checklist__icon { color: var(--color-primary); flex-shrink: 0; margin-top: 2px; }
+</style>

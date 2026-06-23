@@ -1,0 +1,73 @@
+---
+/** Septim — Funkce: Věrnostní systém (CRM). Obsah: septim-obsah/produkty/vernostni-system-crm.md. SEO meta nově. */
+import Base from '../../layouts/Base.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import StatsBand from '../../components/StatsBand.astro';
+import LogoWall from '../../components/LogoWall.astro';
+import Faq from '../../components/Faq.astro';
+
+const programs = [
+  'Marketingová akce', 'Receptura v akci', 'Akční nabídky', 'Receptura zdarma za účet',
+  'Permanentka', 'Dárkový šek', 'Mailing k narozeninám či svátku', 'Sbírání bodů za recepturu i účet',
+  'Happy hours a časové úseky', 'Sleva příště', 'Změna cenové kategorie dle obratu', 'Vouchery a kupóny',
+];
+const benefits = [
+  { icon: 'lucide:heart', title: 'Loajalita zákazníků', text: 'Přidaná hodnota nad kvalitní produkty a služby — důvod se vracet.' },
+  { icon: 'lucide:gift', title: 'Marketingové programy', text: 'Akce, kupóny, body i dárkové šeky — flexibilně dle dnů a hodin.' },
+  { icon: 'lucide:network', title: 'Napříč řetězcem', text: 'Centrální CRM sdílí věrnostní program na všech provozovnách.' },
+];
+const faqs = [
+  { q: 'Co je CRM věrnostní systém?', a: 'CRM (Customer Relationship Management) znamená řízení vztahů se zákazníky. Sám loajalitu nezaručí, ale nad kvalitními produkty a službami funguje jako důležitá přidaná hodnota.' },
+  { q: 'Jak vybrat správné programy?', a: 'Možností je hodně. Začněte schůzkou s našimi konzultanty — poradí správnou konfiguraci věrnostního programu pro váš provoz.' },
+];
+---
+<Base title="Věrnostní systém (CRM) Septim – loajalita a marketing pro restaurace"
+      description="Věrnostní systém Septim (CRM): marketingové akce, kupóny, body, permanentky, dárkové šeky a mailing. Sdílení napříč řetězcem přes centrální CRM.">
+  <SiteHeader />
+  <main>
+    <Hero eyebrow="Funkce systému Septim" background="alt"
+          lead="Důvěra a loajalita stálých zákazníků patří ke klíčovým faktorům úspěchu. Věrnostní systém Septim je nad kvalitními produkty silnou přidanou hodnotou.">
+      <Heading slot="title" as="h1" size="display">Věrnostní systém <em>(CRM)</em></Heading>
+      <Fragment slot="actions">
+        <Button href="#poptavka">Chci Septim</Button>
+        <Button href="/produkty/septim-4" variant="secondary">Součást Septim.4</Button>
+      </Fragment>
+    </Hero>
+
+    <Section background="default" space="lg">
+      <div class="prose">
+        <Heading as="h2" size="h2">Jaké programy CRM nabízí</Heading>
+        <Text size="lead" color="muted">Správné nasazení věrnostního programu je důležité. V nabídce najdete základní marketingové programy:</Text>
+      </div>
+      <ul class="checklist">
+        {programs.map((f) => (<li><Icon name="lucide:check" size="sm" class="checklist__icon" />{f}</li>))}
+      </ul>
+    </Section>
+
+    <USPGrid eyebrow="Výhody" title="Proč věrnostní systém Septim" items={benefits} background="alt" space="lg" minItemWidth="240px" />
+    <LogoWall label="Respektované provozy, které využívají Septim" background="default" />
+    <StatsBand />
+    <Faq items={faqs} title="Často kladené otázky k věrnostnímu systému" background="default" />
+    <LeadForm id="poptavka" variant="callback" background="alt"
+              title="Navrhneme vám věrnostní program"
+              lead="Nechte nám telefon — poradíme konfiguraci CRM pro váš provoz." />
+  </main>
+  <SiteFooter />
+</Base>
+
+<style>
+  .prose { max-width: 760px; margin-bottom: var(--space-6); }
+  .prose > * + * { margin-top: var(--space-4); }
+  .checklist { list-style: none; display: grid; gap: var(--space-3); grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); max-width: 960px; margin-inline: auto; }
+  .checklist li { display: flex; align-items: flex-start; gap: var(--space-2); font-size: var(--font-size-small); }
+  .checklist__icon { color: var(--color-primary); flex-shrink: 0; margin-top: 2px; }
+</style>

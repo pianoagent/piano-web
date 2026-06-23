@@ -1,0 +1,67 @@
+---
+/** Septim — Produkt (edice): Septim.Jídelna. Obsah: septim-obsah/produkty/septim-jidelna-*. SEO meta nově. */
+import Base from '../../layouts/Base.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import StatsBand from '../../components/StatsBand.astro';
+import LogoWall from '../../components/LogoWall.astro';
+import Faq from '../../components/Faq.astro';
+
+const features = [
+  { icon: 'lucide:utensils', title: 'Pro největší stravovací řetězce', text: 'Systém závodního stravování, který používají největší provozy v ČR.' },
+  { icon: 'lucide:clipboard-list', title: 'Objednávání jídel', text: 'Strávníci si objednají online i přes terminál v jídelně.' },
+  { icon: 'lucide:message-square', title: 'Anketa pro jídelny', text: 'Modul pro zpětnou vazbu od strávníků.' },
+  { icon: 'lucide:boxes', title: 'Sklady a inventury', text: 'Promyšlené skladové hospodářství a podchycené inventury.' },
+  { icon: 'lucide:bar-chart-3', title: 'Manažer a statistiky', text: 'Přístup pro manažera včetně podrobných statistik provozu.' },
+  { icon: 'lucide:headset', title: 'Podpora 24/7', text: 'Technici pro vzdálenou podporu i fyzický výjezd.' },
+];
+const faqs = [
+  { q: 'Je Septim připravený přímo pro jídelny?', a: 'Ano. Septim se jako jeden z prvních v ČR přizpůsobil náročným požadavkům závodních jídelen a téměř 20 let ladí řešení na míru tomuto odvětví.' },
+  { q: 'Zvládne síť jídelen?', a: 'Ano. Septim škáluje od jedné jídelny po řetězce — sdílené receptury, sklady i centrální finanční řízení.' },
+];
+---
+<Base title="Septim.Jídelna – systém pro jídelny a závodní stravování"
+      description="Septim.Jídelna: pokladní a provozní systém pro kantýny a závodní stravování. Objednávání jídel online i přes terminál, anketa pro strávníky, sklady, inventury a manažerské statistiky.">
+  <SiteHeader />
+  <main>
+    <Hero eyebrow="Produkt — edice" background="alt"
+          lead="Software pro jídelny od Septimu je řešení pokladního a provozního systému pro závodní stravování. Septim se jako jeden z prvních v ČR přizpůsobil náročným požadavkům jídelen.">
+      <Heading slot="title" as="h1" size="display">Septim<em>.Jídelna</em></Heading>
+      <Fragment slot="actions">
+        <Button href="#poptavka">Chci Septim</Button>
+        <Button href="/reseni/jidelny" variant="secondary">Řešení pro jídelny</Button>
+      </Fragment>
+    </Hero>
+
+    <Section background="default" space="lg">
+      <div class="prose">
+        <Heading as="h2" size="h2">Co je Septim.Jídelna?</Heading>
+        <Text size="lead" color="muted">
+          Speciální verze provozního systému Septim pro závodní jídelny — laděná na míru tomuto odvětví už
+          téměř 20 let, s objednáváním jídel, anketou pro strávníky a promyšleným skladovým hospodářstvím.
+        </Text>
+      </div>
+    </Section>
+
+    <USPGrid eyebrow="Funkce" title="Co Septim.Jídelna umí" items={features} background="alt" space="lg" minItemWidth="260px" />
+    <LogoWall label="Důvěřují nám největší provozy" background="default" />
+    <StatsBand />
+    <Faq items={faqs} title="Často kladené dotazy k Septim.Jídelna" background="default" />
+    <LeadForm id="poptavka" variant="full" background="alt"
+              title="Mám zájem o systém pro jídelnu"
+              lead="Kontaktujte nás — navrhneme řešení pro vaše závodní stravování." />
+  </main>
+  <SiteFooter />
+</Base>
+
+<style>
+  .prose { max-width: 760px; }
+  .prose > * + * { margin-top: var(--space-4); }
+</style>

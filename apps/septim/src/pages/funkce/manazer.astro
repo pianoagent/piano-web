@@ -1,0 +1,65 @@
+---
+/** Septim — Funkce: Manažer. Obsah: septim-obsah/produkty/manazer.md. SEO meta nově. */
+import Base from '../../layouts/Base.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import StatsBand from '../../components/StatsBand.astro';
+import LogoWall from '../../components/LogoWall.astro';
+import Faq from '../../components/Faq.astro';
+
+const features = [
+  { icon: 'lucide:database', title: 'Databanka receptur', text: 'Synchronizace receptur, ingrediencí a skladových položek mezi více provozovnami.' },
+  { icon: 'lucide:users', title: 'Centrální CRM', text: 'Společná databáze hostů a věrnostních programů napříč celým řetězcem, online autorizace.' },
+  { icon: 'lucide:globe', title: 'WebCare', text: 'Web pro koncové zákazníky — přehled konzumace, konta a bonusů; v jídelnách i objednávání jídel.' },
+  { icon: 'lucide:arrow-left-right', title: 'Import a export', text: 'Centrální správa receptur a skladů, jednotnost napříč pobočkami a srovnatelné reporty.' },
+];
+const faqs = [
+  { q: 'Jak Septim chrání data před zneužitím?', a: 'Manažer umožní přesně definovat přístupy obsluhy k datům i funkcím — tím poskytuje vysokou ochranu proti zneužití a plnou dohledatelnost změn (kdo a kdy je provedl).' },
+  { q: 'Poroste systém s naším podnikem?', a: 'Ano. Septim je stavebnicový — kdykoliv rozšíříte velikost i funkčnost. Začnete se základem a věrnostní program či další moduly přidáte, až je budete potřebovat.' },
+];
+---
+<Base title="Manažer Septim – správa provozu, statistiky a řízení řetězce"
+      description="Manažerská aplikace systému Septim: konfigurace pokladny a oprávnění, statistiky prodejů, databanka receptur, centrální CRM, WebCare a import/export pro řetězce.">
+  <SiteHeader />
+  <main>
+    <Hero eyebrow="Funkce systému Septim" background="alt"
+          lead="V manažerské aplikaci se řídí celý Septim — od konfigurace pokladny a oprávnění obsluhy po statistiky prodejů, reporty a přehledy uzavřených účtů pro rozhodování.">
+      <Heading slot="title" as="h1" size="display"><em>Manažer</em></Heading>
+      <Fragment slot="actions">
+        <Button href="#poptavka">Chci Septim</Button>
+        <Button href="/produkty/septim-4" variant="secondary">Součást Septim.4</Button>
+      </Fragment>
+    </Hero>
+
+    <Section background="default" space="lg">
+      <div class="prose">
+        <Heading as="h2" size="h2">Co je manažerská aplikace?</Heading>
+        <Text size="lead" color="muted">
+          Systém je uspořádán stavebnicově — můžete kdykoliv růst do velikosti i funkčnosti. Manažer dává data
+          a nástroje pro řízení provozu, a s rozrůstajícím se podnikáním nabízí rozšíření pro celé řetězce.
+        </Text>
+      </div>
+    </Section>
+
+    <USPGrid eyebrow="Možnosti" title="Co manažer nabízí" items={features} background="alt" space="lg" minItemWidth="260px" />
+    <LogoWall label="Respektované provozy, které využívají Septim" background="default" />
+    <StatsBand />
+    <Faq items={faqs} title="Často kladené otázky k manažeru" background="default" />
+    <LeadForm id="poptavka" variant="callback" background="alt"
+              title="Proberte řízení provozu s konzultanty"
+              lead="Nechte nám telefon — poradíme správnou konfiguraci pro váš provoz." />
+  </main>
+  <SiteFooter />
+</Base>
+
+<style>
+  .prose { max-width: 760px; }
+  .prose > * + * { margin-top: var(--space-4); }
+</style>

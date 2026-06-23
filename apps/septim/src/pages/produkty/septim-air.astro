@@ -1,0 +1,80 @@
+---
+/** Septim — Produkt (edice): Septim.Air. Obsah: septim-obsah/produkty/septim-air-*. SEO meta nově. */
+import Base from '../../layouts/Base.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import StatsBand from '../../components/StatsBand.astro';
+import LogoWall from '../../components/LogoWall.astro';
+import Faq from '../../components/Faq.astro';
+
+const benefits = [
+  { icon: 'lucide:cloud', title: 'Bez serveru', text: 'Cloudové řešení — rychlá instalace, žádný server, data bezpečně v cloudu.' },
+  { icon: 'lucide:gift', title: 'Instalace zdarma', text: 'Základní instalace a 3 hodiny online školení jsou zcela zdarma.' },
+  { icon: 'lucide:smartphone', title: 'Mobilní číšník zdarma', text: 'Aplikace mobilní číšník v ceně; platíte jen pronájem terminálu (249 Kč/měs).' },
+  { icon: 'lucide:headset', title: 'Podpora 24/7', text: 'Servisní a technická podpora i náhradní díly po celý rok.' },
+];
+const planItems = [
+  'Licence Septim.Air', 'All-in-one pokladna s integrovanou tiskárnou', 'Data bezpečně v cloudu',
+  'Zálohování v cloudu', 'Servisní a technická podpora 24/7', 'Legislativní aktualizace',
+];
+const faqs = [
+  { q: 'Platím něco za instalaci?', a: 'Ne. Za základní implementaci neplatíte nic — instalace i úvodní 3 hodiny online školení jsou zcela zdarma.' },
+  { q: 'Co všechno je v ceně 1 990 Kč/měsíc?', a: 'Licence Septim.Air, all-in-one pokladna s integrovanou tiskárnou, data i zálohy v cloudu, podpora 24/7 a legislativní aktualizace. Navíc aplikace mobilní číšník zdarma.' },
+];
+---
+<Base title="Septim.Air – cloudová pokladna pro kavárny, bistra a bary"
+      description="Cloudové řešení Septim.Air: bez serveru a bez jednorázových nákladů na software i hardware. All-in-one pokladna, podpora 24/7 a mobilní číšník zdarma. Od 1 990 Kč/měsíc.">
+  <SiteHeader />
+  <main>
+    <Hero eyebrow="Produkt — edice" background="alt"
+          lead="Septim.Air je nejlevnější a nejrychlejší způsob, jak začít se Septimem. Cloudové řešení pro bistra, kavárny a bary, kde jednorázově neplatíte software ani hardware.">
+      <Heading slot="title" as="h1" size="display">Septim<em>.Air</em></Heading>
+      <Fragment slot="actions">
+        <Button href="#poptavka">Chci Septim.Air</Button>
+        <Button href="/reseni/kavarny-bistra-bary" variant="secondary">Pro kavárny a bary</Button>
+      </Fragment>
+    </Hero>
+
+    <USPGrid eyebrow="Proč Air" title="Cloud, který jde rovnou používat" items={benefits} background="default" space="lg" minItemWidth="240px" />
+
+    <Section background="alt" space="lg">
+      <div class="plan">
+        <div class="plan__head">
+          <Text size="label" color="accent">Tarif all-in-one</Text>
+          <p class="plan__price">1 990 Kč<span>/měs</span></p>
+          <Text size="small" color="muted">tj. 66 Kč/den</Text>
+        </div>
+        <ul class="plan__list">
+          {planItems.map((i) => (<li><Icon name="lucide:check" size="sm" class="plan__icon" />{i}</li>))}
+        </ul>
+        <Button href="#poptavka" full>Chci Septim.Air</Button>
+      </div>
+    </Section>
+
+    <LogoWall label="Provozy, které používají Septim" background="default" />
+    <StatsBand />
+    <Faq items={faqs} title="Často kladené dotazy k Septim.Air" background="alt" />
+    <LeadForm id="poptavka" variant="full" background="default"
+              title="Chci Septim.Air"
+              lead="Nechte nám kontakt — ozveme se a Air vám rozjedeme." />
+  </main>
+  <SiteFooter />
+</Base>
+
+<style>
+  .plan { max-width: 520px; margin-inline: auto; background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); padding: var(--space-7); }
+  .plan__head { text-align: center; margin-bottom: var(--space-6); }
+  .plan__price { font-size: var(--font-size-display); font-weight: var(--font-weight-bold); color: var(--color-secondary); line-height: 1; margin: var(--space-2) 0; }
+  .plan__price span { font-size: var(--font-size-lead); font-weight: var(--font-weight-regular); color: var(--color-text-muted); }
+  .plan__list { list-style: none; display: flex; flex-direction: column; gap: var(--space-3); margin-bottom: var(--space-6); }
+  .plan__list li { display: flex; align-items: flex-start; gap: var(--space-2); font-size: var(--font-size-small); }
+  .plan__icon { color: var(--color-primary); flex-shrink: 0; margin-top: 2px; }
+</style>

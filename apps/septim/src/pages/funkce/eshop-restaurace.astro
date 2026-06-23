@@ -1,0 +1,69 @@
+---
+/** Septim — Funkce: E-shop restaurace. Obsah: septim-obsah/produkty/eshop-restaurace.md. SEO meta nově. */
+import Base from '../../layouts/Base.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import StatsBand from '../../components/StatsBand.astro';
+import LogoWall from '../../components/LogoWall.astro';
+import Faq from '../../components/Faq.astro';
+
+const benefits = [
+  { icon: 'lucide:link', title: 'Napojení na pokladnu', text: 'Nabídka se načítá přímo z pokladního systému Septim; zaplacené objednávky jdou rovnou do kuchyně.' },
+  { icon: 'lucide:wallet', title: 'Bez provizí', text: 'Neplatíte vlastní e-shopové řešení ani provize zprostředkovatelům online prodeje.' },
+  { icon: 'lucide:check-check', title: 'Bez ručního přepisování', text: 'Do systému se dostanou jen potvrzené a zaplacené objednávky — nic se nekontroluje ručně.' },
+  { icon: 'lucide:clock', title: 'Objednání na čas', text: 'Nastavení typu objednávky až na konkrétní hodinu usnadní provoz.' },
+];
+const faqs = [
+  { q: 'V čem je hlavní přínos e-shopu?', a: 'Nejsnadnější cesta online přímo k zákazníkovi — bez prostředníků a bez placení provize.' },
+  { q: 'Jak e-shop spustíme?', a: 'Prvním krokem je definování požadavků a nastavení modulu E-shop. S tím vám rádi pomohou naši konzultanti.' },
+];
+---
+<Base title="E-shop restaurace Septim – online prodej napojený na pokladnu"
+      description="Modul E-shop systému Septim: online nabídka načtená z pokladny, platba kartou a objednávka rovnou do kuchyně. Bez provizí zprostředkovatelům. Využívá Kolkovna, Ambiente i O2 universum.">
+  <SiteHeader />
+  <main>
+    <Hero eyebrow="Funkce systému Septim" background="alt"
+          lead="E-shop propojí váš provoz online přímo se zákazníkem. Nabídka se načte z pokladny Septim, host zaplatí kartou a objednávka putuje rovnou do kuchyně.">
+      <Heading slot="title" as="h1" size="display"><em>E-shop</em> restaurace</Heading>
+      <Fragment slot="actions">
+        <Button href="#poptavka">Chci Septim</Button>
+        <Button href="/produkty/septim-4" variant="secondary">Součást Septim.4</Button>
+      </Fragment>
+    </Hero>
+
+    <Section background="default" space="lg">
+      <div class="prose">
+        <Heading as="h2" size="h2">Jak e-shop funguje</Heading>
+        <Text size="lead" color="muted">
+          Modul načte položky označené pro internetový prodej. Zákazník na vaší doméně (např. eshop.restaurace.cz)
+          objedná, po zaplacení přes platební bránu jde objednávka přímo do pokladního systému — jako každá jiná.
+        </Text>
+        <Text color="muted">
+          Odpadá ruční kontrola a přepisování. Do systému se dostanou jen potvrzené a zaplacené objednávky,
+          na kterých může kuchyně rovnou pracovat.
+        </Text>
+      </div>
+    </Section>
+
+    <USPGrid eyebrow="Výhody" title="Proč e-shop Septim" items={benefits} background="alt" space="lg" minItemWidth="240px" />
+    <LogoWall label="Respektované provozy, které využívají Septim" background="default" />
+    <StatsBand />
+    <Faq items={faqs} title="Často kladené otázky k e-shopu" background="default" />
+    <LeadForm id="poptavka" variant="callback" background="alt"
+              title="Spustíme vám e-shop"
+              lead="Nechte nám telefon — pomůžeme nastavit modul E-shop pro váš provoz." />
+  </main>
+  <SiteFooter />
+</Base>
+
+<style>
+  .prose { max-width: 760px; }
+  .prose > * + * { margin-top: var(--space-4); }
+</style>

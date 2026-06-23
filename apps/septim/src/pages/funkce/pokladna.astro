@@ -1,0 +1,91 @@
+---
+/** Septim — Funkce: Pokladna. Obsah: septim-obsah/produkty/pokladna.md. SEO meta nově. */
+import Base from '../../layouts/Base.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import StatsBand from '../../components/StatsBand.astro';
+import LogoWall from '../../components/LogoWall.astro';
+import Faq from '../../components/Faq.astro';
+
+const features = [
+  'Markování na účet (rychlá i pomalá transakce)', 'Storna položek dle oprávnění', 'Tisk objednávek do výrobních středisek',
+  'Slevy a cenové hladiny', 'Různé druhy plateb (hotovost, karta, cizí měna)', 'Tisk a kopie účtu',
+  'Vzkazy do kuchyně', 'Definice přístupových práv obsluhy', 'Automatické odtěžování skladu',
+  'Dělení, přesun a spojení účtů', 'Grafické rozmístění stolů', 'Vlastní design celé aplikace',
+];
+const benefits = [
+  { icon: 'lucide:zap', title: 'Rychlá obsluha', text: 'Zrychluje komunikaci mezi placem a kuchyní — vyšší obrátka a spokojenost hostů.' },
+  { icon: 'lucide:hand', title: 'Jednoduché ovládání', text: 'Intuitivní rozhraní, obsluha pracuje téměř ihned po krátkém zaškolení.' },
+  { icon: 'lucide:boxes', title: 'Napojení na sklad', text: 'Markování ihned odečítá zboží ze skladu — bez ručního přepisování.' },
+  { icon: 'lucide:lock', title: 'Bezpečnost a práva', text: 'Transakce lze limitovat dle oprávnění obsluhy — manažerská i bezpečnostní kontrola.' },
+];
+const faqs = [
+  { q: 'Jde pokladnu přizpůsobit našemu provozu?', a: 'Ano. Ovládání, vzhled i funkce se nastaví na míru druhu a velikosti provozu — jiné u restaurace, jídelny, fast foodu i bistra. Individuální nastavení proběhne při instalaci.' },
+  { q: 'Zvládne ji obsluha rychle?', a: 'Ano. Pokladna je navržená pro maximálně rychlé a intuitivní ovládání; obsluha ji používá téměř ihned po krátkém zaškolení.' },
+];
+---
+<Base title="Pokladna Septim – intuitivní dotyková pokladna pro restaurace"
+      description="Pokladní modul systému Septim: rychlé markování, dělení účtů, slevy, různé platby, tisk do kuchyně a automatické odtěžování skladu. Nastavitelná na míru provozu.">
+  <SiteHeader />
+  <main>
+    <Hero eyebrow="Funkce systému Septim" background="alt"
+          lead="Pokladna je základ provozního systému Septim. Obsluha v ní zvládne vše kolem hosta — a klíčové je, jak je jednoduchá a jak chytře navazuje na zbytek Septimu.">
+      <Heading slot="title" as="h1" size="display"><em>Pokladna</em></Heading>
+      <Fragment slot="actions">
+        <Button href="#poptavka">Chci Septim</Button>
+        <Button href="/produkty/septim-4" variant="secondary">Součást Septim.4</Button>
+      </Fragment>
+    </Hero>
+
+    <Section background="default" space="lg">
+      <div class="prose">
+        <Heading as="h2" size="h2">Co je pokladna v systému Septim?</Heading>
+        <Text size="lead" color="muted">
+          V pokladně obsluha tvoří vyúčtování konzumace a služeb, zadává požadavky do kuchyně a markováním
+          ihned odtěžuje zboží ze skladu. Rozhraní je rychlé, intuitivní a nastavitelné na míru provozu.
+        </Text>
+        <Text color="muted">
+          Pokladní transakce lze limitovat podle oprávnění obsluhy — což je z manažerského i bezpečnostního
+          hlediska zásadní.
+        </Text>
+      </div>
+    </Section>
+
+    <Section background="alt" space="lg">
+      <div class="head head--center">
+        <Text size="label" color="accent" align="center">Funkce</Text>
+        <Heading as="h2" size="h2" align="center">Co pokladna umí</Heading>
+      </div>
+      <ul class="checklist">
+        {features.map((f) => (<li><Icon name="lucide:check" size="sm" class="checklist__icon" />{f}</li>))}
+      </ul>
+    </Section>
+
+    <USPGrid eyebrow="Výhody" title="Proč pokladna Septim" items={benefits} background="default" space="lg" minItemWidth="240px" />
+    <LogoWall label="Respektované provozy, které používají Septim" background="alt" />
+    <StatsBand />
+    <Faq items={faqs} title="Často kladené otázky k pokladně" background="default" />
+    <LeadForm id="poptavka" variant="callback" background="alt"
+              title="Ukážeme vám pokladnu v praxi"
+              lead="Nechte nám telefon — předvedeme pokladnu přímo na vašem typu provozu." />
+  </main>
+  <SiteFooter />
+</Base>
+
+<style>
+  .prose { max-width: 760px; }
+  .prose > * + * { margin-top: var(--space-4); }
+  .head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-7); text-align: center; }
+  .head > * + * { margin-top: var(--space-3); }
+  .checklist { list-style: none; display: grid; gap: var(--space-3); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); max-width: 960px; margin-inline: auto; }
+  .checklist li { display: flex; align-items: flex-start; gap: var(--space-2); font-size: var(--font-size-small); }
+  .checklist__icon { color: var(--color-primary); flex-shrink: 0; margin-top: 2px; }
+</style>

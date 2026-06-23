@@ -1,0 +1,71 @@
+---
+/** Septim — Produkt (edice): Septim.Go (mobilní číšník). Obsah: septim-obsah/produkty/mobilni-cisnik-septim-go.md. SEO meta nově. */
+import Base from '../../layouts/Base.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import StatsBand from '../../components/StatsBand.astro';
+import LogoWall from '../../components/LogoWall.astro';
+import Faq from '../../components/Faq.astro';
+
+const benefits = [
+  { icon: 'lucide:zap', title: 'Rychlejší obsluha', text: 'Objednávky i platby přímo u stolu — kratší čekání, lepší zážitek hosta.' },
+  { icon: 'lucide:credit-card', title: 'Platba u stolu', text: 'Karta, bezkontakt i mobilní peněženky včetně spropitného — bez samostatného terminálu.' },
+  { icon: 'lucide:check-check', title: 'Méně chyb', text: 'Objednávky se okamžitě synchronizují s pokladnou Septim a urychlí přípravu.' },
+  { icon: 'lucide:hand', title: 'Ergonomický design', text: 'Kompaktní a lehký, ovladatelný jednou rukou, navržený pro náročné provozy.' },
+];
+const specs = ['4G / Bluetooth / WiFi', 'NFC bezkontaktní čtečka', '6" displej 1440 × 720', 'Dlouhá výdrž baterie', 'Pevná konstrukce', 'Tisková hlava 50+ km tisku'];
+const faqs = [
+  { q: 'Kolik mobilních číšníků potřebujeme?', a: 'Záleží na velikosti a typu provozu. Spojme se a probereme počet zařízení přímo pro vaše konkrétní potřeby.' },
+  { q: 'Pro koho je Septim.Go vhodný?', a: 'Pro restaurace, kavárny, bary i další gastro provozy, které chtějí modernizovat servis a nabídnout hostům maximální pohodlí.' },
+];
+---
+<Base title="Septim.Go – mobilní číšník s platbou kartou u stolu"
+      description="Mobilní číšník Septim.Go je výkonné ruční POS: objednávky i platby kartou přímo u stolu, NFC, 6″ displej a synchronizace s pokladnou Septim. Rychlejší obsluha a méně chyb.">
+  <SiteHeader />
+  <main>
+    <Hero eyebrow="Produkt — edice" background="alt"
+          lead="Mobilní číšník je výkonné ruční POS — moderní zařízení, které kombinuje chytrý terminál a platební zařízení. Personál obslouží hosty, přijme objednávky a zpracuje platby přímo u stolu.">
+      <Heading slot="title" as="h1" size="display">Septim<em>.Go</em></Heading>
+      <Fragment slot="actions">
+        <Button href="#poptavka">Chci Septim.Go</Button>
+        <Button href="/produkty/septim-4" variant="secondary">Součást Septimu</Button>
+      </Fragment>
+    </Hero>
+
+    <USPGrid eyebrow="Výhody" title="Proč mobilní číšník" items={benefits} background="default" space="lg" minItemWidth="240px" />
+
+    <Section background="alt" space="lg">
+      <div class="head head--center">
+        <Text size="label" color="accent" align="center">Hardware</Text>
+        <Heading as="h2" size="h2" align="center">Připravený na náročný provoz</Heading>
+      </div>
+      <ul class="checklist">
+        {specs.map((s) => (<li><Icon name="lucide:check" size="sm" class="checklist__icon" />{s}</li>))}
+      </ul>
+    </Section>
+
+    <LogoWall label="Provozy, které používají Septim" background="default" />
+    <StatsBand />
+    <Faq items={faqs} title="Často kladené dotazy k Septim.Go" background="default" />
+    <LeadForm id="poptavka" variant="callback" background="alt"
+              title="Domluvme si prezentaci"
+              lead="Nechte nám telefon — probereme počet mobilních číšníků pro váš provoz." />
+  </main>
+  <SiteFooter />
+</Base>
+
+<style>
+  .head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-7); text-align: center; }
+  .head > * + * { margin-top: var(--space-3); }
+  .checklist { list-style: none; display: grid; gap: var(--space-3); grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); max-width: 760px; margin-inline: auto; }
+  .checklist li { display: flex; align-items: flex-start; gap: var(--space-2); font-size: var(--font-size-small); }
+  .checklist__icon { color: var(--color-primary); flex-shrink: 0; margin-top: 2px; }
+</style>
