@@ -51,10 +51,11 @@
   --font-weight-medium:   700;
   --font-weight-semibold: 600;
 
-  /* ----- Primary — cyan (signature accent) ----- */
-  --color-primary:          #00ADEE;
-  --color-primary-hover:    #008FCC;
-  --color-primary-active:   #0073A6;
+  /* ----- Primary — cyan ztmavená na WCAG AA (≥4,5:1 s bílým textem) -----
+     Signature jasná cyan #00ADEE zůstává jako dekorativní --color-secondary-azure. */
+  --color-primary:          #0073A6;  /* 5,25:1 vůči bílé */
+  --color-primary-hover:    #005F8A;
+  --color-primary-active:   #004E73;
   --color-primary-bg:       #06038D;  /* tmavé indigo pozadí sekcí */
   --color-primary-bg-hover: #040259;
 
@@ -85,7 +86,7 @@
   /* ----- Text ----- */
   --color-text:               #20262F; /* tmavá chladná (nadpisy i body) */
   --color-text-muted:         #6B7689;
-  --color-text-accent:        #008FCC; /* cyan-600 — eyebrow / odkazy */
+  --color-text-accent:        #0073A6; /* cyan ztmavená — eyebrow / odkazy, AA 5,25:1 na bílé */
   --color-text-on-dark:       #FFFFFF;
   --color-text-on-dark-muted: rgba(255, 255, 255, 0.72);
 
