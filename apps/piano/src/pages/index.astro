@@ -1,245 +1,252 @@
 ---
+/**
+ * Piano — homepage piano.cz
+ * Spojení nejlepšího z původního WP webu (obsah: pain pointy, kategorie,
+ * ekosystém, reference, FAQ) a referenčního webu (silný hero, stats, logo wall).
+ * Vše ze sdílených komponent @piano/ui; produkty žijící na piano.cz odkazují
+ * dovnitř, ostatní na demo <produkt>-web.pages.dev.
+ */
 import Base from '../layouts/Base.astro';
-import Button from '@piano/ui/components/Button.astro';
-import Heading from '@piano/ui/components/Heading.astro';
-import Text from '@piano/ui/components/Text.astro';
-import Icon from '@piano/ui/components/Icon.astro';
-import Badge from '@piano/ui/components/Badge.astro';
-import Card from '@piano/ui/components/Card.astro';
 import Header from '@piano/ui/components/Header.astro';
 import Footer from '@piano/ui/components/Footer.astro';
+import Section from '@piano/ui/components/Section.astro';
 import Hero from '@piano/ui/components/Hero.astro';
-import HeroCarousel from '@piano/ui/components/HeroCarousel.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
 import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 
-// Funkce pro USP grid (zdroj: Septim)
-const septimFeatures = [
-  { icon: 'lucide:monitor', title: 'Pokladna', text: 'Intuitivní dotykové rozhraní pro obsluhu. Mobilní číšník Septim.Go pro orderpad.' },
-  { icon: 'lucide:package', title: 'Skladové hospodářství', text: 'Hlídání stavu surovin, dodacích listů a zásob v reálném čase.' },
-  { icon: 'lucide:bar-chart-3', title: 'Manažerské přehledy', text: 'Tržby, marže, výkon personálu — v appce MySeptim odkudkoliv.' },
-  { icon: 'lucide:award', title: 'Věrnostní systém (CRM)', text: 'Loajalitní programy pro zákazníky přímo v systému.' },
-  { icon: 'lucide:bike', title: 'Rozvoz jídla', text: 'Přímá integrace s Foodora a Wolt. Objednávky z rozvozu automaticky.' },
-  { icon: 'lucide:smartphone', title: 'MySeptim App', text: 'iOS + Android. Klíčová data provozu vždy po ruce, kdekoliv jste.' },
+const stats = [
+  { num: '6 000+', lbl: 'podniků v ČR nám důvěřuje' },
+  { num: '36 mld Kč', lbl: 'proteče přes naše nástroje ročně' },
+  { num: '30 let', lbl: 'inovací v gastronomii' },
+  { num: '10+', lbl: 'propojených nástrojů' },
 ];
 
-// Bannery pro carousel (zdroj: grason-bannery.tsv)
-const grasonSlides = [
-  { eyebrow: 'Brigádníci', headline: 'Volná směna?', sub: 'Vyplňte ji ještě dnes.', body: 'Tisíce ověřených brigádníků připravených nastoupit.', cta: { label: 'Sehnat brigádníka', href: '#' } },
-  { eyebrow: 'Plánování směn', headline: 'Rozvrh bez Excelu a skupinových chatů.', sub: 'Plánujte směny, spravujte dovolené a záskoky — přehledně v jedné appce.', cta: { label: 'Vyzkoušet zdarma', href: '#' } },
-  { eyebrow: 'GPS docházka', headline: 'Přesně víte, kdo přišel a kdy.', sub: 'Digitální píchačky s GPS okruhem 30 m.', body: 'Žádné dohady, jen fakta.', cta: { label: 'Zjistit více', href: '#' } },
-  { eyebrow: 'Checklisty', headline: 'Každá směna podle pravidel.', sub: 'Zaměstnanci odklikají úkoly a doloží je fotkou přímo z appky.', cta: { label: 'Zjistit více', href: '#' } },
-  { eyebrow: 'Podklady pro mzdy', headline: 'Mzdová účetní vám poděkuje.', sub: 'Exportujte podklady pro mzdy jedním kliknutím.', body: 'Bez ručního přepisování.', cta: { label: 'Zjistit více', href: '#' } },
+const pains = [
+  { icon: 'lucide:user-x', title: 'Nedostatek personálu', text: 'Neustálé hledání nových lidí je drahé a únavné. Kvalitních lidí je čím dál méně.' },
+  { icon: 'lucide:clock', title: 'Úbytek zákazníků', text: 'Dlouhé čekání na objednání nebo platbu znamená ztrátu tržeb.' },
+  { icon: 'lucide:file-stack', title: 'Zdlouhavé papírování', text: 'Nástroje a systémy nespolupracují, nebo neumí to, co potřebujete.' },
+  { icon: 'lucide:trending-up', title: 'Rostoucí ceny', text: 'Marže se zmenšují, ceny se špatně kontrolují, dodavatelé zdražují.' },
 ];
+
+const categories = [
+  { icon: 'lucide:boxes', title: 'Nákupy a sklady', items: ['Skladové hospodářství', 'Automatické naskladňování', 'Lepší ceny u dodavatelů'] },
+  { icon: 'lucide:users', title: 'Lidé a personál', items: ['Více obsloužených hostů', 'Plánování směn', 'Nábor personálu'] },
+  { icon: 'lucide:monitor', title: 'Pokladní a manažerské systémy', items: ['Reporting dat', 'Pokladní systémy', 'Management hotelů'] },
+  { icon: 'lucide:credit-card', title: 'Platby a komunikace s hosty', items: ['Komunikace se zákazníkem', 'Rezervační systém', 'Věrnostní program'] },
+];
+
+// Ekosystém — odkazy: piano-hosté dovnitř, ostatní na demo pages.dev
+const ecosystem = [
+  { name: 'Septim', icon: 'lucide:monitor', desc: 'Nejrespektovanější pokladní a provozní systém na trhu.', href: 'https://septim-web.pages.dev' },
+  { name: 'Qerko', icon: 'lucide:qr-code', desc: 'Nejpohodlnější platba u stolu a komunikace s hosty.', href: 'https://qerko-web.pages.dev' },
+  { name: 'Pecosta', icon: 'lucide:gavel', desc: 'Aukční nákupy surovin — levněji až o 16 %.', href: 'https://pecosta-web.pages.dev' },
+  { name: 'Grason', icon: 'lucide:users', desc: 'Brigádníci, plánování směn a papírování v jedné appce.', href: 'https://grason-web.pages.dev' },
+  { name: 'Autset', icon: 'lucide:package', desc: 'Automatické naskladňování z dodacích listů.', href: 'https://autset-web.pages.dev' },
+  { name: 'ABX Harsys', icon: 'lucide:square-terminal', desc: 'Multifunkční pokladní systémy a pokladny.', href: 'https://harsys-web.pages.dev' },
+  { name: 'Savarin', icon: 'lucide:utensils', desc: 'Komplexní řešení pro stravovací a ubytovací provozy.', href: 'https://savarin-web.pages.dev' },
+  { name: 'Protel', icon: 'lucide:building-2', desc: 'Software pro efektivní řízení hotelů.', href: 'https://protel-web.pages.dev' },
+  { name: 'Piano Pilot', icon: 'lucide:smartphone', desc: 'Celý provoz v mobilní aplikaci s daty a AI.', href: '/pilot' },
+];
+
+const benefits = [
+  { icon: 'lucide:lightbulb', title: 'Více času na kreativitu', text: 'Soustřeďte se na nové nápady a cashflow, zatímco tým se věnuje hostům.' },
+  { icon: 'lucide:line-chart', title: 'Rychlejší finanční rozhodování', text: 'Přehled cen a nákladů. S námi ušetříte v průměru 16 %.' },
+  { icon: 'lucide:users-round', title: 'Spokojenější personál', text: 'Přístup k široké databázi profesí, když vám někdo vypadne — i nastálo.' },
+];
+
+const testimonials = [
+  { quote: 'Provozní systém Septim je zásadní součástí restaurace FIELD. Díky němu mám jistotu, že celý provoz běží stabilně a efektivně.', author: 'Radek Kašpárek', role: 'Šéfkuchař a zakladatel FIELD' },
+  { quote: 'Na Septimu mi nejvíce vyhovuje, že si mohu nadefinovat jakoukoli sestavu a okamžitě dostanu vyhodnocení. Mám pak naprostý přehled.', author: 'Václav Vojíř', role: "Majitel Bugsy's baru" },
+  { quote: 'Když dokážeme proces automatizovat — vše na jednom portálu, porovnání cen od konkurence — je to úspora času a ve finále i peněz.', author: 'Lukáš Pytloun', role: 'CEO Pytloun Hotels' },
+];
+
+const refLogos = [
+  'ref-field-michelin-restaurant', 'ref-cafe-savoy', 'ref-kolkovna', 'ref-sasazu',
+  'ref-O2-arena', 'ref-clarion-hotel', 'ref-zatisi-group', 'ref-420-restaurant',
+  'ref-pizza-coloseum', 'ref-entree', 'ref-100-chuti-brna', 'ref-sisters-bistro',
+];
+
+const faqs = [
+  { q: 'Co tvoří skupinu Piano?', a: 'Uskupení chytrých nástrojů, které společně digitalizují a zefektivňují podnikání v gastronomii, hotelnictví a maloobchodu — Septim, Qerko, Grason, POS Experts, Savarin, Harsys, Protel a Pecosta. Každý funguje samostatně, společně tvoří nejkomplexnější řešení pro pohostinství v Česku.' },
+  { q: 'Proč bych si měl vybrat zrovna vaše produkty?', a: 'Naše produkty používá přes 6 000 podniků a ročně přes ně proteče 36 miliard Kč. Od pokladen přes platby a řízení personálu po sklady a marketing — šetří čas, minimalizují chyby a zvyšují zisk, ať máte kavárnu, síť restaurací nebo hotel.' },
+  { q: 'Kolik budu mít smluv a kontaktů?', a: 'Zatím se pro vás nic nemění — stejný obchodní zástupce i podmínky. Smlouvy a kontakty budeme postupně sjednocovat, vždy s vaším souhlasem a ve váš prospěch.' },
+  { q: 'Co mám dělat, když chci další produkty?', a: 'Ozvěte se na +420 773 798 758 nebo info@piano.cz — společně projdeme, co vás zajímá, a najdeme nejlepší řešení pro váš podnik.' },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org', '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
 ---
 
-<Base title="Piano — komponenty">
+<Base title="Piano — všechny nástroje pro pohostinství pod jednou střechou"
+      description="Piano je sehraný orchestr nástrojů pro restaurace a hotely — pokladny, platby, personál, sklady a analytika. 6 000+ podniků, 30 let inovací, česká podpora 24/7."
+      schema={faqSchema}>
   <Header logoSrc="/logos/piano_color.svg" />
 
-  <!-- Hero — centrovaný, s PP Eiko akcentem -->
-  <Hero eyebrow="Platby u stolu" align="center" background="alt"
-        lead="Hosté zaplatí přes QR kód během chvilky. Vy otočíte více stolů a získáte vyšší dýška.">
-    <Heading slot="title" as="h1" size="display" align="center">
-      Pomocná síla, se kterou <em>otočíte</em> více stolů
-    </Heading>
+  <Hero eyebrow="Technologie pro gastronomii a hotely" background="primary"
+        lead="Piano je sehraný orchestr nástrojů, který vyladí váš provoz, ušetří čas a zvýší zisk. Restaurace, kavárna, bistro, jídelna i hotel — máme pro vás řešení.">
+    <Heading slot="title" as="h1" size="display" color="on-dark">Vše pro váš provoz. <em>Pod jednou střechou.</em></Heading>
     <Fragment slot="actions">
-      <Button>Domluvit demo</Button>
-      <Button variant="secondary">Více informací</Button>
+      <Button href="#poptavka">Domluvit konzultaci</Button>
+      <Button href="#ekosystem" variant="secondary" onDark>Prozkoumat ekosystém</Button>
     </Fragment>
   </Hero>
 
-  <!-- TYP 1: Hero split — text vlevo, video vpravo (16:9) -->
-  <Hero eyebrow="Pokladní systém"
-        lead="Septim propojí objednávky, kuchyni, sklad i účetnictví do jednoho systému.">
-    <Heading slot="title" as="h1" size="h1">Provoz restaurace <em>pod kontrolou</em></Heading>
-    <Fragment slot="actions">
-      <Button>Vyzkoušet Septim</Button>
-    </Fragment>
-    <div slot="media" style="aspect-ratio: 16/9; background: var(--color-neutral-200); display: grid; place-items: center; color: var(--color-text-muted); font: var(--text-small);">video 16:9 (placeholder)</div>
-  </Hero>
+  <!-- STATS BAND -->
+  <Section background="alt" space="md">
+    <div class="stats">
+      {stats.map((s) => (
+        <div class="stat"><span class="stat__num">{s.num}</span><span class="stat__lbl">{s.lbl}</span></div>
+      ))}
+    </div>
+  </Section>
 
-  <!-- TYP 2: Hero carousel bannerů -->
-  <HeroCarousel slides={grasonSlides} background="primary" />
+  <!-- PAIN POINTS -->
+  <USPGrid eyebrow="Znáte to?" title="Co dnes brzdí váš provoz"
+           items={pains} columns={4} background="default" minItemWidth="220px" />
 
-  <!-- USP / feature grid -->
-  <USPGrid
-    eyebrow="Funkce"
-    title="Vše, co váš provoz potřebuje"
-    lead="Septim není jen pokladna — je to operační centrum vašeho podniku."
-    items={septimFeatures}
-    background="alt"
-  />
+  <!-- KATEGORIE NÁSTROJŮ -->
+  <Section background="alt" space="lg">
+    <div class="head-center">
+      <Text size="label" color="accent">Každý provoz je jedinečný</Text>
+      <Heading as="h2" size="h2" align="center">Široká paleta nástrojů, která se přizpůsobí vám</Heading>
+      <Text size="lead" color="muted" align="center" class="head-sub">Věříme v propojenou gastronomii — od dodavatelů přes kuchaře až po hosty.</Text>
+    </div>
+    <div class="cats">
+      {categories.map((c) => (
+        <article class="cat">
+          <span class="cat__icon"><Icon name={c.icon} size="md" /></span>
+          <Heading as="h3" size="h3">{c.title}</Heading>
+          <ul class="cat__list">{c.items.map((i) => <li>{i}</li>)}</ul>
+        </article>
+      ))}
+    </div>
+  </Section>
 
-  <!-- USP grid na tmavém pozadí -->
-  <USPGrid title="Proč Piano" items={septimFeatures} columns={3} background="invert" />
+  <!-- EKOSYSTÉM -->
+  <Section id="ekosystem" background="default" space="lg">
+    <div class="head-center">
+      <Text size="label" color="accent">30 let inovací</Text>
+      <Heading as="h2" size="h2" align="center">Sehraný orchestr pro snadný provoz</Heading>
+      <Text size="lead" color="muted" align="center" class="head-sub">Každý nástroj funguje samostatně. Společně jsou mnohem silnější.</Text>
+    </div>
+    <div class="eco">
+      {ecosystem.map((p) => (
+        <a class="eco__card" href={p.href}>
+          <span class="eco__icon"><Icon name={p.icon} size="md" /></span>
+          <span class="eco__name">{p.name}</span>
+          <span class="eco__desc">{p.desc}</span>
+          <span class="eco__more">Zjistit víc <Icon name="lucide:arrow-right" size="xs" /></span>
+        </a>
+      ))}
+    </div>
+  </Section>
 
-  <!-- LeadForm — varianta A (plný) -->
-  <LeadForm
-    variant="full"
-    title="Máte zájem? Ozvěte se nám"
-    lead="Vyplňte formulář a my se vám ozveme s nabídkou na míru."
-  />
+  <!-- LOGO WALL -->
+  <Section background="alt" space="md" container={false}>
+    <Text size="label" color="muted" align="center" class="lw__label">Víc jak 6 000 podniků spoléhá na nástroje od Piana</Text>
+    <div class="lw">
+      {refLogos.map((l) => <img src={`/logos/${l}.svg`} alt="" loading="lazy" />)}
+    </div>
+  </Section>
 
-  <!-- LeadForm — varianta B (jen telefon, pro A/B test) -->
-  <LeadForm
-    variant="callback"
-    title="Nechte nám číslo, zavoláme"
-    lead="Stačí telefon — zbytek probereme po telefonu."
-    background="primary"
-  />
+  <!-- TESTIMONIALY -->
+  <Section background="invert" space="lg">
+    <Heading as="h2" size="h2" align="center" color="on-dark">Věří nám ti nejlepší v oboru</Heading>
+    <div class="quotes">
+      {testimonials.map((t) => (
+        <figure class="quote">
+          <Text color="on-dark" class="quote__text">„{t.quote}“</Text>
+          <figcaption class="quote__by">
+            <span class="quote__author">{t.author}</span>
+            <span class="quote__role">{t.role}</span>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </Section>
 
-  <main style="padding: 48px 24px; display: flex; flex-direction: column; gap: 48px; max-width: 1200px; margin: 0 auto;">
+  <!-- BENEFITY -->
+  <USPGrid eyebrow="Co tím získáte" title="Posuňte své podnikání na vyšší úroveň"
+           items={benefits} columns={3} background="default" />
 
-    <section>
-      <h2 style="font: var(--text-h3); font-family: var(--font-sans); margin-bottom: 24px; color: var(--color-text-muted);">Heading</h2>
+  <!-- FAQ -->
+  <Section background="alt" space="lg" container="narrow">
+    <Heading as="h2" size="h2" align="center">Často kladené dotazy</Heading>
+    <div class="faq">
+      {faqs.map((f) => (
+        <details class="faq__item">
+          <summary class="faq__q">{f.q}</summary>
+          <div class="faq__a"><Text color="muted">{f.a}</Text></div>
+        </details>
+      ))}
+    </div>
+  </Section>
 
-      <div style="display: flex; flex-direction: column; gap: 16px; margin-bottom: 24px;">
-        <Heading as="h1" size="display">Display nadpis</Heading>
-        <Heading as="h1">Nadpis úrovně H1</Heading>
-        <Heading as="h2">Nadpis úrovně H2</Heading>
-        <Heading as="h3">Nadpis úrovně H3</Heading>
-      </div>
-
-      <div style="margin-bottom: 24px;">
-        <Heading as="h2" size="h1">Pomocná síla, se kterou <em>otočíte</em> více stolů</Heading>
-        <Text size="caption" color="muted" style="margin-top: 8px;">↑ akcent jedním slovem přes &lt;em&gt; (PP Eiko)</Text>
-      </div>
-
-      <div style="display: flex; flex-direction: column; gap: 8px;">
-        <Heading as="h3" color="accent">Akcentní barva</Heading>
-        <Heading as="h3" color="muted">Tlumená barva</Heading>
-        <Heading as="h3" align="center">Zarovnání na střed</Heading>
-      </div>
-    </section>
-
-    <section>
-      <h2 style="font: var(--text-h3); font-family: var(--font-sans); margin-bottom: 24px; color: var(--color-text-muted);">Text</h2>
-
-      <div style="display: flex; flex-direction: column; gap: 16px;">
-        <Text size="lead">Lead — perex sekce, větší řádek pro úvodní odstavec pod nadpisem.</Text>
-        <Text size="body">Body — výchozí text odstavce. Lorem ipsum dolor sit amet, <strong>zvýraznění</strong> a <a href="#">odkaz</a> v textu.</Text>
-        <Text size="small" color="muted">Small — drobnější doplňkový text, často tlumený.</Text>
-        <Text size="caption">Caption — popisek pod obrázkem nebo metadaty.</Text>
-        <Text size="label">Label — verzálkový štítek</Text>
-      </div>
-    </section>
-
-    <section>
-      <h2 style="font: var(--text-h3); font-family: var(--font-sans); margin-bottom: 24px; color: var(--color-text-muted);">Button</h2>
-
-      <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center; margin-bottom: 16px;">
-        <Button variant="primary" size="sm">Primární SM</Button>
-        <Button variant="primary" size="md">Primární MD</Button>
-        <Button variant="primary" size="lg">Primární LG</Button>
-      </div>
-
-      <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center; margin-bottom: 16px;">
-        <Button variant="secondary" size="sm">Sekundární SM</Button>
-        <Button variant="secondary" size="md">Sekundární MD</Button>
-        <Button variant="secondary" size="lg">Sekundární LG</Button>
-      </div>
-
-      <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center; margin-bottom: 16px;">
-        <Button variant="ghost" size="sm">Ghost →</Button>
-        <Button variant="ghost" size="md">Ghost →</Button>
-        <Button href="/o-nas" variant="primary">Odkaz jako button</Button>
-      </div>
-
-      <!-- CTA pár — obě tlačítka musí mít shodné zkosení -->
-      <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center;">
-        <Button variant="primary">Domluvit demo</Button>
-        <Button variant="secondary">Více informací</Button>
-      </div>
-    </section>
-
-    <section>
-      <h2 style="font: var(--text-h3); font-family: var(--font-sans); margin-bottom: 24px; color: var(--color-text-muted);">Icon</h2>
-
-      <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: center; margin-bottom: 16px;">
-        <Icon name="piano-mark" size="xs" />
-        <Icon name="piano-mark" size="sm" />
-        <Icon name="piano-mark" size="md" />
-        <Icon name="piano-mark" size="lg" />
-        <Icon name="piano-mark" size="xl" color="accent" />
-      </div>
-
-      <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: center;">
-        <Icon name="lucide:check" color="accent" />
-        <Icon name="lucide:credit-card" color="default" />
-        <Icon name="lucide:calendar-check" color="muted" />
-        <Icon name="lucide:bar-chart-3" color="accent" />
-        <Icon name="lucide:arrow-right" />
-      </div>
-    </section>
-
-    <section>
-      <h2 style="font: var(--text-h3); font-family: var(--font-sans); margin-bottom: 24px; color: var(--color-text-muted);">Badge</h2>
-
-      <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 16px;">
-        <Badge variant="neutral">Neutral</Badge>
-        <Badge variant="primary">Primary</Badge>
-        <Badge variant="success">Success</Badge>
-        <Badge variant="warning">Warning</Badge>
-        <Badge variant="info">Info</Badge>
-      </div>
-
-      <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 16px;">
-        <Badge variant="neutral" tone="solid">Neutral</Badge>
-        <Badge variant="primary" tone="solid">Primary</Badge>
-        <Badge variant="success" tone="solid">Success</Badge>
-        <Badge variant="warning" tone="solid">Warning</Badge>
-        <Badge variant="info" tone="solid">Info</Badge>
-      </div>
-
-      <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center;">
-        <Badge variant="success" icon="lucide:check">Aktivní</Badge>
-        <Badge variant="primary" icon="lucide:sparkles">Novinka</Badge>
-        <Badge variant="neutral" size="sm">SM</Badge>
-      </div>
-    </section>
-
-    <section>
-      <h2 style="font: var(--text-h3); font-family: var(--font-sans); margin-bottom: 24px; color: var(--color-text-muted);">Card</h2>
-
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px;">
-        <Card variant="default">
-          <Badge variant="primary" style="margin-bottom: 12px;">Default</Badge>
-          <Heading as="h3">Základní karta</Heading>
-          <Text size="small" color="muted" style="margin-top: 8px;">Jemný rámeček, výchozí varianta.</Text>
-        </Card>
-
-        <Card variant="elevated">
-          <Badge variant="info" style="margin-bottom: 12px;">Elevated</Badge>
-          <Heading as="h3">Se stínem</Heading>
-          <Text size="small" color="muted" style="margin-top: 8px;">Zdvižená karta se stínem.</Text>
-        </Card>
-
-        <Card variant="filled" chamfer>
-          <Badge variant="success" style="margin-bottom: 12px;">Filled + chamfer</Badge>
-          <Heading as="h3">Signature roh</Heading>
-          <Text size="small" color="muted" style="margin-top: 8px;">Tónované pozadí se seříznutým rohem.</Text>
-        </Card>
-
-        <Card href="#" variant="bordered">
-          <Heading as="h3">Klikací karta</Heading>
-          <Text size="small" color="muted" style="margin-top: 8px;">Hover zdvih + odkaz.</Text>
-          <Text size="label" color="accent" style="margin-top: 16px; display: inline-flex; align-items: center; gap: 6px;">Více <Icon name="lucide:arrow-right" size="xs" /></Text>
-        </Card>
-      </div>
-    </section>
-
-    <section style="background: var(--color-bg-invert); padding: 32px; display: flex; flex-direction: column; gap: 24px;">
-      <div>
-        <Heading as="h2" color="on-dark">Nadpis na tmavém pozadí</Heading>
-        <Text size="lead" color="on-dark-muted" style="margin-top: 8px;">Perex v tlumené světlé barvě pro tmavé sekce.</Text>
-      </div>
-      <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center;">
-        <Button variant="primary">CTA na tmavém pozadí</Button>
-        <Button variant="ghost" style="color: var(--color-text-on-dark);">Ghost na tmavém →</Button>
-      </div>
-    </section>
-
-  </main>
+  <!-- LEADFORM -->
+  <LeadForm id="poptavka" variant="full"
+            title="Kontaktujte nás pro konzultaci zdarma"
+            lead="Ozvěte se a uděláme vám nabídku šitou na míru vašemu provozu." />
 
   <Footer />
 </Base>
+
+<style>
+  .head-center { text-align: center; max-width: 720px; margin: 0 auto var(--space-7); }
+  .head-center :global(.head-sub) { margin-top: var(--space-3); }
+
+  /* Stats band */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-5); text-align: center; }
+  .stat { display: flex; flex-direction: column; gap: var(--space-1); }
+  .stat__num { font-family: var(--font-sans); font-weight: var(--font-weight-semibold); font-size: clamp(28px, 4vw, 44px); color: var(--color-text-accent); letter-spacing: var(--letter-spacing-tight); }
+  .stat__lbl { font-size: var(--font-size-small); color: var(--color-text-muted); }
+
+  /* Kategorie */
+  .cats { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--space-5); }
+  .cat { background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-6); }
+  .cat__icon { display: inline-flex; color: var(--color-text-accent); margin-bottom: var(--space-3); }
+  .cat__list { list-style: none; margin-top: var(--space-3); display: flex; flex-direction: column; gap: var(--space-2); }
+  .cat__list li { position: relative; padding-left: var(--space-5); color: var(--color-text-muted); font-size: var(--font-size-small); }
+  .cat__list li::before { content: "✓"; position: absolute; left: 0; color: var(--color-text-accent); font-weight: 700; }
+
+  /* Ekosystém */
+  .eco { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-5); }
+  .eco__card { display: flex; flex-direction: column; gap: var(--space-2); padding: var(--space-6); background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); text-decoration: none; transition: var(--transition); }
+  .eco__card:hover { border-color: var(--color-primary); box-shadow: var(--shadow-md); transform: translateY(-2px); }
+  .eco__icon { display: inline-flex; color: var(--color-text-accent); }
+  .eco__name { font-family: var(--font-sans); font-weight: var(--font-weight-semibold); font-size: var(--font-size-lead); color: var(--color-text); }
+  .eco__desc { font-size: var(--font-size-small); color: var(--color-text-muted); flex: 1; }
+  .eco__more { display: inline-flex; align-items: center; gap: var(--space-1); font-size: var(--font-size-small); font-weight: var(--font-weight-medium); color: var(--color-text-accent); margin-top: var(--space-2); }
+
+  /* Logo wall */
+  .lw__label { margin-bottom: var(--space-5); }
+  .lw { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: var(--space-6) var(--space-7); max-width: var(--container-max); margin: 0 auto; padding-inline: var(--container-pad); }
+  .lw img { height: 32px; width: auto; opacity: 0.62; filter: grayscale(1); transition: var(--transition); }
+  .lw img:hover { opacity: 1; filter: none; }
+
+  /* Testimonialy */
+  .quotes { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-5); margin-top: var(--space-6); }
+  .quote { display: flex; flex-direction: column; gap: var(--space-4); padding: var(--space-6); border: 1px solid var(--color-border-on-dark); border-radius: var(--radius-md); }
+  .quote__text { font-size: var(--font-size-lead); line-height: var(--line-height-lead); }
+  .quote__by { display: flex; flex-direction: column; gap: 2px; }
+  .quote__author { font-weight: var(--font-weight-semibold); color: var(--color-text-on-dark); }
+  .quote__role { font-size: var(--font-size-small); color: var(--color-text-on-dark-muted); }
+
+  /* FAQ */
+  .faq { margin-top: var(--space-6); display: flex; flex-direction: column; gap: var(--space-3); }
+  .faq__item { background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-4) var(--space-5); }
+  .faq__q { cursor: pointer; font-family: var(--font-sans); font-weight: var(--font-weight-semibold); color: var(--color-text); list-style: none; display: flex; justify-content: space-between; align-items: center; gap: var(--space-4); }
+  .faq__q::-webkit-details-marker { display: none; }
+  .faq__q::after { content: "+"; color: var(--color-text-accent); font-size: 1.4em; line-height: 1; flex-shrink: 0; }
+  .faq__item[open] .faq__q::after { content: "−"; }
+  .faq__a { margin-top: var(--space-3); }
+
+  @media (max-width: 720px) {
+    .stats { grid-template-columns: repeat(2, 1fr); gap: var(--space-6) var(--space-4); }
+  }
+</style>
