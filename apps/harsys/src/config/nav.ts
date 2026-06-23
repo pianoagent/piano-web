@@ -7,6 +7,7 @@
  * instalace, o-nas…) doplníme později.
  */
 import type { NavItem, NavLink } from '@piano/ui/config/nav';
+import { pianoNavItem } from '@piano/ui/config/piano-ecosystem';
 
 export const harsysNav: NavItem[] = [
   {
@@ -30,6 +31,7 @@ export const harsysNav: NavItem[] = [
     ],
   },
   { label: 'O nás', href: '/kontakt' },
+  pianoNavItem('harsys'),
 ];
 
 export const harsysCta: NavLink = { label: 'Konzultace zdarma', href: '/#poptavka' };

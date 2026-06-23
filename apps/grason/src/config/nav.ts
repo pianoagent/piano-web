@@ -3,6 +3,7 @@
  * Komponenta se NEFORKUJE — jen jí dodáme jiná data.
  */
 import type { NavItem, NavLink } from '@piano/ui/config/nav';
+import { pianoNavItem } from '@piano/ui/config/piano-ecosystem';
 
 export const grasonNav: NavItem[] = [
   {
@@ -17,6 +18,7 @@ export const grasonNav: NavItem[] = [
   },
   { label: 'Pro brigádníky', href: '/pro-brigadniky' },
   { label: 'O nás', href: '/o-nas' },
+  pianoNavItem('grason'),
 ];
 
 export const grasonCta: NavLink = { label: 'Konzultace zdarma', href: '/#poptavka' };

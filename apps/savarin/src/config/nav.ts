@@ -4,6 +4,7 @@
  * Struktura: Moduly s dropdownem (Pokladna), pak hlavní moduly + Kontakt.
  */
 import type { NavItem, NavLink } from '@piano/ui/config/nav';
+import { pianoNavItem } from '@piano/ui/config/piano-ecosystem';
 
 export const savarinNav: NavItem[] = [
   {
@@ -19,6 +20,7 @@ export const savarinNav: NavItem[] = [
   { label: 'Sklady a kalkulace', href: '/sklady-a-kalkulace' },
   { label: 'Služby a servis', href: '/sluzby-servis' },
   { label: 'Kontakt', href: '/kontakt' },
+  pianoNavItem('savarin'),
 ];
 
 export const savarinCta: NavLink = { label: 'Nezávazná poptávka', href: '/#poptavka' };
