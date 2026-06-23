@@ -1,0 +1,25 @@
+---
+import IntegracePage from '../../components/IntegracePage.astro';
+const benefits = [
+  { icon: 'lucide:bell-ring', title: 'WaiterCall', text: 'Kuchyně dá číšníkovi vědět, že je jeho objednávka připravená — konec zbytečných pochůzek.' },
+  { icon: 'lucide:hand', title: 'EasyCall', text: 'Host si přivolá obsluhu ke stolu jedním stiskem.' },
+  { icon: 'lucide:utensils', title: 'CustomerCall', text: 'Zákazník u výdeje dostane signál, že je jídlo hotové.' },
+  { icon: 'lucide:map-pin', title: 'VUZE', text: 'Vyhledání stolu podle pageru — obsluha donese jídlo přímo k hostovi.' },
+];
+const faqs = [
+  { q: 'Jak pagery zrychlí provoz?', a: 'Usnadní a zrychlí komunikaci personálu. Číšník dostane na pager informaci, že je jídlo připravené, host si přivolá obsluhu sám — méně pochůzek, rychlejší obrátka a hosté nejsou rušeni zvonkem.' },
+  { q: 'Kde všude se paging hodí?', a: 'Kromě restaurací a fastfoodů i v rekreačních zařízeních, na kongresech, v průmyslu, zdravotnictví, dětských koutcích nebo maloobchodu.' },
+];
+---
+<IntegracePage
+  title="Pagery a paging systém pro restaurace | Septim"
+  description="Paging systém propojený se Septimem zrychlí komunikaci personálu: WaiterCall, EasyCall, CustomerCall i VUZE. Důvěřuje nám IKEA, UGO i Kolkovna."
+  eyebrow="Integrace a zařízení"
+  titleHtml="Pagery pro <em>restaurace</em>"
+  lead="Paging systém přináší velké zvýšení efektivity. Číšník se hned dozví, že je jídlo připravené, host si přivolá obsluhu sám — méně pochůzek a rychlejší obrátka."
+  intro={["Paging systém usnadní a zrychlí komunikaci personálu. Je jídlo připravené k výdeji? Číšník, který objednávku zadal, dostane informaci na svůj pager. Využití je ale mnohem víc — od přivolání obsluhy ke stolu po vyhledání stolu podle pageru.", "Pagery propojíme přímo s pokladním systémem Septim."]}
+  introHeading="Co je paging systém se Septimem"
+  benefitsTitle="Způsoby využití"
+  benefits={benefits}
+  faqs={faqs}
+/>

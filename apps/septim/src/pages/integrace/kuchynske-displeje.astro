@@ -1,0 +1,27 @@
+---
+import IntegracePage from '../../components/IntegracePage.astro';
+const benefits = [
+  { icon: 'lucide:timer', title: 'Zkoordinovaný výdej', text: 'Systém fázuje přípravu tak, aby části objednávky byly hotové ve stejný čas.' },
+  { icon: 'lucide:users', title: 'Méně kvalifikovaná síla', text: 'Displeje vedou personál krok za krokem — udržíte kvalitu i s méně zkušenými lidmi.' },
+  { icon: 'lucide:gauge', title: 'Vyšší efektivita kuchyně', text: 'Chytré slučování prací a vytížení jednotlivých pracovišť.' },
+  { icon: 'lucide:bar-chart-3', title: 'Měření a zlepšování', text: 'Vyhodnocujte a vylepšujte postupy vaření na základě dat.' },
+];
+const faqs = [
+  { q: 'V čem kuchyňské displeje pomáhají nejvíc?', a: 'Zjednodušují celý proces přípravy jídla — zrychlí výdej a podchytí kvalitu. Displeje fungují jako pravá ruka šéfkuchaře: zobrazí, kdo má co a kdy na konkrétním pracovišti udělat.' },
+  { q: 'Pro koho se hodí?', a: 'Pro velké i střední restaurace, kde je šéfkuchař ochotný používat technologii. Návratnost investice bývá rychlá.' },
+  { q: 'Jak začít?', a: 'Kontaktujte naše konzultanty — proberou specifika provozu a navrhnou implementaci Septimu včetně nastavení kuchyňských displejů.' },
+];
+---
+<IntegracePage
+  title="Kuchyňské displeje (QSR) v systému Septim"
+  description="Systém kuchyňských displejů QSR Automations propojený se Septimem: zkoordinovaný výdej, vyšší efektivita kuchyně a udržení kvality jídel. Exkluzivně v ČR."
+  eyebrow="Integrace a zařízení"
+  titleHtml="Kuchyňské <em>displeje</em>"
+  lead="Systém kuchyňských displejů je klíčový krok v automatizaci kuchyně. Septim ho nabízí ve vyladěném spojení se světovou jedničkou — QSR Automations."
+  intro={["Displeje rozmístěné k jednotlivým pracovištím a chytrá inteligence na pozadí umožní řídit kuchyni jako hodinky. Systém pracuje podle zadaného receptu a postupu — například u dvou steaků odstartuje grilování každého v jiný čas a zkoordinuje hranolky i salát na stejný okamžik výdeje.", "Klíčem je vyladění s provozním systémem, které Septim má díky partnerství s QSR Automations."]}
+  introHeading="Kuchyně řízená jako hodinky"
+  benefitsTitle="Hlavní výhody"
+  benefits={benefits}
+  faqs={faqs}
+  partner="Exkluzivní zastoupení QSR Automations v ČR."
+/>

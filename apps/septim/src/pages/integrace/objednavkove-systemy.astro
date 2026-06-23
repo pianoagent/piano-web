@@ -1,0 +1,26 @@
+---
+import IntegracePage from '../../components/IntegracePage.astro';
+const benefits = [
+  { icon: 'lucide:qr-code', title: 'QR kód na stole', text: 'Host si objedná z mobilu přes Qerko — obsluha vidí objednávku ihned v Septimu.' },
+  { icon: 'lucide:monitor', title: 'Objednávkové kiosky', text: 'Samoobslužný kiosek s vaší nabídkou; zaplacená objednávka jde rovnou do pokladny.' },
+  { icon: 'lucide:shopping-cart', title: 'E-shop restaurace', text: 'Vlastní online prodej napojený na Septim — objednávky vidíte v pokladně i v kuchyni.' },
+  { icon: 'lucide:timer', title: 'Úspora času personálu', text: 'S menším počtem lidí obsloužíte víc hostů — soustředíte se na výdej.' },
+];
+const faqs = [
+  { q: 'Jaké typy objednávání nabízíte?', a: 'Tři: přes mobil a QR kód na stole (Qerko), přes samoobslužný kiosek, a přes vlastní e-shop napojený na Septim. Vše padá rovnou do pokladního systému.' },
+  { q: 'Co mi to přinese?', a: 'Hlavně rychlost obsluhy a úsporu času personálu — místo objednávání a placení se soustředíte na zpracování a výdej jídel.' },
+  { q: 'Jak vybrat to pravé?', a: 'Spojte se s našimi konzultanty — podle typu provozu navrhnou ideální kombinaci objednávkových systémů.' },
+];
+---
+<IntegracePage
+  title="Objednávkové systémy pro Septim – QR, kiosek, e-shop"
+  description="Objednávkové systémy napojené na Septim: objednání přes QR kód na stole (Qerko), samoobslužný kiosek nebo e-shop. Rychlejší obsluha a úspora času personálu."
+  eyebrow="Integrace a zařízení"
+  titleHtml="Objednávkové <em>systémy</em>"
+  lead="Nechte zákazníky objednávat samostatně — přes QR kód na stole, kiosek nebo e-shop. Objednávka padá rovnou do Septimu a do kuchyně."
+  intro={["Objednávkové systémy umožní zákazníkovi vstoupit do objednávky — vytvořit ji nebo doobjednat. Díky integrovaným řešením nabízíme tři cesty: mobil s QR kódem na stole (přes partnera Qerko), samoobslužný kiosek a vlastní e-shop.", "Všechny varianty se propojují přímo s pokladním systémem, takže odpadá ruční přepisování."]}
+  introHeading="Co jsou objednávkové systémy"
+  benefitsTitle="Tři způsoby objednávání"
+  benefits={benefits}
+  faqs={faqs}
+/>

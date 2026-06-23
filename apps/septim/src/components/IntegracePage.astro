@@ -1,0 +1,68 @@
+---
+/**
+ * IntegracePage — Septim app šablona pro stránky Integrace a zařízení (/integrace/*).
+ */
+import Base from '../layouts/Base.astro';
+import SiteHeader from './SiteHeader.astro';
+import SiteFooter from './SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import StatsBand from './StatsBand.astro';
+import LogoWall from './LogoWall.astro';
+import Faq from './Faq.astro';
+
+interface Item { icon?: string; title: string; text?: string; }
+interface Props {
+  title: string;
+  description: string;
+  eyebrow: string;
+  titleHtml: string;
+  lead: string;
+  intro: string[];
+  introHeading: string;
+  benefitsTitle: string;
+  benefits: Item[];
+  faqs: { q: string; a: string }[];
+  partner?: string;   // krátká poznámka o partnerovi (např. QSR Automations)
+}
+const { title, description, eyebrow, titleHtml, lead, intro, introHeading, benefitsTitle, benefits, faqs, partner } = Astro.props;
+---
+<Base title={title} description={description}>
+  <SiteHeader />
+  <main>
+    <Hero eyebrow={eyebrow} background="alt" lead={lead}>
+      <Heading slot="title" as="h1" size="display"><Fragment set:html={titleHtml} /></Heading>
+      <Fragment slot="actions">
+        <Button href="#poptavka">Chci propojit provoz</Button>
+        <Button href="/produkty/septim-4" variant="secondary">O systému Septim</Button>
+      </Fragment>
+    </Hero>
+
+    <Section background="default" space="lg">
+      <div class="prose">
+        <Heading as="h2" size="h2">{introHeading}</Heading>
+        {intro.map((p) => (<Text color="muted">{p}</Text>))}
+        {partner && <Text size="small" color="accent">{partner}</Text>}
+      </div>
+    </Section>
+
+    <USPGrid eyebrow="Výhody" title={benefitsTitle} items={benefits} background="alt" space="lg" minItemWidth="260px" />
+    <LogoWall label="Respektované provozy, které využívají Septim" background="default" />
+    <StatsBand />
+    <Faq items={faqs} title="Často kladené otázky" background="default" />
+    <LeadForm id="poptavka" variant="callback" background="alt"
+              title="Ukážeme vám Septim v praxi"
+              lead="Nechte nám telefon — domluvíme rychlou nezávaznou ukázku pro váš provoz." />
+  </main>
+  <SiteFooter />
+</Base>
+
+<style>
+  .prose { max-width: 760px; }
+  .prose > * + * { margin-top: var(--space-4); }
+</style>

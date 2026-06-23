@@ -37,8 +37,11 @@ export const PIANO_PRODUCTS: PianoProduct[] = [
   { id: 'grason',   label: 'Grason',         href: 'https://www.grason.cz',         description: 'Brigádníci, směny, píchačky',    icon: 'lucide:users',           group: 'hoste' },
 ];
 
+// DEMO: dočasně odkazujeme na nasazené weby <id>-web.pages.dev, ať jde ekosystém
+// proklikat. Finální URL jsou v `href` u každého produktu — po nasazení na domény
+// stačí přepnout `toLink` zpět na `p.href`.
 const toLink = (p: PianoProduct): NavLink => ({
-  label: p.label, href: p.href, description: p.description, icon: p.icon, badge: p.badge,
+  label: p.label, href: `https://${p.id}-web.pages.dev`, description: p.description, icon: p.icon, badge: p.badge,
 });
 
 /** Sestaví Piano mega panel pro daný web; `currentId` se vynechá. */

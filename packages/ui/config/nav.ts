@@ -6,6 +6,8 @@
  * routing produktů, stačí upravit `href`.
  */
 
+import { buildPianoMega } from './piano-ecosystem';
+
 export interface NavLink {
   label: string;
   href: string;
@@ -38,17 +40,9 @@ export const products: NavLink[] = [
   { label: 'Terminál', href: 'https://terminal-web.pages.dev', description: 'Platební terminály', icon: 'lucide:credit-card' },
 ];
 
-/** Mega menu — Produkty */
-const productsMega: MegaPanel = {
-  featured: {
-    label: 'Doporučeno',
-    items: [
-      { label: 'Qerko', href: 'https://qerko-web.pages.dev', description: 'Platby u stolu a QR objednávky', icon: 'lucide:qr-code', badge: 'Oblíbené' },
-      { label: 'Pilot', href: 'https://pilot-web.pages.dev', description: 'Celý provoz v mobilní appce', icon: 'lucide:smartphone', badge: 'Nový' },
-    ],
-  },
-  columns: [{ label: 'Všechny produkty', links: products }],
-};
+// „Produkty" na piano.cz = celý Piano ekosystém (stejný panel jako na ostatních
+// webech, jen label „Produkty"). Nic se nevynechává — piano.cz je rozcestník.
+const produktyMega: MegaPanel = buildPianoMega();
 
 /** Mega menu — Řešení (podle problému) */
 const reseniMega: MegaPanel = {
@@ -73,7 +67,7 @@ const reseniMega: MegaPanel = {
 };
 
 export const mainNav: NavItem[] = [
-  { label: 'Produkty', href: '/produkty', mega: productsMega },
+  { label: 'Produkty', href: '/produkty', mega: produktyMega },
   { label: 'Řešení', href: '/reseni', mega: reseniMega },
   { label: 'Ceník', href: '/cenik' },
   { label: 'Blog', href: '/blog' },
