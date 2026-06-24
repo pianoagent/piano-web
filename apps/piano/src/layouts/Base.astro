@@ -1,10 +1,14 @@
 ---
 /**
  * Base — layout webu piano.cz.
- * Načte téma (barvy/fonty) + sdílenou SEO hlavičku. Definuje Organization schema.
+ * Globálně: téma, SEO hlavička, Header + <main> + Footer.
+ * Stránky dodávají JEN vnitřní obsah (do <slot/>). Hlavička/patička se tak
+ * nastavují na jednom místě.
  */
 import '../styles/theme.css';
 import BaseHead from '@piano/ui/layouts/BaseHead.astro';
+import Header from '@piano/ui/components/Header.astro';
+import Footer from '@piano/ui/components/Footer.astro';
 
 interface Props {
   title: string;
@@ -12,11 +16,13 @@ interface Props {
   image?: string;
   type?: 'website' | 'article';
   noindex?: boolean;
-  schema?: object;   // JSON-LD per stránka
+  schema?: object;             // JSON-LD per stránka
+  headerTransparent?: boolean; // overlay header přes hero (per stránka)
 }
 
 const SITE_NAME = 'Piano';
 const SITE_URL = 'https://piano.cz';
+const LOGO = '/logos/piano_color.svg';
 
 const {
   title,
@@ -25,6 +31,7 @@ const {
   type = 'website',
   noindex = false,
   schema,
+  headerTransparent = false,
 } = Astro.props;
 
 const organizationSchema = {
@@ -32,7 +39,7 @@ const organizationSchema = {
   '@type': 'Organization',
   name: 'Piano Solutions',
   url: SITE_URL,
-  logo: `${SITE_URL}/logo.svg`,
+  logo: `${SITE_URL}${LOGO}`,
   contactPoint: {
     '@type': 'ContactPoint',
     contactType: 'sales',
@@ -60,6 +67,10 @@ const schemas = [organizationSchema, ...(schema ? [schema] : [])];
     />
   </head>
   <body>
-    <slot />
+    <Header logoSrc={LOGO} transparent={headerTransparent} />
+    <main>
+      <slot />
+    </main>
+    <Footer logoSrc={LOGO} logoAlt="Piano" />
   </body>
 </html>

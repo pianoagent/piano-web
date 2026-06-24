@@ -4,8 +4,6 @@
  * Obsah: wordpress-export/pages/eet.md. Sdílené komponenty @piano/ui.
  */
 import Base from '../layouts/Base.astro';
-import Header from '@piano/ui/components/Header.astro';
-import Footer from '@piano/ui/components/Footer.astro';
 import Section from '@piano/ui/components/Section.astro';
 import Hero from '@piano/ui/components/Hero.astro';
 import Heading from '@piano/ui/components/Heading.astro';
@@ -44,9 +42,7 @@ const faqSchema = {
 <Base title="EET 2.0 — s Pianem to zvládnete hladce"
       description="EET 2.0 startuje v roce 2027. Jako technologický partner zajistíme vše potřebné — pokladní systém připravený na nová pravidla, instalaci i zaškolení. Konzultace zdarma."
       schema={faqSchema}>
-  <Header logoSrc="/logos/piano_color.svg" />
 
-  <main>
 
   <Hero eyebrow="EET 2.0" background="primary"
         lead="Ohlášený start EET 2.0 v roce 2027 vás nemusí trápit. Jako technologický partner zajistíme vše potřebné, stejně jako před lety. Získejte náskok a vyřešte evidenci tržeb jednou provždy.">
@@ -77,9 +73,7 @@ const faqSchema = {
             title="Jde vám hlava kolem z nařízení?"
             lead="Nechte nám kontakt a společně to vyřešíme — konzultace zdarma a nezávazně." />
 
-  </main>
 
-  <Footer logoSrc="/logos/piano_color.svg" logoAlt="Piano" />
 </Base>
 
 <style>

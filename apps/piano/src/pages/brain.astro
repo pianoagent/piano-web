@@ -4,8 +4,6 @@
  * Datový engine ekosystému. Obsah dle bloku #page-brain (piano-web-2026.html).
  */
 import Base from '../layouts/Base.astro';
-import Header from '@piano/ui/components/Header.astro';
-import Footer from '@piano/ui/components/Footer.astro';
 import Hero from '@piano/ui/components/Hero.astro';
 import Heading from '@piano/ui/components/Heading.astro';
 import Button from '@piano/ui/components/Button.astro';
@@ -28,9 +26,7 @@ const co = [
 
 <Base title="Piano Brain — datový engine Piano ekosystému"
       description="Piano Brain je datový engine ekosystému Piano. Tržní data na úrovni ulice, položky a ceny — pohání AI asistenta v Piano Pilotu a dává přehled dodavatelům do gastra.">
-  <Header logoSrc="/logos/piano_color.svg" />
 
-  <main>
   <Hero eyebrow="Datový engine Piano ekosystému" background="primary"
         lead="Piano Brain pohání AI asistenta v Piano Pilotu pro majitele restaurací a zároveň dává dodavatelům do gastra přehled o trhu na úrovni ulice, položky a ceny. Jedno místo, desítky zdrojů.">
     <Heading slot="title" as="h1" size="display" color="on-dark">Tržní data, která dřív <em>neexistovala</em></Heading>
@@ -48,7 +44,5 @@ const co = [
   <LeadForm id="poptavka" variant="callback"
             title="Chcete vidět Piano Brain v akci?"
             lead="Nechte nám číslo a ukážeme vám data o vašem trhu." />
-  </main>
 
-  <Footer logoSrc="/logos/piano_color.svg" logoAlt="Piano" />
 </Base>
