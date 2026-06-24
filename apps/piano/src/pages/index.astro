@@ -114,32 +114,32 @@ const faqSchema = {
       <div class="solscroll__inner">
         <div class="solscroll__content">
 
-          <!-- Levý sloupec: hlavička + nav + tečky -->
-          <div class="solscroll__nav-col">
+          <!-- Levý sloupec: VEŠKERÝ text (přepínač + rozbalený detail) -->
+          <div class="solscroll__text-col">
             <Text size="label" color="accent">Každý provoz je jedinečný</Text>
             <Heading as="h2" size="h3" class="solscroll__title">Široká paleta nástrojů, která se přizpůsobí vám</Heading>
-            <nav class="solscroll__nav">
+
+            <nav class="solscroll__acc">
               {categories.map((c, i) => (
-                <button class:list={['solscroll__navitem', i === 0 && 'is-active']} data-navitem data-idx={i} type="button">{c.title}</button>
+                <div class:list={['solscroll__item', i === 0 && 'is-active']} data-item>
+                  <button class="solscroll__head" data-navitem data-idx={i} type="button">{c.title}</button>
+                  <div class="solscroll__body">
+                    <Text color="muted" class="solscroll__lead">{c.text}</Text>
+                    <ul class="solscroll__list">{c.items.map((it) => <li>{it}</li>)}</ul>
+                  </div>
+                </div>
               ))}
             </nav>
+
             <div class="solscroll__dots">
               {categories.map((_, i) => (<span class:list={['solscroll__dot', i === 0 && 'is-active']} data-dot></span>))}
             </div>
           </div>
 
-          <!-- Pravý sloupec: slidy -->
-          <div class="solscroll__slides">
+          <!-- Pravý sloupec: jen velká fotka -->
+          <div class="solscroll__media">
             {categories.map((c, i) => (
-              <article class:list={['solscroll__slide', i === 0 && 'is-active']} data-slide>
-                <div class="solscroll__visual"><img src={c.img} alt={c.title} loading="lazy" width="480" height="320" /></div>
-                <div class="solscroll__text">
-                  <Text size="label" color="accent">{c.title}</Text>
-                  <Heading as="h3" size="h2">{c.headline}</Heading>
-                  <Text size="lead" color="muted" class="solscroll__lead">{c.text}</Text>
-                  <ul class="solscroll__list">{c.items.map((it) => <li>{it}</li>)}</ul>
-                </div>
-              </article>
+              <img class:list={['solscroll__photo', i === 0 && 'is-active']} data-photo src={c.img} alt={c.title} loading="lazy" width="900" height="675" />
             ))}
           </div>
 
@@ -220,61 +220,59 @@ const faqSchema = {
   .stat__num { font-family: var(--font-sans); font-weight: var(--font-weight-semibold); font-size: clamp(28px, 4vw, 44px); color: var(--color-text-accent); letter-spacing: var(--letter-spacing-tight); }
   .stat__lbl { font-size: var(--font-size-small); color: var(--color-text-muted); }
 
-  /* Kategorie — sticky scroll */
+  /* Kategorie — sticky scroll: VEŠKERÝ text vlevo, velká fotka vpravo */
   .solscroll { background: var(--color-bg-alt); }
   .solscroll__pin { position: relative; }
   .solscroll__inner { position: sticky; top: 0; height: 100vh; display: flex; align-items: center; overflow: hidden; }
-  .solscroll__content { display: flex; gap: var(--space-8); width: 100%; max-width: var(--container-max); margin: 0 auto; padding-inline: var(--container-pad); height: min(560px, 80vh); }
-
-  /* Levý sloupec */
-  .solscroll__nav-col { flex: 0 0 280px; display: flex; flex-direction: column; justify-content: center; border-right: 1px solid var(--color-border); padding-right: var(--space-6); }
-  .solscroll__title { margin: var(--space-3) 0 var(--space-6); }
-  .solscroll__nav { display: flex; flex-direction: column; }
-  .solscroll__navitem {
-    text-align: left; background: none; border: none; cursor: pointer;
-    font-family: var(--font-sans); font-size: var(--font-size-body); font-weight: var(--font-weight-medium);
-    color: var(--color-text-muted); padding: var(--space-3) 0 var(--space-3) var(--space-4);
-    border-left: 2px solid var(--color-border); transition: var(--transition);
+  .solscroll__content {
+    display: grid; grid-template-columns: 0.82fr 1.18fr; gap: var(--space-8); align-items: center;
+    width: 100%; max-width: var(--container-max); margin: 0 auto; padding-inline: var(--container-pad);
   }
-  .solscroll__navitem:hover { color: var(--color-text); }
-  .solscroll__navitem.is-active { color: var(--color-text-accent); border-left-color: var(--color-primary); font-weight: var(--font-weight-semibold); }
-  .solscroll__dots { display: flex; gap: var(--space-2); margin-top: var(--space-5); padding-left: var(--space-4); }
+
+  /* Levý sloupec — všechen text */
+  .solscroll__title { margin: var(--space-3) 0 var(--space-6); }
+
+  /* Accordion kategorií (přepínač + rozbalený detail aktivní) */
+  .solscroll__acc { display: flex; flex-direction: column; gap: var(--space-2); }
+  .solscroll__item { border-left: 2px solid var(--color-border); padding-left: var(--space-5); transition: border-color var(--duration-base) var(--easing); }
+  .solscroll__item.is-active { border-left-color: var(--color-primary); }
+  .solscroll__head {
+    text-align: left; background: none; border: none; cursor: pointer; width: 100%;
+    font-family: var(--font-sans); font-size: var(--font-size-lead); font-weight: var(--font-weight-medium);
+    color: var(--color-text-muted); padding: var(--space-2) 0; transition: var(--transition);
+  }
+  .solscroll__head:hover { color: var(--color-text); }
+  .solscroll__item.is-active .solscroll__head { color: var(--color-text-accent); font-weight: var(--font-weight-semibold); }
+  /* tělo — rozbalí se jen u aktivní (grid-rows trik, plynule) */
+  .solscroll__body { display: grid; grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows var(--duration-base) var(--easing), opacity var(--duration-base) var(--easing); }
+  .solscroll__body > * { overflow: hidden; min-height: 0; }
+  .solscroll__item.is-active .solscroll__body { grid-template-rows: 1fr; opacity: 1; padding-bottom: var(--space-3); }
+  .solscroll__lead { margin-bottom: var(--space-3); }
+  .solscroll__list { list-style: none; display: flex; flex-direction: column; gap: var(--space-2); }
+  .solscroll__list li { position: relative; padding-left: var(--space-5); color: var(--color-text-muted); font-size: var(--font-size-small); }
+  .solscroll__list li::before { content: "✓"; position: absolute; left: 0; color: var(--color-text-accent); font-weight: 700; }
+
+  .solscroll__dots { display: flex; gap: var(--space-2); margin-top: var(--space-6); }
   .solscroll__dot { width: 7px; height: 7px; border-radius: var(--radius-full); background: var(--color-border-strong); transition: var(--transition); }
   .solscroll__dot.is-active { background: var(--color-primary); transform: scale(1.4); }
 
-  /* Pravý sloupec — slidy */
-  .solscroll__slides { flex: 1; position: relative; }
-  .solscroll__slide {
-    position: absolute; inset: 0; display: flex; align-items: center; gap: var(--space-7);
-    opacity: 0; transform: translateY(24px); transition: opacity var(--duration-base) var(--easing), transform var(--duration-base) var(--easing);
-    pointer-events: none;
-  }
-  .solscroll__slide.is-active { opacity: 1; transform: none; pointer-events: auto; }
-  .solscroll__visual {
-    flex: 0 0 46%; aspect-ratio: 3 / 2; border-radius: var(--radius-md); overflow: hidden;
-    box-shadow: var(--shadow-lg);
-  }
-  .solscroll__visual img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .solscroll__text { flex: 1; }
-  .solscroll__text :global(h3) { margin: var(--space-2) 0 0; }
-  .solscroll__lead { margin: var(--space-4) 0; }
-  .solscroll__list { list-style: none; display: flex; flex-direction: column; gap: var(--space-2); }
-  .solscroll__list li { position: relative; padding-left: var(--space-5); color: var(--color-text-muted); }
-  .solscroll__list li::before { content: "✓"; position: absolute; left: 0; color: var(--color-text-accent); font-weight: 700; }
+  /* Pravý sloupec — velká fotka (cross-fade) */
+  .solscroll__media { position: relative; aspect-ratio: 4 / 3; border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-lg); }
+  .solscroll__photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity var(--duration-base) var(--easing); }
+  .solscroll__photo.is-active { opacity: 1; }
 
-  /* Mobil / tablet — pin se vypne, slidy se naskládají pod sebe */
+  /* Mobil / tablet — pin se vypne, všechny kategorie rozbalené, fotky skryté */
   @media (max-width: 880px) {
     .solscroll__pin { height: auto !important; }
     .solscroll__inner { position: static; height: auto; padding-block: var(--space-8); }
-    .solscroll__content { flex-direction: column; height: auto; gap: var(--space-6); }
-    .solscroll__nav-col { border-right: none; padding-right: 0; flex-basis: auto; }
-    .solscroll__nav, .solscroll__dots { display: none; }
-    .solscroll__slides { display: flex; flex-direction: column; gap: var(--space-6); }
-    .solscroll__slide { position: static; opacity: 1; transform: none; pointer-events: auto; flex-direction: column; align-items: stretch; gap: var(--space-4); }
-    .solscroll__visual { flex-basis: auto; width: 100%; }
+    .solscroll__content { grid-template-columns: 1fr; gap: var(--space-5); }
+    .solscroll__dots { display: none; }
+    .solscroll__head { cursor: default; }
+    .solscroll__body, .solscroll__item.is-active .solscroll__body { grid-template-rows: 1fr; opacity: 1; padding-bottom: var(--space-3); }
+    .solscroll__media { display: none; }
   }
   @media (prefers-reduced-motion: reduce) {
-    .solscroll__slide { transition: none; }
+    .solscroll__photo, .solscroll__body { transition: none; }
   }
 
   /* Ekosystém */
@@ -318,18 +316,19 @@ const faqSchema = {
   const root = document.querySelector('[data-solscroll]') as HTMLElement | null;
   if (root) {
     const pin = root.querySelector('.solscroll__pin') as HTMLElement;
-    const slides = Array.from(root.querySelectorAll('[data-slide]'));
+    const items = Array.from(root.querySelectorAll('[data-item]'));
+    const photos = Array.from(root.querySelectorAll('[data-photo]'));
     const navs = Array.from(root.querySelectorAll('[data-navitem]'));
     const dots = Array.from(root.querySelectorAll('[data-dot]'));
-    const N = slides.length;
+    const N = items.length;
     const desktop = window.matchMedia('(min-width: 881px)');
     let current = -1;
 
     const setActive = (i: number) => {
       if (i === current) return;
       current = i;
-      slides.forEach((s, n) => s.classList.toggle('is-active', n === i));
-      navs.forEach((s, n) => s.classList.toggle('is-active', n === i));
+      items.forEach((s, n) => s.classList.toggle('is-active', n === i));
+      photos.forEach((s, n) => s.classList.toggle('is-active', n === i));
       dots.forEach((s, n) => s.classList.toggle('is-active', n === i));
     };
 
