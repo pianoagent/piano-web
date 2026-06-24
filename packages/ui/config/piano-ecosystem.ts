@@ -42,18 +42,24 @@ export const PIANO_PRODUCTS: PianoProduct[] = [
 // DEMO: dočasně odkazujeme na nasazené weby <id>-web.pages.dev, ať jde ekosystém
 // proklikat. Finální URL jsou v `href` u každého produktu — po nasazení na domény
 // stačí přepnout `toLink` zpět na `p.href`.
-// Produkty s `path` žijí na piano.cz → odkaz dovnitř (funguje na piano webu).
-// Ostatní jdou DEMO na <id>-web.pages.dev (po nasazení na domény přepnout na p.href).
-const toLink = (p: PianoProduct): NavLink => ({
-  label: p.label, href: p.path ?? `https://${p.id}-web.pages.dev`, description: p.description, icon: p.icon, badge: p.badge,
-  // Odkaz na jiný produkt = jiný web → nová karta (interní piano.cz stránky s `path` zůstávají ve stejné kartě)
-  external: !p.path,
-});
+//
+// Produkty s `path` žijí na piano.cz:
+//   - na samotném piano webu (onPiano) → interní relativní odkaz, stejná karta
+//   - na cizím webu (Septim, Grason…) → ABSOLUTNÍ odkaz na piano.cz + nová karta
+//     (jinak by se z '/pilot' stalo septim-web.pages.dev/pilot = 404)
+// Ostatní produkty = samostatné weby → vždy absolutně + nová karta.
+const toLink = (p: PianoProduct, onPiano: boolean): NavLink => {
+  const base = { label: p.label, description: p.description, icon: p.icon, badge: p.badge };
+  if (p.path) {
+    return { ...base, href: onPiano ? p.path : `https://piano.cz${p.path}`, external: !onPiano };
+  }
+  return { ...base, href: `https://${p.id}-web.pages.dev`, external: true };
+};
 
-/** Sestaví Piano mega panel pro daný web; `currentId` se vynechá. */
-export function buildPianoMega(currentId?: string): MegaPanel {
+/** Sestaví Piano mega panel pro daný web; `currentId` se vynechá. `onPiano`=true jen na webu piano.cz. */
+export function buildPianoMega(currentId?: string, onPiano = false): MegaPanel {
   const items = PIANO_PRODUCTS.filter((p) => p.id !== currentId);
-  const byGroup = (g: Group) => items.filter((p) => p.group === g).map(toLink);
+  const byGroup = (g: Group) => items.filter((p) => p.group === g).map((p) => toLink(p, onPiano));
 
   const columns = [
     { label: 'Pokladna & provoz', links: byGroup('pokladna') },

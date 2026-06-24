@@ -43,7 +43,7 @@ export const products: NavLink[] = [
 
 // „Produkty" na piano.cz = celý Piano ekosystém (stejný panel jako na ostatních
 // webech, jen label „Produkty"). Nic se nevynechává — piano.cz je rozcestník.
-const produktyMega: MegaPanel = buildPianoMega();
+const produktyMega: MegaPanel = buildPianoMega(undefined, true);
 
 /** Mega menu — Řešení (podle problému) */
 const reseniMega: MegaPanel = {
