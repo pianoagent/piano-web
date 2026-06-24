@@ -25,7 +25,7 @@
   --font-size-caption: 12px;
   --font-size-label:   13px;
 
-  --line-height-display: 0.98;
+  --line-height-display: 1.1;
   --line-height-heading: 1.06;
   --line-height-snug:    1.12;
   --line-height-lead:    1.45;
@@ -37,7 +37,7 @@
   --letter-spacing-wide:   0.08em;
 
   --text-display: var(--font-weight-medium) var(--font-size-display)/var(--line-height-display) var(--font-sans);
-  --text-h1:      var(--font-weight-medium) var(--font-size-h1)/1.02 var(--font-sans);
+  --text-h1:      var(--font-weight-medium) var(--font-size-h1)/1.1 var(--font-sans);
   --text-h2:      var(--font-weight-medium) var(--font-size-h2)/var(--line-height-heading) var(--font-sans);
   --text-h3:      var(--font-weight-medium) var(--font-size-h3)/var(--line-height-snug) var(--font-sans);
   --text-lead:    var(--font-weight-regular) var(--font-size-lead)/var(--line-height-lead) var(--font-sans);
