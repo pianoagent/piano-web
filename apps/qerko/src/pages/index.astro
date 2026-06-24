@@ -124,7 +124,7 @@ const leadProofs = [
   <main>
 
   <!-- HERO -->
-  <Hero eyebrow="Pomocník na place" background="gradient" align="center"
+  <Hero eyebrow="Pomocník na place" background="gradient"
         lead="Qerko pomáhá číšníkům připravit pro hosty bezchybný zážitek. Hosté platí a objednávají z mobilu, dávají vyšší dýško a lepší recenze — a obsluha má čas na to podstatné."
         usp={['+20 % otočených stolů', '+40 % vyšší dýško', '4 min ušetřené na stůl', '1,5 mil.+ hostů']}>
     <Heading slot="title" as="h1" size="display" color="on-dark">Skvělí hosté si zaslouží <em>skvělý servis</em></Heading>
@@ -132,6 +132,90 @@ const leadProofs = [
       <Button href="#poptavka">Chci Qerko</Button>
       <Button href="#jak-to-funguje" variant="secondary" onDark>Jak to funguje</Button>
     </Fragment>
+    <figure slot="media" class="hero-figure" aria-label="Qerko — platba a objednávka z mobilu přímo od stolu">
+      <svg class="hero-phone" viewBox="0 0 460 540" xmlns="http://www.w3.org/2000/svg" role="img">
+        <defs>
+          <filter id="qp-shadow" x="-30%" y="-30%" width="160%" height="160%">
+            <feDropShadow dx="0" dy="14" stdDeviation="20" flood-color="#06352A" flood-opacity="0.28"/>
+          </filter>
+          <filter id="qp-shadow-sm" x="-40%" y="-40%" width="180%" height="180%">
+            <feDropShadow dx="0" dy="6" stdDeviation="9" flood-color="#06352A" flood-opacity="0.22"/>
+          </filter>
+        </defs>
+
+        <!-- Telefon -->
+        <g filter="url(#qp-shadow)">
+          <rect x="124" y="22" width="212" height="496" rx="34" fill="#FFFFFF"/>
+          <rect x="136" y="36" width="188" height="468" rx="24" fill="#F5F9F7"/>
+          <rect x="202" y="48" width="56" height="10" rx="5" fill="#DCE7E1"/>
+        </g>
+
+        <!-- Hlavička účtu -->
+        <text x="154" y="92" font-size="17" font-weight="700" fill="#1A241F">Stůl 12</text>
+        <text x="154" y="110" font-size="10" font-weight="500" fill="#5E6E66">Restaurace Masaryčka</text>
+        <!-- QR značka -->
+        <g transform="translate(276,74)" fill="#06352A">
+          <rect x="0" y="0" width="11" height="11" rx="2"/><rect x="15" y="0" width="11" height="11" rx="2"/>
+          <rect x="0" y="15" width="11" height="11" rx="2"/><rect x="15" y="15" width="6" height="6" rx="1"/>
+          <rect x="24" y="19" width="6" height="6" rx="1"/><rect x="24" y="0" width="6" height="6" rx="1"/>
+        </g>
+
+        <!-- Položky účtu -->
+        <g font-size="12" font-weight="600" fill="#1A241F">
+          <text x="154" y="148">2× Pivo</text>           <text x="318" y="148" text-anchor="end" fill="#5E6E66">120 Kč</text>
+          <text x="154" y="176">1× Svíčková</text>      <text x="318" y="176" text-anchor="end" fill="#5E6E66">245 Kč</text>
+          <text x="154" y="204">1× Káva</text>           <text x="318" y="204" text-anchor="end" fill="#5E6E66">65 Kč</text>
+        </g>
+        <line x1="154" y1="222" x2="318" y2="222" stroke="#DCE7E1" stroke-width="1.5"/>
+
+        <!-- Rozdělit účet -->
+        <text x="154" y="250" font-size="11" font-weight="600" fill="#1A241F">Rozdělit účet</text>
+        <g transform="translate(286,240)">
+          <rect x="0" y="0" width="32" height="18" rx="9" fill="#008556"/>
+          <circle cx="23" cy="9" r="6.5" fill="#FFFFFF"/>
+        </g>
+
+        <!-- Spropitné -->
+        <text x="154" y="286" font-size="10" font-weight="600" fill="#5E6E66">Spropitné</text>
+        <g transform="translate(154,294)">
+          <rect x="0" y="0" width="48" height="26" rx="13" fill="none" stroke="#C2D2C9" stroke-width="1.5"/>
+          <text x="24" y="17" font-size="11" font-weight="600" fill="#1A241F" text-anchor="middle">10 %</text>
+          <rect x="58" y="0" width="48" height="26" rx="13" fill="#008556"/>
+          <text x="82" y="17" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle">15 %</text>
+          <rect x="116" y="0" width="48" height="26" rx="13" fill="none" stroke="#C2D2C9" stroke-width="1.5"/>
+          <text x="140" y="17" font-size="11" font-weight="600" fill="#1A241F" text-anchor="middle">20 %</text>
+        </g>
+
+        <!-- Celkem -->
+        <text x="154" y="362" font-size="11" font-weight="500" fill="#5E6E66">Celkem se spropitným</text>
+        <text x="318" y="364" text-anchor="end" font-size="18" font-weight="700" fill="#008556">494 Kč</text>
+
+        <!-- Tlačítko Zaplatit -->
+        <g transform="translate(154,380)">
+          <rect x="0" y="0" width="164" height="42" rx="21" fill="#008556"/>
+          <text x="82" y="27" font-size="14" font-weight="700" fill="#FFFFFF" text-anchor="middle">Zaplatit</text>
+        </g>
+        <text x="236" y="448" font-size="9" font-weight="500" fill="#97A89F" text-anchor="middle">Apple Pay · karta · stravenky</text>
+
+        <!-- Plovoucí odznak: hodnocení -->
+        <g filter="url(#qp-shadow-sm)" transform="translate(24,150)">
+          <rect x="0" y="0" width="132" height="46" rx="23" fill="#FFFFFF"/>
+          <g transform="translate(16,15)" fill="#00B579">
+            <path d="M8 0l2.2 4.6 5 .7-3.6 3.5.9 5L8 11.4 3.5 13.8l.9-5L.8 5.3l5-.7z"/>
+            <g transform="translate(17,0)"><path d="M8 0l2.2 4.6 5 .7-3.6 3.5.9 5L8 11.4 3.5 13.8l.9-5L.8 5.3l5-.7z"/></g>
+            <g transform="translate(34,0)"><path d="M8 0l2.2 4.6 5 .7-3.6 3.5.9 5L8 11.4 3.5 13.8l.9-5L.8 5.3l5-.7z"/></g>
+          </g>
+          <text x="74" y="30" font-size="11" font-weight="700" fill="#1A241F">Google 4,9</text>
+        </g>
+
+        <!-- Plovoucí odznak: dýško -->
+        <g filter="url(#qp-shadow-sm)" transform="translate(300,400)">
+          <rect x="0" y="0" width="138" height="46" rx="23" fill="#00B579"/>
+          <text x="22" y="29" font-size="15" font-weight="700" fill="#FFFFFF">＋40 %</text>
+          <text x="84" y="29" font-size="12" font-weight="600" fill="#FFFFFF">dýško</text>
+        </g>
+      </svg>
+    </figure>
   </Hero>
 
   <!-- LOGA KLIENTŮ -->
@@ -274,6 +358,10 @@ const leadProofs = [
 </Base>
 
 <style>
+  /* Hero grafika — telefon s platbou (inline SVG, bez externích assetů) */
+  .hero-figure { margin: 0; width: 100%; display: flex; justify-content: center; line-height: 0; }
+  .hero-phone { width: 100%; max-width: 420px; height: auto; display: block; }
+
   /* Sdílená hlavička sekce */
   .head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-7); }
   .head--center { text-align: center; }
