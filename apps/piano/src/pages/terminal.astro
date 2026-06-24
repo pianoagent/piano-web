@@ -40,20 +40,20 @@ const steps = [
   { icon: 'lucide:check-check', title: 'Částka se odečte z vyúčtování', text: 'Automaticky, v jednom přehledném vyúčtování.' },
 ];
 
-// Srovnání — vše jsou výhody Piano Terminálu (ostatní terminály je nemají)
+// Srovnání: Piano vždy ✓; ostatní terminály — no (nemají) / maybe (možná) / yes (mají)
 const compare = [
-  'Unikátní data o hostech v čase (štamgasti vs. noví)',
-  'Platby dodavatelům na kliknutí (bez hotovosti)',
-  'Expresní servis',
-  'Osobní Account Manažer',
-  'Celoevropská licence ČNB',
-  'Česká podpora 24/7',
-  'Plná integrace s pokladnou',
-  'Vše v jednom (mobilní číšník, objednávka, markování, tisk)',
-  'Vyšší spropitné díky chytrému displeji',
-  'Vyplácení tržeb každý pracovní den',
-  'Podpora stravenkových karet',
-  'Odolný hardware (výdrž až 10 hodin)',
+  { label: 'Unikátní data o hostech v čase (štamgasti vs. noví)', other: 'no' },
+  { label: 'Platby dodavatelům na kliknutí (bez hotovosti)', other: 'no' },
+  { label: 'Expresní servis', other: 'no' },
+  { label: 'Osobní Account Manažer', other: 'no' },
+  { label: 'Celoevropská licence ČNB', other: 'maybe' },
+  { label: 'Česká podpora 24/7', other: 'maybe' },
+  { label: 'Plná integrace s pokladnou', other: 'maybe' },
+  { label: 'Vše v jednom (mobilní číšník, objednávka, markování, tisk)', other: 'yes' },
+  { label: 'Vyšší spropitné díky chytrému displeji', other: 'yes' },
+  { label: 'Vyplácení tržeb každý pracovní den', other: 'yes' },
+  { label: 'Podpora stravenkových karet', other: 'yes' },
+  { label: 'Odolný hardware (výdrž až 10 hodin)', other: 'yes' },
 ];
 ---
 
@@ -107,9 +107,13 @@ const compare = [
         <tbody>
           {compare.map((row) => (
             <tr>
-              <td>{row}</td>
+              <td>{row.label}</td>
               <td class="cmp__yes"><Icon name="lucide:check" size="sm" /></td>
-              <td class="cmp__no"><Icon name="lucide:x" size="sm" /></td>
+              <td>
+                {row.other === 'yes' && <span class="cmp__yes"><Icon name="lucide:check" size="sm" /></span>}
+                {row.other === 'no' && <span class="cmp__no"><Icon name="lucide:x" size="sm" /></span>}
+                {row.other === 'maybe' && <span class="cmp__maybe" title="Záleží na poskytovateli">?</span>}
+              </td>
             </tr>
           ))}
         </tbody>
@@ -191,7 +195,8 @@ const compare = [
   .cmp__table td:nth-child(2), .cmp__table td:nth-child(3) { text-align: center; width: 130px; }
   .cmp__table td:first-child { color: var(--color-text); }
   .cmp__yes { color: var(--color-success); }
-  .cmp__no { color: var(--color-neutral-300); }
+  .cmp__no { color: var(--color-error); }
+  .cmp__maybe { color: var(--color-neutral-400); font-weight: var(--font-weight-semibold); }
 
   /* Ceník */
   .prices { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-5); margin-top: var(--space-7); }
