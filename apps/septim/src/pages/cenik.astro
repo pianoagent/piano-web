@@ -13,27 +13,27 @@ import LeadForm from '@piano/ui/components/LeadForm.astro';
 import Faq from '../components/Faq.astro';
 
 const tiers = [
-  { name: 'Air', price: '1 990 Kč', unit: '/měsíc', note: '10 % sleva při roční platbě · max. 1 pokladna',
-    feats: ['Skvělá pokladní aplikace', 'Evidence dodacích listů', 'Mobilní číšník s platbou', 'Integrace Protel, Qerko, Autset'], highlight: false },
-  { name: 'Flex', price: 'Na míru', unit: '', note: 'Pro rostoucí provozy',
-    feats: ['Vše z Air', 'Pokročilé skladové hospodářství', 'Inventury a kalkulace', 'Reporty a přehledy'], highlight: true },
-  { name: 'Prime', price: 'Na míru', unit: '', note: 'Pro náročné provozy',
-    feats: ['Vše z Flex', 'Věrnostní systém (CRM)', 'Pokročilé datové přehledy', 'Manažerské funkce'], highlight: false },
-  { name: 'Elite', price: 'Na míru', unit: '', note: 'Pro sítě a velké provozy',
-    feats: ['Vše z Prime', 'Centrální správa poboček', 'Databanka receptur a CRM', 'Řešení na míru'], highlight: false },
+  { name: 'Air', price: '1 990 Kč', unit: '/měsíc', note: 'za pokladnu · 10% sleva při roční platbě · max. 1 pokladna',
+    feats: ['Skvělá pokladní aplikace', 'Evidence dodacích listů', 'Moderní mobilní číšník s platbou', 'Integrace s hotelovým systémem Protel', 'Integrace s Qerko', 'Integrace s Autset (import dodacích listů)'], highlight: false },
+  { name: 'Flex', price: '2 990 Kč', unit: '/měsíc', note: 'za pokladnu · 10% sleva ročně · 2. a další pokladna −50% · provozy s 1–5 pokladnami',
+    feats: ['Skvělá pokladní aplikace', 'Pokročilé skladové hospodářství', 'Moderní mobilní číšník s platbou', 'Integrace Protel, Qerko, Autset', 'Online přístup k datům'], highlight: false },
+  { name: 'Prime', price: '3 990 Kč', unit: '/měsíc', note: 'za pokladnu · 10% sleva ročně · 2. a další pokladna −50% · provozy s 1–5 pokladnami',
+    feats: ['Vše z Flex.licence', 'Integrace na kuchyňské displeje', 'VIP podpora', 'Septim WebCare — rozhraní pro zákazníky', 'Hromadná výroba jídel', 'Více středisek, offline provoz a replikace', 'Zakázkový reporting', 'Integrace na účetnictví'], highlight: false },
+  { name: 'Elite', price: 'Na vyžádání', unit: '', note: 'provozy s více než 5 pokladnami',
+    feats: ['Vše z Prime.licence', 'Ostatní existující integrace', 'Zakázkový vývoj'], highlight: false },
 ];
 const faqs = [
-  { q: 'Platím velké vstupní poplatky?', a: 'Ne. Bez velkých vstupních nákladů můžete používat to, co je top pro české a slovenské gastro provozy. U Air platíte měsíční paušál, u větších edic řešení na míru.' },
+  { q: 'Kolik Septim měsíčně stojí?', a: 'Air 1 990 Kč, Flex 2 990 Kč a Prime 3 990 Kč měsíčně za pokladnu — s 10% slevou při roční platbě, druhá a další pokladna s 50% slevou (Flex/Prime, provozy s 1–5 pokladnami). Elite pro provozy s více než 5 pokladnami je na vyžádání.' },
   { q: 'Co cena servisních služeb?', a: 'Servisní zásahy a podpora mají vlastní ceník. Zákazníci se zaplacenou systémovou podporou Maintenance mají zvýhodněné sazby. Ceny jsou bez DPH.' },
   { q: 'Jak zjistím přesnou cenu pro můj provoz?', a: 'Nechte nám kontakt a spočítáme cenu na míru podle velikosti provozu, počtu pokladen a potřebných modulů.' },
 ];
 ---
 <Base title="Ceník licencí Septim – Air, Flex, Prime, Elite"
-      description="Ceník systému Septim: edice Air od 1 990 Kč/měsíc, vyšší edice Flex, Prime a Elite na míru. Bez velkých vstupních poplatků. Spočítáme cenu pro váš provoz.">
+      description="Ceník systému Septim: Air 1 990 Kč, Flex 2 990 Kč a Prime 3 990 Kč měsíčně za pokladnu, Elite na vyžádání. 10% sleva při roční platbě, druhá pokladna s 50% slevou.">
   <SiteHeader />
   <main>
     <Hero eyebrow="Ceník" background="alt"
-          lead="Naše licence jsou uspořádané přehledně za sebou, ať snadno najdete to pravé. Bez velkých vstupních poplatků — od cloudové edice Air po řešení na míru pro sítě.">
+          lead="Naše licence jsou uspořádané přehledně za sebou, ať snadno najdete to pravé. Od cloudové edice Air po Elite pro provozy s více pokladnami.">
       <Heading slot="title" as="h1" size="display">Ceník <em>licencí</em></Heading>
     </Hero>
 
