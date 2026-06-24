@@ -1,0 +1,84 @@
+---
+/**
+ * O nás — piano.cz/o-nas. Obsah z mirroru piano.cz. Sdílené komponenty @piano/ui.
+ */
+import Base from '../layouts/Base.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+
+const stats = [
+  { num: '36 mld Kč', lbl: 'proteče přes naše nástroje ročně' },
+  { num: '6 000+', lbl: 'podniků v ČR nám důvěřuje' },
+  { num: '10+', lbl: 'nástrojů pro kompletní správu provozu' },
+];
+---
+
+<Base title="O nás — Piano"
+      description="Zaměřujeme se na digitalizaci gastronomie. Věříme v propojenou gastronomii — od farmářů a dodavatelů přes kuchaře až po hosty.">
+
+  <Hero eyebrow="O nás" background="primary"
+        lead="Věříme v propojenou gastronomii. Podporujeme ty, kdo tvoří její celý řetězec — od farmářů a dodavatelů přes kuchaře až po hosty. Pomáháme těm, kdo chtějí dělat gastronomii lépe.">
+    <Heading slot="title" as="h1" size="display" color="on-dark">Zaměřujeme se na <em>digitalizaci</em> gastronomie</Heading>
+    <img slot="media" src="/images/about-team.webp" alt="Tým Piano" width="1100" height="733" />
+  </Hero>
+
+  <!-- Stats -->
+  <Section background="alt" space="md">
+    <div class="stats">
+      {stats.map((s) => (<div class="stat"><span class="stat__num">{s.num}</span><span class="stat__lbl">{s.lbl}</span></div>))}
+    </div>
+  </Section>
+
+  <!-- Vize -->
+  <Section background="default" space="lg" container="narrow">
+    <Text size="label" color="accent" align="center">Naše vize</Text>
+    <Heading as="h2" size="h2" align="center" class="vize__title">Za lepší gastronomii pro hosty i podnikatele</Heading>
+    <div class="vize__body">
+      <Text color="muted">Gastronomie se v posledních letech mění. Může za to hlavně změna chování hostů po covidu. Zároveň má obor technologický skluz, který je třeba dohnat. Mění se i generace lidí v oboru a s tím přichází nové potřeby.</Text>
+      <Text color="muted">Podnikání v gastru je složité a bere hodně času. Chceme, aby se podnikatelé mohli soustředit na to, co je baví a co umí. S ostatním jim pomohou technologie.</Text>
+      <Text color="muted">Lidský přístup ale musí zůstat. Nadšení lidí je základ pohostinství. Moderní nástroje můžou usnadnit práci tam, kde to dává smysl, a pomoci lidem dělat to, v čem jsou nejlepší.</Text>
+    </div>
+  </Section>
+
+  <!-- Proč tu jsme + hodnoty -->
+  <Section background="invert" space="lg" container="narrow">
+    <div class="vals">
+      <div class="val">
+        <Text size="label" color="on-dark-muted">Proč tu jsme</Text>
+        <Heading as="h2" size="h3" color="on-dark">Díky novým technologiím a práci s daty digitalizujeme českou gastronomii, aby se v ní snáze podnikalo.</Heading>
+        <Text color="on-dark-muted">Úspěšný byznys = spokojený majitel = spokojený host.</Text>
+      </div>
+      <div class="val">
+        <Text size="label" color="on-dark-muted">Naše hodnoty</Text>
+        <Heading as="h2" size="h3" color="on-dark">Věříme, že kvalitní jídlo má sílu měnit životy.</Heading>
+        <Text color="on-dark-muted">Stavíme na udržitelnosti, férových vztazích a lásce k řemeslu. Chceme, aby gastronomie byla zdravá pro lidi, byznys i planetu.</Text>
+      </div>
+    </div>
+  </Section>
+
+  <LeadForm id="poptavka" variant="full"
+            title="Pojďme digitalizovat vaši gastronomii"
+            lead="Ozvěte se nám a uděláme vám nabídku šitou na míru vašemu provozu." />
+
+</Base>
+
+<style>
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); text-align: center; }
+  .stat { display: flex; flex-direction: column; gap: var(--space-1); }
+  .stat__num { font-family: var(--font-sans); font-weight: var(--font-weight-semibold); font-size: clamp(28px, 4vw, 44px); color: var(--color-text-accent); letter-spacing: var(--letter-spacing-tight); }
+  .stat__lbl { font-size: var(--font-size-small); color: var(--color-text-muted); }
+
+  .vize__title { margin: var(--space-2) 0 var(--space-6); }
+  .vize__body { display: flex; flex-direction: column; gap: var(--space-4); }
+
+  .vals { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-7); }
+  .val :global(h2) { margin: var(--space-2) 0 var(--space-3); }
+
+  @media (max-width: 720px) {
+    .stats { grid-template-columns: 1fr; gap: var(--space-5); }
+    .vals { grid-template-columns: 1fr; gap: var(--space-6); }
+  }
+</style>

@@ -1,7 +1,7 @@
 ---
 /**
- * Terminál — produktová stránka piano.cz/terminal
- * Obsah: wordpress-export/pages/terminal.md. Sdílené komponenty @piano/ui.
+ * Terminál — produktová stránka piano.cz/terminal (1:1 dle piano.cz).
+ * Obrázky z mirroru převedené na webp. Sdílené komponenty @piano/ui.
  */
 import Base from '../layouts/Base.astro';
 import Section from '@piano/ui/components/Section.astro';
@@ -9,6 +9,7 @@ import Hero from '@piano/ui/components/Hero.astro';
 import Heading from '@piano/ui/components/Heading.astro';
 import Text from '@piano/ui/components/Text.astro';
 import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
 import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 
@@ -20,10 +21,10 @@ const benefits = [
 ];
 
 const data = [
-  { icon: 'lucide:eye', title: 'Konec dohadů', text: 'Poznejte své štamgasty a včas zjistěte, když k vám někdo přestane chodit.' },
-  { icon: 'lucide:trending-up', title: 'Jasné trendy', text: 'Vidíte černé na bílém, které dny táhnou nové tváře a kdy podnik drží stálá parta.' },
-  { icon: 'lucide:star', title: 'Klíčoví zákazníci', text: 'Systém sám vytipuje nejvěrnější hosty, kteří u vás nechávají nejvíc peněz.' },
-  { icon: 'lucide:heart-pulse', title: 'Zdraví podniku', text: 'Identifikujte, že se něco děje dřív, než to uvidíte v tržbách. Buďte napřed.' },
+  { title: 'Konec dohadů', text: 'Poznejte své štamgasty a včas zjistěte, když k vám někdo přestane chodit, abyste mohli reagovat.' },
+  { title: 'Jasné trendy', text: 'Vidíte černé na bílém, které dny táhnou nové tváře a kdy podnik drží stálá parta.' },
+  { title: 'Klíčoví zákazníci', text: 'Systém sám vytipuje nejvěrnější hosty, kteří u vás nechávají nejvíc peněz.' },
+  { title: 'Zdraví podniku', text: 'Identifikujte, že se něco děje dřív, než to uvidíte v tržbách. Buďte napřed a předvídejte růst i pokles.' },
 ];
 
 const supplier = [
@@ -38,35 +39,86 @@ const steps = [
   { icon: 'lucide:smartphone', title: 'Autorizovaná osoba zaplatí přes Qerko', text: 'Platba proběhne na pár kliknutí, bez hotovosti.' },
   { icon: 'lucide:check-check', title: 'Částka se odečte z vyúčtování', text: 'Automaticky, v jednom přehledném vyúčtování.' },
 ];
+
+// Srovnání — vše jsou výhody Piano Terminálu (ostatní terminály je nemají)
+const compare = [
+  'Unikátní data o hostech v čase (štamgasti vs. noví)',
+  'Platby dodavatelům na kliknutí (bez hotovosti)',
+  'Expresní servis',
+  'Osobní Account Manažer',
+  'Celoevropská licence ČNB',
+  'Česká podpora 24/7',
+  'Plná integrace s pokladnou',
+  'Vše v jednom (mobilní číšník, objednávka, markování, tisk)',
+  'Vyšší spropitné díky chytrému displeji',
+  'Vyplácení tržeb každý pracovní den',
+  'Podpora stravenkových karet',
+  'Odolný hardware (výdrž až 10 hodin)',
+];
 ---
 
 <Base title="Piano Terminál — platby a data o hostech"
       description="Piano Terminál není jen platební terminál. Přináší unikátní data o hostech, automatické platby dodavatelům a vyplácení každý pracovní den. Česká podpora 24/7.">
-
 
   <Hero eyebrow="Piano Terminál" background="primary"
         lead="Běžné terminály končí zaplacením. Piano Terminál platbou teprve začíná.">
     <Heading slot="title" as="h1" size="display" color="on-dark">Poznejte své hosty a plaťte faktury <em>automaticky</em></Heading>
     <Fragment slot="actions">
       <Button href="#poptavka">Chci vyzkoušet</Button>
-      <Button href="https://piano.cz/proces-plateb/" variant="secondary" onDark>Jak to funguje?</Button>
+      <Button href="/proces-plateb" variant="secondary" onDark>Jak to funguje?</Button>
     </Fragment>
+    <img slot="media" src="/images/term-hero.webp" alt="Piano Terminál" width="900" height="810" />
   </Hero>
 
   <USPGrid eyebrow="Vše v jednom zařízení" title="Co Piano Terminál umí navíc"
            items={benefits} columns={4} background="default" minItemWidth="220px" />
 
-  <USPGrid eyebrow="Data o hostech" title="Unikátní přehled o vašich zákaznících"
-           lead="Sledujte v reálném čase, kolik lidí k vám přišlo poprvé a kdo se pravidelně vrací."
-           items={data} columns={4} background="alt" minItemWidth="220px" />
+  <!-- Data o hostech — se screenshotem -->
+  <Section background="alt" space="lg">
+    <div class="td-head">
+      <Text size="label" color="accent">Data o hostech</Text>
+      <Heading as="h2" size="h2">Získejte unikátní data o vašich hostech</Heading>
+      <Text size="lead" color="muted" class="td-lead">Sledujte v reálném čase, kolik lidí k vám přišlo poprvé a kdo se k vám pravidelně vrací.</Text>
+    </div>
+    <div class="td-grid">
+      <figure class="td-img"><img src="/images/term-data.webp" alt="Přehled dat o hostech v Piano Terminálu" width="900" height="821" loading="lazy" /></figure>
+      <ul class="td-list">
+        {data.map((d) => (
+          <li><strong>{d.title}</strong><span>{d.text}</span></li>
+        ))}
+      </ul>
+    </div>
+  </Section>
 
   <USPGrid eyebrow="Platby dodavatelům" title="Platím dodavatele automaticky"
            items={supplier} columns={4} background="default" minItemWidth="220px" />
 
   <USPGrid title="Krok za krokem" items={steps} columns={3} background="alt" />
+  <div class="steps-cta"><Button href="/proces-plateb" variant="secondary">Jak to funguje?</Button></div>
+
+  <!-- Srovnání -->
+  <Section background="default" space="lg">
+    <Heading as="h2" size="h2" align="center">V čem je Piano Terminál lepší?</Heading>
+    <div class="cmp">
+      <table class="cmp__table">
+        <thead>
+          <tr><th>Vlastnost / služba</th><th>Piano Terminál</th><th>Ostatní terminály</th></tr>
+        </thead>
+        <tbody>
+          {compare.map((row) => (
+            <tr>
+              <td>{row}</td>
+              <td class="cmp__yes"><Icon name="lucide:check" size="sm" /></td>
+              <td class="cmp__no"><Icon name="lucide:x" size="sm" /></td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </Section>
 
   <!-- Ceník -->
-  <Section background="default" space="lg">
+  <Section background="alt" space="lg">
     <Heading as="h2" size="h2" align="center">Cenová nabídka</Heading>
     <div class="prices">
       <article class="price">
@@ -100,25 +152,50 @@ const steps = [
             title="Posuňte své podnikání na vyšší úroveň"
             lead="Ozvěte se nám a připravíme nabídku šitou na míru vašemu provozu." />
 
+  <!-- Technická podpora -->
+  <Section background="default" space="md" container="narrow">
+    <div class="tech">
+      <Heading as="h2" size="h3" align="center">Technická podpora</Heading>
+      <Text color="muted" align="center" class="tech__lead">Máte už naše terminály na provozovně a potřebujete s něčím pomoci? Obraťte se na naši technickou podporu — s námi na to nejste sami.</Text>
+      <div class="tech__contacts">
+        <a href="tel:+420228886881"><Icon name="lucide:phone" size="sm" /> +420 228 886 881</a>
+        <a href="mailto:podpora@piano.cz"><Icon name="lucide:mail" size="sm" /> podpora@piano.cz</a>
+      </div>
+    </div>
+  </Section>
 
 </Base>
 
 <style>
-  .prices {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-5);
-    margin-top: var(--space-7);
-  }
-  .price {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-3);
-    padding: var(--space-6);
-    background: var(--color-bg);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-  }
+  /* Data o hostech */
+  .td-head { max-width: 720px; margin: 0 auto var(--space-7); text-align: center; }
+  .td-head :global(h2) { margin-top: var(--space-2); }
+  .td-lead { margin-top: var(--space-3); }
+  .td-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: var(--space-7); align-items: center; }
+  .td-img { margin: 0; border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-lg); }
+  .td-img img { display: block; width: 100%; height: auto; }
+  .td-list { list-style: none; display: flex; flex-direction: column; gap: var(--space-5); }
+  .td-list li { display: flex; flex-direction: column; gap: 4px; padding-left: var(--space-4); border-left: 2px solid var(--color-primary); }
+  .td-list strong { font-weight: var(--font-weight-semibold); color: var(--color-text); }
+  .td-list span { color: var(--color-text-muted); font-size: var(--font-size-small); }
+
+  .steps-cta { text-align: center; margin-top: var(--space-5); }
+
+  /* Srovnání */
+  .cmp { margin-top: var(--space-7); overflow-x: auto; }
+  .cmp__table { width: 100%; border-collapse: collapse; max-width: 820px; margin: 0 auto; }
+  .cmp__table th, .cmp__table td { padding: var(--space-3) var(--space-4); border-bottom: 1px solid var(--color-border); text-align: left; }
+  .cmp__table thead th { font-family: var(--font-sans); font-size: var(--font-size-small); color: var(--color-text-muted); font-weight: var(--font-weight-semibold); }
+  .cmp__table thead th:nth-child(2) { color: var(--color-text-accent); }
+  .cmp__table th:nth-child(2), .cmp__table th:nth-child(3),
+  .cmp__table td:nth-child(2), .cmp__table td:nth-child(3) { text-align: center; width: 130px; }
+  .cmp__table td:first-child { color: var(--color-text); }
+  .cmp__yes { color: var(--color-success); }
+  .cmp__no { color: var(--color-neutral-300); }
+
+  /* Ceník */
+  .prices { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-5); margin-top: var(--space-7); }
+  .price { display: flex; flex-direction: column; gap: var(--space-3); padding: var(--space-6); background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); }
   .price--featured { border-color: var(--color-primary); box-shadow: var(--shadow-md); }
   .price__rows { display: flex; flex-direction: column; gap: var(--space-3); margin: var(--space-2) 0 var(--space-4); }
   .price__rows div { display: flex; flex-direction: column; gap: 2px; }
@@ -127,7 +204,14 @@ const steps = [
   .price :global(.btn) { margin-top: auto; }
   .price__note { display: block; margin-top: var(--space-5); text-align: center; }
 
+  /* Technická podpora */
+  .tech { text-align: center; }
+  .tech__lead { margin: var(--space-3) auto var(--space-5); max-width: 540px; }
+  .tech__contacts { display: flex; flex-wrap: wrap; gap: var(--space-5); justify-content: center; }
+  .tech__contacts a { display: inline-flex; align-items: center; gap: var(--space-2); color: var(--color-text-accent); text-decoration: none; font-weight: var(--font-weight-medium); }
+
   @media (max-width: 720px) {
+    .td-grid { grid-template-columns: 1fr; }
     .prices { grid-template-columns: 1fr; }
   }
 </style>

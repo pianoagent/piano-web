@@ -1,0 +1,86 @@
+---
+/**
+ * Proces plateb — piano.cz/proces-plateb
+ * Detail autorizace plateb dodavatelům (navázáno na Terminál). Obsah + obrázky
+ * z mirroru piano.cz. Sdílené komponenty @piano/ui.
+ */
+import Base from '../layouts/Base.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+
+const steps = [
+  { img: '/images/proces-1.webp', label: 'Udělení přístupu', title: 'Schválení bez účasti majitele', points: [
+    'Majitelé udělují personálu oprávnění autorizovat platby dodavatelům v Qerko administraci.',
+    'Vaše údaje jsou v bezpečí — personál nikdy nevidí vaši platební kartu ani bankovní účet.',
+  ] },
+  { img: '/images/proces-2.webp', label: 'QR kód při převzetí', title: 'Naskenování QR kódu při převzetí', points: [
+    'Dodavatel při předání zboží vygeneruje unikátní QR kód propojený s konkrétní platbou a obchodníkem.',
+    'Po obdržení zboží personál QR kód naskenuje pomocí aplikace Qerko.',
+  ] },
+  { img: '/images/proces-3.webp', label: 'Autorizace platby', title: 'Rychlé zaplacení', points: [
+    'Po autorizaci personálem podniku se objeví jednoduchá obrazovka s možností „Autorizovat (částka)".',
+  ] },
+  { img: '/images/proces-4.webp', label: 'Ověření platby', title: 'Stav platby', points: [
+    'Řidič rozvozu má ve svém zařízení okamžitou informaci, že platba byla úspěšně autorizována.',
+  ] },
+];
+---
+
+<Base title="Proces plateb dodavatelům — Piano Terminál"
+      description="Jak funguje autorizace bezhotovostních plateb dodavatelům přes Piano Terminál a Qerko — krok za krokem, bezpečně a bez přístupu personálu k vašemu účtu.">
+
+  <Hero eyebrow="Piano Terminál × Qerko" background="primary"
+        lead="Bezhotovostní platby dodavatelům krok za krokem — bezpečně, bez přístupu personálu k vaší bance.">
+    <Heading slot="title" as="h1" size="h1" color="on-dark">Proces autorizace plateb <em>dodavatelům</em></Heading>
+    <Fragment slot="actions">
+      <Button href="/terminal" variant="secondary" onDark>Zpět na Terminál</Button>
+    </Fragment>
+  </Hero>
+
+  <Section background="default" space="lg">
+    <ol class="steps">
+      {steps.map((s, i) => (
+        <li class="step">
+          <figure class="step__img"><img src={s.img} alt={s.title} width="360" height="354" loading="lazy" /></figure>
+          <div class="step__body">
+            <span class="step__num">{i + 1}</span>
+            <Text size="label" color="accent">{s.label}</Text>
+            <Heading as="h2" size="h3">{s.title}</Heading>
+            <ul class="step__list">{s.points.map((p) => <li>{p}</li>)}</ul>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </Section>
+
+  <LeadForm id="poptavka" variant="full"
+            title="Posuňte své podnikání na vyšší úroveň"
+            lead="Ozvěte se nám a uděláme vám nabídku šitou na míru vašemu provozu." />
+
+</Base>
+
+<style>
+  .steps { list-style: none; display: flex; flex-direction: column; gap: var(--space-8); max-width: 980px; margin: 0 auto; }
+  .step { display: grid; grid-template-columns: 360px 1fr; gap: var(--space-7); align-items: center; }
+  .step:nth-child(even) .step__img { order: 2; }
+  .step__img { margin: 0; background: var(--color-bg-alt); border: 1px solid var(--color-border); border-radius: var(--radius-md); overflow: hidden; }
+  .step__img img { display: block; width: 100%; height: auto; }
+  .step__num {
+    display: inline-grid; place-items: center; width: 36px; height: 36px;
+    background: var(--color-primary); color: var(--color-text-on-dark);
+    border-radius: var(--radius-full); font-weight: var(--font-weight-semibold); margin-bottom: var(--space-3);
+  }
+  .step__body :global(h2) { margin: var(--space-1) 0 var(--space-3); }
+  .step__list { list-style: none; display: flex; flex-direction: column; gap: var(--space-2); }
+  .step__list li { position: relative; padding-left: var(--space-5); color: var(--color-text-muted); }
+  .step__list li::before { content: "✓"; position: absolute; left: 0; color: var(--color-text-accent); font-weight: 700; }
+
+  @media (max-width: 720px) {
+    .step { grid-template-columns: 1fr; gap: var(--space-4); }
+    .step:nth-child(even) .step__img { order: 0; }
+  }
+</style>
