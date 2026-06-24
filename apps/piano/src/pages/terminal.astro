@@ -35,9 +35,9 @@ const supplier = [
 ];
 
 const steps = [
-  { icon: 'lucide:truck', title: 'Dodavatel dodá zboží', text: 'Zboží dorazí na provozovnu jako obvykle.' },
-  { icon: 'lucide:smartphone', title: 'Autorizovaná osoba zaplatí přes Qerko', text: 'Platba proběhne na pár kliknutí, bez hotovosti.' },
-  { icon: 'lucide:check-check', title: 'Částka se odečte z vyúčtování', text: 'Automaticky, v jednom přehledném vyúčtování.' },
+  { icon: 'lucide:truck', title: 'Dodavatel dodá zboží' },
+  { icon: 'lucide:qr-code', title: 'Autorizovaná osoba zaplatí přes Qerko' },
+  { icon: 'lucide:receipt', title: 'Částka se automaticky odečte z vyúčtování.' },
 ];
 
 // Srovnání: Piano vždy ✓; ostatní terminály — no (nemají) / maybe (možná) / yes (mají)
@@ -90,11 +90,37 @@ const compare = [
     </div>
   </Section>
 
-  <USPGrid eyebrow="Platby dodavatelům" title="Platím dodavatele automaticky"
-           items={supplier} columns={4} background="default" minItemWidth="220px" />
+  <!-- Platby dodavatelům — telefon uprostřed, text po stranách -->
+  <Section background="default" space="lg">
+    <Heading as="h2" size="h2" align="center">Platím dodavatele automaticky</Heading>
+    <div class="sup">
+      <div class="sup__col">
+        {[supplier[0], supplier[1]].map((s) => (
+          <div class="sup__item"><Heading as="h3" size="h3">{s.title}</Heading><Text color="muted">{s.text}</Text></div>
+        ))}
+      </div>
+      <figure class="sup__phone"><img src="/images/term-supplier.webp" alt="Autorizace platby dodavateli v telefonu" width="322" height="656" loading="lazy" /></figure>
+      <div class="sup__col">
+        {[supplier[2], supplier[3]].map((s) => (
+          <div class="sup__item"><Heading as="h3" size="h3">{s.title}</Heading><Text color="muted">{s.text}</Text></div>
+        ))}
+      </div>
+    </div>
+  </Section>
 
-  <USPGrid title="Krok za krokem" items={steps} columns={3} background="alt" />
-  <div class="steps-cta"><Button href="/proces-plateb" variant="secondary">Jak to funguje?</Button></div>
+  <!-- Krok za krokem — timeline -->
+  <Section background="alt" space="lg">
+    <Heading as="h2" size="h2" align="center">Krok za krokem</Heading>
+    <ol class="timeline">
+      {steps.map((s) => (
+        <li class="tl__step">
+          <span class="tl__icon"><Icon name={s.icon} size="md" /></span>
+          <span class="tl__title">{s.title}</span>
+        </li>
+      ))}
+    </ol>
+    <div class="steps-cta"><Button href="/proces-plateb" variant="secondary">Jak to funguje?</Button></div>
+  </Section>
 
   <!-- Srovnání -->
   <Section background="default" space="lg">
@@ -183,7 +209,21 @@ const compare = [
   .td-list strong { font-weight: var(--font-weight-semibold); color: var(--color-text); }
   .td-list span { color: var(--color-text-muted); font-size: var(--font-size-small); }
 
-  .steps-cta { text-align: center; margin-top: var(--space-5); }
+  /* Platby dodavatelům — telefon uprostřed */
+  .sup { display: grid; grid-template-columns: 1fr auto 1fr; gap: var(--space-7); align-items: center; margin-top: var(--space-7); }
+  .sup__col { display: flex; flex-direction: column; gap: var(--space-6); }
+  .sup__item :global(h3) { margin-bottom: var(--space-2); }
+  .sup__phone { margin: 0; }
+  .sup__phone img { display: block; width: 280px; max-width: 100%; height: auto; filter: drop-shadow(var(--shadow-lg)); }
+
+  /* Krok za krokem — timeline */
+  .timeline { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); max-width: 880px; margin: var(--space-7) auto 0; position: relative; }
+  .timeline::before { content: ""; position: absolute; top: 28px; left: 16%; right: 16%; height: 2px; background: var(--color-primary); z-index: 0; }
+  .tl__step { display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--space-3); }
+  .tl__icon { position: relative; z-index: 1; width: 56px; height: 56px; display: grid; place-items: center; color: var(--color-text-accent); background: var(--color-bg-alt); }
+  .tl__title { color: var(--color-text-accent); font-size: var(--font-size-lead); font-weight: var(--font-weight-medium); max-width: 22ch; }
+
+  .steps-cta { text-align: center; margin-top: var(--space-6); }
 
   /* Srovnání */
   .cmp { margin-top: var(--space-7); overflow-x: auto; }
@@ -218,5 +258,9 @@ const compare = [
   @media (max-width: 720px) {
     .td-grid { grid-template-columns: 1fr; }
     .prices { grid-template-columns: 1fr; }
+    .sup { grid-template-columns: 1fr; }
+    .sup__phone { order: -1; justify-self: center; }
+    .timeline { grid-template-columns: 1fr; }
+    .timeline::before { display: none; }
   }
 </style>
