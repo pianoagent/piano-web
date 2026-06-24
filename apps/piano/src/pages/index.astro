@@ -124,8 +124,10 @@ const faqSchema = {
                 <div class:list={['solscroll__item', i === 0 && 'is-active']} data-item>
                   <button class="solscroll__head" data-navitem data-idx={i} type="button">{c.title}</button>
                   <div class="solscroll__body">
-                    <Text color="muted" class="solscroll__lead">{c.text}</Text>
-                    <ul class="solscroll__list">{c.items.map((it) => <li>{it}</li>)}</ul>
+                    <div class="solscroll__body-inner">
+                      <Text color="muted" class="solscroll__lead">{c.text}</Text>
+                      <ul class="solscroll__list">{c.items.map((it) => <li>{it}</li>)}</ul>
+                    </div>
                   </div>
                 </div>
               ))}
