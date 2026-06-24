@@ -1,0 +1,58 @@
+---
+/**
+ * LogoWall — SDÍLENÝ marquee referenčních log (jednotná velikost 96px).
+ * Loga se berou z public/logos daného webu. Per-web sada se předává v `logos`
+ * (názvy souborů bez přípony); pokud web nemá vlastní reference, použij Piano sadu.
+ *
+ *   logos       — názvy souborů bez přípony (např. 'ref-kolkovna')
+ *   label       — nadpis nad pruhem
+ *   background  — 'default' | 'alt' (pruh Section)
+ *   id          — kotva sekce
+ *   ext         — přípona souborů ('svg' default, 'png' pro rastry)
+ */
+import Section from './Section.astro';
+import Text from './Text.astro';
+
+interface Props {
+  logos: string[];
+  label?: string;
+  background?: 'default' | 'alt';
+  id?: string;
+  ext?: string;
+}
+const {
+  logos,
+  label = 'Důvěřují nám ti nejlepší',
+  background = 'alt',
+  id,
+  ext = 'svg',
+} = Astro.props;
+
+const niceAlt = (l: string) => l.replace(/^ref-/, '').replace(/-/g, ' ');
+---
+
+<Section background={background} space="md" container={false} id={id}>
+  {label && <Text size="label" color="muted" align="center" class="logos__label">{label}</Text>}
+  <div class="logos">
+    <div class="logos__track">
+      {[...logos, ...logos].map((l, i) => (
+        <img
+          src={`/logos/${l}.${ext}`}
+          alt={i < logos.length ? niceAlt(l) : ''}
+          aria-hidden={i >= logos.length ? 'true' : undefined}
+          loading="lazy"
+        />
+      ))}
+    </div>
+  </div>
+</Section>
+
+<style>
+  .logos__label { margin-bottom: var(--space-5); }
+  .logos { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+  .logos__track { display: flex; align-items: center; gap: var(--space-9); width: max-content; animation: logos-scroll 60s linear infinite; }
+  .logos__track img { height: 96px; width: auto; max-width: 280px; object-fit: contain; opacity: 0.7; filter: grayscale(1); flex-shrink: 0; transition: var(--transition); }
+  .logos__track img:hover { opacity: 1; filter: none; }
+  @keyframes logos-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) { .logos__track { animation: none; flex-wrap: wrap; justify-content: center; gap: var(--space-6); } }
+</style>

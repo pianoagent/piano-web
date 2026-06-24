@@ -19,6 +19,7 @@ import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
+import LogoWall from '@piano/ui/components/LogoWall.astro';
 
 const stats = [
   { num: '+20 %', lbl: 'více otočených stolů' },
@@ -131,6 +132,10 @@ const leadProofs = [
       <Button href="#jak-to-funguje" variant="secondary" onDark>Jak to funguje</Button>
     </Fragment>
   </Hero>
+
+  <!-- LOGA KLIENTŮ -->
+  <LogoWall background="default" ext="png" label="Platí u nás hosté ve špičkových podnicích"
+    logos={['ambiente', 'kolkovna', 'masarycka', 'potrefena-husa', 'pivovar-narodni', 'bruxx', 'spojka-karlin', 'vnitroblock', 'pizza-coloseum-nova-karolina', 'restaurace-vinohradsky-parlament', 'grain-bistro', 'manga-cowboy', 'restaurace-hybernska', 'rebelbean-pole', 'pivovar-revnice']} />
 
   <!-- STATS BAND -->
   <Section id="spicky" background="alt" space="sm">

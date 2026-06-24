@@ -18,6 +18,7 @@ import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
+import LogoWall from '@piano/ui/components/LogoWall.astro';
 import { harsysNav, harsysCta } from '../config/nav';
 
 const PHONE = '774 719 494';
@@ -101,6 +102,10 @@ const leadProofs = [
       <img src="/images/hero-pokladna.webp" alt="Dotyková pokladna Harsys v restauračním provozu" width="720" height="540" loading="eager" />
     </figure>
   </Hero>
+
+  <!-- LOGA KLIENTŮ -->
+  <LogoWall background="default" label="Důvěřují nám restaurace a provozy po celé ČR"
+    logos={['ref-field-michelin-restaurant', 'ref-cafe-savoy', 'ref-kolkovna', 'ref-sasazu', 'ref-O2-arena', 'ref-clarion-hotel', 'ref-zatisi-group', 'ref-420-restaurant', 'ref-pizza-coloseum', 'ref-entree', 'ref-100-chuti-brna', 'ref-sisters-bistro']} />
 
   <!-- VARIANTY PROGRAMU -->
   <Section id="varianty" background="default" space="lg">

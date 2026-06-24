@@ -18,6 +18,7 @@ import Text from '@piano/ui/components/Text.astro';
 import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LogoWall from '@piano/ui/components/LogoWall.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import { grasonNav, grasonCta } from '../config/nav';
 
@@ -123,18 +124,7 @@ const leadProofs = [
   </Hero>
 
   <!-- LOGA KLIENTŮ -->
-  <Section id="zakaznici" background="default" space="md" container={false}>
-    <Text size="label" color="muted" align="center" class="logos__label">
-      Důvěřují nám restaurace, hotely i sklady po celé ČR
-    </Text>
-    <div class="logos">
-      <div class="logos__track">
-        {[...refLogos, ...refLogos].map((l, i) => (
-          <img src={`/logos/${l}.svg`} alt={i < refLogos.length ? l.replace('ref-', '').replace(/-/g, ' ') : ''} aria-hidden={i >= refLogos.length ? 'true' : undefined} loading="lazy" />
-        ))}
-      </div>
-    </div>
-  </Section>
+  <LogoWall id="zakaznici" background="default" label="Důvěřují nám restaurace, hotely i sklady po celé ČR" logos={refLogos} />
 
   <!-- STATS BAND -->
   <Section background="alt" space="sm">

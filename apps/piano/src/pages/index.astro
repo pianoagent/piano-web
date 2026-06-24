@@ -15,6 +15,7 @@ import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
+import LogoWall from '@piano/ui/components/LogoWall.astro';
 
 const stats = [
   { num: '6 000+', lbl: 'podniků v ČR nám důvěřuje' },
@@ -167,12 +168,7 @@ const faqSchema = {
   </Section>
 
   <!-- LOGO WALL -->
-  <Section background="alt" space="md" container={false}>
-    <Text size="label" color="muted" align="center" class="lw__label">Víc jak 6 000 podniků spoléhá na nástroje od Piana</Text>
-    <div class="lw">
-      {refLogos.map((l) => <img src={`/logos/${l}.svg`} alt="" loading="lazy" />)}
-    </div>
-  </Section>
+  <LogoWall background="alt" label="Víc jak 6 000 podniků spoléhá na nástroje od Piana" logos={refLogos} />
 
   <!-- TESTIMONIALY -->
   <Section background="invert" space="lg">
