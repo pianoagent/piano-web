@@ -98,7 +98,8 @@ const leadProofs = [
 
   <!-- HERO -->
   <Hero eyebrow="Pokladní a provozní systém Septim" background="gradient"
-        lead="Septim není jen pokladna. Je to systém, který řídí celý váš provoz — od naskladnění surovin přes výdej jídel až po finanční přehledy. Využívají ho michelinské restaurace i kavárny za rohem.">
+        lead="Septim není jen pokladna. Je to systém, který řídí celý váš provoz — od naskladnění surovin přes výdej jídel až po finanční přehledy. Využívají ho michelinské restaurace i kavárny za rohem."
+        usp={['30 let na trhu', '6 000+ provozů v ČR', 'Česká podpora 24/7', 'CZ / EN / SK']}>
     <Heading slot="title" as="h1" size="display" color="on-dark">Pravá ruka <em>každého manažera</em></Heading>
     <Fragment slot="actions">
       <Button href="#poptavka">Chci Septim</Button>
@@ -112,18 +113,6 @@ const leadProofs = [
 
   <!-- LOGA KLIENTŮ — hned pod hero -->
   <LogoWall id="zakaznici" background="default" label="Důvěřují nám michelinské restaurace, hotely i kavárny za rohem" />
-
-  <!-- STATS BAND -->
-  <Section background="alt" space="sm">
-    <ul class="stats">
-      {stats.map((s) => (
-        <li class="stats__item">
-          <span class="stats__num">{s.num}</span>
-          <span class="stats__lbl">{s.lbl}</span>
-        </li>
-      ))}
-    </ul>
-  </Section>
 
   <!-- JAK TO FUNGUJE -->
   <Section background="default" space="lg">

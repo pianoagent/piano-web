@@ -85,7 +85,8 @@ const leadProofs = [
 
   <!-- HERO -->
   <Hero eyebrow="Aukční nákupy surovin a energií" background="gradient"
-        lead="Pecosta nakupuje za vás. Aukční nákupy od ověřených dodavatelů, srovnání cen na jednom místě a automatické naskladňování. 960+ provozů šetří v průměru 16 % měsíčně.">
+        lead="Pecosta nakupuje za vás. Aukční nákupy od ověřených dodavatelů, srovnání cen na jednom místě a automatické naskladňování. 960+ provozů šetří v průměru 16 % měsíčně."
+        usp={['Úspora 16 % na surovinách', '25 % na energiích', '960+ provozů', '2,5 mld. Kč ročně']}>
     <Heading slot="title" as="h1" size="display" color="on-dark">Ušetřete <em>až 16 %</em> na surovinách</Heading>
     <Fragment slot="actions">
       <Button href="#poptavka">Chci aukční nákupy</Button>
@@ -100,18 +101,6 @@ const leadProofs = [
 
   <!-- LOGA KLIENTŮ — hned pod hero -->
   <LogoWall id="zakaznici" background="default" label="Spoří s námi přední restaurace, hotely i instituce" logos={refLogos} />
-
-  <!-- STATS BAND -->
-  <Section background="alt" space="sm">
-    <ul class="stats">
-      {stats.map((s) => (
-        <li class="stats__item">
-          <span class="stats__num">{s.num}</span>
-          <span class="stats__lbl">{s.lbl}</span>
-        </li>
-      ))}
-    </ul>
-  </Section>
 
   <!-- JAK TO FUNGUJE -->
   <Section id="jak-to-funguje" background="default" space="lg">

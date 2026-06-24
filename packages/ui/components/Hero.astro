@@ -18,6 +18,7 @@
 import Section from './Section.astro';
 import Heading from './Heading.astro';
 import Text from './Text.astro';
+import Icon from './Icon.astro';
 
 interface Props {
   eyebrow?: string;
@@ -26,9 +27,10 @@ interface Props {
   align?: 'left' | 'center';
   background?: 'default' | 'alt' | 'invert' | 'primary' | 'gradient';
   space?: 'sm' | 'md' | 'lg';
+  usp?: string[];   // krátké klíčové body → proužek s odškrtnutími uvnitř hero
 }
 
-const { eyebrow, title, lead, align = 'left', background = 'default', space = 'lg' } = Astro.props;
+const { eyebrow, title, lead, align = 'left', background = 'default', space = 'lg', usp = [] } = Astro.props;
 
 const hasTitle = Astro.slots.has('title');
 const hasActions = Astro.slots.has('actions');
@@ -62,6 +64,17 @@ const innerClasses = [
 
       {hasActions && (
         <div class="hero__actions"><slot name="actions" /></div>
+      )}
+
+      {usp.length > 0 && (
+        <ul class="hero__usp">
+          {usp.map((u) => (
+            <li class="hero__usp-item">
+              <span class="hero__usp-check"><Icon name="lucide:check" size="sm" /></span>
+              {u}
+            </li>
+          ))}
+        </ul>
       )}
     </div>
 
@@ -110,6 +123,30 @@ const innerClasses = [
     gap: var(--space-4);
     margin-top: var(--space-7);
   }
+
+  /* USP proužek — klíčové body uvnitř hero */
+  .hero__usp {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3) var(--space-6);
+    margin-top: var(--space-7);
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--color-border);
+  }
+  .hero__usp-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--font-size-small);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text);
+  }
+  .hero__usp-check { display: inline-flex; color: var(--color-primary); flex-shrink: 0; }
+  .hero__inner--align-center .hero__usp { justify-content: center; }
+  .hero__inner--on-dark .hero__usp { border-top-color: var(--color-border-on-dark); }
+  .hero__inner--on-dark .hero__usp-item { color: var(--color-text-on-dark); }
+  .hero__inner--on-dark .hero__usp-check { color: var(--color-secondary-gold); }
 
   /* Média (obrázek nebo video) */
   .hero__media { display: block; }

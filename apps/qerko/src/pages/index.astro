@@ -125,7 +125,8 @@ const leadProofs = [
 
   <!-- HERO -->
   <Hero eyebrow="Pomocník na place" background="gradient" align="center"
-        lead="Qerko pomáhá číšníkům připravit pro hosty bezchybný zážitek. Hosté platí a objednávají z mobilu, dávají vyšší dýško a lepší recenze — a obsluha má čas na to podstatné.">
+        lead="Qerko pomáhá číšníkům připravit pro hosty bezchybný zážitek. Hosté platí a objednávají z mobilu, dávají vyšší dýško a lepší recenze — a obsluha má čas na to podstatné."
+        usp={['+20 % otočených stolů', '+40 % vyšší dýško', '4 min ušetřené na stůl', '1,5 mil.+ hostů']}>
     <Heading slot="title" as="h1" size="display" color="on-dark">Skvělí hosté si zaslouží <em>skvělý servis</em></Heading>
     <Fragment slot="actions">
       <Button href="#poptavka">Chci Qerko</Button>
@@ -136,18 +137,6 @@ const leadProofs = [
   <!-- LOGA KLIENTŮ -->
   <LogoWall background="default" ext="png" label="Platí u nás hosté ve špičkových podnicích"
     logos={['ambiente', 'kolkovna', 'masarycka', 'potrefena-husa', 'pivovar-narodni', 'bruxx', 'spojka-karlin', 'vnitroblock', 'pizza-coloseum-nova-karolina', 'restaurace-vinohradsky-parlament', 'grain-bistro', 'manga-cowboy', 'restaurace-hybernska', 'rebelbean-pole', 'pivovar-revnice']} />
-
-  <!-- STATS BAND -->
-  <Section id="spicky" background="alt" space="sm">
-    <ul class="stats">
-      {stats.map((s) => (
-        <li class="stats__item">
-          <span class="stats__num">{s.num}</span>
-          <span class="stats__lbl">{s.lbl}</span>
-        </li>
-      ))}
-    </ul>
-  </Section>
 
   <!-- JAK TO FUNGUJE -->
   <Section id="jak-to-funguje" background="default" space="lg">

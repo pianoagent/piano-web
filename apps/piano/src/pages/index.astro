@@ -87,22 +87,14 @@ const faqSchema = {
       schema={faqSchema}>
 
   <Hero eyebrow="Technologie pro gastronomii a hotely" background="primary"
-        lead="Piano je sehraný orchestr nástrojů, který vyladí váš provoz, ušetří čas a zvýší zisk. Restaurace, kavárna, bistro, jídelna i hotel — máme pro vás řešení.">
+        lead="Piano je sehraný orchestr nástrojů, který vyladí váš provoz, ušetří čas a zvýší zisk. Restaurace, kavárna, bistro, jídelna i hotel — máme pro vás řešení."
+        usp={['6 000+ podniků', '36 mld Kč ročně', '30 let inovací', '10+ propojených nástrojů']}>
     <Heading slot="title" as="h1" size="display" color="on-dark">Vše pro váš provoz. <em>Pod jednou střechou.</em></Heading>
     <Fragment slot="actions">
       <Button href="#poptavka">Domluvit konzultaci</Button>
       <Button href="#ekosystem" variant="secondary" onDark>Prozkoumat ekosystém</Button>
     </Fragment>
   </Hero>
-
-  <!-- STATS BAND -->
-  <Section background="alt" space="md">
-    <div class="stats">
-      {stats.map((s) => (
-        <div class="stat"><span class="stat__num">{s.num}</span><span class="stat__lbl">{s.lbl}</span></div>
-      ))}
-    </div>
-  </Section>
 
   <!-- PAIN POINTS -->
   <USPGrid eyebrow="Znáte to?" title="Co dnes brzdí váš provoz"

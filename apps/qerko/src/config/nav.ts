@@ -10,7 +10,7 @@ const reseniMega = {
     {
       label: 'S čím pomůžeme',
       links: [
-        { label: 'Zvládnout špičky', href: '/#spicky', icon: 'lucide:gauge' },
+        { label: 'Zvládnout špičky', href: '/#jak-to-funguje', icon: 'lucide:gauge' },
         { label: 'Přivést nové hosty', href: '/#komunita', icon: 'lucide:user-plus' },
         { label: 'Zlepšit reputaci', href: '/#hodnoceni', icon: 'lucide:star' },
         { label: 'Vytvořit komunitu hostů', href: '/#vernost', icon: 'lucide:heart-handshake' },
@@ -41,7 +41,7 @@ const produktyMega = {
 };
 
 export const qerkoNav: NavItem[] = [
-  { label: 'S čím pomůžeme', href: '/#spicky', mega: reseniMega },
+  { label: 'S čím pomůžeme', href: '/#jak-to-funguje', mega: reseniMega },
   { label: 'Produkty', href: '/#qr-platba', mega: produktyMega },
   pianoNavItem('qerko'),
   { label: 'Ceník', href: '/cenik' },

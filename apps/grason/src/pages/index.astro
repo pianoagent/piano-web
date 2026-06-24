@@ -112,7 +112,8 @@ const leadProofs = [
 
   <!-- HERO — split: text vlevo, appka vpravo -->
   <Hero eyebrow="Odborník na personál" background="gradient"
-        lead="Grason je nejrychlejší způsob, jak nárazově či dlouhodobě zaplnit volná místa, naplánovat rozpis směn a vyřešit papírování s tím spojené.">
+        lead="Grason je nejrychlejší způsob, jak nárazově či dlouhodobě zaplnit volná místa, naplánovat rozpis směn a vyřešit papírování s tím spojené."
+        usp={['3 357+ brigádníků', '82+ měst v ČR', '220 000+ naplánovaných směn', 'První měsíc zdarma']}>
     <Heading slot="title" as="h1" size="display" color="on-dark">Obsaďte volné pozice a <span class="accent">naplánujte směny</span> na pár kliknutí</Heading>
     <Fragment slot="actions">
       <Button href="#poptavka">Vyzkoušet 14 dní zdarma</Button>
@@ -125,18 +126,6 @@ const leadProofs = [
 
   <!-- LOGA KLIENTŮ -->
   <LogoWall id="zakaznici" background="default" label="Důvěřují nám restaurace, hotely i sklady po celé ČR" logos={refLogos} />
-
-  <!-- STATS BAND -->
-  <Section background="alt" space="sm">
-    <ul class="stats">
-      {stats.map((s) => (
-        <li class="stats__item">
-          <span class="stats__num">{s.num}</span>
-          <span class="stats__lbl">{s.lbl}</span>
-        </li>
-      ))}
-    </ul>
-  </Section>
 
   <!-- TŘI PILÍŘE -->
   <Section background="default" space="lg">

@@ -59,7 +59,8 @@ const leadProofs = [
 
   <!-- HERO — split: text vlevo, POS účtenka vpravo (placeholder) -->
   <Hero eyebrow="Restaurační a hotelový systém" background="gradient"
-        lead="Savarin je modulární systém pro stravovací a ubytovací provozy — pokladna, recepce, sklady a kalkulace na jednom místě. Vyvíjíme, dodáváme a servisujeme ho od roku 1990.">
+        lead="Savarin je modulární systém pro stravovací a ubytovací provozy — pokladna, recepce, sklady a kalkulace na jednom místě. Vyvíjíme, dodáváme a servisujeme ho od roku 1990."
+        usp={['Na trhu od 1990', 'Servis do 24 h', 'Až 99 středisek', 'Certifikováno ČR i SK']}>
     <Heading slot="title" as="h1" size="display" color="on-dark">Kompletní software pro váš <span class="accent">gastro a hotelový</span> provoz</Heading>
     <Fragment slot="actions">
       <Button href="#poptavka">Nezávazná poptávka</Button>
@@ -94,18 +95,6 @@ const leadProofs = [
   <!-- LOGA KLIENTŮ -->
   <LogoWall background="default" label="Důvěřují nám restaurace a hotely po celé ČR"
     logos={['ref-field-michelin-restaurant', 'ref-cafe-savoy', 'ref-kolkovna', 'ref-sasazu', 'ref-O2-arena', 'ref-clarion-hotel', 'ref-zatisi-group', 'ref-420-restaurant', 'ref-pizza-coloseum', 'ref-entree', 'ref-100-chuti-brna', 'ref-sisters-bistro']} />
-
-  <!-- STATS BAND -->
-  <Section background="alt" space="sm">
-    <ul class="stats">
-      {stats.map((s) => (
-        <li class="stats__item">
-          <span class="stats__num">{s.num}</span>
-          <span class="stats__lbl">{s.lbl}</span>
-        </li>
-      ))}
-    </ul>
-  </Section>
 
   <!-- MODULY -->
   <USPGrid id="moduly" eyebrow="Moduly systému" title="Jeden systém, který pokryje celý provoz"

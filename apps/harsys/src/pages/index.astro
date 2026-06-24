@@ -92,7 +92,8 @@ const leadProofs = [
   <main>
   <!-- HERO — split: text vlevo, foto pokladny vpravo -->
   <Hero eyebrow="Pokladní systém pro restaurace" background="gradient"
-        lead="Prémiový pokladní systém s jednoduchou a rychlou obsluhou a spoustou vychytávek, který usnadní provoz vaší restaurace. Spolehlivý, s manažerskými nástroji a nejlepší podporou na trhu.">
+        lead="Prémiový pokladní systém s jednoduchou a rychlou obsluhou a spoustou vychytávek, který usnadní provoz vaší restaurace. Spolehlivý, s manažerskými nástroji a nejlepší podporou na trhu."
+        usp={['27+ let zkušeností', '11 535 licencí', '4 108 zákazníků', 'Podpora 7 dní v týdnu']}>
     <Heading slot="title" as="h1" size="display" color="on-dark">Profesionální pokladní systém pro <span class="accent">restaurace</span></Heading>
     <Fragment slot="actions">
       <Button href="#poptavka">Konzultace zdarma</Button>
@@ -172,18 +173,6 @@ const leadProofs = [
     <div class="variants__cta">
       <Button href="/funkce" variant="secondary">Všechny funkce programu</Button>
     </div>
-  </Section>
-
-  <!-- STATS BAND -->
-  <Section background="invert" space="md">
-    <ul class="stats">
-      {stats.map((s) => (
-        <li class="stats__item">
-          <span class="stats__num">{s.num}</span>
-          <span class="stats__lbl">{s.lbl}</span>
-        </li>
-      ))}
-    </ul>
   </Section>
 
   <!-- FUNKCE SPLIT — stolová mapa -->
