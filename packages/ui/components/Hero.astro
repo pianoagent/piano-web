@@ -27,10 +27,11 @@ interface Props {
   align?: 'left' | 'center';
   background?: 'default' | 'alt' | 'invert' | 'primary' | 'gradient';
   space?: 'sm' | 'md' | 'lg';
-  usp?: string[];   // krátké klíčové body → proužek s odškrtnutími uvnitř hero
+  usp?: (string | { text: string; icon?: string })[];   // klíčové body → proužek uvnitř hero; ikonu lze určit per bod
 }
 
 const { eyebrow, title, lead, align = 'left', background = 'default', space = 'lg', usp = [] } = Astro.props;
+const uspItems = usp.map((u) => (typeof u === 'string' ? { text: u, icon: 'lucide:check' } : { text: u.text, icon: u.icon ?? 'lucide:check' }));
 
 const hasTitle = Astro.slots.has('title');
 const hasActions = Astro.slots.has('actions');
@@ -66,12 +67,12 @@ const innerClasses = [
         <div class="hero__actions"><slot name="actions" /></div>
       )}
 
-      {usp.length > 0 && (
+      {uspItems.length > 0 && (
         <ul class="hero__usp">
-          {usp.map((u) => (
+          {uspItems.map((u) => (
             <li class="hero__usp-item">
-              <span class="hero__usp-check"><Icon name="lucide:check" size="sm" /></span>
-              {u}
+              <span class="hero__usp-check"><Icon name={u.icon} size="sm" /></span>
+              {u.text}
             </li>
           ))}
         </ul>
