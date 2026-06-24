@@ -18,6 +18,7 @@ import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
+import LogoWall from '../components/LogoWall.astro';
 
 const stats = [
   { num: '30 let', lbl: 'na trhu' },
@@ -110,18 +111,7 @@ const leadProofs = [
   </Hero>
 
   <!-- LOGA KLIENTŮ — hned pod hero -->
-  <Section id="zakaznici" background="default" space="md" container={false}>
-    <Text size="label" color="muted" align="center" class="logos__label">
-      Důvěřují nám michelinské restaurace, hotely i kavárny za rohem
-    </Text>
-    <div class="logos">
-      <div class="logos__track">
-        {[...refLogos, ...refLogos].map((l, i) => (
-          <img src={`/logos/${l}.svg`} alt={i < refLogos.length ? l.replace('ref-', '').replace(/-/g, ' ') : ''} aria-hidden={i >= refLogos.length ? 'true' : undefined} loading="lazy" />
-        ))}
-      </div>
-    </div>
-  </Section>
+  <LogoWall id="zakaznici" background="default" label="Důvěřují nám michelinské restaurace, hotely i kavárny za rohem" />
 
   <!-- STATS BAND -->
   <Section background="alt" space="sm">

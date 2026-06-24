@@ -6,8 +6,8 @@
 import Section from '@piano/ui/components/Section.astro';
 import Text from '@piano/ui/components/Text.astro';
 
-interface Props { label?: string; background?: 'default' | 'alt'; }
-const { label = 'Důvěřují nám michelinské restaurace, hotely i kavárny za rohem', background = 'alt' } = Astro.props;
+interface Props { label?: string; background?: 'default' | 'alt'; id?: string; }
+const { label = 'Důvěřují nám michelinské restaurace, hotely i kavárny za rohem', background = 'alt', id } = Astro.props;
 
 const logos = [
   'ref-ambiente', 'ref-field-michelin-restaurant', 'ref-ladegustation-michelin', 'ref-entree-michelin',
@@ -18,7 +18,7 @@ const logos = [
 ];
 ---
 
-<Section background={background} space="md" container={false}>
+<Section background={background} space="md" container={false} id={id}>
   <Text size="label" color="muted" align="center" class="logos__label">{label}</Text>
   <div class="logos">
     <div class="logos__track">
