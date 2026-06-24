@@ -29,8 +29,10 @@ interface Props {
   benefits: Item[];
   faqs: { q: string; a: string }[];
   partner?: string;   // krátká poznámka o partnerovi (např. QSR Automations)
+  heroImage?: string;
+  heroImageAlt?: string;
 }
-const { title, description, eyebrow, titleHtml, lead, intro, introHeading, benefitsTitle, benefits, faqs, partner } = Astro.props;
+const { title, description, eyebrow, titleHtml, lead, intro, introHeading, benefitsTitle, benefits, faqs, partner, heroImage, heroImageAlt } = Astro.props;
 ---
 <Base title={title} description={description}>
   <SiteHeader />
@@ -41,6 +43,7 @@ const { title, description, eyebrow, titleHtml, lead, intro, introHeading, benef
         <Button href="#poptavka">Chci propojit provoz</Button>
         <Button href="/produkty/septim-4" variant="secondary">O systému Septim</Button>
       </Fragment>
+      {heroImage && <figure slot="media" class="hero-pic"><img src={heroImage} alt={heroImageAlt ?? ''} width="1300" height="1000" loading="eager" /></figure>}
     </Hero>
 
     <Section background="default" space="lg">
