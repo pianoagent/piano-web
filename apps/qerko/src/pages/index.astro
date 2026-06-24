@@ -279,13 +279,14 @@ const leadProofs = [
 </Base>
 
 <style>
-  /* Hero video */
+  /* Hero video — oříznuto do čtverce (vyšší a větší v split layoutu) */
   .hero-figure {
     position: relative; margin: 0; width: 100%;
+    aspect-ratio: 1 / 1;
     border-radius: var(--radius-lg); overflow: hidden;
     box-shadow: var(--shadow-lg); line-height: 0;
   }
-  .hero-figure video { width: 100%; height: auto; display: block; }
+  .hero-figure video { width: 100%; height: 100%; object-fit: cover; display: block; }
 
   /* Sdílená hlavička sekce */
   .head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-7); }
