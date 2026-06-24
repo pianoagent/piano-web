@@ -39,6 +39,7 @@ const features = [
     <Fragment slot="actions">
       <Button href="#poptavka">Chci vyzkoušet</Button>
     </Fragment>
+    <img slot="media" src="/images/pilot-app.webp" alt="Piano Pilot — náklady a tržby v mobilní aplikaci" width="694" height="574" />
   </Hero>
 
   <USPGrid eyebrow="Jak to funguje" title="Tři kroky k přehledu nad provozem"
@@ -46,6 +47,14 @@ const features = [
 
   <USPGrid eyebrow="Klíčové funkce" title="Vše pro chytré rozhodování"
            items={features} background="alt" />
+
+  <!-- Full-bleed pruh: interiér podniku -->
+  <section class="band">
+    <img class="band__bg" src="/images/pilot-bg.webp" alt="" loading="lazy" />
+    <div class="band__overlay">
+      <Heading as="p" size="h2" color="on-dark" align="center" balance>Přehled o provozu kdykoliv a kdekoliv — z pláže i od stolu.</Heading>
+    </div>
+  </section>
 
   <!-- Dvě verze produktu -->
   <Section background="default" space="lg">
@@ -78,17 +87,20 @@ const features = [
   </Section>
 
   <!-- Reference -->
-  <Section background="invert" space="lg" container="narrow">
+  <Section background="invert" space="lg">
     <figure class="quote">
-      <Text size="lead" color="on-dark" align="center">
-        „Kukátko používám denně — rychle a přehledně mám na jednom místě data o tržbách
-        i četnosti prodeje, která jsem dřív získával složitě. Teď testuji GastroPilota
-        a těším se na další vývoj.“
-      </Text>
-      <figcaption class="quote__by">
-        <Text color="on-dark" weight="semibold">Přemysl Hejda</Text>
-        <Text size="small" color="on-dark-muted">majitel, Fresherie</Text>
-      </figcaption>
+      <img class="quote__photo" src="/images/pilot-chef.webp" alt="Provozní s aplikací Piano Pilot" width="320" height="414" loading="lazy" />
+      <div class="quote__text">
+        <Text size="lead" color="on-dark">
+          „Kukátko používám denně — rychle a přehledně mám na jednom místě data o tržbách
+          i četnosti prodeje, která jsem dřív získával složitě. Teď testuji GastroPilota
+          a těším se na další vývoj.“
+        </Text>
+        <figcaption class="quote__by">
+          <Text color="on-dark" weight="semibold">Přemysl Hejda</Text>
+          <Text size="small" color="on-dark-muted">majitel, Fresherie</Text>
+        </figcaption>
+      </div>
     </figure>
   </Section>
 
@@ -121,10 +133,21 @@ const features = [
   .plan__list li::before { content: "✓"; position: absolute; left: 0; color: var(--color-text-accent); font-weight: 700; }
   .plan :global(.btn) { margin-top: auto; }
 
-  .quote { display: flex; flex-direction: column; align-items: center; gap: var(--space-5); }
-  .quote__by { text-align: center; display: flex; flex-direction: column; gap: 2px; }
+  /* Full-bleed pruh s fotkou interiéru */
+  .band { position: relative; min-height: 320px; display: grid; place-items: center; overflow: hidden; }
+  .band__bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .band__overlay { position: relative; max-width: 760px; padding: var(--space-8) var(--container-pad); }
+  .band__overlay::before { content: ""; position: absolute; inset: 0; background: rgba(17, 21, 27, 0.55); z-index: -1; }
+
+  /* Reference s fotkou */
+  .quote { display: grid; grid-template-columns: 320px 1fr; gap: var(--space-7); align-items: center; max-width: 900px; margin: 0 auto; }
+  .quote__photo { width: 100%; height: auto; display: block; }
+  .quote__text { display: flex; flex-direction: column; gap: var(--space-4); }
+  .quote__by { display: flex; flex-direction: column; gap: 2px; }
 
   @media (max-width: 720px) {
     .plans { grid-template-columns: 1fr; }
+    .quote { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+    .quote__photo { max-width: 240px; }
   }
 </style>
