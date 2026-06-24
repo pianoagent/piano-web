@@ -115,6 +115,7 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  overflow-x: clip;   /* pojistka proti vodorovnému přetečení (nerozbíjí sticky) */
 }
 body {
   font: var(--text-body);
