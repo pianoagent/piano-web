@@ -50,9 +50,10 @@ const onDark = background === 'invert' || background === 'primary';
 const hasTitle = Astro.slots.has('title');
 const hasHeader = eyebrow || title || lead || hasTitle;
 
-const gridStyle = columns
-  ? `grid-template-columns: repeat(${columns}, 1fr);`
-  : `grid-template-columns: repeat(auto-fit, minmax(${minItemWidth}, 1fr));`;
+// Tvar mřížky řešíme přes CSS proměnné, aby šlo responzivně přepsat (inline
+// styl by media query přebít nešel → způsoboval vodorovné přetečení na mobilu).
+const gridVar = columns ? `--usp-cols: ${columns};` : `--usp-min: ${minItemWidth};`;
+const gridMode = columns ? 'usp__grid--fixed' : 'usp__grid--auto';
 ---
 
 <Section background={background} space={space}>
@@ -68,7 +69,7 @@ const gridStyle = columns
     </div>
   )}
 
-  <div class:list={['usp__grid', onDark && 'usp__grid--on-dark']} style={gridStyle}>
+  <div class:list={['usp__grid', gridMode, onDark && 'usp__grid--on-dark']} style={gridVar}>
     {items.map((item) => (
       <article class="usp__card">
         {item.image ? (
@@ -101,6 +102,12 @@ const gridStyle = columns
   .usp__lead { margin-top: var(--space-4); }
 
   .usp__grid { display: grid; gap: var(--space-5); }
+  /* minmax(0,1fr) místo 1fr → tracky se smrští, žádné vodorovné přetečení */
+  .usp__grid--fixed { grid-template-columns: repeat(var(--usp-cols, 3), minmax(0, 1fr)); }
+  .usp__grid--auto { grid-template-columns: repeat(auto-fit, minmax(var(--usp-min, 240px), 1fr)); }
+  /* Responzivní zalomení pevných sloupců na mobilu/tabletu */
+  @media (max-width: 880px) { .usp__grid--fixed { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 540px) { .usp__grid--fixed { grid-template-columns: 1fr; } }
 
   .usp__card {
     background: var(--color-bg);
