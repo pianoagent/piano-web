@@ -15,7 +15,7 @@
 import Container from './Container.astro';
 
 interface Props {
-  background?: 'default' | 'alt' | 'invert' | 'primary' | 'gradient';
+  background?: 'default' | 'alt' | 'warm' | 'invert' | 'primary' | 'gradient';
   space?: 'sm' | 'md' | 'lg';
   container?: 'default' | 'narrow' | 'wide' | 'full' | false;
   as?: string;
@@ -60,6 +60,7 @@ const classes = [
   /* Pozadí */
   .section--bg-default { background: var(--color-bg); }
   .section--bg-alt     { background: var(--color-bg-alt); }
+  .section--bg-warm    { background: var(--color-bg-warm, #FFF5E8); }
   .section--bg-invert  { background: var(--color-neutral-900); color: var(--color-text-on-dark); }
   .section--bg-primary { background: var(--color-primary-bg); color: var(--color-text-on-dark); }
   .section--bg-gradient { background: var(--color-bg-gradient, var(--color-primary-bg)); color: var(--color-text-on-dark); }

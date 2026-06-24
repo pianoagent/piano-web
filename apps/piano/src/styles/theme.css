@@ -66,6 +66,7 @@
 
   --color-bg:        #FFFFFF;
   --color-bg-alt:    #F5F4F2;
+  --color-bg-warm:   #FFF5E8;   /* brandová warm white */
   --color-bg-invert: #94002A;
   --color-bg-hover:  color-mix(in srgb, var(--color-neutral-900) 4%, #FFFFFF);
 
