@@ -12,15 +12,13 @@ type Group = 'novinky' | 'pokladna' | 'hotely' | 'hoste';
 interface PianoProduct {
   id: string;
   label: string;
-  href: string;          // externí web produktu (potvrdit)
+  href: string;          // oficiální web produktu (externí)
   description: string;
   icon: string;          // brandová favicon '/brand/<id>.svg'
   badge?: string;
   group: Group;
   path?: string;         // produkty, které ŽIJÍ na piano.cz (Pilot, Brain, Terminál)
                          // → odkaz dovnitř webu, ne na samostatný web
-  demo?: string;         // override demo URL, když nesedí `<id>-web.pages.dev`
-                         // (např. Hugo má kvůli kolizi názvu suffix -aa4)
 }
 
 /** Zdroj pravdy pro celé portfolio. */
@@ -30,11 +28,10 @@ export const PIANO_PRODUCTS: PianoProduct[] = [
   { id: 'terminal', label: 'Piano Terminál', href: 'https://piano.cz', path: '/terminal', description: 'Terminál, který platbou začíná. Data i platby dodavatelům.', icon: '/brand/piano.svg', group: 'novinky' },
 
   { id: 'septim',   label: 'Septim',         href: 'https://www.septim.cz',         description: 'Pokladní a provozní systém',     icon: '/brand/septim.svg',        group: 'pokladna' },
-  { id: 'hugo',     label: 'Hugo',           href: 'https://hugo.cz',               description: 'Pokladna v telefonu, co máš',    icon: '/brand/hugo.svg',          badge: 'Nový', group: 'pokladna', demo: 'https://hugo-web-aa4.pages.dev' },
-  { id: 'harsys',   label: 'ABX Harsys',     href: 'https://piano.cz',              description: 'Pokladní systém',                icon: '/brand/abx.svg', group: 'pokladna' },
-  { id: 'savarin',  label: 'Savarin',        href: 'https://piano.cz',              description: 'Pokladní systém',                icon: '/brand/savarin.svg',        group: 'pokladna' },
-  { id: 'autset',   label: 'Autset',         href: 'https://piano.cz',              description: 'Automatické naskladňování',      icon: '/brand/autset.svg',         group: 'pokladna' },
-  { id: 'pecosta',  label: 'Pecosta',        href: 'https://www.pecosta.cz',        description: 'Aukční nákupy surovin',          icon: '/brand/pecosta.svg',           group: 'pokladna' },
+  { id: 'harsys',   label: 'ABX Harsys',     href: 'https://www.abxharsys.cz',      description: 'Pokladní systém',                icon: '/brand/abx.svg', group: 'pokladna' },
+  { id: 'savarin',  label: 'Savarin',        href: 'https://cominn.cz',             description: 'Pokladní systém',                icon: '/brand/savarin.svg',        group: 'pokladna' },
+  { id: 'autset',   label: 'Autset',         href: 'https://autset.com',            description: 'Automatické naskladňování',      icon: '/brand/autset.svg',         group: 'pokladna' },
+  { id: 'pecosta',  label: 'Pecosta',        href: 'https://pecosta.cz',            description: 'Aukční nákupy surovin',          icon: '/brand/pecosta.svg',           group: 'pokladna' },
 
   { id: 'protel',   label: 'Protel',         href: 'https://www.protelsystems.cz',  description: 'Hotelový PMS systém',            icon: '/brand/protel.svg',      group: 'hotely' },
 
@@ -42,11 +39,7 @@ export const PIANO_PRODUCTS: PianoProduct[] = [
   { id: 'grason',   label: 'Grason',         href: 'https://www.grason.cz',         description: 'Brigádníci, směny, píchačky',    icon: '/brand/grason.svg',           group: 'hoste' },
 ];
 
-// DEMO: dočasně odkazujeme na nasazené weby <id>-web.pages.dev, ať jde ekosystém
-// proklikat. Finální URL jsou v `href` u každého produktu — po nasazení na domény
-// stačí přepnout `toLink` zpět na `p.href` a PIANO_BASE na https://piano.cz.
-//
-// Ostrá doména Piana. Tady žijí Pilot/Brain/Terminál.
+// Ostrá doména Piana. Tady žijí Pilot/Brain/Terminál (odkaz přes `path`).
 const PIANO_BASE = 'https://piano.cz';
 //
 // Produkty s `path` žijí na webu Piana:
