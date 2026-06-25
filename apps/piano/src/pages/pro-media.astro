@@ -1,0 +1,140 @@
+---
+/**
+ * Pro média — piano.cz/pro-media (tiskové centrum).
+ * Obsah dle prototypu piano-web-2026.html (#/pro-media).
+ */
+import Base from '../layouts/Base.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+
+const releases = [
+  { year: '2026', title: 'Piano spojuje 8 gastro-tech firem do jednoho ekosystému', text: 'Tisková zpráva o vzniku Piana — co se mění pro zákazníky Qerka, Septimu, Pecosty a dalších značek.' },
+  { year: '2026', title: 'Piano Brain: první otevřená data o HORECA trhu v Česku', text: 'Anonymizovaná data ze 6 000 provozů. Co se v Česku jí a pije a za kolik.' },
+  { year: '2026', title: 'Piano Terminál: výplata každý pracovní den', text: 'Jak Piano mění platby v restauracích — bez čekání na měsíční vyúčtování.' },
+];
+
+const videos = [
+  { title: 'Piano — představení ekosystému', meta: '3:42 · 1080p · MP4' },
+  { title: 'Qerko v restauraci FIELD', meta: '2:18 · 1080p · MP4' },
+  { title: 'Piano Terminál — jak to funguje', meta: '1:55 · 1080p · MP4' },
+];
+
+const kit = ['Piano', 'Septim', 'Qerko', 'Pecosta', 'Grason', 'Protel', 'Piano Pilot', 'Piano Terminál'];
+---
+
+<Base title="Pro média — tiskové centrum Piano"
+      description="Tiskové centrum Piano: fakta o společnosti, tiskové zprávy, videa, loga a press kit ke stažení a kontakt na PR.">
+
+  <Hero eyebrow="Pro média" background="primary"
+        lead="Vše, co můžete potřebovat pro článek, podcast nebo reportáž o Pianu — fakta o společnosti, citace, fotografie, loga a kontakt na PR. Pokud něco postrádáte, ozvěte se.">
+    <Heading slot="title" as="h1" size="display" color="on-dark">Tiskové centrum <em>Piano.</em></Heading>
+    <Fragment slot="actions">
+      <Button href="#press-kit">Stáhnout press kit</Button>
+      <Button href="#kontakt" variant="secondary" onDark>Kontakt pro novináře</Button>
+    </Fragment>
+  </Hero>
+
+  <!-- Piano v kostce -->
+  <Section background="warm" space="md" container="narrow">
+    <Text size="label" color="accent" align="center">Piano v kostce</Text>
+    <Heading as="h2" size="h3" align="center" class="pm-kostka">
+      Piano je první plně integrovaný ekosystém technologií pro české pohostinství. Vzniklo spojením osmi firem (Qerko, Septim, Pecosta, Harsys, POS Experts, Savarin, Protel a Grason) a dnes pomáhá více než 6 000 provozům v ČR jet efektivněji.
+    </Heading>
+  </Section>
+
+  <!-- Tiskové zprávy -->
+  <Section background="default" space="lg">
+    <div class="pm-head">
+      <Text size="label" color="accent">Tiskové zprávy</Text>
+      <Heading as="h2" size="h2">Nejnovější oznámení</Heading>
+    </div>
+    <div class="pm-grid">
+      {releases.map((r) => (
+        <article class="pm-card">
+          <Text size="caption" color="muted">{r.year}</Text>
+          <Heading as="h3" size="h3">{r.title}</Heading>
+          <Text size="small" color="muted">{r.text}</Text>
+          <a class="pm-link" href="#">Číst zprávu <Icon name="lucide:arrow-right" size="xs" /></a>
+        </article>
+      ))}
+    </div>
+  </Section>
+
+  <!-- Videa -->
+  <Section background="alt" space="lg">
+    <div class="pm-head">
+      <Text size="label" color="accent">Videa</Text>
+      <Heading as="h2" size="h2">Záznamy a ukázky produktů</Heading>
+      <Text color="muted" class="pm-sub">Videa volně k použití v reportážích a článcích. Při použití uvádějte zdroj „Piano".</Text>
+    </div>
+    <div class="pm-grid">
+      {videos.map((v) => (
+        <article class="pm-video">
+          <span class="pm-video__play"><Icon name="lucide:play" size="md" /></span>
+          <Heading as="h3" size="h3">{v.title}</Heading>
+          <Text size="small" color="muted">{v.meta}</Text>
+        </article>
+      ))}
+    </div>
+  </Section>
+
+  <!-- Press kit -->
+  <Section id="press-kit" background="warm" space="lg">
+    <div class="pm-head">
+      <Text size="label" color="accent">Press kit</Text>
+      <Heading as="h2" size="h2">Loga a vizuální identita</Heading>
+      <Text color="muted" class="pm-sub">Loga v plné kvalitě (SVG, PNG), barevné palety a typografie pro použití v médiích. Vše ke stažení v jednom balíčku.</Text>
+    </div>
+    <ul class="pm-kit">
+      {kit.map((k) => (
+        <li><a href="#"><Icon name="lucide:download" size="sm" /> {k} <span>SVG / PNG</span></a></li>
+      ))}
+    </ul>
+    <div class="pm-kit__cta"><Button href="#">Stáhnout celý press kit (ZIP)</Button></div>
+  </Section>
+
+  <!-- Kontakt pro novináře -->
+  <Section id="kontakt" background="invert" space="lg" container="narrow">
+    <div class="pm-contact">
+      <Text size="label" color="on-dark-muted">Kontakt pro novináře</Text>
+      <Heading as="h2" size="h2" color="on-dark">Mluvčí Piana</Heading>
+      <Text color="on-dark-muted" class="pm-sub">Pro tiskové dotazy, rozhovory a domluvení návštěvy v provozech našich zákazníků se obracejte přímo na nás. Odpovídáme do dvou pracovních hodin.</Text>
+      <div class="pm-contact__links">
+        <a href="mailto:media@piano.cz"><Icon name="lucide:mail" size="sm" /> media@piano.cz</a>
+        <a href="tel:+420770320248"><Icon name="lucide:phone" size="sm" /> +420 770 320 248</a>
+      </div>
+    </div>
+  </Section>
+
+</Base>
+
+<style>
+  .pm-kostka { margin-top: var(--space-3); font-weight: var(--font-weight-regular); }
+  .pm-head { max-width: 720px; margin: 0 auto var(--space-7); text-align: center; }
+  .pm-head :global(h2) { margin-top: var(--space-2); }
+  .pm-sub { margin-top: var(--space-3); }
+
+  .pm-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-5); }
+  .pm-card { display: flex; flex-direction: column; gap: var(--space-2); padding: var(--space-6); background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); }
+  .pm-link { display: inline-flex; align-items: center; gap: var(--space-1); margin-top: var(--space-2); color: var(--color-text-accent); text-decoration: none; font-weight: var(--font-weight-medium); font-size: var(--font-size-small); }
+
+  .pm-video { display: flex; flex-direction: column; gap: var(--space-2); }
+  .pm-video__play { display: grid; place-items: center; aspect-ratio: 16/9; background: var(--color-neutral-900); color: #fff; border-radius: var(--radius-md); margin-bottom: var(--space-2); }
+
+  .pm-kit { list-style: none; display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-3); max-width: 760px; margin: 0 auto; }
+  .pm-kit a { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-3) var(--space-4); background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-sm); color: var(--color-text); text-decoration: none; transition: var(--transition); }
+  .pm-kit a:hover { border-color: var(--color-primary); }
+  .pm-kit a span { margin-left: auto; font-size: var(--font-size-caption); color: var(--color-text-muted); }
+  .pm-kit__cta { text-align: center; margin-top: var(--space-6); }
+
+  .pm-contact { text-align: center; display: flex; flex-direction: column; align-items: center; gap: var(--space-2); }
+  .pm-contact__links { display: flex; flex-wrap: wrap; gap: var(--space-5); justify-content: center; margin-top: var(--space-4); }
+  .pm-contact__links a { display: inline-flex; align-items: center; gap: var(--space-2); color: var(--color-text-on-dark); text-decoration: none; font-weight: var(--font-weight-medium); }
+
+  @media (max-width: 880px) { .pm-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 560px) { .pm-kit { grid-template-columns: 1fr; } }
+</style>

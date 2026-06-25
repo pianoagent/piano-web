@@ -83,6 +83,7 @@ export const companyNav: NavLink[] = [
   { label: 'Ceník', href: '/cenik' },
   { label: 'Blog', href: '/blog' },
   { label: 'O nás', href: '/o-nas' },
+  { label: 'Pro média', href: '/pro-media' },
   { label: 'Kontakt', href: '/kontakt' },
 ];
 
