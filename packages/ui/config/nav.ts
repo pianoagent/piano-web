@@ -69,8 +69,7 @@ export const mainNav: NavItem[] = [
   { label: 'Produkty', href: '/produkty', mega: produktyMega },
   { label: 'Řešení', href: '/reseni', mega: reseniMega },
   { label: 'EET 2.0', href: '/eet' },
-  { label: 'Ceník', href: '/cenik' },
-  { label: 'Blog', href: '/blog' },
+  { label: 'O nás', href: '/o-nas' },
   { label: 'Kontakt', href: '/kontakt' },
 ];
 
@@ -79,8 +78,6 @@ export const headerCta: NavLink = { label: 'Domluvit demo', href: '/kontakt' };
 /** Sekundární odkazy (firma) — používá Footer */
 export const companyNav: NavLink[] = [
   { label: 'Řešení', href: '/reseni' },
-  { label: 'Ceník', href: '/cenik' },
-  { label: 'Blog', href: '/blog' },
   { label: 'O nás', href: '/o-nas' },
   { label: 'Pro média', href: '/pro-media' },
   { label: 'Kontakt', href: '/kontakt' },
@@ -99,11 +96,14 @@ export const socialLinks: { label: string; href: string; icon: string }[] = [
   { label: 'YouTube', href: 'https://www.youtube.com/', icon: 'lucide:youtube' },
 ];
 
-/** Kontaktní údaje */
+/** Kontaktní údaje — Piano Solutions (sídlo dle obchodního rejstříku) */
 export const contact = {
-  email: 'obchod@piano.cz',
-  phone: '+420 222 222 222',
-  address: 'Piano Solutions s.r.o., Praha',
+  company: 'Piano Solutions s.r.o.',
+  email: 'info@piano.cz',
+  phone: '+420 770 320 248',
+  address: 'Thámova 166/18, Karlín, 186 00 Praha 8',
+  ic: '19780974',
+  dic: 'CZ19780974',
 };
 
 /** Ploché pole odkazů z mega panelu (pro mobilní menu) */
