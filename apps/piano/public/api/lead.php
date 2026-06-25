@@ -10,7 +10,8 @@ declare(strict_types=1);
  * je web@piano.cz, takže pokud DNS piano.cz autorizuje tenhle hosting, projde to.
  * Když by maily padaly do spamu, přejít na SMTP (PHPMailer) přes reálnou schránku.
  *
- * Pozn.: na /api/lead přesměruje .htaccess rewrite (web root).
+ * Formulář posílá přímo sem (action="/api/lead.php") — hosting je za nginx,
+ * .htaccess rewrite se neaplikuje, takže žádná hezká /api/lead cesta.
  */
 
 const LEAD_TO = 'poptavky@piano.cz';

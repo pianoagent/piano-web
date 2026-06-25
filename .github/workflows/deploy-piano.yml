@@ -43,8 +43,9 @@ jobs:
           protocol: ${{ vars.FTP_PROTOCOL || 'ftp' }}
           local-dir: apps/piano/dist/
           server-dir: ${{ vars.FTP_SERVER_DIR || './' }}
-          # Cloudflare worker artefakty na statickém FTP nedávají smysl
+          # Cloudflare artefakty (worker/headers/routes) na tomhle hostingu nedávají smysl
           exclude: |
             _worker.js/**
             _routes.json
+            _headers
             **/.DS_Store
