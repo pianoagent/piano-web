@@ -14,7 +14,7 @@
  *   title?:       string
  *   lead?:        string
  *   proofs?:      Proof[]  → body důvěry vedle formuláře (icon? / title / text?)
- *   action?:      string  → endpoint (Cloudflare Function → Odoo); default "/api/lead"
+ *   action?:      string  → endpoint pro odeslání; default "/api/lead.php" (PHP hosting → e-mail)
  *   submitLabel?: string
  *   background?:  "default" | "alt" | "invert" | "primary"   (default "alt")
  *   space?:       "sm" | "md" | "lg"
@@ -57,7 +57,7 @@ const {
   title,
   lead,
   proofs = defaultProofs,
-  action = '/api/lead',
+  action = '/api/lead.php',
   successUrl = '/dekujeme',
   submitLabel,
   background = 'alt',

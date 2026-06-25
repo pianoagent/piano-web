@@ -35,9 +35,12 @@ const defaultColumns: FooterColumn[] = [
 const defaultContactBlock = {
   heading: 'Kontakt',
   items: [
-    { value: defaultContact.email, href: `mailto:${defaultContact.email}` },
-    { value: defaultContact.phone, href: `tel:${defaultContact.phone.replace(/\s/g, '')}` },
+    { value: defaultContact.company },
     { value: defaultContact.address },
+    { value: defaultContact.phone, href: `tel:${defaultContact.phone.replace(/\s/g, '')}` },
+    { value: defaultContact.email, href: `mailto:${defaultContact.email}` },
+    { label: 'IČ', value: defaultContact.ic },
+    { label: 'DIČ', value: defaultContact.dic },
   ] as ContactItem[],
 };
 

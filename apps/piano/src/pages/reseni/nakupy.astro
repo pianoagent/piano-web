@@ -1,0 +1,40 @@
+---
+/**
+ * Řešení — Nákupy a sklady (piano.cz/reseni/nakupy).
+ * Obsah dle stávajícího webu piano.cz/nakupy-a-sklady.
+ */
+import Base from '../../layouts/Base.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Button from '@piano/ui/components/Button.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+
+const benefits = [
+  { icon: 'lucide:shopping-cart', title: 'Levnější nákupy z jednoho místa', text: 'Každý dodavatel má jiné objednávkové procesy, cena roste a porovnání je skoro nemožné. Objednávejte stejně kvalitní zboží od různých dodavatelů na jednom místě, kdykoliv a za bezkonkurenční ceny.' },
+  { icon: 'lucide:truck', title: 'Automatické naskladnění během pár minut', text: 'Nekonečnou hromadu dodacích listů už nemusíte přepisovat ručně. Automatizujte celý proces naskladnění, eliminujte chyby a ušetřete až 1 hodinu práce denně.' },
+  { icon: 'lucide:boxes', title: 'Přehledný sklad a klid na duši', text: 'Skladové hospodářství je základ úspěšného podniku. Mějte přehled o tom, kolik zboží máte na skladu, ulehčete si inventury a předejděte plýtvání a krádežím.' },
+];
+---
+
+<Base title="Nákupy a sklady — řešení pro váš provoz | Piano"
+      description="Urychlujeme a zlevňujeme proces nákupů a naskladňování. Ušetřete až 30 hodin měsíčně a 16 % nákladů — vše z jednoho místa.">
+
+  <Hero eyebrow="Řešení" background="warm"
+        lead="Ušetřete s námi až 30 hodin měsíčně a 16 % nákladů."
+        usp={[{ text: 'Vše pod jednou střechou', icon: 'lucide:layers' }, { text: '6 000+ podniků', icon: 'lucide:store' }, { text: '10+ nástrojů', icon: 'lucide:grid-2x2' }]}>
+    <Heading slot="title" as="h1" size="display">Urychlujeme a zlevňujeme proces nákupů a naskladňování</Heading>
+    <Fragment slot="actions">
+      <Button href="#poptavka">Domluvit konzultaci zdarma</Button>
+      <Button href="/#ekosystem" variant="secondary">Prozkoumat nástroje</Button>
+    </Fragment>
+    <img slot="media" src="/images/cat-nakupy.webp" alt="Nákupy a sklady — Piano" width="1100" height="733" />
+  </Hero>
+
+  <USPGrid eyebrow="Jak to řešíme" title="Nákupy a sklady pod kontrolou"
+           items={benefits} columns={3} background="default" minItemWidth="280px" />
+
+  <LeadForm id="poptavka" variant="full"
+            title="Vyřešte nákupy a naskladňování ještě dnes"
+            lead="Kontaktujte nás pro konzultaci zdarma — navrhneme řešení šité na míru vašemu provozu." />
+</Base>

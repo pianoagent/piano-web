@@ -49,7 +49,7 @@ const reseniMega: MegaPanel = {
   featured: {
     label: 'Doporučeno',
     items: [
-      { label: 'All-in-One platforma', href: '/reseni', description: 'Jeden ekosystém, jeden poplatek z obratu, jedna faktura.', icon: 'lucide:layers', badge: 'Kompletní' },
+      { label: 'All-in-One platforma', href: '/#ekosystem', description: 'Jeden ekosystém, jeden poplatek z obratu, jedna faktura.', icon: 'lucide:layers', badge: 'Kompletní' },
     ],
   },
   columns: [
@@ -60,7 +60,6 @@ const reseniMega: MegaPanel = {
         { label: 'Platby & marketing', href: '/reseni/platby', description: 'Fronty, nízká dýška, nulové recenze', icon: 'lucide:credit-card' },
         { label: 'Nákupy & sklady', href: '/reseni/nakupy', description: 'Předražené suroviny, ruční přepisování', icon: 'lucide:shopping-cart' },
         { label: 'Personál', href: '/reseni/personal', description: 'Chybějící brigádníci, chaos ve směnách', icon: 'lucide:users' },
-        { label: 'Data & analýzy', href: '/reseni/data', description: 'Rozhodování podle pocitů, ne čísel', icon: 'lucide:bar-chart-3' },
       ],
     },
   ],
@@ -70,8 +69,7 @@ export const mainNav: NavItem[] = [
   { label: 'Produkty', href: '/produkty', mega: produktyMega },
   { label: 'Řešení', href: '/reseni', mega: reseniMega },
   { label: 'EET 2.0', href: '/eet' },
-  { label: 'Ceník', href: '/cenik' },
-  { label: 'Blog', href: '/blog' },
+  { label: 'O nás', href: '/o-nas' },
   { label: 'Kontakt', href: '/kontakt' },
 ];
 
@@ -79,9 +77,6 @@ export const headerCta: NavLink = { label: 'Domluvit demo', href: '/kontakt' };
 
 /** Sekundární odkazy (firma) — používá Footer */
 export const companyNav: NavLink[] = [
-  { label: 'Řešení', href: '/reseni' },
-  { label: 'Ceník', href: '/cenik' },
-  { label: 'Blog', href: '/blog' },
   { label: 'O nás', href: '/o-nas' },
   { label: 'Pro média', href: '/pro-media' },
   { label: 'Kontakt', href: '/kontakt' },
@@ -100,11 +95,14 @@ export const socialLinks: { label: string; href: string; icon: string }[] = [
   { label: 'YouTube', href: 'https://www.youtube.com/', icon: 'lucide:youtube' },
 ];
 
-/** Kontaktní údaje */
+/** Kontaktní údaje — Piano Solutions (sídlo dle obchodního rejstříku) */
 export const contact = {
-  email: 'obchod@piano.cz',
-  phone: '+420 222 222 222',
-  address: 'Piano Solutions s.r.o., Praha',
+  company: 'Piano Solutions s.r.o.',
+  email: 'info@piano.cz',
+  phone: '+420 770 320 248',
+  address: 'Thámova 166/18, Karlín, 186 00 Praha 8',
+  ic: '19780974',
+  dic: 'CZ19780974',
 };
 
 /** Ploché pole odkazů z mega panelu (pro mobilní menu) */
