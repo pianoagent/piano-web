@@ -22,6 +22,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # Diagnostika: vypíše veřejnou IP runneru. POZOR — mění se při každém běhu,
+      # nedá se proto smysluplně whitelistovat na FTP. Jen pro ukázku podpoře.
+      - name: Public IP runneru
+        run: |
+          echo "Public IP tohoto runneru (příští běh bude JINÁ):"
+          curl -s https://api.ipify.org && echo
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
