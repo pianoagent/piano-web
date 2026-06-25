@@ -60,7 +60,6 @@ const reseniMega: MegaPanel = {
         { label: 'Platby & marketing', href: '/reseni/platby', description: 'Fronty, nízká dýška, nulové recenze', icon: 'lucide:credit-card' },
         { label: 'Nákupy & sklady', href: '/reseni/nakupy', description: 'Předražené suroviny, ruční přepisování', icon: 'lucide:shopping-cart' },
         { label: 'Personál', href: '/reseni/personal', description: 'Chybějící brigádníci, chaos ve směnách', icon: 'lucide:users' },
-        { label: 'Data & analýzy', href: '/reseni/data', description: 'Rozhodování podle pocitů, ne čísel', icon: 'lucide:bar-chart-3' },
       ],
     },
   ],

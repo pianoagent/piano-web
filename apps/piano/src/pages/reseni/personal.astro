@@ -1,0 +1,39 @@
+---
+/**
+ * Řešení — Lidé a personál (piano.cz/reseni/personal).
+ * Obsah dle stávajícího webu piano.cz/lide-a-personal.
+ */
+import Base from '../../layouts/Base.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Button from '@piano/ui/components/Button.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+
+const benefits = [
+  { icon: 'lucide:user-check', title: 'Rychlý nábor prověřeného personálu', text: 'Najít zaměstnance je náročné, obzvlášť v gastronomii — fluktuace je vysoká a spolehlivost nízká. Získejte zájemce o dlouhodobou i krátkodobou spolupráci s transparentní profesní historií na jednom místě.' },
+  { icon: 'lucide:calendar-days', title: 'Jednoduché plánování směn', text: 'Rozpis směn vypadá triviálně, ale opak je pravdou — něco máte na papíře, něco na WhatsAppu a něco zazní jen tak mezi řečí. Naplánujte směny, rozdělte i zkontrolujte úkoly a schvalte docházku z jednoho místa, bez nutnosti někoho nahánět.' },
+];
+---
+
+<Base title="Lidé a personál — řešení pro váš provoz | Piano"
+      description="Zlehčujeme nábor personálu a plánování směn. Přístup k více než 40 000 pracovníků a plánování směn hravě a efektivně.">
+
+  <Hero eyebrow="Řešení" background="warm"
+        lead="Získejte přístup k více než 40 000 pracovníků a plánujte směny hravě a efektivně."
+        usp={[{ text: 'Vše pod jednou střechou', icon: 'lucide:layers' }, { text: '6 000+ podniků', icon: 'lucide:store' }, { text: '10+ nástrojů', icon: 'lucide:grid-2x2' }]}>
+    <Heading slot="title" as="h1" size="display">Zlehčujeme nábor personálu a plánování směn</Heading>
+    <Fragment slot="actions">
+      <Button href="#poptavka">Domluvit konzultaci zdarma</Button>
+      <Button href="/produkty" variant="secondary">Prozkoumat nástroje</Button>
+    </Fragment>
+    <img slot="media" src="/images/cat-personal.webp" alt="Lidé a personál — Piano" width="1100" height="733" />
+  </Hero>
+
+  <USPGrid eyebrow="Jak to řešíme" title="Personál, který nechybí"
+           items={benefits} columns={2} background="default" minItemWidth="320px" />
+
+  <LeadForm id="poptavka" variant="full"
+            title="Vyřešte nábor a plánování směn ještě dnes"
+            lead="Kontaktujte nás pro konzultaci zdarma — navrhneme řešení šité na míru vašemu provozu." />
+</Base>
