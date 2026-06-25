@@ -1,0 +1,97 @@
+---
+/**
+ * Savarin — Mobilní pokladna (mobilní číšník). Obsah z legacy stránky mobilni-pokladna.
+ * Sdílené komponenty @piano/ui.
+ */
+import Base from '../layouts/Base.astro';
+import Header from '@piano/ui/components/Header.astro';
+import Footer from '@piano/ui/components/Footer.astro';
+import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import { savarinNav, savarinCta } from '../config/nav';
+
+const funkce = [
+  { icon: 'lucide:clipboard-list', title: 'Objednávka u stolu', text: 'Příjem objednávky na konkrétní stůl nebo židli; v dosahu sítě vidíte aktuální obsah účtu hosta. Vyhledání položky přes PLU, název nebo rastry.' },
+  { icon: 'lucide:wifi-off', title: 'Off-line režim', text: 'Objednávejte i mimo dosah sítě — v salonku, sklepě či na zahrádce. Po připojení se požadavky přenesou na server.' },
+  { icon: 'lucide:undo-2', title: 'Storna a přesuny', text: 'Stornujte namarkované položky nebo je převeďte z účtu hosta na jiný účet.' },
+  { icon: 'lucide:credit-card', title: 'Úhrada účtu', text: 'Zaplacení vybraných položek, volba druhu platby i převod na účet hosta ubytovaného v Recepci. Volba tiskárny pro účtenku.' },
+  { icon: 'lucide:sticky-note', title: 'Poznámky k položkám', text: 'K položce připojíte poznámku z číselníku, nebo zapíšete novou — rovnou pro kuchyni.' },
+  { icon: 'lucide:server', title: 'Okamžitý zápis', text: 'Akce z mobilního terminálu (objednávky, storna, úhrady) jdou ihned na server a zapíší se do pokladny.' },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'SoftwareApplication',
+      name: 'Mobilní pokladna Savarin (mobilní číšník)',
+      applicationCategory: 'BusinessApplication',
+      operatingSystem: 'Android 5.1+',
+      description: 'Mobilní číšník Savarin — objednávky, storna a úhrady přímo u stolu, včetně off-line režimu. Bezdrátová komunikace se serverem pokladny.',
+      url: 'https://savarin.cz/mobilni-pokladna',
+      provider: { '@type': 'Organization', name: 'ComInn, s.r.o.', url: 'https://savarin.cz' },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Domů', item: 'https://savarin.cz/' },
+        { '@type': 'ListItem', position: 2, name: 'Pokladna', item: 'https://savarin.cz/pokladna' },
+        { '@type': 'ListItem', position: 3, name: 'Mobilní pokladna', item: 'https://savarin.cz/mobilni-pokladna' },
+      ],
+    },
+  ],
+};
+---
+
+<Base title="Mobilní pokladna Savarin — mobilní číšník"
+      description="Mobilní číšník Savarin: objednávky, storna a úhrady přímo u stolu, off-line režim mimo dosah sítě, převod na účet hosta v Recepci. Android zařízení, komunikace přes WiFi."
+      schema={schema}>
+  <Header brand="Savarin" logoSrc="/logos/savarin_logo.svg" logoHeight="36px" homeHref="/" nav={savarinNav} cta={savarinCta} />
+
+  <main>
+
+  <Breadcrumb items={[{ label: 'Domů', href: '/' }, { label: 'Pokladna', href: '/pokladna' }, { label: 'Mobilní pokladna' }]} />
+
+  <Hero eyebrow="Modul · Mobilní pokladna" background="gradient"
+        lead="Rozšíření pokladního systému o mobilní zařízení přenese objednávání i vyúčtování přímo k hostovi. Číšník nosí mobilní terminál, který bezdrátově komunikuje se serverem na pokladně.">
+    <Heading slot="title" as="h1" size="display" color="on-dark">Pokladna, kterou <span class="accent">nosíte u stolu</span></Heading>
+    <Fragment slot="actions">
+      <Button href="#poptavka">Nezávazná poptávka</Button>
+      <Button href="/pokladni-komponenty" variant="secondary" onDark>Vhodná zařízení</Button>
+    </Fragment>
+  </Hero>
+
+  <USPGrid id="funkce" eyebrow="Funkce mobilní pokladny" title="Celá obsluha z dlaně"
+           lead="Akce provedené na mobilním terminálu jsou ihned předány serveru a zapsány do pokladny."
+           items={funkce} minItemWidth="280px" background="default" space="lg" />
+
+  <Section background="invert" space="md">
+    <ul class="signals">
+      <li><Icon name="lucide:signal" size="sm" /> Signalizace síly signálu i off-line režimu</li>
+      <li><Icon name="lucide:battery-medium" size="sm" /> Zobrazení kapacity baterie</li>
+      <li><Icon name="lucide:list-checks" size="sm" /> Přehled odeslaných i neodeslaných požadavků</li>
+    </ul>
+  </Section>
+
+  <LeadForm id="poptavka" variant="full" background="alt"
+            title="Zajímá vás mobilní pokladna?"
+            lead="Napište nám o svém provozu — doporučíme vhodná zařízení a připravíme cenovou nabídku. Rádi zašleme i demoverzi."
+            successUrl="/dekujeme" />
+
+  </main>
+
+  <Footer logoSrc="/logos/savarin_by_piano.svg" logoAlt="Savarin by Piano" parentNote={{ text: 'Savarin je součástí skupiny Piano', href: 'https://piano.cz' }} />
+</Base>
+
+<style>
+  .signals { list-style: none; display: flex; flex-wrap: wrap; gap: var(--space-6); justify-content: center; }
+  .signals li { display: inline-flex; align-items: center; gap: var(--space-2); color: var(--color-text-on-dark); font-size: var(--font-size-small); }
+  .signals :global(svg) { color: var(--color-secondary-gold); }
+</style>

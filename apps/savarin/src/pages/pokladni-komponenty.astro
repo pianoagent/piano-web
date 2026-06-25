@@ -1,0 +1,125 @@
+---
+/**
+ * Savarin — Pokladní komponenty. Obsah z legacy stránky pokladni-komponenty.
+ * Sdílené komponenty @piano/ui.
+ */
+import Base from '../layouts/Base.astro';
+import Header from '@piano/ui/components/Header.astro';
+import Footer from '@piano/ui/components/Footer.astro';
+import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import { savarinNav, savarinCta } from '../config/nav';
+
+const skupiny = [
+  {
+    icon: 'lucide:monitor', title: 'PC POS a monitory',
+    items: [
+      'PC POS ET-700 Gladius — kompletní POS s dotykovou obrazovkou a integrovaným UPS (základna 24,5 × 26,5 cm)',
+      'Dotykový monitor ELO — TouchScreen (37 × 33 × 27 cm)',
+    ],
+  },
+  {
+    icon: 'lucide:smartphone', title: 'Mobilní zařízení',
+    items: [
+      'Mobilní číšník Android — telefon, phablet nebo tablet (min. Android 5.1)',
+      'Doporučená baterie nad 3000 mAh, zadní ochranný kryt, záložní baterie',
+      'Komunikace přes WiFi',
+    ],
+  },
+  {
+    icon: 'lucide:printer', title: 'Tiskárny',
+    items: [
+      'Termální EPSON TM-T20 — kotouč 80 mm, rychlý (200 mm/s) a tichý tisk, grafické logo, řezačka',
+      'Jehličková EPSON TM-U220 — kotouč 76 mm, dvoubarevný tisk, tisk loga, řezačka',
+    ],
+  },
+  {
+    icon: 'lucide:keyboard', title: 'Klávesnice',
+    items: [
+      'PCU — programovatelná tlačítková klávesnice, 111 kláves (cca 85 pro sortiment), čtečka magnetických karet',
+      'Tipro — 128 kláves (cca 85 pro sortiment), připojení klasické klávesnice',
+    ],
+  },
+  {
+    icon: 'lucide:receipt', title: 'Účtenky',
+    items: [
+      'Účtenka z termální i jehličkové tiskárny',
+      'Předtištěná účtenka z jehličkové i laserové tiskárny',
+    ],
+  },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Domů', item: 'https://savarin.cz/' },
+        { '@type': 'ListItem', position: 2, name: 'Pokladna', item: 'https://savarin.cz/pokladna' },
+        { '@type': 'ListItem', position: 3, name: 'Pokladní komponenty', item: 'https://savarin.cz/pokladni-komponenty' },
+      ],
+    },
+  ],
+};
+---
+
+<Base title="Pokladní komponenty Savarin — POS, tiskárny, klávesnice"
+      description="Pokladní komponenty pro systém Savarin: POS terminály a dotykové monitory, mobilní zařízení Android, termální i jehličkové tiskárny, programovatelné klávesnice a účtenky."
+      schema={schema}>
+  <Header brand="Savarin" logoSrc="/logos/savarin_logo.svg" logoHeight="36px" homeHref="/" nav={savarinNav} cta={savarinCta} />
+
+  <main>
+
+  <Breadcrumb items={[{ label: 'Domů', href: '/' }, { label: 'Pokladna', href: '/pokladna' }, { label: 'Pokladní komponenty' }]} />
+
+  <Hero eyebrow="Modul · Pokladní komponenty" background="gradient"
+        lead="Dodáváme a servisujeme kompletní pokladní techniku — od POS terminálů a dotykových monitorů po tiskárny a programovatelné klávesnice.">
+    <Heading slot="title" as="h1" size="display" color="on-dark">Hardware <span class="accent">prověřený v provozu</span></Heading>
+    <Fragment slot="actions">
+      <Button href="#poptavka">Nezávazná poptávka</Button>
+      <Button href="/technicke-predpoklady" variant="secondary" onDark>Technické předpoklady</Button>
+    </Fragment>
+  </Hero>
+
+  <Section background="default" space="lg">
+    <div class="komp">
+      {skupiny.map((s) => (
+        <article class="komp__card">
+          <span class="komp__icon"><Icon name={s.icon} size="md" /></span>
+          <Heading as="h2" size="h3">{s.title}</Heading>
+          <ul class="komp__list">
+            {s.items.map((it) => (
+              <li><Icon name="lucide:check" size="sm" class="hl-check" />{it}</li>
+            ))}
+          </ul>
+        </article>
+      ))}
+    </div>
+  </Section>
+
+  <LeadForm id="poptavka" variant="full" background="alt"
+            title="Potřebujete poradit s technikou?"
+            lead="Napište nám o svém provozu — doporučíme vhodné komponenty k pokladně a připravíme cenovou nabídku."
+            successUrl="/dekujeme" />
+
+  </main>
+
+  <Footer logoSrc="/logos/savarin_by_piano.svg" logoAlt="Savarin by Piano" parentNote={{ text: 'Savarin je součástí skupiny Piano', href: 'https://piano.cz' }} />
+</Base>
+
+<style>
+  .komp { display: grid; gap: var(--space-5); grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+  .komp__card { background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-6); }
+  .komp__card > * + * { margin-top: var(--space-4); }
+  .komp__icon { display: inline-flex; color: var(--color-text-accent); }
+  .komp__list { list-style: none; display: grid; gap: var(--space-3); }
+  .komp__list li { display: flex; align-items: flex-start; gap: var(--space-2); color: var(--color-text); font-size: var(--font-size-small); }
+  .hl-check { color: var(--color-secondary-azure); flex-shrink: 0; margin-top: 2px; }
+</style>

@@ -1,0 +1,81 @@
+---
+/**
+ * Savarin — Demoverze. Obsah z legacy stránky demoverze.
+ * Sdílené komponenty @piano/ui.
+ */
+import Base from '../layouts/Base.astro';
+import Header from '@piano/ui/components/Header.astro';
+import Footer from '@piano/ui/components/Footer.astro';
+import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import { savarinNav, savarinCta } from '../config/nav';
+
+const verze = [
+  { icon: 'lucide:monitor', title: 'Registrační pokladna', text: 'Demoverze pokladny Savarin. Po spuštění je na klávese F1 dostupný manuál.' },
+  { icon: 'lucide:calculator', title: 'Sklady a kalkulace', text: 'Obsahuje programy HRMTZ a HRKALKUL — skladová evidence a kalkulace jídel.' },
+  { icon: 'lucide:bed-double', title: 'Recepce', text: 'Demoverze modulu Recepce. Po spuštění je na klávese F1 dostupný manuál.' },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'BreadcrumbList', itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Domů', item: 'https://savarin.cz/' },
+      { '@type': 'ListItem', position: 2, name: 'Demoverze', item: 'https://savarin.cz/demoverze' },
+    ] },
+  ],
+};
+---
+
+<Base title="Demoverze Savarin zdarma — pokladna, sklady, recepce"
+      description="Vyzkoušejte Savarin nezávazně. Bezplatné demoverze pokladny, skladů a kalkulací (HRMTZ + HRKALKUL) i recepce — zašleme elektronicky nebo na CD-ROM se stručným manuálem."
+      schema={schema}>
+  <Header brand="Savarin" logoSrc="/logos/savarin_logo.svg" logoHeight="36px" homeHref="/" nav={savarinNav} cta={savarinCta} />
+
+  <main>
+
+  <Breadcrumb items={[{ label: 'Domů', href: '/' }, { label: 'Demoverze' }]} />
+
+  <Hero eyebrow="Demoverze zdarma" align="center" background="gradient"
+        lead="V případě zájmu jsou pro vás připraveny demoverze ve třech variantách. Zašleme je bezplatně — elektronicky nebo na CD-ROM — spolu se stručným manuálem.">
+    <Heading slot="title" as="h1" size="display" color="on-dark">Vyzkoušejte Savarin <span class="accent">nezávazně</span></Heading>
+    <Fragment slot="actions">
+      <Button href="#poptavka">Požádat o demoverzi</Button>
+    </Fragment>
+  </Hero>
+
+  <Section background="default" space="lg">
+    <div class="cards">
+      {verze.map((v) => (
+        <article class="card">
+          <span class="card__icon"><Icon name={v.icon} size="md" /></span>
+          <Heading as="h2" size="h3">{v.title}</Heading>
+          <Text size="small" color="muted">{v.text}</Text>
+        </article>
+      ))}
+    </div>
+  </Section>
+
+  <LeadForm id="poptavka" variant="full" background="alt"
+            title="Požádat o demoverzi"
+            lead="Napište nám, o kterou demoverzi máte zájem a pár slov o svém provozu. Zašleme vám ji i se stručným manuálem a ozveme se s cenovou nabídkou."
+            successUrl="/dekujeme" />
+
+  </main>
+
+  <Footer logoSrc="/logos/savarin_by_piano.svg" logoAlt="Savarin by Piano" parentNote={{ text: 'Savarin je součástí skupiny Piano', href: 'https://piano.cz' }} />
+</Base>
+
+<style>
+  .cards { display: grid; gap: var(--space-5); grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+  .card { background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-6) var(--space-5); transition: var(--transition); }
+  .card:hover { border-color: var(--color-primary); box-shadow: var(--shadow-sm); }
+  .card > * + * { margin-top: var(--space-3); }
+  .card__icon { display: inline-flex; color: var(--color-text-accent); }
+</style>

@@ -15,11 +15,11 @@ Odkaz: https://savarin.cz/pokladna
 
 ## Mobilní pokladna (mobilní číšník)
 
-Přenese objednávání a vyúčtování přímo ke stolu. Příjem objednávek i v off-line režimu, storna, přesun položek mezi účty, úhrada s volbou druhu platby a převodem na účet hosta v Recepci. Odkaz: https://savarin.cz/pokladna#mobilni
+Přenese objednávání a vyúčtování přímo ke stolu. Příjem objednávek i v off-line režimu, storna, přesun položek mezi účty, úhrada s volbou druhu platby a převodem na účet hosta v Recepci. Odkaz: https://savarin.cz/mobilni-pokladna
 
 ## Pokladní komponenty
 
-PC POS ET-700 Gladius, dotykové monitory ELO, termální tiskárna EPSON TM-T20, jehličková EPSON TM-U220, programovatelné klávesnice PCU a Tipro, mobilní zařízení Android. Odkaz: https://savarin.cz/pokladna#komponenty
+PC POS ET-700 Gladius, dotykové monitory ELO, termální tiskárna EPSON TM-T20, jehličková EPSON TM-U220, programovatelné klávesnice PCU a Tipro, mobilní zařízení Android. Odkaz: https://savarin.cz/pokladni-komponenty
 
 ## Recepce
 
@@ -31,7 +31,7 @@ Jádro systému: skladové hospodářství až 99 středisek, evidence tržeb, i
 
 ## Služby a servis
 
-Garance servisního zásahu do 24 hodin a hotline 24/7 pro smluvní zákazníky, školení a nové verze programů. Formy prodeje: přímý prodej, splátkový prodej a pronájem (měsíční nájem 4 % z ceny SW) s možností odkupu a multilicenčními slevami. Bezplatná demoverze. Odkaz: https://savarin.cz/sluzby-servis
+Garance servisního zásahu do 24 hodin a hotline 24/7 pro smluvní zákazníky, školení a nové verze programů. Formy prodeje: přímý prodej, splátkový prodej a pronájem (měsíční nájem 4 % z ceny SW) s možností odkupu a multilicenčními slevami. Bezplatná demoverze. Odkazy: https://savarin.cz/servis · https://savarin.cz/cenik · https://savarin.cz/demoverze
 
 ## Kontakt
 

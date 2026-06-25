@@ -1,0 +1,88 @@
+---
+/**
+ * Savarin — Technické předpoklady. Obsah z legacy stránek technicke-predpoklady + pokladna.
+ * Sdílené komponenty @piano/ui.
+ */
+import Base from '../layouts/Base.astro';
+import Header from '@piano/ui/components/Header.astro';
+import Footer from '@piano/ui/components/Footer.astro';
+import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import { savarinNav, savarinCta } from '../config/nav';
+
+const bloky = [
+  { icon: 'lucide:cpu', title: 'Počítač / POS', items: ['Procesor kompatibilní s Windows 10/11 (od Pentium 1.6 GHz)', 'Paměť min. 4 GB RAM', 'Pevný disk min. 30 GB volného místa, doporučujeme SSD'] },
+  { icon: 'lucide:monitor', title: 'Monitor a ovládání', items: ['Rozlišení 1024×768 a vyšší (lépe 1366×768)', 'Doporučen dotykový display (TouchScreen)', 'Případně programovatelná restaurační klávesnice'] },
+  { icon: 'lucide:app-window', title: 'Operační systém', items: ['Windows 10 nebo 11 — jediný podporovaný OS pro nové instalace', 'WIN7 jen s výhradami; XP je už velké riziko', 'Modul Recepce lze provozovat na WIN7 i WIN10'] },
+  { icon: 'lucide:printer', title: 'Tiskárny', items: ['Kancelář/sklad/recepce: libovolná tiskárna A4 (laser levnější provoz)', 'Pokladna pásková: jehličková (levná, hlučnější) nebo termální (tišší, rychlejší, kvalitnější)', 'Šířka tisku min. 40 znaků na řádek, české znaky'] },
+  { icon: 'lucide:battery-charging', title: 'Záložní zdroj (UPS)', items: ['Cca 10–20 minut provozu po výpadku proudu', 'Zabrání ztrátě dat a umožní dotisk či uzavření otevřených účtů'] },
+  { icon: 'lucide:network', title: 'Síť', items: ['Pro více počítačů doporučujeme samostatný server (Linux nebo Windows)', 'Menší propojení (sklad–kasa, sklad–kasa–recepce) zvládne síť Windows'] },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Domů', item: 'https://savarin.cz/' },
+        { '@type': 'ListItem', position: 2, name: 'Technické předpoklady', item: 'https://savarin.cz/technicke-predpoklady' },
+      ],
+    },
+  ],
+};
+---
+
+<Base title="Technické předpoklady — software Savarin"
+      description="Jaký počítač, monitor, tiskárnu, UPS a síť potřebuje software Savarin (pokladna, recepce, sklady). Minimální i doporučená konfigurace pro Windows 10/11."
+      schema={schema}>
+  <Header brand="Savarin" logoSrc="/logos/savarin_logo.svg" logoHeight="36px" homeHref="/" nav={savarinNav} cta={savarinCta} />
+
+  <main>
+
+  <Breadcrumb items={[{ label: 'Domů', href: '/' }, { label: 'Technické předpoklady' }]} />
+
+  <Hero eyebrow="Technické předpoklady" align="center" background="gradient"
+        lead="Minimální a doporučená konfigurace se odvíjí od použitého operačního systému. Níže najdete přehled pro počítač, tiskárny, zálohování i síť.">
+    <Heading slot="title" as="h1" size="display" color="on-dark">Co potřebujete k provozu</Heading>
+  </Hero>
+
+  <Section background="default" space="lg">
+    <div class="tech">
+      {bloky.map((b) => (
+        <article class="tech__card">
+          <span class="tech__icon"><Icon name={b.icon} size="md" /></span>
+          <Heading as="h2" size="h3">{b.title}</Heading>
+          <ul class="tech__list">
+            {b.items.map((it) => (<li><Icon name="lucide:check" size="sm" class="hl-check" />{it}</li>))}
+          </ul>
+        </article>
+      ))}
+    </div>
+  </Section>
+
+  <LeadForm id="poptavka" variant="full" background="alt"
+            title="Nejste si jistí konfigurací?"
+            lead="Popište nám své vybavení a provoz — doporučíme techniku a připravíme cenovou nabídku. U POS rádi zkonzultujeme konkrétní typ."
+            successUrl="/dekujeme" />
+
+  </main>
+
+  <Footer logoSrc="/logos/savarin_by_piano.svg" logoAlt="Savarin by Piano" parentNote={{ text: 'Savarin je součástí skupiny Piano', href: 'https://piano.cz' }} />
+</Base>
+
+<style>
+  .tech { display: grid; gap: var(--space-5); grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+  .tech__card { background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-6); }
+  .tech__card > * + * { margin-top: var(--space-4); }
+  .tech__icon { display: inline-flex; color: var(--color-text-accent); }
+  .tech__list { list-style: none; display: grid; gap: var(--space-3); }
+  .tech__list li { display: flex; align-items: flex-start; gap: var(--space-2); color: var(--color-text); font-size: var(--font-size-small); }
+  .hl-check { color: var(--color-secondary-azure); flex-shrink: 0; margin-top: 2px; }
+</style>

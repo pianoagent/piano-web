@@ -1,0 +1,75 @@
+---
+/**
+ * Savarin — Aktuálně (novinky a verze). Obsah z legacy stránky aktualne.
+ * Sdílené komponenty @piano/ui.
+ */
+import Base from '../layouts/Base.astro';
+import Header from '@piano/ui/components/Header.astro';
+import Footer from '@piano/ui/components/Footer.astro';
+import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import { savarinNav, savarinCta } from '../config/nav';
+
+const novinky = [
+  {
+    date: '9. 12. 2024',
+    title: 'Nová verze SW Savarin 5.24.16',
+    text: 'Od 9. 12. je v distribuci nová verze SW Savarin 5.24.16 — informace jsme rozeslali newsletterem 5. 12. Je to poslední verze pro rok 2024. V lednu 2025 budeme distribuovat verzi modulu Recepce s novými statistickými výkazy pro rok 2025.',
+  },
+  {
+    date: 'Prosinec 2024',
+    title: 'Provozní doba na konci roku',
+    text: 'V pracovní dny 23. 12., 27. 12. a 30. 12. jsme vám k dispozici standardně 08:00–16:00. Na Silvestra zavřeno. Hotline 24/7 funguje pro smluvní zákazníky standardně.',
+  },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'BreadcrumbList', itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Domů', item: 'https://savarin.cz/' },
+      { '@type': 'ListItem', position: 2, name: 'Aktuálně', item: 'https://savarin.cz/aktualne' },
+    ] },
+  ],
+};
+---
+
+<Base title="Aktuálně — novinky a verze systému Savarin"
+      description="Aktuální informace k systému Savarin: nové verze software, provozní informace a novinky v modulech Pokladna, Recepce, Sklady a kalkulace."
+      schema={schema}>
+  <Header brand="Savarin" logoSrc="/logos/savarin_logo.svg" logoHeight="36px" homeHref="/" nav={savarinNav} cta={savarinCta} />
+
+  <main>
+
+  <Breadcrumb items={[{ label: 'Domů', href: '/' }, { label: 'Aktuálně' }]} />
+
+  <Hero eyebrow="Aktuálně" align="center" background="gradient"
+        lead="Přehled nových verzí software a provozních informací k systému Savarin.">
+    <Heading slot="title" as="h1" size="display" color="on-dark">Novinky a verze</Heading>
+  </Hero>
+
+  <Section background="default" space="lg" container="narrow">
+    <ol class="news">
+      {novinky.map((n) => (
+        <li class="news__item">
+          <span class="news__date"><Icon name="lucide:calendar" size="sm" />{n.date}</span>
+          <Heading as="h2" size="h3">{n.title}</Heading>
+          <Text color="muted">{n.text}</Text>
+        </li>
+      ))}
+    </ol>
+  </Section>
+
+  <Footer logoSrc="/logos/savarin_by_piano.svg" logoAlt="Savarin by Piano" parentNote={{ text: 'Savarin je součástí skupiny Piano', href: 'https://piano.cz' }} />
+</Base>
+
+<style>
+  .news { list-style: none; display: flex; flex-direction: column; gap: var(--space-5); }
+  .news__item { background: var(--color-bg); border: 1px solid var(--color-border); border-left: 3px solid var(--color-primary); border-radius: var(--radius-sm); padding: var(--space-5) var(--space-6); }
+  .news__item > * + * { margin-top: var(--space-2); }
+  .news__date { display: inline-flex; align-items: center; gap: var(--space-2); font-size: var(--font-size-small); color: var(--color-text-accent); font-weight: var(--font-weight-semibold); }
+</style>

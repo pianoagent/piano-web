@@ -1,12 +1,12 @@
 ---
 /**
- * Savarin — Služby a servis (+ #financovani formy prodeje/pronájem + demoverze).
- * Obsah z legacy stránek sluzby-servis / formy-prodeje-multilicencni-slevy / demoverze.
+ * Savarin — Servis. Obsah z legacy stránky sluzby-servis (servisní část).
  * Ceny bez DPH, platné od 1. 1. 2026 (dle podkladu). Sdílené komponenty @piano/ui.
  */
 import Base from '../layouts/Base.astro';
 import Header from '@piano/ui/components/Header.astro';
 import Footer from '@piano/ui/components/Footer.astro';
+import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
 import Section from '@piano/ui/components/Section.astro';
 import Hero from '@piano/ui/components/Hero.astro';
 import Heading from '@piano/ui/components/Heading.astro';
@@ -16,33 +16,32 @@ import Icon from '@piano/ui/components/Icon.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import { savarinNav, savarinCta } from '../config/nav';
 
-const odkup = [
-  ['V prvním roce', '1–20 %'],
-  ['Ve druhém roce', '20–40 %'],
-  ['Ve třetím roce', '40–60 %'],
-  ['Ve čtvrtém roce', '60–80 %'],
-  ['V pátém roce', '80–100 %'],
-];
-
-const multilicence = [
-  ['2.–4. instalace', '25 %'],
-  ['5.–10. instalace', '30 %'],
-  ['10. a další instalace', '35 %'],
-];
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'BreadcrumbList', itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Domů', item: 'https://savarin.cz/' },
+      { '@type': 'ListItem', position: 2, name: 'Servis', item: 'https://savarin.cz/servis' },
+    ] },
+  ],
+};
 ---
 
-<Base title="Služby a servis Savarin — ceník, financování, demoverze"
-      description="Servisní služby Savarin: garance zásahu do 24 h, hotline 24/7, školení a nové verze. Formy prodeje (přímý, splátkový, pronájem), multilicenční slevy a bezplatná demoverze.">
+<Base title="Servis Savarin — garance zásahu do 24 h, hotline 24/7"
+      description="Servisní služby k systému Savarin: garance servisního zásahu do 24 hodin, hotline 24/7 pro smluvní zákazníky, školení a nové verze. Ceník servisu se smlouvou i bez ní."
+      schema={schema}>
   <Header brand="Savarin" logoSrc="/logos/savarin_logo.svg" logoHeight="36px" homeHref="/" nav={savarinNav} cta={savarinCta} />
 
   <main>
 
-  <Hero eyebrow="Služby a servis" background="gradient"
+  <Breadcrumb items={[{ label: 'Domů', href: '/' }, { label: 'Servis' }]} />
+
+  <Hero eyebrow="Servis" background="gradient"
         lead="Podstatnou součástí dodávky je servis. Smluvním zákazníkům garantujeme termín servisního zásahu do 24 hodin a hotline 24/7.">
     <Heading slot="title" as="h1" size="display" color="on-dark">Servis, na který se <span class="accent">spolehnete</span></Heading>
     <Fragment slot="actions">
       <Button href="#poptavka">Nezávazná poptávka</Button>
-      <Button href="#financovani" variant="secondary" onDark>Formy prodeje</Button>
+      <Button href="/cenik" variant="secondary" onDark>Ceník a pronájem</Button>
     </Fragment>
   </Hero>
 
@@ -91,70 +90,26 @@ const multilicence = [
     <p class="disclaimer">Všechny ceny jsou uvedeny bez DPH a jsou platné od 1. 1. 2026.</p>
   </Section>
 
-  <!-- FINANCOVÁNÍ -->
-  <Section id="financovani" background="default" space="lg">
-    <div class="head head--center">
-      <Text size="label" color="accent" align="center">Formy prodeje</Text>
-      <Heading as="h2" size="h2" align="center">Přímý prodej, splátky, nebo <span class="accent">pronájem</span></Heading>
-      <Text size="lead" color="muted" align="center" balance>
-        Systém je modulární, proto je cena závislá na konfiguraci (počet pokladen, pokojů, způsob komunikace s ústřednou).
-        Cenovou nabídku zašleme na vyžádání podle vaší specifikace.
-      </Text>
-    </div>
-    <div class="forms">
-      <article class="form-card">
-        <span class="form-card__icon"><Icon name="lucide:banknote" size="md" /></span>
-        <Heading as="h3" size="h3">Přímý a splátkový prodej</Heading>
-        <Text size="small" color="muted">Software koupíte přímo, nebo si individuálně dohodnete splátkový prodej.</Text>
-      </article>
-      <article class="form-card">
-        <span class="form-card__icon"><Icon name="lucide:key-round" size="md" /></span>
-        <Heading as="h3" size="h3">Pronájem</Heading>
-        <Text size="small" color="muted">
-          Měsíční nájem činí 4 % z ceny SW (2 % nájemné + 2 % paušál za služby). Před instalací hradíte alespoň první tři nájmy.
-          U provozoven v nájmu eliminujete riziko nevyužitého systému po skončení nájmu.
-        </Text>
-      </article>
-    </div>
-
-    <div class="tables">
-      <div class="tbl">
-        <h3 class="tbl__title">Odkup pronajatého SW — sleva dle doby pronájmu</h3>
-        <table>
-          <tbody>
-            {odkup.map(([a, b]) => (<tr><td>{a}</td><td>{b}</td></tr>))}
-          </tbody>
-        </table>
-        <p class="tbl__note">Vždy poměrným způsobem dle trvání nájmu.</p>
+  <!-- VZDÁLENÁ SPRÁVA + AKTUÁLNĚ -->
+  <Section background="default" space="lg">
+    <div class="links">
+      <a class="linkcard" href="/aktualne">
+        <span class="linkcard__icon"><Icon name="lucide:megaphone" size="md" /></span>
+        <Heading as="h2" size="h3">Aktuální verze a novinky</Heading>
+        <Text size="small" color="muted">Přehled nových verzí SW Savarin a provozních informací.</Text>
+        <span class="linkcard__more">Zobrazit <Icon name="lucide:arrow-right" size="xs" /></span>
+      </a>
+      <div class="linkcard linkcard--static">
+        <span class="linkcard__icon"><Icon name="lucide:screen-share" size="md" /></span>
+        <Heading as="h2" size="h3">Vzdálená správa</Heading>
+        <Text size="small" color="muted">Servis na dálku přes TeamViewer (QuickSupport pro jednorázové připojení nebo HOST pro trvalý přístup).</Text>
       </div>
-      <div class="tbl">
-        <h3 class="tbl__title">Multilicenční slevy — více instalací</h3>
-        <table>
-          <tbody>
-            {multilicence.map(([a, b]) => (<tr><td>{a}</td><td>{b}</td></tr>))}
-          </tbody>
-        </table>
-        <p class="tbl__note">Sleva z ceny programů při objednávce více instalací systému.</p>
-      </div>
-    </div>
-  </Section>
-
-  <!-- DEMOVERZE -->
-  <Section background="invert" space="lg">
-    <div class="demo">
-      <span class="demo__icon"><Icon name="lucide:gift" size="lg" /></span>
-      <Heading as="h2" size="h2" color="on-dark">Demoverze zdarma</Heading>
-      <Text size="lead" color="on-dark-muted" balance>
-        Připraveny jsou demoverze Registrační pokladny, Skladů a kalkulací (HRMTZ + HRKALKUL) i Recepce.
-        Zašleme je bezplatně na CD-ROM nebo elektronicky — spolu se stručným manuálem.
-      </Text>
-      <div class="demo__cta"><Button href="#poptavka">Požádat o demoverzi</Button></div>
     </div>
   </Section>
 
   <LeadForm id="poptavka" variant="full" background="alt"
-            title="Nezávazná poptávka"
-            lead="Napište nám o svém provozu a o demoverzi, kterou máte zájem vyzkoušet. Připravíme cenovou nabídku na míru."
+            title="Potřebujete servis nebo smlouvu?"
+            lead="Napište nám — domluvíme servisní smlouvu nebo vyřešíme konkrétní požadavek. Smluvním zákazníkům garantujeme zásah do 24 hodin."
             successUrl="/dekujeme" />
 
   </main>
@@ -167,7 +122,6 @@ const multilicence = [
   .head--center { text-align: center; }
   .head > * + * { margin-top: var(--space-3); }
 
-  /* Garance */
   .garance { list-style: none; display: grid; gap: var(--space-5); grid-template-columns: repeat(3, 1fr); }
   .garance li { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-1); padding: var(--space-5); background: var(--color-bg-alt); border-radius: var(--radius-md); border-left: 3px solid var(--color-primary); }
   .garance strong { color: var(--color-text); font-size: var(--font-size-lead); }
@@ -175,7 +129,6 @@ const multilicence = [
   .garance__icon { display: inline-flex; color: var(--color-primary); margin-bottom: var(--space-2); }
   @media (max-width: 720px) { .garance { grid-template-columns: 1fr; } }
 
-  /* Pricing */
   .pricing { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-6); max-width: 900px; margin-inline: auto; }
   .price { position: relative; background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-7); box-shadow: var(--shadow-sm); display: flex; flex-direction: column; gap: var(--space-3); }
   .price--featured { border-color: var(--color-primary); box-shadow: var(--shadow-md); }
@@ -187,27 +140,12 @@ const multilicence = [
   .rate li { display: flex; justify-content: space-between; gap: var(--space-4); padding: var(--space-2) 0; border-bottom: 1px solid var(--color-border); }
   .rate li span:last-child { font-weight: var(--font-weight-bold); color: var(--color-text); white-space: nowrap; }
   .rate--extra { max-width: 900px; margin: var(--space-6) auto 0; }
-
   .disclaimer { text-align: center; margin-top: var(--space-5); font-size: var(--font-size-small); color: var(--color-text-muted); }
 
-  /* Formy prodeje */
-  .forms { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-6); max-width: 900px; margin-inline: auto; }
-  .form-card { background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-6); }
-  .form-card > * + * { margin-top: var(--space-3); }
-  .form-card__icon { display: inline-flex; color: var(--color-text-accent); }
-
-  /* Tabulky */
-  .tables { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-6); max-width: 900px; margin: var(--space-7) auto 0; }
-  .tbl__title { font-size: var(--font-size-h3); font-weight: var(--font-weight-semibold); margin-bottom: var(--space-3); }
-  .tbl table { width: 100%; border-collapse: collapse; }
-  .tbl td { padding: var(--space-3) var(--space-4); border-bottom: 1px solid var(--color-border); }
-  .tbl tr td:last-child { text-align: right; font-weight: var(--font-weight-bold); color: var(--color-secondary); white-space: nowrap; }
-  .tbl tr:nth-child(odd) td { background: var(--color-bg-alt); }
-  .tbl__note { margin-top: var(--space-3); font-size: var(--font-size-small); color: var(--color-text-muted); }
-
-  /* Demoverze */
-  .demo { max-width: 720px; margin-inline: auto; text-align: center; }
-  .demo > * + * { margin-top: var(--space-4); }
-  .demo__icon { display: inline-flex; align-items: center; justify-content: center; width: 80px; height: 80px; border-radius: 50%; background: rgba(255,255,255,0.08); color: var(--color-secondary-gold); }
-  .demo__cta { margin-top: var(--space-6); display: flex; justify-content: center; }
+  .links { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-6); max-width: 900px; margin-inline: auto; }
+  .linkcard { background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-6); text-decoration: none; color: inherit; display: flex; flex-direction: column; transition: var(--transition); }
+  .linkcard:not(.linkcard--static):hover { border-color: var(--color-primary); box-shadow: var(--shadow-sm); }
+  .linkcard > * + * { margin-top: var(--space-3); }
+  .linkcard__icon { display: inline-flex; color: var(--color-text-accent); }
+  .linkcard__more { margin-top: var(--space-4); color: var(--color-text-accent); font-weight: var(--font-weight-semibold); font-size: var(--font-size-small); display: inline-flex; align-items: center; gap: var(--space-1); }
 </style>

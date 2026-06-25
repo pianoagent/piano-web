@@ -1,19 +1,20 @@
 ---
 /**
- * Savarin — Pokladna (+ sekce Mobilní pokladna #mobilni a Pokladní komponenty #komponenty).
- * Obsah z legacy stránek pokladna / mobilni-pokladna / pokladni-komponenty.
+ * Savarin — Pokladna. Obsah z legacy stránky pokladna.
+ * Mobilní pokladna, komponenty a technické předpoklady mají vlastní URL
+ * (viz /mobilni-pokladna, /pokladni-komponenty, /technicke-predpoklady).
  * Sdílené komponenty @piano/ui.
  */
 import Base from '../layouts/Base.astro';
 import Header from '@piano/ui/components/Header.astro';
 import Footer from '@piano/ui/components/Footer.astro';
+import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
 import Section from '@piano/ui/components/Section.astro';
 import Hero from '@piano/ui/components/Hero.astro';
 import Heading from '@piano/ui/components/Heading.astro';
 import Text from '@piano/ui/components/Text.astro';
 import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
-import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import { savarinNav, savarinCta } from '../config/nav';
 
@@ -32,26 +33,44 @@ const funkce = [
   'Certifikováno pro provoz s fiskálním modulem na Slovensku',
 ];
 
-const mobilFunkce = [
-  { icon: 'lucide:clipboard-list', title: 'Objednávka u stolu', text: 'Příjem objednávky na konkrétní stůl nebo židli; v dosahu sítě vidíte aktuální obsah účtu hosta.' },
-  { icon: 'lucide:wifi-off', title: 'Off-line režim', text: 'Objednávejte i mimo dosah sítě — v salonku, sklepě či na zahrádce. Po připojení se data přenesou.' },
-  { icon: 'lucide:undo-2', title: 'Storna a přesuny', text: 'Stornujte namarkované položky nebo je převeďte z účtu hosta na jiný účet.' },
-  { icon: 'lucide:credit-card', title: 'Úhrada účtu', text: 'Zaplacení vybraných položek, volba druhu platby i převod na účet hosta ubytovaného v Recepci.' },
+const souvisejici = [
+  { href: '/mobilni-pokladna', icon: 'lucide:smartphone', title: 'Mobilní pokladna', text: 'Mobilní číšník — objednávky a úhrady přímo u stolu.' },
+  { href: '/pokladni-komponenty', icon: 'lucide:keyboard', title: 'Pokladní komponenty', text: 'POS, dotykové monitory, tiskárny a klávesnice.' },
+  { href: '/technicke-predpoklady', icon: 'lucide:cpu', title: 'Technické předpoklady', text: 'Jaký počítač, tiskárnu a síť pokladna potřebuje.' },
 ];
 
-const komponenty = [
-  { icon: 'lucide:monitor', title: 'PC POS a monitory', text: 'PC POS ET-700 Gladius s dotykovou obrazovkou a integrovaným UPS; dotykové monitory ELO (TouchScreen).' },
-  { icon: 'lucide:smartphone', title: 'Mobilní zařízení', text: 'Mobilní číšník Android (telefon, phablet, tablet, min. Android 5.1) — komunikace přes WiFi, výdrž nad 3000 mAh.' },
-  { icon: 'lucide:printer', title: 'Tiskárny', text: 'Termální EPSON TM-T20 (80 mm, rychlý tichý tisk loga) i jehličková EPSON TM-U220 (76 mm, dvoubarevný tisk).' },
-  { icon: 'lucide:keyboard', title: 'Klávesnice', text: 'Programovatelné klávesnice PCU (111 kláves, čtečka magnet. karet) a Tipro (128 kláves) — cca 85 kláves pro sortiment.' },
-];
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'SoftwareApplication',
+      name: 'Pokladna Savarin',
+      applicationCategory: 'BusinessApplication',
+      operatingSystem: 'Windows 10/11',
+      description: 'Pokladní systém pro restaurace, hotelové restaurace i samoobslužný provoz. Ovládání přes PC, POS i dotykový display.',
+      url: 'https://savarin.cz/pokladna',
+      provider: { '@type': 'Organization', name: 'ComInn, s.r.o.', url: 'https://savarin.cz' },
+      offers: { '@type': 'Offer', priceCurrency: 'CZK', price: '0', description: 'Cena na vyžádání podle konfigurace; k dispozici bezplatná demoverze.' },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Domů', item: 'https://savarin.cz/' },
+        { '@type': 'ListItem', position: 2, name: 'Pokladna', item: 'https://savarin.cz/pokladna' },
+      ],
+    },
+  ],
+};
 ---
 
 <Base title="Pokladna Savarin — pokladní systém pro PC i POS"
-      description="Pokladní systém Savarin pro restaurace, hotelové restaurace i samoobslužný provoz. Dotykové ovládání, mobilní číšník, pokladní komponenty (POS, tiskárny, klávesnice).">
+      description="Pokladní systém Savarin pro restaurace, hotelové restaurace i samoobslužný provoz. Dotykové ovládání, otevřené účty, denní uzávěrky a odpis zboží ze skladu."
+      schema={schema}>
   <Header brand="Savarin" logoSrc="/logos/savarin_logo.svg" logoHeight="36px" homeHref="/" nav={savarinNav} cta={savarinCta} />
 
   <main>
+
+  <Breadcrumb items={[{ label: 'Domů', href: '/' }, { label: 'Pokladna' }]} />
 
   <Hero eyebrow="Modul · Pokladna" background="gradient"
         lead="Software, který běží na standardním PC s programovatelnou klávesnicí i na specializovaných POS s dotykovým displejem. Certifikovaný pro provoz s fiskálním modulem na Slovensku.">
@@ -97,37 +116,21 @@ const komponenty = [
     </div>
   </Section>
 
-  <!-- MOBILNÍ POKLADNA -->
-  <USPGrid id="mobilni" eyebrow="Mobilní číšník Savarin" title="Pokladna, kterou nosíte u stolu"
-           lead="Rozšíření pokladního systému o mobilní zařízení přenese objednávání i vyúčtování přímo k hostovi. Akce na terminálu se ihned zapíší do pokladny."
-           items={mobilFunkce} minItemWidth="260px" background="default" space="lg" />
-
-  <Section background="invert" space="sm">
-    <ul class="signals">
-      <li><Icon name="lucide:signal" size="sm" /> Signalizace síly signálu i off-line režimu</li>
-      <li><Icon name="lucide:battery-medium" size="sm" /> Zobrazení kapacity baterie</li>
-      <li><Icon name="lucide:list-checks" size="sm" /> Přehled odeslaných i neodeslaných požadavků</li>
-    </ul>
-  </Section>
-
-  <!-- POKLADNÍ KOMPONENTY -->
-  <USPGrid id="komponenty" eyebrow="Pokladní komponenty" title="Hardware prověřený v provozu"
-           lead="Dodáváme a servisujeme kompletní pokladní techniku — od POS terminálů po tiskárny a klávesnice."
-           items={komponenty} minItemWidth="280px" background="alt" space="lg" />
-
-  <!-- TECHNICKÉ PŘEDPOKLADY -->
+  <!-- SOUVISEJÍCÍ -->
   <Section background="default" space="lg">
     <div class="head head--center">
-      <Text size="label" color="accent" align="center">Technické předpoklady</Text>
-      <Heading as="h2" size="h2" align="center">Co potřebujete k provozu</Heading>
+      <Heading as="h2" size="h2" align="center">K pokladně patří</Heading>
     </div>
-    <ul class="specs">
-      <li><strong>PC / POS</strong> na bázi PC — procesor od Pentium 1.6 GHz, min. 4 GB RAM, 30 GB volného místa (doporučujeme SSD).</li>
-      <li><strong>Monitor</strong> s rozlišením 1024×768 a vyšším; ideálně dotykový display nebo programovatelná klávesnice.</li>
-      <li><strong>Operační systém</strong> Windows 10/11 (s výhradami WIN7).</li>
-      <li><strong>Tiskárna na pásku</strong> (min. 40 znaků na řádek) se sadou českých znaků; doporučena termo a kuchyňská tiskárna.</li>
-      <li><strong>Záložní zdroj UPS</strong> — cca 10 minut provozu po výpadku proudu pro dotisk otevřených účtů.</li>
-    </ul>
+    <div class="cards">
+      {souvisejici.map((s) => (
+        <a class="card card--link" href={s.href}>
+          <span class="card__icon"><Icon name={s.icon} size="md" /></span>
+          <Heading as="h3" size="h3">{s.title}</Heading>
+          <Text size="small" color="muted">{s.text}</Text>
+          <span class="card__more">Zobrazit <Icon name="lucide:arrow-right" size="xs" /></span>
+        </a>
+      ))}
+    </div>
   </Section>
 
   <!-- POPTÁVKA -->
@@ -151,6 +154,8 @@ const komponenty = [
   .card:hover { border-color: var(--color-primary); box-shadow: var(--shadow-sm); }
   .card > * + * { margin-top: var(--space-3); }
   .card__icon { display: inline-flex; color: var(--color-text-accent); }
+  .card--link { text-decoration: none; color: inherit; display: flex; flex-direction: column; }
+  .card__more { margin-top: var(--space-4); color: var(--color-text-accent); font-weight: var(--font-weight-semibold); font-size: var(--font-size-small); display: inline-flex; align-items: center; gap: var(--space-1); }
 
   .split { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-8); align-items: center; }
   .split__text > * + * { margin-top: var(--space-4); }
@@ -160,12 +165,4 @@ const komponenty = [
   .checklist--cols { grid-template-columns: 1fr; }
   .checklist li { display: flex; align-items: flex-start; gap: var(--space-2); color: var(--color-text); }
   .hl-check { color: var(--color-secondary-azure); flex-shrink: 0; margin-top: 2px; }
-
-  .signals { list-style: none; display: flex; flex-wrap: wrap; gap: var(--space-6); justify-content: center; }
-  .signals li { display: inline-flex; align-items: center; gap: var(--space-2); color: var(--color-text-on-dark); font-size: var(--font-size-small); }
-  .signals :global(svg) { color: var(--color-secondary-gold); }
-
-  .specs { list-style: none; max-width: 820px; margin-inline: auto; display: flex; flex-direction: column; gap: var(--space-3); }
-  .specs li { padding: var(--space-4) var(--space-5); background: var(--color-bg-alt); border-left: 3px solid var(--color-primary); border-radius: var(--radius-sm); color: var(--color-text-muted); }
-  .specs strong { color: var(--color-text); }
 </style>
