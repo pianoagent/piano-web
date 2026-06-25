@@ -91,7 +91,7 @@ const compare = [
   </Section>
 
   <!-- Platby dodavatelům — telefon uprostřed, text po stranách -->
-  <Section background="default" space="lg">
+  <Section background="warm" space="lg">
     <Heading as="h2" size="h2" align="center">Platím dodavatele automaticky</Heading>
     <div class="sup">
       <div class="sup__col">
@@ -109,7 +109,7 @@ const compare = [
   </Section>
 
   <!-- Krok za krokem — timeline -->
-  <Section background="alt" space="lg">
+  <Section background="warm" space="lg">
     <Heading as="h2" size="h2" align="center">Krok za krokem</Heading>
     <ol class="timeline">
       {steps.map((s) => (
@@ -120,6 +120,10 @@ const compare = [
       ))}
     </ol>
     <div class="steps-cta"><Button href="/proces-plateb" variant="secondary">Jak to funguje?</Button></div>
+
+    <ul class="paylogos">
+      {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (<li><img src={`/images/pay-${n}.webp`} alt="" height="28" loading="lazy" /></li>))}
+    </ul>
   </Section>
 
   <!-- Srovnání -->
@@ -148,7 +152,7 @@ const compare = [
   </Section>
 
   <!-- Ceník -->
-  <Section background="alt" space="lg">
+  <Section background="warm" space="lg">
     <Heading as="h2" size="h2" align="center">Cenová nabídka</Heading>
     <div class="prices">
       <article class="price">
@@ -220,10 +224,14 @@ const compare = [
   .timeline { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); max-width: 880px; margin: var(--space-7) auto 0; position: relative; }
   .timeline::before { content: ""; position: absolute; top: 28px; left: 16%; right: 16%; height: 2px; background: var(--color-primary); z-index: 0; }
   .tl__step { display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--space-3); }
-  .tl__icon { position: relative; z-index: 1; width: 56px; height: 56px; display: grid; place-items: center; color: var(--color-text-accent); background: var(--color-bg-alt); }
+  .tl__icon { position: relative; z-index: 1; width: 56px; height: 56px; display: grid; place-items: center; color: var(--color-text-accent); background: var(--color-bg-warm, #FFF5E8); }
   .tl__title { color: var(--color-text-accent); font-size: var(--font-size-lead); font-weight: var(--font-weight-medium); max-width: 22ch; }
 
   .steps-cta { text-align: center; margin-top: var(--space-6); }
+
+  /* Platební loga */
+  .paylogos { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: var(--space-5) var(--space-7); margin-top: var(--space-8); }
+  .paylogos img { height: 28px; width: auto; display: block; }
 
   /* Srovnání */
   .cmp { margin-top: var(--space-7); overflow-x: auto; }

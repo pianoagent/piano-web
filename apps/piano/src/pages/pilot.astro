@@ -1,11 +1,10 @@
 ---
 /**
- * Pilot — produktová stránka piano.cz/pilot
- * Obsah: wordpress-export/pages/pilot.md. Sdílené komponenty @piano/ui.
+ * Pilot — produktová stránka piano.cz/pilot (vzhled dle reálné piano.cz).
+ * Obsah z WP exportu, obrázky z mirroru. Sdílené komponenty @piano/ui.
  */
 import Base from '../layouts/Base.astro';
 import Section from '@piano/ui/components/Section.astro';
-import Container from '@piano/ui/components/Container.astro';
 import Hero from '@piano/ui/components/Hero.astro';
 import Heading from '@piano/ui/components/Heading.astro';
 import Text from '@piano/ui/components/Text.astro';
@@ -14,9 +13,15 @@ import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 
 const steps = [
-  { icon: 'lucide:plug', title: 'Napojte svůj systém', text: 'Napojení během 5 minut bez složité instalace (Septim, POS Expert, Harsys) — nebo fungujte bez pokladny v LITE verzi.' },
-  { icon: 'lucide:activity', title: 'Vidíte data v reálném čase', text: 'Tržby, nejprodávanější položky, stav skladu — vše v jedné appce, bez přepínání mezi systémy.' },
-  { icon: 'lucide:sparkles', title: 'AI vám poradí, co dělat líp', text: 'Gastropilot (Piano Brain) analyzuje vaše data a navrhuje, jak zvýšit marže, snížit náklady nebo přivést více hostů.' },
+  { title: 'Napojte svůj systém', text: 'Napojení během 5 minut bez složité instalace (Septim, POS Expert, Harsys) — nebo fungujte bez pokladny v LITE verzi.' },
+  { title: 'Vidíte data v reálném čase', text: 'Tržby, nejprodávanější položky, stav skladu — vše v jedné appce, bez přepínání mezi systémy.' },
+  { title: 'AI vám poradí, co dělat líp', text: 'Gastropilot (Piano Brain) analyzuje vaše data a navrhuje, jak zvýšit marže, snížit náklady nebo přivést více hostů.' },
+];
+
+const benefits = [
+  { title: 'Svoboda a klid', text: 'Majitel má přehled o tržbách i skladu z pláže nebo domova v reálném čase.' },
+  { title: 'Konec administrativní noční můry', text: 'Automatické skenování papírových účtenek šetří hodiny ručního přepisování.' },
+  { title: 'Rychlá návratnost', text: 'I 1% zlepšení efektivity při běžné 10% marži zásadně zvyšuje čistý zisk.' },
 ];
 
 const features = [
@@ -32,7 +37,6 @@ const features = [
 <Base title="Piano Pilot — celý provoz v mobilní aplikaci"
       description="Pilot je mobilní aplikace pro majitele restaurací a barů. Tržby, prodeje, sklad a AI doporučení v reálném čase — jedno místo pro rozhodování.">
 
-
   <Hero eyebrow="Piano Pilot" background="primary"
         lead="Mobilní aplikace pro majitele restaurací, provozní barů a bister. Jedna aplikace, jeden přehled, jedno místo pro rozhodování — kdykoliv a kdekoliv.">
     <Heading slot="title" as="h1" size="display" color="on-dark">Řízení podle pocitu je drahé. S <em>daty</em> rozhodujete líp.</Heading>
@@ -42,30 +46,58 @@ const features = [
     <img slot="media" src="/images/pilot-app.webp" alt="Piano Pilot — náklady a tržby v mobilní aplikaci" width="694" height="574" />
   </Hero>
 
-  <USPGrid eyebrow="Jak to funguje" title="Tři kroky k přehledu nad provozem"
-           items={steps} columns={3} background="default" />
-
-  <USPGrid eyebrow="Klíčové funkce" title="Vše pro chytré rozhodování"
-           items={features} background="alt" />
-
-  <!-- Full-bleed pruh: interiér podniku -->
-  <section class="band">
-    <img class="band__bg" src="/images/pilot-bg.webp" alt="" loading="lazy" />
-    <div class="band__overlay">
-      <Heading as="p" size="h2" color="on-dark" align="center" balance>Přehled o provozu kdykoliv a kdekoliv — z pláže i od stolu.</Heading>
+  <!-- Jak to funguje — tři číslované kroky + pilulky -->
+  <Section background="default" space="lg">
+    <div class="head-center">
+      <Text size="label" color="accent">Jak to funguje</Text>
+      <Heading as="h2" size="h2">Tři kroky k přehledu nad provozem</Heading>
     </div>
-  </section>
+    <ol class="nsteps">
+      {steps.map((s, i) => (
+        <li class="nstep">
+          <span class="nstep__num">{i + 1}</span>
+          <Heading as="h3" size="h3">{s.title}</Heading>
+          <Text color="muted">{s.text}</Text>
+        </li>
+      ))}
+    </ol>
+    <div class="pills">
+      <span class="pill">Koncové šifrování</span>
+      <span class="pill">Citlivě zpracováno</span>
+    </div>
+  </Section>
+
+  <!-- Benefity + fotka provozní -->
+  <Section background="warm" space="lg">
+    <div class="ben">
+      <ol class="ben__list">
+        {benefits.map((b, i) => (
+          <li class="ben__item">
+            <span class="ben__num">{i + 1}</span>
+            <div>
+              <Heading as="h3" size="h3">{b.title}</Heading>
+              <Text color="muted">{b.text}</Text>
+            </div>
+          </li>
+        ))}
+      </ol>
+      <figure class="ben__photo"><img src="/images/pilot-chef.webp" alt="Provozní s aplikací Piano Pilot" width="640" height="828" loading="lazy" /></figure>
+    </div>
+  </Section>
+
+  <USPGrid eyebrow="Klíčové funkce" title="Vše co potřebujete pro chytré rozhodování"
+           items={features} background="default" />
 
   <!-- Dvě verze produktu -->
-  <Section background="default" space="lg">
+  <Section background="warm" space="lg">
     <Heading as="h2" size="h2" align="center">Dvě verze produktu</Heading>
     <Text size="lead" color="muted" align="center" class="pilot-sub">
       Vyberte si plán, který vám sedne. Začněte zdarma, upgradujte, když budete potřebovat víc.
     </Text>
     <div class="plans">
-      <article class="plan">
-        <Text size="label" color="accent">S napojenou Piano pokladnou</Text>
-        <Heading as="h3" size="h3">Pilot Pro</Heading>
+      <article class="plan plan--pro">
+        <Text size="label" color="on-dark">S napojenou Piano pokladnou</Text>
+        <Heading as="h3" size="h3" color="on-dark">Pilot Pro</Heading>
         <ul class="plan__list">
           <li>Tržby a prodeje v reálném čase</li>
           <li>Sklady napojené na pokladnu</li>
@@ -86,68 +118,72 @@ const features = [
     </div>
   </Section>
 
-  <!-- Reference -->
-  <Section background="invert" space="lg">
-    <figure class="quote">
-      <img class="quote__photo" src="/images/pilot-chef.webp" alt="Provozní s aplikací Piano Pilot" width="320" height="414" loading="lazy" />
-      <div class="quote__text">
-        <Text size="lead" color="on-dark">
-          „Kukátko používám denně — rychle a přehledně mám na jednom místě data o tržbách
-          i četnosti prodeje, která jsem dřív získával složitě. Teď testuji GastroPilota
-          a těším se na další vývoj.“
-        </Text>
-        <figcaption class="quote__by">
-          <Text color="on-dark" weight="semibold">Přemysl Hejda</Text>
-          <Text size="small" color="on-dark-muted">majitel, Fresherie</Text>
-        </figcaption>
-      </div>
-    </figure>
-  </Section>
+  <!-- Reference přes fotku interiéru -->
+  <section class="testi">
+    <img class="testi__bg" src="/images/pilot-bg.webp" alt="" loading="lazy" />
+    <div class="testi__inner">
+      <Text size="label" color="on-dark-muted">Co o nás říkají klienti?</Text>
+      <Text size="lead" color="on-dark" class="testi__quote">
+        „Kukátko používám denně — rychle a přehledně mám na jednom místě data o tržbách
+        i četnosti prodeje, která jsem dřív získával složitě. Teď testuji GastroPilota
+        a těším se na další vývoj.“
+      </Text>
+      <Text color="on-dark" weight="semibold">Přemysl Hejda</Text>
+      <Text size="small" color="on-dark-muted">majitel, Fresherie</Text>
+    </div>
+  </section>
 
   <LeadForm id="poptavka" variant="full"
             title="Posuňte své podnikání na vyšší úroveň"
             lead="Ozvěte se nám a uděláme vám nabídku šitou na míru vašim potřebám." />
 
-
 </Base>
 
 <style>
+  .head-center { text-align: center; max-width: 640px; margin: 0 auto var(--space-7); }
+  .head-center :global(h2) { margin-top: var(--space-2); }
+
+  /* Číslované kroky */
+  .nsteps { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); max-width: 980px; margin: 0 auto; }
+  .nstep { display: flex; flex-direction: column; gap: var(--space-2); }
+  .nstep__num { display: grid; place-items: center; width: 40px; height: 40px; background: var(--color-primary); color: var(--color-text-on-dark); border-radius: var(--radius-full); font-weight: var(--font-weight-semibold); margin-bottom: var(--space-2); }
+  .pills { display: flex; flex-wrap: wrap; gap: var(--space-3); justify-content: center; margin-top: var(--space-7); }
+  .pill { display: inline-flex; align-items: center; padding: var(--space-2) var(--space-4); background: var(--color-bg-alt); border: 1px solid var(--color-border); border-radius: var(--radius-full); font-size: var(--font-size-small); color: var(--color-text-muted); }
+
+  /* Benefity + fotka */
+  .ben { display: grid; grid-template-columns: 1fr 0.8fr; gap: var(--space-8); align-items: center; }
+  .ben__list { list-style: none; display: flex; flex-direction: column; gap: var(--space-6); }
+  .ben__item { display: grid; grid-template-columns: 40px 1fr; gap: var(--space-4); align-items: start; }
+  .ben__item :global(h3) { margin-bottom: var(--space-1); }
+  .ben__num { display: grid; place-items: center; width: 40px; height: 40px; background: var(--color-primary); color: var(--color-text-on-dark); border-radius: var(--radius-full); font-weight: var(--font-weight-semibold); }
+  .ben__photo { margin: 0; justify-self: center; }
+  .ben__photo img { display: block; width: 100%; max-width: 360px; height: auto; }
+
+  /* Verze */
   .pilot-sub { margin-top: var(--space-3); }
-  .plans {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-5);
-    margin-top: var(--space-7);
-  }
-  .plan {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-3);
-    padding: var(--space-6);
-    background: var(--color-bg);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-  }
+  .plans { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-5); margin-top: var(--space-7); }
+  .plan { display: flex; flex-direction: column; gap: var(--space-3); padding: var(--space-6); background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); }
+  .plan--pro { background: var(--color-primary-bg); border-color: transparent; }
+  .plan--pro .plan__list li { color: var(--color-text-on-dark-muted); }
+  .plan--pro .plan__list li::before { color: var(--color-text-on-dark); }
   .plan__list { list-style: none; display: flex; flex-direction: column; gap: var(--space-2); margin: var(--space-2) 0 var(--space-4); }
   .plan__list li { position: relative; padding-left: var(--space-5); color: var(--color-text-muted); }
   .plan__list li::before { content: "✓"; position: absolute; left: 0; color: var(--color-text-accent); font-weight: 700; }
   .plan :global(.btn) { margin-top: auto; }
 
-  /* Full-bleed pruh s fotkou interiéru */
-  .band { position: relative; min-height: 320px; display: grid; place-items: center; overflow: hidden; }
-  .band__bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-  .band__overlay { position: relative; max-width: 760px; padding: var(--space-8) var(--container-pad); }
-  .band__overlay::before { content: ""; position: absolute; inset: 0; background: rgba(17, 21, 27, 0.55); z-index: -1; }
+  /* Reference přes fotku */
+  .testi { position: relative; display: grid; place-items: center; overflow: hidden; min-height: 420px; }
+  .testi__bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .testi__inner { position: relative; max-width: 760px; padding: var(--space-9) var(--container-pad); text-align: center; display: flex; flex-direction: column; gap: var(--space-2); align-items: center; }
+  .testi__inner::before { content: ""; position: absolute; inset: -100vw -100vw; background: rgba(17, 21, 27, 0.6); z-index: -1; }
+  .testi__quote { margin: var(--space-3) 0; }
 
-  /* Reference s fotkou */
-  .quote { display: grid; grid-template-columns: 320px 1fr; gap: var(--space-7); align-items: center; max-width: 900px; margin: 0 auto; }
-  .quote__photo { width: 100%; height: auto; display: block; }
-  .quote__text { display: flex; flex-direction: column; gap: var(--space-4); }
-  .quote__by { display: flex; flex-direction: column; gap: 2px; }
-
+  @media (max-width: 880px) {
+    .nsteps { grid-template-columns: 1fr; gap: var(--space-5); }
+    .ben { grid-template-columns: 1fr; gap: var(--space-6); }
+    .ben__photo { order: -1; }
+  }
   @media (max-width: 720px) {
     .plans { grid-template-columns: 1fr; }
-    .quote { grid-template-columns: 1fr; justify-items: center; text-align: center; }
-    .quote__photo { max-width: 240px; }
   }
 </style>
