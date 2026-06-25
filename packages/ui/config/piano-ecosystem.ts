@@ -19,6 +19,8 @@ interface PianoProduct {
   group: Group;
   path?: string;         // produkty, které ŽIJÍ na piano.cz (Pilot, Brain, Terminál)
                          // → odkaz dovnitř webu, ne na samostatný web
+  demo?: string;         // override demo URL, když nesedí `<id>-web.pages.dev`
+                         // (např. Hugo má kvůli kolizi názvu suffix -aa4)
 }
 
 /** Zdroj pravdy pro celé portfolio. */
@@ -28,7 +30,7 @@ export const PIANO_PRODUCTS: PianoProduct[] = [
   { id: 'terminal', label: 'Piano Terminál', href: 'https://piano.cz', path: '/terminal', description: 'Terminál, který platbou začíná. Data i platby dodavatelům.', icon: '/brand/piano.svg', group: 'novinky' },
 
   { id: 'septim',   label: 'Septim',         href: 'https://www.septim.cz',         description: 'Pokladní a provozní systém',     icon: '/brand/septim.svg',        group: 'pokladna' },
-  { id: 'hugo',     label: 'Hugo',           href: 'https://hugo.cz',               description: 'Pokladna v telefonu, co máš',    icon: '/brand/hugo.svg',          badge: 'Nový', group: 'pokladna' },
+  { id: 'hugo',     label: 'Hugo',           href: 'https://hugo.cz',               description: 'Pokladna v telefonu, co máš',    icon: '/brand/hugo.svg',          badge: 'Nový', group: 'pokladna', demo: 'https://hugo-web-aa4.pages.dev' },
   { id: 'harsys',   label: 'ABX Harsys',     href: 'https://piano.cz',              description: 'Pokladní systém',                icon: '/brand/abx.svg', group: 'pokladna' },
   { id: 'savarin',  label: 'Savarin',        href: 'https://piano.cz',              description: 'Pokladní systém',                icon: '/brand/savarin.svg',        group: 'pokladna' },
   { id: 'autset',   label: 'Autset',         href: 'https://piano.cz',              description: 'Automatické naskladňování',      icon: '/brand/autset.svg',         group: 'pokladna' },
@@ -54,7 +56,7 @@ const toLink = (p: PianoProduct, onPiano: boolean): NavLink => {
   if (p.path) {
     return { ...base, href: onPiano ? p.path : `https://piano.cz${p.path}`, external: !onPiano };
   }
-  return { ...base, href: `https://${p.id}-web.pages.dev`, external: true };
+  return { ...base, href: p.demo ?? `https://${p.id}-web.pages.dev`, external: true };
 };
 
 /** Sestaví Piano mega panel pro daný web; `currentId` se vynechá. `onPiano`=true jen na webu piano.cz. */
