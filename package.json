@@ -31,6 +31,9 @@
     "preview:pecosta": "npm run preview -w @piano/app-pecosta",
     "dev:protel": "npm run dev -w @piano/app-protel",
     "build:protel": "npm run build -w @piano/app-protel",
-    "preview:protel": "npm run preview -w @piano/app-protel"
+    "preview:protel": "npm run preview -w @piano/app-protel",
+    "dev:hugo": "npm run dev -w @piano/app-hugo",
+    "build:hugo": "npm run build -w @piano/app-hugo",
+    "preview:hugo": "npm run preview -w @piano/app-hugo"
   }
 }

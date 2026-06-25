@@ -1,0 +1,40 @@
+---
+/**
+ * LegalPage — Septim app šablona pro právní/informační stránky (úzká prose).
+ */
+import Base from '../layouts/Base.astro';
+import SiteHeader from './SiteHeader.astro';
+import SiteFooter from './SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+
+interface Props { title: string; description: string; eyebrow?: string; titleHtml: string; updated?: string; }
+const { title, description, eyebrow = 'Právní informace', titleHtml, updated } = Astro.props;
+---
+<Base title={title} description={description} noindex>
+  <SiteHeader />
+  <main>
+    <Hero eyebrow={eyebrow} background="alt" space="md">
+      <Heading slot="title" as="h1" size="h1"><Fragment set:html={titleHtml} /></Heading>
+    </Hero>
+    <Section background="default" space="lg" container="narrow">
+      <div class="legal"><slot /></div>
+      {updated && <Text size="small" color="muted" class="legal__updated">Platné od {updated}.</Text>}
+    </Section>
+  </main>
+  <SiteFooter />
+</Base>
+
+<style>
+  .legal { max-width: 760px; }
+  .legal :global(h2) { font-family: var(--font-sans); font-weight: var(--font-weight-medium); font-size: var(--font-size-h3); color: var(--color-secondary); margin: var(--space-7) 0 var(--space-3); }
+  .legal :global(h3) { font-family: var(--font-sans); font-weight: var(--font-weight-semibold); font-size: var(--font-size-lead); margin: var(--space-5) 0 var(--space-2); }
+  .legal :global(p) { color: var(--color-text-muted); line-height: var(--line-height-body); margin-bottom: var(--space-3); }
+  .legal :global(ul) { margin: 0 0 var(--space-4) var(--space-5); color: var(--color-text-muted); display: flex; flex-direction: column; gap: var(--space-1); }
+  .legal :global(a) { color: var(--color-text-accent); }
+  .legal :global(strong) { color: var(--color-text); }
+  .legal :global(h2:first-child) { margin-top: 0; }
+  .legal__updated { display: block; margin-top: var(--space-7); }
+</style>

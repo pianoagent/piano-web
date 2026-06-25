@@ -1,0 +1,117 @@
+/* TÉMA — Hugo
+   =========================================================
+   Brandové tokeny pokladny Hugo. Zdroj: mirror starého webu
+   (hugo-website-mirror/index.html → CSS proměnné).
+   Paleta: ink #14110D, cream #F3EFE6, signature yellow #FFDF2C.
+   Komponenty se NEMĚNÍ — pouze hodnoty zde. Base struktura
+   (typo škála, spacing, stíny, pohyb) zůstává z @piano/ui.
+
+   Pozn. ke kontrastu: --color-primary = ink #14110D (cca 18:1 s bílým
+   textem), takže WCAG AA pohodlně splní. Signature yellow je dekorativní
+   (velké plochy / akcenty), na text se nepoužívá kvůli nízkému kontrastu.
+*/
+@import "@piano/ui/styles/base.css";
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&display=swap");
+
+:root {
+  /* ----- Písmo ----- */
+  --font-sans:  "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-serif: "Bricolage Grotesque", "Inter", system-ui, sans-serif; /* nadpisy / akcent <em> */
+
+  --font-weight-medium:   600;
+  --font-weight-semibold: 600;
+  --font-weight-bold:     800;
+
+  /* Nadpisy v display fontu (Bricolage Grotesque) */
+  --text-display: var(--font-weight-bold) var(--font-size-display)/var(--line-height-display) var(--font-serif);
+  --text-h1:      var(--font-weight-bold) var(--font-size-h1)/1.08 var(--font-serif);
+  --text-h2:      var(--font-weight-bold) var(--font-size-h2)/var(--line-height-heading) var(--font-serif);
+  --text-h3:      var(--font-weight-semibold) var(--font-size-h3)/var(--line-height-snug) var(--font-serif);
+
+  /* ----- Primary — ink (tmavá), bílý text ≥ 4,5:1 (reálně ~18:1) ----- */
+  --color-primary:          #14110D;
+  --color-primary-hover:    #2A2620;
+  --color-primary-active:   #0A0A0A;
+  --color-primary-bg:       #14110D;  /* tmavé sekce */
+  --color-primary-bg-hover: #2A2620;
+
+  /* ----- Secondary — ink (čitelný na světlém) ----- */
+  --color-secondary:            #14110D;
+  --color-secondary-terracotta: #E2533B;
+  --color-secondary-gold:       #B27F00;  /* ztmavená zlatá pro text (AA na cream) */
+  --color-secondary-yellow:     #FFDF2C;  /* signature — DEKORATIVNÍ plochy, ne text */
+
+  /* ----- Neutral (teplá, krémově laděná) ----- */
+  --color-neutral-0:   #FFFFFF;
+  --color-neutral-50:  #FBF9F3;
+  --color-neutral-100: #F3EFE6;  /* cream */
+  --color-neutral-200: #ECE6D7;
+  --color-neutral-300: #E4DDC8;
+  --color-neutral-400: #B8B0A0;
+  --color-neutral-500: #6B6357;  /* muted */
+  --color-neutral-900: #14110D;  /* ink (footer, invert) */
+
+  /* ----- Status ----- */
+  --color-success:       #1BA85B;
+  --color-success-hover: #168A4B;
+  --color-warning:       #B27F00;
+  --color-info:          #2E6BFF;
+  --color-error:         #E2533B;
+  --color-error-hover:   #C53F29;
+
+  /* ----- Text ----- */
+  --color-text:               #14110D; /* ink */
+  --color-text-muted:         #6B6357; /* warm muted */
+  --color-text-accent:        #7A5E00; /* ztmavená zlatá — eyebrow / odkazy, AA na světlém */
+  --color-text-on-dark:       #FFFDF5; /* teplá bílá */
+  --color-text-on-dark-muted: rgba(255, 253, 245, 0.72);
+
+  /* ----- Povrchy ----- */
+  --color-bg:        #FFFFFF;
+  --color-bg-alt:    #F3EFE6;  /* cream */
+  --color-bg-warm:   #FBF9F3;
+  --color-bg-invert: #14110D;
+  --color-bg-hover:  color-mix(in srgb, var(--color-neutral-900) 5%, #FFFFFF);
+
+  /* Signature hero gradient — tmavá ink s teplým nádechem, žlutý akcent vyniká */
+  --color-bg-gradient: linear-gradient(140deg, #14110D 0%, #1F1B16 55%, #2A2620 100%);
+
+  /* ----- Okraje ----- */
+  --color-border:         #ECE6D7;
+  --color-border-strong:  #E4DDC8;
+  --color-border-on-dark: rgba(255, 253, 245, 0.18);
+
+  /* ----- Radius — Hugo zaobluje štědře (mirror: 14 / 22 / 34) ----- */
+  --radius-sm:   14px;
+  --radius-md:   22px;
+  --radius-lg:   34px;
+  --radius-full: 999px;
+
+  /* ----- Chamfer vypnut (Hugo nemá seříznutý roh) ----- */
+  --chamfer-depth: 0px;
+
+  /* ----- Tlačítka — plné pilulky, bez chamferu ----- */
+  --btn-radius: var(--radius-full);
+  --btn-clip:   none;
+
+  /* ----- Formulářová pole — pilulky ----- */
+  --field-radius: var(--radius-full);
+
+  /* ----- Stíny — měkké, teple tónované ----- */
+  --shadow-sm: 0 2px 8px rgba(20, 17, 13, 0.06);
+  --shadow-md: 0 8px 24px rgba(20, 17, 13, 0.10);
+  --shadow-lg: 0 16px 48px rgba(20, 17, 13, 0.14);
+
+  /* ----- Focus ring — žlutá ----- */
+  --shadow-focus: 0 0 0 3px rgba(255, 223, 44, 0.55);
+}
+
+/* Hero obrázek (split layout) — sdílená utilita pro stránky webu */
+.hero-pic {
+  margin: 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  aspect-ratio: 4 / 3;
+}
+.hero-pic img { display: block; width: 100%; height: 100%; object-fit: cover; }

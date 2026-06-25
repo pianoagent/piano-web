@@ -1,0 +1,23 @@
+# Hugo
+
+> Hugo je moderní pokladna pro kavárny, bary a restaurace. Objednávky, platby kartou, spropitné i účtenky v jedné appce na telefonu, co už máš. Připraveno na EET 2027.
+
+## O Hugovi
+
+- Appka je zdarma, když platby kartou bereš přes Hugo. Platíš jen malé % z platby.
+- Tap to Pay na iPhonu, NFC na Androidu. Žádný proprietární hardware, žádná smlouva.
+- Od stažení k první tržbě za 5 minut. Menu načteš z fotky, hlasem nebo z účtenek.
+- Piano Brain: vestavěná AI radí, co naskladnit, kdy přidat lidi a proč byl slabý den.
+- Migrace z Dotykačky nebo Storyous: menu přeneseme za tebe, běh paralelně bez výpadku.
+
+## Piano ekosystém
+
+- [Septim](https://septim-web.pages.dev): Pokladní a provozní systém
+- [Pecosta](https://pecosta-web.pages.dev): Aukční nákupy surovin
+- [Grason](https://grason-web.pages.dev): Personál, směny a docházka
+- [Qerko](https://qerko-web.pages.dev): QR platby, tipy a recenze
+- [Protel](https://protel-web.pages.dev): Hotelový PMS
+
+## Více
+
+- [Piano, celý ekosystém](https://piano.cz): všechny nástroje pro pohostinství pod jednou střechou

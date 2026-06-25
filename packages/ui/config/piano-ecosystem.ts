@@ -28,6 +28,7 @@ export const PIANO_PRODUCTS: PianoProduct[] = [
   { id: 'terminal', label: 'Piano Terminál', href: 'https://piano.cz', path: '/terminal', description: 'Terminál, který platbou začíná. Data i platby dodavatelům.', icon: '/brand/piano.svg', group: 'novinky' },
 
   { id: 'septim',   label: 'Septim',         href: 'https://www.septim.cz',         description: 'Pokladní a provozní systém',     icon: '/brand/septim.svg',        group: 'pokladna' },
+  { id: 'hugo',     label: 'Hugo',           href: 'https://hugo.cz',               description: 'Pokladna v telefonu, co máš',    icon: '/brand/hugo.svg',          badge: 'Nový', group: 'pokladna' },
   { id: 'harsys',   label: 'ABX Harsys',     href: 'https://piano.cz',              description: 'Pokladní systém',                icon: '/brand/abx.svg', group: 'pokladna' },
   { id: 'savarin',  label: 'Savarin',        href: 'https://piano.cz',              description: 'Pokladní systém',                icon: '/brand/savarin.svg',        group: 'pokladna' },
   { id: 'autset',   label: 'Autset',         href: 'https://piano.cz',              description: 'Automatické naskladňování',      icon: '/brand/autset.svg',         group: 'pokladna' },
