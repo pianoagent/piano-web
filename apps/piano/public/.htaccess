@@ -1,0 +1,8 @@
+# piano.cz — statický web (Astro) na FTP/PHP hostingu
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Lead formulář: /api/lead → /api/lead.php (formulář posílá na /api/lead beze změny)
+  RewriteRule ^api/lead/?$ /api/lead.php [L]
+</IfModule>

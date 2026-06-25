@@ -1,0 +1,50 @@
+name: Deploy piano.cz
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'apps/piano/**'
+      - 'packages/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/deploy-piano.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-piano
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build piano.cz
+        run: npm run build:piano
+
+      - name: Deploy to FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ${{ vars.FTP_PROTOCOL || 'ftp' }}
+          local-dir: apps/piano/dist/
+          server-dir: ${{ vars.FTP_SERVER_DIR || './' }}
+          # Cloudflare worker artefakty na statickém FTP nedávají smysl
+          exclude: |
+            _worker.js/**
+            _routes.json
+            **/.DS_Store
