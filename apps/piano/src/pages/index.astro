@@ -24,6 +24,13 @@ const stats = [
   { num: '10+', lbl: 'propojených nástrojů' },
 ];
 
+// Novinky od Piana — vlastní vlajkové produkty (spotlight hned pod hero)
+const novinky = [
+  { name: 'Piano Pilot', badge: 'Nový', icon: 'lucide:smartphone', text: 'Celý provoz v jedné mobilní aplikaci — tržby, sklad i AI doporučení v reálném čase.', href: '/pilot' },
+  { name: 'Piano Terminál', badge: 'Nový', icon: 'lucide:credit-card', text: 'Platební terminál, který platbou teprve začíná — data o hostech a platby dodavatelům.', href: '/terminal' },
+  { name: 'Piano Brain', badge: 'Beta', icon: 'lucide:brain', text: 'AI a tržní data o HORECA trhu. Víte, co a za kolik se ve vašem okolí prodává.', href: '/brain' },
+];
+
 const pains = [
   { icon: 'lucide:user-x', title: 'Nedostatek personálu', text: 'Neustálé hledání nových lidí je drahé a únavné. Kvalitních lidí je čím dál méně.' },
   { icon: 'lucide:clock', title: 'Úbytek zákazníků', text: 'Dlouhé čekání na objednání nebo platbu znamená ztrátu tržeb.' },
@@ -96,6 +103,26 @@ const faqSchema = {
     </Fragment>
     <img slot="media" src="/images/home-hero-dark.webp" alt="Piano — pokladna, terminál a mobilní aplikace" width="1100" height="733" />
   </Hero>
+
+  <!-- NOVINKY OD PIANA — spotlight vlastních produktů -->
+  <Section background="primary" space="lg">
+    <div class="novinky__head">
+      <Text size="label" color="on-dark-muted">Novinky od Piana</Text>
+      <Heading as="h2" size="h2" color="on-dark">Co jsme postavili sami</Heading>
+      <Text color="on-dark-muted" class="novinky__sub">Vlastní produkty Piana, které posouvají provoz dál — vyvinuté přímo pro české pohostinství.</Text>
+    </div>
+    <div class="novinky__grid">
+      {novinky.map((n) => (
+        <a class="novinky__card" href={n.href}>
+          <span class="novinky__icon"><Icon name={n.icon} size="md" /></span>
+          <span class="novinky__badge">{n.badge}</span>
+          <Heading as="h3" size="h3">{n.name}</Heading>
+          <Text size="small" color="muted">{n.text}</Text>
+          <span class="novinky__link">Zjistit víc <Icon name="lucide:arrow-right" size="xs" /></span>
+        </a>
+      ))}
+    </div>
+  </Section>
 
   <!-- PAIN POINTS -->
   <USPGrid eyebrow="Znáte to?" title="Co dnes brzdí váš provoz"
@@ -206,6 +233,23 @@ const faqSchema = {
 </Base>
 
 <style>
+  /* Novinky od Piana — spotlight */
+  .novinky__head { max-width: 720px; margin: 0 auto var(--space-7); text-align: center; }
+  .novinky__head :global(h2) { margin-top: var(--space-2); }
+  .novinky__sub { margin-top: var(--space-3); }
+  .novinky__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-5); }
+  .novinky__card {
+    position: relative; display: flex; flex-direction: column; gap: var(--space-2);
+    padding: var(--space-6); background: var(--color-bg); border-radius: var(--radius-md);
+    text-decoration: none; color: var(--color-text);
+    border: 1px solid transparent; transition: var(--transition);
+  }
+  .novinky__card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg, 0 18px 40px rgba(0,0,0,.18)); }
+  .novinky__icon { display: grid; place-items: center; width: 48px; height: 48px; border-radius: var(--radius-sm); background: var(--color-bg-accent-soft, rgba(190,30,45,.08)); color: var(--color-primary); margin-bottom: var(--space-2); }
+  .novinky__badge { position: absolute; top: var(--space-5); right: var(--space-5); font-size: var(--font-size-caption); font-weight: var(--font-weight-medium); color: var(--color-primary); background: var(--color-bg-accent-soft, rgba(190,30,45,.08)); padding: 2px var(--space-2); border-radius: var(--radius-full); }
+  .novinky__link { display: inline-flex; align-items: center; gap: var(--space-1); margin-top: var(--space-2); color: var(--color-text-accent); font-weight: var(--font-weight-medium); font-size: var(--font-size-small); }
+  @media (max-width: 880px) { .novinky__grid { grid-template-columns: 1fr; } }
+
   .head-center { text-align: center; max-width: 720px; margin: 0 auto var(--space-7); }
   .head-center :global(.head-sub) { margin-top: var(--space-3); }
 
