@@ -20,11 +20,12 @@ export const savarinNav: NavItem[] = [
       { label: 'Sklady a kalkulace', href: '/sklady-a-kalkulace', description: 'HRMTZ + HRKALKUL — jádro systému', icon: 'lucide:calculator' },
     ],
   },
-  { label: 'Demoverze', href: '/demoverze' },
   { label: 'Ceník', href: '/cenik' },
   { label: 'Servis', href: '/servis' },
   { label: 'Kontakt', href: '/kontakt' },
   pianoNavItem('savarin'),
+  // Demoverze záměrně až za ekosystémem — sedí hned nalevo od CTA tlačítka.
+  { label: 'Demoverze', href: '/demoverze' },
 ];
 
 export const savarinCta: NavLink = { label: 'Nezávazná poptávka', href: '/kontakt' };
