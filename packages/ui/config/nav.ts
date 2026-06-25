@@ -49,7 +49,7 @@ const reseniMega: MegaPanel = {
   featured: {
     label: 'Doporučeno',
     items: [
-      { label: 'All-in-One platforma', href: '/reseni', description: 'Jeden ekosystém, jeden poplatek z obratu, jedna faktura.', icon: 'lucide:layers', badge: 'Kompletní' },
+      { label: 'All-in-One platforma', href: '/#ekosystem', description: 'Jeden ekosystém, jeden poplatek z obratu, jedna faktura.', icon: 'lucide:layers', badge: 'Kompletní' },
     ],
   },
   columns: [
@@ -77,7 +77,6 @@ export const headerCta: NavLink = { label: 'Domluvit demo', href: '/kontakt' };
 
 /** Sekundární odkazy (firma) — používá Footer */
 export const companyNav: NavLink[] = [
-  { label: 'Řešení', href: '/reseni' },
   { label: 'O nás', href: '/o-nas' },
   { label: 'Pro média', href: '/pro-media' },
   { label: 'Kontakt', href: '/kontakt' },
