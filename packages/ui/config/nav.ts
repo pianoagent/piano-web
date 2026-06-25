@@ -29,16 +29,15 @@ export interface NavItem extends NavLink {
   mega?: MegaPanel;       // mega menu
 }
 
-// Pozn.: odkazy jsou PROZATÍM na nasazené demo weby (<produkt>-web.pages.dev),
-// aby šel ekosystém proklikat. Po nasazení na finální domény stačí změnit href.
+// Ostré odkazy: samostatné produkty na své domény, Pilot/Terminál dovnitř piano.cz.
 export const products: NavLink[] = [
-  { label: 'Qerko', href: 'https://qerko-web.pages.dev', description: 'Platby u stolu a digitální menu', icon: 'lucide:qr-code', external: true },
-  { label: 'Septim', href: 'https://septim-web.pages.dev', description: 'Pokladní systém pro restaurace', icon: 'lucide:monitor', external: true },
-  { label: 'Pecosta', href: 'https://pecosta-web.pages.dev', description: 'Hotelový systém (PMS)', icon: 'lucide:bed-double', external: true },
-  { label: 'Grason', href: 'https://grason-web.pages.dev', description: 'Plánování personálu a docházka', icon: 'lucide:users', external: true },
-  { label: 'Protel', href: 'https://protel-web.pages.dev', description: 'PMS pro hotelové řetězce', icon: 'lucide:building-2', external: true },
-  { label: 'Pilot', href: 'https://pilot-web.pages.dev', description: 'Mobilní aplikace pro obsluhu', icon: 'lucide:smartphone', external: true },
-  { label: 'Terminál', href: 'https://terminal-web.pages.dev', description: 'Platební terminály', icon: 'lucide:credit-card', external: true },
+  { label: 'Qerko', href: 'https://www.qerko.com', description: 'Platby u stolu a digitální menu', icon: 'lucide:qr-code', external: true },
+  { label: 'Septim', href: 'https://www.septim.cz', description: 'Pokladní systém pro restaurace', icon: 'lucide:monitor', external: true },
+  { label: 'Pecosta', href: 'https://www.pecosta.cz', description: 'Hotelový systém (PMS)', icon: 'lucide:bed-double', external: true },
+  { label: 'Grason', href: 'https://www.grason.cz', description: 'Plánování personálu a docházka', icon: 'lucide:users', external: true },
+  { label: 'Protel', href: 'https://www.protelsystems.cz', description: 'PMS pro hotelové řetězce', icon: 'lucide:building-2', external: true },
+  { label: 'Pilot', href: '/pilot', description: 'Mobilní aplikace pro obsluhu', icon: 'lucide:smartphone' },
+  { label: 'Terminál', href: '/terminal', description: 'Platební terminály', icon: 'lucide:credit-card' },
 ];
 
 // „Produkty" na piano.cz = celý Piano ekosystém (stejný panel jako na ostatních
