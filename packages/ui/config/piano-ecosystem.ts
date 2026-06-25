@@ -46,8 +46,8 @@ export const PIANO_PRODUCTS: PianoProduct[] = [
 // proklikat. Finální URL jsou v `href` u každého produktu — po nasazení na domény
 // stačí přepnout `toLink` zpět na `p.href` a PIANO_BASE na https://piano.cz.
 //
-// Demo URL webu Piano (kvůli kolizi názvu má suffix). Tady žijí Pilot/Brain/Terminál.
-const PIANO_BASE = 'https://piano-web-1ts.pages.dev';
+// Ostrá doména Piana. Tady žijí Pilot/Brain/Terminál.
+const PIANO_BASE = 'https://piano.cz';
 //
 // Produkty s `path` žijí na webu Piana:
 //   - na samotném piano webu (onPiano) → interní relativní odkaz, stejná karta
@@ -59,7 +59,7 @@ const toLink = (p: PianoProduct, onPiano: boolean): NavLink => {
   if (p.path) {
     return { ...base, href: onPiano ? p.path : `${PIANO_BASE}${p.path}`, external: !onPiano };
   }
-  return { ...base, href: p.demo ?? `https://${p.id}-web.pages.dev`, external: true };
+  return { ...base, href: p.href, external: true };
 };
 
 /** Sestaví Piano mega panel pro daný web; `currentId` se vynechá. `onPiano`=true jen na webu piano.cz. */
