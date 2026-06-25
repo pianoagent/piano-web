@@ -522,7 +522,9 @@ const classes = ['header', transparent && 'header--transparent'].filter(Boolean)
 
   /* ---- Responsive přepínač ---- */
   @media (max-width: 880px) {
-    .header__nav, .header__cta { display: none; }
+    .header__nav { display: none; }
+    /* CTA je vykreslené přes komponentu Button → scoped selektor ho netrefí, proto :global */
+    .header__actions :global(.header__cta) { display: none; }
     .header__burger { display: flex; }
     /* hamburger zarovnat doprava (nav je skrytá, tak ji nahradí actions) */
     .header__actions { margin-left: auto; }
