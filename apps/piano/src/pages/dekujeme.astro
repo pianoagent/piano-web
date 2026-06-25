@@ -1,0 +1,31 @@
+---
+/**
+ * Děkujeme — cílová stránka po odeslání poptávky (LeadForm successUrl).
+ */
+import Base from '../layouts/Base.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+---
+
+<Base title="Děkujeme za poptávku" description="Děkujeme, ozveme se vám co nejdříve." noindex>
+  <Section background="warm" space="lg" container="narrow">
+    <div class="ty">
+      <span class="ty__icon"><Icon name="lucide:check" size="lg" /></span>
+      <Heading as="h1" size="h1" align="center">Děkujeme! Ozveme se vám co nejdříve.</Heading>
+      <Text size="lead" color="muted" align="center" class="ty__lead">
+        Vaši poptávku jsme přijali. Obvykle se ozýváme do jednoho pracovního dne.
+      </Text>
+      <Button href="/">Zpět na hlavní stránku</Button>
+    </div>
+  </Section>
+</Base>
+
+<style>
+  .ty { display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--space-4); }
+  .ty__icon { display: grid; place-items: center; width: 64px; height: 64px; border-radius: var(--radius-full); background: var(--color-success); color: #fff; margin-bottom: var(--space-2); }
+  .ty__lead { max-width: 480px; }
+  .ty :global(.btn) { margin-top: var(--space-4); }
+</style>
