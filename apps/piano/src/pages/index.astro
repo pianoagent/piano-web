@@ -31,6 +31,31 @@ const novinky = [
   { name: 'Piano Brain', badge: 'Beta', icon: 'lucide:brain', text: 'AI a tržní data o HORECA trhu. Víte, co a za kolik se ve vašem okolí prodává.', href: '/brain' },
 ];
 
+// Hero — rotující sdělení (mění se nadpis + lead + obrázek; CTA a USP zůstávají)
+const heroSlides = [
+  {
+    eyebrow: 'Technologie pro gastronomii a hotely',
+    title: 'Všechny klíčové nástroje pro pohostinství pod&nbsp;jednou střechou',
+    lead: 'Piano představuje sehraný orchestr nástrojů, který vyladí váš provoz, ušetří vám čas a zvýší zisk. Ať už provozujete restauraci, kavárnu, bistro, jídelnu či hotel, máme pro vás řešení.',
+    image: '/images/home-hero-dark.webp',
+    imageAlt: 'Piano — pokladna, terminál a mobilní aplikace',
+  },
+  {
+    eyebrow: 'Novinka — Piano Pilot',
+    title: 'Celý provoz v jedné mobilní aplikaci',
+    lead: 'Tržby, sklad i AI doporučení v reálném čase. S Pilotem máte přehled o podniku odkudkoliv — přímo z telefonu.',
+    image: '/images/pilot-app.webp',
+    imageAlt: 'Piano Pilot — mobilní aplikace pro provoz',
+  },
+  {
+    eyebrow: 'Novinka — Piano Terminál',
+    title: 'Terminál, který platbou teprve začíná',
+    lead: 'Data o hostech a automatické platby dodavatelům. Z obyčejného platebního terminálu děláme chytrý nástroj pro celý provoz.',
+    image: '/images/term-hero.webp',
+    imageAlt: 'Piano Terminál — platební terminál',
+  },
+];
+
 const pains = [
   { icon: 'lucide:user-x', title: 'Nedostatek personálu', text: 'Neustálé hledání nových lidí je drahé a únavné. Kvalitních lidí je čím dál méně.' },
   { icon: 'lucide:clock', title: 'Úbytek zákazníků', text: 'Dlouhé čekání na objednání nebo platbu znamená ztrátu tržeb.' },
@@ -93,15 +118,12 @@ const faqSchema = {
       description="Piano nabízí technologie pro restaurace a hotely od pokladních systémů po personál a marketing vašeho podniku."
       schema={faqSchema}>
 
-  <Hero eyebrow="Technologie pro gastronomii a hotely" background="warm"
-        lead="Piano představuje sehraný orchestr nástrojů, který vyladí váš provoz, ušetří vám čas a zvýší zisk. Ať už provozujete restauraci, kavárnu, bistro, jídelnu či hotel, máme pro vás řešení."
+  <Hero background="warm" slides={heroSlides}
         usp={[{ text: '6 000+ podniků', icon: 'lucide:store' }, { text: '36 mld Kč ročně', icon: 'lucide:banknote' }, { text: '30 let inovací', icon: 'lucide:calendar-check' }]}>
-    <Heading slot="title" as="h1" size="display">Všechny klíčové nástroje pro pohostinství pod jednou střechou</Heading>
     <Fragment slot="actions">
       <Button href="#poptavka">Domluvit konzultaci</Button>
       <Button href="#ekosystem" variant="secondary">Prozkoumat ekosystém</Button>
     </Fragment>
-    <img slot="media" src="/images/home-hero-dark.webp" alt="Piano — pokladna, terminál a mobilní aplikace" width="1100" height="733" />
   </Hero>
 
   <!-- NOVINKY OD PIANA — spotlight vlastních produktů -->

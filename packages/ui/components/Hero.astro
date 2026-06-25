@@ -20,6 +20,14 @@ import Heading from './Heading.astro';
 import Text from './Text.astro';
 import Icon from './Icon.astro';
 
+interface HeroSlide {
+  eyebrow?: string;
+  title: string;       // může obsahovat <em> pro PP Eiko akcent
+  lead?: string;
+  image?: string;
+  imageAlt?: string;
+}
+
 interface Props {
   eyebrow?: string;
   title?: string;
@@ -28,14 +36,17 @@ interface Props {
   background?: 'default' | 'alt' | 'warm' | 'invert' | 'primary' | 'gradient';
   space?: 'sm' | 'md' | 'lg';
   usp?: (string | { text: string; icon?: string })[];   // klíčové body → proužek uvnitř hero; ikonu lze určit per bod
+  slides?: HeroSlide[];  // rotující eyebrow+nadpis+lead+obrázek; actions a usp zůstávají fixní
 }
 
-const { eyebrow, title, lead, align = 'left', background = 'default', space = 'lg', usp = [] } = Astro.props;
+const { eyebrow, title, lead, align = 'left', background = 'default', space = 'lg', usp = [], slides = [] } = Astro.props;
 const uspItems = usp.map((u) => (typeof u === 'string' ? { text: u, icon: 'lucide:check' } : { text: u.text, icon: u.icon ?? 'lucide:check' }));
 
+const useSlides = slides.length > 0;
+const isCarousel = slides.length > 1;
 const hasTitle = Astro.slots.has('title');
 const hasActions = Astro.slots.has('actions');
-const hasMedia = Astro.slots.has('media');
+const hasMedia = useSlides ? slides.some((s) => s.image) : Astro.slots.has('media');
 const onDark = background === 'invert' || background === 'primary' || background === 'gradient';
 
 const innerClasses = [
@@ -49,18 +60,30 @@ const innerClasses = [
 ---
 
 <Section background={background} space={space}>
-  <div class={innerClasses}>
+  <div class={innerClasses} data-hero-carousel={isCarousel ? '' : undefined}>
     <div class="hero__text">
-      {eyebrow && <p class="hero__eyebrow">{eyebrow}</p>}
-
-      {hasTitle ? (
-        <slot name="title" />
+      {useSlides ? (
+        <div class="hero__rot">
+          {slides.map((s, i) => (
+            <div class={`hero__slide${i === 0 ? ' is-active' : ''}`} data-hero-slide={i}>
+              {s.eyebrow && <p class="hero__eyebrow">{s.eyebrow}</p>}
+              <Heading as="h1" size="display" color={onDark ? 'on-dark' : 'default'}><Fragment set:html={s.title} /></Heading>
+              {s.lead && <Text size="lead" color={onDark ? 'on-dark-muted' : 'muted'} class="hero__lead">{s.lead}</Text>}
+            </div>
+          ))}
+        </div>
       ) : (
-        title && <Heading as="h1" size="display" color={onDark ? 'on-dark' : 'default'}>{title}</Heading>
-      )}
-
-      {lead && (
-        <Text size="lead" color={onDark ? 'on-dark-muted' : 'muted'} class="hero__lead">{lead}</Text>
+        <>
+          {eyebrow && <p class="hero__eyebrow">{eyebrow}</p>}
+          {hasTitle ? (
+            <slot name="title" />
+          ) : (
+            title && <Heading as="h1" size="display" color={onDark ? 'on-dark' : 'default'}>{title}</Heading>
+          )}
+          {lead && (
+            <Text size="lead" color={onDark ? 'on-dark-muted' : 'muted'} class="hero__lead">{lead}</Text>
+          )}
+        </>
       )}
 
       {hasActions && (
@@ -77,11 +100,70 @@ const innerClasses = [
           ))}
         </ul>
       )}
+
+      {isCarousel && (
+        <div class="hero__dots" role="tablist" aria-label="Přepnout sdělení">
+          {slides.map((_, i) => (
+            <button type="button" class={`hero__dot${i === 0 ? ' is-active' : ''}`} data-hero-dot={i} aria-label={`Sdělení ${i + 1}`}></button>
+          ))}
+        </div>
+      )}
     </div>
 
-    {hasMedia && <div class="hero__media"><slot name="media" /></div>}
+    {hasMedia && (
+      <div class="hero__media">
+        {useSlides ? (
+          <div class="hero__rot hero__media-rot">
+            {slides.map((s, i) => s.image && (
+              <img class={`hero__slide${i === 0 ? ' is-active' : ''}`} data-hero-mslide={i}
+                   src={s.image} alt={s.imageAlt ?? ''} width="1100" height="733" loading={i === 0 ? 'eager' : 'lazy'} />
+            ))}
+          </div>
+        ) : (
+          <slot name="media" />
+        )}
+      </div>
+    )}
   </div>
 </Section>
+
+{isCarousel && (
+  <script>
+    function initHero(root: HTMLElement) {
+      const texts = Array.from(root.querySelectorAll<HTMLElement>('[data-hero-slide]'));
+      const medias = Array.from(root.querySelectorAll<HTMLElement>('[data-hero-mslide]'));
+      const dots = Array.from(root.querySelectorAll<HTMLElement>('[data-hero-dot]'));
+      const n = texts.length;
+      if (n < 2) return;
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let i = 0;
+      let timer: ReturnType<typeof setInterval> | undefined;
+      const go = (k: number) => {
+        i = (k + n) % n;
+        texts.forEach((el, idx) => el.classList.toggle('is-active', idx === i));
+        medias.forEach((el) => el.classList.toggle('is-active', Number(el.dataset.heroMslide) === i));
+        dots.forEach((el, idx) => el.classList.toggle('is-active', idx === i));
+      };
+      const stop = () => { if (timer) clearInterval(timer); timer = undefined; };
+      const start = () => { if (reduce) return; stop(); timer = setInterval(() => go(i + 1), 6000); };
+      dots.forEach((d, idx) => d.addEventListener('click', () => { go(idx); start(); }));
+      root.addEventListener('mouseenter', stop);
+      root.addEventListener('mouseleave', start);
+      root.addEventListener('focusin', stop);
+      root.addEventListener('focusout', start);
+      let x0: number | null = null;
+      root.addEventListener('touchstart', (e) => { x0 = e.touches[0].clientX; }, { passive: true });
+      root.addEventListener('touchend', (e) => {
+        if (x0 === null) return;
+        const dx = e.changedTouches[0].clientX - x0;
+        if (Math.abs(dx) > 40) { go(dx < 0 ? i + 1 : i - 1); start(); }
+        x0 = null;
+      });
+      start();
+    }
+    document.querySelectorAll<HTMLElement>('[data-hero-carousel]').forEach(initHero);
+  </script>
+)}
 
 <style>
   .hero__inner { display: flex; flex-direction: column; }
@@ -102,6 +184,29 @@ const innerClasses = [
   }
   .hero__inner--align-center .hero__text { margin-inline: auto; }
   .hero__inner--align-center .hero__actions { justify-content: center; }
+
+  /* Rotace (carousel) — slidy se stackují přes sebe a prolínají */
+  .hero__rot { display: grid; }
+  .hero__rot > .hero__slide { grid-area: 1 / 1; }
+  .hero__slide {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease;
+  }
+  .hero__slide.is-active { opacity: 1; visibility: visible; }
+  .hero__media-rot > img { width: 100%; height: auto; }
+
+  /* Tečky */
+  .hero__dots { display: flex; gap: var(--space-2); margin-top: var(--space-7); }
+  .hero__dot {
+    width: 10px; height: 10px; padding: 0; border: none; cursor: pointer;
+    border-radius: var(--radius-full); background: var(--color-border);
+    transition: var(--transition);
+  }
+  .hero__dot.is-active { width: 26px; background: var(--color-primary); }
+  .hero__inner--on-dark .hero__dot { background: var(--color-border-on-dark); }
+  .hero__inner--on-dark .hero__dot.is-active { background: var(--color-secondary-gold); }
+  @media (prefers-reduced-motion: reduce) { .hero__slide { transition: none; } }
 
   /* Eyebrow */
   .hero__eyebrow {
