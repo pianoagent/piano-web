@@ -26,9 +26,8 @@ const stats = [
 
 // Novinky od Piana — vlastní vlajkové produkty (spotlight hned pod hero)
 const novinky = [
-  { name: 'Piano Pilot', badge: 'Nový', icon: 'lucide:smartphone', text: 'Celý provoz v jedné mobilní aplikaci — tržby, sklad i AI doporučení v reálném čase.', href: '/pilot' },
-  { name: 'Piano Terminál', badge: 'Nový', icon: 'lucide:credit-card', text: 'Platební terminál, který platbou teprve začíná — data o hostech a platby dodavatelům.', href: '/terminal' },
-  { name: 'Piano Brain', badge: 'Beta', icon: 'lucide:brain', text: 'AI a tržní data o HORECA trhu. Víte, co a za kolik se ve vašem okolí prodává.', href: '/brain' },
+  { suffix: 'PILOT', image: '/images/hero-pilot.webp', text: 'Celý provoz v jedné mobilní aplikaci — tržby, sklad i AI doporučení v reálném čase.', href: '/pilot' },
+  { suffix: 'TERMINÁL', image: '/images/hero-terminal.webp', text: 'Platební Terminál, který platbou kartou teprve začíná — data o hostech a platby dodavatelům.', href: '/terminal' },
 ];
 
 // Hero — rotující sdělení (mění se nadpis + lead + obrázek; CTA a USP zůstávají)
@@ -37,21 +36,21 @@ const heroSlides = [
     eyebrow: 'Technologie pro gastronomii a hotely',
     title: 'Všechny klíčové nástroje pro pohostinství pod&nbsp;jednou střechou',
     lead: 'Piano představuje sehraný orchestr nástrojů, který vyladí váš provoz, ušetří vám čas a zvýší zisk. Ať už provozujete restauraci, kavárnu, bistro, jídelnu či hotel, máme pro vás řešení.',
-    image: '/images/home-hero-dark.webp',
-    imageAlt: 'Piano — pokladna, terminál a mobilní aplikace',
+    image: '/images/piano-hero-dark.webp',
+    imageAlt: 'Piano — gastro provoz v plném proudu',
   },
   {
     eyebrow: 'Novinka — Piano Pilot',
     title: 'Celý provoz v jedné mobilní aplikaci',
     lead: 'Tržby, sklad i AI doporučení v reálném čase. S Pilotem máte přehled o podniku odkudkoliv — přímo z telefonu.',
-    image: '/images/pilot-app.webp',
+    image: '/images/hero-pilot.webp',
     imageAlt: 'Piano Pilot — mobilní aplikace pro provoz',
   },
   {
     eyebrow: 'Novinka — Piano Terminál',
     title: 'Terminál, který platbou teprve začíná',
     lead: 'Data o hostech a automatické platby dodavatelům. Z obyčejného platebního terminálu děláme chytrý nástroj pro celý provoz.',
-    image: '/images/term-hero.webp',
+    image: '/images/hero-terminal.webp',
     imageAlt: 'Piano Terminál — platební terminál',
   },
 ];
@@ -129,18 +128,19 @@ const faqSchema = {
   <!-- NOVINKY OD PIANA — spotlight vlastních produktů -->
   <Section background="primary" space="lg">
     <div class="novinky__head">
-      <Text size="label" color="on-dark-muted">Novinky od Piana</Text>
-      <Heading as="h2" size="h2" color="on-dark">Co jsme postavili sami</Heading>
-      <Text color="on-dark-muted" class="novinky__sub">Vlastní produkty Piana, které posouvají provoz dál — vyvinuté přímo pro české pohostinství.</Text>
+      <Text size="label" color="on-dark-muted" align="center">Novinky od Piana</Text>
+      <Heading as="h2" size="h2" color="on-dark" align="center">Co jsme postavili sami</Heading>
+      <Text color="on-dark-muted" align="center" class="novinky__sub">Vlastní produkty Piana, které posouvají provoz dál — vyvinuté přímo pro české pohostinství.</Text>
     </div>
     <div class="novinky__grid">
       {novinky.map((n) => (
-        <a class="novinky__card" href={n.href}>
-          <span class="novinky__icon"><Icon name={n.icon} size="md" /></span>
-          <span class="novinky__badge">{n.badge}</span>
-          <Heading as="h3" size="h3">{n.name}</Heading>
-          <Text size="small" color="muted">{n.text}</Text>
-          <span class="novinky__link">Zjistit víc <Icon name="lucide:arrow-right" size="xs" /></span>
+        <a class="nov__card" href={n.href}>
+          <div class="nov__media"><img src={n.image} alt={`Piano ${n.suffix}`} loading="lazy" /></div>
+          <div class="nov__body">
+            <span class="nov__logo"><img src="/logos/piano_color.svg" alt="Piano" /><span>{n.suffix}</span></span>
+            <Text size="small" color="muted">{n.text}</Text>
+            <span class="nov__link">Zjistit víc <Icon name="lucide:arrow-right" size="xs" /></span>
+          </div>
         </a>
       ))}
     </div>
@@ -259,18 +259,25 @@ const faqSchema = {
   .novinky__head { max-width: 720px; margin: 0 auto var(--space-7); text-align: center; }
   .novinky__head :global(h2) { margin-top: var(--space-2); }
   .novinky__sub { margin-top: var(--space-3); }
-  .novinky__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-5); }
-  .novinky__card {
-    position: relative; display: flex; flex-direction: column; gap: var(--space-2);
-    padding: var(--space-6); background: var(--color-bg); border-radius: var(--radius-md);
-    text-decoration: none; color: var(--color-text);
-    border: 1px solid transparent; transition: var(--transition);
+  .novinky__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-6); max-width: 880px; margin: 0 auto; }
+
+  .nov__card {
+    display: flex; flex-direction: column; overflow: hidden;
+    background: var(--color-bg); border-radius: var(--radius-lg, 16px);
+    text-decoration: none; color: var(--color-text); transition: var(--transition);
   }
-  .novinky__card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg, 0 18px 40px rgba(0,0,0,.18)); }
-  .novinky__icon { display: grid; place-items: center; width: 48px; height: 48px; border-radius: var(--radius-sm); background: var(--color-bg-accent-soft, rgba(190,30,45,.08)); color: var(--color-primary); margin-bottom: var(--space-2); }
-  .novinky__badge { position: absolute; top: var(--space-5); right: var(--space-5); font-size: var(--font-size-caption); font-weight: var(--font-weight-medium); color: var(--color-primary); background: var(--color-bg-accent-soft, rgba(190,30,45,.08)); padding: 2px var(--space-2); border-radius: var(--radius-full); }
-  .novinky__link { display: inline-flex; align-items: center; gap: var(--space-1); margin-top: var(--space-2); color: var(--color-text-accent); font-weight: var(--font-weight-medium); font-size: var(--font-size-small); }
-  @media (max-width: 880px) { .novinky__grid { grid-template-columns: 1fr; } }
+  .nov__card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg, 0 18px 40px rgba(0,0,0,.18)); }
+  .nov__media {
+    display: grid; place-items: center; padding: var(--space-6) var(--space-6) 0;
+    background: linear-gradient(180deg, #fff 0%, var(--color-bg-warm, #FFF5E8) 100%);
+  }
+  .nov__media img { width: 76%; max-width: 240px; height: auto; }
+  .nov__body { display: flex; flex-direction: column; gap: var(--space-3); padding: var(--space-5) var(--space-6) var(--space-6); }
+  .nov__logo { display: inline-flex; align-items: center; gap: 7px; }
+  .nov__logo img { height: 22px; width: auto; }
+  .nov__logo span { font-family: var(--font-sans); font-weight: var(--font-weight-bold); font-size: 1.35rem; letter-spacing: .005em; color: var(--color-text); }
+  .nov__link { display: inline-flex; align-items: center; gap: var(--space-1); margin-top: var(--space-1); color: var(--color-text-accent); font-weight: var(--font-weight-medium); font-size: var(--font-size-small); }
+  @media (max-width: 880px) { .novinky__grid { grid-template-columns: 1fr; max-width: 420px; } }
 
   .head-center { text-align: center; max-width: 720px; margin: 0 auto var(--space-7); }
   .head-center :global(.head-sub) { margin-top: var(--space-3); }

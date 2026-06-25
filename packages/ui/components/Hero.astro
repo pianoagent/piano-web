@@ -145,7 +145,7 @@ const innerClasses = [
         dots.forEach((el, idx) => el.classList.toggle('is-active', idx === i));
       };
       const stop = () => { if (timer) clearInterval(timer); timer = undefined; };
-      const start = () => { if (reduce) return; stop(); timer = setInterval(() => go(i + 1), 6000); };
+      const start = () => { if (reduce) return; stop(); timer = setInterval(() => go(i + 1), 4000); };
       dots.forEach((d, idx) => d.addEventListener('click', () => { go(idx); start(); }));
       root.addEventListener('mouseenter', stop);
       root.addEventListener('mouseleave', start);
