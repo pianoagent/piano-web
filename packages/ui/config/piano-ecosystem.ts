@@ -17,14 +17,13 @@ interface PianoProduct {
   icon: string;          // brandová favicon '/brand/<id>.svg'
   badge?: string;
   group: Group;
-  path?: string;         // produkty, které ŽIJÍ na piano.cz (Pilot, Brain, Terminál)
+  path?: string;         // produkty, které ŽIJÍ na piano.cz (Pilot, Terminál)
                          // → odkaz dovnitř webu, ne na samostatný web
 }
 
 /** Zdroj pravdy pro celé portfolio. */
 export const PIANO_PRODUCTS: PianoProduct[] = [
   { id: 'pilot',    label: 'Piano Pilot',    href: 'https://piano.cz', path: '/pilot',    description: 'Celý provoz v mobilní appce. Data, sklad, AI doporučení.', icon: '/brand/piano.svg',  badge: 'Nový', group: 'novinky' },
-  { id: 'brain',    label: 'Piano Brain',    href: 'https://piano.cz', path: '/brain',    description: 'AI a market intelligence. Víte, co prodává konkurence?',    icon: '/brand/piano.svg',       badge: 'Beta', group: 'novinky' },
   { id: 'terminal', label: 'Piano Terminál', href: 'https://piano.cz', path: '/terminal', description: 'Terminál, který platbou začíná. Data i platby dodavatelům.', icon: '/brand/piano.svg', group: 'novinky' },
 
   { id: 'septim',   label: 'Septim',         href: 'https://www.septim.cz',         description: 'Pokladní a provozní systém',     icon: '/brand/septim.svg',        group: 'pokladna' },
@@ -39,7 +38,7 @@ export const PIANO_PRODUCTS: PianoProduct[] = [
   { id: 'grason',   label: 'Grason',         href: 'https://www.grason.cz',         description: 'Brigádníci, směny, píchačky',    icon: '/brand/grason.svg',           group: 'hoste' },
 ];
 
-// Ostrá doména Piana. Tady žijí Pilot/Brain/Terminál (odkaz přes `path`).
+// Ostrá doména Piana. Tady žijí Pilot/Terminál (odkaz přes `path`).
 const PIANO_BASE = 'https://piano.cz';
 //
 // Produkty s `path` žijí na webu Piana:
