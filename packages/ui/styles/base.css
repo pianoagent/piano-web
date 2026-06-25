@@ -111,6 +111,12 @@
    GLOBAL RESET (sdílený)
    ========================================================= */
 * { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* Responzivní média — nikdy nepřetečou rodiče (hlavní příčina mobilního scrollu do stran).
+   Konkrétnější pravidla v komponentách (pevná výška, object-fit) mají přednost. */
+img, svg, video, canvas, iframe, picture { max-width: 100%; }
+img, video { height: auto; }
+
 html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -122,4 +128,7 @@ body {
   font-family: var(--font-sans);
   color: var(--color-text);
   background: var(--color-bg);
+  position: relative;
+  overflow-x: clip;   /* pojistka i na body — html clip sám na mobilu (iOS) občas nestačí */
+  max-width: 100%;
 }
