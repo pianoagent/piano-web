@@ -71,6 +71,8 @@ const categories = [
 
 // Ekosystém — odkazy: piano-hosté dovnitř (/), ostatní na ostré produkční domény
 const ecosystem = [
+  { name: 'Piano Pilot', logo: '/brand/pilot_logo.svg', desc: 'Celý provoz v mobilní aplikaci s daty a AI.', href: '/pilot', badge: 'Novinka' },
+  { name: 'Piano Terminál', logo: '/brand/terminal_logo.svg', desc: 'Terminál, který platbou teprve začíná — data o hostech i platby dodavatelům.', href: '/terminal', badge: 'Novinka' },
   { name: 'Septim', logo: '/brand/septim_logo.svg', desc: 'Nejrespektovanější pokladní a provozní systém na trhu.', href: 'https://www.septim.cz' },
   { name: 'Qerko', logo: '/brand/qerko_logo.svg', desc: 'Nejpohodlnější platba u stolu a komunikace s hosty.', href: 'https://www.qerko.com' },
   { name: 'Pecosta', logo: '/brand/pecosta_logo.svg', desc: 'Aukční nákupy surovin — levněji až o 16 %.', href: 'https://www.pecosta.cz' },
@@ -79,7 +81,6 @@ const ecosystem = [
   { name: 'ABX Harsys', logo: '/brand/abx_logo.svg', desc: 'Multifunkční pokladní systémy a pokladny.', href: 'https://www.abxharsys.cz' },
   { name: 'Savarin', logo: '/brand/savarin_logo.svg', desc: 'Komplexní řešení pro stravovací a ubytovací provozy.', href: 'https://cominn.cz' },
   { name: 'Protel', logo: '/brand/protel_logo.svg', desc: 'Software pro efektivní řízení hotelů.', href: 'https://www.protelsystems.cz' },
-  { name: 'Piano Pilot', logo: '/brand/pilot_logo.svg', desc: 'Celý provoz v mobilní aplikaci s daty a AI.', href: '/pilot' },
 ];
 
 const benefits = [
@@ -202,6 +203,7 @@ const faqSchema = {
     <div class="eco">
       {ecosystem.map((p) => (
         <a class="eco__card" href={p.href}>
+          {p.badge && <span class="eco__badge">{p.badge}</span>}
           <img class="eco__logo" src={p.logo} alt={p.name} loading="lazy" />
           <span class="eco__desc">{p.desc}</span>
           <span class="eco__more">Zjistit víc <Icon name="lucide:arrow-right" size="xs" /></span>
@@ -344,7 +346,8 @@ const faqSchema = {
 
   /* Ekosystém */
   .eco { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-5); }
-  .eco__card { display: flex; flex-direction: column; gap: var(--space-2); padding: var(--space-6); background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); text-decoration: none; transition: var(--transition); }
+  .eco__card { position: relative; display: flex; flex-direction: column; gap: var(--space-2); padding: var(--space-6); background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); text-decoration: none; transition: var(--transition); }
+  .eco__badge { position: absolute; top: var(--space-4); right: var(--space-4); font-size: var(--font-size-caption); font-weight: var(--font-weight-medium); color: var(--color-primary); background: var(--color-bg-accent-soft, rgba(190,30,45,.08)); padding: 2px var(--space-2); border-radius: var(--radius-full); }
   .eco__card:hover { border-color: var(--color-primary); box-shadow: var(--shadow-md); transform: translateY(-2px); }
   .eco__logo { height: 32px; width: auto; max-width: 72%; object-fit: contain; object-position: left center; align-self: flex-start; margin-bottom: var(--space-3); }
   .eco__desc { font-size: var(--font-size-small); color: var(--color-text-muted); flex: 1; }
