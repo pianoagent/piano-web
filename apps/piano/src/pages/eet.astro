@@ -3,6 +3,7 @@
  * EET 2.0 — stránka piano.cz/eet
  * Obsah: wordpress-export/pages/eet.md. Sdílené komponenty @piano/ui.
  */
+import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import Section from '@piano/ui/components/Section.astro';
 import Hero from '@piano/ui/components/Hero.astro';
@@ -50,6 +51,13 @@ const faqs = [
   { q: 'Proč nevyřešit EET 2.0 jen tou nejlevnější cestou?', a: 'Protože pokladní systém není jen zákonná povinnost. Správné řešení vám dá přehled o tržbách, zásobách i personálu na jednom místě, automatizuje administrativu a pomůže zvýšit marže. Naši klienti průměrně zvyšují marže o 7 %.' },
   { q: 'Co se změní u spropitného?', a: 'Dobrovolné spropitné bude osvobozeno od daně i odvodů až do výše 7 % měsíčních tržeb. Detailní pravidla pro evidenci v pokladním systému se ještě upřesňují — jakmile budou jasná, sepíšeme přesný postup.' },
 ];
+
+// Články z blogu na téma EET (dle slugu / kategorie)
+const eetPosts = (await getCollection('blog'))
+  .filter((p) => /eet/i.test(p.id) || (p.data.categories ?? []).some((c) => /eet/i.test(c)))
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+  .slice(0, 3);
+const fmtDate = (d: Date) => d.toLocaleDateString('cs-CZ', { day: 'numeric', month: 'long', year: 'numeric' });
 
 const faqSchema = {
   '@context': 'https://schema.org',
@@ -129,8 +137,28 @@ const faqSchema = {
     </div>
   </Section>
 
+  <!-- Z blogu -->
+  {eetPosts.length > 0 && (
+    <Section background="alt" space="lg">
+      <div class="head-center">
+        <Text size="label" color="accent" align="center">Z blogu</Text>
+        <Heading as="h2" size="h2" align="center">Přečtěte si víc o EET 2.0</Heading>
+      </div>
+      <div class="eetblog">
+        {eetPosts.map((p) => (
+          <a class="eetblog__card" href={`/blog/${p.id}`}>
+            <span class="eetblog__date">{fmtDate(p.data.pubDate)}</span>
+            <p class="eetblog__title">{p.data.title}</p>
+            {p.data.description && <span class="eetblog__desc">{p.data.description}</span>}
+            <span class="eetblog__more">Číst článek <Icon name="lucide:arrow-right" size="xs" /></span>
+          </a>
+        ))}
+      </div>
+    </Section>
+  )}
+
   <!-- FAQ -->
-  <Section background="alt" space="lg" container="narrow">
+  <Section background="default" space="lg" container="narrow">
     <Heading as="h2" size="h2" align="center">Často kladené dotazy</Heading>
     <div class="faq">
       {faqs.map((f) => (
@@ -188,6 +216,16 @@ const faqSchema = {
   @media (max-width: 768px) {
     .cmp { grid-template-columns: 1fr; max-width: 460px; }
   }
+
+  /* Z blogu */
+  .eetblog { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-5); }
+  .eetblog__card { display: flex; flex-direction: column; gap: var(--space-2); padding: var(--space-6); background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); text-decoration: none; color: var(--color-text); transition: var(--transition); }
+  .eetblog__card:hover { border-color: var(--color-primary); transform: translateY(-4px); box-shadow: var(--shadow-lg, 0 18px 40px rgba(0,0,0,.10)); }
+  .eetblog__date { font-size: var(--font-size-caption); color: var(--color-text-muted); }
+  .eetblog__title { margin: 0; font-family: var(--font-sans); font-weight: var(--font-weight-semibold); font-size: var(--font-size-lead); line-height: var(--line-height-tight); }
+  .eetblog__desc { font-size: var(--font-size-small); color: var(--color-text-muted); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .eetblog__more { display: inline-flex; align-items: center; gap: var(--space-1); margin-top: auto; padding-top: var(--space-2); color: var(--color-text-accent); font-weight: var(--font-weight-medium); font-size: var(--font-size-small); }
+  @media (max-width: 860px) { .eetblog { grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; } }
 
   .faq { margin-top: var(--space-6); display: flex; flex-direction: column; gap: var(--space-3); }
   .faq__item {
