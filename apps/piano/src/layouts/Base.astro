@@ -33,6 +33,7 @@ interface Props {
   noindex?: boolean;
   schema?: object;             // JSON-LD per stránka
   headerTransparent?: boolean; // overlay header přes hero (per stránka)
+  contactBand?: boolean;       // globální pruh „Spojte se s námi" nad patičkou (default true)
 }
 
 const SITE_NAME = 'Piano';
@@ -47,6 +48,7 @@ const {
   noindex = false,
   schema,
   headerTransparent = false,
+  contactBand = true,
 } = Astro.props;
 
 const organizationSchema = {
@@ -90,6 +92,7 @@ const schemas = [organizationSchema, ...(schema ? [schema] : [])];
     </main>
 
     <!-- Globální kontaktní pruh nad patičkou (cíl odkazu „Kontakt" v menu) -->
+    {contactBand && (
     <section id="kontakt" class="contactband">
       <div class="contactband__inner">
         <p class="contactband__eyebrow">Konzultace zdarma</p>
@@ -101,6 +104,7 @@ const schemas = [organizationSchema, ...(schema ? [schema] : [])];
         </div>
       </div>
     </section>
+    )}
 
     <Footer logoSrc={LOGO} logoAlt="Piano" columns={footerColumns} offices={footerOffices} contact={footerContact} />
   </body>
