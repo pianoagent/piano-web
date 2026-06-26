@@ -26,8 +26,8 @@ const stats = [
 
 // Novinky od Piana — vlastní vlajkové produkty (spotlight hned pod hero)
 const novinky = [
-  { suffix: 'PILOT', image: '/images/hero-pilot.webp', text: 'Celý provoz v jedné mobilní aplikaci — tržby, sklad i AI doporučení v reálném čase.', href: '/pilot' },
-  { suffix: 'TERMINÁL', image: '/images/hero-terminal.webp', text: 'Platební Terminál, který platbou kartou teprve začíná — data o hostech a platby dodavatelům.', href: '/terminal' },
+  { logo: '/brand/pilot_logo.svg', alt: 'Piano Pilot', image: '/images/hero-pilot.webp', text: 'Celý provoz v jedné mobilní aplikaci. Tržby, sklad i AI doporučení v reálném čase.', href: '/pilot' },
+  { logo: '/brand/terminal_logo.svg', alt: 'Piano Terminál', image: '/images/hero-terminal.webp', text: 'Platební Terminál, který platbou kartou teprve začíná. Data o hostech a platby dodavatelům.', href: '/terminal' },
 ];
 
 // Hero — rotující sdělení (mění se nadpis + lead + obrázek; CTA a USP zůstávají)
@@ -37,21 +37,21 @@ const heroSlides = [
     title: 'Všechny klíčové nástroje pro pohostinství pod&nbsp;jednou střechou',
     lead: 'Piano představuje sehraný orchestr nástrojů, který vyladí váš provoz, ušetří vám čas a zvýší zisk. Ať už provozujete restauraci, kavárnu, bistro, jídelnu či hotel, máme pro vás řešení.',
     image: '/images/home-hero-dark.webp',
-    imageAlt: 'Piano — pokladna, terminál a mobilní aplikace',
+    imageAlt: 'Piano, pokladna, terminál a mobilní aplikace',
   },
   {
-    eyebrow: 'Novinka — Piano Pilot',
+    eyebrow: 'Novinka: Piano Pilot',
     title: 'Celý provoz v jedné mobilní aplikaci',
-    lead: 'Tržby, sklad i AI doporučení v reálném čase. S Pilotem máte přehled o podniku odkudkoliv — přímo z telefonu.',
+    lead: 'Tržby, sklad i AI doporučení v reálném čase. S Pilotem máte přehled o podniku odkudkoliv, přímo z telefonu.',
     image: '/images/hero-pilot.webp',
-    imageAlt: 'Piano Pilot — mobilní aplikace pro provoz',
+    imageAlt: 'Piano Pilot, mobilní aplikace pro provoz',
   },
   {
-    eyebrow: 'Novinka — Piano Terminál',
+    eyebrow: 'Novinka: Piano Terminál',
     title: 'Terminál, který platbou teprve začíná',
     lead: 'Data o hostech a automatické platby dodavatelům. Z obyčejného platebního terminálu děláme chytrý nástroj pro celý provoz.',
     image: '/images/hero-terminal.webp',
-    imageAlt: 'Piano Terminál — platební terminál',
+    imageAlt: 'Piano Terminál, platební terminál',
   },
 ];
 
@@ -63,19 +63,19 @@ const pains = [
 ];
 
 const categories = [
-  { img: '/images/cat-nakupy.webp', title: 'Nákupy a sklady', headline: 'Nakupujte chytře, skladujte přesně', text: 'Skladové hospodářství, automatické naskladňování z dodacích listů a lepší ceny u dodavatelů — vše propojené.', items: ['Skladové hospodářství', 'Automatické naskladňování', 'Lepší ceny u dodavatelů'] },
+  { img: '/images/cat-nakupy.webp', title: 'Nákupy a sklady', headline: 'Nakupujte chytře, skladujte přesně', text: 'Skladové hospodářství, automatické naskladňování z dodacích listů a lepší ceny u dodavatelů, vše propojené.', items: ['Skladové hospodářství', 'Automatické naskladňování', 'Lepší ceny u dodavatelů'] },
   { img: '/images/cat-personal.webp', title: 'Lidé a personál', headline: 'Personál, který nechybí', text: 'Více obsloužených hostů, plánování směn i nábor brigádníků na pár kliknutí.', items: ['Více obsloužených hostů', 'Plánování směn', 'Nábor personálu'] },
-  { img: '/images/cat-pokladna.webp', title: 'Pokladní a manažerské systémy', headline: 'Provoz pod kontrolou', text: 'Pokladní systémy, reporting dat a management hotelů — přehled o všem na jednom místě.', items: ['Reporting dat', 'Pokladní systémy', 'Management hotelů'] },
+  { img: '/images/cat-pokladna.webp', title: 'Pokladní a manažerské systémy', headline: 'Provoz pod kontrolou', text: 'Pokladní systémy, reporting dat a management hotelů, přehled o všem na jednom místě.', items: ['Reporting dat', 'Pokladní systémy', 'Management hotelů'] },
   { img: '/images/cat-platby.webp', title: 'Platby a komunikace s hosty', headline: 'Hosté, kteří se vracejí', text: 'Rychlé platby, rezervace, věrnostní program a komunikace se zákazníkem.', items: ['Komunikace se zákazníkem', 'Rezervační systém', 'Věrnostní program'] },
 ];
 
 // Ekosystém — odkazy: piano-hosté dovnitř (/), ostatní na ostré produkční domény
 const ecosystem = [
   { name: 'Piano Pilot', logo: '/brand/pilot_logo.svg', desc: 'Celý provoz v mobilní aplikaci s daty a AI.', href: '/pilot', badge: 'Novinka' },
-  { name: 'Piano Terminál', logo: '/brand/terminal_logo.svg', desc: 'Terminál, který platbou teprve začíná — data o hostech i platby dodavatelům.', href: '/terminal', badge: 'Novinka' },
+  { name: 'Piano Terminál', logo: '/brand/terminal_logo.svg', desc: 'Terminál, který platbou teprve začíná, data o hostech i platby dodavatelům.', href: '/terminal', badge: 'Novinka' },
   { name: 'Septim', logo: '/brand/septim_logo.svg', desc: 'Nejrespektovanější pokladní a provozní systém na trhu.', href: 'https://www.septim.cz' },
   { name: 'Qerko', logo: '/brand/qerko_logo.svg', desc: 'Nejpohodlnější platba u stolu a komunikace s hosty.', href: 'https://www.qerko.com' },
-  { name: 'Pecosta', logo: '/brand/pecosta_logo.svg', desc: 'Aukční nákupy surovin — levněji až o 16 %.', href: 'https://www.pecosta.cz' },
+  { name: 'Pecosta', logo: '/brand/pecosta_logo.svg', desc: 'Aukční nákupy surovin, levněji až o 16 %.', href: 'https://www.pecosta.cz' },
   { name: 'Grason', logo: '/brand/grason_logo.svg', desc: 'Brigádníci, plánování směn a papírování v jedné appce.', href: 'https://www.grason.cz' },
   { name: 'Autset', logo: '/brand/autset_logo.svg', desc: 'Automatické naskladňování z dodacích listů.', href: 'https://autset.com' },
   { name: 'ABX Harsys', logo: '/brand/abx_logo.svg', desc: 'Multifunkční pokladní systémy a pokladny.', href: 'https://www.abxharsys.cz' },
@@ -86,13 +86,13 @@ const ecosystem = [
 const benefits = [
   { icon: 'lucide:lightbulb', title: 'Více času na kreativitu', text: 'Soustřeďte se na nové nápady a cashflow, zatímco tým se věnuje hostům.' },
   { icon: 'lucide:line-chart', title: 'Rychlejší finanční rozhodování', text: 'Přehled cen a nákladů. S námi ušetříte v průměru 16 %.' },
-  { icon: 'lucide:users-round', title: 'Spokojenější personál', text: 'Přístup k široké databázi profesí, když vám někdo vypadne — i nastálo.' },
+  { icon: 'lucide:users-round', title: 'Spokojenější personál', text: 'Přístup k široké databázi profesí, když vám někdo vypadne, i nastálo.' },
 ];
 
 const testimonials = [
   { quote: 'Provozní systém Septim je zásadní součástí restaurace FIELD. Díky němu mám jistotu, že celý provoz běží stabilně a efektivně.', author: 'Radek Kašpárek', role: 'Šéfkuchař a zakladatel FIELD' },
   { quote: 'Na Septimu mi nejvíce vyhovuje, že si mohu nadefinovat jakoukoli sestavu a okamžitě dostanu vyhodnocení. Mám pak naprostý přehled.', author: 'Václav Vojíř', role: "Majitel Bugsy's baru" },
-  { quote: 'Když dokážeme proces automatizovat — vše na jednom portálu, porovnání cen od konkurence — je to úspora času a ve finále i peněz.', author: 'Lukáš Pytloun', role: 'CEO Pytloun Hotels' },
+  { quote: 'Když dokážeme proces automatizovat, vše na jednom portálu, porovnání cen od konkurence, je to úspora času a ve finále i peněz.', author: 'Lukáš Pytloun', role: 'CEO Pytloun Hotels' },
 ];
 
 const refLogos = [
@@ -102,10 +102,10 @@ const refLogos = [
 ];
 
 const faqs = [
-  { q: 'Co tvoří skupinu Piano?', a: 'Uskupení chytrých nástrojů, které společně digitalizují a zefektivňují podnikání v gastronomii, hotelnictví a maloobchodu — Septim, Qerko, Grason, POS Experts, Savarin, Harsys, Protel a Pecosta. Každý funguje samostatně, společně tvoří nejkomplexnější řešení pro pohostinství v Česku.' },
-  { q: 'Proč bych si měl vybrat zrovna vaše produkty?', a: 'Naše produkty používá přes 6 000 podniků a ročně přes ně proteče 36 miliard Kč. Od pokladen přes platby a řízení personálu po sklady a marketing — šetří čas, minimalizují chyby a zvyšují zisk, ať máte kavárnu, síť restaurací nebo hotel.' },
-  { q: 'Kolik budu mít smluv a kontaktů?', a: 'Zatím se pro vás nic nemění — stejný obchodní zástupce i podmínky. Smlouvy a kontakty budeme postupně sjednocovat, vždy s vaším souhlasem a ve váš prospěch.' },
-  { q: 'Co mám dělat, když chci další produkty?', a: 'Ozvěte se na +420 773 798 758 nebo info@piano.cz — společně projdeme, co vás zajímá, a najdeme nejlepší řešení pro váš podnik.' },
+  { q: 'Co tvoří skupinu Piano?', a: 'Uskupení chytrých nástrojů, které společně digitalizují a zefektivňují podnikání v gastronomii, hotelnictví a maloobchodu, Septim, Qerko, Grason, POS Experts, Savarin, Harsys, Protel a Pecosta. Každý funguje samostatně, společně tvoří nejkomplexnější řešení pro pohostinství v Česku.' },
+  { q: 'Proč bych si měl vybrat zrovna vaše produkty?', a: 'Naše produkty používá přes 6 000 podniků a ročně přes ně proteče 36 miliard Kč. Od pokladen přes platby a řízení personálu po sklady a marketing, šetří čas, minimalizují chyby a zvyšují zisk, ať máte kavárnu, síť restaurací nebo hotel.' },
+  { q: 'Kolik budu mít smluv a kontaktů?', a: 'Zatím se pro vás nic nemění, stejný obchodní zástupce i podmínky. Smlouvy a kontakty budeme postupně sjednocovat, vždy s vaším souhlasem a ve váš prospěch.' },
+  { q: 'Co mám dělat, když chci další produkty?', a: 'Ozvěte se na +420 773 798 758 nebo info@piano.cz, společně projdeme, co vás zajímá, a najdeme nejlepší řešení pro váš podnik.' },
 ];
 
 const faqSchema = {
@@ -131,14 +131,14 @@ const faqSchema = {
     <div class="novinky__head">
       <Text size="label" color="on-dark-muted" align="center">Novinky od Piana</Text>
       <Heading as="h2" size="h2" color="on-dark" align="center">Co jsme postavili sami</Heading>
-      <Text color="on-dark-muted" align="center" class="novinky__sub">Vlastní produkty Piana, které posouvají provoz dál — vyvinuté přímo pro české pohostinství.</Text>
+      <Text color="on-dark-muted" align="center" class="novinky__sub">Vlastní produkty Piana, které posouvají provoz dál, vyvinuté přímo pro české pohostinství.</Text>
     </div>
     <div class="novinky__grid">
       {novinky.map((n) => (
         <a class="nov__card" href={n.href}>
-          <div class="nov__media"><img src={n.image} alt={`Piano ${n.suffix}`} loading="lazy" /></div>
+          <div class="nov__media"><img src={n.image} alt={n.alt} loading="lazy" /></div>
           <div class="nov__body">
-            <span class="nov__logo"><img src="/logos/piano_color.svg" alt="Piano" /><span>{n.suffix}</span></span>
+            <img class="nov__logo" src={n.logo} alt={n.alt} loading="lazy" />
             <Text size="small" color="muted">{n.text}</Text>
             <span class="nov__link">Zjistit víc <Icon name="lucide:arrow-right" size="xs" /></span>
           </div>
@@ -264,19 +264,17 @@ const faqSchema = {
 
   .nov__card {
     display: flex; flex-direction: column; overflow: hidden;
-    background: var(--color-bg); border-radius: var(--radius-lg, 16px);
+    background: var(--color-bg-warm, #FFF5E8); border-radius: var(--radius-lg, 16px);
     text-decoration: none; color: var(--color-text); transition: var(--transition);
   }
   .nov__card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg, 0 18px 40px rgba(0,0,0,.18)); }
   .nov__media {
-    display: grid; place-items: center; padding: var(--space-6) var(--space-6) 0;
-    background: linear-gradient(180deg, #fff 0%, var(--color-bg-warm, #FFF5E8) 100%);
+    display: grid; place-items: center; padding: var(--space-7) var(--space-6) var(--space-3);
+    background: linear-gradient(180deg, #ffffff 0%, rgba(255,255,255,0) 92%);
   }
-  .nov__media img { width: 76%; max-width: 240px; height: auto; }
-  .nov__body { display: flex; flex-direction: column; gap: var(--space-3); padding: var(--space-5) var(--space-6) var(--space-6); }
-  .nov__logo { display: inline-flex; align-items: center; gap: 7px; }
-  .nov__logo img { height: 22px; width: auto; }
-  .nov__logo span { font-family: var(--font-sans); font-weight: var(--font-weight-bold); font-size: 1.35rem; letter-spacing: .005em; color: var(--color-text); }
+  .nov__media img { width: 74%; max-width: 240px; height: auto; }
+  .nov__body { display: flex; flex-direction: column; gap: var(--space-3); padding: var(--space-2) var(--space-6) var(--space-6); }
+  .nov__logo { height: 26px; width: auto; align-self: flex-start; }
   .nov__link { display: inline-flex; align-items: center; gap: var(--space-1); margin-top: var(--space-1); color: var(--color-text-accent); font-weight: var(--font-weight-medium); font-size: var(--font-size-small); }
   @media (max-width: 880px) { .novinky__grid { grid-template-columns: 1fr; max-width: 420px; } }
 

@@ -51,7 +51,7 @@ const {
   logoAlt,
   homeHref = '/',
   mark = true,
-  tagline = 'Technologie pro restaurace a hotely — pokladny, rezervace, platby a analytika na jednom místě.',
+  tagline = 'Technologie pro restaurace a hotely, pokladny, rezervace, platby a analytika na jednom místě.',
   parentNote,
   columns = defaultColumns,
   offices,
@@ -72,7 +72,7 @@ const topStyle = `--footer-cols: ${columns.length + (hasOffices ? 1 : 0) + 1};`;
     <div class="footer__top" style={topStyle}>
       <!-- Brand -->
       <div class="footer__brand">
-        <a href={homeHref} class="footer__logo" aria-label={`${brand} — domů`}>
+        <a href={homeHref} class="footer__logo" aria-label={`${brand}, domů`}>
           {logoSrc ? (
             <img class="footer__logo-img" src={logoSrc} alt={logoAlt ?? brand} />
           ) : (

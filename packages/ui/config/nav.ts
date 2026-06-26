@@ -103,7 +103,7 @@ export const contact = {
   // Pobočky dle stávajícího webu piano.cz
   offices: [
     { label: 'Sídlo', value: 'Thámova 166/18, Karlín, 186 00 Praha 8' },
-    { label: 'Praha', value: 'Jankovcova 1522/53, 170 00 Praha 7 — Holešovice' },
+    { label: 'Praha', value: 'Jankovcova 1522/53, 170 00 Praha 7, Holešovice' },
     { label: 'Olomouc', value: 'Wittgensteinova 886/10, 779 00 Olomouc' },
   ],
 };
