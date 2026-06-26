@@ -1,0 +1,61 @@
+---
+/**
+ * Blog — výpis článků (piano.cz/blog). Obsah převzat ze stávajícího webu.
+ */
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
+);
+
+const fmtDate = (d: Date) => d.toLocaleDateString('cs-CZ', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+
+<Base title="Blog | Piano"
+      description="Trendy, rady a tipy ze světa gastronomie a hotelnictví — z provozu pro provoz.">
+
+  <Hero eyebrow="Blog" background="warm"
+        lead="Trendy, rady a tipy ze světa gastronomie a hotelnictví — od lidí, kteří provozu rozumí.">
+    <Heading slot="title" as="h1" size="display">Co se děje v gastru</Heading>
+  </Hero>
+
+  <Section background="default" space="lg">
+    <div class="blog-grid">
+      {posts.map((p) => (
+        <a class="blog-card" href={`/blog/${p.id}`}>
+          {p.data.image && <div class="blog-card__media"><img src={p.data.image} alt={p.data.title} loading="lazy" /></div>}
+          <div class="blog-card__body">
+            <div class="blog-card__meta">
+              {p.data.categories?.[0] && <span class="blog-card__cat">{p.data.categories[0]}</span>}
+              <time datetime={p.data.pubDate.toISOString()}>{fmtDate(p.data.pubDate)}</time>
+            </div>
+            <Heading as="h2" size="h3">{p.data.title}</Heading>
+            {p.data.description && <Text size="small" color="muted" class="blog-card__desc">{p.data.description}</Text>}
+            <span class="blog-card__more">Číst článek <Icon name="lucide:arrow-right" size="xs" /></span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </Section>
+</Base>
+
+<style>
+  .blog-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-6); }
+  .blog-card { display: flex; flex-direction: column; background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); overflow: hidden; text-decoration: none; color: var(--color-text); transition: var(--transition); }
+  .blog-card:hover { border-color: var(--color-primary); transform: translateY(-4px); box-shadow: var(--shadow-lg, 0 18px 40px rgba(0,0,0,.10)); }
+  .blog-card__media { aspect-ratio: 16 / 9; overflow: hidden; background: var(--color-bg-alt); }
+  .blog-card__media img { width: 100%; height: 100%; object-fit: cover; }
+  .blog-card__body { display: flex; flex-direction: column; gap: var(--space-2); padding: var(--space-5); flex: 1; }
+  .blog-card__meta { display: flex; align-items: center; gap: var(--space-3); font-size: var(--font-size-caption); color: var(--color-text-muted); }
+  .blog-card__cat { color: var(--color-text-accent); font-weight: var(--font-weight-medium); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide); }
+  .blog-card__desc { flex: 1; }
+  .blog-card__more { display: inline-flex; align-items: center; gap: var(--space-1); margin-top: var(--space-2); color: var(--color-text-accent); font-weight: var(--font-weight-medium); font-size: var(--font-size-small); }
+  @media (max-width: 860px) { .blog-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .blog-grid { grid-template-columns: 1fr; } }
+</style>

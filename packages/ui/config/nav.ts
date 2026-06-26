@@ -46,12 +46,6 @@ const produktyMega: MegaPanel = buildPianoMega(undefined, true);
 
 /** Mega menu — Řešení (podle problému) */
 const reseniMega: MegaPanel = {
-  featured: {
-    label: 'Doporučeno',
-    items: [
-      { label: 'All-in-One platforma', href: '/#ekosystem', description: 'Jeden ekosystém, jeden poplatek z obratu, jedna faktura.', icon: 'lucide:layers', badge: 'Kompletní' },
-    ],
-  },
   columns: [
     {
       label: 'Řešení podle problému',
@@ -70,29 +64,32 @@ export const mainNav: NavItem[] = [
   { label: 'Řešení', href: '/reseni', mega: reseniMega },
   { label: 'EET 2.0', href: '/eet' },
   { label: 'O nás', href: '/o-nas' },
-  { label: 'Kontakt', href: '/kontakt' },
+  { label: 'Kontakt', href: '#kontakt' },
 ];
 
-export const headerCta: NavLink = { label: 'Domluvit demo', href: '/kontakt' };
+// Hlavní CTA vždy míří na poptávkový formulář dole na aktuální stránce.
+export const headerCta: NavLink = { label: 'Domluvit demo', href: '#poptavka' };
 
 /** Sekundární odkazy (firma) — používá Footer */
 export const companyNav: NavLink[] = [
   { label: 'O nás', href: '/o-nas' },
+  { label: 'Blog', href: '/blog' },
   { label: 'Pro média', href: '/pro-media' },
-  { label: 'Kontakt', href: '/kontakt' },
+  { label: 'Kontakt', href: '#kontakt' },
 ];
 
 /** Právní odkazy — spodní lišta footeru */
 export const legalNav: NavLink[] = [
+  { label: 'Obchodní podmínky', href: '/obchodni-podminky' },
   { label: 'Zásady ochrany osobních údajů', href: '/ochrana-udaju' },
-  { label: 'Cookies', href: '/cookies' },
 ];
 
 /** Sociální sítě — `icon` je název ikony pro <Icon> (sada Lucide) */
 export const socialLinks: { label: string; href: string; icon: string }[] = [
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/company/piano-solutions', icon: 'lucide:linkedin' },
-  { label: 'Instagram', href: 'https://www.instagram.com/', icon: 'lucide:instagram' },
-  { label: 'YouTube', href: 'https://www.youtube.com/', icon: 'lucide:youtube' },
+  { label: 'Facebook', href: 'https://www.facebook.com/pianogroupcz/', icon: 'lucide:facebook' },
+  { label: 'Instagram', href: 'https://www.instagram.com/pianogroupcz/', icon: 'lucide:instagram' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/company/pianogroup', icon: 'lucide:linkedin' },
+  { label: 'YouTube', href: 'https://www.youtube.com/@pianogroupcz', icon: 'lucide:youtube' },
 ];
 
 /** Kontaktní údaje — Piano Solutions (sídlo dle obchodního rejstříku) */
@@ -103,6 +100,12 @@ export const contact = {
   address: 'Thámova 166/18, Karlín, 186 00 Praha 8',
   ic: '19780974',
   dic: 'CZ19780974',
+  // Pobočky dle stávajícího webu piano.cz
+  offices: [
+    { label: 'Sídlo', value: 'Thámova 166/18, Karlín, 186 00 Praha 8' },
+    { label: 'Praha', value: 'Jankovcova 1522/53, 170 00 Praha 7 — Holešovice' },
+    { label: 'Olomouc', value: 'Wittgensteinova 886/10, 779 00 Olomouc' },
+  ],
 };
 
 /** Ploché pole odkazů z mega panelu (pro mobilní menu) */

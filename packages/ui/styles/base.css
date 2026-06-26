@@ -122,6 +122,12 @@ html {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   overflow-x: clip;   /* pojistka proti vodorovnému přetečení (nerozbíjí sticky) */
+  scroll-behavior: smooth;       /* plynulý scroll na kotvy (#kontakt, #poptavka…) */
+  scroll-padding-top: 88px;      /* aby cíl nezmizel pod sticky hlavičkou */
+}
+/* Respekt k uživatelům, kteří si vypnuli animace */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
 }
 body {
   font: var(--text-body);

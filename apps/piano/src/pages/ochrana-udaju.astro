@@ -1,0 +1,109 @@
+---
+/**
+ * Ochrana osobních údajů (GDPR) — piano.cz/ochrana-udaju.
+ * Obsah převzat ze stávajícího webu piano.cz/gdpr.
+ */
+import Base from '../layouts/Base.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+
+const gdpr = `<h2>Stručná informace o zpracování osobních údajů fyzických osob ve společnosti Piano Solutions s.r.o. v dodavatelsko-odběratelských vztazích a při užívání webové stránky www.piano.cz</h2>
+      <p>Vaše soukromí je pro nás důležité. Tento dokument obsahuje informace o tom, jak společnost Piano Solutions s.r.o. zpracovává osobní údaje fyzických osob v rámci dodavatelsko-odběratelských vztahů, obchodní komunikace, marketingových aktivit a při používání webových stránek www.piano.cz, a to v souladu s Nařízením Evropského parlamentu a Rady (EU) 2016/679 (GDPR).</p>
+      <h2>1. Kdo je správcem Vašich osobních údajů?</h2>
+      <p>Správcem Vašich osobních údajů je:</p>
+      <p>Piano Solutions s.r.o. IČO: 19780974 Sídlo: Křižíkova 148/34, Karlín, 186 00 Praha E-mail: info@piano.cz (dále jen jako „Správce“)</p>
+      <p>V rámci skupiny Piano mohou být některé osobní údaje zpracovávány také dalšími členy skupiny Piano, zejména společnostmi Piano Payments s.r.o., Septim Systems a.s. a Pecosta a.s., a to vždy v souladu s platnými právními předpisy a uzavřenými dohodami o společném nebo samostatném zpracování osobních údajů.</p>
+      <h2>2. V jakých situacích a za jakým účelem Vaše osobní údaje zpracováváme?</h2>
+      <h3>Kdy zpracováváme údaje s Vaším souhlasem?</h3>
+      <p>O udělení souhlasu Vás přímo či prostřednictvím jiné osoby požádáme zejména tehdy, jestliže nejste naším zákazníkem ani s Vámi nemáme jiný obdobný vztah vyhovující požadavkům recitálu 47 GDPR a chcete od nás dostávat marketingové nabídky.</p>
+      <p>Na základě Vašeho souhlasu dále zpracováváme technické a analytické údaje prostřednictvím cookies a obdobných technologií používaných na našich webových stránkách.</p>
+      <h3>Kdy zpracováváme údaje bez Vašeho souhlasu?</h3>
+      <p>Bez Vašeho souhlasu můžeme Vaše osobní údaje zpracovávat na základě následujících právních titulů a pro následující účely:</p>
+      <h3>Právní titul: plnění smlouvy nebo provedení opatření přijatých před uzavřením smlouvy na Vaši žádost</h3>
+      <p>Účely zpracování:</p>
+      <ul><li>realizace smluvního závazku včetně související obchodní a finanční komunikace;</li><li>vedení dodavatelsko-odběratelských vztahů;</li><li>vyřízení Vaší poptávky nebo zprávy zaslané prostřednictvím kontaktního formuláře;</li><li>poskytování produktů a služeb;</li><li>věrnostní program.</li></ul>
+      <h3>Právní titul: oprávněný zájem Správce</h3>
+      <p>Účely zpracování:</p>
+      <ul><li>komunikace s Vámi;</li><li>ochrana práv a právem chráněných zájmů Správce;</li><li>vymáhání dlužných částek za dodané zboží nebo jiných pohledávek Správce;</li><li>posouzení Vaší bonity a důvěryhodnosti ve vybraných případech;</li><li>přímý marketing směřovaný výhradně vůči našim zákazníkům a osobám splňujícím požadavky dle recitálu 47 GDPR spočívající v nabídce produktů a služeb poskytovaných Správcem;</li><li>optimalizace webových stránek a měření návštěvnosti.</li></ul>
+      <h3>Právní titul: plnění právní povinnosti</h3>
+      <p>Účely zpracování:</p>
+      <ul><li>poskytování součinnosti státním orgánům na základě zákona a v jeho mezích;</li><li>uchovávání údajů podle právních předpisů;</li><li>vedení účetnictví;</li><li>plnění povinností vyplývajících z daňových, účetních a dalších právních předpisů.</li></ul>
+      <h2>3. Jaké osobní údaje zpracováváme?</h2>
+      <p>Zpracováváme zejména následující osobní údaje:</p>
+      <ul><li>identifikační a kontaktní údaje;</li><li>údaje o produktech, které jste zakoupili, nebo o službách, které nám poskytujete;</li><li>údaje z naší vzájemné komunikace, ať už probíhala osobně, písemně, telefonicky nebo jinak;</li><li>platební údaje (např. údaj o zaplacené nebo dlužné částce, číslo účtu apod.);</li><li>ve vybraných případech údaje o Vaší bonitě a důvěryhodnosti;</li><li>technické a analytické údaje, například IP adresa, typ zařízení, používaný prohlížeč, údaje o chování na webu a interakci s reklamou;</li><li>údaje získané prostřednictvím cookies a obdobných technologií.</li></ul>
+      <h2>4. Z jakých zdrojů osobní údaje získáváme?</h2>
+      <p>Vaše osobní údaje získáváme zejména z následujících zdrojů:</p>
+      <ul><li>údaje jste nám poskytl/a Vy, například v souvislosti s uzavřením smlouvy nebo v průběhu naší spolupráce;</li><li>údaje jste poskytl/a třetí osobě a vyslovil/a souhlas s tím, aby nám tato třetí osoba Vaše osobní údaje předala;</li><li>osobní údaje můžeme získat také od třetích osob, zejména od našich obchodních partnerů, zprostředkovatelů nebo osob, které nám Vás doporučily či zprostředkovaly kontakt;</li><li>zpracováváme také údaje získané z veřejných zdrojů, seznamů a evidencí, například z obchodního rejstříku, živnostenského rejstříku, insolvenčního rejstříku nebo katastru nemovitostí;</li><li>některé údaje získáváme automaticky při používání našich webových stránek prostřednictvím cookies a obdobných technologií.</li></ul>
+      <p>Pokud jsme Vaše osobní údaje nezískali přímo od Vás, ale od třetí osoby, poskytneme Vám tuto informaci nejpozději při první komunikaci s Vámi, případně nejpozději do jednoho měsíce od získání Vašich osobních údajů, podle toho, co nastane dříve.</p>
+      <h2>5. Cookies a nástroje třetích stran</h2>
+      <p>Na našich webových stránkách používáme soubory cookies a obdobné technologie pro analytické a marketingové účely.</p>
+      <p>K těmto účelům využíváme zejména následující nástroje:</p>
+      <ul><li>Google Analytics 4 – měření návštěvnosti a chování uživatelů;</li><li>Google Ads – sledování konverzí a cílení reklam;</li><li>Meta Pixel (Facebook Pixel) – měření a personalizace reklam na platformách Meta;</li><li>Sklik (Seznam.cz) – remarketing a cílení reklamních kampaní.</li></ul>
+      <p>Používání těchto nástrojů je založeno na Vašem souhlasu s cookies, který můžete kdykoliv upravit nebo odvolat prostřednictvím cookie lišty na našem webu.</p>
+      <h2>6. Cross-site remarketing v rámci skupiny Piano</h2>
+      <p>V rámci skupiny Piano můžeme využívat tzv. cross-site remarketing. To znamená, že informace o Vaší návštěvě jednoho z našich webů (např. www.piano.cz) mohou být použity k zobrazení cílené reklamy na jiném webu ze skupiny Piano (např. www.qerko.cz), a naopak.</p>
+      <p>Díky tomu Vám můžeme zobrazovat relevantní nabídky napříč projekty skupiny Piano, které by Vás mohly zajímat. Toto zpracování probíhá výhradně na základě Vašeho souhlasu s marketingovými cookies.</p>
+      <h2>7. Komu mohou být osobní údaje zpřístupněny?</h2>
+      <p>Vaše osobní údaje předáváme pouze v odůvodněných případech a v nezbytném rozsahu následujícím kategoriím příjemců:</p>
+      <ul><li>ostatním společnostem ze skupiny Piano;</li><li>našim smluvním partnerům, které potřebujeme pro běžné fungování a realizaci smluvního vztahu, například dodavatelům informačních technologií, poskytovatelům webhostingu, analytických a reklamních služeb, poskytovatelům kurýrních nebo poštovních služeb, poskytovatelům technické správy a zabezpečení;</li><li>společnostem Google, Meta a Seznam.cz v rozsahu nezbytném pro poskytování analytických a marketingových služeb;</li><li>jiným subjektům v případech, kdy nám poskytnutí údajů ukládají právní předpisy nebo pokud je to nezbytné pro ochranu našich oprávněných zájmů (např. soudům, Policii ČR nebo správním orgánům).</li></ul>
+      <p>Se všemi zpracovateli osobních údajů máme uzavřeny příslušné smlouvy o zpracování osobních údajů dle článku 28 GDPR.</p>
+      <h2>8. Jak dlouho Vaše osobní údaje uchováváme?</h2>
+      <p>Osobní údaje zpracovávané za účelem jednání o uzavření smlouvy uchováváme po dobu trvání předsmluvních jednání a následně po dobu nezbytnou k ochraně našich právních nároků.</p>
+      <p>V případě uzavření smlouvy zpracováváme osobní údaje po dobu trvání smluvního vztahu a následně po dobu stanovenou právními předpisy nebo po dobu nezbytnou k určení, výkonu nebo obhajobě právních nároků.</p>
+      <p>Osobní údaje zpracovávané na základě souhlasu uchováváme do odvolání souhlasu.</p>
+      <p>Údaje z kontaktního formuláře uchováváme po dobu maximálně 12 měsíců od poslední komunikace.</p>
+      <p>Údaje získané prostřednictvím cookies uchováváme dle typu konkrétní cookie, maximálně však po dobu 26 měsíců.</p>
+      <h2>9. Jaká máte práva při zpracování osobních údajů?</h2>
+      <p>Pokud jde o Vaše osobní údaje, máte následující práva:</p>
+      <h3>Právo na přístup</h3>
+      <p>Máte právo požádat Správce o přístup k osobním údajům, které o Vás zpracováváme. Správce Vám poskytne také kopii zpracovávaných osobních údajů.</p>
+      <h3>Právo na opravu</h3>
+      <p>Máte právo požádat o opravu nepřesných nebo neúplných osobních údajů.</p>
+      <h3>Právo na výmaz</h3>
+      <p>Máte právo požádat o výmaz osobních údajů, pokud:</p>
+      <ul><li>osobní údaje již nejsou potřebné pro účely, pro které byly shromážděny nebo jinak zpracovány;</li><li>odvolal/a jste souhlas, na jehož základě byly osobní údaje zpracovány, a neexistuje další právní důvod pro jejich zpracování;</li><li>vznesl/a jste námitku proti zpracování osobních údajů pro účely přímého marketingu;</li><li>osobní údaje byly zpracovány protiprávně;</li><li>osobní údaje musí být vymazány ke splnění právní povinnosti;</li><li>osobní údaje byly shromážděny v souvislosti s nabídkou služeb informační společnosti.</li></ul>
+      <h3>Právo na omezení zpracování</h3>
+      <p>Máte právo požádat o omezení zpracování osobních údajů, pokud:</p>
+      <ul><li>popíráte přesnost osobních údajů;</li><li>zpracování je protiprávní a odmítáte výmaz;</li><li>Správce již údaje nepotřebuje, ale Vy je požadujete pro určení, výkon nebo obhajobu právních nároků;</li><li>vznesl/a jste námitku proti zpracování.</li></ul>
+      <h3>Právo na přenositelnost údajů</h3>
+      <p>V případech předpokládaných GDPR máte právo získat osobní údaje, které se Vás týkají a které jste poskytl/a Správci, ve strukturovaném, běžně používaném a strojově čitelném formátu.</p>
+      <h3>Právo na odvolání souhlasu</h3>
+      <p>Pokud je zpracování Vašich osobních údajů založeno na souhlasu, máte právo tento souhlas kdykoliv odvolat.</p>
+      <h3>Právo vznést námitku</h3>
+      <p>Máte právo kdykoliv vznést námitku proti zpracování osobních údajů prováděnému na základě oprávněného zájmu Správce, zejména proti zpracování pro účely přímého marketingu.</p>
+      <h3>Právo podat stížnost</h3>
+      <p>Máte právo podat stížnost u dozorového orgánu, kterým je:</p>
+      <p>Úřad pro ochranu osobních údajů Pplk. Sochora 27 170 00 Praha 7 www.uoou.cz</p>
+      <h2>10. Je udělení souhlasu dobrovolné?</h2>
+      <p>O udělení souhlasu Vás požádáme zejména tehdy, pokud nejste naším zákazníkem ani s Vámi nemáme jiný obdobný vztah vyhovující požadavkům recitálu 47 GDPR a chcete od nás dostávat marketingové nabídky.</p>
+      <p>Udělení souhlasu je zcela dobrovolné a není podmínkou pro získání žádného produktu nebo služby společnosti Piano Solutions s.r.o. ani kterékoliv společnosti ze skupiny Piano.</p>
+      <h2>11. Jak lze souhlas odvolat?</h2>
+      <p>Souhlas udělený pro marketingové účely nebo používání marketingových cookies můžete kdykoliv odvolat.</p>
+      <p>Svůj souhlas můžete odvolat:</p>
+      <ul><li>prostřednictvím cookie lišty na webových stránkách;</li><li>písemným oznámením zaslaným na adresu sídla společnosti;</li><li>e-mailem zaslaným na adresu info@piano.cz.</li></ul>
+      <h2>12. Jak se můžete bránit proti přímému marketingu?</h2>
+      <p>Máte právo kdykoliv bezplatně vznést námitku proti zpracování Vašich osobních údajů pro účely přímého marketingu.</p>
+      <h2>13. Jak můžete svá práva uplatnit?</h2>
+      <p>Veškerá svá práva můžete uplatnit prostřednictvím e-mailu: info@piano.cz.</p>
+      <p>Vaši žádost vyřídíme bez zbytečného odkladu, nejpozději však do 30 dnů od jejího obdržení.</p>
+      <h2>14. Změny těchto zásad</h2>
+      <p>Tato verze zásad je platná od 7. 5. 2026.</p>
+      <p>Vyhrazujeme si právo tyto zásady kdykoliv aktualizovat nebo měnit. Aktuální verze bude vždy dostupná na webových stránkách www.piano.cz.</p>`;
+---
+
+<Base title="Ochrana osobních údajů | Piano"
+      description="Informace o zpracování osobních údajů ve společnosti Piano Solutions s.r.o. (GDPR).">
+  <Section background="default" space="lg" container="narrow">
+    <Heading as="h1" size="h1">Ochrana osobních údajů</Heading>
+    <div class="prose" set:html={gdpr} />
+  </Section>
+</Base>
+
+<style>
+  .prose { margin-top: var(--space-6); max-width: 760px; }
+  .prose :global(h2) { font-size: var(--font-size-h3); margin-top: var(--space-7); margin-bottom: var(--space-3); }
+  .prose :global(h3) { font-size: var(--font-size-lead); margin-top: var(--space-5); margin-bottom: var(--space-2); }
+  .prose :global(p) { margin-bottom: var(--space-3); line-height: var(--line-height-body); color: var(--color-text-muted); }
+  .prose :global(ul) { margin: 0 0 var(--space-4) var(--space-5); display: flex; flex-direction: column; gap: var(--space-2); color: var(--color-text-muted); }
+  .prose :global(li) { list-style: disc; }
+</style>
