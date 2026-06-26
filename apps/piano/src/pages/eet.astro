@@ -3,6 +3,7 @@
  * EET 2.0 — stránka piano.cz/eet
  * Obsah: wordpress-export/pages/eet.md. Sdílené komponenty @piano/ui.
  */
+import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import Section from '@piano/ui/components/Section.astro';
 import Hero from '@piano/ui/components/Hero.astro';
@@ -11,11 +12,34 @@ import Text from '@piano/ui/components/Text.astro';
 import Button from '@piano/ui/components/Button.astro';
 import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
+import Icon from '@piano/ui/components/Icon.astro';
 
 const novinky = [
   { icon: 'lucide:hand-coins', title: 'Daňové zvýhodnění spropitného', text: 'Dobrovolné spropitné do 7 % tržeb bude nově osvobozeno od daní i odvodů.' },
   { icon: 'lucide:percent', title: 'Nižší DPH na nealko', text: 'Daň u nealkoholických nápojů klesá z 21 % na 12 %.' },
   { icon: 'lucide:receipt', title: 'Modernizace prodeje', text: 'Konec povinného tisku účtenek a jednodušší evidence bez zbytečného papírování.' },
+];
+
+// EET vs. EET 2.0 — 5 klíčových rozdílů (dle podkladu)
+const compare = [
+  { icon: 'lucide:receipt', cat: 'Účtenka', old: 'Povinný tisk', neu: 'Jen na vyžádání' },
+  { icon: 'lucide:credit-card', cat: 'Co se eviduje', old: 'Hotovost i karty', neu: 'Jen kontaktní platby' },
+  { icon: 'lucide:cpu', cat: 'Hardware', old: 'Nové vybavení', neu: 'Pokladna stačí' },
+  { icon: 'lucide:file-text', cat: 'Data', old: 'Rozsáhlý výkaz', neu: 'Minimum údajů' },
+  { icon: 'lucide:search', cat: 'Kontroly', old: 'Plošné kontroly', neu: 'Cílená analytika' },
+];
+
+// Harmonogram EET 2.0 — legislativní milníky
+const timeline = [
+  { date: 'Únor 2026', title: 'Zahájení připomínkového řízení', state: 'done' },
+  { date: 'Duben 2026', title: 'Vypořádání připomínek', state: 'done' },
+  { date: 'Květen 2026', title: 'Návrh prošel prvním čtením', state: 'done' },
+  { date: 'Červen 2026', title: 'Zveřejnění technické specifikace', state: 'current' },
+  { date: 'Červenec 2026', title: 'Zpřístupnění testovacího prostředí', state: 'future' },
+  { date: 'Listopad 2026', title: 'Generování certifikátů v prostředí DIS+', state: 'future' },
+  { date: 'Prosinec 2026', title: 'Spuštění aplikace MOJE EET', state: 'future' },
+  { date: '1. ledna 2027', title: 'Zahájení běžného provozu EET 2.0', state: 'future' },
+  { date: 'Leden 2027', title: 'Zkušební režim projektu', state: 'future' },
 ];
 
 const faqs = [
@@ -27,6 +51,13 @@ const faqs = [
   { q: 'Proč nevyřešit EET 2.0 jen tou nejlevnější cestou?', a: 'Protože pokladní systém není jen zákonná povinnost. Správné řešení vám dá přehled o tržbách, zásobách i personálu na jednom místě, automatizuje administrativu a pomůže zvýšit marže. Naši klienti průměrně zvyšují marže o 7 %.' },
   { q: 'Co se změní u spropitného?', a: 'Dobrovolné spropitné bude osvobozeno od daně i odvodů až do výše 7 % měsíčních tržeb. Detailní pravidla pro evidenci v pokladním systému se ještě upřesňují — jakmile budou jasná, sepíšeme přesný postup.' },
 ];
+
+// Články z blogu na téma EET (dle slugu / kategorie)
+const eetPosts = (await getCollection('blog'))
+  .filter((p) => /eet/i.test(p.id) || (p.data.categories ?? []).some((c) => /eet/i.test(c)))
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+  .slice(0, 3);
+const fmtDate = (d: Date) => d.toLocaleDateString('cs-CZ', { day: 'numeric', month: 'long', year: 'numeric' });
 
 const faqSchema = {
   '@context': 'https://schema.org',
@@ -57,8 +88,77 @@ const faqSchema = {
            lead="Změny, které vám zjednoduší podnikání."
            items={novinky} columns={3} background="default" />
 
+  <!-- EET vs. EET 2.0 -->
+  <Section background="alt" space="lg">
+    <div class="head-center">
+      <Text size="label" color="accent" align="center">5 klíčových rozdílů</Text>
+      <Heading as="h2" size="h2" align="center">EET vs. EET 2.0 — co se opravdu <em>mění</em>?</Heading>
+    </div>
+    <div class="cmp">
+      <div class="cmp__col">
+        <p class="cmp__head"><strong>EET</strong><span>jak to bylo</span></p>
+        {compare.map((c) => (
+          <div class="cmp__row">
+            <span class="cmp__ico"><Icon name={c.icon} size="sm" /></span>
+            <span class="cmp__txt"><span class="cmp__cat">{c.cat}</span><span class="cmp__val">{c.old}</span></span>
+          </div>
+        ))}
+      </div>
+      <div class="cmp__col cmp__col--new">
+        <p class="cmp__head"><strong>EET 2.0</strong><span>jak to bude</span></p>
+        {compare.map((c) => (
+          <div class="cmp__row">
+            <span class="cmp__ico"><Icon name={c.icon} size="sm" /></span>
+            <span class="cmp__txt"><span class="cmp__cat">{c.cat}</span><span class="cmp__val">{c.neu}</span></span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </Section>
+
+  <!-- Harmonogram -->
+  <Section background="default" space="lg">
+    <div class="head-center">
+      <Text size="label" color="accent" align="center">Časová osa</Text>
+      <Heading as="h2" size="h2" align="center">Harmonogram EET 2.0</Heading>
+    </div>
+    <div class="tl">
+      <span class="tl__line" aria-hidden="true"></span>
+      {timeline.map((m) => (
+        <div class:list={['tl__item', `tl__item--${m.state}`]}>
+          <span class="tl__dot" aria-hidden="true"></span>
+          <div class="tl__card">
+            <span class="tl__date">{m.date}</span>
+            <p class="tl__title">{m.title}</p>
+            {m.state === 'current' && <span class="tl__badge">Aktuálně</span>}
+          </div>
+        </div>
+      ))}
+    </div>
+  </Section>
+
+  <!-- Z blogu -->
+  {eetPosts.length > 0 && (
+    <Section background="alt" space="lg">
+      <div class="head-center">
+        <Text size="label" color="accent" align="center">Z blogu</Text>
+        <Heading as="h2" size="h2" align="center">Přečtěte si víc o EET 2.0</Heading>
+      </div>
+      <div class="eetblog">
+        {eetPosts.map((p) => (
+          <a class="eetblog__card" href={`/blog/${p.id}`}>
+            <span class="eetblog__date">{fmtDate(p.data.pubDate)}</span>
+            <p class="eetblog__title">{p.data.title}</p>
+            {p.data.description && <span class="eetblog__desc">{p.data.description}</span>}
+            <span class="eetblog__more">Číst článek <Icon name="lucide:arrow-right" size="xs" /></span>
+          </a>
+        ))}
+      </div>
+    </Section>
+  )}
+
   <!-- FAQ -->
-  <Section background="alt" space="lg" container="narrow">
+  <Section background="default" space="lg" container="narrow">
     <Heading as="h2" size="h2" align="center">Často kladené dotazy</Heading>
     <div class="faq">
       {faqs.map((f) => (
@@ -78,6 +178,55 @@ const faqSchema = {
 </Base>
 
 <style>
+  .head-center { max-width: 720px; margin: 0 auto var(--space-7); text-align: center; }
+  .head-center :global(h2) { margin-top: var(--space-2); }
+
+  /* EET vs. EET 2.0 */
+  .cmp { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-5); max-width: 880px; margin: 0 auto; }
+  .cmp__col { background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-6); display: flex; flex-direction: column; gap: var(--space-4); }
+  .cmp__col--new { background: var(--color-primary); border-color: var(--color-primary); color: #fff; }
+  .cmp__head { margin: 0 0 var(--space-2); display: flex; flex-direction: column; }
+  .cmp__head strong { font-family: var(--font-sans); font-size: var(--font-size-h3); font-weight: var(--font-weight-bold); }
+  .cmp__head span { font-size: var(--font-size-small); color: var(--color-text-muted); }
+  .cmp__col--new .cmp__head span { color: rgba(255,255,255,.7); }
+  .cmp__row { display: flex; align-items: center; gap: var(--space-3); }
+  .cmp__ico { display: inline-flex; color: var(--color-text-accent); flex-shrink: 0; }
+  .cmp__col--new .cmp__ico { color: var(--color-secondary-gold); }
+  .cmp__txt { display: flex; flex-direction: column; }
+  .cmp__cat { font-size: var(--font-size-caption); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide); color: var(--color-text-muted); }
+  .cmp__col--new .cmp__cat { color: rgba(255,255,255,.65); }
+  .cmp__val { font-weight: var(--font-weight-semibold); font-size: var(--font-size-body); }
+
+  /* Harmonogram — svislý seznam pod sebou */
+  .tl { position: relative; max-width: 620px; margin: 0 auto; display: flex; flex-direction: column; gap: var(--space-4); padding-left: var(--space-1); }
+  .tl__line { position: absolute; left: 8px; top: 10px; bottom: 10px; width: 2px; background: var(--color-border); }
+  .tl__item { position: relative; display: grid; grid-template-columns: auto 1fr; column-gap: var(--space-4); align-items: start; }
+  .tl__dot { width: 18px; height: 18px; border-radius: var(--radius-full); background: var(--color-bg); border: 2px solid var(--color-border); margin-top: 2px; position: relative; z-index: 1; }
+  .tl__item--done .tl__dot { background: var(--color-primary); border-color: var(--color-primary); }
+  .tl__item--current .tl__dot { border-color: var(--color-primary); box-shadow: 0 0 0 4px var(--color-bg), 0 0 0 6px var(--color-primary); }
+  .tl__item--current .tl__dot::after { content: ''; position: absolute; inset: 3px; border-radius: var(--radius-full); background: var(--color-primary); }
+  .tl__card { padding: var(--space-4) var(--space-5); background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); }
+  .tl__item--current .tl__card { border-color: var(--color-primary); box-shadow: 0 8px 24px rgba(190,30,45,.12); }
+  .tl__item--future .tl__card { background: transparent; border-style: dashed; }
+  .tl__date { font-size: var(--font-size-caption); font-weight: var(--font-weight-semibold); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide); color: var(--color-text-accent); }
+  .tl__item--future .tl__date { color: var(--color-text-muted); }
+  .tl__title { margin: var(--space-1) 0 0; font-size: var(--font-size-body); font-weight: var(--font-weight-semibold); line-height: var(--line-height-tight); }
+  .tl__badge { display: inline-block; margin-top: var(--space-2); font-size: var(--font-size-caption); font-weight: var(--font-weight-medium); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide); color: #fff; background: var(--color-primary); padding: 1px var(--space-2); border-radius: var(--radius-sm); }
+
+  @media (max-width: 768px) {
+    .cmp { grid-template-columns: 1fr; max-width: 460px; }
+  }
+
+  /* Z blogu */
+  .eetblog { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-5); }
+  .eetblog__card { display: flex; flex-direction: column; gap: var(--space-2); padding: var(--space-6); background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); text-decoration: none; color: var(--color-text); transition: var(--transition); }
+  .eetblog__card:hover { border-color: var(--color-primary); transform: translateY(-4px); box-shadow: var(--shadow-lg, 0 18px 40px rgba(0,0,0,.10)); }
+  .eetblog__date { font-size: var(--font-size-caption); color: var(--color-text-muted); }
+  .eetblog__title { margin: 0; font-family: var(--font-sans); font-weight: var(--font-weight-semibold); font-size: var(--font-size-lead); line-height: var(--line-height-tight); }
+  .eetblog__desc { font-size: var(--font-size-small); color: var(--color-text-muted); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .eetblog__more { display: inline-flex; align-items: center; gap: var(--space-1); margin-top: auto; padding-top: var(--space-2); color: var(--color-text-accent); font-weight: var(--font-weight-medium); font-size: var(--font-size-small); }
+  @media (max-width: 860px) { .eetblog { grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; } }
+
   .faq { margin-top: var(--space-6); display: flex; flex-direction: column; gap: var(--space-3); }
   .faq__item {
     background: var(--color-bg);
