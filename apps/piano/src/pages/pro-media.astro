@@ -5,16 +5,15 @@
  */
 import Base from '../layouts/Base.astro';
 import Section from '@piano/ui/components/Section.astro';
-import Hero from '@piano/ui/components/Hero.astro';
 import Heading from '@piano/ui/components/Heading.astro';
 import Text from '@piano/ui/components/Text.astro';
 import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 
 const releases = [
-  { date: '20. 5. 2026', title: 'Češi konzumují jinak. Preferují nealko, platí bezhotovostně a v zimě chodí do restaurací méně.', pdf: '#' },
-  { date: '21. 4. 2026', title: 'Čtyři značky, jedna rodina. Piano spouští první kampaň v tempu gastro světa.', pdf: '#' },
-  { date: '9. 2. 2026', title: 'Piano Group a.s., budovaná investiční skupinou Miton, dokončila akvizici sedmi technologických firem a jejich systémů.', pdf: '#' },
+  { date: '20. 5. 2026', title: 'Češi konzumují jinak. Preferují nealko, platí bezhotovostně a v zimě chodí do restaurací méně.', pdf: '/press/tz-trendy-spotreba-platby.pdf' },
+  { date: '21. 4. 2026', title: 'Čtyři značky, jedna rodina. Piano spouští první kampaň v tempu gastro světa.', pdf: '/press/tz-prvni-kampan-gastro.pdf' },
+  { date: '9. 2. 2026', title: 'Piano Group a.s., budovaná investiční skupinou Miton, dokončila akvizici sedmi technologických firem a jejich systémů.', pdf: '/press/tz-akvizice.pdf' },
 ];
 
 const videos = [
@@ -37,10 +36,14 @@ const mediaKit = 'https://drive.google.com/drive/folders/1-W3kD79LVz5aMy6kSGHNwJ
 <Base title="Pro média — Piano v médiích"
       description="Tiskové centrum Piano: tiskové zprávy, videorozhovory, články a media kit ke stažení i kontakt pro novináře.">
 
-  <Hero eyebrow="Pro média" background="invert" align="center"
-        lead="Zde najdete tiskové zprávy, rozhovory, videa a veškeré podklady pro novináře.">
-    <Heading slot="title" as="h1" size="display" color="on-dark" align="center">Piano <em>v médiích</em></Heading>
-  </Hero>
+  <section class="pm-hero">
+    <div class="pm-hero__overlay"></div>
+    <div class="pm-hero__inner">
+      <p class="pm-hero__eyebrow">Pro média</p>
+      <h1 class="pm-hero__title">Piano <em>v médiích</em></h1>
+      <p class="pm-hero__lead">Zde najdete tiskové zprávy, rozhovory, videa a veškeré podklady pro novináře.</p>
+    </div>
+  </section>
 
   <!-- Tiskové zprávy -->
   <Section background="default" space="lg">
@@ -50,7 +53,7 @@ const mediaKit = 'https://drive.google.com/drive/folders/1-W3kD79LVz5aMy6kSGHNwJ
         <article class="pm-release">
           <Text size="caption" color="muted">{r.date}</Text>
           <p class="pm-release__title">{r.title}</p>
-          <a class="pm-link" href={r.pdf}><Icon name="lucide:download" size="xs" /> Stáhnout PDF</a>
+          <a class="pm-link" href={r.pdf} target="_blank" rel="noopener"><Icon name="lucide:download" size="xs" /> Stáhnout PDF</a>
         </article>
       ))}
     </div>
@@ -114,6 +117,15 @@ const mediaKit = 'https://drive.google.com/drive/folders/1-W3kD79LVz5aMy6kSGHNwJ
 </Base>
 
 <style>
+  /* Hero s obrázkovým pozadím + vycentrovaný text */
+  .pm-hero { position: relative; background: var(--color-neutral-900) url('/images/promedia-hero.webp') center / cover no-repeat; }
+  .pm-hero__overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.6)); }
+  .pm-hero__inner { position: relative; max-width: 760px; margin: 0 auto; padding: var(--space-9) var(--container-pad); text-align: center; display: flex; flex-direction: column; align-items: center; }
+  .pm-hero__eyebrow { font-family: var(--font-sans); font-size: var(--font-size-label); font-weight: var(--font-weight-semibold); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide); color: var(--color-secondary-gold); margin: 0; }
+  .pm-hero__title { color: #fff; font-size: var(--font-size-display); line-height: var(--line-height-tight); margin: var(--space-3) 0 0; }
+  .pm-hero__title em { font-family: var(--font-serif); font-style: normal; }
+  .pm-hero__lead { color: rgba(255,255,255,.85); font-size: var(--font-size-lead); max-width: 520px; margin: var(--space-4) auto 0; }
+
   .pm-h { margin-bottom: var(--space-7); }
   .pm-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-6); }
   .pm-grid--articles { grid-template-columns: repeat(3, minmax(0, 1fr)); }
