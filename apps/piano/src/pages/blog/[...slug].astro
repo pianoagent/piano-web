@@ -1,0 +1,68 @@
+---
+/**
+ * Blog — detail článku (piano.cz/blog/<slug>).
+ */
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const fmtDate = (d: Date) => d.toLocaleDateString('cs-CZ', { day: 'numeric', month: 'long', year: 'numeric' });
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: post.data.title,
+  datePublished: post.data.pubDate.toISOString(),
+  ...(post.data.description ? { description: post.data.description } : {}),
+  ...(post.data.image ? { image: `https://piano.cz${post.data.image}` } : {}),
+  author: { '@type': 'Organization', name: 'Piano Solutions' },
+};
+---
+
+<Base title={`${post.data.title} | Piano blog`} description={post.data.description} type="article" schema={articleSchema}>
+  <Section background="default" space="lg" container="narrow">
+    <a class="back" href="/blog"><Icon name="lucide:arrow-left" size="xs" /> Zpět na blog</a>
+    <div class="meta">
+      {post.data.categories?.[0] && <span class="meta__cat">{post.data.categories[0]}</span>}
+      <time datetime={post.data.pubDate.toISOString()}>{fmtDate(post.data.pubDate)}</time>
+    </div>
+    <Heading as="h1" size="h1">{post.data.title}</Heading>
+    {post.data.description && <Text size="lead" color="muted" class="lead">{post.data.description}</Text>}
+    {post.data.image && <img class="cover" src={post.data.image} alt={post.data.title} width="1200" height="675" />}
+    <article class="prose">
+      <Content />
+    </article>
+    <div class="cta">
+      <Button href="/#ekosystem">Prozkoumat nástroje Piano</Button>
+    </div>
+  </Section>
+</Base>
+
+<style>
+  .back { display: inline-flex; align-items: center; gap: var(--space-1); color: var(--color-text-muted); text-decoration: none; font-size: var(--font-size-small); margin-bottom: var(--space-5); }
+  .back:hover { color: var(--color-primary); }
+  .meta { display: flex; align-items: center; gap: var(--space-3); font-size: var(--font-size-caption); color: var(--color-text-muted); margin-bottom: var(--space-2); }
+  .meta__cat { color: var(--color-text-accent); font-weight: var(--font-weight-medium); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide); }
+  .lead { margin-top: var(--space-3); }
+  .cover { width: 100%; height: auto; border-radius: var(--radius-md); margin-top: var(--space-6); }
+  .prose { max-width: 720px; margin-top: var(--space-6); }
+  .prose :global(h2) { font-size: var(--font-size-h3); margin-top: var(--space-7); margin-bottom: var(--space-3); }
+  .prose :global(h3) { font-size: var(--font-size-lead); margin-top: var(--space-5); margin-bottom: var(--space-2); }
+  .prose :global(p) { margin-bottom: var(--space-4); line-height: var(--line-height-body); }
+  .prose :global(ul), .prose :global(ol) { margin: 0 0 var(--space-4) var(--space-5); display: flex; flex-direction: column; gap: var(--space-2); }
+  .prose :global(li) { list-style: disc; }
+  .prose :global(a) { color: var(--color-text-accent); }
+  .prose :global(h2:first-child), .prose :global(p:first-child) { margin-top: 0; }
+  .cta { margin-top: var(--space-8); }
+</style>

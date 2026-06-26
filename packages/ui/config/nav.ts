@@ -73,14 +73,15 @@ export const headerCta: NavLink = { label: 'Domluvit demo', href: '#poptavka' };
 /** Sekundární odkazy (firma) — používá Footer */
 export const companyNav: NavLink[] = [
   { label: 'O nás', href: '/o-nas' },
+  { label: 'Blog', href: '/blog' },
   { label: 'Pro média', href: '/pro-media' },
   { label: 'Kontakt', href: '#kontakt' },
 ];
 
 /** Právní odkazy — spodní lišta footeru */
 export const legalNav: NavLink[] = [
+  { label: 'Obchodní podmínky', href: '/obchodni-podminky' },
   { label: 'Zásady ochrany osobních údajů', href: '/ochrana-udaju' },
-  { label: 'Cookies', href: '/cookies' },
 ];
 
 /** Sociální sítě — `icon` je název ikony pro <Icon> (sada Lucide) */
