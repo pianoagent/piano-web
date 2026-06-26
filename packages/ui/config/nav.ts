@@ -86,9 +86,10 @@ export const legalNav: NavLink[] = [
 
 /** Sociální sítě — `icon` je název ikony pro <Icon> (sada Lucide) */
 export const socialLinks: { label: string; href: string; icon: string }[] = [
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/company/piano-solutions', icon: 'lucide:linkedin' },
-  { label: 'Instagram', href: 'https://www.instagram.com/', icon: 'lucide:instagram' },
-  { label: 'YouTube', href: 'https://www.youtube.com/', icon: 'lucide:youtube' },
+  { label: 'Facebook', href: 'https://www.facebook.com/pianogroupcz/', icon: 'lucide:facebook' },
+  { label: 'Instagram', href: 'https://www.instagram.com/pianogroupcz/', icon: 'lucide:instagram' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/company/pianogroup', icon: 'lucide:linkedin' },
+  { label: 'YouTube', href: 'https://www.youtube.com/@pianogroupcz', icon: 'lucide:youtube' },
 ];
 
 /** Kontaktní údaje — Piano Solutions (sídlo dle obchodního rejstříku) */
@@ -99,6 +100,12 @@ export const contact = {
   address: 'Thámova 166/18, Karlín, 186 00 Praha 8',
   ic: '19780974',
   dic: 'CZ19780974',
+  // Pobočky dle stávajícího webu piano.cz
+  offices: [
+    { label: 'Sídlo', value: 'Thámova 166/18, Karlín, 186 00 Praha 8' },
+    { label: 'Praha', value: 'Jankovcova 1522/53, 170 00 Praha 7 — Holešovice' },
+    { label: 'Olomouc', value: 'Wittgensteinova 886/10, 779 00 Olomouc' },
+  ],
 };
 
 /** Ploché pole odkazů z mega panelu (pro mobilní menu) */

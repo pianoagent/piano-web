@@ -9,6 +9,21 @@ import '../styles/theme.css';
 import BaseHead from '@piano/ui/layouts/BaseHead.astro';
 import Header from '@piano/ui/components/Header.astro';
 import Footer from '@piano/ui/components/Footer.astro';
+import { companyNav, contact } from '@piano/ui/config/nav';
+
+// Patička piano.cz: sloupce Společnost / Pobočky / Kontakt (telefon + e-mail na konci).
+const footerColumns = [{ heading: 'Společnost', links: companyNav }];
+const footerOffices = { heading: 'Pobočky', items: contact.offices };
+const footerContact = {
+  heading: 'Kontakt',
+  items: [
+    { value: contact.company },
+    { label: 'IČ', value: contact.ic },
+    { label: 'DIČ', value: contact.dic },
+    { value: contact.phone, href: `tel:${contact.phone.replace(/\s/g, '')}` },
+    { value: contact.email, href: `mailto:${contact.email}` },
+  ],
+};
 
 interface Props {
   title: string;
@@ -87,7 +102,7 @@ const schemas = [organizationSchema, ...(schema ? [schema] : [])];
       </div>
     </section>
 
-    <Footer logoSrc={LOGO} logoAlt="Piano" />
+    <Footer logoSrc={LOGO} logoAlt="Piano" columns={footerColumns} offices={footerOffices} contact={footerContact} />
   </body>
 </html>
 

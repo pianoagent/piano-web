@@ -20,6 +20,7 @@ interface Props {
   tagline?: string;
   parentNote?: { text: string; href: string };  // "<produkt> je součástí skupiny Piano"
   columns?: FooterColumn[];
+  offices?: { heading?: string; items: ContactItem[] };  // textový sloupec s adresami poboček
   contact?: { heading?: string; items: ContactItem[] };
   social?: Social[];
   legal?: NavLink[];
@@ -53,14 +54,17 @@ const {
   tagline = 'Technologie pro restaurace a hotely — pokladny, rezervace, platby a analytika na jednom místě.',
   parentNote,
   columns = defaultColumns,
+  offices,
   contact = defaultContactBlock,
   social = socialLinks,
   legal = legalNav,
   copyright = `© ${year} Piano Solutions s.r.o.`,
 } = Astro.props;
 
+const hasOffices = !!(offices && offices.items.length > 0);
+
 // Mřížka: brand + N sloupců odkazů + kontakt (přes proměnnou, ať média dotazy přebijí)
-const topStyle = `--footer-cols: ${columns.length + 1};`;
+const topStyle = `--footer-cols: ${columns.length + (hasOffices ? 1 : 0) + 1};`;
 ---
 
 <footer class="footer">
@@ -108,6 +112,18 @@ const topStyle = `--footer-cols: ${columns.length + 1};`;
           </ul>
         </nav>
       ))}
+
+      <!-- Pobočky (textový sloupec) -->
+      {hasOffices && (
+        <div class="footer__col">
+          <h2 class="footer__heading">{offices!.heading ?? 'Pobočky'}</h2>
+          <ul class="footer__list">
+            {offices!.items.map((o) => (
+              <li><span class="footer__muted">{o.label ? `${o.label}: ` : ''}{o.value}</span></li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       <!-- Kontakt -->
       <div class="footer__col">
