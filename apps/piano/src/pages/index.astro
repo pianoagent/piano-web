@@ -71,15 +71,15 @@ const categories = [
 
 // Ekosystém — odkazy: piano-hosté dovnitř (/), ostatní na ostré produkční domény
 const ecosystem = [
-  { name: 'Septim', icon: 'lucide:monitor', desc: 'Nejrespektovanější pokladní a provozní systém na trhu.', href: 'https://www.septim.cz' },
-  { name: 'Qerko', icon: 'lucide:qr-code', desc: 'Nejpohodlnější platba u stolu a komunikace s hosty.', href: 'https://www.qerko.com' },
-  { name: 'Pecosta', icon: 'lucide:gavel', desc: 'Aukční nákupy surovin — levněji až o 16 %.', href: 'https://www.pecosta.cz' },
-  { name: 'Grason', icon: 'lucide:users', desc: 'Brigádníci, plánování směn a papírování v jedné appce.', href: 'https://www.grason.cz' },
-  { name: 'Autset', icon: 'lucide:package', desc: 'Automatické naskladňování z dodacích listů.', href: 'https://autset.com' },
-  { name: 'ABX Harsys', icon: 'lucide:square-terminal', desc: 'Multifunkční pokladní systémy a pokladny.', href: 'https://www.abxharsys.cz' },
-  { name: 'Savarin', icon: 'lucide:utensils', desc: 'Komplexní řešení pro stravovací a ubytovací provozy.', href: 'https://cominn.cz' },
-  { name: 'Protel', icon: 'lucide:building-2', desc: 'Software pro efektivní řízení hotelů.', href: 'https://www.protelsystems.cz' },
-  { name: 'Piano Pilot', icon: 'lucide:smartphone', desc: 'Celý provoz v mobilní aplikaci s daty a AI.', href: '/pilot' },
+  { name: 'Septim', logo: '/brand/septim_logo.svg', desc: 'Nejrespektovanější pokladní a provozní systém na trhu.', href: 'https://www.septim.cz' },
+  { name: 'Qerko', logo: '/brand/qerko_logo.svg', desc: 'Nejpohodlnější platba u stolu a komunikace s hosty.', href: 'https://www.qerko.com' },
+  { name: 'Pecosta', logo: '/brand/pecosta_logo.svg', desc: 'Aukční nákupy surovin — levněji až o 16 %.', href: 'https://www.pecosta.cz' },
+  { name: 'Grason', logo: '/brand/grason_logo.svg', desc: 'Brigádníci, plánování směn a papírování v jedné appce.', href: 'https://www.grason.cz' },
+  { name: 'Autset', logo: '/brand/autset_logo.svg', desc: 'Automatické naskladňování z dodacích listů.', href: 'https://autset.com' },
+  { name: 'ABX Harsys', logo: '/brand/abx_logo.svg', desc: 'Multifunkční pokladní systémy a pokladny.', href: 'https://www.abxharsys.cz' },
+  { name: 'Savarin', logo: '/brand/savarin_logo.svg', desc: 'Komplexní řešení pro stravovací a ubytovací provozy.', href: 'https://cominn.cz' },
+  { name: 'Protel', logo: '/brand/protel_logo.svg', desc: 'Software pro efektivní řízení hotelů.', href: 'https://www.protelsystems.cz' },
+  { name: 'Piano Pilot', logo: '/brand/pilot_logo.svg', desc: 'Celý provoz v mobilní aplikaci s daty a AI.', href: '/pilot' },
 ];
 
 const benefits = [
@@ -195,15 +195,14 @@ const faqSchema = {
   <!-- EKOSYSTÉM -->
   <Section id="ekosystem" background="default" space="lg">
     <div class="head-center">
-      <Text size="label" color="accent">30 let inovací</Text>
+      <Text size="label" color="accent" align="center">30 let inovací</Text>
       <Heading as="h2" size="h2" align="center">Sehraný orchestr pro snadný provoz</Heading>
       <Text size="lead" color="muted" align="center" class="head-sub">Každý nástroj funguje samostatně. Společně jsou mnohem silnější.</Text>
     </div>
     <div class="eco">
       {ecosystem.map((p) => (
         <a class="eco__card" href={p.href}>
-          <span class="eco__icon"><Icon name={p.icon} size="md" /></span>
-          <span class="eco__name">{p.name}</span>
+          <img class="eco__logo" src={p.logo} alt={p.name} loading="lazy" />
           <span class="eco__desc">{p.desc}</span>
           <span class="eco__more">Zjistit víc <Icon name="lucide:arrow-right" size="xs" /></span>
         </a>
@@ -347,8 +346,7 @@ const faqSchema = {
   .eco { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-5); }
   .eco__card { display: flex; flex-direction: column; gap: var(--space-2); padding: var(--space-6); background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); text-decoration: none; transition: var(--transition); }
   .eco__card:hover { border-color: var(--color-primary); box-shadow: var(--shadow-md); transform: translateY(-2px); }
-  .eco__icon { display: inline-flex; color: var(--color-text-accent); }
-  .eco__name { font-family: var(--font-sans); font-weight: var(--font-weight-semibold); font-size: var(--font-size-lead); color: var(--color-text); }
+  .eco__logo { height: 32px; width: auto; max-width: 72%; object-fit: contain; object-position: left center; align-self: flex-start; margin-bottom: var(--space-3); }
   .eco__desc { font-size: var(--font-size-small); color: var(--color-text-muted); flex: 1; }
   .eco__more { display: inline-flex; align-items: center; gap: var(--space-1); font-size: var(--font-size-small); font-weight: var(--font-weight-medium); color: var(--color-text-accent); margin-top: var(--space-2); }
 
