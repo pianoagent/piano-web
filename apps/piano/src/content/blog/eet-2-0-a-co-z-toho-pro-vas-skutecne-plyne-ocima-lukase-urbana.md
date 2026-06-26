@@ -42,7 +42,7 @@ Proto říkám, nenechávejte to na prosinec 2026. Leden 2027 je zkušební prov
 
 *Velká hospoda absorbuje změny snáz. Malý hospodský nemá na to, aby měnil systémy uprostřed sezóny.*
 
-— Lukáš Urban
+, Lukáš Urban
 
 **Polovina hospod dnes nemá žádnou pokladnu. Je to překvapivé číslo?**
 
@@ -58,7 +58,7 @@ A pak je tu strop milionu korun pro EET OFF, tedy výjimka z povinné evidence. 
 
 *Nedaněné dýško smíte legálně vyplatit jen zaměstnanci. Pokud jste malý hospodský a pracujete sám na sebe, tato výhoda se vás netýká*.
 
-— Lukáš Urban
+, Lukáš Urban
 
 **Gastro je pod obrovským tlakem z hlediska energie, mezd i surovin. Nezatíží ho EET 2.0 příliš?**
 
