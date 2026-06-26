@@ -1,0 +1,97 @@
+---
+/**
+ * Produkty — přehled celého Piano ekosystému (piano.cz/produkty).
+ */
+import Base from '../layouts/Base.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+
+const groups = [
+  {
+    label: 'Novinky od Piana',
+    items: [
+      { name: 'Piano Pilot', icon: 'lucide:smartphone', desc: 'Celý provoz v mobilní aplikaci — data, sklad a AI doporučení v reálném čase.', href: '/pilot', badge: 'Nový' },
+      { name: 'Piano Terminál', icon: 'lucide:credit-card', desc: 'Terminál, který platbou teprve začíná — data o hostech a platby dodavatelům.', href: '/terminal', badge: 'Nový' },
+    ],
+  },
+  {
+    label: 'Pokladna & provoz',
+    items: [
+      { name: 'Septim', icon: 'lucide:monitor', desc: 'Nejrespektovanější pokladní a provozní systém na trhu.', href: 'https://www.septim.cz', external: true },
+      { name: 'ABX Harsys', icon: 'lucide:square-terminal', desc: 'Multifunkční pokladní systémy a pokladny.', href: 'https://www.abxharsys.cz', external: true },
+      { name: 'Savarin', icon: 'lucide:utensils', desc: 'Komplexní řešení pro stravovací a ubytovací provozy.', href: 'https://cominn.cz', external: true },
+      { name: 'Autset', icon: 'lucide:package', desc: 'Automatické naskladňování z dodacích listů.', href: 'https://autset.com', external: true },
+      { name: 'Pecosta', icon: 'lucide:gavel', desc: 'Aukční nákupy surovin — levněji až o 16 %.', href: 'https://pecosta.cz', external: true },
+    ],
+  },
+  {
+    label: 'Hosté & personál',
+    items: [
+      { name: 'Qerko', icon: 'lucide:qr-code', desc: 'Nejpohodlnější platba u stolu a komunikace s hosty.', href: 'https://www.qerko.com', external: true },
+      { name: 'Grason', icon: 'lucide:users', desc: 'Brigádníci, plánování směn a papírování v jedné appce.', href: 'https://www.grason.cz', external: true },
+    ],
+  },
+  {
+    label: 'Pro hotely',
+    items: [
+      { name: 'Protel', icon: 'lucide:building-2', desc: 'Software pro efektivní řízení hotelů.', href: 'https://www.protelsystems.cz', external: true },
+    ],
+  },
+];
+---
+
+<Base title="Produkty — celý ekosystém Piano | Piano"
+      description="Přehled všech nástrojů Piano: pokladní systémy, platby, nákupy, sklady, personál i hotelové PMS. Jeden propojený ekosystém pro pohostinství.">
+
+  <Hero eyebrow="Produkty" background="warm"
+        lead="Piano spojuje osvědčené nástroje pro pohostinství do jednoho propojeného ekosystému. Vyberte si jednotlivě, nebo využijte jejich plnou sílu v kombinaci.">
+    <Heading slot="title" as="h1" size="display">Celý ekosystém nástrojů pro váš provoz</Heading>
+    <Fragment slot="actions">
+      <Button href="#poptavka">Domluvit konzultaci</Button>
+    </Fragment>
+  </Hero>
+
+  {groups.map((g, gi) => (
+    <Section background={gi % 2 === 0 ? 'default' : 'alt'} space="lg">
+      <div class="prod-head">
+        <Text size="label" color="accent">{g.label}</Text>
+      </div>
+      <div class="prod-grid">
+        {g.items.map((p) => (
+          <a class="prod-card" href={p.href} target={p.external ? '_blank' : undefined} rel={p.external ? 'noopener noreferrer' : undefined}>
+            <span class="prod-card__icon"><Icon name={p.icon} size="md" /></span>
+            <span class="prod-card__name">{p.name}{p.badge && <span class="prod-card__badge">{p.badge}</span>}</span>
+            <Text size="small" color="muted">{p.desc}</Text>
+            <span class="prod-card__link">{p.external ? 'Otevřít web' : 'Zjistit víc'} <Icon name={p.external ? 'lucide:external-link' : 'lucide:arrow-right'} size="xs" /></span>
+          </a>
+        ))}
+      </div>
+    </Section>
+  ))}
+
+  <LeadForm id="poptavka" variant="full"
+            title="Nevíte, co se hodí přesně pro vás?"
+            lead="Ozvěte se a navrhneme kombinaci nástrojů šitou na míru vašemu provozu." />
+</Base>
+
+<style>
+  .prod-head { margin-bottom: var(--space-6); }
+  .prod-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-5); }
+  .prod-card {
+    display: flex; flex-direction: column; gap: var(--space-2);
+    padding: var(--space-6); background: var(--color-bg); border: 1px solid var(--color-border);
+    border-radius: var(--radius-md); text-decoration: none; color: var(--color-text); transition: var(--transition);
+  }
+  .prod-card:hover { border-color: var(--color-primary); transform: translateY(-4px); box-shadow: var(--shadow-lg, 0 18px 40px rgba(0,0,0,.10)); }
+  .prod-card__icon { display: grid; place-items: center; width: 48px; height: 48px; border-radius: var(--radius-sm); background: var(--color-bg-accent-soft, rgba(190,30,45,.08)); color: var(--color-primary); margin-bottom: var(--space-2); }
+  .prod-card__name { display: inline-flex; align-items: center; gap: var(--space-2); font-family: var(--font-sans); font-weight: var(--font-weight-semibold); font-size: var(--font-size-lead); }
+  .prod-card__badge { font-size: var(--font-size-caption); font-weight: var(--font-weight-medium); color: var(--color-primary); background: var(--color-bg-accent-soft, rgba(190,30,45,.08)); padding: 1px var(--space-2); border-radius: var(--radius-full); }
+  .prod-card__link { display: inline-flex; align-items: center; gap: var(--space-1); margin-top: var(--space-2); color: var(--color-text-accent); font-weight: var(--font-weight-medium); font-size: var(--font-size-small); }
+  @media (max-width: 860px) { .prod-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .prod-grid { grid-template-columns: 1fr; } }
+</style>

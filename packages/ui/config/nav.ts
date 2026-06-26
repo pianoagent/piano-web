@@ -46,12 +46,6 @@ const produktyMega: MegaPanel = buildPianoMega(undefined, true);
 
 /** Mega menu — Řešení (podle problému) */
 const reseniMega: MegaPanel = {
-  featured: {
-    label: 'Doporučeno',
-    items: [
-      { label: 'All-in-One platforma', href: '/#ekosystem', description: 'Jeden ekosystém, jeden poplatek z obratu, jedna faktura.', icon: 'lucide:layers', badge: 'Kompletní' },
-    ],
-  },
   columns: [
     {
       label: 'Řešení podle problému',
@@ -70,16 +64,17 @@ export const mainNav: NavItem[] = [
   { label: 'Řešení', href: '/reseni', mega: reseniMega },
   { label: 'EET 2.0', href: '/eet' },
   { label: 'O nás', href: '/o-nas' },
-  { label: 'Kontakt', href: '/kontakt' },
+  { label: 'Kontakt', href: '#kontakt' },
 ];
 
-export const headerCta: NavLink = { label: 'Domluvit demo', href: '/kontakt' };
+// Hlavní CTA vždy míří na poptávkový formulář dole na aktuální stránce.
+export const headerCta: NavLink = { label: 'Domluvit demo', href: '#poptavka' };
 
 /** Sekundární odkazy (firma) — používá Footer */
 export const companyNav: NavLink[] = [
   { label: 'O nás', href: '/o-nas' },
   { label: 'Pro média', href: '/pro-media' },
-  { label: 'Kontakt', href: '/kontakt' },
+  { label: 'Kontakt', href: '#kontakt' },
 ];
 
 /** Právní odkazy — spodní lišta footeru */
