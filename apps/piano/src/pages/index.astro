@@ -146,6 +146,9 @@ const faqSchema = {
     </div>
   </Section>
 
+  <!-- LOGO WALL -->
+  <LogoWall background="alt" label="Víc jak 6 000 podniků spoléhá na nástroje od Piana" logos={refLogos} />
+
   <!-- PAIN POINTS -->
   <USPGrid eyebrow="Znáte to?" title="Co dnes brzdí váš provoz"
            items={pains} columns={4} background="default" minItemWidth="220px" />
@@ -211,9 +214,6 @@ const faqSchema = {
     </div>
   </Section>
 
-  <!-- LOGO WALL -->
-  <LogoWall background="alt" label="Víc jak 6 000 podniků spoléhá na nástroje od Piana" logos={refLogos} />
-
   <!-- TESTIMONIALY -->
   <Section background="invert" space="lg">
     <Heading as="h2" size="h2" align="center" color="on-dark">Věří nám ti nejlepší v oboru</Heading>
@@ -268,11 +268,11 @@ const faqSchema = {
   }
   .nov__card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg, 0 18px 40px rgba(0,0,0,.18)); }
   .nov__media {
-    display: grid; place-items: center; padding: var(--space-7) var(--space-6) var(--space-3);
+    display: grid; place-items: center; height: 300px; padding: var(--space-6) var(--space-6) 0;
     background: linear-gradient(180deg, #ffffff 0%, rgba(255,255,255,0) 92%);
   }
-  .nov__media img { width: 74%; max-width: 240px; height: auto; }
-  .nov__body { display: flex; flex-direction: column; gap: var(--space-3); padding: var(--space-2) var(--space-6) var(--space-6); }
+  .nov__media img { width: auto; max-width: 80%; max-height: 240px; }
+  .nov__body { display: flex; flex-direction: column; gap: var(--space-3); padding: var(--space-5) var(--space-6) var(--space-6); }
   .nov__logo { height: 26px; width: auto; align-self: flex-start; }
   .nov__link { display: inline-flex; align-items: center; gap: var(--space-1); margin-top: var(--space-1); color: var(--color-text-accent); font-weight: var(--font-weight-medium); font-size: var(--font-size-small); }
   @media (max-width: 880px) { .novinky__grid { grid-template-columns: 1fr; max-width: 420px; } }
@@ -300,8 +300,10 @@ const faqSchema = {
 
   /* Accordion kategorií (přepínač + rozbalený detail aktivní) */
   .solscroll__acc { display: flex; flex-direction: column; gap: var(--space-2); }
-  .solscroll__item { border-left: 2px solid var(--color-border); padding-left: var(--space-5); transition: border-color var(--duration-base) var(--easing); }
-  .solscroll__item.is-active { border-left-color: var(--color-primary); }
+  .solscroll__item { border-left: 2px solid var(--color-border); padding-left: var(--space-5); opacity: 0.38; transition: border-color var(--duration-base) var(--easing), opacity var(--duration-base) var(--easing); }
+  .solscroll__item.is-active { border-left-color: var(--color-primary); opacity: 1; }
+  .solscroll__item:hover { opacity: 0.7; }
+  .solscroll__item.is-active:hover { opacity: 1; }
   .solscroll__head {
     text-align: left; background: none; border: none; cursor: pointer; width: 100%;
     font-family: var(--font-sans); font-size: var(--font-size-lead); font-weight: var(--font-weight-medium);
@@ -334,6 +336,7 @@ const faqSchema = {
     .solscroll__content { grid-template-columns: 1fr; gap: var(--space-5); }
     .solscroll__dots { display: none; }
     .solscroll__head { cursor: default; }
+    .solscroll__item { opacity: 1; }
     .solscroll__body, .solscroll__item.is-active .solscroll__body { grid-template-rows: 1fr; opacity: 1; padding-bottom: var(--space-3); }
     .solscroll__media { display: none; }
   }

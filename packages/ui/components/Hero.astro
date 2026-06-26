@@ -194,6 +194,8 @@ const innerClasses = [
     transition: opacity 0.5s ease;
   }
   .hero__slide.is-active { opacity: 1; visibility: visible; }
+  /* Carousel nadpisy o něco menší, ať se vejdou vynucené řádky (<br>) bez dalšího lámání */
+  .hero__slide :global(h1) { font-size: clamp(30px, 3.6vw, 46px); }
   /* Média v carouselu — srovnaná na stejnou výšku a vystředěná */
   .hero__media-rot { align-items: center; justify-items: center; }
   .hero__media-rot > img { width: auto; height: auto; max-width: 100%; max-height: 460px; }
