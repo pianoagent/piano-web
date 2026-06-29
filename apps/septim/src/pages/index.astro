@@ -64,14 +64,6 @@ const features = [
   { image: '/icons/podpora-24-7.svg', title: 'Podpora 24/7', text: 'Česká podpora v reálném čase. Konzultanti s praxí z gastro provozu.', href: '/sluzby-servis' },
 ];
 
-const integrations = [
-  'Qerko — platby a QR objednávky',
-  'Protel — hotelový systém + Room Service',
-  'Autset — automatické naskladňování',
-  'GrasonPlan — plánování směn',
-  'Foodora & Wolt — rozvoz jídla',
-  'Kuchyňské displeje — QSR Automations',
-];
 
 const testimonials = [
   { initials: 'TK', headline: 'Výborný systém!', quote: 'Pokladní systém Septim a služba WebCare nám pomáhá být blíž našim zákazníkům.', author: 'Tomáš Karpíšek', role: 'Šéf restaurací Ambiente' },
@@ -177,19 +169,6 @@ const leadProofs = [
            lead="Septim není jen pokladna — je to operační centrum vašeho podniku."
            items={features} minItemWidth="260px" background="default" space="lg" />
 
-  <!-- INTEGRACE -->
-  <Section background="invert" space="lg">
-    <div class="head head--center">
-      <Text size="label" color="accent" align="center">Integrace Piano ekosystému</Text>
-      <Heading as="h2" size="h2" align="center" color="on-dark">Septim mluví s celým <em>Piano portfoliem</em></Heading>
-      <Text size="lead" color="on-dark-muted" align="center">Každý nástroj funguje samostatně. Společně jsou mocnější.</Text>
-    </div>
-    <ul class="chips">
-      {integrations.map((i) => (
-        <li class="chip"><span class="chip__dot"></span>{i}</li>
-      ))}
-    </ul>
-  </Section>
 
   <!-- REFERENCE -->
   <Section background="alt" space="lg">
@@ -344,18 +323,6 @@ const leadProofs = [
   .variants td.yes { color: var(--color-success); font-weight: var(--font-weight-semibold); }
   .variants td.no { color: var(--color-neutral-400); }
 
-  /* Integrace chips */
-  .chips {
-    list-style: none; display: flex; flex-wrap: wrap; gap: var(--space-3);
-    justify-content: center;
-  }
-  .chip {
-    display: inline-flex; align-items: center; gap: var(--space-2);
-    padding: var(--space-3) var(--space-5); border-radius: var(--radius-full);
-    background: rgba(255, 255, 255, 0.06); border: 1px solid var(--color-border-on-dark);
-    color: var(--color-text-on-dark); font-size: var(--font-size-small);
-  }
-  .chip__dot { width: 8px; height: 8px; border-radius: 50%; background: var(--color-primary); flex-shrink: 0; }
 
   /* Reference */
   .quotes { display: grid; gap: var(--space-8) var(--space-6); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
