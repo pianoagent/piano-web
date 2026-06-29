@@ -10,9 +10,9 @@ export const grasonNav: NavItem[] = [
     label: 'Pro firmy',
     href: '/pro-firmy',
     children: [
-      { label: 'GrasonFlexi', href: '/pro-firmy#flexi', description: 'Brigádníci na směnu na jedno kliknutí', icon: 'lucide:users' },
-      { label: 'GrasonPlan', href: '/pro-firmy#grasonplan', description: 'Plánování směn, docházka a mzdové podklady', icon: 'lucide:calendar-days' },
-      { label: 'GrasonJobs', href: '/pro-firmy#jobs', description: 'Inzerce a nábor stálých zaměstnanců', icon: 'lucide:megaphone' },
+      { label: 'GrasonFlexi', href: '/grasonflexi', description: 'Brigádníci na směnu na jedno kliknutí', icon: 'lucide:users' },
+      { label: 'GrasonPlan', href: '/grasonplan', description: 'Plánování směn, docházka a mzdové podklady', icon: 'lucide:calendar-days' },
+      { label: 'GrasonJobs', href: '/grasonjobs', description: 'Inzerce a nábor stálých zaměstnanců', icon: 'lucide:megaphone' },
       { label: 'Ceník', href: '/pro-firmy#cenik', description: 'Předplatné bez poplatků ze mzdy', icon: 'lucide:tag' },
     ],
   },

@@ -1,0 +1,195 @@
+---
+/**
+ * GrasonFlexi — dedikovaná produktová stránka (brigádníci na směnu).
+ * Obsah z for-companies.vue / page_for-companies_* (cs.json) + grason-context.md.
+ */
+import Base from '../layouts/Base.astro';
+import Header from '@piano/ui/components/Header.astro';
+import Footer from '@piano/ui/components/Footer.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import { grasonNav, grasonCta, grasonFooter } from '../config/nav';
+
+const rows = [
+  { img: '/images/for-companies-choose-candidates.webp', title: 'Vybírejte si podle zkušeností a hodnocení', text: 'Vždycky víte, kdo k vám přijde pracovat. Pracovníky vybíráte podle jejich profilů, zkušeností a hodnocení od jiných firem.' },
+  { img: '/images/for-companies-choose-favourite-workers.webp', title: 'Vytvořte si tým oblíbených a spolupracujte dlouhodobě', text: 'Vaši oblíbení pracovníci přehledně na jednom místě. Dejte jim o směně vědět dřív než ostatním a zvěte je opakovaně — bez stálého zaškolování nových lidí.' },
+  { img: '/images/for-companies-feedback.webp', title: 'Zpětná vazba po každé směně', text: 'Dejte vědět, jak jste byli spokojeni. Napište pracovníkům hodnocení a získejte zpětnou vazbu i vy.' },
+];
+
+const steps = [
+  { title: 'Vypíšete směnu', text: 'V appce nebo webovém rozhraní zadáte kdy, kde a koho potřebujete. Trvá to 2 minuty.' },
+  { title: 'Brigádníci se hlásí', text: 'Ověření pracovníci z vašeho okolí dostanou notifikaci a zájemci se přihlásí.' },
+  { title: 'Potvrdíte výběr', text: 'Vyberete vhodného kandidáta. Grason zařídí smlouvu i papírování (DPP).' },
+  { title: 'Odpracováno a ohodnoceno', text: 'Pracovník dorazí na směnu, vy mu připravíte výplatu z podkladů a po směně ho ohodnotíte.' },
+];
+
+const testimonials = [
+  { initials: 'MS', quote: 'Ke Grasonu nás dovedla zhoršující se situace na trhu práce. Velkou výhodou je praktická aplikace a operativní plánování směn 24/7. Odpadá nám i starost s prvotním výběrem kandidátů.', author: 'Martin Savkulič', role: 'Manažer restaurace Pizza Nuova' },
+  { initials: 'MP', quote: 'Pracovníci nalezení přes Grason byli sice dražší, ale mnohem motivovanější a ochotní makat než lidé z jiných kanálů.', author: 'Ing. Michal Prádl', role: 'Vedoucí skladu DATART Jirny' },
+  { initials: 'JK', quote: 'Velkou výhodu vidím v úspoře času, protože Grason za mě řeší byrokratické papírování.', author: 'Josef Kubíček', role: 'Manažer, Likér' },
+];
+
+const leadProofs = [
+  { icon: 'lucide:gift', title: '14 dní zdarma', text: 'Bez platební karty, nezávazně.' },
+  { icon: 'lucide:zap', title: 'Směna za pár minut', text: 'Pozici obsadíte dřív než konkurence.' },
+  { icon: 'lucide:users', title: '3 357+ brigádníků', text: 'Ověření pracovníci po celé ČR.' },
+  { icon: 'lucide:badge-check', title: 'DPP řeší Grason', text: 'Smlouva i papírování za vás.' },
+];
+---
+
+<Base title="GrasonFlexi — brigádníci na směnu | Grason"
+      description="GrasonFlexi je nejrychlejší cesta k brigádníkům: vypíšete směnu, ověření pracovníci se přihlásí a vy vyberete. Grason vyřídí smlouvu a papírování (DPP).">
+  <Header brand="Grason" logoSrc="/logos/grason_logo.svg" logoHeight="28px" homeHref="/" nav={grasonNav} cta={grasonCta} />
+
+  <main>
+  <Hero eyebrow="GrasonFlexi" background="gradient"
+        lead="Vypíšete směnu, ověření brigádníci se přihlásí a vy vyberete. Grason vyřídí smlouvu a papírování (DPP) — podklady pro výplatu máte připravené, samotnou výplatu provedete vy.">
+    <Heading slot="title" as="h1" size="display" color="on-dark">Brigádníci <span class="accent">na jedno kliknutí</span></Heading>
+    <Fragment slot="actions">
+      <Button href="#poptavka">Chci brigádníky</Button>
+      <Button href="#jak" variant="secondary" onDark>Jak to funguje</Button>
+    </Fragment>
+    <figure slot="media" class="hero-figure">
+      <img src="/images/for-companies-hero.webp" alt="GrasonFlexi — výběr brigádníků na směnu" width="720" height="560" loading="eager" />
+    </figure>
+  </Hero>
+
+  <Section background="alt" space="sm">
+    <ul class="hero-list">
+      <li><Icon name="lucide:check" size="sm" class="hl-check" />Nepotřebujete platební kartu</li>
+      <li><Icon name="lucide:check" size="sm" class="hl-check" />Za pár minut máte vypsanou směnu</li>
+      <li><Icon name="lucide:check" size="sm" class="hl-check" />Žádné poplatky odvozené ze mzdy</li>
+    </ul>
+  </Section>
+
+  <Section background="default" space="lg">
+    <div class="head head--center">
+      <Heading as="h2" size="h2" align="center">Co <span class="accent">GrasonFlexi</span> umí</Heading>
+    </div>
+    <div class="rows">
+      {rows.map((r, i) => (
+        <div class={`row ${i % 2 === 1 ? 'row--reverse' : ''}`}>
+          <figure class="row__media"><img src={r.img} alt="" loading="lazy" /></figure>
+          <div class="row__text">
+            <Heading as="h3" size="h3">{r.title}</Heading>
+            <Text color="muted">{r.text}</Text>
+          </div>
+        </div>
+      ))}
+    </div>
+  </Section>
+
+  <Section id="jak" background="invert" space="lg">
+    <div class="head head--center">
+      <Text size="label" color="accent" align="center">Jak to funguje</Text>
+      <Heading as="h2" size="h2" align="center" color="on-dark">Od potřeby k obsazené <span class="accent">směně za minuty</span></Heading>
+    </div>
+    <ol class="steps">
+      {steps.map((s, i) => (
+        <li class="step step--dark">
+          <span class="step__num">{i + 1}</span>
+          <Heading as="h3" size="h3" color="on-dark">{s.title}</Heading>
+          <Text size="small" color="on-dark-muted">{s.text}</Text>
+        </li>
+      ))}
+    </ol>
+  </Section>
+
+  <Section background="alt" space="lg">
+    <div class="head head--center">
+      <Text size="label" color="accent" align="center">Ceník</Text>
+      <Heading as="h2" size="h2" align="center">Předplatné <span class="accent">bez poplatků ze mzdy</span></Heading>
+    </div>
+    <div class="single-price">
+      <article class="price">
+        <span class="price__tag">GrasonFlexi</span>
+        <Heading as="h3" size="h3">Balíčky na míru</Heading>
+        <Text color="muted" size="small">Podle počtu směn, poboček a funkcí. Závazek na 3, 6 nebo 12 měsíců.</Text>
+        <ul class="checklist">
+          <li><Icon name="lucide:check" size="sm" class="hl-check" />Bez poplatků ze mzdy brigádníka</li>
+          <li><Icon name="lucide:check" size="sm" class="hl-check" />Od základního po prémiový tarif</li>
+          <li><Icon name="lucide:check" size="sm" class="hl-check" />Enterprise: neomezené směny + account manager</li>
+          <li><Icon name="lucide:check" size="sm" class="hl-check" />Enterprise navíc: zpracování a vyplácení mezd</li>
+        </ul>
+        <div class="price__cta"><Button href="#poptavka">Chci nabídku</Button></div>
+      </article>
+    </div>
+  </Section>
+
+  <Section background="default" space="lg">
+    <div class="head head--center">
+      <Text size="label" color="accent" align="center">Reference</Text>
+      <Heading as="h2" size="h2" align="center">Co říkají <span class="accent">naši klienti</span></Heading>
+    </div>
+    <div class="quotes">
+      {testimonials.map((t, i) => (
+        <figure class={`quote quote--${i % 3}`}>
+          <div class="quote__head">
+            <div class="quote__id">
+              <strong class="quote__name">{t.author}</strong>
+              <span class="quote__role">{t.role}</span>
+            </div>
+            <span class="quote__avatar" aria-hidden="true">{t.initials}</span>
+          </div>
+          <span class="quote__mark"><Icon name="lucide:quote" size="md" /></span>
+          <blockquote class="quote__text">{t.quote}</blockquote>
+        </figure>
+      ))}
+    </div>
+  </Section>
+
+  <LeadForm id="poptavka" variant="full" background="alt"
+            title="Chci brigádníky"
+            lead="Nechte nám kontakt — ukážeme GrasonFlexi ve vašem provozu a pomůžeme s rozjezdem."
+            proofs={leadProofs} successUrl="/dekujeme" />
+  </main>
+
+  <Footer {...grasonFooter} />
+</Base>
+
+<style>
+  .hero-figure { margin: 0; width: 100%; line-height: 0; }
+  .hero-figure img { width: 100%; height: auto; display: block; filter: drop-shadow(0 24px 48px rgba(7, 7, 7, 0.22)); }
+  .head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-7); }
+  .head--center { text-align: center; }
+  .head > * + * { margin-top: var(--space-3); }
+  .hero-list { list-style: none; display: flex; flex-wrap: wrap; gap: var(--space-5); justify-content: center; }
+  .hero-list li { display: inline-flex; align-items: center; gap: var(--space-2); font-size: var(--font-size-small); color: var(--color-text); }
+  .hl-check { color: var(--color-secondary-azure); flex-shrink: 0; }
+  .rows { display: flex; flex-direction: column; gap: var(--space-8); }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-8); align-items: center; }
+  .row--reverse .row__media { order: 2; }
+  .row__media { margin: 0; line-height: 0; background: var(--color-bg-alt); border-radius: var(--radius-lg); padding: var(--space-6); }
+  .row__media img { width: 100%; height: auto; display: block; }
+  .row__text > * + * { margin-top: var(--space-3); }
+  @media (max-width: 880px) { .row { grid-template-columns: 1fr; gap: var(--space-5); } .row--reverse .row__media { order: 0; } }
+  .steps { list-style: none; display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+  .step { position: relative; padding: var(--space-6); border-radius: var(--radius-md); }
+  .step--dark { background: rgba(255,255,255,0.04); border: 1px solid var(--color-border-on-dark); }
+  .step > * + * { margin-top: var(--space-3); }
+  .step__num { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: var(--radius-full); background: var(--color-secondary-azure); color: #07333a; font-size: var(--font-size-lead); font-weight: var(--font-weight-bold); }
+  .checklist { list-style: none; display: grid; gap: var(--space-2); }
+  .checklist li { display: flex; align-items: flex-start; gap: var(--space-2); color: var(--color-text); }
+  .single-price { max-width: 480px; margin-inline: auto; }
+  .price { position: relative; background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-7); box-shadow: var(--shadow-sm); display: flex; flex-direction: column; gap: var(--space-3); }
+  .price__tag { font-size: var(--font-size-caption); font-weight: var(--font-weight-semibold); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide); color: var(--color-text-accent); }
+  .price .checklist { margin-top: var(--space-2); }
+  .price__cta { margin-top: var(--space-4); }
+  .quotes { display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+  .quote { margin: 0; display: flex; flex-direction: column; background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-6); box-shadow: var(--shadow-sm); }
+  .quote__head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); margin-bottom: var(--space-4); }
+  .quote__id { display: flex; flex-direction: column; gap: 2px; }
+  .quote__name { font-size: var(--font-size-lead); font-weight: var(--font-weight-bold); color: var(--color-secondary); line-height: 1.15; }
+  .quote__role { font-size: var(--font-size-small); color: var(--color-text-muted); }
+  .quote__avatar { flex-shrink: 0; width: 56px; height: 56px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: var(--font-size-body); font-weight: var(--font-weight-bold); color: #fff; }
+  .quote--0 .quote__avatar { background: linear-gradient(150deg, #3CC1C8, #343160); }
+  .quote--1 .quote__avatar { background: linear-gradient(150deg, #F96797, #343160); }
+  .quote--2 .quote__avatar { background: linear-gradient(150deg, #FAD531, #343160); }
+  .quote__mark { color: var(--color-secondary-azure); display: block; margin-bottom: var(--space-2); }
+  .quote__text { font-size: var(--font-size-body); color: var(--color-text); line-height: var(--line-height-body); }
+</style>
