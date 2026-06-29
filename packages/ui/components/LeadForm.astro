@@ -103,6 +103,7 @@ const submitText = submitLabel ?? (isCallback ? 'Zavolejte mi' : 'Odeslat poptá
       novalidate
     >
       <input type="hidden" name="form_variant" value={variant} />
+      <input type="hidden" name="page" data-page />
       <div class="leadform__hp" aria-hidden="true">
         <label>Web<input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
       </div>
@@ -269,6 +270,10 @@ const submitText = submitLabel ?? (isCallback ? 'Zavolejte mi' : 'Odeslat poptá
       err && (err.hidden = true);
 
       if (!form.checkValidity()) { form.reportValidity(); return; }
+
+      // URL stránky, odkud poptávka přišla (kvůli určení produktu v mailu)
+      const pageField = form.querySelector<HTMLInputElement>('input[name="page"]');
+      if (pageField) pageField.value = window.location.href;
 
       const hp = form.querySelector<HTMLInputElement>('input[name="website"]');
       if (hp && hp.value) { form.reset(); if (ok) ok.hidden = false; return; }
