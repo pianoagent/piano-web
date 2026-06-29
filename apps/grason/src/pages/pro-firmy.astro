@@ -1,8 +1,10 @@
 ---
 /**
  * Pro firmy — detailní B2B stránka.
- * Obsah z grason-web-develop/pages/for-companies.vue + page_for-companies_*
- * (cs.json) + grason-context.md. Sdílené komponenty @piano/ui.
+ * Tři SAMOSTATNÉ produkty Grasonu, jasně oddělené:
+ *   GrasonFlexi (brigádníci) · GrasonPlan (plánování + docházka + mzdy) · GrasonJobs (nábor).
+ * Obsah z for-companies.vue / page_for-companies_* (cs.json), grason-context.md
+ * a Grason_JOBS_automatizace. Sdílené komponenty @piano/ui.
  */
 import Base from '../layouts/Base.astro';
 import Header from '@piano/ui/components/Header.astro';
@@ -14,32 +16,41 @@ import Text from '@piano/ui/components/Text.astro';
 import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
-import { grasonNav, grasonCta } from '../config/nav';
+import { grasonNav, grasonCta, grasonFooter } from '../config/nav';
 
-// Střídavé feature řádky — sekce „Brigádníci"
-const rows = [
+// GrasonFlexi — střídavé řádky (jen flexi vizuály)
+const flexiRows = [
   { img: '/images/for-companies-choose-candidates.webp', title: 'Vybírejte si podle zkušeností a hodnocení', text: 'Vždycky víte, kdo k vám přijde pracovat. Pracovníky vybíráte podle jejich profilů, zkušeností a hodnocení od jiných firem.' },
-  { img: '/images/for-companies-choose-favourite-workers.webp', title: 'Vytvořte si tým oblíbených pracovníků', text: 'Vaši oblíbení pracovníci přehledně na jednom místě. Dejte jim jednoduše vědět o nové směně dřív než ostatním.' },
-  { img: '/images/for-companies-hire-people.webp', title: 'Spolupracujte se stejnými lidmi dlouhodobě', text: 'Nikdo nechce pokaždé zaškolovat nového člověka. Když budete spokojeni, pozvěte své oblíbence na další směny.' },
+  { img: '/images/for-companies-choose-favourite-workers.webp', title: 'Vytvořte si tým oblíbených a spolupracujte dlouhodobě', text: 'Vaši oblíbení pracovníci přehledně na jednom místě. Dejte jim o směně vědět dřív než ostatním a zvěte je opakovaně — bez stálého zaškolování nových lidí.' },
   { img: '/images/for-companies-feedback.webp', title: 'Zpětná vazba po každé směně', text: 'Dejte vědět, jak jste byli spokojeni. Napište pracovníkům hodnocení a získejte zpětnou vazbu i vy.' },
 ];
 
+// GrasonPlan
 const planPoints = [
   'Plánování směn na počítači i v mobilu',
   'Zaměstnanci si sami zadají, kdy nemohou',
   'Chytré notifikace — připomenou směnu, najdou náhradníka',
-  'Úkolování s potvrzením (foto, text, odkliknutí)',
-  'Reporty pro mzdovou účetní na jedno kliknutí',
+  'Úkolování s potvrzením (odškrtnutí, text, číslo nebo foto)',
+  'Podklady pro mzdovou účetní na jedno kliknutí',
   'Přehled mzdových nákladů v reálném čase',
-  'Sdílení personálu mezi více podniky',
-  'Šablony směn a hlídání kolizí',
+  'Obsaďte těžko obsaditelné směny zaměstnanci z jiných provozoven',
+  'Šablony směn (kopírování na další týdny) a hlídání kolizí',
 ];
 
+// Digitální píchačky = funkce GrasonPlanu
 const pichackyPoints = [
-  { icon: 'lucide:map-pin', title: 'GPS okruh 30 m', text: 'Systém ověří, že zaměstnanec opravdu dorazil na provozovnu.' },
+  { icon: 'lucide:map-pin', title: 'GPS okruh 30–300 m', text: 'Systém ověří, že zaměstnanec opravdu dorazil na provozovnu.' },
   { icon: 'lucide:wifi', title: 'Ověření přes WiFi', text: 'Příchod lze potvrdit i připojením k síti provozovny.' },
-  { icon: 'lucide:smartphone', title: 'Bez kartiček a papírů', text: 'Příchod i odchod jednoduše přes mobil zaměstnance.' },
+  { icon: 'lucide:hand', title: 'Odbavení kliknutím', text: 'Zaměstnanec se odbaví v appce kliknutím — bez kartiček a papírů.' },
   { icon: 'lucide:banknote', title: 'Podklad pro mzdy', text: 'Odpracované hodiny rovnou do reportu pro účetní.' },
+];
+
+// GrasonJobs
+const jobsPoints = [
+  { icon: 'lucide:megaphone', title: 'Automatická propagace', text: 'Inzerát se sám propaguje přes cílené reklamy. Žádné ruční zakládání kampaní.' },
+  { icon: 'lucide:target', title: 'Cílení na gastro', text: 'Oslovíte tisíce lidí v oboru ve vašem okolí, ne náhodné publikum.' },
+  { icon: 'lucide:refresh-cw', title: 'Vždy aktuální', text: 'Obsazená pozice zmizí z inzerce i z reklamy — platíte jen za to, co běží.' },
+  { icon: 'lucide:file-text', title: 'Stálé úvazky', text: 'HPP, DPČ i částečné úvazky — inzerce přímo mezi pracovníky v gastru.' },
 ];
 
 const testimonials = [
@@ -58,17 +69,17 @@ const leadProofs = [
 ---
 
 <Base title="Pro firmy — Grason"
-      description="Grason je nejrychlejší cesta k pracovníkům: brigádníci na směnu, plánování vlastního týmu (GrasonPlan) i digitální píchačky. Pozici obsadíte do několika minut.">
+      description="Tři řešení pro celý personál: GrasonFlexi (brigádníci na směnu), GrasonPlan (plánování vlastního týmu, docházka, mzdové podklady) a GrasonJobs (inzerce a nábor stálých zaměstnanců).">
   <Header brand="Grason" logoSrc="/logos/grason_logo.svg" logoHeight="28px" homeHref="/" nav={grasonNav} cta={grasonCta} />
 
   <main>
 
   <!-- HERO -->
   <Hero eyebrow="Pro firmy" background="gradient"
-        lead="Grason je nejrychlejší cesta k pracovníkům. Pozici obsadíte do několika minut a získáte náskok před ostatními zaměstnavateli.">
+        lead="Tři samostatná řešení pro celý váš personál — brigádníci na směnu, plánování vlastního týmu i nábor stálých lidí. Vyberete si, co zrovna potřebujete.">
     <Heading slot="title" as="h1" size="display" color="on-dark">Chybí vám lidi? <span class="accent">S námi je máte</span> zítra na směně</Heading>
     <Fragment slot="actions">
-      <Button href="#poptavka">Vyzkoušet 14 dní zdarma</Button>
+      <Button href="#poptavka">Konzultace zdarma</Button>
       <Button href="#cenik" variant="secondary" onDark>Ukázat ceník</Button>
     </Fragment>
     <figure slot="media" class="hero-figure">
@@ -84,17 +95,17 @@ const leadProofs = [
     </ul>
   </Section>
 
-  <!-- BRIGÁDNÍCI -->
-  <Section id="brigadnici" background="default" space="lg">
+  <!-- ① GRASONFLEXI -->
+  <Section id="flexi" background="default" space="lg">
     <div class="head head--center">
-      <Text size="label" color="accent" align="center">Brigádníci</Text>
-      <Heading as="h2" size="h2" align="center">Flexibilní pracovníci <span class="accent">na jedno kliknutí</span></Heading>
+      <Text size="label" color="accent" align="center">GrasonFlexi</Text>
+      <Heading as="h2" size="h2" align="center">Brigádníci <span class="accent">na jedno kliknutí</span></Heading>
       <Text size="lead" color="muted" align="center" balance>
-        Vypíšete směnu, ověření brigádníci se přihlásí, vy vyberete. Grason vyřídí smlouvu i výplatu.
+        Vypíšete směnu, ověření brigádníci se přihlásí a vy vyberete. Grason vyřídí smlouvu a papírování (DPP) — podklady pro výplatu máte připravené, samotnou výplatu provedete vy.
       </Text>
     </div>
     <div class="rows">
-      {rows.map((r, i) => (
+      {flexiRows.map((r, i) => (
         <div class={`row ${i % 2 === 1 ? 'row--reverse' : ''}`}>
           <figure class="row__media"><img src={r.img} alt="" loading="lazy" /></figure>
           <div class="row__text">
@@ -104,9 +115,10 @@ const leadProofs = [
         </div>
       ))}
     </div>
+    <div class="sec-cta"><Button href="#poptavka">Chci brigádníky</Button></div>
   </Section>
 
-  <!-- GRASONPLAN -->
+  <!-- ② GRASONPLAN (vč. docházky/píchaček) -->
   <Section id="grasonplan" background="alt" space="lg">
     <div class="split">
       <figure class="split__media"><img src="/images/illustration-calendar.webp" alt="GrasonPlan — plánování směn" loading="lazy" /></figure>
@@ -114,7 +126,7 @@ const leadProofs = [
         <Text size="label" color="accent">GrasonPlan</Text>
         <Heading as="h2" size="h2">Plánování směn <span class="accent">vlastního týmu</span></Heading>
         <Text size="lead" color="muted" balance>
-          Rozvrh bez Excelu a skupinových chatů. Zaměstnanci zadají dostupnost, vy potvrdíte plán — a náhradník za nemocného se najde sám.
+          Rozvrh bez Excelu a skupinových chatů. Zaměstnanci zadají dostupnost, vy potvrdíte plán — a náhradník za nemocného se najde sám. Součástí je i docházka, úkoly a podklady pro mzdy.
         </Text>
         <ul class="checklist">
           {planPoints.map((p) => (
@@ -124,19 +136,37 @@ const leadProofs = [
         <div class="split__cta"><Button href="#poptavka">Vyzkoušet zdarma</Button></div>
       </div>
     </div>
+
+    <!-- Docházka / digitální píchačky = funkce GrasonPlanu -->
+    <div class="subhead">
+      <Text size="label" color="accent" align="center">Součást GrasonPlanu · Digitální píchačky</Text>
+      <Heading as="h3" size="h3" align="center">Přesně víte, kdo přišel a kdy</Heading>
+      <Text color="muted" align="center" balance>
+        Zaměstnanec se v appce odbaví kliknutím a systém přes GPS nebo WiFi ověří, že je opravdu v provozovně. Žádné dohady, jen fakta.
+      </Text>
+    </div>
+    <ul class="cards cards--light">
+      {pichackyPoints.map((p) => (
+        <li class="mini">
+          <span class="mini__icon"><Icon name={p.icon} size="md" /></span>
+          <Heading as="h3" size="h3">{p.title}</Heading>
+          <Text size="small" color="muted">{p.text}</Text>
+        </li>
+      ))}
+    </ul>
   </Section>
 
-  <!-- DIGITÁLNÍ PÍCHAČKY -->
-  <Section id="pichacky" background="invert" space="lg">
+  <!-- ③ GRASONJOBS -->
+  <Section id="jobs" background="invert" space="lg">
     <div class="head head--center">
-      <Text size="label" color="accent" align="center">Digitální píchačky · Nová funkce</Text>
-      <Heading as="h2" size="h2" align="center" color="on-dark">Přesně víte, <span class="accent">kdo přišel a kdy</span></Heading>
+      <Text size="label" color="accent" align="center">GrasonJobs · Novinka</Text>
+      <Heading as="h2" size="h2" align="center" color="on-dark">Nábor stálých lidí <span class="accent">na míru</span></Heading>
       <Text size="lead" color="on-dark-muted" align="center" balance>
-        Zaměstnanec otevře appku — systém přes GPS nebo WiFi ověří, že je v provozovně, a zaznamená docházku. Žádné dohady, jen fakta.
+        Hledáte stálého kolegu na HPP nebo DPČ? Vystavíte inzerát a Grason ho automaticky propaguje tisícům lidí v gastru přes cílené kampaně. Jakmile pozici obsadíte, kampaň sama skončí.
       </Text>
     </div>
     <ul class="cards cards--dark">
-      {pichackyPoints.map((p) => (
+      {jobsPoints.map((p) => (
         <li class="mini">
           <span class="mini__icon"><Icon name={p.icon} size="md" /></span>
           <Heading as="h3" size="h3" color="on-dark">{p.title}</Heading>
@@ -144,6 +174,7 @@ const leadProofs = [
         </li>
       ))}
     </ul>
+    <div class="sec-cta"><Button href="#poptavka">Chci inzerovat pozici</Button></div>
   </Section>
 
   <!-- CENÍK -->
@@ -155,16 +186,16 @@ const leadProofs = [
         Žádné poplatky odvozené ze mzdy pracovníka. Díky předplatnému předem přesně víte, kolik a za co měsíčně platíte.
       </Text>
     </div>
-    <div class="pricing">
+    <div class="pricing pricing--3">
       <article class="price">
-        <span class="price__tag">Brigádníci (GrasonFlexi)</span>
+        <span class="price__tag">GrasonFlexi</span>
         <Heading as="h3" size="h3">Balíčky na míru</Heading>
         <Text color="muted" size="small">Podle počtu směn, poboček a funkcí. Závazek na 3, 6 nebo 12 měsíců.</Text>
         <ul class="checklist">
           <li><Icon name="lucide:check" size="sm" class="hl-check" />Bez poplatků ze mzdy brigádníka</li>
           <li><Icon name="lucide:check" size="sm" class="hl-check" />Od základního po prémiový tarif</li>
           <li><Icon name="lucide:check" size="sm" class="hl-check" />Enterprise: neomezené směny + account manager</li>
-          <li><Icon name="lucide:check" size="sm" class="hl-check" />Automatizace dokumentů a vyplácení mezd</li>
+          <li><Icon name="lucide:check" size="sm" class="hl-check" />Enterprise navíc: zpracování a vyplácení mezd</li>
         </ul>
         <div class="price__cta"><Button href="#poptavka">Chci nabídku</Button></div>
       </article>
@@ -175,11 +206,23 @@ const leadProofs = [
         <Text color="muted" size="small">1 podnik, do 25 uživatelů. Každý další uživatel +50 Kč/měsíc.</Text>
         <ul class="checklist">
           <li><Icon name="lucide:check" size="sm" class="hl-check" />Plánování směn, dovolených i záskoků</li>
-          <li><Icon name="lucide:check" size="sm" class="hl-check" />Docházka a podklady pro mzdy</li>
+          <li><Icon name="lucide:check" size="sm" class="hl-check" />Docházka (píchačky) a podklady pro mzdy</li>
           <li><Icon name="lucide:check" size="sm" class="hl-check" />Úkoly, checklisty, notifikace</li>
           <li><Icon name="lucide:check" size="sm" class="hl-check" />První měsíc zdarma, bez závazku</li>
         </ul>
         <div class="price__cta"><Button href="#poptavka">Vyzkoušet zdarma</Button></div>
+      </article>
+      <article class="price">
+        <span class="price__tag">GrasonJobs</span>
+        <Heading as="h3" size="h3">Nábor na míru</Heading>
+        <Text color="muted" size="small">Inzerce stálých úvazků s automatickou propagací. Cena podle rozsahu kampaně.</Text>
+        <ul class="checklist">
+          <li><Icon name="lucide:check" size="sm" class="hl-check" />Inzerce stálých úvazků (HPP, DPČ)</li>
+          <li><Icon name="lucide:check" size="sm" class="hl-check" />Automatická propagace inzerátů</li>
+          <li><Icon name="lucide:check" size="sm" class="hl-check" />Platíte jen za běžící kampaň</li>
+          <li><Icon name="lucide:check" size="sm" class="hl-check" />Cenová nabídka na míru</li>
+        </ul>
+        <div class="price__cta"><Button href="#poptavka">Chci nabídku</Button></div>
       </article>
     </div>
   </Section>
@@ -210,12 +253,12 @@ const leadProofs = [
   <!-- POPTÁVKA -->
   <LeadForm id="poptavka" variant="full" background="default"
             title="Chcete vědět více?"
-            lead="Máte zájem o prémiovou nabídku nebo jste nenašli vše, co jste hledali? Nechte nám kontakt a naše kolegyně Anna se vám ozve."
+            lead="Nevíte, které řešení se vám hodí? Nechte nám kontakt — projdeme váš provoz a naše kolegyně Anna doporučí GrasonFlexi, GrasonPlan, nebo GrasonJobs."
             proofs={leadProofs} successUrl="/dekujeme" />
 
   </main>
 
-  <Footer logoSrc="/logos/grason_by_piano.svg" logoAlt="Grason by Piano" parentNote={{ text: 'Grason je součástí skupiny Piano', href: 'https://piano.cz' }} />
+  <Footer {...grasonFooter} />
 </Base>
 
 <style>
@@ -225,6 +268,8 @@ const leadProofs = [
   .head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-7); }
   .head--center { text-align: center; }
   .head > * + * { margin-top: var(--space-3); }
+
+  .sec-cta { display: flex; justify-content: center; margin-top: var(--space-8); }
 
   /* Hero list */
   .hero-list { list-style: none; display: flex; flex-wrap: wrap; gap: var(--space-5); justify-content: center; }
@@ -248,19 +293,25 @@ const leadProofs = [
   .split__cta { margin-top: var(--space-5); }
   @media (max-width: 880px) { .split { grid-template-columns: 1fr; gap: var(--space-6); } .split__media { order: -1; } }
 
+  /* Subhead (píchačky uvnitř GrasonPlanu) */
+  .subhead { max-width: 680px; margin: var(--space-9) auto var(--space-6); text-align: center; }
+  .subhead > * + * { margin-top: var(--space-2); }
+
   /* Checklist */
   .checklist { list-style: none; display: grid; gap: var(--space-2); }
   .checklist li { display: flex; align-items: flex-start; gap: var(--space-2); color: var(--color-text); }
 
-  /* Mini cards (píchačky) */
+  /* Mini cards */
   .cards { list-style: none; display: grid; gap: var(--space-5); grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
   .mini { padding: var(--space-6); border-radius: var(--radius-md); }
   .cards--dark .mini { background: rgba(255,255,255,0.04); border: 1px solid var(--color-border-on-dark); }
+  .cards--light .mini { background: var(--color-bg); border: 1px solid var(--color-border); box-shadow: var(--shadow-sm); }
   .mini > * + * { margin-top: var(--space-3); }
   .mini__icon { display: inline-flex; color: var(--color-secondary-azure); }
 
   /* Pricing */
   .pricing { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-6); max-width: 880px; margin-inline: auto; }
+  .pricing--3 { max-width: 1100px; }
   .price { position: relative; background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-7); box-shadow: var(--shadow-sm); display: flex; flex-direction: column; gap: var(--space-3); }
   .price--featured { border-color: var(--color-primary); box-shadow: var(--shadow-md); }
   .price__tag { font-size: var(--font-size-caption); font-weight: var(--font-weight-semibold); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide); color: var(--color-text-accent); }

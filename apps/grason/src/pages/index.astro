@@ -17,10 +17,9 @@ import Heading from '@piano/ui/components/Heading.astro';
 import Text from '@piano/ui/components/Text.astro';
 import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
-import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LogoWall from '@piano/ui/components/LogoWall.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
-import { grasonNav, grasonCta } from '../config/nav';
+import { grasonNav, grasonCta, grasonFooter } from '../config/nav';
 
 const PHONE = '+420 739 877 799';
 const PHONE_HREF = 'tel:+420739877799';
@@ -32,47 +31,41 @@ const stats = [
   { num: '0 Kč', lbl: 'za první měsíc' },
 ];
 
-const pillars = [
+// Tři samostatné produkty Grasonu (ne jedna appka)
+const products = [
   {
     img: '/images/for-companies-choose-candidates.webp',
-    tag: 'Brigádníci',
-    title: 'Flexibilní pracovníci na směnu',
-    text: 'Potřebujete zaplnit směnu? Vypíšete ji v appce a ověření brigádníci se přihlásí. Vy vyberete, Grason vyřídí smlouvu i výplatu.',
-    points: ['3 357+ ověřených pracovníků', 'Výplata ihned po směně', 'DPP papírování řeší Grason', 'Gastro, sklady i maloobchod'],
+    tag: 'GrasonFlexi',
+    title: 'Brigádníci na směnu',
+    text: 'Vypíšete směnu, ověření brigádníci se přihlásí a vy vyberete. Grason vyřídí smlouvu i papírování (DPP) — podklady pro výplatu máte připravené.',
+    points: ['3 357+ ověřených pracovníků', 'Obsazení směny během minut', 'DPP papírování řeší Grason', 'Gastro, sklady i maloobchod'],
+    href: '/pro-firmy#flexi',
   },
   {
     img: '/images/illustration-calendar.webp',
     tag: 'GrasonPlan',
     title: 'Plánování směn vlastního týmu',
-    text: 'Přehledný rozvrh pro stálé zaměstnance. Zadají dostupnost, vy potvrdíte plán. Náhradník za nemocného se najde sám.',
-    points: ['Plán na PC i v mobilu', 'Automatické notifikace', 'Sdílení personálu mezi podniky', '990 Kč/měsíc, 1. měsíc zdarma'],
+    text: 'Přehledný rozvrh pro stálé zaměstnance. Zadají dostupnost, vy potvrdíte plán. Součástí je docházka (digitální píchačky), úkoly i podklady pro mzdy.',
+    points: ['Plán na PC i v mobilu', 'Digitální píchačky (docházka)', 'Úkoly a checklisty', 'Podklady pro mzdy · od 990 Kč/měs'],
+    href: '/pro-firmy#grasonplan',
   },
   {
-    img: '/images/for-companies-paycheck.webp',
-    tag: 'Digitální píchačky',
-    badge: 'Nová funkce',
-    title: 'Docházka přes WiFi a GPS',
-    text: 'Zaměstnanec otevře appku — systém rozpozná, že je v provozovně (WiFi nebo GPS), a zaznamená příchod. Žádné kartičky, žádné papíry.',
-    points: ['Příchod/odchod přes mobil', 'Ověření polohou nebo WiFi sítí', 'Přehled v reálném čase', 'Podklad pro mzdové výpočty'],
+    img: '/images/for-companies-choose-favourite-workers.webp',
+    tag: 'GrasonJobs',
+    badge: 'Novinka',
+    title: 'Inzerce a nábor stálých míst',
+    text: 'Hledáte stálého kolegu na HPP nebo DPČ? Vystavíte inzerát a Grason ho automaticky propaguje tisícům lidí v gastru — dokud pozici neobsadíte.',
+    points: ['Inzerce stálých úvazků', 'Automatická propagace inzerátů', 'Oslovíte tisíce lidí v gastru', 'Obsazeno = konec kampaně'],
+    href: '/pro-firmy#jobs',
   },
 ];
 
-const features = [
-  { icon: 'lucide:users', title: 'Databáze brigádníků', text: '3 357+ ověřených pracovníků připravených nastoupit. Profily s hodnoceními, zkušenostmi a dostupností.' },
-  { icon: 'lucide:clipboard-list', title: 'Inzerce stálých míst', text: 'Hledáte stálého kolegu na HPP nebo DPČ? Grason inzeruje vaši nabídku pracovníkům v gastru přímo v appce.' },
-  { icon: 'lucide:calendar-days', title: 'Plánování směn', text: 'Přehledný kalendář, šablony na opakující se týdny, sdílení rozvrhu se zaměstnanci — vše na pár kliknutí.' },
-  { icon: 'lucide:map-pin', title: 'Digitální píchačky', text: 'Zaměstnanec se přihlásí přes mobil — systém ověří jeho polohu přes WiFi nebo GPS a zaznamená docházku automaticky.' },
-  { icon: 'lucide:bell', title: 'Automatické notifikace', text: 'Připomínka směny, upozornění na náhradníka za nemocného, potvrzení brigádníka — vše proběhne samo.' },
-  { icon: 'lucide:banknote', title: 'Mzdové reporty', text: 'Odpracované hodiny z píchačky rovnou do reportu. Jeden klik a účetní má podklad pro výplaty.' },
-  { icon: 'lucide:check-check', title: 'Úkoly pro personál', text: 'Zadáte úkol ke směně, zaměstnanec potvrdí splnění fotkou. Přehled o tom, co bylo a nebylo uděláno.' },
-  { icon: 'lucide:building-2', title: 'Více provozoven', text: 'Sdílení personálu mezi vašimi podniky, jeden systém pro celou síť. Brigádník pokryje směnu kdekoliv.' },
-];
-
+// „Jak to funguje" je čistě GrasonFlexi (obsazení směny brigádníkem)
 const steps = [
   { title: 'Vypíšete směnu', text: 'V appce nebo webovém rozhraní zadáte kdy, kde a koho potřebujete. Trvá to 2 minuty.' },
   { title: 'Brigádníci se hlásí', text: 'Ověření pracovníci z vašeho okolí dostanou notifikaci a zájemci se přihlásí.' },
-  { title: 'Potvrdíte výběr', text: 'Vyberete vhodného kandidáta. Grason zařídí smlouvu, instrukce i platbu po směně.' },
-  { title: 'Píchačka potvrdí příchod', text: 'Zaměstnanec se ohlásí přes appku. GPS nebo WiFi ověří, že je opravdu v provozovně — bez kartičky, bez tužky.' },
+  { title: 'Potvrdíte výběr', text: 'Vyberete vhodného kandidáta. Grason zařídí smlouvu i papírování (DPP).' },
+  { title: 'Odpracováno a ohodnoceno', text: 'Pracovník dorazí na směnu, vy mu připravíte výplatu z podkladů a po směně ho ohodnotíte.' },
 ];
 
 const testimonials = [
@@ -88,12 +81,13 @@ const refLogos = [
 ];
 
 const faqs = [
-  { q: 'Jak rychle obsadím směnu?', a: 'Brigádníky najdete na jedno kliknutí — ověření lidé, kteří směnu rovnou přijmou. Volnou směnu vyplníte i na poslední chvíli.' },
-  { q: 'Umí Grason i nábor stálých zaměstnanců?', a: 'Ano — inzerce stálých pracovních úvazků v gastronomii (HPP, DPČ) na jednom místě, přímo v appce mezi tisíci pracovníky.' },
-  { q: 'Co jsou digitální píchačky?', a: 'Zaměstnanec se odbaví v aplikaci a systém přes GPS nebo WiFi ověří, že opravdu přišel na místo (okruh 30 m). Žádné kartičky ani papíry.' },
-  { q: 'Umí Grason plánování směn?', a: 'Ano — GrasonPlan zvládne jednoduché plánování směn, dovolených i záskoků, přehledně na jednom místě. První měsíc zdarma.' },
-  { q: 'Pomůže Grason se mzdami?', a: 'Připraví podklady pro mzdy z odpracovaných směn jedním kliknutím — konec ručního přepisování a počítání.' },
-  { q: 'Co umí checklisty?', a: 'Personál odklikne úkoly směny a jako důkaz přiloží fotku přímo z aplikace — ne z galerie. Máte přehled, co bylo a nebylo splněno.' },
+  { q: 'Jak rychle obsadím směnu brigádníkem? (GrasonFlexi)', a: 'Brigádníky najdete na jedno kliknutí — ověření lidé, kteří se na vypsanou směnu sami přihlásí. Volnou směnu obsadíte i na poslední chvíli.' },
+  { q: 'Vyřídí Grason brigádníkovi výplatu? (GrasonFlexi)', a: 'Smlouvu a papírování (DPP) vyřídí Grason. Samotnou výplatu provádíte vy — Grason vám k ní připraví podklady. Brigádník tak má peníze rychle po směně.' },
+  { q: 'Umí Grason nábor stálých zaměstnanců? (GrasonJobs)', a: 'Ano — přes GrasonJobs vystavíte inzerát na stálý úvazek (HPP, DPČ) a my ho automaticky propagujeme tisícům lidí v gastru. Jakmile pozici obsadíte, kampaň skončí.' },
+  { q: 'Umí Grason plánování směn vlastního týmu? (GrasonPlan)', a: 'Ano — GrasonPlan zvládne plánování směn, dovolených i záskoků, přehledně na jednom místě. První měsíc zdarma.' },
+  { q: 'Jak funguje docházka / digitální píchačky? (GrasonPlan)', a: 'Zaměstnanec se odbaví v aplikaci kliknutím na tlačítko a systém přes GPS nebo WiFi ověří, že je opravdu v provozovně (okruh 30–300 m). Žádné kartičky ani papíry.' },
+  { q: 'Co umí úkoly a checklisty? (GrasonPlan)', a: 'Zadáte úkol ke směně a zaměstnanec potvrdí jeho splnění — odškrtnutím, textem, číslem nebo fotkou. Máte přehled, co bylo a nebylo splněno.' },
+  { q: 'Pomůže Grason se mzdami? (GrasonPlan)', a: 'Z odpracovaných směn a docházky připraví podklady pro mzdovou účetní jedním kliknutím — konec ručního přepisování. Samotné mzdy si zpracováváte sami.' },
 ];
 
 const leadProofs = [
@@ -127,17 +121,17 @@ const leadProofs = [
   <!-- LOGA KLIENTŮ -->
   <LogoWall id="zakaznici" background="default" label="Důvěřují nám restaurace, hotely i sklady po celé ČR" logos={refLogos} />
 
-  <!-- TŘI PILÍŘE -->
-  <Section background="default" space="lg">
+  <!-- TŘI PRODUKTY -->
+  <Section id="funkce" background="default" space="lg">
     <div class="head head--center">
-      <Text size="label" color="accent" align="center">Tři pilíře personálního řízení</Text>
-      <Heading as="h2" size="h2" align="center">Všechno, co potřebujete <span class="accent">k řízení lidí</span></Heading>
+      <Text size="label" color="accent" align="center">Tři produkty, jeden personalista</Text>
+      <Heading as="h2" size="h2" align="center">Tři řešení pro <span class="accent">celý personál</span></Heading>
       <Text size="lead" color="muted" align="center" balance>
-        Personál je v gastru věčný problém. Grason ho řeší od základu — kdo přijde, kdy přijde a jestli přišel včas.
+        Grason není jedna appka. Jsou to tři samostatné nástroje — vyberete si jeden, dva, nebo všechny tři podle toho, co váš provoz zrovna potřebuje.
       </Text>
     </div>
     <div class="pillars">
-      {pillars.map((p) => (
+      {products.map((p) => (
         <article class="pillar">
           <div class="pillar__media">
             <img src={p.img} alt="" loading="lazy" />
@@ -152,16 +146,12 @@ const leadProofs = [
                 <li><Icon name="lucide:check" size="sm" class="pillar__check" />{pt}</li>
               ))}
             </ul>
+            <a href={p.href} class="pillar__link">Prozkoumat <Icon name="lucide:arrow-right" size="sm" /></a>
           </div>
         </article>
       ))}
     </div>
   </Section>
-
-  <!-- VŠECHNY FUNKCE -->
-  <USPGrid id="funkce" eyebrow="Všechny funkce" title="Personál pod kontrolou od nabídky po výplatu"
-           lead="Grason není jedna appka — je to celý systém pro řízení lidí, od obsazení směny po podklady pro mzdy."
-           items={features} minItemWidth="260px" background="alt" space="lg" />
 
   <!-- MOBILNÍ APLIKACE (split) -->
   <Section background="default" space="lg">
@@ -170,7 +160,7 @@ const leadProofs = [
         <Text size="label" color="accent">Mobilní aplikace</Text>
         <Heading as="h2" size="h2">Mějte Grason <span class="accent">stále po ruce</span></Heading>
         <Text size="lead" color="muted" balance>
-          S naší aplikací plánujete směny, sháníte brigádníky a hlídáte docházku odkudkoliv — od baru, z kanceláře i z gauče.
+          S našimi technologiemi plánujete směny, sháníte brigádníky a hlídáte docházku odkudkoliv — od baru, z kanceláře i z gauče. GrasonFlexi a GrasonPlan mají vlastní appku pro iOS i Android.
         </Text>
         <ul class="app__points">
           <li><Icon name="lucide:smartphone" size="sm" class="pillar__check" />iOS i Android, zdarma ke stažení</li>
@@ -233,7 +223,7 @@ const leadProofs = [
       <Text size="label" color="on-dark-muted" align="center">Začít s Grasonem</Text>
       <Heading as="h2" size="h2" align="center" color="on-dark">Personál bez starostí?</Heading>
       <Text size="lead" color="on-dark-muted" align="center" balance>
-        Vyzkoušejte GrasonPlan první měsíc zdarma. Brigádníci k dispozici ihned po registraci.
+        Ať řešíte brigádníky, plánování vlastního týmu, nebo nábor stálých lidí — poradíme, které z našich řešení vám sedne. Konzultace je zdarma a nezávazná.
       </Text>
       <div class="cta-actions">
         <Button href="#poptavka">Vyzkoušet zdarma</Button>
@@ -260,13 +250,13 @@ const leadProofs = [
 
   <!-- POPTÁVKA -->
   <LeadForm id="poptavka" variant="full" background="alt"
-            title="Vyzkoušejte Grason 14 dní zdarma"
-            lead="Nechte nám kontakt — ozveme se, ukážeme Grason ve vašem provozu a pomůžeme s rozjezdem."
+            title="Nezávazná konzultace zdarma"
+            lead="Nechte nám kontakt — projdeme váš provoz a doporučíme, které řešení se vám hodí: GrasonFlexi (brigádníci), GrasonPlan (plánování) nebo GrasonJobs (nábor)."
             proofs={leadProofs} successUrl="/dekujeme" />
 
   </main>
 
-  <Footer logoSrc="/logos/grason_by_piano.svg" logoAlt="Grason by Piano" parentNote={{ text: 'Grason je součástí skupiny Piano', href: 'https://piano.cz' }} />
+  <Footer {...grasonFooter} />
 </Base>
 
 <style>
@@ -312,7 +302,7 @@ const leadProofs = [
     text-transform: uppercase; letter-spacing: var(--letter-spacing-wide);
     padding: var(--space-1) var(--space-3); border-radius: var(--radius-full);
   }
-  .pillar__body { padding: var(--space-6); display: flex; flex-direction: column; gap: var(--space-3); }
+  .pillar__body { flex: 1; padding: var(--space-6); display: flex; flex-direction: column; gap: var(--space-3); }
   .pillar__tag {
     align-self: flex-start; font-size: var(--font-size-caption); font-weight: var(--font-weight-semibold);
     text-transform: uppercase; letter-spacing: var(--letter-spacing-wide);
@@ -322,6 +312,8 @@ const leadProofs = [
   .pillar__points { list-style: none; display: flex; flex-direction: column; gap: var(--space-2); margin-top: var(--space-2); }
   .pillar__points li { display: flex; align-items: flex-start; gap: var(--space-2); font-size: var(--font-size-small); color: var(--color-text); }
   .pillar__check { color: var(--color-secondary-azure); flex-shrink: 0; margin-top: 2px; }
+  .pillar__link { display: inline-flex; align-items: center; gap: var(--space-1); margin-top: auto; padding-top: var(--space-4); color: var(--color-text-accent); font-weight: var(--font-weight-semibold); font-size: var(--font-size-small); text-decoration: none; }
+  .pillar__link:hover { gap: var(--space-2); }
 
   /* App split */
   .app { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-8); align-items: center; }
