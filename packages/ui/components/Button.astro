@@ -95,18 +95,18 @@ const classes = ['btn', `btn--${variant}`, `btn--${size}`, full && 'btn--full', 
 
   /* Primary — karmínová CTA se signature zkosením */
   .btn--primary {
-    background: var(--color-primary);
+    background: var(--btn-bg, var(--color-primary));
     color: var(--color-text-on-dark);
-    border-color: var(--color-primary);
+    border-color: var(--btn-bg, var(--color-primary));
     clip-path: var(--btn-clip);
   }
   .btn--primary:hover {
-    background: var(--color-primary-hover);
-    border-color: var(--color-primary-hover);
+    background: var(--btn-bg-hover, var(--color-primary-hover));
+    border-color: var(--btn-bg-hover, var(--color-primary-hover));
   }
   .btn--primary:active {
-    background: var(--color-primary-active);
-    border-color: var(--color-primary-active);
+    background: var(--btn-bg-active, var(--color-primary-active));
+    border-color: var(--btn-bg-active, var(--color-primary-active));
   }
 
   /* Secondary — obyčejný obdélník s rámečkem (normální rohy) */
