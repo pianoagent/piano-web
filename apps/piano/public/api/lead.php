@@ -37,6 +37,9 @@ if ($value('website') !== '') {
     json(['ok' => true]);
 }
 
+// URL stránky bez CR/LF (ochrana proti injection do těla)
+$page = str_replace(["\r", "\n"], '', $value('page'));
+
 $lead = [
     'variant' => $value('form_variant') ?: 'full',
     'name' => $value('name'),
@@ -44,6 +47,7 @@ $lead = [
     'phone' => $value('phone'),
     'company' => $value('company'),
     'city' => $value('city'),
+    'page' => $page,
 ];
 
 // Minimální validace — aspoň telefon nebo e-mail
@@ -55,10 +59,11 @@ $lines = array_filter([
     sprintf('Nová poptávka z webu piano.cz (formulář: %s)', $lead['variant']),
     '',
     $lead['name'] !== '' ? sprintf('Jméno: %s', $lead['name']) : null,
-    $lead['email'] !== '' ? sprintf('E-mail: %s', $lead['email']) : null,
+    $lead['email'] !== '' ? sprintf('Email: %s', $lead['email']) : null,
     $lead['phone'] !== '' ? sprintf('Telefon: %s', $lead['phone']) : null,
-    $lead['company'] !== '' ? sprintf('Podnik: %s', $lead['company']) : null,
+    $lead['company'] !== '' ? sprintf('Název podniku: %s', $lead['company']) : null,
     $lead['city'] !== '' ? sprintf('Město: %s', $lead['city']) : null,
+    $lead['page'] !== '' ? sprintf('URL: %s', $lead['page']) : null,
 ], static fn ($line): bool => $line !== null);
 $body = implode("\r\n", $lines);
 

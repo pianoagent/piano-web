@@ -20,6 +20,18 @@ import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import LogoWall from '../components/LogoWall.astro';
 
+const heroSlides = [
+  { eyebrow: 'Pokladní a provozní systém', title: 'Pravá ruka<br>každého manažera',
+    lead: 'Septim není jen pokladna. Řídí celý váš provoz — od naskladnění surovin přes výdej jídel až po finanční přehledy. Věří mu michelinské restaurace i kavárny za rohem.',
+    image: '/images/hero-septim.webp', imageAlt: 'My Septim — přehledy na tabletu, mobilu i pokladně' },
+  { eyebrow: 'Novinka', title: 'Septim.Air<br>rovnou v cloudu',
+    lead: 'Nejrychlejší způsob, jak začít se Septimem. Cloudová pokladna pro kavárny, bistra a bary — bez serveru, od 1 990 Kč měsíčně.',
+    image: '/images/produkt-septim-air.webp', imageAlt: 'Septim.Air — cloudová pokladna' },
+  { eyebrow: 'Pro hotely', title: 'Septim.Hotel<br>celý hotel v jednom',
+    lead: 'Propojení s hotelovým systémem Protel — veškerá útrata hosta na jeden účet, room service i konference z jednoho místa.',
+    image: '/images/produkt-septim-hotel.webp', imageAlt: 'Septim.Hotel — hotelový POS' },
+];
+
 const stats = [
   { num: '30 let', lbl: 'na trhu' },
   { num: '6 000+', lbl: 'provozů v ČR' },
@@ -52,14 +64,6 @@ const features = [
   { image: '/icons/podpora-24-7.svg', title: 'Podpora 24/7', text: 'Česká podpora v reálném čase. Konzultanti s praxí z gastro provozu.', href: '/sluzby-servis' },
 ];
 
-const integrations = [
-  'Qerko — platby a QR objednávky',
-  'Protel — hotelový systém + Room Service',
-  'Autset — automatické naskladňování',
-  'GrasonPlan — plánování směn',
-  'Foodora & Wolt — rozvoz jídla',
-  'Kuchyňské displeje — QSR Automations',
-];
 
 const testimonials = [
   { initials: 'TK', headline: 'Výborný systém!', quote: 'Pokladní systém Septim a služba WebCare nám pomáhá být blíž našim zákazníkům.', author: 'Tomáš Karpíšek', role: 'Šéf restaurací Ambiente' },
@@ -96,19 +100,14 @@ const leadProofs = [
 
   <main>
 
-  <!-- HERO -->
-  <Hero eyebrow="Pokladní a provozní systém Septim" background="gradient"
-        lead="Septim není jen pokladna. Je to systém, který řídí celý váš provoz, od naskladnění surovin přes výdej jídel až po finanční přehledy. Využívají ho michelinské restaurace i kavárny za rohem."
-        usp={[{ text: '30 let na trhu', icon: 'lucide:calendar-check' }, { text: '6 000+ provozů v ČR', icon: 'lucide:store' }, { text: 'Česká podpora 24/7', icon: 'lucide:headset' }]}>
-    <Heading slot="title" as="h1" size="display" color="on-dark">Pokladní a provozní systém úspěšných restaurací</Heading>
+  <!-- HERO (carousel) -->
+  <Hero background="gradient"
+        slides={heroSlides}
+        usp={[{ text: 'Připraveno na EET 2.0', icon: 'lucide:badge-check' }, { text: '30 let na trhu', icon: 'lucide:calendar-check' }, { text: '6 000+ provozů', icon: 'lucide:store' }, { text: 'Podpora 24/7', icon: 'lucide:headset' }]}>
     <Fragment slot="actions">
       <Button href="#poptavka">Chci Septim</Button>
       <Button href="#rada" variant="secondary" onDark>Vyberte variantu</Button>
     </Fragment>
-    <figure slot="media" class="hero-figure">
-      <img src="/images/hero-septim.webp" alt="My Septim — manažerské přehledy na tabletu, mobilu i pokladně" width="720" height="400" />
-      <figcaption class="hero-badge"><Icon name="lucide:badge-check" size="sm" /> Připraveno na EET 2.0</figcaption>
-    </figure>
   </Hero>
 
   <!-- LOGA KLIENTŮ — hned pod hero -->
@@ -170,19 +169,6 @@ const leadProofs = [
            lead="Septim není jen pokladna — je to operační centrum vašeho podniku."
            items={features} minItemWidth="260px" background="default" space="lg" />
 
-  <!-- INTEGRACE -->
-  <Section background="invert" space="lg">
-    <div class="head head--center">
-      <Text size="label" color="accent" align="center">Integrace Piano ekosystému</Text>
-      <Heading as="h2" size="h2" align="center" color="on-dark">Septim mluví s celým <em>Piano portfoliem</em></Heading>
-      <Text size="lead" color="on-dark-muted" align="center">Každý nástroj funguje samostatně. Společně jsou mocnější.</Text>
-    </div>
-    <ul class="chips">
-      {integrations.map((i) => (
-        <li class="chip"><span class="chip__dot"></span>{i}</li>
-      ))}
-    </ul>
-  </Section>
 
   <!-- REFERENCE -->
   <Section background="alt" space="lg">
@@ -224,7 +210,7 @@ const leadProofs = [
       </Text>
       <div class="cta-actions">
         <Button href="#poptavka">Chci konzultaci zdarma</Button>
-        <Button href="tel:+420776598696" variant="secondary">+420 776 598 696</Button>
+        <Button href="tel:+420776598696" variant="secondary" onDark>+420 776 598 696</Button>
       </div>
     </div>
   </Section>
@@ -337,18 +323,6 @@ const leadProofs = [
   .variants td.yes { color: var(--color-success); font-weight: var(--font-weight-semibold); }
   .variants td.no { color: var(--color-neutral-400); }
 
-  /* Integrace chips */
-  .chips {
-    list-style: none; display: flex; flex-wrap: wrap; gap: var(--space-3);
-    justify-content: center;
-  }
-  .chip {
-    display: inline-flex; align-items: center; gap: var(--space-2);
-    padding: var(--space-3) var(--space-5); border-radius: var(--radius-full);
-    background: rgba(255, 255, 255, 0.06); border: 1px solid var(--color-border-on-dark);
-    color: var(--color-text-on-dark); font-size: var(--font-size-small);
-  }
-  .chip__dot { width: 8px; height: 8px; border-radius: 50%; background: var(--color-primary); flex-shrink: 0; }
 
   /* Reference */
   .quotes { display: grid; gap: var(--space-8) var(--space-6); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
