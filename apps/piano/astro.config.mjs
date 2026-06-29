@@ -9,7 +9,10 @@ export default defineConfig({
   output: 'static',          // stránky statické; /api/lead je on-demand (prerender=false)
   adapter: cloudflare(),
   integrations: [
-    sitemap(),
+    // Skryté / noindex stránky vynechat ze sitemapy (kalkulačka pro obchodníky, děkovací stránka)
+    sitemap({
+      filter: (page) => !/\/(kalkulacka-terminal|dekujeme)\/?$/.test(page),
+    }),
     // Lokální brandové SVG: src/icons/nazev.svg → name="nazev"
     // Sada Lucide jako zásoba → name="lucide:check"
     icon({ iconDir: 'src/icons' }),

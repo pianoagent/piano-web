@@ -1,0 +1,137 @@
+---
+/**
+ * GrasonJobs — dedikovaná produktová stránka (inzerce a nábor stálých zaměstnanců).
+ * Obsah z grason-context.md + Grason_JOBS_automatizace (automatizovaná propagace
+ * inzerátů přes feed otevřených pozic).
+ */
+import Base from '../layouts/Base.astro';
+import Header from '@piano/ui/components/Header.astro';
+import Footer from '@piano/ui/components/Footer.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import { grasonNav, grasonCta, grasonFooter } from '../config/nav';
+
+const steps = [
+  { title: 'Vystavíte inzerát', text: 'Zadáte volnou pozici — název, podnik, město, plat. Inzerát se objeví v nabídce.' },
+  { title: 'Grason ho automaticky propaguje', text: 'Inzerát se sám propíše do cílených reklamních kampaní a osloví tisíce lidí v gastru ve vašem okolí.' },
+  { title: 'Kandidáti se hlásí', text: 'Zájemci reagují přímo na inzerát. Vy si z nich vybíráte ty správné.' },
+  { title: 'Obsazeno → konec kampaně', text: 'Jakmile pozici obsadíte, inzerát i reklama se samy vypnou. Platíte jen za to, co reálně běží.' },
+];
+
+const points = [
+  { icon: 'lucide:megaphone', title: 'Automatická propagace', text: 'Inzerát se sám propaguje přes cílené reklamy. Žádné ruční zakládání kampaní každý týden.' },
+  { icon: 'lucide:target', title: 'Cílení na gastro', text: 'Oslovíte tisíce lidí v oboru ve vašem okolí, ne náhodné publikum.' },
+  { icon: 'lucide:refresh-cw', title: 'Vždy aktuální', text: 'Obsazená pozice zmizí z inzerce i z reklamy — platíte jen za to, co běží.' },
+  { icon: 'lucide:file-text', title: 'Stálé úvazky', text: 'HPP, DPČ i částečné úvazky — inzerce přímo mezi pracovníky v gastru.' },
+];
+
+const leadProofs = [
+  { icon: 'lucide:megaphone', title: 'Nábor bez práce', text: 'Kampaně se spravují samy.' },
+  { icon: 'lucide:target', title: 'Cílené publikum', text: 'Tisíce lidí přímo z gastra.' },
+  { icon: 'lucide:wallet', title: 'Platíte za výsledek', text: 'Jen za běžící inzeráty.' },
+  { icon: 'lucide:phone', title: 'Lidská podpora', text: '+420 739 877 799' },
+];
+---
+
+<Base title="GrasonJobs — inzerce a nábor stálých zaměstnanců | Grason"
+      description="GrasonJobs vystaví inzerát na stálou pozici (HPP, DPČ) a automaticky ho propaguje tisícům lidí v gastru přes cílené kampaně. Jakmile pozici obsadíte, kampaň sama skončí.">
+  <Header brand="Grason" logoSrc="/logos/grason_logo.svg" logoHeight="28px" homeHref="/" nav={grasonNav} cta={grasonCta} />
+
+  <main>
+  <Hero eyebrow="GrasonJobs · Novinka" background="gradient" align="center"
+        lead="Hledáte stálého kolegu na HPP nebo DPČ? Vystavíte inzerát a Grason ho automaticky propaguje tisícům lidí v gastru přes cílené kampaně. Jakmile pozici obsadíte, kampaň sama skončí.">
+    <Heading slot="title" as="h1" size="display" color="on-dark" align="center">Nábor stálých lidí <span class="accent">na míru</span></Heading>
+    <Fragment slot="actions">
+      <Button href="#poptavka">Chci inzerovat pozici</Button>
+      <Button href="#jak" variant="secondary" onDark>Jak to funguje</Button>
+    </Fragment>
+  </Hero>
+
+  <Section id="jak" background="default" space="lg">
+    <div class="head head--center">
+      <Text size="label" color="accent" align="center">Jak to funguje</Text>
+      <Heading as="h2" size="h2" align="center">Od inzerátu k <span class="accent">obsazené pozici</span></Heading>
+    </div>
+    <ol class="steps">
+      {steps.map((s, i) => (
+        <li class="step">
+          <span class="step__num">{i + 1}</span>
+          <Heading as="h3" size="h3">{s.title}</Heading>
+          <Text size="small" color="muted">{s.text}</Text>
+        </li>
+      ))}
+    </ol>
+  </Section>
+
+  <Section background="alt" space="lg">
+    <div class="head head--center">
+      <Heading as="h2" size="h2" align="center">Proč <span class="accent">GrasonJobs</span></Heading>
+    </div>
+    <ul class="cards cards--light">
+      {points.map((p) => (
+        <li class="mini">
+          <span class="mini__icon"><Icon name={p.icon} size="md" /></span>
+          <Heading as="h3" size="h3">{p.title}</Heading>
+          <Text size="small" color="muted">{p.text}</Text>
+        </li>
+      ))}
+    </ul>
+  </Section>
+
+  <Section id="cenik" background="default" space="lg">
+    <div class="head head--center">
+      <Text size="label" color="accent" align="center">Ceník</Text>
+      <Heading as="h2" size="h2" align="center">Nábor <span class="accent">na míru</span></Heading>
+    </div>
+    <div class="single-price">
+      <article class="price">
+        <span class="price__tag">GrasonJobs</span>
+        <Heading as="h3" size="h3">Cena podle kampaně</Heading>
+        <Text color="muted" size="small">Inzerce stálých úvazků s automatickou propagací. Cena podle rozsahu a délky kampaně.</Text>
+        <ul class="checklist">
+          <li><Icon name="lucide:check" size="sm" class="hl-check" />Inzerce stálých úvazků (HPP, DPČ)</li>
+          <li><Icon name="lucide:check" size="sm" class="hl-check" />Automatická propagace inzerátů</li>
+          <li><Icon name="lucide:check" size="sm" class="hl-check" />Platíte jen za běžící kampaň</li>
+          <li><Icon name="lucide:check" size="sm" class="hl-check" />Cenová nabídka na míru</li>
+        </ul>
+        <div class="price__cta"><Button href="#poptavka">Chci nabídku</Button></div>
+      </article>
+    </div>
+  </Section>
+
+  <LeadForm id="poptavka" variant="full" background="alt"
+            title="Chci inzerovat pozici"
+            lead="Nechte nám kontakt — pomůžeme vystavit inzerát a rozjedeme nábor přes GrasonJobs."
+            proofs={leadProofs} successUrl="/dekujeme" />
+  </main>
+
+  <Footer {...grasonFooter} />
+</Base>
+
+<style>
+  .head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-7); }
+  .head--center { text-align: center; }
+  .head > * + * { margin-top: var(--space-3); }
+  .hl-check { color: var(--color-secondary-azure); flex-shrink: 0; }
+  .steps { list-style: none; display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+  .step { position: relative; padding: var(--space-6); background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); box-shadow: var(--shadow-sm); }
+  .step > * + * { margin-top: var(--space-3); }
+  .step__num { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: var(--radius-full); background: var(--color-secondary-azure); color: #07333a; font-size: var(--font-size-lead); font-weight: var(--font-weight-bold); }
+  .cards { list-style: none; display: grid; gap: var(--space-5); grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+  .mini { padding: var(--space-6); border-radius: var(--radius-md); }
+  .cards--light .mini { background: var(--color-bg); border: 1px solid var(--color-border); box-shadow: var(--shadow-sm); }
+  .mini > * + * { margin-top: var(--space-3); }
+  .mini__icon { display: inline-flex; color: var(--color-secondary-azure); }
+  .checklist { list-style: none; display: grid; gap: var(--space-2); }
+  .checklist li { display: flex; align-items: flex-start; gap: var(--space-2); color: var(--color-text); }
+  .single-price { max-width: 480px; margin-inline: auto; }
+  .price { position: relative; background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-7); box-shadow: var(--shadow-sm); display: flex; flex-direction: column; gap: var(--space-3); }
+  .price__tag { font-size: var(--font-size-caption); font-weight: var(--font-weight-semibold); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide); color: var(--color-text-accent); }
+  .price .checklist { margin-top: var(--space-2); }
+  .price__cta { margin-top: var(--space-4); }
+</style>

@@ -12,7 +12,7 @@ import Heading from '@piano/ui/components/Heading.astro';
 import Text from '@piano/ui/components/Text.astro';
 import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
-import { grasonNav, grasonCta } from '../config/nav';
+import { grasonNav, grasonCta, grasonFooter } from '../config/nav';
 
 const values = ['Spolehlivost', 'Respekt', 'Slušnost', 'Důvěryhodnost', 'Férovost'];
 
@@ -105,7 +105,7 @@ const team = [
 
   </main>
 
-  <Footer logoSrc="/logos/grason_by_piano.svg" logoAlt="Grason by Piano" parentNote={{ text: 'Grason je součástí skupiny Piano', href: 'https://piano.cz' }} />
+  <Footer {...grasonFooter} />
 </Base>
 
 <style>

@@ -10,9 +10,9 @@ export const grasonNav: NavItem[] = [
     label: 'Pro firmy',
     href: '/pro-firmy',
     children: [
-      { label: 'Brigádníci', href: '/pro-firmy#brigadnici', description: 'Flexibilní pracovníci na směnu', icon: 'lucide:users' },
-      { label: 'GrasonPlan', href: '/pro-firmy#grasonplan', description: 'Plánování směn vlastního týmu', icon: 'lucide:calendar-days' },
-      { label: 'Digitální píchačky', href: '/pro-firmy#pichacky', description: 'Docházka přes WiFi a GPS', icon: 'lucide:map-pin' },
+      { label: 'GrasonFlexi', href: '/grasonflexi', description: 'Brigádníci na směnu na jedno kliknutí', icon: 'lucide:users' },
+      { label: 'GrasonPlan', href: '/grasonplan', description: 'Plánování směn, docházka a mzdové podklady', icon: 'lucide:calendar-days' },
+      { label: 'GrasonJobs', href: '/grasonjobs', description: 'Inzerce a nábor stálých zaměstnanců', icon: 'lucide:megaphone' },
       { label: 'Ceník', href: '/pro-firmy#cenik', description: 'Předplatné bez poplatků ze mzdy', icon: 'lucide:tag' },
     ],
   },
@@ -22,3 +22,33 @@ export const grasonNav: NavItem[] = [
 ];
 
 export const grasonCta: NavLink = { label: 'Konzultace zdarma', href: '/#poptavka' };
+
+/** Footer (per-web) — Grason data pro sdílený <Footer>. */
+export const grasonFooter = {
+  brand: 'Grason',
+  logoSrc: '/logos/grason_by_piano.svg',
+  logoAlt: 'Grason by Piano',
+  tagline: 'Odborník na personál — brigádníci na směnu (GrasonFlexi), plánování vlastního týmu (GrasonPlan) i nábor stálých lidí (GrasonJobs).',
+  parentNote: { text: 'Grason je součástí skupiny Piano', href: 'https://piano.cz' },
+  columns: [
+    {
+      heading: 'Grason',
+      links: [
+        { label: 'Pro firmy', href: '/pro-firmy' },
+        { label: 'Pro brigádníky', href: '/pro-brigadniky' },
+        { label: 'O nás', href: '/o-nas' },
+        { label: 'Konzultace zdarma', href: '/#poptavka' },
+      ] as NavLink[],
+    },
+  ],
+  contact: {
+    heading: 'Kontakt',
+    items: [
+      { value: 'Grason Solutions s.r.o.' },
+      { value: 'Thámova 166/18, 186 00 Praha 8' },
+      { value: '+420 739 877 799', href: 'tel:+420739877799' },
+      { value: 'info@grason.cz', href: 'mailto:info@grason.cz' },
+      { label: 'IČ', value: '06884156' },
+    ],
+  },
+};
