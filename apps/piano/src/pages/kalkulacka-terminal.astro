@@ -1,0 +1,800 @@
+---
+/**
+ * Kalkulačka Piano Terminál — INTERNÍ obchodní nástroj (piano.cz/kalkulacka-terminal).
+ *
+ * Skrytá stránka jen pro obchodníky. Není v navigaci, je `noindex` a chráněná
+ * jednoduchým heslem (klientský popup). POZOR: ochrana je pouze klientská —
+ * heslo je čitelné ve zdrojovém kódu. Slouží jen k tomu, aby stránka nebyla
+ * veřejně dohledatelná, ne jako skutečné zabezpečení.
+ *
+ * Heslo se mění v <script> níže: konstanta KALK_HESLO.
+ *
+ * Výpočetní logika převzata z prototypu weby/prototypy/kalkulacka-terminalu.html.
+ * Ceny bez DPH, orientační — při změně ceníku uprav pole T_TIERS a ceny příslušenství.
+ */
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="Kalkulačka Piano Terminál — interní"
+  description="Interní kalkulačka cen Piano Terminál pro obchodníky."
+  noindex={true}
+  contactBand={false}
+>
+  <!-- ░░░ Password gate ░░░ -->
+  <div id="kalk-gate" class="kalk-gate" hidden>
+    <form class="kalk-gate__box" id="kalk-gate-form" autocomplete="off">
+      <div class="kalk-gate__eyebrow">Interní nástroj</div>
+      <h1 class="kalk-gate__title">Kalkulačka <em>Piano Terminál</em></h1>
+      <p class="kalk-gate__sub">Tato stránka je určena pro obchodníky. Zadejte přístupové heslo.</p>
+      <input
+        type="password"
+        id="kalk-gate-input"
+        class="kalk-gate__input"
+        placeholder="Heslo"
+        autocomplete="off"
+        autofocus
+      />
+      <p class="kalk-gate__error" id="kalk-gate-error" hidden>Nesprávné heslo, zkuste to znovu.</p>
+      <button type="submit" class="kalk-gate__btn">Vstoupit</button>
+    </form>
+  </div>
+
+  <!-- ░░░ Kalkulačka (skrytá dokud není odemčeno) ░░░ -->
+  <section class="kalk" id="terminal-calc" hidden>
+    <div class="kalk-inner">
+      <div class="kalk-eyebrow">Interní kalkulačka ceny</div>
+      <h2>Kolik vás <em>Piano Terminál bude stát?</em></h2>
+      <p class="kalk-sub">Cena se odvíjí od měsíčního obratu kartami — vyšší obrat znamená nižší sazbu a více terminálů zdarma.</p>
+
+      <div class="kalk-body">
+        <!-- Levý sloupec: vstupy -->
+        <div class="kalk-inputs">
+
+          <!-- Pokladní systém -->
+          <div class="kalk-field">
+            <label for="t-pos">Pokladní systém</label>
+            <select id="t-pos" class="kalk-select" onchange="calcTerminal()">
+              <option value="septim">Septim</option>
+              <option value="ostatni">Ostatní POS</option>
+            </select>
+          </div>
+
+          <!-- Slider obratu -->
+          <div class="kalk-field">
+            <div class="kalk-row-between">
+              <label>Měsíční obrat na kartách</label>
+              <span class="kalk-obrat-val" id="t-obrat-val">500 000 Kč</span>
+            </div>
+            <input type="range" id="t-obrat-slider" class="kalk-slider" min="0" max="100" step="1" value="30" oninput="calcTerminal()" />
+            <div class="kalk-slider-scale">
+              <span>0 Kč</span><span>700 tis.</span><span>2 mil.</span><span>10 mil.+</span>
+            </div>
+          </div>
+
+          <!-- Typ terminálů -->
+          <div class="kalk-field">
+            <div class="kalk-row-between kalk-row-center">
+              <label>Typ a počet terminálů</label>
+              <span id="t-free-badge" class="kalk-free-badge" hidden>Zdarma: 0 ks</span>
+            </div>
+            <div class="kalk-rows">
+
+              <div id="t-napojeny-row" class="t-row">
+                <span class="t-row-icon">🔌</span>
+                <div class="t-row-content">
+                  <div class="t-row-title">Statický terminál <i class="info-tip" data-tip="Terminál připojený kabelem k Piano POS (Septim)">?</i></div>
+                  <div class="t-row-sub">Pro pultový prodej</div>
+                </div>
+                <div class="t-row-stepper">
+                  <button type="button" onclick="tChange('t-napojeny',-1)" class="kalk-stepper-btn">−</button>
+                  <span id="t-napojeny">0</span>
+                  <button type="button" onclick="tChange('t-napojeny',1)" class="kalk-stepper-btn">+</button>
+                </div>
+              </div>
+
+              <div class="t-row">
+                <span class="t-row-icon">🔋</span>
+                <div class="t-row-content">
+                  <div class="t-row-title">Mobilní terminál <i class="info-tip" data-tip="terminál bez napojení na pokladnu (nezávislý na POS)">?</i></div>
+                  <div class="t-row-sub">Bez napojení na POS</div>
+                </div>
+                <div class="t-row-stepper">
+                  <button type="button" onclick="tChange('t-nenapojeny',-1)" class="kalk-stepper-btn">−</button>
+                  <span id="t-nenapojeny">0</span>
+                  <button type="button" onclick="tChange('t-nenapojeny',1)" class="kalk-stepper-btn">+</button>
+                </div>
+              </div>
+
+              <div id="t-mobilni-row" class="t-row">
+                <span class="t-row-icon">📱</span>
+                <div class="t-row-content">
+                  <div class="t-row-title">Terminál včetně mobilního číšníka <i class="info-tip" data-tip="plně integrované mobilní zařízení s možností markování i plateb (pouze Septim POS)">?</i></div>
+                  <div class="t-row-sub">Markování + objednávky + platby</div>
+                </div>
+                <div class="t-row-stepper">
+                  <button type="button" onclick="tChange('t-mobilni',-1)" class="kalk-stepper-btn">−</button>
+                  <span id="t-mobilni">0</span>
+                  <button type="button" onclick="tChange('t-mobilni',1)" class="kalk-stepper-btn">+</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Příslušenství -->
+          <div class="kalk-field">
+            <label>Příslušenství <span class="kalk-label-note">(jednorázově)</span></label>
+            <div class="kalk-rows">
+
+              <div class="t-row">
+                <span class="t-row-icon">🛡️</span>
+                <div class="t-row-content">
+                  <div class="t-row-title">Náhradní obal</div>
+                  <div class="t-row-sub">90 Kč / ks</div>
+                </div>
+                <div class="t-row-stepper">
+                  <button type="button" onclick="tChange('t-obal',-1)" class="kalk-stepper-btn">−</button>
+                  <span id="t-obal">0</span>
+                  <button type="button" onclick="tChange('t-obal',1)" class="kalk-stepper-btn">+</button>
+                </div>
+              </div>
+
+              <div class="t-row">
+                <span class="t-row-icon">🔌</span>
+                <div class="t-row-content">
+                  <div class="t-row-title">Dobíjecí kolébka</div>
+                  <div class="t-row-sub">900 Kč / ks</div>
+                </div>
+                <div class="t-row-stepper">
+                  <button type="button" onclick="tChange('t-kolebka',-1)" class="kalk-stepper-btn">−</button>
+                  <span id="t-kolebka">0</span>
+                  <button type="button" onclick="tChange('t-kolebka',1)" class="kalk-stepper-btn">+</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Kombinace s Qerko -->
+          <div class="kalk-field">
+            <label class="kalk-check">
+              <input type="checkbox" id="t-qerko" onchange="calcTerminal()" />
+              <span>Kombinace s Qerko <span class="kalk-check-note">= 15 % sleva ACQ fee (1. rok)</span></span>
+            </label>
+          </div>
+
+          <!-- Fixace na 24 měsíců -->
+          <div class="kalk-field">
+            <label class="kalk-check">
+              <input type="checkbox" id="t-fixace" onchange="calcTerminal()" checked />
+              <span>Fixace na 24 měsíců <span class="kalk-check-note">= příprava a expedice zdarma</span></span>
+            </label>
+          </div>
+
+        </div>
+
+        <!-- Pravý sloupec: výsledky -->
+        <div class="kalk-result">
+          <div class="kalk-result-head">
+            <div class="kalk-result-title">Odhadované náklady</div>
+            <span class="tier-badge tier-badge-lg" id="t-tier-badge-result">TIER 5</span>
+          </div>
+
+          <!-- 1) Transakční poplatky -->
+          <div class="kalk-result-section-lbl">1) Transakční poplatky</div>
+          <div class="kalk-result-item">
+            <span class="kalk-result-lbl">Acquiring fee <i class="info-tip" data-tip="Poplatek z obratu — účtuje se z každé transakce kartou">?</i></span>
+            <span class="kalk-result-val"><span id="t-acq-orig" class="kalk-strike" hidden></span><span id="t-acq-kc">0,69</span><span id="t-acq-unit">&nbsp;%</span></span>
+          </div>
+          <div class="kalk-result-item">
+            <span class="kalk-result-lbl">Processing fee <i class="info-tip" data-tip="Fixní poplatek za zpracování každé transakce kartou">?</i></span>
+            <span class="kalk-result-val"><span id="t-fix-kc">0,80</span><span id="t-fix-unit">&nbsp;Kč</span></span>
+          </div>
+
+          <!-- 2) Měsíční pronájem -->
+          <div class="kalk-result-section-lbl kalk-mt">2) Měsíční pronájem</div>
+          <div class="kalk-result-item" id="t-row-zdarma" hidden>
+            <span class="kalk-result-lbl" id="t-zdarma-label">Terminály zdarma</span>
+            <span class="kalk-result-val kalk-green" id="t-zdarma-val">0 ks</span>
+          </div>
+          <div class="kalk-result-item" id="t-row-pronajem" hidden>
+            <span class="kalk-result-lbl" id="t-pronajem-label">Pronájem terminálu</span>
+            <span class="kalk-result-val" id="t-pronajem-val">0 Kč</span>
+          </div>
+
+          <div class="kalk-result-total">
+            <div class="kalk-result-total-lbl">Celkem / měsíc</div>
+            <div class="kalk-result-total-val" id="t-monthly-total">—</div>
+            <div id="t-fees-note" class="kalk-result-total-sub" hidden>+ Acquiring / Processing fees z transakcí</div>
+            <div class="kalk-result-total-sub" id="t-mininv-note" hidden></div>
+          </div>
+
+          <!-- 3) Jednorázové náklady -->
+          <div id="t-onetime-block" class="kalk-onetime" hidden>
+            <div class="kalk-result-section-lbl">3) Jednorázově k objednávce</div>
+            <div class="kalk-result-item" id="t-row-priprava" hidden>
+              <span class="kalk-result-lbl" id="t-priprava-label">Příprava a expedice</span>
+              <span class="kalk-result-val" id="t-priprava-val">0 Kč</span>
+            </div>
+            <div class="kalk-result-item" id="t-row-obal" hidden>
+              <span class="kalk-result-lbl" id="t-obal-label">Náhradní obal</span>
+              <span class="kalk-result-val" id="t-obal-val">0 Kč</span>
+            </div>
+            <div class="kalk-result-item" id="t-row-kolebka" hidden>
+              <span class="kalk-result-lbl" id="t-kolebka-label">Dobíjecí kolébka</span>
+              <span class="kalk-result-val" id="t-kolebka-val">0 Kč</span>
+            </div>
+            <div class="kalk-onetime-total-row">
+              <span class="kalk-onetime-total-lbl">Jednorázově celkem</span>
+              <span class="kalk-onetime-total-val" id="t-onetime-total">0 Kč</span>
+            </div>
+          </div>
+
+          <div class="kalk-result-note">Ceny jsou uvedeny bez DPH.</div>
+        </div>
+      </div>
+
+      <div class="kalk-proof">
+        <div class="kalk-proof-item">✓ Peníze vyplaceny <strong>každý pracovní den</strong></div>
+        <div class="kalk-proof-item">✓ <strong>Česká podpora 24/7</strong></div>
+        <div class="kalk-proof-item">✓ Podpora <strong>stravenkových karet</strong></div>
+      </div>
+
+      <div class="kalk-terms">
+        <div class="kalk-terms-title">Stručné obchodní podmínky</div>
+        <ul class="kalk-terms-list">
+          <li><strong>Acquiring a Processing fee:</strong> Poplatky jsou účtovány z každé transakce.</li>
+          <li><strong>Vypořádání platby:</strong> Settlement probíhá v režimu D+2.</li>
+          <li><strong>Stravenkové karty:</strong> Pro stravenkové karty je aplikován specifický ceník.</li>
+          <li><strong>Fixace na 24 měsíců:</strong> Při fixaci je příprava a expedice zařízení ZDARMA (výchozí nastavení).</li>
+          <li><strong>Hardware:</strong> Součástí každého terminálu (zdarma i v placeném pronájmu) je SIM karta a 1× Obal.</li>
+          <li><strong>Příslušenství:</strong> Dobíjecí kolébka a případné náhradní obaly jsou vždy zpoplatněny.</li>
+          <li><strong>Sleva ACQ:</strong> Při současném zakoupení nebo využívání systému Qerko je poskytnuta sleva 15 % na Acquiring fee (na 1. rok).</li>
+          <li><strong>Pronájem:</strong> Terminály nad maximální počet kusů zdarma podléhají standardnímu měsíčnímu pronájmu (380 Kč / ks).</li>
+          <li><strong>DPH:</strong> Všechny ceny v kalkulačce jsou uvedeny bez DPH.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style is:global>
+  /* Pojistka: atribut [hidden] musí přebít i display:flex z tříd níže */
+  [hidden] { display: none !important; }
+
+  /* ░░░ Password gate ░░░ */
+  .kalk-gate {
+    position: fixed; inset: 0; z-index: 9999;
+    display: flex; align-items: center; justify-content: center;
+    padding: var(--space-5);
+    background: var(--color-bg-warm);
+  }
+  .kalk-gate__box {
+    width: 100%; max-width: 420px;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    padding: var(--space-7) var(--space-6);
+    text-align: center;
+  }
+  .kalk-gate__eyebrow {
+    font-size: var(--font-size-caption); font-weight: var(--font-weight-bold);
+    text-transform: uppercase; letter-spacing: var(--letter-spacing-wide);
+    color: var(--color-text-accent); margin-bottom: var(--space-2);
+  }
+  .kalk-gate__title { font: var(--text-h3); margin-bottom: var(--space-2); }
+  .kalk-gate__title em { font-family: var(--font-serif); font-style: normal; color: var(--color-text-accent); }
+  .kalk-gate__sub { font-size: var(--font-size-small); color: var(--color-text-muted); margin-bottom: var(--space-5); }
+  .kalk-gate__input {
+    width: 100%; padding: 12px 14px;
+    font-family: var(--font-sans); font-size: var(--font-size-body);
+    color: var(--color-text); background: var(--color-bg);
+    border: 1px solid var(--color-border); border-radius: var(--radius-md);
+    transition: var(--transition);
+  }
+  .kalk-gate__input:focus { outline: none; border-color: var(--color-primary); box-shadow: var(--shadow-focus); }
+  .kalk-gate__error { font-size: var(--font-size-small); color: var(--color-error); margin-top: var(--space-3); }
+  .kalk-gate__btn {
+    width: 100%; margin-top: var(--space-4);
+    background: var(--color-primary); color: var(--color-text-on-dark);
+    padding: 14px 28px; font-family: var(--font-sans);
+    font-weight: var(--font-weight-bold); font-size: var(--font-size-body);
+    cursor: pointer; border: none; border-radius: var(--btn-radius);
+    clip-path: var(--btn-clip); transition: background var(--duration-base) var(--easing);
+  }
+  .kalk-gate__btn:hover { background: var(--color-primary-hover); }
+
+  /* ░░░ Kalkulačka ░░░ */
+  .kalk {
+    background: var(--color-bg);
+    padding: var(--space-8) var(--container-pad) var(--space-7);
+  }
+  .kalk-inner { max-width: 820px; margin: 0 auto; }
+  .kalk-eyebrow {
+    font-size: var(--font-size-caption); font-weight: var(--font-weight-bold);
+    text-transform: uppercase; letter-spacing: var(--letter-spacing-wide);
+    color: var(--color-text-accent); margin-bottom: var(--space-3);
+  }
+  .kalk h2 { font: var(--text-h2); color: var(--color-text); margin-bottom: var(--space-2); }
+  .kalk h2 em { font-family: var(--font-serif); font-style: normal; color: var(--color-text-accent); }
+  .kalk-sub { font-size: var(--font-size-body); color: var(--color-text-muted); margin-bottom: var(--space-7); }
+
+  .kalk-body { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-7); align-items: start; }
+  .kalk-inputs { display: flex; flex-direction: column; gap: var(--space-4); }
+  .kalk-field { display: flex; flex-direction: column; gap: var(--space-2); }
+  .kalk-field > label {
+    font-size: var(--font-size-caption); font-weight: var(--font-weight-bold);
+    text-transform: uppercase; letter-spacing: var(--letter-spacing-wide); color: var(--color-text);
+  }
+  .kalk-label-note { font-size: 11px; font-weight: var(--font-weight-regular); color: var(--color-text-muted); text-transform: none; letter-spacing: 0; }
+  .kalk-row-between { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+  .kalk-row-center { align-items: center; }
+  .kalk-obrat-val { font-size: 18px; font-weight: var(--font-weight-bold); color: var(--color-text); }
+  .kalk-rows { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
+
+  /* Slider */
+  .kalk-slider { width: 100%; accent-color: var(--color-primary); height: 5px; cursor: pointer; margin-top: var(--space-2); }
+  .kalk-slider-scale { display: flex; justify-content: space-between; font-size: 11px; color: var(--color-text-muted); margin-top: 5px; }
+
+  /* Free badge */
+  .kalk-free-badge {
+    font-size: var(--font-size-caption); font-weight: var(--font-weight-bold);
+    color: var(--color-success); background: #DFF3E1; border: 1px solid #BFE3C2;
+    padding: 4px 12px; border-radius: var(--radius-full); white-space: nowrap;
+  }
+
+  /* Info tooltip — ikona */
+  .info-tip {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 16px; height: 16px; border-radius: 50%;
+    background: var(--color-border); color: var(--color-text-muted);
+    font-size: 10px; font-weight: var(--font-weight-bold); font-style: normal;
+    cursor: pointer; flex-shrink: 0; vertical-align: middle; margin-left: 5px;
+    -webkit-tap-highlight-color: transparent;
+  }
+  /* Info tooltip — popover (sdílený element připojený k body) */
+  .info-tooltip {
+    position: absolute; top: 0; left: 0;
+    background: var(--color-neutral-900); color: var(--color-text-on-dark);
+    font-size: 13px; font-weight: var(--font-weight-regular);
+    line-height: 1.5; text-align: left;
+    padding: 10px 14px; border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg); z-index: 10000;
+    opacity: 0; pointer-events: none; transition: opacity .15s; max-width: 280px;
+  }
+  .info-tooltip.is-visible { opacity: 1; }
+
+  /* Select */
+  .kalk-select {
+    width: 100%; padding: 12px 38px 12px 14px;
+    font-family: var(--font-sans); font-size: var(--font-size-body); font-weight: var(--font-weight-semibold);
+    color: var(--color-text); background: var(--color-bg);
+    border: 1px solid var(--color-border); border-radius: var(--radius-md);
+    cursor: pointer; appearance: none; -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3e%3cpath fill='%23262626' d='M6 8L0 0h12z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat; background-position: right 14px center;
+    transition: border-color .15s;
+  }
+  .kalk-select:hover, .kalk-select:focus { border-color: var(--color-primary); outline: none; }
+
+  /* Checkbox řádky */
+  .kalk-check { display: flex; align-items: center; gap: 10px; cursor: pointer; font-weight: var(--font-weight-regular) !important; text-transform: none !important; letter-spacing: 0 !important; font-size: var(--font-size-small) !important; }
+  .kalk-check input { width: 18px; height: 18px; flex-shrink: 0; accent-color: var(--color-primary); }
+  .kalk-check-note { font-size: 10px; font-weight: var(--font-weight-bold); text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-text-muted); }
+
+  /* TIER badge */
+  .tier-badge {
+    display: inline-flex; align-items: center;
+    font-size: 11px; font-weight: var(--font-weight-bold);
+    text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--color-text-on-dark); background: var(--color-primary);
+    padding: 4px 10px; border-radius: var(--radius-full); white-space: nowrap; line-height: 1;
+  }
+  .tier-badge-lg { font-size: var(--font-size-caption); padding: 6px 14px; }
+
+  /* Terminál / accessory row */
+  .t-row {
+    display: flex; align-items: center; gap: 14px; padding: 12px 14px;
+    border: 1px solid var(--color-border); background: var(--color-bg-warm); flex-wrap: nowrap;
+    border-radius: var(--radius-md);
+  }
+  .t-row-icon { font-size: 20px; flex-shrink: 0; width: 24px; text-align: center; }
+  .t-row-content { flex: 1; min-width: 0; }
+  .t-row-title { font-size: 13px; font-weight: var(--font-weight-bold); color: var(--color-text); }
+  .t-row-sub { font-size: 11px; color: var(--color-text-muted); }
+  .t-row-stepper { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+  .t-row-stepper > span { font-size: 18px; font-weight: var(--font-weight-bold); color: var(--color-primary); min-width: 20px; text-align: center; }
+
+  /* Stepper */
+  .kalk-stepper-btn {
+    width: 32px; height: 32px; border-radius: 50%;
+    border: 1.5px solid var(--color-border); background: var(--color-bg);
+    color: var(--color-text); font-size: 18px; font-weight: var(--font-weight-bold); line-height: 1;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: border-color .15s, background .15s;
+  }
+  .kalk-stepper-btn:hover { border-color: var(--color-primary); background: var(--color-bg-warm); }
+
+  /* Result panel */
+  .kalk-result {
+    background: var(--color-bg); border-radius: var(--radius-md);
+    border: 1px solid var(--color-border); padding: var(--space-6); position: sticky; top: 100px;
+  }
+  .kalk-result-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: var(--space-5); }
+  .kalk-result-title { font-size: 11px; font-weight: var(--font-weight-bold); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide); color: var(--color-text-muted); }
+  .kalk-result-section-lbl { font-size: 11px; font-weight: var(--font-weight-bold); text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-accent); margin-bottom: 6px; padding-bottom: 4px; }
+  .kalk-mt { margin-top: 18px; }
+  .kalk-result-item { display: flex; justify-content: space-between; align-items: baseline; padding: 10px 0; border-bottom: 1px solid var(--color-border); gap: 12px; }
+  .kalk-result-lbl { font-size: 13px; color: var(--color-text-muted); line-height: 1.4; }
+  .kalk-result-val { font-size: 16px; font-weight: var(--font-weight-bold); color: var(--color-text); white-space: nowrap; }
+  .kalk-strike { display: none; text-decoration: line-through; color: var(--color-text-muted); margin-right: 5px; }
+  .kalk-green { color: var(--color-success); }
+  .kalk-result-total { margin-top: var(--space-4); padding: var(--space-4); background: var(--color-bg-warm); border-radius: var(--radius-md); text-align: center; }
+  .kalk-result-total-lbl { font-size: 11px; font-weight: var(--font-weight-bold); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide); color: var(--color-text-muted); margin-bottom: 6px; }
+  .kalk-result-total-val { font-size: 28px; font-weight: var(--font-weight-bold); color: var(--color-primary); letter-spacing: -0.02em; }
+  .kalk-result-total-sub { font-size: 11px; color: var(--color-text-muted); margin-top: 6px; }
+  .kalk-onetime { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--color-border); }
+  .kalk-onetime-total-row { display: flex; justify-content: space-between; align-items: baseline; padding-top: 10px; margin-top: 4px; }
+  .kalk-onetime-total-lbl { font-size: 13px; font-weight: var(--font-weight-bold); color: var(--color-text); }
+  .kalk-onetime-total-val { font-size: 16px; font-weight: var(--font-weight-bold); color: var(--color-primary); }
+  .kalk-result-note { font-size: 11px; color: var(--color-text-muted); margin-top: 14px; line-height: 1.5; text-align: center; }
+
+  /* Proof strip */
+  .kalk-proof { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: var(--space-7); padding: 16px 20px; background: var(--color-bg-warm); border-radius: var(--radius-md); border: 1px solid var(--color-border); }
+  .kalk-proof-item { display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: var(--font-weight-bold); color: var(--color-primary); white-space: nowrap; }
+
+  /* Terms banner */
+  .kalk-terms { margin-top: var(--space-5); padding: var(--space-5) var(--space-6); background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); border-left: 4px solid var(--color-primary); }
+  .kalk-terms-title { display: flex; align-items: center; gap: 10px; font-size: 11px; font-weight: var(--font-weight-bold); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide); color: var(--color-text-accent); margin-bottom: 14px; }
+  .kalk-terms-title::before { content: 'i'; display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; border-radius: 50%; background: var(--color-primary); color: var(--color-text-on-dark); font-family: var(--font-serif); font-style: italic; font-size: 12px; }
+  .kalk-terms-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 28px; list-style: none; padding: 0; margin: 0; }
+  .kalk-terms-list li { position: relative; padding-left: 18px; font-size: 13px; line-height: 1.55; color: var(--color-text-muted); }
+  .kalk-terms-list li::before { content: ''; position: absolute; left: 0; top: 9px; width: 5px; height: 5px; background: var(--color-primary); border-radius: 50%; }
+  .kalk-terms-list li strong { color: var(--color-text); font-weight: var(--font-weight-bold); }
+
+  /* Responsive */
+  @media (max-width: 720px) {
+    .kalk-body { grid-template-columns: 1fr; gap: var(--space-5); }
+    .kalk-result { position: static; }
+    .kalk-terms-list { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 480px) {
+    .kalk { padding: var(--space-6) 16px; }
+    .t-row { flex-wrap: wrap; row-gap: 10px; }
+    .t-row-content { flex: 1 1 calc(100% - 38px); }
+    .t-row-stepper { margin-left: auto; }
+    .info-tooltip { font-size: 14px; padding: 12px 14px; }
+  }
+</style>
+
+<script is:inline>
+  /* ░░░ Password gate ░░░
+     Změna hesla = uprav konstantu KALK_HESLO níže.
+     POZOR: klientská ochrana, heslo je čitelné ve zdrojovém kódu stránky. */
+  const KALK_HESLO = 'piano2026';
+  const KALK_SS_KEY = 'kalk-terminal-unlocked';
+
+  (function () {
+    const gate = document.getElementById('kalk-gate');
+    const calc = document.getElementById('terminal-calc');
+    const form = document.getElementById('kalk-gate-form');
+    const input = document.getElementById('kalk-gate-input');
+    const error = document.getElementById('kalk-gate-error');
+
+    function unlock() {
+      gate.hidden = true;
+      calc.hidden = false;
+      if (typeof calcTerminal === 'function') calcTerminal();
+    }
+
+    if (sessionStorage.getItem(KALK_SS_KEY) === '1') {
+      unlock();
+    } else {
+      gate.hidden = false;
+      input.focus();
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (input.value === KALK_HESLO) {
+        try { sessionStorage.setItem(KALK_SS_KEY, '1'); } catch (_) {}
+        error.hidden = true;
+        unlock();
+      } else {
+        error.hidden = false;
+        input.value = '';
+        input.focus();
+      }
+    });
+  })();
+
+  /* ░░░ Výpočetní logika kalkulačky ░░░ */
+  const T_TIERS = [
+    { name: 'TIER 6', maxOb: 350000,   acq: 0.89, fix: 1.00, freeT: 0 },
+    { name: 'TIER 5', maxOb: 700000,   acq: 0.69, fix: 0.80, freeT: 0 },
+    { name: 'TIER 4', maxOb: 1300000,  acq: 0.59, fix: 0.80, freeT: 1 },
+    { name: 'TIER 3', maxOb: 2000000,  acq: 0.49, fix: 0.70, freeT: 2 },
+    { name: 'TIER 2', maxOb: 5000000,  acq: 0.39, fix: 0.60, freeT: 3 },
+    { name: 'TIER 1', maxOb: Infinity, acq: 0.29, fix: 0.50, freeT: 4 },
+  ];
+
+  const OBRAT_STOPS = [
+    { p: 0,    v: 0 },
+    { p: 15,   v: 350000 },
+    { p: 30,   v: 700000 },
+    { p: 45,   v: 1300000 },
+    { p: 60,   v: 2000000 },
+    { p: 75,   v: 5000000 },
+    { p: 95,   v: 10000000 },
+    { p: 100,  v: 11000000 },
+  ];
+  function sliderToObrat(p) {
+    for (let i = 0; i < OBRAT_STOPS.length - 1; i++) {
+      const a = OBRAT_STOPS[i], b = OBRAT_STOPS[i + 1];
+      if (p >= a.p && p <= b.p) {
+        const t = (p - a.p) / (b.p - a.p);
+        const raw = a.v + t * (b.v - a.v);
+        return Math.round(raw / 50000) * 50000;
+      }
+    }
+    return 0;
+  }
+
+  function fmtKc(n) {
+    return Math.round(n).toLocaleString('cs-CZ') + ' Kč';
+  }
+
+  function tChange(id, delta) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const val = Math.max(0, (parseInt(el.textContent) || 0) + delta);
+    el.textContent = val;
+    calcTerminal();
+  }
+
+  function calcTerminal() {
+    const slider = document.getElementById('t-obrat-slider');
+    if (!slider) return;
+    const obrat = sliderToObrat(parseFloat(slider.value) || 0);
+    const fmt2  = n => n.toLocaleString('cs-CZ', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+    const tier = T_TIERS.find(t => obrat <= t.maxOb) || T_TIERS[T_TIERS.length - 1];
+    const isIndividual = obrat > 10000000;
+
+    document.getElementById('t-obrat-val').textContent =
+      isIndividual ? 'dle dohody' : Math.round(obrat).toLocaleString('cs-CZ') + ' Kč';
+
+    const tierBadge1 = document.getElementById('t-tier-badge');
+    const tierBadge2 = document.getElementById('t-tier-badge-result');
+    if (tierBadge1) tierBadge1.textContent = tier.name;
+    if (tierBadge2) tierBadge2.textContent = tier.name;
+
+    const qerkoChecked = document.getElementById('t-qerko')?.checked;
+    const ceil2  = n => Math.ceil(n * 100) / 100;
+    const acqRate = isIndividual ? null : (qerkoChecked ? ceil2(tier.acq * 0.85) : tier.acq);
+
+    document.getElementById('t-acq-unit').style.display = isIndividual ? 'none' : '';
+    document.getElementById('t-fix-unit').style.display = isIndividual ? 'none' : '';
+    document.getElementById('t-acq-kc').textContent = isIndividual ? 'dle dohody' : fmt2(acqRate);
+    document.getElementById('t-fix-kc').textContent = isIndividual ? 'dle dohody' : fmt2(tier.fix);
+
+    const origEl = document.getElementById('t-acq-orig');
+    if (!isIndividual && qerkoChecked) {
+      origEl.style.display = '';
+      origEl.textContent = fmt2(tier.acq);
+    } else {
+      origEl.style.display = 'none';
+    }
+
+    const posType = document.getElementById('t-pos')?.value || 'septim';
+    const napojenyRow = document.getElementById('t-napojeny-row');
+    const mobilniRow  = document.getElementById('t-mobilni-row');
+    if (posType === 'ostatni') {
+      if (napojenyRow) napojenyRow.style.display = 'none';
+      if (mobilniRow)  mobilniRow.style.display  = 'none';
+      document.getElementById('t-napojeny').textContent = '0';
+      document.getElementById('t-mobilni').textContent  = '0';
+    } else {
+      if (napojenyRow) napojenyRow.style.display = '';
+      if (mobilniRow)  mobilniRow.style.display  = '';
+    }
+
+    const nNapojeny   = parseInt(document.getElementById('t-napojeny')?.textContent)  || 0;
+    const nNenapojeny = parseInt(document.getElementById('t-nenapojeny')?.textContent) || 0;
+    const nMobilni    = parseInt(document.getElementById('t-mobilni')?.textContent)    || 0;
+    const totalT = nNapojeny + nNenapojeny + nMobilni;
+
+    const freeT    = isIndividual ? 0 : Math.min(tier.freeT, totalT);
+    const extraT   = isIndividual ? totalT : Math.max(0, totalT - tier.freeT);
+    const rentCost = extraT * 380;
+
+    const freeBadge = document.getElementById('t-free-badge');
+    if (freeBadge) {
+      if (isIndividual) {
+        freeBadge.hidden = false;
+        freeBadge.textContent = 'Zdarma: dle dohody';
+      } else if (tier.freeT > 0) {
+        freeBadge.hidden = false;
+        freeBadge.textContent = 'Zdarma: ' + tier.freeT + ' ks';
+      } else {
+        freeBadge.hidden = true;
+      }
+    }
+
+    const rowZdarma = document.getElementById('t-row-zdarma');
+    if (!isIndividual && totalT > 0 && freeT > 0) {
+      rowZdarma.hidden = false;
+      document.getElementById('t-zdarma-label').textContent = 'Terminály zdarma (' + freeT + ' z ' + totalT + ' ks)';
+      document.getElementById('t-zdarma-val').textContent = freeT + ' ks';
+    } else {
+      rowZdarma.hidden = true;
+    }
+
+    const rowPronajem = document.getElementById('t-row-pronajem');
+    if (isIndividual && totalT > 0) {
+      rowPronajem.hidden = false;
+      document.getElementById('t-pronajem-label').textContent = 'Pronájem terminálu — ' + totalT + ' ks';
+      document.getElementById('t-pronajem-val').textContent = 'dle dohody';
+    } else if (extraT > 0) {
+      rowPronajem.hidden = false;
+      document.getElementById('t-pronajem-label').textContent = 'Pronájem terminálu — ' + extraT + ' ks × 380 Kč';
+      document.getElementById('t-pronajem-val').textContent = fmtKc(rentCost) + ' / měsíc';
+    } else {
+      rowPronajem.hidden = true;
+    }
+
+    document.getElementById('t-monthly-total').textContent =
+      isIndividual ? 'dle dohody'
+      : (obrat > 0 || totalT > 0) ? fmtKc(rentCost) + ' / měsíc' : '—';
+
+    const feesNote = document.getElementById('t-fees-note');
+    if (feesNote) feesNote.hidden = !(isIndividual || obrat > 0 || totalT > 0);
+
+    const OBAL_PRICE = 90;
+    const KOLEBKA_PRICE = 900;
+    const PRIPRAVA_PRICE = 500;
+    const nObal    = parseInt(document.getElementById('t-obal')?.textContent)    || 0;
+    const nKolebka = parseInt(document.getElementById('t-kolebka')?.textContent) || 0;
+    const obalCost    = nObal * OBAL_PRICE;
+    const kolebkaCost = nKolebka * KOLEBKA_PRICE;
+
+    const fixaceChecked = document.getElementById('t-fixace')?.checked;
+    const pripravaCost = (totalT > 0 && !fixaceChecked) ? totalT * PRIPRAVA_PRICE : 0;
+    const rowPriprava  = document.getElementById('t-row-priprava');
+    if (totalT > 0) {
+      rowPriprava.hidden = false;
+      if (fixaceChecked) {
+        document.getElementById('t-priprava-label').innerHTML =
+          'Příprava a expedice — ' + totalT + ' ks';
+        document.getElementById('t-priprava-val').innerHTML =
+          '<span style="text-decoration:line-through;color:var(--color-text-muted);margin-right:6px;">' +
+          fmtKc(totalT * PRIPRAVA_PRICE) + '</span><span style="color:var(--color-success);">zdarma</span>';
+      } else {
+        document.getElementById('t-priprava-label').textContent =
+          'Příprava a expedice — ' + totalT + ' ks × ' + PRIPRAVA_PRICE + ' Kč';
+        document.getElementById('t-priprava-val').textContent = fmtKc(pripravaCost);
+        document.getElementById('t-priprava-val').style.color = '';
+      }
+    } else {
+      rowPriprava.hidden = true;
+    }
+
+    const onetimeTotal = obalCost + kolebkaCost + pripravaCost;
+
+    const onetimeBlock = document.getElementById('t-onetime-block');
+    const rowObal      = document.getElementById('t-row-obal');
+    const rowKolebka   = document.getElementById('t-row-kolebka');
+
+    if (nObal > 0) {
+      rowObal.hidden = false;
+      document.getElementById('t-obal-label').textContent = 'Náhradní obal — ' + nObal + ' ks × ' + OBAL_PRICE + ' Kč';
+      document.getElementById('t-obal-val').textContent = fmtKc(obalCost);
+    } else {
+      rowObal.hidden = true;
+    }
+
+    if (nKolebka > 0) {
+      rowKolebka.hidden = false;
+      document.getElementById('t-kolebka-label').textContent = 'Dobíjecí kolébka — ' + nKolebka + ' ks × ' + KOLEBKA_PRICE + ' Kč';
+      document.getElementById('t-kolebka-val').textContent = fmtKc(kolebkaCost);
+    } else {
+      rowKolebka.hidden = true;
+    }
+
+    if (onetimeTotal > 0 || totalT > 0) {
+      onetimeBlock.hidden = false;
+      document.getElementById('t-onetime-total').textContent = fmtKc(onetimeTotal);
+    } else {
+      onetimeBlock.hidden = true;
+    }
+
+    const minInv = totalT * 380;
+    const mininvNote = document.getElementById('t-mininv-note');
+    if (!isIndividual && totalT > 0) {
+      mininvNote.hidden = false;
+      mininvNote.textContent = 'Min. fakturace: ' + fmtKc(minInv) + ' / měsíc';
+    } else {
+      mininvNote.hidden = true;
+    }
+  }
+
+  /* ░░░ Tooltip popover ░░░ */
+  (function () {
+    const tooltip = document.createElement('div');
+    tooltip.className = 'info-tooltip';
+    tooltip.setAttribute('role', 'tooltip');
+    document.body.appendChild(tooltip);
+
+    let activeTip = null;
+
+    function positionTooltip(tip) {
+      const rect = tip.getBoundingClientRect();
+      const scrollX = window.scrollX || window.pageXOffset;
+      const scrollY = window.scrollY || window.pageYOffset;
+      const vw = window.innerWidth;
+      const padding = 12;
+
+      tooltip.style.left = '0px';
+      tooltip.style.top = '0px';
+      tooltip.style.maxWidth = Math.min(280, vw - 2 * padding) + 'px';
+
+      const tw = tooltip.offsetWidth;
+      const th = tooltip.offsetHeight;
+
+      let left = rect.left + rect.width / 2 - tw / 2;
+      if (left < padding) left = padding;
+      if (left + tw > vw - padding) left = vw - padding - tw;
+
+      let top;
+      const spaceBelow = window.innerHeight - rect.bottom;
+      if (spaceBelow >= th + 12 || rect.top < th + 12) {
+        top = rect.bottom + 6;
+      } else {
+        top = rect.top - th - 6;
+      }
+
+      tooltip.style.left = (left + scrollX) + 'px';
+      tooltip.style.top  = (top + scrollY) + 'px';
+    }
+
+    function showTooltip(tip) {
+      tooltip.textContent = tip.dataset.tip || '';
+      tooltip.classList.add('is-visible');
+      positionTooltip(tip);
+      activeTip = tip;
+    }
+    function hideTooltip() {
+      tooltip.classList.remove('is-visible');
+      activeTip = null;
+    }
+
+    document.addEventListener('click', function (e) {
+      const tip = e.target.closest('.info-tip');
+      if (!tip) {
+        if (activeTip) hideTooltip();
+        return;
+      }
+      e.stopPropagation();
+      if (activeTip === tip) hideTooltip();
+      else showTooltip(tip);
+    });
+
+    if (window.matchMedia('(pointer: fine)').matches) {
+      document.addEventListener('mouseover', function (e) {
+        const tip = e.target.closest('.info-tip');
+        if (tip && tip !== activeTip) showTooltip(tip);
+      });
+      document.addEventListener('mouseout', function (e) {
+        const tip = e.target.closest('.info-tip');
+        if (tip && !e.relatedTarget?.closest?.('.info-tip')) {
+          hideTooltip();
+        }
+      });
+    }
+
+    window.addEventListener('scroll', function () { if (activeTip) positionTooltip(activeTip); }, true);
+    window.addEventListener('resize', function () { if (activeTip) positionTooltip(activeTip); });
+  })();
+</script>
