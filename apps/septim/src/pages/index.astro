@@ -20,6 +20,18 @@ import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import LogoWall from '../components/LogoWall.astro';
 
+const heroSlides = [
+  { eyebrow: 'Pokladní a provozní systém', title: 'Pravá ruka<br>každého manažera',
+    lead: 'Septim není jen pokladna. Řídí celý váš provoz — od naskladnění surovin přes výdej jídel až po finanční přehledy. Věří mu michelinské restaurace i kavárny za rohem.',
+    image: '/images/hero-septim.webp', imageAlt: 'My Septim — přehledy na tabletu, mobilu i pokladně' },
+  { eyebrow: 'Novinka', title: 'Septim.Air<br>rovnou v cloudu',
+    lead: 'Nejrychlejší způsob, jak začít se Septimem. Cloudová pokladna pro kavárny, bistra a bary — bez serveru, od 1 990 Kč měsíčně.',
+    image: '/images/produkt-septim-air.webp', imageAlt: 'Septim.Air — cloudová pokladna' },
+  { eyebrow: 'Pro hotely', title: 'Septim.Hotel<br>celý hotel v jednom',
+    lead: 'Propojení s hotelovým systémem Protel — veškerá útrata hosta na jeden účet, room service i konference z jednoho místa.',
+    image: '/images/produkt-septim-hotel.webp', imageAlt: 'Septim.Hotel — hotelový POS' },
+];
+
 const stats = [
   { num: '30 let', lbl: 'na trhu' },
   { num: '6 000+', lbl: 'provozů v ČR' },
@@ -96,19 +108,14 @@ const leadProofs = [
 
   <main>
 
-  <!-- HERO -->
-  <Hero eyebrow="Pokladní a provozní systém Septim" background="gradient"
-        lead="Septim není jen pokladna. Je to systém, který řídí celý váš provoz, od naskladnění surovin přes výdej jídel až po finanční přehledy. Využívají ho michelinské restaurace i kavárny za rohem."
-        usp={[{ text: '30 let na trhu', icon: 'lucide:calendar-check' }, { text: '6 000+ provozů v ČR', icon: 'lucide:store' }, { text: 'Česká podpora 24/7', icon: 'lucide:headset' }]}>
-    <Heading slot="title" as="h1" size="display" color="on-dark">Pokladní a provozní systém úspěšných restaurací</Heading>
+  <!-- HERO (carousel) -->
+  <Hero background="gradient"
+        slides={heroSlides}
+        usp={[{ text: 'Připraveno na EET 2.0', icon: 'lucide:badge-check' }, { text: '30 let na trhu', icon: 'lucide:calendar-check' }, { text: '6 000+ provozů', icon: 'lucide:store' }, { text: 'Podpora 24/7', icon: 'lucide:headset' }]}>
     <Fragment slot="actions">
       <Button href="#poptavka">Chci Septim</Button>
       <Button href="#rada" variant="secondary" onDark>Vyberte variantu</Button>
     </Fragment>
-    <figure slot="media" class="hero-figure">
-      <img src="/images/hero-septim.webp" alt="My Septim — manažerské přehledy na tabletu, mobilu i pokladně" width="720" height="400" />
-      <figcaption class="hero-badge"><Icon name="lucide:badge-check" size="sm" /> Připraveno na EET 2.0</figcaption>
-    </figure>
   </Hero>
 
   <!-- LOGA KLIENTŮ — hned pod hero -->
