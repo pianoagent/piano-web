@@ -34,6 +34,9 @@
     "preview:protel": "npm run preview -w @piano/app-protel",
     "dev:hugo": "npm run dev -w @piano/app-hugo",
     "build:hugo": "npm run build -w @piano/app-hugo",
-    "preview:hugo": "npm run preview -w @piano/app-hugo"
+    "preview:hugo": "npm run preview -w @piano/app-hugo",
+    "dev:eet2027": "npm run dev -w @piano/app-eet2027",
+    "build:eet2027": "npm run build -w @piano/app-eet2027",
+    "preview:eet2027": "npm run preview -w @piano/app-eet2027"
   }
 }

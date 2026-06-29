@@ -1,0 +1,68 @@
+---
+/**
+ * Base - layout webu EET 2027.
+ * Nacte vlastni neutralni tema + sdilenou SEO hlavicku.
+ * Schema je neutralni (WebSite + Organization "EET 2027"), bez vazby na jine brandy.
+ */
+import '../styles/theme.css';
+import BaseHead from '@piano/ui/layouts/BaseHead.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  type?: 'website' | 'article';
+  noindex?: boolean;
+  schema?: object;
+}
+
+const SITE_NAME = 'EET 2027';
+const SITE_URL = 'https://eet2027.cz';
+
+const {
+  title,
+  description = 'Prehledny pruvodce navratem elektronicke evidence trzeb od roku 2027. Co se meni, koho se to tyka a jak se vcas pripravit.',
+  image = '/og-default.jpg',
+  type = 'website',
+  noindex = false,
+  schema,
+} = Astro.props;
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: SITE_NAME,
+  url: SITE_URL,
+  inLanguage: 'cs-CZ',
+  description: 'Informacni web k navratu elektronicke evidence trzeb (EET) od roku 2027.',
+};
+
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: SITE_NAME,
+  url: SITE_URL,
+  logo: `${SITE_URL}/logo.svg`,
+};
+
+const schemas = [websiteSchema, organizationSchema, ...(schema ? [schema] : [])];
+---
+
+<!doctype html>
+<html lang="cs">
+  <head>
+    <BaseHead
+      title={title}
+      description={description}
+      image={image}
+      type={type}
+      noindex={noindex}
+      siteName={SITE_NAME}
+      siteUrl={SITE_URL}
+      schemas={schemas}
+    />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,36 @@
+---
+/**
+ * Ochrana osobnich udaju - zakladni neutralni text (odkazovano ze souhlasu v LeadFormu).
+ */
+import Base from '../layouts/Base.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+---
+
+<Base title="Ochrana osobních údajů" noindex={true}>
+  <SiteHeader />
+  <main>
+    <Section background="default" space="lg" container="narrow">
+      <Heading as="h1" size="h2">Ochrana osobních údajů</Heading>
+      <div class="doc">
+        <Text color="muted">
+          Osobní údaje, které nám předáte prostřednictvím kontaktního formuláře, zpracováváme výhradně za účelem vyřízení vaší poptávky, tedy abychom vás mohli kontaktovat, ověřit připravenost vaší pokladny na EET a domluvit další postup.
+        </Text>
+        <Text color="muted">
+          Zpracováváme jméno, e-mail, telefon a údaje o vašem podniku, které do formuláře vyplníte. Údaje uchováváme po dobu nezbytnou k vyřízení poptávky a následné komunikaci. Nepředáváme je třetím stranám pro marketingové účely.
+        </Text>
+        <Text color="muted">
+          Máte právo na přístup ke svým údajům, na jejich opravu nebo výmaz a právo vznést námitku proti zpracování. S žádostí se na nás obraťte na adrese info@eet2027.cz.
+        </Text>
+      </div>
+    </Section>
+  </main>
+  <SiteFooter />
+</Base>
+
+<style>
+  .doc { margin-top: var(--space-5); display: flex; flex-direction: column; gap: var(--space-4); }
+</style>
