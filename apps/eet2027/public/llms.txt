@@ -1,0 +1,12 @@
+# EET 2027
+
+> Přehledný informační web k návratu elektronické evidence tržeb (EET) v České republice od 1. ledna 2027. Vysvětluje, co se mění, koho se to týká a jak se včas připravit, a nabízí nezávaznou konzultaci a ověření připravenosti pokladny.
+
+## O čem web je
+- [Co se mění](https://eet2027.cz/#co-se-meni): nová pravidla EET 2.0 v kostce, účtenka jen na vyžádání, evidence osobních plateb, softwarový update místo nového vybavení.
+- [Koho se to týká](https://eet2027.cz/#koho): restaurace, kavárny, bary, hotely, stánky a street food, výjimka pro OSVČ v prvním pásmu paušálního režimu do 1 milionu Kč ročně.
+- [Jak se připravit](https://eet2027.cz/#priprava): čtyři kroky od ověření pokladny po zaškolení obsluhy.
+- [Časté dotazy](https://eet2027.cz/#faq): termíny, sankce, spropitné a rozdíly oproti prvnímu EET.
+
+## Kontakt
+- [Nezávazná konzultace](https://eet2027.cz/#konzultace): ověření připravenosti pokladny zdarma a bez závazku.

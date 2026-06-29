@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://eet2027.cz/sitemap-index.xml

@@ -1,0 +1,38 @@
+---
+/**
+ * Dekovaci stranka po odeslani formulare (successUrl LeadFormu).
+ */
+import Base from '../layouts/Base.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+---
+
+<Base title="Děkujeme za zájem" noindex={true}>
+  <SiteHeader />
+  <main>
+    <Section background="default" space="lg" container="narrow">
+      <div class="ty">
+        <span class="ty__ico"><Icon name="lucide:check-circle-2" size="lg" /></span>
+        <Heading as="h1" size="h2" align="center">Děkujeme, máme to</Heading>
+        <Text size="lead" color="muted" align="center">
+          Vaši poptávku jsme přijali. Ozveme se vám co nejdříve, ověříme připravenost vaší pokladny a probereme další kroky.
+        </Text>
+        <div class="ty__actions">
+          <Button href="/">Zpět na úvod</Button>
+        </div>
+      </div>
+    </Section>
+  </main>
+  <SiteFooter />
+</Base>
+
+<style>
+  .ty { text-align: center; display: flex; flex-direction: column; align-items: center; gap: var(--space-4); }
+  .ty__ico { display: inline-flex; color: var(--color-success); }
+  .ty__actions { margin-top: var(--space-4); }
+</style>
