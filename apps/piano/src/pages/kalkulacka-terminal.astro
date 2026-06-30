@@ -185,7 +185,7 @@ import Base from '../layouts/Base.astro';
           <div class="kalk-result-section-lbl">1) Transakční poplatky</div>
           <div class="kalk-result-item">
             <span class="kalk-result-lbl">Acquiring fee <i class="info-tip" data-tip="Poplatek z obratu — účtuje se z každé transakce kartou">?</i></span>
-            <span class="kalk-result-val"><span id="t-acq-orig" class="kalk-strike" hidden></span><span id="t-acq-kc">0,69</span><span id="t-acq-unit">&nbsp;%</span></span>
+            <span class="kalk-result-val"><span id="t-acq-orig" class="kalk-strike" hidden></span><span id="t-acq-kc">0,59</span><span id="t-acq-unit">&nbsp;%</span></span>
           </div>
           <div class="kalk-result-item">
             <span class="kalk-result-lbl">Processing fee <i class="info-tip" data-tip="Fixní poplatek za zpracování každé transakce kartou">?</i></span>
@@ -512,12 +512,12 @@ import Base from '../layouts/Base.astro';
 
   /* ░░░ Výpočetní logika kalkulačky ░░░ */
   const T_TIERS = [
-    { name: 'TIER 6', maxOb: 350000,   acq: 0.89, fix: 1.00, freeT: 0 },
-    { name: 'TIER 5', maxOb: 700000,   acq: 0.69, fix: 0.80, freeT: 0 },
-    { name: 'TIER 4', maxOb: 1300000,  acq: 0.59, fix: 0.80, freeT: 1 },
-    { name: 'TIER 3', maxOb: 2000000,  acq: 0.49, fix: 0.70, freeT: 2 },
-    { name: 'TIER 2', maxOb: 5000000,  acq: 0.39, fix: 0.60, freeT: 3 },
-    { name: 'TIER 1', maxOb: Infinity, acq: 0.29, fix: 0.50, freeT: 4 },
+    { name: 'TIER 6', maxOb: 350000,   acq: 0.69, fix: 0.80, freeT: 0 },
+    { name: 'TIER 5', maxOb: 700000,   acq: 0.59, fix: 0.80, freeT: 1 },
+    { name: 'TIER 4', maxOb: 1300000,  acq: 0.49, fix: 0.70, freeT: 2 },
+    { name: 'TIER 3', maxOb: 2000000,  acq: 0.39, fix: 0.60, freeT: 3 },
+    { name: 'TIER 2', maxOb: 5000000,  acq: 0.29, fix: 0.50, freeT: 4 },
+    { name: 'TIER 1', maxOb: Infinity, acq: 0.29, fix: 0.00, freeT: 4 },
   ];
 
   const OBRAT_STOPS = [
