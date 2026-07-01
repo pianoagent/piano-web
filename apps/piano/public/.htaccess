@@ -1,0 +1,2 @@
+# Vlastní chybové stránky
+ErrorDocument 404 /404.html

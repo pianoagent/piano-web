@@ -1,0 +1,64 @@
+---
+/**
+ * 404 — stránka nenalezena.
+ * Statická build vygeneruje dist/404.html; Apache ji servíruje přes ErrorDocument
+ * (viz public/.htaccess).
+ */
+import Base from '../layouts/Base.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+---
+
+<Base title="Stránka nenalezena | Piano"
+      description="Tuto stránku se nepodařilo najít. Vraťte se na hlavní menu Piana."
+      noindex={true}
+      contactBand={false}>
+
+  <section class="nf">
+    <div class="nf__inner">
+      <img class="nf__img" src="/images/404-piano.webp"
+           alt="Rozbité piano" width="885" height="851" loading="eager" />
+
+      <Heading as="h1" size="display" class="nf__title">Tady něco <em>nehraje</em></Heading>
+
+      <Text size="lead" color="muted" class="nf__text">
+        Tahle stránka si dala pauzu, ale naše nástroje pro pohostinství jsou v plném nasazení.
+        Pod jednou střechou pro vás máme vše, co potřebujete. Rozehrajeme to s vámi jinde?
+      </Text>
+
+      <div class="nf__actions">
+        <Button href="/">Zpět na hlavní menu</Button>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .nf {
+    display: grid;
+    place-items: center;
+    text-align: center;
+    padding: var(--space-12) var(--space-4) var(--space-14);
+    min-height: 60vh;
+  }
+  .nf__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 640px;
+  }
+  .nf__img {
+    width: auto;
+    height: auto;
+    max-width: 340px;
+    max-height: 320px;
+    margin-bottom: var(--space-6);
+  }
+  .nf__text { margin-top: var(--space-4); max-width: 560px; }
+  .nf__actions { margin-top: var(--space-7); }
+
+  @media (max-width: 560px) {
+    .nf__img { max-width: 240px; max-height: 240px; }
+  }
+</style>
