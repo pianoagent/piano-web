@@ -19,6 +19,13 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
+      # Diagnostika: veřejná IP runneru pro Webglobe (rozbitý IP filtr blokuje FTP).
+      # GitHub-hosted runnery mají dynamickou IP z Azure poolu — mění se běh od běhu.
+      - name: Veřejná IP runneru
+        run: |
+          echo "IPv4: $(curl -s --max-time 10 https://api.ipify.org || echo '?')"
+          echo "IPv6: $(curl -s --max-time 10 https://api64.ipify.org || echo '?')"
+
       - name: Checkout
         uses: actions/checkout@v4
 
