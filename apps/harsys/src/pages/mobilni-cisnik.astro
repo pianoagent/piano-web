@@ -1,0 +1,108 @@
+---
+/**
+ * ABX HARSYS — Mobilní číšník (AMC).
+ * Obsah z obsah/mobilni-cisnik-software-pro-restaurace-amc.md. Komponenty z @piano/ui.
+ */
+import Base from '../layouts/Base.astro';
+import Header from '@piano/ui/components/Header.astro';
+import Footer from '@piano/ui/components/Footer.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import { harsysNav, harsysCta } from '../config/nav';
+
+const benefits = [
+  { icon: 'lucide:timer', title: 'Šetří čas i peníze', text: 'Vyšší obrátkovost zejména ve špičkách. Ušetřený čas věnuje personál lepší péči o hosty.' },
+  { icon: 'lucide:credit-card', title: 'Platby kartou (NFC)', text: 'Zařízení Sunmi V3 s podporou NFC umožňuje přijímat platby kartou přímo u stolu.' },
+  { icon: 'lucide:hourglass', title: 'Hosté čekají méně', text: 'Přijetí objednávky i její zaplacení probíhá svižněji, zejména při platbě NFC.' },
+  { icon: 'lucide:graduation-cap', title: 'Snadné zaškolení', text: 'Intuitivní ovládání navržené s ohledem na ergonomii — obsluha ho zvládne během pár minut.' },
+];
+
+const features = [
+  { icon: 'lucide:printer', title: 'Vzkaz na tiskárnu', text: 'Odeslání vzkazu na tiskárnu na baru nebo do kuchyně.' },
+  { icon: 'lucide:ticket-percent', title: 'Slevy', text: 'Zákaznické slevy podle adresáře pokladního systému.' },
+  { icon: 'lucide:wifi-off', title: 'Offline menu', text: 'Offline režim pro sběr objednávek mimo dosah signálu.' },
+  { icon: 'lucide:credit-card', title: 'Platba kartou', text: 'Nově možnost platit kartou přímo v terminálu.' },
+  { icon: 'lucide:split', title: 'Manipulace s účtem', text: 'Přesuny, storna, dělení i sloučení účtů, náhled na položky.' },
+  { icon: 'lucide:receipt', title: 'Tisk na zařízení', text: 'Účtenku vytisknete na mobilní i stacionární tiskárně.' },
+  { icon: 'lucide:utensils', title: 'Denní menu', text: 'Jednoduše vyberete položku z denního menu.' },
+  { icon: 'lucide:file-text', title: 'Předúčet', text: 'Tisk předúčtu a podkladu pro dělení účtu.' },
+];
+
+const spec = [
+  ['Displej', '6,75" HD+ · 720 × 1600 px'],
+  ['Procesor', 'Qualcomm hexa-core'],
+  ['Paměť', '3 GB RAM · 32 GB ROM'],
+  ['Rozměry a váha', '238 × 82 × 17 mm · 419 g'],
+  ['Baterie', '3 100 mAh'],
+  ['NFC čtečka karet', 'Ano'],
+  ['Integrovaná tiskárna', 'Termo · šířka 58 mm · 80 mm/s'],
+];
+
+const leadProofs = [
+  { icon: 'lucide:smartphone', title: 'Android zařízení', text: 'Telefon, tablet i terminál Sunmi.' },
+  { icon: 'lucide:credit-card', title: 'NFC platby kartou', text: 'Přímo u stolu, bez běhání ke kase.' },
+  { icon: 'lucide:package', title: 'Hardware i příslušenství', text: 'Dodáme nakonfigurované na míru.' },
+];
+---
+
+<Base title="Mobilní číšník pro restaurace (AMC) | ABX HARSYS"
+      description="Mobilní číšník rozšiřuje pokladnu Harsys — objednávky i platby kartou (NFC) přímo od stolu. Na telefonu, tabletu nebo terminálu Sunmi V3 s tiskárnou.">
+  <Header brand="ABX HARSYS" logoSrc="/logos/abx_logo.svg" homeHref="/" nav={harsysNav} cta={harsysCta} />
+
+  <Hero eyebrow="Mobilní číšník (AMC)" background="gradient"
+        lead="Mobilní aplikace rozšiřující velkou pokladnu. Provozujete ji na terminálu s tiskárnou, na běžném telefonu nebo tabletu s Androidem — objednávka i platba probíhá přímo u stolu.">
+    <Heading slot="title" as="h1" size="display" color="on-dark">Mobilní číšník <span class="accent">usnadní práci</span></Heading>
+    <Fragment slot="actions">
+      <Button href="#poptavka">Chci vědět víc</Button>
+      <Button href="/funkce" variant="secondary" onDark>Funkce programu</Button>
+    </Fragment>
+  </Hero>
+
+  <USPGrid eyebrow="Proč mobilní číšník" title="Rychlejší servis, spokojenější hosté"
+           items={benefits} columns={4} minItemWidth="230px" background="default" space="lg" />
+
+  <!-- SUNMI V3 -->
+  <Section background="alt" space="lg">
+    <div class="split">
+      <figure class="split__media"><img src="/images/amc-sunmi.webp" alt="Terminál Sunmi V3 s NFC a integrovanou tiskárnou" loading="lazy" /></figure>
+      <div class="split__text">
+        <Text size="label" color="accent">Doporučené zařízení</Text>
+        <Heading as="h2" size="h2">Sunmi V3 <span class="accent">s NFC</span></Heading>
+        <Text size="lead" color="muted" balance>Osvědčený terminál, přednastavený a odladěný pro optimální chod mobilního číšníka. Integrovaná tiskárna i NFC čtečka platebních karet.</Text>
+        <dl class="spec">
+          {spec.map(([k, v]) => (<div class="spec__row"><dt>{k}</dt><dd>{v}</dd></div>))}
+        </dl>
+      </div>
+    </div>
+  </Section>
+
+  <USPGrid eyebrow="Užitečné funkce" title="Dokonalý pomocník k pokladně"
+           items={features} columns={4} minItemWidth="220px" background="default" space="lg" />
+
+  <LeadForm id="poptavka" variant="callback" background="primary"
+            title="Chcete se o mobilním číšníkovi dozvědět více?"
+            lead="Zanechte číslo a my se vám ozveme. Poradíme s výběrem zařízení i příslušenství."
+            proofs={leadProofs} successUrl="/dekujeme" />
+
+  <Footer />
+</Base>
+
+<style>
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-8); align-items: center; }
+  .split__text > * + * { margin-top: var(--space-4); }
+  .split__media { margin: 0; line-height: 0; }
+  .split__media img { width: 100%; height: auto; display: block; border-radius: var(--radius-lg); box-shadow: var(--shadow-md); }
+  @media (max-width: 880px) { .split { grid-template-columns: 1fr; gap: var(--space-6); } .split__media { order: -1; } }
+
+  .spec { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--color-border); border-radius: var(--radius-md); overflow: hidden; background: var(--color-bg); }
+  .spec__row { display: flex; justify-content: space-between; gap: var(--space-4); padding: var(--space-3) var(--space-4); border-bottom: 1px solid var(--color-border); }
+  .spec__row:last-child { border-bottom: none; }
+  .spec dt { color: var(--color-text-muted); font-size: var(--font-size-small); }
+  .spec dd { color: var(--color-text); font-weight: var(--font-weight-medium); font-size: var(--font-size-small); text-align: right; }
+</style>

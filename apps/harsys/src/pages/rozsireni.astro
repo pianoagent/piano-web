@@ -1,0 +1,130 @@
+---
+/**
+ * ABX HARSYS — Rozšíření a doplňkové moduly.
+ * Obsah z obsah/rozsireni-pokladni-system-pro-restaurace-harsys.md. Komponenty z @piano/ui.
+ */
+import Base from '../layouts/Base.astro';
+import Header from '@piano/ui/components/Header.astro';
+import Footer from '@piano/ui/components/Footer.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import { harsysNav, harsysCta } from '../config/nav';
+
+const modules = [
+  {
+    img: '/images/mod-mobilni-cisnik.webp', title: 'Mobilní číšník', href: '/mobilni-cisnik',
+    text: 'Chytré objednávání a placení přímo od stolu přes mobilní aplikaci. Na telefonu, tabletu s Androidem nebo terminálu s tiskárnou a NFC.',
+    points: ['Zakládání, přesuny i dělení účtů', 'Tisk bonů v kuchyni a na baru', 'Účtenky z terminálu i samostatné tiskárny'],
+  },
+  {
+    img: '/images/mod-viewer.webp', title: 'ABX Viewer', href: null,
+    text: 'Mobilní aplikace pro náhled do pokladního systému — „restaurace v mobilu". Uvidíte, co se v podniku děje, i jaké zboží dochází.',
+    points: ['Android i iOS, neomezený počet telefonů', 'Data dostupná i offline', 'Bez měsíčních poplatků'],
+  },
+  {
+    img: '/images/mod-rozvoz.webp', title: 'ABX Rozvoz', href: null,
+    text: 'Aplikace pro příjem objednávek po telefonu. Po přijetí hovoru se na pokladně zobrazí karta zákazníka nebo nabídka uložení nového.',
+    points: ['Objednávku vytvoříte mnohem rychleji', 'Android, neomezený počet zařízení', 'Bez měsíčních poplatků a provizí'],
+  },
+  {
+    img: '/images/ebony-monitor.webp', title: 'eBony — kitchen monitor', href: '/ebony-kitchen-monitor',
+    text: 'Elektronické bony na obrazovce v kuchyni doplní nebo nahradí papírové objednávky. Dokonalý přehled o tom, co se vydává.',
+    points: ['Objednávky ihned po namarkování', 'Změna pořadí, časy vyřízení', 'Režimy restaurace i fastfood'],
+  },
+  {
+    img: '/images/mod-vazena-inventura.webp', title: 'Vážená inventura', href: null,
+    text: 'Snadné vážení nápojů namísto pracného odměřování. Váží se při uzávěrce kasy a pomáhá snižovat ztráty.',
+    points: ['Rychlejší a přesnější inventura', 'Váží se při uzávěrce', 'Snižuje manka a ztráty'],
+  },
+  {
+    img: '/images/int-autset.webp', title: 'Automatické naskladňování (AUTSET)', href: '/integrace',
+    text: 'Dodací listy a faktury od dodavatelů se automaticky přenesou do Harsysu — naskladníte je na pár kliků.',
+    points: ['Konec přepisování dokladů', 'Makro, Bidfood, Fany a další', 'Minimalizace chyb'],
+  },
+];
+
+const licenses = [
+  'Systém lze rozšířit o další pokladní místa i sklady.',
+  'Počet kancelářských míst není omezen.',
+  'Přistupovat můžete z domova i odjinud přes internet.',
+  'Data zůstávají v bezpečí na vašem serveru — s nikým je nesdílíte.',
+];
+
+const leadProofs = [
+  { icon: 'lucide:puzzle', title: 'Široká paleta modulů', text: 'Pokryjeme většinu požadavků gastro provozů.' },
+  { icon: 'lucide:wrench', title: 'I na zakázku', text: 'Zajímavé nápady doprogramujeme.' },
+  { icon: 'lucide:headset', title: 'Ceny na vyžádání', text: 'Rádi připravíme nabídku modulů.' },
+];
+---
+
+<Base title="Rozšíření a doplňkové moduly Harsys | ABX HARSYS"
+      description="Doplňkové moduly pokladního systému Harsys: mobilní číšník, ABX Viewer, ABX Rozvoz, eBony kitchen monitor, vážená inventura, automatické naskladňování a doplňkové licence.">
+  <Header brand="ABX HARSYS" logoSrc="/logos/abx_logo.svg" homeHref="/" nav={harsysNav} cta={harsysCta} />
+
+  <Hero eyebrow="Rozšíření a moduly" background="gradient"
+        lead="Nabízíme širokou paletu modulů, které pokrývají většinu požadavků provozovatelů gastro podniků. Ceny rozšíření a modulů jsou k dispozici na vyžádání.">
+    <Heading slot="title" as="h1" size="display" color="on-dark">Rozšiřující <span class="accent">moduly</span></Heading>
+  </Hero>
+
+  <Section background="default" space="lg">
+    <div class="pillars">
+      {modules.map((m) => (
+        <article class="pillar">
+          <div class="pillar__media"><img src={m.img} alt={m.title} loading="lazy" /></div>
+          <div class="pillar__body">
+            <Heading as="h2" size="h3">{m.title}</Heading>
+            <Text size="small" color="muted">{m.text}</Text>
+            <ul class="checks">
+              {m.points.map((p) => (<li><Icon name="lucide:check" size="sm" class="check" />{p}</li>))}
+            </ul>
+            {m.href && <a class="pillar__link" href={m.href}>Více o modulu <Icon name="lucide:arrow-right" size="sm" /></a>}
+          </div>
+        </article>
+      ))}
+    </div>
+  </Section>
+
+  <!-- DOPLŇKOVÉ LICENCE -->
+  <Section background="alt" space="lg">
+    <div class="head">
+      <Text size="label" color="accent" align="center">Doplňkové licence</Text>
+      <Heading as="h2" size="h2" align="center">Rozšiřte systém <span class="accent">podle provozu</span></Heading>
+      <Text size="lead" color="muted" align="center" balance>Ve větších provozech je potřeba víc pokladních míst a přístup pro účetní, manažery i majitele. Harsys roste s vámi.</Text>
+    </div>
+    <ul class="checks checks--wide">
+      {licenses.map((l) => (<li><Icon name="lucide:check" size="sm" class="check" />{l}</li>))}
+    </ul>
+    <div class="cta-row"><Button href="/srovnani-variant" variant="secondary">Srovnání variant</Button></div>
+  </Section>
+
+  <LeadForm id="poptavka" variant="callback" background="primary"
+            title="Zajímá vás některý z modulů?"
+            lead="Zanechte číslo a my se vám ozveme. Poradíme s výběrem rozšíření a pošleme ceny na míru."
+            proofs={leadProofs} successUrl="/dekujeme" />
+
+  <Footer />
+</Base>
+
+<style>
+  .head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-6); text-align: center; }
+  .head > * + * { margin-top: var(--space-3); }
+  .pillars { display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+  .pillar { display: flex; flex-direction: column; background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sm); transition: var(--transition); }
+  .pillar:hover { border-color: var(--color-primary); box-shadow: var(--shadow-md); }
+  .pillar__media { background: var(--color-bg-alt); line-height: 0; }
+  .pillar__media img { width: 100%; height: 190px; object-fit: cover; display: block; }
+  .pillar__body { padding: var(--space-6); display: flex; flex-direction: column; gap: var(--space-3); flex: 1; }
+  .pillar__link { display: inline-flex; align-items: center; gap: var(--space-1); color: var(--color-primary); font-weight: var(--font-weight-medium); text-decoration: none; font-size: var(--font-size-small); margin-top: auto; }
+  .pillar__link:hover { color: var(--color-primary-hover); }
+  .checks { list-style: none; display: flex; flex-direction: column; gap: var(--space-2); }
+  .checks li { display: flex; align-items: flex-start; gap: var(--space-2); color: var(--color-text); font-size: var(--font-size-small); }
+  .checks :global(.check) { color: var(--color-secondary-azure); flex-shrink: 0; margin-top: 2px; }
+  .checks--wide { max-width: 760px; margin-inline: auto; gap: var(--space-3); }
+  .checks--wide li { font-size: var(--font-size-body); }
+  .cta-row { display: flex; justify-content: center; margin-top: var(--space-6); }
+</style>

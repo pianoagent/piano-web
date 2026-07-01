@@ -1,0 +1,70 @@
+---
+/**
+ * ABX HARSYS — Napojení Piano Pilot na Harsys (návod).
+ * Obsah z obsah/pianopilot.md. Komponenty z @piano/ui.
+ */
+import Base from '../layouts/Base.astro';
+import Header from '@piano/ui/components/Header.astro';
+import Footer from '@piano/ui/components/Footer.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import { harsysNav, harsysCta } from '../config/nav';
+
+const steps = [
+  { t: 'Dokončit registraci', d: 'Jakmile vám dorazí registrační e-mail, klikněte na tlačítko [Dokončit registraci].' },
+  { t: 'Vyplnit formulář', d: 'V prohlížeči se otevře formulář — pečlivě jej vyplňte.' },
+  { t: 'Přihlásit se do Piana', d: 'Přejděte na app.piano.cz a přihlaste se údaji z předchozího kroku.' },
+  { t: 'Spárovat s pokladnou', d: 'V menu klikněte na [Integrace] a vpravo na [Spárovat s pokladnou]. Buďte připraveni spustit pokladnu — na celou akci máte max. 10 minut.' },
+  { t: 'Registrovat provozovnu v Harsysu', d: 'V Harsysu jděte do Nástroje → Nastavení systému → záložka Harsys → Cloud a klikněte na [Registrovat novou provozovnu]. Vyplňte e-mail (stejný jako u registrace do Piana), PIN z kroku 4, ID provozovny a název. Potvrďte [OK].' },
+  { t: 'Restart služby — hotovo', d: 'Pokud vše proběhlo správně, vyplní se „Client ID" a „Secret". Dejte [Restart služby] a je hotovo.' },
+];
+
+const leadProofs = [
+  { icon: 'lucide:link', title: 'Propojení s Pianem', text: 'Harsys napojený na platformu Piano.' },
+  { icon: 'lucide:timer', title: 'Rychlé spárování', text: 'Celé nastavení během pár minut.' },
+  { icon: 'lucide:headset', title: 'Pomůžeme na dálku', text: 'S napojením poradíme přes podporu.' },
+];
+---
+
+<Base title="Napojení Piano Pilot na Harsys | ABX HARSYS"
+      description="Návod, jak propojit pokladnu Harsys s platformou Piano (Piano Pilot) — od dokončení registrace přes spárování s pokladnou až po restart služby.">
+  <Header brand="ABX HARSYS" logoSrc="/logos/abx_logo.svg" homeHref="/" nav={harsysNav} cta={harsysCta} />
+
+  <Hero eyebrow="PianoPilot" background="gradient"
+        lead="Propojte pokladnu Harsys s platformou Piano. Průvodce vás provede od dokončení registrace až po spárování a spuštění — zvládnete to během pár minut.">
+    <Heading slot="title" as="h1" size="display" color="on-dark">Napojení <span class="accent">Piano Pilot</span> na Harsys</Heading>
+  </Hero>
+
+  <Section background="default" space="lg">
+    <ol class="steps">
+      {steps.map((s, i) => (
+        <li class="step">
+          <span class="step__num">{i + 1}</span>
+          <div class="step__body">
+            <Heading as="h2" size="h3">{s.t}</Heading>
+            <Text color="muted">{s.d}</Text>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </Section>
+
+  <LeadForm id="poptavka" variant="callback" background="primary"
+            title="Potřebujete s napojením pomoci?"
+            lead="Zanechte číslo a my se vám ozveme. S propojením Harsysu a Piana vám rádi pomůžeme."
+            proofs={leadProofs} successUrl="/dekujeme" />
+
+  <Footer />
+</Base>
+
+<style>
+  .steps { list-style: none; max-width: 820px; margin-inline: auto; display: flex; flex-direction: column; gap: var(--space-4); counter-reset: none; }
+  .step { display: flex; gap: var(--space-4); align-items: flex-start; background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-5) var(--space-6); box-shadow: var(--shadow-sm); }
+  .step__num { flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: var(--radius-full); background: var(--color-primary); color: #fff; font-weight: var(--font-weight-bold); font-size: var(--font-size-lead); line-height: 1; }
+  .step__body > * + * { margin-top: var(--space-2); }
+</style>

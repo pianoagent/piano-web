@@ -1,0 +1,97 @@
+---
+/**
+ * ABX HARSYS — eBony (kitchen monitor / elektronická bonovačka).
+ * Obsah z obsah/ebony-kitchen-monitor.md. Komponenty z @piano/ui.
+ */
+import Base from '../layouts/Base.astro';
+import Header from '@piano/ui/components/Header.astro';
+import Footer from '@piano/ui/components/Footer.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import { harsysNav, harsysCta } from '../config/nav';
+
+const why = [
+  { icon: 'lucide:eye', title: 'Dokonalý přehled', text: 'Objednávky do kuchyně vidíte přehledně na displeji, ihned po namarkování.' },
+  { icon: 'lucide:sparkles', title: 'Funkce navíc', text: 'Funkce, které papírové bony nabídnout nemohou — třídění, zvýraznění, časy.' },
+  { icon: 'lucide:monitor-smartphone', title: 'Více obrazovek', text: 'Ve větší kuchyni nasadíte více displejů současně.' },
+  { icon: 'lucide:leaf', title: 'Méně papíru', text: 'Elektronické bony doplní, nebo zcela nahradí papírové objednávky.' },
+];
+
+const features = [
+  { icon: 'lucide:list-ordered', title: 'Změna pořadí', text: 'Pořadí objednávek lze měnit dle potřeby.' },
+  { icon: 'lucide:pause', title: 'Pozastavení', text: 'Vyřizování objednávek můžete pozastavit.' },
+  { icon: 'lucide:check-check', title: 'Vyřízené položky', text: 'Označení celých objednávek i jednotlivých položek za vyřízené.' },
+  { icon: 'lucide:clock', title: 'Doba vyřízení', text: 'Zobrazení doby vyřízení objednávek.' },
+  { icon: 'lucide:bell', title: 'Zvuková signalizace', text: 'Zvukové signály pro důležité události.' },
+  { icon: 'lucide:layout-panel-left', title: 'Režimy provozu', text: 'Přepínání mezi režimy „restaurace" a „fastfood".' },
+];
+
+const leadProofs = [
+  { icon: 'lucide:monitor', title: 'Windows nebo Android TV', text: 'Běží na PC i na televizi s Androidem.' },
+  { icon: 'lucide:package-plus', title: 'Software i hardware', text: 'Dodáme samostatně nebo i s technikou.' },
+  { icon: 'lucide:headset', title: 'Pomůžeme s nasazením', text: 'Konfigurace i spuštění s naší podporou.' },
+];
+---
+
+<Base title="eBony — kitchen monitor pro restaurace | ABX HARSYS"
+      description="eBony zobrazuje elektronické bony na kitchen monitoru — doplní nebo nahradí papírové objednávky. Dokonalý přehled o objednávkách do kuchyně.">
+  <Header brand="ABX HARSYS" logoSrc="/logos/abx_logo.svg" homeHref="/" nav={harsysNav} cta={harsysCta} />
+
+  <Hero eyebrow="eBony — kitchen monitor" background="gradient"
+        lead="Elektronické bony na kitchen monitoru doplňují či nahrazují tradiční papírové objednávky. Vyřizování objednávek sledujete i z jiných míst, například z kanceláře manažera.">
+    <Heading slot="title" as="h1" size="display" color="on-dark">Elektronická <span class="accent">bonovačka</span></Heading>
+    <Fragment slot="actions">
+      <Button href="#poptavka">Chci vědět víc</Button>
+      <Button href="/cenik" variant="secondary" onDark>Ceník</Button>
+    </Fragment>
+  </Hero>
+
+  <USPGrid eyebrow="Proč elektronické bony" title="Přehled, který papír nenabídne"
+           items={why} columns={4} minItemWidth="230px" background="default" space="lg" />
+
+  <!-- SPLIT screenshot -->
+  <Section background="alt" space="lg">
+    <div class="split">
+      <figure class="split__media"><img src="/images/ebony-screenshot.webp" alt="Kitchen monitor eBony s objednávkami do kuchyně" loading="lazy" /></figure>
+      <div class="split__text">
+        <Text size="label" color="accent">Cena licence</Text>
+        <Heading as="h2" size="h2">690 Kč <span class="accent">měsíčně</span></Heading>
+        <Text size="lead" color="muted" balance>Při roční platbě, bez DPH. Licenci eBony dodáme samostatně, nebo včetně potřebného technického vybavení.</Text>
+        <ul class="checks">
+          <li><Icon name="lucide:check" size="sm" class="check" />Objednávky se zobrazí ihned po namarkování</li>
+          <li><Icon name="lucide:check" size="sm" class="check" />Důležité informace se automaticky zvýrazňují</li>
+          <li><Icon name="lucide:check" size="sm" class="check" />Běží na PC s Windows nebo TV s Androidem</li>
+        </ul>
+        <div class="split__cta"><Button href="#poptavka">Nezávazná poptávka</Button></div>
+      </div>
+    </div>
+  </Section>
+
+  <USPGrid eyebrow="Užitečné funkce" title="Co eBony umí"
+           items={features} columns={3} minItemWidth="240px" background="default" space="lg" />
+
+  <LeadForm id="poptavka" variant="callback" background="primary"
+            title="Uvažujete o bonovačce do vaší kuchyně?"
+            lead="Zanechte číslo a my se vám ozveme. Poradíme s licencí i technickým vybavením."
+            proofs={leadProofs} successUrl="/dekujeme" />
+
+  <Footer />
+</Base>
+
+<style>
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-8); align-items: center; }
+  .split__text > * + * { margin-top: var(--space-4); }
+  .split__media { margin: 0; line-height: 0; }
+  .split__media img { width: 100%; height: auto; display: block; border-radius: var(--radius-lg); box-shadow: var(--shadow-md); }
+  .split__cta { margin-top: var(--space-6); }
+  .checks { list-style: none; display: flex; flex-direction: column; gap: var(--space-3); }
+  .checks li { display: flex; align-items: flex-start; gap: var(--space-2); color: var(--color-text); }
+  .checks :global(.check) { color: var(--color-secondary-azure); flex-shrink: 0; margin-top: 3px; }
+  @media (max-width: 880px) { .split { grid-template-columns: 1fr; gap: var(--space-6); } .split__media { order: -1; } }
+</style>

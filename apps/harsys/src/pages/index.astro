@@ -50,10 +50,10 @@ const prednosti = [
 ];
 
 const moduly = [
-  { img: '/images/mod-mobilni-cisnik.webp', title: 'Mobilní číšník', text: 'Rychlá obsluha zákazníka přímo u stolu. NFC bezkontaktní platby, pro Android zařízení.' },
-  { img: '/images/mod-viewer.webp', title: 'Viewer', text: 'Náhled do vašeho pokladního systému z mobilu. Data k dispozici i offline — pro Android i iPhone.' },
-  { img: '/images/mod-rozvoz.webp', title: 'Aplikace pro rozvoz', text: 'Vytvoření objednávky v kase na základě telefonního hovoru, propojení s adresářem Harsys.' },
-  { img: '/images/mod-vazena-inventura.webp', title: 'Vážená inventura', text: 'Snadné vážení nápojů namísto pracného odměřování. Váží se při uzávěrce kasy a snižuje ztráty.' },
+  { img: '/images/mod-mobilni-cisnik.webp', title: 'Mobilní číšník', text: 'Rychlá obsluha zákazníka přímo u stolu. NFC bezkontaktní platby, pro Android zařízení.', href: '/mobilni-cisnik' },
+  { img: '/images/mod-viewer.webp', title: 'Viewer', text: 'Náhled do vašeho pokladního systému z mobilu. Data k dispozici i offline — pro Android i iPhone.', href: '/rozsireni' },
+  { img: '/images/mod-rozvoz.webp', title: 'Aplikace pro rozvoz', text: 'Vytvoření objednávky v kase na základě telefonního hovoru, propojení s adresářem Harsys.', href: '/rozsireni' },
+  { img: '/images/mod-vazena-inventura.webp', title: 'Vážená inventura', text: 'Snadné vážení nápojů namísto pracného odměřování. Váží se při uzávěrce kasy a snižuje ztráty.', href: '/rozsireni' },
 ];
 
 const stats = [
@@ -161,13 +161,13 @@ const leadProofs = [
     </div>
     <div class="pillars">
       {moduly.map((m) => (
-        <article class="pillar">
+        <a class="pillar" href={m.href}>
           <div class="pillar__media"><img src={m.img} alt={m.title} loading="lazy" /></div>
           <div class="pillar__body">
             <Heading as="h3" size="h3">{m.title}</Heading>
             <Text size="small" color="muted">{m.text}</Text>
           </div>
-        </article>
+        </a>
       ))}
     </div>
     <div class="variants__cta">
@@ -320,7 +320,7 @@ const leadProofs = [
     display: flex; flex-direction: column;
     background: var(--color-bg); border: 1px solid var(--color-border);
     border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sm);
-    transition: var(--transition);
+    transition: var(--transition); text-decoration: none; color: inherit;
   }
   .pillar:hover { border-color: var(--color-primary); box-shadow: var(--shadow-md); }
   .pillar__media { background: var(--color-bg-alt); line-height: 0; }

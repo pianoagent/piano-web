@@ -1,0 +1,110 @@
+---
+/**
+ * ABX HARSYS — Integrace / napojení na další systémy.
+ * Obsah z obsah/integrace-napojeni-pokladna-harsys-na-jine-systemy.md. Komponenty z @piano/ui.
+ */
+import Base from '../layouts/Base.astro';
+import Header from '@piano/ui/components/Header.astro';
+import Footer from '@piano/ui/components/Footer.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import { harsysNav, harsysCta } from '../config/nav';
+
+const integrations = [
+  {
+    img: '/images/platebni-terminal.webp', tag: 'Platby', title: 'Platební terminály',
+    text: 'Terminál propojený s pokladnou — částka se přenese automaticky, bez chyb z ručního zadávání. Spolupracujeme s Global Payments, Teya, ČSOB a EVO (Moneta).',
+    points: ['Uzávěrky terminálu z kasy', 'NFC platby i z mobilního číšníka', 'Napojení zdarma při zprostředkování'],
+    href: '/platebni-terminal',
+  },
+  {
+    img: '/images/int-qerko.webp', tag: 'Platby', title: 'Platby Qerko',
+    text: 'Qerko umožňuje rozdělení a platbu účtu zákazníkem přímo u stolu, bez asistence obsluhy. Host jednoduše sám zaplatí a odejde.',
+    points: ['Rychlejší uvolnění stolu', 'Vyšší spropitné než v hotovosti', 'Účtenka mailem — méně papíru'],
+    href: null,
+  },
+  {
+    img: '/images/mod-rozvoz2.webp', tag: 'Prodej online', title: 'E-shop kestolu.cz',
+    text: 'E-shop vyvinutý speciálně pro Harsys — ideální pro pizzerie a rozvozové či take-away podniky. Ceník i obrázky nastavíte přímo v Harsysu.',
+    points: ['Objednávky padají přímo do pokladny', 'Objednávky od stolu přes QR kód', 'Bez webařů — vše měníte sami'],
+    href: null,
+  },
+  {
+    img: '/images/int-autset.webp', tag: 'Sklady', title: 'Automatické naskladňování (AUTSET)',
+    text: 'Dodací listy a faktury od dodavatelů se automaticky přenesou do Harsysu, kde je naskladníte na pár kliků. Konec úmorného přepisování.',
+    points: ['Minimalizace chyb při přepisování', 'Makro, Bidfood, Fany a další', 'Prakticky všechny dodavatele lze napojit'],
+    href: null,
+  },
+  {
+    img: '/images/int-hotel.webp', tag: 'Hotely', title: 'Hotelové systémy',
+    text: 'V hotelech a penzionech host platí až při odjezdu na recepci. Namísto zaplacení obsluha provede převod účtu na hotel.',
+    points: ['ABX Recepce, smartHOTEL, HORES, Previo', 'Převod účtů z Restkasy „na hotel"', 'Bez chyb a dvojího účtování'],
+    href: null,
+  },
+];
+
+const leadProofs = [
+  { icon: 'lucide:plug', title: 'Napojení na míru', text: 'Specifické požadavky řešíme na zakázku.' },
+  { icon: 'lucide:shield-check', title: 'Bez chyb', text: 'Automatický přenos dat místo přepisování.' },
+  { icon: 'lucide:headset', title: 'Pomůžeme s nastavením', text: 'Konfigurace i propojení s podporou.' },
+];
+---
+
+<Base title="Integrace a napojení pokladny Harsys | ABX HARSYS"
+      description="Harsys se napojí na platební terminály, Qerko, e-shop kestolu.cz, automatické naskladňování AUTSET i hotelové systémy (ABX Recepce, smartHOTEL, HORES, Previo).">
+  <Header brand="ABX HARSYS" logoSrc="/logos/abx_logo.svg" homeHref="/" nav={harsysNav} cta={harsysCta} />
+
+  <Hero eyebrow="Integrace" background="gradient"
+        lead="Harsys se umí napojit na další zařízení a systémy dalších poskytovatelů — online platební systémy, e-shopy, hotelové programy, automatické naskladňování a další.">
+    <Heading slot="title" as="h1" size="display" color="on-dark">Napojení na <span class="accent">další systémy</span></Heading>
+  </Hero>
+
+  <Section background="default" space="lg">
+    <div class="feats">
+      {integrations.map((it, i) => (
+        <article class={`feat${i % 2 === 1 ? ' feat--rev' : ''}`}>
+          <figure class="feat__media"><img src={it.img} alt={it.title} loading="lazy" /></figure>
+          <div class="feat__body">
+            <span class="feat__tag">{it.tag}</span>
+            <Heading as="h2" size="h3">{it.title}</Heading>
+            <Text color="muted">{it.text}</Text>
+            <ul class="checks">
+              {it.points.map((p) => (<li><Icon name="lucide:check" size="sm" class="check" />{p}</li>))}
+            </ul>
+            {it.href && <div class="feat__cta"><Button href={it.href} variant="secondary">Více o řešení</Button></div>}
+          </div>
+        </article>
+      ))}
+    </div>
+  </Section>
+
+  <LeadForm id="poptavka" variant="callback" background="primary"
+            title="Potřebujete Harsys s něčím propojit?"
+            lead="Zanechte číslo a my se vám ozveme. Poradíme s napojením na váš systém nebo zařízení."
+            proofs={leadProofs} successUrl="/dekujeme" />
+
+  <Footer />
+</Base>
+
+<style>
+  .feats { display: flex; flex-direction: column; gap: var(--space-8); }
+  .feat { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-8); align-items: center; }
+  .feat__media { margin: 0; line-height: 0; }
+  .feat__media img { width: 100%; height: auto; display: block; border-radius: var(--radius-lg); box-shadow: var(--shadow-md); }
+  .feat__body > * + * { margin-top: var(--space-3); }
+  .feat__tag { display: inline-block; font-size: var(--font-size-caption); font-weight: var(--font-weight-semibold); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide); color: var(--color-text-accent); background: color-mix(in srgb, var(--color-primary) 8%, #fff); padding: var(--space-1) var(--space-3); border-radius: var(--radius-full); }
+  .feat__cta { margin-top: var(--space-5); }
+  .checks { list-style: none; display: flex; flex-direction: column; gap: var(--space-2); margin-top: var(--space-2); }
+  .checks li { display: flex; align-items: flex-start; gap: var(--space-2); color: var(--color-text); font-size: var(--font-size-small); }
+  .checks :global(.check) { color: var(--color-secondary-azure); flex-shrink: 0; margin-top: 2px; }
+  @media (max-width: 880px) {
+    .feat, .feat--rev { grid-template-columns: 1fr; gap: var(--space-5); }
+    .feat__media { order: -1; }
+  }
+  @media (min-width: 881px) { .feat--rev .feat__media { order: 2; } }
+</style>
