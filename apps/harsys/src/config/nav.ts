@@ -1,8 +1,12 @@
 /**
  * Navigace — ABX HARSYS (per-web). Předává se do sdíleného <Header nav cta>.
  * Komponenta se NEFORKUJE — jen jí dodáme jiná data.
- * Struktura dle IA původního webu (Program / Ceník / Hardware / Podpora / O nás).
- * Program = mega menu (dvě kolonky: program + produkty a moduly).
+ *
+ * Seskupení podle záměru uživatele:
+ *  - Program (mega): vlastní pokladní systém + navazující produkty a moduly
+ *  - Ceník / Hardware: samostatné
+ *  - Podpora: co zákazník řeší při pořízení a provozu (demo, FAQ, kontakt na podporu)
+ *  - O nás: důvěra a firma (reference, kontakty)
  * Pozn.: Hardware a část Podpory zatím míří na kotvy/nejbližší stránku;
  * samostatné podstránky (hardware, demoverze, přechod, instalace, aktuality…)
  * doplníme později.
@@ -12,13 +16,11 @@ import type { NavItem, NavLink, MegaPanel } from '@piano/ui/config/nav';
 const programMega: MegaPanel = {
   columns: [
     {
-      label: 'Program',
+      label: 'Pokladní systém',
       links: [
         { label: 'Srovnání variant', href: '/srovnani-variant', description: 'Lite, Gold, Gold+NET, Premium', icon: 'lucide:table-2' },
         { label: 'Funkce programu', href: '/funkce', description: 'Co všechno Harsys umí', icon: 'lucide:layout-grid' },
         { label: 'Rozšíření a moduly', href: '/rozsireni', description: 'Doplňkové moduly na míru', icon: 'lucide:puzzle' },
-        { label: 'Reference', href: '/reference', description: 'Spokojení zákazníci po ČR', icon: 'lucide:star' },
-        { label: 'Časté dotazy', href: '/#faq', description: 'Odpovědi na časté otázky', icon: 'lucide:help-circle' },
       ],
     },
     {
@@ -45,10 +47,18 @@ export const harsysNav: NavItem[] = [
     href: '/kontakt',
     children: [
       { label: 'Demoverze zdarma', href: '/#poptavka', description: 'Vyzkoušejte Harsys nezávazně', icon: 'lucide:download' },
+      { label: 'Časté dotazy', href: '/#faq', description: 'Odpovědi na nejčastější otázky', icon: 'lucide:help-circle' },
       { label: 'Napište nám', href: '/kontakt', description: 'Kontaktní údaje a poptávka', icon: 'lucide:mail' },
     ],
   },
-  { label: 'O nás', href: '/kontakt' },
+  {
+    label: 'O nás',
+    href: '/kontakt',
+    children: [
+      { label: 'Reference', href: '/reference', description: 'Spokojení zákazníci po celé ČR', icon: 'lucide:star' },
+      { label: 'Kontakty', href: '/kontakt', description: 'ABX software — pobočky a kontakty', icon: 'lucide:map-pin' },
+    ],
+  },
 ];
 
 export const harsysCta: NavLink = { label: 'Konzultace zdarma', href: '/#poptavka' };
