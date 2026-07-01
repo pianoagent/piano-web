@@ -1,2 +1,5 @@
 # Vlastní chybové stránky
 ErrorDocument 404 /404.html
+
+# DOČASNÝ TEST (bude revertnuto): ověření, zda hosting čte .htaccess override
+Redirect 302 /htaccess-probe-piano /
