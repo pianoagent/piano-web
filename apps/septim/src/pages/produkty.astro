@@ -1,0 +1,57 @@
+---
+/** Septim — Produkty (rozcestník edic, funkcí a integrací). Cíl odkazu „Produkty" v hlavním menu. */
+import Base from '../layouts/Base.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+
+const edice = [
+  { icon: 'lucide:monitor', title: 'Septim.4', text: 'Plnohodnotný provozní systém pro restaurace a gastro provozy.', href: '/produkty/septim-4' },
+  { icon: 'lucide:cloud', title: 'Septim.Air', text: 'Lehká edice pro kavárny, bistra a bary.', href: '/produkty/septim-air' },
+  { icon: 'lucide:soup', title: 'Septim.Jídelna', text: 'Závodní stravování, kredity a výdej jídel.', href: '/produkty/septim-jidelna' },
+  { icon: 'lucide:bed-double', title: 'Septim.Hotel', text: 'POS systém propojený s hotelovým provozem.', href: '/produkty/septim-hotel' },
+  { icon: 'lucide:smartphone', title: 'Septim.Go', text: 'Mobilní číšník — objednávky přímo u stolu.', href: '/produkty/septim-go' },
+  { icon: 'lucide:line-chart', title: 'MySeptim', text: 'Váš provoz v mobilu — tržby a přehledy odkudkoli.', href: '/produkty/myseptim' },
+];
+const funkce = [
+  { icon: 'lucide:monitor', title: 'Pokladna', text: 'Rychlé markování a spolehlivý provoz na place.', href: '/funkce/pokladna' },
+  { icon: 'lucide:boxes', title: 'Skladové hospodářství', text: 'Suroviny, receptury a inventury pod kontrolou.', href: '/funkce/skladove-hospodarstvi' },
+  { icon: 'lucide:sliders-horizontal', title: 'Manažer', text: 'Řízení provozu, ceníky a uživatelská práva.', href: '/funkce/manazer' },
+  { icon: 'lucide:bar-chart-3', title: 'Reporty a přehledy', text: 'Sestavy a vyhodnocení na pár kliknutí.', href: '/funkce/reporty-prehledy' },
+  { icon: 'lucide:award', title: 'Věrnostní systém', text: 'CRM, věrnostní programy a personalizované nabídky.', href: '/funkce/vernostni-system' },
+  { icon: 'lucide:shopping-cart', title: 'E-shop pro restaurace', text: 'Online objednávky propojené s pokladnou.', href: '/funkce/eshop-restaurace' },
+  { icon: 'lucide:settings', title: 'Nastavení', text: 'Systém přizpůsobený vašemu provozu.', href: '/funkce/nastaveni' },
+  { icon: 'lucide:hard-drive', title: 'Hardware do restaurace', text: 'Pokladny, tiskárny, displeje — se zárukou 36 měsíců.', href: '/funkce/hardware-do-restaurace' },
+];
+const integrace = [
+  { icon: 'lucide:bike', title: 'Foodora & Wolt', text: 'Objednávky z rozvozových platforem přímo v systému.', href: '/integrace/foodora-wolt' },
+  { icon: 'lucide:qr-code', title: 'Platby QR kódem (Qerko)', text: 'Hosté zaplatí sami z mobilu, platba se propíše do pokladny.', href: '/integrace/platby-objednavky-qr-kodem' },
+  { icon: 'lucide:boxes', title: 'Automatické naskladňování', text: 'Dodací listy a naskladnění bez ručního přepisování.', href: '/integrace/automaticke-naskladnovani' },
+  { icon: 'lucide:calendar-days', title: 'Plánování směn (Grason)', text: 'Směny, docházka a brigádníci propojení s provozem.', href: '/integrace/planovani-smen' },
+  { icon: 'lucide:tv', title: 'Kuchyňské displeje', text: 'Objednávky z pokladny rovnou do kuchyně.', href: '/integrace/kuchynske-displeje' },
+  { icon: 'lucide:bell', title: 'Pagery', text: 'Svolávací systém pro výdej objednávek.', href: '/integrace/pagery' },
+  { icon: 'lucide:tablet', title: 'Objednávkové systémy', text: 'Kiosky a samoobslužné objednávání.', href: '/integrace/objednavkove-systemy' },
+];
+---
+<Base title="Produkty Septim – edice, funkce a integrace"
+      description="Přehled produktů Septim: edice Septim.4, Air, Jídelna, Hotel a Go, funkce od pokladny po sklady a integrace na Qerko, Foodoru, Wolt nebo kuchyňské displeje.">
+  <SiteHeader />
+  <main>
+    <Hero eyebrow="Produkty" background="alt"
+          lead="Jeden systém, který roste s vámi — vyberte edici podle typu provozu a rozšiřte ji o funkce a integrace, které potřebujete.">
+      <Heading slot="title" as="h1" size="display">Produkty <em>Septim</em></Heading>
+    </Hero>
+
+    <USPGrid eyebrow="Edice" title="Vyberte edici pro svůj provoz" items={edice} background="default" space="lg" minItemWidth="260px" />
+    <USPGrid eyebrow="Funkce" title="Vše, co provoz potřebuje" items={funkce} background="alt" space="lg" minItemWidth="260px" />
+    <USPGrid eyebrow="Integrace a zařízení" title="Propojeno s tím, co používáte" items={integrace} background="default" space="lg" minItemWidth="260px" />
+
+    <LeadForm id="poptavka" variant="callback" background="alt"
+              title="Nevíte, kterou edici zvolit?"
+              lead="Nechte nám telefon — poradíme s výběrem podle vašeho provozu." />
+  </main>
+  <SiteFooter />
+</Base>

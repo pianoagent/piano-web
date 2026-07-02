@@ -29,7 +29,6 @@ export const septimFooter = {
         { label: 'Podmínky servisní smlouvy', href: '/sluzby-servis/podminky-servisni-smlouvy' },
         { label: 'Konzultace a školení', href: '/sluzby-servis/konzultace-skoleni' },
         { label: 'Technické rady a FAQ', href: '/technicke-rady-faq' },
-        { label: 'Blog', href: '/blog' },
       ],
     },
     {

@@ -50,6 +50,8 @@ export const grasonFooter = {
         { label: 'Volná místa', href: '/kariera' },
         { label: 'Obchodní podmínky', href: '/obchodni-podminky' },
         { label: 'Ochrana osobních údajů', href: '/ochrana-osobnich-udaju' },
+        { label: 'Podmínky GrasonPlan', href: '/plan/obchodni-podminky' },
+        { label: 'Osobní údaje GrasonPlan', href: '/plan/ochrana-osobnich-udaju' },
       ] as NavLink[],
     },
   ],

@@ -77,7 +77,6 @@ export const septimNav: NavItem[] = [
       { label: 'Reference', href: '/reference', icon: 'lucide:star' },
       { label: 'Služby a servis', href: '/sluzby-servis', icon: 'lucide:wrench' },
       { label: 'Technické rady a FAQ', href: '/technicke-rady-faq', icon: 'lucide:circle-help' },
-      { label: 'Blog', href: '/blog', icon: 'lucide:newspaper' },
       { label: 'Kariéra', href: '/kariera', icon: 'lucide:briefcase' },
       { label: 'Kontakt', href: '/kontakt', icon: 'lucide:mail' },
     ],

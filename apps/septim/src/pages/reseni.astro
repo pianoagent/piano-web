@@ -1,0 +1,38 @@
+---
+/** Septim — Řešení (rozcestník segmentů). Cíl odkazu „Řešení" v hlavním menu. */
+import Base from '../layouts/Base.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+
+const segmenty = [
+  { icon: 'lucide:utensils-crossed', title: 'Restaurace', text: 'Provozní systém pro rychlý servis a plnou kontrolu nad podnikem.', href: '/reseni/restaurace' },
+  { icon: 'lucide:network', title: 'Sítě restaurací', text: 'Centrální řízení poboček, ceníků a reportingu.', href: '/reseni/site-restauraci' },
+  { icon: 'lucide:coffee', title: 'Kavárny, bistra, bary', text: 'Lehké a rychlé řešení pro menší provozy.', href: '/reseni/kavarny-bistra-bary' },
+  { icon: 'lucide:soup', title: 'Jídelny', text: 'Závodní stravování, kredity, ankety a výdej.', href: '/reseni/jidelny' },
+  { icon: 'lucide:bed-double', title: 'Hotely', text: 'Gastro provoz propojený s hotelovým systémem.', href: '/reseni/hotely' },
+  { icon: 'lucide:concierge-bell', title: 'Catering', text: 'Akce, bankety a výjezdový prodej pod kontrolou.', href: '/reseni/catering' },
+  { icon: 'lucide:truck', title: 'Street food', text: 'Mobilní prodej — rychlé markování kdekoli.', href: '/reseni/street-food' },
+  { icon: 'lucide:waves', title: 'Lázně a resorty', text: 'Více provozů a středisek v jednom systému.', href: '/reseni/lazne-resorty' },
+];
+---
+<Base title="Řešení Septim podle typu provozu – restaurace, hotely, jídelny"
+      description="Septim se přizpůsobí vašemu provozu: restaurace i jejich sítě, kavárny a bary, hotely, jídelny, catering, street food nebo lázně a resorty.">
+  <SiteHeader />
+  <main>
+    <Hero eyebrow="Řešení" background="alt"
+          lead="Každý provoz je jiný. Vyberte si řešení podle toho, co provozujete — Septim se přizpůsobí.">
+      <Heading slot="title" as="h1" size="display">Řešení <em>pro váš provoz</em></Heading>
+    </Hero>
+
+    <USPGrid eyebrow="Pro koho" title="Vyberte svůj typ provozu" items={segmenty} background="default" space="lg" minItemWidth="260px" />
+
+    <LeadForm id="poptavka" variant="callback" background="alt"
+              title="Nenašli jste svůj typ provozu?"
+              lead="Nechte nám telefon — probereme, jak Septim nasadit u vás." />
+  </main>
+  <SiteFooter />
+</Base>
