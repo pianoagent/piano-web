@@ -62,6 +62,16 @@
   --color-secondary-gold:       #FAD531;  /* žlutá — doplněk (eyebrow / proof na tmavém) */
   --color-secondary-azure:      #3CC1C8;  /* tyrkys — accent */
 
+  /* ----- Dekorativní gradienty (citace, tým) + text na akcentech ----- */
+  --testimonial-grad-1: linear-gradient(150deg, #3CC1C8, #343160);
+  --testimonial-grad-2: linear-gradient(150deg, #F96797, #343160);
+  --testimonial-grad-3: linear-gradient(150deg, #FAD531, #343160);
+  --member-grad-pink:   linear-gradient(150deg, #FA80A8, #F24D83);
+  --member-grad-green:  linear-gradient(150deg, #7CD6DA, #3CC1C8);
+  --member-grad-yellow: linear-gradient(150deg, #FBDD5B, #FAD531);
+  --color-text-on-azure:  #07333A;
+  --color-text-on-yellow: #4A3C00;
+
   /* ----- Neutral (chladná šeď z brandu) ----- */
   --color-neutral-0:   #FFFFFF;
   --color-neutral-50:  #F6F7FA;

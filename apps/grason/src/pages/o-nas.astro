@@ -127,9 +127,9 @@ const team = [
   .team { list-style: none; display: grid; gap: var(--space-7) var(--space-5); grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); text-align: center; max-width: 920px; margin-inline: auto; }
   .member { display: flex; flex-direction: column; align-items: center; gap: var(--space-2); }
   .member__avatar { width: 96px; height: 96px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: var(--font-size-h3); font-weight: var(--font-weight-bold); color: #fff; box-shadow: var(--shadow-md); }
-  .member__avatar--pink { background: linear-gradient(150deg, #FA80A8, #F24D83); }
-  .member__avatar--green { background: linear-gradient(150deg, #7CD6DA, #3CC1C8); color: #07333a; }
-  .member__avatar--yellow { background: linear-gradient(150deg, #FBDD5B, #FAD531); color: #4a3c00; }
+  .member__avatar--pink { background: var(--member-grad-pink); }
+  .member__avatar--green { background: var(--member-grad-green); color: var(--color-text-on-azure); }
+  .member__avatar--yellow { background: var(--member-grad-yellow); color: var(--color-text-on-yellow); }
   .member__name { font-size: var(--font-size-lead); font-weight: var(--font-weight-bold); color: var(--color-secondary); }
   .member__role { font-size: var(--font-size-small); color: var(--color-text-muted); }
 

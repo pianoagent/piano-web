@@ -163,7 +163,7 @@ const testimonials = [
   .steps { list-style: none; display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
   .step { position: relative; padding: var(--space-6); background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); box-shadow: var(--shadow-sm); }
   .step > * + * { margin-top: var(--space-3); }
-  .step__num { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: var(--radius-full); background: var(--color-secondary-azure); color: #07333a; font-size: var(--font-size-lead); font-weight: var(--font-weight-bold); }
+  .step__num { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: var(--radius-full); background: var(--color-secondary-azure); color: var(--color-text-on-azure); font-size: var(--font-size-lead); font-weight: var(--font-weight-bold); }
 
   /* Jobs */
   .jobs { list-style: none; display: flex; flex-wrap: wrap; gap: var(--space-4); justify-content: center; }
@@ -187,9 +187,9 @@ const testimonials = [
   .quote__name { font-size: var(--font-size-lead); font-weight: var(--font-weight-bold); color: var(--color-secondary); line-height: 1.15; }
   .quote__role { font-size: var(--font-size-small); color: var(--color-text-muted); }
   .quote__avatar { flex-shrink: 0; width: 56px; height: 56px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: var(--font-size-body); font-weight: var(--font-weight-bold); color: #fff; }
-  .quote--0 .quote__avatar { background: linear-gradient(150deg, #3CC1C8, #343160); }
-  .quote--1 .quote__avatar { background: linear-gradient(150deg, #F96797, #343160); }
-  .quote--2 .quote__avatar { background: linear-gradient(150deg, #FAD531, #343160); }
+  .quote--0 .quote__avatar { background: var(--testimonial-grad-1); }
+  .quote--1 .quote__avatar { background: var(--testimonial-grad-2); }
+  .quote--2 .quote__avatar { background: var(--testimonial-grad-3); }
   .quote__mark { color: var(--color-secondary-azure); display: block; margin-bottom: var(--space-2); }
   .quote__text { font-size: var(--font-size-body); color: var(--color-text); line-height: var(--line-height-body); }
 </style>

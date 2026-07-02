@@ -68,6 +68,11 @@
   --color-secondary-gold:       #E8910C;
   --color-secondary-azure:      #00B579;
 
+  /* ----- Testimonials — gradienty avatarů ----- */
+  --testimonial-grad-1: linear-gradient(150deg, #15C285, #008556);
+  --testimonial-grad-2: linear-gradient(150deg, #00A36B, #06754E);
+  --testimonial-grad-3: linear-gradient(150deg, #06754E, #06352A);
+
   /* ----- Neutral (cool, faintly-green gray) ----- */
   --color-neutral-0:   #FFFFFF;
   --color-neutral-50:  #F5F9F7;

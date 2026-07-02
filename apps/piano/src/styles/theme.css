@@ -52,6 +52,8 @@
   /* Feedback / status */
   --color-success:       #275F2A;
   --color-success-hover: #16401A;
+  --color-success-bg:     #DFF3E1;
+  --color-success-border: #BFE3C2;
   --color-warning:       #ECAF04;
   --color-info:          #14A0DC;
   --color-error:         #B8093B;
