@@ -1,13 +1,13 @@
 ---
 /**
- * LogoWall — Pecosta app partial (marquee referenčních log).
- * Skládá @piano/ui Section. Loga z public/logos.
+ * LogoWall — tenký wrapper nad @piano/ui/LogoWall.
+ * Jen definuje pecostí sadu log (public/logos), label a menší velikost pruhu.
+ * Vzhled a markup řeší sdílená komponenta — NEFORKOVAT.
  */
-import Section from '@piano/ui/components/Section.astro';
-import Text from '@piano/ui/components/Text.astro';
+import UiLogoWall from '@piano/ui/components/LogoWall.astro';
 
-interface Props { label?: string; background?: 'default' | 'alt'; }
-const { label = 'Spoří s námi přední restaurace, hotely i instituce', background = 'alt' } = Astro.props;
+interface Props { label?: string; background?: 'default' | 'alt'; id?: string; }
+const { label = 'Spoří s námi přední restaurace, hotely i instituce', background = 'alt', id } = Astro.props;
 
 const logos = [
   'ref-clarion-hotel', 'ref-cafe-savoy', 'ref-kolkovna', 'ref-zatisi-group',
@@ -16,22 +16,4 @@ const logos = [
 ];
 ---
 
-<Section background={background} space="md" container={false}>
-  <Text size="label" color="muted" align="center" class="logos__label">{label}</Text>
-  <div class="logos">
-    <div class="logos__track">
-      {[...logos, ...logos].map((l, i) => (
-        <img src={`/logos/${l}.svg`} alt={i < logos.length ? l.replace('ref-', '').replace(/-/g, ' ') : ''} aria-hidden={i >= logos.length ? 'true' : undefined} loading="lazy" />
-      ))}
-    </div>
-  </div>
-</Section>
-
-<style>
-  .logos__label { margin-bottom: var(--space-5); }
-  .logos { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
-  .logos__track { display: flex; align-items: center; gap: var(--space-8); width: max-content; animation: logos-scroll 48s linear infinite; }
-  .logos__track img { height: 34px; width: auto; opacity: 0.62; filter: grayscale(1); flex-shrink: 0; }
-  @keyframes logos-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-  @media (prefers-reduced-motion: reduce) { .logos__track { animation: none; flex-wrap: wrap; justify-content: center; } }
-</style>
+<UiLogoWall logos={logos} label={label} background={background} id={id} logoHeight="34px" gap="var(--space-8)" duration="48s" />

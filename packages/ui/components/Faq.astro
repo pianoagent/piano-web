@@ -1,12 +1,17 @@
 ---
 /**
- * Faq — Septim app partial (často kladené otázky).
- * Skládá @piano/ui Section/Heading/Text/Icon. Položky přes prop `items`.
+ * Faq — SDÍLENÁ sekce často kladených otázek (accordion <details>).
+ * Skládá Section/Heading/Text/Icon. Položky se předávají přes prop `items`.
+ *
+ *   items       — [{ q, a }]
+ *   title       — nadpis sekce (default „Často kladené dotazy")
+ *   lead        — volitelný perex pod nadpisem
+ *   background  — 'default' | 'alt'
  */
-import Section from '@piano/ui/components/Section.astro';
-import Heading from '@piano/ui/components/Heading.astro';
-import Text from '@piano/ui/components/Text.astro';
-import Icon from '@piano/ui/components/Icon.astro';
+import Section from './Section.astro';
+import Heading from './Heading.astro';
+import Text from './Text.astro';
+import Icon from './Icon.astro';
 
 interface Item { q: string; a: string; }
 interface Props { items: Item[]; title?: string; lead?: string; background?: 'default' | 'alt'; }

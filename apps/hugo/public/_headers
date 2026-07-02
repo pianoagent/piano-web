@@ -1,0 +1,7 @@
+# Cloudflare Pages přidá tyto hlavičky jen na *.pages.dev (preview i produkční
+# pages.dev). Ostrá doména (mimo Cloudflare) tento soubor IGNORUJE → web se
+# indexuje normálně, ale duplicitní pages.dev verze ne (ochrana SEO).
+# POZOR: kdyby se produkce někdy servírovala z Cloudflare custom domény,
+# tento soubor uprav/odeber (jinak by noindexoval i ostrou doménu).
+/*
+  X-Robots-Tag: noindex

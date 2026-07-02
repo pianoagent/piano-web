@@ -65,6 +65,11 @@
   --color-secondary-gold:       #E8910C;
   --color-secondary-azure:      #00ADEE;
 
+  /* ----- Testimonials — gradienty avatarů (sdílená komponenta @piano/ui) ----- */
+  --testimonial-grad-1: linear-gradient(150deg, #16B5F0, #00ADEE);
+  --testimonial-grad-2: linear-gradient(150deg, #2FC4F4, #0E86D9);
+  --testimonial-grad-3: linear-gradient(150deg, #0C2A9E, #06038D);
+
   /* ----- Neutral (cool, faintly-blue gray) ----- */
   --color-neutral-0:   #FFFFFF;
   --color-neutral-50:  #F6F8FB;

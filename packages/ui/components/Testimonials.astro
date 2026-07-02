@@ -1,0 +1,65 @@
+---
+/**
+ * Testimonials — SDÍLENÉ reference v kartách s avatary.
+ * Položky přes prop `items`. Barvy avatarů (gradienty) se přebírají z tématu:
+ * v theme.css daného webu lze definovat --testimonial-grad-1/2/3;
+ * bez nich se použije gradient z --color-primary → --color-secondary.
+ *
+ *   items       — [{ initials, headline, quote, author, role, michelin?, photo? }]
+ *   title, lead, eyebrow, background — hlavička sekce
+ */
+import Section from './Section.astro';
+import Heading from './Heading.astro';
+import Text from './Text.astro';
+import Icon from './Icon.astro';
+
+interface Item { initials: string; headline: string; quote: string; author: string; role: string; michelin?: boolean; photo?: string; }
+interface Props { items: Item[]; title?: string; lead?: string; eyebrow?: string; background?: 'default' | 'alt'; }
+const { items, title = 'Důvěřují nám ti nejlepší', lead, eyebrow = 'Reference', background = 'default' } = Astro.props;
+---
+<Section background={background} space="lg">
+  <div class="head head--center">
+    <Text size="label" color="accent" align="center">{eyebrow}</Text>
+    <Heading as="h2" size="h2" align="center">{title}</Heading>
+    {lead && <Text size="lead" color="muted" align="center" balance>{lead}</Text>}
+  </div>
+  <div class="quotes">
+    {items.map((t, i) => (
+      <figure class={`quote quote--${i % 3}`}>
+        <div class="quote__head">
+          <div class="quote__id">
+            <strong class="quote__name">{t.author}</strong>
+            <span class="quote__role">{t.role}{t.michelin && <span class="quote__michelin"> · Michelin ★</span>}</span>
+          </div>
+          {t.photo
+            ? <span class="quote__avatar quote__avatar--photo"><img src={t.photo} alt={t.author} loading="lazy" /></span>
+            : <span class="quote__avatar" aria-hidden="true">{t.initials}</span>}
+        </div>
+        <span class="quote__mark"><Icon name="lucide:quote" size="md" /></span>
+        <p class="quote__headline">{t.headline}</p>
+        <blockquote class="quote__text">{t.quote}</blockquote>
+      </figure>
+    ))}
+  </div>
+</Section>
+
+<style>
+  .head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-7); text-align: center; }
+  .head > * + * { margin-top: var(--space-3); }
+  .quotes { display: grid; gap: var(--space-8) var(--space-6); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+  .quote { margin: 0; display: flex; flex-direction: column; }
+  .quote__head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); margin-bottom: var(--space-5); }
+  .quote__id { display: flex; flex-direction: column; gap: 2px; }
+  .quote__name { font-size: var(--font-size-h3); font-weight: var(--font-weight-bold); color: var(--color-secondary); line-height: 1.1; }
+  .quote__role { font-size: var(--font-size-small); color: var(--color-text-muted); }
+  .quote__michelin { color: var(--color-text-accent); font-weight: var(--font-weight-semibold); }
+  .quote__avatar { flex-shrink: 0; width: 84px; height: 84px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: var(--font-size-h3); font-weight: var(--font-weight-bold); color: #fff; box-shadow: var(--shadow-md); }
+  .quote--0 .quote__avatar { background: var(--testimonial-grad-1, linear-gradient(150deg, var(--color-primary), var(--color-secondary))); }
+  .quote--1 .quote__avatar { background: var(--testimonial-grad-2, linear-gradient(150deg, var(--color-primary), var(--color-secondary))); }
+  .quote--2 .quote__avatar { background: var(--testimonial-grad-3, linear-gradient(150deg, var(--color-secondary), var(--color-primary))); }
+  .quote__avatar--photo { padding: 0; overflow: hidden; background: none; }
+  .quote__avatar--photo img { width: 100%; height: 100%; object-fit: cover; }
+  .quote__mark { color: var(--color-primary); display: block; margin-bottom: var(--space-2); }
+  .quote__headline { font-weight: var(--font-weight-bold); color: var(--color-secondary); margin-bottom: var(--space-2); }
+  .quote__text { font-size: var(--font-size-body); color: var(--color-text-muted); line-height: var(--line-height-body); }
+</style>

@@ -1,9 +1,10 @@
 ---
 /**
- * StatsBand — Septim app partial (pruh se statistikami).
- * Skládá @piano/ui Section. Výchozí čísla Septim, lze přepsat props `items`.
+ * StatsBand — tenký wrapper nad @piano/ui/StatsBand.
+ * Jen dodává výchozí septimí čísla; lze přepsat props `items`.
+ * Vzhled a markup řeší sdílená komponenta — NEFORKOVAT.
  */
-import Section from '@piano/ui/components/Section.astro';
+import UiStatsBand from '@piano/ui/components/StatsBand.astro';
 
 interface Stat { num: string; lbl: string; }
 interface Props { items?: Stat[]; background?: 'default' | 'alt'; }
@@ -17,18 +18,4 @@ const defaults: Stat[] = [
 const { items = defaults, background = 'alt' } = Astro.props;
 ---
 
-<Section background={background} space="sm">
-  <ul class="stats">
-    {items.map((s) => (
-      <li class="stats__item"><span class="stats__num">{s.num}</span><span class="stats__lbl">{s.lbl}</span></li>
-    ))}
-  </ul>
-</Section>
-
-<style>
-  .stats { list-style: none; display: grid; gap: var(--space-5); grid-template-columns: repeat(4, 1fr); text-align: center; }
-  .stats__item { display: flex; flex-direction: column; gap: var(--space-1); }
-  .stats__num { font-size: var(--font-size-h2); font-weight: var(--font-weight-bold); line-height: 1; color: var(--color-secondary); }
-  .stats__lbl { font-size: var(--font-size-small); color: var(--color-text-muted); }
-  @media (max-width: 720px) { .stats { grid-template-columns: repeat(2, 1fr); } }
-</style>
+<UiStatsBand items={items} background={background} />

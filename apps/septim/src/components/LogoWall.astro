@@ -1,10 +1,10 @@
 ---
 /**
- * LogoWall — Septim app partial (marquee referenčních log).
- * Skládá @piano/ui Section. Loga z public/logos.
+ * LogoWall — tenký wrapper nad @piano/ui/LogoWall.
+ * Jen definuje septimí sadu log (public/logos) a výchozí label.
+ * Vzhled a markup řeší sdílená komponenta — NEFORKOVAT.
  */
-import Section from '@piano/ui/components/Section.astro';
-import Text from '@piano/ui/components/Text.astro';
+import UiLogoWall from '@piano/ui/components/LogoWall.astro';
 
 interface Props { label?: string; background?: 'default' | 'alt'; id?: string; }
 const { label = 'Důvěřují nám michelinské restaurace, hotely i kavárny za rohem', background = 'alt', id } = Astro.props;
@@ -18,23 +18,4 @@ const logos = [
 ];
 ---
 
-<Section background={background} space="md" container={false} id={id}>
-  <Text size="label" color="muted" align="center" class="logos__label">{label}</Text>
-  <div class="logos">
-    <div class="logos__track">
-      {[...logos, ...logos].map((l, i) => (
-        <img src={`/logos/${l}.svg`} alt={i < logos.length ? l.replace('ref-', '').replace(/-/g, ' ') : ''} aria-hidden={i >= logos.length ? 'true' : undefined} loading="lazy" />
-      ))}
-    </div>
-  </div>
-</Section>
-
-<style>
-  .logos__label { margin-bottom: var(--space-5); }
-  .logos { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
-  .logos__track { display: flex; align-items: center; gap: var(--space-9); width: max-content; animation: logos-scroll 60s linear infinite; }
-  .logos__track img { height: 96px; width: auto; max-width: 280px; object-fit: contain; opacity: 0.7; filter: grayscale(1); flex-shrink: 0; transition: var(--transition); }
-  .logos__track img:hover { opacity: 1; filter: none; }
-  @keyframes logos-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-  @media (prefers-reduced-motion: reduce) { .logos__track { animation: none; flex-wrap: wrap; justify-content: center; } }
-</style>
+<UiLogoWall logos={logos} label={label} background={background} id={id} />
