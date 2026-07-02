@@ -1,2 +1,6 @@
 # Vlastní chybové stránky
 ErrorDocument 404 /404.html
+
+# GDPR: sjednocení URL se starým webem (/ochrana-udaju → /gdpr)
+Redirect 301 /ochrana-udaju /gdpr
+Redirect 301 /en/ochrana-udaju /en/gdpr

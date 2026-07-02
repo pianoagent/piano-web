@@ -17,7 +17,7 @@ export const EN_READY = new Set<string>([
   '/',
   '/terminal', '/pilot', '/produkty', '/o-nas', '/eet', '/proces-plateb',
   '/reseni/nakupy', '/reseni/personal', '/reseni/platby', '/reseni/pokladna',
-  '/obchodni-podminky', '/ochrana-udaju', '/dekujeme', '/pro-media',
+  '/obchodni-podminky', '/gdpr', '/dekujeme', '/pro-media',
 ]);
 
 const isNonPage = (p: string) =>
@@ -64,7 +64,7 @@ const companyNavEn: NavLink[] = [
 
 const legalNavEn: NavLink[] = [
   { label: 'Terms & Conditions', href: '/obchodni-podminky' },
-  { label: 'Privacy Policy', href: '/ochrana-udaju' },
+  { label: 'Privacy Policy', href: '/gdpr' },
 ];
 
 /** Aplikuje locPath na href v seznamu odkazů (rekurzivně přes mega/children). */
