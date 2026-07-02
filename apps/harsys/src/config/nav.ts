@@ -12,6 +12,7 @@
  * doplníme později.
  */
 import type { NavItem, NavLink, MegaPanel } from '@piano/ui/config/nav';
+import { pianoNavItem } from '@piano/ui/config/piano-ecosystem';
 
 const programMega: MegaPanel = {
   columns: [
@@ -40,6 +41,7 @@ const programMega: MegaPanel = {
 
 export const harsysNav: NavItem[] = [
   { label: 'Program', href: '/funkce', mega: programMega },
+  pianoNavItem('harsys'),
   { label: 'Ceník', href: '/cenik' },
   { label: 'Hardware', href: '/#hardware' },
   {
