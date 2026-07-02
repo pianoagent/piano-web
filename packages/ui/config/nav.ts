@@ -81,7 +81,7 @@ export const companyNav: NavLink[] = [
 /** Právní odkazy — spodní lišta footeru */
 export const legalNav: NavLink[] = [
   { label: 'Obchodní podmínky', href: '/obchodni-podminky' },
-  { label: 'Zásady ochrany osobních údajů', href: '/ochrana-udaju' },
+  { label: 'Zásady ochrany osobních údajů', href: '/gdpr' },
 ];
 
 /** Sociální sítě — `icon` je název ikony pro <Icon> (sada Lucide) */
