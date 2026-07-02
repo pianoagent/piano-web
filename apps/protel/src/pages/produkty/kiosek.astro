@@ -1,0 +1,143 @@
+---
+/**
+ * Protel — produkt „Kiosek“. Obsah vytěžen z produkty/kiosek.html
+ * starého protelsystems.cz (jazykově uhlazeno, fakta zachována).
+ * Vše ze sdílených komponent @piano/ui.
+ */
+import Base from '../../layouts/Base.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+
+const features = [
+  {
+    id: "rychla-identifikace-hosta", icon: "lucide:scan-face", title: "Rychlá identifikace hosta",
+    paras: [
+      "S pomocí čísla rezervace nebo QR kódu host okamžitě přistoupí k check-inu nebo check-outu. Kiosek zefektivňuje recepční proces a minimalizuje čas strávený čekáním — hosté své požadavky vyřídí svobodně a bez zdržení.",
+    ],
+  },
+  {
+    id: "platba", icon: "lucide:credit-card", title: "Platba",
+    paras: [
+      "Díky integrovanému platebnímu terminálu hosté okamžitě zaplatí za pobyt nebo služby, aniž by čekali ve frontě u recepce. Rychlá a bezproblémová platba přispívá k celkovému komfortu.",
+    ],
+  },
+  {
+    id: "registracni-karta", icon: "lucide:file-signature", title: "Registrační karta",
+    paras: [
+      "Host na kiosku podepíše svou registrační kartu, která se uloží elektronicky. Hotel má k informacím snadný přístup a check-in probíhá rychle a bezpečně.",
+    ],
+  },
+  {
+    id: "vydani-klice", icon: "lucide:key-round", title: "Vydání klíče",
+    paras: [
+      "Hosté si prostřednictvím kiosku aktivují kartu k pokoji, jakmile splní všechny podmínky pro přihlášení k pobytu. Automatizované vydání klíče minimalizuje zátěž recepce.",
+    ],
+  },
+  {
+    id: "kiosek-jako-software", icon: "lucide:app-window", title: "Kiosek jako software",
+    paras: [
+      "Kiosek nemusí být fyzické zařízení — lze ho provozovat jako software na běžném notebooku nebo tabletu. Hotel tak zavede samoobslužné odbavení za přijatelnou cenu, bez investic do speciálního hardwaru.",
+    ],
+  },
+  {
+    id: "kiosek-jako-hardware", icon: "lucide:monitor-smartphone", title: "Kiosek jako hardware",
+    paras: [
+      "Plnohodnotné vestavěné zařízení s dotykovým displejem a čtečkou karet, které lze doplnit o další prvky. Hosté přes kiosek žádají o informace, objednávají hotelové služby a komunikují s recepcí i dalšími odděleními.",
+    ],
+  },
+];
+
+const related = [
+  { icon: "lucide:smartphone", title: "Online check-in/out", text: "Host vyřídí check-in i check-out přes mobil, bez fronty na recepci.", href: "/produkty/online-check-in-out" },
+  { icon: "lucide:file-signature", title: "Digitální registrační karta", text: "Registrace hosta digitálně — konec papírování.", href: "/produkty/digitalni-registracni-karta" },
+  { icon: "lucide:scan-line", title: "Čtečka dokladů", text: "Rychlé načtení údajů z dokladů i platebních karet.", href: "/produkty/ctecka-dokladu" },
+  { icon: "lucide:credit-card", title: "Platební řešení hotelu", text: "Plně integrované platby přímo v Protelu. Méně chyb a nižší riziko vracení transakcí.", href: "/produkty/platebni-reseni-hotelu" },
+];
+---
+
+<Base title="Kiosek | Protel"
+      description="Kiosek je pohodlné alternativní řešení pro hosty, kteří preferují rychlý check-in/out bez návštěvy recepce. Umožněte hostům komfort, který vyžadují.">
+  <SiteHeader />
+
+  <main>
+    <Breadcrumb items={[{ label: 'Úvod', href: '/' }, { label: 'Produkty', href: '/produkty' }, { label: "Kiosek" }]} />
+
+    <Hero eyebrow="Produkty" background="gradient"
+          lead="Kiosek poskytuje pohodlné alternativní řešení pro hosty, kteří preferují rychlý check-in/out bez návštěvy recepce. Umožněte hostům komfort, který vyžadují.">
+      <Heading slot="title" as="h1" size="display" color="on-dark">Samoobslužný <em>kiosek</em></Heading>
+      <Fragment slot="actions">
+        <Button href="#poptavka">Vyzkoušet Protel zdarma</Button>
+        <Button href="/produkty" variant="secondary" onDark>Všechny produkty</Button>
+      </Fragment>
+    </Hero>
+
+    <Section background="default" space="lg">
+      <nav class="jump" aria-label="Funkce produktu">
+        {features.map((f) => (
+          <a class="jump__chip" href={`#${f.id}`}>{f.title}</a>
+        ))}
+      </nav>
+      <div class="features">
+        {features.map((f) => (
+          <article class="feature" id={f.id}>
+            <span class="feature__icon"><Icon name={f.icon} size="lg" /></span>
+            <Heading as="h2" size="h3">{f.title}</Heading>
+            {f.paras.map((p) => (
+              <Text color="muted">{p}</Text>
+            ))}
+          </article>
+        ))}
+      </div>
+    </Section>
+
+    <Section background="primary" space="lg">
+      <figure class="quoteband">
+        <span class="quoteband__mark"><Icon name="lucide:quote" size="lg" /></span>
+        <blockquote>
+          <Heading as="p" size="h3" color="on-dark" align="center">Kiosek zajišťuje rychlý a pohodlný check-in i check-out, zlepšuje efektivitu, zkracuje fronty na recepci a šetří práci recepčních. A vy získáte přímý kontakt s hostem.</Heading>
+        </blockquote>
+      </figure>
+    </Section>
+
+    <USPGrid eyebrow="Dále by vás mohlo zajímat" title="Související produkty"
+             items={related} minItemWidth="260px" background="alt" space="lg" />
+
+    <LeadForm id="poptavka" variant="full" background="default"
+              title="Vyzkoušejte Protel zdarma"
+              lead="Co byste u vás v hotelu rádi zlepšili? Nechte nám kontakt — ozveme se a ukážeme Protel přímo ve vašem hotelu." />
+  </main>
+
+  <SiteFooter />
+</Base>
+
+<style>
+  .jump { display: flex; flex-wrap: wrap; gap: var(--space-2); justify-content: center; margin-bottom: var(--space-8); }
+  .jump__chip {
+    display: inline-flex; padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-border); border-radius: var(--radius-full);
+    background: var(--color-bg-alt); color: var(--color-text);
+    font-size: var(--font-size-small); font-weight: var(--font-weight-semibold);
+    text-decoration: none; transition: border-color var(--duration-base) var(--easing);
+  }
+  .jump__chip:hover { border-color: var(--color-primary); color: var(--color-text-accent); }
+  .features { max-width: 800px; margin-inline: auto; display: flex; flex-direction: column; gap: var(--space-9); }
+  .feature { scroll-margin-top: var(--space-9); }
+  .feature > :global(* + *) { margin-top: var(--space-3); }
+  .feature__icon {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 56px; height: 56px; border-radius: var(--radius-md);
+    background: color-mix(in srgb, var(--color-primary) 10%, #fff); color: var(--color-primary);
+  }
+  .quoteband { margin: 0; max-width: 840px; margin-inline: auto; display: flex; flex-direction: column; align-items: center; gap: var(--space-4); text-align: center; }
+  .quoteband__mark { color: var(--color-text-on-dark); opacity: 0.7; }
+  .quoteband blockquote { margin: 0; }
+</style>

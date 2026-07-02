@@ -1,0 +1,77 @@
+---
+/**
+ * Protel — landing „Řízení více hotelů“. Obsah vytěžen z rizeni-vice-hotelu.html starého
+ * protelsystems.cz (jazykově uhlazeno). Vše ze sdílených komponent @piano/ui.
+ */
+import Base from '../layouts/Base.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+
+const related = [
+  { icon: "lucide:network", title: "Hotelové řetězce", text: "Řešení navržené přímo pro dva a více hotelů.", href: "/produkty/hotelove-retezce" },
+  { icon: "lucide:calendar-days", title: "Centrální rezervace", text: "Rezervace napříč řetězcem z jednoho místa.", href: "/produkty/hotelove-retezce#centralni-rezervace" },
+  { icon: "lucide:line-chart", title: "Reporting", text: "Všechna důležitá čísla na jedné obrazovce.", href: "/produkty/hotelove-retezce#reporting" },
+  { icon: "lucide:layout-dashboard", title: "Hotelový systém Protel", text: "Globální PMS s lokální podporou.", href: "/produkty/hotelovy-system-protel" },
+];
+---
+
+<Base title="Řízení více hotelů | Protel"
+      description="Sjednocená konfigurace, sdílené profily hostů i reporting napříč hotely. MultiProperty řešení Protel umí — řiďte celý řetězec z jednoho místa.">
+  <SiteHeader />
+
+  <main>
+    <Breadcrumb items={[{ label: 'Úvod', href: '/' }, { label: 'Řešení', href: '/#reseni' }, { label: "Řízení více hotelů" }]} />
+
+    <Hero eyebrow="Řešení" background="gradient"
+          lead="Řídíte více hotelů najednou? Pak jistě víte, že sjednocená konfigurace systému, sdílené profily hostů i reporting napříč několika hotely vám usnadní práci a umožní efektivně pracovat s hostem. Nehledejte složitá řešení — MultiProperty řešení totiž Protel umí!">
+      <Heading slot="title" as="h1" size="display" color="on-dark">Řízení <em>více hotelů</em></Heading>
+      <Fragment slot="actions">
+        <Button href="#poptavka">Vyzkoušet Protel zdarma</Button>
+        <Button href="/produkty" variant="secondary" onDark>Prohlédnout produkty</Button>
+      </Fragment>
+    </Hero>
+
+    <Section background="default" space="lg">
+      <div class="solution">
+        <Text size="label" color="accent">Protel má řešení</Text>
+        <Heading as="h2" size="h2">Řešení pro efektivní řízení hotelových řetězců? Protel Central!</Heading>
+        <Text size="lead" color="muted">Konfigurace na pozadí systému se provádí pouze jednou. Management vidí všechna důležitá čísla napříč všemi provozy na jedné obrazovce, rezervace lze jednoduše stěhovat mezi hotely a obchodní oddělení vidí produkci každého hosta v jednom profilu. A přitom na recepci každý pracuje bezpečně pouze ve svém hotelu.</Text>
+      </div>
+    </Section>
+
+    <Section background="primary" space="lg">
+      <figure class="quoteband">
+        <span class="quoteband__mark"><Icon name="lucide:quote" size="lg" /></span>
+        <blockquote>
+          <Heading as="p" size="h3" color="on-dark" align="center">Výhodou řízení hotelových řetězců s Protelem je, že máte vše pod kontrolou z jednoho místa.</Heading>
+        </blockquote>
+      </figure>
+    </Section>
+
+    <USPGrid eyebrow="Související" title="Související s řízením více hotelů"
+             items={related} minItemWidth="260px" background="alt" space="lg" />
+
+    <LeadForm id="poptavka" variant="full" background="default"
+              title="Vyzkoušejte Protel zdarma"
+              lead="Co byste u vás v hotelu rádi zlepšili? Nechte nám kontakt — ozveme se a ukážeme Protel přímo ve vašem hotelu." />
+  </main>
+
+  <SiteFooter />
+</Base>
+
+<style>
+  .solution { max-width: 800px; margin-inline: auto; }
+  .solution > :global(* + *) { margin-top: var(--space-4); }
+  .quoteband { margin: 0; max-width: 840px; margin-inline: auto; display: flex; flex-direction: column; align-items: center; gap: var(--space-4); text-align: center; }
+  .quoteband__mark { color: var(--color-text-on-dark); opacity: 0.7; }
+  .quoteband blockquote { margin: 0; }
+</style>

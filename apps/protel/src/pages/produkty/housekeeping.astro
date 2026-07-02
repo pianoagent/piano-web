@@ -1,0 +1,146 @@
+---
+/**
+ * Protel — produkt „Housekeeping“. Obsah vytěžen z produkty/housekeeping.html
+ * starého protelsystems.cz (jazykově uhlazeno, fakta zachována).
+ * Vše ze sdílených komponent @piano/ui.
+ */
+import Base from '../../layouts/Base.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+
+const features = [
+  {
+    id: "aplikace-pro-housekeeping", icon: "lucide:smartphone", title: "Aplikace pro housekeeping",
+    paras: [
+      "Personál housekeepingu vidí stav uklizenosti jednotlivých pokojů přímo na svém mobilním zařízení: zda byl pokoj uklizen, zda je připraven pro nové hosty, nebo zda vyžaduje další úkony.",
+      "Do aplikace lze zaznamenávat i poznámky ke stavu pokoje — speciální požadavky hostů nebo potřebu výměny povlečení či ručníků. Tým tak efektivně komunikuje a pokoje jsou vždy v perfektním stavu.",
+    ],
+  },
+  {
+    id: "reporting", icon: "lucide:line-chart", title: "Reporting",
+    paras: [
+      "Zaměstnanci snadno sdílejí informace o splněných úkolech mezi sebou i směrem k vedení. Systém umí automaticky generovat plány úklidu podle počtu pokojů, počtu zaměstnanců a času potřebného na úklid — pracovní síly tak využíváte optimálně.",
+    ],
+  },
+  {
+    id: "udrzba", icon: "lucide:wrench", title: "Údržba",
+    paras: [
+      "Všechny závady a jejich opravy evidujete online přímo v aplikaci, včetně fotodokumentace a reportování z hotelového systému. Údržbu tak řešíte rychle, přehledně a bez zdržování provozu.",
+    ],
+  },
+  {
+    id: "ztraty-a-nalezy", icon: "lucide:search", title: "Ztráty a nálezy",
+    paras: [
+      "Nalezené předměty se okamžitě zaznamenávají do systému — včetně jména hosta, čísla pokoje, popisu položky a místa nálezu. Ztracené věci se tak rychle vracejí majitelům, což přispívá k pozitivní zkušenosti hostů.",
+    ],
+  },
+  {
+    id: "traces", icon: "lucide:list-checks", title: "Traces",
+    paras: [
+      "Traces jsou úlohy a připomínky navázané na rezervaci, hosta či pokoj — nebo zcela samostatné. Slouží jako univerzální nástroj pro předávání úkolů mezi pracovníky a odděleními hotelu.",
+      "U každé stopy je na první pohled vidět, pro který den a čas platí, kdo a kdy ji zadal, pro které oddělení a zda už byla dokončena. Úloha se zobrazí příslušnému uživateli v definovaný čas — jednorázově, denně, nebo s nastavenou frekvencí.",
+    ],
+  },
+  {
+    id: "rozpis-ukladu", icon: "lucide:calendar-check", title: "Rozpis úklidů",
+    paras: [
+      "Vedoucí sestavují denní i týdenní plány úklidů pokojů a veřejných prostor, přiřazují úkoly jednotlivým zaměstnancům a sledují průběh v reálném čase.",
+      "Systém rozpisy automaticky optimalizuje podle aktuální obsazenosti a plánovaných příjezdů a odjezdů. Zaměstnanci dostávají upozornění na nové nebo urgentní úkoly přímo na mobilní zařízení.",
+    ],
+  },
+];
+
+const related = [
+  { icon: "lucide:layout-dashboard", title: "Hotelový systém", text: "Správa pokojů, rezervací, hostů a statistik — snadné používání a pokročilé funkce pro kompletní přehled o provozu.", href: "/produkty/hotelovy-system-protel" },
+  { icon: "lucide:smartphone", title: "Online check-in/out", text: "Host vyřídí check-in i check-out přes mobil, bez fronty na recepci.", href: "/produkty/online-check-in-out" },
+  { icon: "lucide:book-open", title: "Digitální hotelová kniha", text: "Hotelová kniha elektronicky, vždy aktuální a po ruce.", href: "/produkty/digitalni-hotelova-kniha" },
+  { icon: "lucide:mail", title: "Automatický mailing", text: "Personalizované e-maily hostům bez zásahu recepčního.", href: "/produkty/automaticky-mailing" },
+];
+---
+
+<Base title="Housekeeping | Protel"
+      description="Digitální řešení pro housekeeping: sledování a přidělování úkolů, kontrola stavu pokojů a komunikace mezi zaměstnanci. I housekeeping ve vašem hotelu může být kompletně digitální!">
+  <SiteHeader />
+
+  <main>
+    <Breadcrumb items={[{ label: 'Úvod', href: '/' }, { label: 'Produkty', href: '/produkty' }, { label: "Housekeeping" }]} />
+
+    <Hero eyebrow="Produkty" background="gradient"
+          lead="Digitální řešení pro housekeeping přináší efektivitu a transparentnost do úklidu a údržby hotelových pokojů. Snadné sledování a přidělování úkolů, kontrola stavu pokojů a komunikace mezi zaměstnanci — i housekeeping ve vašem hotelu může být kompletně digitální!">
+      <Heading slot="title" as="h1" size="display" color="on-dark">Digitální <em>housekeeping</em></Heading>
+      <Fragment slot="actions">
+        <Button href="#poptavka">Vyzkoušet Protel zdarma</Button>
+        <Button href="/produkty" variant="secondary" onDark>Všechny produkty</Button>
+      </Fragment>
+    </Hero>
+
+    <Section background="default" space="lg">
+      <nav class="jump" aria-label="Funkce produktu">
+        {features.map((f) => (
+          <a class="jump__chip" href={`#${f.id}`}>{f.title}</a>
+        ))}
+      </nav>
+      <div class="features">
+        {features.map((f) => (
+          <article class="feature" id={f.id}>
+            <span class="feature__icon"><Icon name={f.icon} size="lg" /></span>
+            <Heading as="h2" size="h3">{f.title}</Heading>
+            {f.paras.map((p) => (
+              <Text color="muted">{p}</Text>
+            ))}
+          </article>
+        ))}
+      </div>
+    </Section>
+
+    <Section background="primary" space="lg">
+      <figure class="quoteband">
+        <span class="quoteband__mark"><Icon name="lucide:quote" size="lg" /></span>
+        <blockquote>
+          <Heading as="p" size="h3" color="on-dark" align="center">Housekeeping v Protelu znamená efektivní správu úklidu a údržby pokojů — plánování, sledování stavu i reportování závad. Výsledkem je plynulý a efektivní provoz vašeho hotelu.</Heading>
+        </blockquote>
+      </figure>
+    </Section>
+
+    <USPGrid eyebrow="Dále by vás mohlo zajímat" title="Související produkty"
+             items={related} minItemWidth="260px" background="alt" space="lg" />
+
+    <LeadForm id="poptavka" variant="full" background="default"
+              title="Vyzkoušejte Protel zdarma"
+              lead="Co byste u vás v hotelu rádi zlepšili? Nechte nám kontakt — ozveme se a ukážeme Protel přímo ve vašem hotelu." />
+  </main>
+
+  <SiteFooter />
+</Base>
+
+<style>
+  .jump { display: flex; flex-wrap: wrap; gap: var(--space-2); justify-content: center; margin-bottom: var(--space-8); }
+  .jump__chip {
+    display: inline-flex; padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-border); border-radius: var(--radius-full);
+    background: var(--color-bg-alt); color: var(--color-text);
+    font-size: var(--font-size-small); font-weight: var(--font-weight-semibold);
+    text-decoration: none; transition: border-color var(--duration-base) var(--easing);
+  }
+  .jump__chip:hover { border-color: var(--color-primary); color: var(--color-text-accent); }
+  .features { max-width: 800px; margin-inline: auto; display: flex; flex-direction: column; gap: var(--space-9); }
+  .feature { scroll-margin-top: var(--space-9); }
+  .feature > :global(* + *) { margin-top: var(--space-3); }
+  .feature__icon {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 56px; height: 56px; border-radius: var(--radius-md);
+    background: color-mix(in srgb, var(--color-primary) 10%, #fff); color: var(--color-primary);
+  }
+  .quoteband { margin: 0; max-width: 840px; margin-inline: auto; display: flex; flex-direction: column; align-items: center; gap: var(--space-4); text-align: center; }
+  .quoteband__mark { color: var(--color-text-on-dark); opacity: 0.7; }
+  .quoteband blockquote { margin: 0; }
+</style>

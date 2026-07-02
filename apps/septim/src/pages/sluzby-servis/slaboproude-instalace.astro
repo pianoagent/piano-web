@@ -1,0 +1,40 @@
+---
+/** Septim — Služby: Slaboproudé instalace. Obsah: septim-obsah/sluzby-servis/slaboproude-instalace.md. SEO meta nově. */
+import Base from '../../layouts/Base.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Button from '@piano/ui/components/Button.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import StatsBand from '../../components/StatsBand.astro';
+
+const oblasti = [
+  { icon: 'lucide:cctv', title: 'Kamery', text: 'Pracujeme se všemi dostupnými technologiemi — analogové HD, běžný PAL i IP kamery. Naším hlavním cílem je maximalizace efektu kamerového systému.' },
+  { icon: 'lucide:speaker', title: 'Ozvučení', text: 'Instalace realizujeme se značkami jako BOSE, Bang & Olufsen, ale i Apart, LD, RH Sound či Dexon — tak, aby byl vždy naplněn konkrétní účel ozvučení.' },
+  { icon: 'lucide:shield-check', title: 'Zabezpečovací systémy', text: 'Dodáváme zabezpečovací a přístupové systémy Paradox a Jablotron.' },
+  { icon: 'lucide:cable', title: 'Sítě a kabeláže', text: 'Navrhujeme a pokládáme kabeláže v metalických i optických variantách. Pracujeme i s pokročilými wifi technologiemi na bázi zařízení Mikrotik a Ubiquiti.' },
+];
+---
+<Base title="Slaboproudé instalace pro restaurace a hotely – Septim"
+      description="Kompletní slaboproudé instalace pro restaurace a hotely: kamery, ozvučení (BOSE, Bang & Olufsen), zabezpečení Paradox a Jablotron, sítě a kabeláže včetně wifi Mikrotik a Ubiquiti.">
+  <SiteHeader />
+  <main>
+    <Hero eyebrow="Služby a servis" background="alt"
+          lead="Pro naše zákazníky ze sektoru hotelů a restaurací zajišťujeme kompletní slaboproudé instalace. Dopřejte svým klientům ještě lepší zážitek.">
+      <Heading slot="title" as="h1" size="display">Slaboproudé <em>instalace</em></Heading>
+      <Fragment slot="actions">
+        <Button href="#poptavka">Chci nabídku</Button>
+        <Button href="/sluzby-servis" variant="secondary">Všechny služby</Button>
+      </Fragment>
+    </Hero>
+
+    <USPGrid eyebrow="Co instalujeme" title="Slaboproudé instalace v restauraci i hotelu" items={oblasti} background="default" space="lg" minItemWidth="260px" />
+    <StatsBand />
+    <LeadForm id="poptavka" variant="callback" background="default"
+              title="Poptat slaboproudou instalaci"
+              lead="Nechte nám telefon — probereme rozsah instalace pro váš provoz." />
+  </main>
+  <SiteFooter />
+</Base>

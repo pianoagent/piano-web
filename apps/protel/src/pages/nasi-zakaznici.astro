@@ -1,0 +1,125 @@
+---
+/**
+ * Protel — Naši zákazníci (reference). Obsah z nasi-zakaznici.html starého
+ * protelsystems.cz. Vše ze sdílených komponent @piano/ui (Testimonials, LogoWall).
+ */
+import Base from '../layouts/Base.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import Card from '@piano/ui/components/Card.astro';
+import Badge from '@piano/ui/components/Badge.astro';
+import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
+import Testimonials from '@piano/ui/components/Testimonials.astro';
+import LogoWall from '@piano/ui/components/LogoWall.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+
+const caseStudies = [
+  { badge: 'Case study · 3 minuty čtení', title: 'Hotel SAVOY Prague', text: 'Jak Protel pomohl luxusnímu hotelu SAVOY zvýšit obsazenost a tržby o 37 % ve specifické lokalitě.', icon: 'lucide:trending-up' },
+  { badge: 'Case study · 2 minuty čtení', title: 'VILLA SANDY', text: 'Využití hotelové AI ve VILLA SANDY poskytuje automatické odpovědi hostům bez nutnosti zapojení personálu.', icon: 'lucide:bot' },
+];
+
+const testimonials = [
+  { initials: 'MB', headline: 'Vynikající volba', quote: 'Protel je pro CPI Hotels vynikající volba. Jeho intuitivní rozhraní, spolehlivost a efektivita nám umožňují snadno řídit rezervace, spravovat hosty a sledovat statistiky. Integrace moderních technologií nám pomohla zlepšit guest journey a poskytovat personalizované služby.', author: 'Michaela Bieliková', role: 'CPI Hotels' },
+  { initials: 'IM', headline: 'Profesionální support', quote: 'Ďakujem firme Protel za profesionálny support a inštaláciu!', author: 'Ivona Meissner', role: 'BWH Group' },
+  { initials: 'ŠCH', headline: 'Připraveni na praxi', quote: 'Díky Protelu jsou naši studenti připraveni na moderní technologie v hotelnictví.', author: 'Štěpán Chalupa', role: 'UCP — škola hotelnictví' },
+];
+
+const zakaznici = [
+  'Grandhotel Pupp', 'Hotel SAVOY Prague', 'CPI Hotels', 'Aquapalace Hotel Prague',
+  'Mamaison', 'Old Town Hotels', 'Hotel Imperial', 'Hotel Perla Praha',
+  'Hotel Perk', 'Vista Hotel', 'Grandhotel Starý Smokovec', 'TMR Hotels',
+  'Buddha-Bar Hotel', 'Comfort Hotel Prague City East', 'Hotel Clement Prague',
+  'Nouveau Palace Hotel Prague', 'Hotel Yasmin', 'Resort Sobotín',
+  'U Salzmannů', 'Blue Orange Resort', 'Chuchle Arena Praha',
+  'Chata Hradečanka', 'Amarilis Hotel Prague', 'VILLA SANDY',
+];
+---
+
+<Base title="Naši zákazníci | Protel"
+      description="Hotelový systém Protel používají špičky v českém a slovenském hotelovém byznysu: Grandhotel Pupp, CPI Hotels, Hotel SAVOY Prague, Aquapalace Hotel Prague, Mamaison, Imperial a další.">
+  <SiteHeader />
+
+  <main>
+    <Breadcrumb items={[{ label: 'Úvod', href: '/' }, { label: 'Naši zákazníci' }]} />
+
+    <Hero eyebrow="Reference" background="gradient"
+          lead="Protel je respektovaný hotelový systém, který používají špičky v českém a slovenském hotelovém byznysu. Důvěřují nám ti nejlepší.">
+      <Heading slot="title" as="h1" size="display" color="on-dark">Naši <em>zákazníci</em></Heading>
+      <Fragment slot="actions">
+        <Button href="#poptavka">Přidat se k nim</Button>
+        <Button href="/produkty" variant="secondary" onDark>Prohlédnout produkty</Button>
+      </Fragment>
+    </Hero>
+
+    <LogoWall background="default" label="Protel používají hotelové špičky"
+      logos={['ref-clarion-hotel', 'ref-field-michelin-restaurant', 'ref-cafe-savoy', 'ref-kolkovna', 'ref-sasazu', 'ref-O2-arena', 'ref-zatisi-group', 'ref-420-restaurant', 'ref-pizza-coloseum', 'ref-entree', 'ref-100-chuti-brna', 'ref-sisters-bistro']} />
+
+    <Section background="alt" space="lg">
+      <div class="head head--center">
+        <Text size="label" color="accent" align="center">Case studies</Text>
+        <Heading as="h2" size="h2" align="center">Výsledky, které jdou <em>vyčíslit</em></Heading>
+      </div>
+      <div class="cases">
+        {caseStudies.map((c) => (
+          <Card variant="elevated" padding="lg" as="article">
+            <div class="case">
+              <span class="case__icon"><Icon name={c.icon} size="lg" /></span>
+              <Badge variant="primary">{c.badge}</Badge>
+              <Heading as="h3" size="h3">{c.title}</Heading>
+              <Text size="small" color="muted">{c.text}</Text>
+            </div>
+          </Card>
+        ))}
+      </div>
+    </Section>
+
+    <Testimonials items={testimonials} eyebrow="Co o nás říkají" title="Slovy našich zákazníků" background="default" />
+
+    <Section background="invert" space="lg">
+      <div class="head head--center">
+        <Text size="label" color="accent" align="center">Vybraní zákazníci</Text>
+        <Heading as="h2" size="h2" align="center" color="on-dark">Kdo všechno na Protel <em>spoléhá</em></Heading>
+      </div>
+      <ul class="chips">
+        {zakaznici.map((z) => (
+          <li class="chip"><span class="chip__dot"></span>{z}</li>
+        ))}
+      </ul>
+    </Section>
+
+    <LeadForm id="poptavka" variant="full" background="default"
+              title="Přidejte se k nejlepším"
+              lead="Co byste u vás v hotelu rádi zlepšili? Pojďme to probrat — ozveme se a ukážeme Protel přímo ve vašem hotelu." />
+  </main>
+
+  <SiteFooter />
+</Base>
+
+<style>
+  .head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-7); }
+  .head--center { text-align: center; }
+  .head > * + * { margin-top: var(--space-3); }
+
+  .cases { display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); max-width: 900px; margin-inline: auto; }
+  .case { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-3); }
+  .case__icon {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 56px; height: 56px; border-radius: var(--radius-md);
+    background: color-mix(in srgb, var(--color-primary) 10%, #fff); color: var(--color-primary);
+  }
+
+  .chips { list-style: none; display: flex; flex-wrap: wrap; gap: var(--space-3); justify-content: center; }
+  .chip {
+    display: inline-flex; align-items: center; gap: var(--space-2);
+    padding: var(--space-3) var(--space-5); border-radius: var(--radius-full);
+    background: rgba(255, 255, 255, 0.06); border: 1px solid var(--color-border-on-dark);
+    color: var(--color-text-on-dark); font-size: var(--font-size-small);
+  }
+  .chip__dot { width: 8px; height: 8px; border-radius: 50%; background: var(--color-primary); flex-shrink: 0; }
+</style>

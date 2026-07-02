@@ -1,0 +1,36 @@
+---
+/** Grason — Nejčastější dotazy — pracovníci. Ze starého webu (faq-grason, cs.json). Slug zachován kvůli SEO. */
+import Base from '../layouts/Base.astro';
+import Header from '@piano/ui/components/Header.astro';
+import Footer from '@piano/ui/components/Footer.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Faq from '@piano/ui/components/Faq.astro';
+import { grasonNav, grasonCta, grasonFooter } from '../config/nav';
+
+const items = [
+  { q: 'Jak mám vyplnit svůj profil, abych měl větší šanci získat práci?', a: 'Dobrá, profesionální fotka je základ. Vyfoťte se sami, ideálně v pracovním prostředí. Fotka, pár slov o vás a obdržené hodnocení jsou hlavními faktory, podle kterých si podnik vybírá. Důležitá je taky poptávaná hodinová sazba. Pokud jste na platformě nováčkem, je lepší si říct o míň a zlepšit tak svou pozici vůči ostatním. Využít můžete i motivační dopis, kam uvedete 2-3 věty, proč se na danou práci hodíte právě vy.' },
+  { q: 'Jak se určuje hodinová sazba?', a: 'U některých směn si hodinovou sazbu volíte sami, u některých je pevně stanovená. Záleží na typu práce, pozici, regionu a na vašich zkušenostech. Indikací vám může být preferovaná hodinová sazba uvedená u směny. Pokud v aplikaci začínáte, je lepší začít s nižší hodinovou mzdou a postupně ji zvedat. Dávejte pozor, zda se na směnu hlásíte v čisté nebo hrubé mzdě, a uzpůsobte tomu své požadavky. Pokud podnik nemá vyplněnou hodinovou sazbu, je jen na vás, za kolik se přihlásíte. V případě, že má podnik vyplněnou nabízenou hodinovou mzdu, je dobré se přihlásit za danou částku, nebo se alespoň této částce přiblížit.' },
+  { q: 'V kolik mám přijít na domluvenou směnu?', a: 'Přijďte vždy 15 minut předem. Musíte se stihnout převléknout, zjistit, jak funguje provoz, a v některých případech podepsat smlouvu.' },
+  { q: 'Mohu se hlásit na více směn ve stejný den?', a: 'Můžete, zvýšíte tím šanci na získání práce. Jakmile vám některý podnik nabídku potvrdí, ze směn, které by se vám kryly, vás automaticky odhlásíme.' },
+  { q: 'Nestíháte dorazit na směnu včas?', a: 'Na směnu byste měli dorazit včas, ale chápeme, že je život nevyzpytatelný a může se stát cokoliv. Vždy je potřeba kontaktovat podnik skrze aplikaci, kde najdete telefonní číslo, omluvit se za zpoždění a na směnu co nejrychleji dorazit.' },
+  { q: 'Co mám dělat, když se nemůžu dostavit na směnu vůbec?', a: 'Pokud to opravdu nezvládnete, je třeba se ze směny co nejdříve odhlásit přímo v aplikaci, v detailu směny, kliknutím na tlačítko "odhlásit se" vpravo nahoře. Uveďte pravdivý důvod odhlášení. Pozor, časté odhlašování ze směny méně jak 24 hodin před jejím začátkem může vést k vyloučení z aplikace.' },
+  { q: 'Co mám mít na sobě? Jaký je dress code?', a: 'V detailu směny je vždy i informace ohledně požadavků na oblečení (dress code), který musíte dodržet. Zároveň je samozřejmostí, že na směnu dorazíte v čistém, vyžehleném oblečení a dle základní společenské normy. Pokud dress code opakovaně nedodržíte, může se tato informace zobrazovat zaměstnavatelům u vašeho profilu.' },
+  { q: 'Jak funguje vzájemné hodnocení pracovníků a podniků?', a: 'Pracovník může ohodnotit podnik po každé směně a platí to i naopak.' },
+  { q: 'Co se stane, když bez omluvy nepřijdu na domluvenou směnu?', a: 'Pokud se bez omluvy nedostavíte na směnu, dostanete automaticky negativní hodnocení a váš účet bude blokován. Návrat do aplikace již nebude možný.' },
+  { q: 'Jak si vybrat práci, aby mě nepřekvapilo, že něco neumím?', a: 'Je potřeba si důsledně přečíst popis práce směny. V komentářích se můžete doptat na detaily náplně práce, pokud není jasná z popisku, nebo použít proklik na web podniku. Přihlášením se na práci, která je nad Vaše schopnosti, riskujete negativní hodnocení, které vám pak znesnadní nalezení další práce.' },
+  { q: 'Co mám dělat, když se ke mně ostatní personál nebude chovat hezky?', a: 'Nebojte se to promítnout do hodnocení, jinak se to nedozvíme ani my, ani ostatní pracovníci.' },
+  { q: 'Co mám udělat, když mi nabídnou práci mimo Grason?', a: 'Pokud i Vy máte zájem o dlouhodobou spolupráci, je potřeba, aby nás podnik kontaktoval. My s ním vše vyřešíme. V opačném případě hrozí podniku pokuta a vám blokace v aplikaci. Nicméně budeme raději, když si budete nadále domlouvat směny přes aplikaci – pokud by nastal jakýkoliv problém, pomůžeme vám ho vyřešit, a každá nová pracovní zkušenost zlepšuje váš profil a tím zvyšujete své šance na získání další práce.' },
+];
+---
+<Base title="Nejčastější dotazy — pracovníci | Grason"
+      description="Odpovědi na nejčastější dotazy brigádníků: profil, přihlašování na směny, potvrzení, výplata a hodnocení.">
+  <Header brand="Grason" logoSrc="/logos/grason_logo.svg" logoHeight="28px" homeHref="/" nav={grasonNav} cta={grasonCta} />
+  <main>
+    <Hero eyebrow="Podpora" background="alt" space="md" lead="Profil, přihlašování na směny, výplata i hodnocení — vše, co jako pracovník potřebujete vědět.">
+      <Heading slot="title" as="h1" size="h1">Nejčastější dotazy — pracovníci</Heading>
+    </Hero>
+    <Faq items={items} title="" background="default" />
+  </main>
+  <Footer {...grasonFooter} />
+</Base>

@@ -1,0 +1,62 @@
+---
+/** Septim — Funkce: Anketa pro jídelny. Obsah: septim-obsah/produkty/anketa-pro-jidelny.md. Nové URL dle IA (/funkce/). SEO meta nově. */
+import Base from '../../layouts/Base.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import StatsBand from '../../components/StatsBand.astro';
+import LogoWall from '../../components/LogoWall.astro';
+import Faq from '@piano/ui/components/Faq.astro';
+
+const benefits = [
+  { icon: 'lucide:message-square', title: 'Okamžitá zpětná vazba', text: 'Hodnocení konkrétních chodů od strávníků ihned po jídle.' },
+  { icon: 'lucide:chef-hat', title: 'Podklad pro kuchyni', text: 'Manažer vidí hodnocení ve svém rozhraní a může dát kuchyni jasnou zpětnou vazbu.' },
+  { icon: 'lucide:handshake', title: 'Argument pro spolupráci', text: 'Pro provozovatele jídelny i firmu vlastnící prostory zásadní podklad pro další spolupráci.' },
+];
+const faqs = [
+  { q: 'Jaký je hlavní přínos modulu Anketa?', a: 'Hlavním přínosem je zjištění okamžité zpětné vazby od strávníka. Manažer pak může jmenovitě nebo statisticky uceleně vyhodnotit zpětnou vazbu a napravit, co je potřeba.' },
+  { q: 'Jak Anketu pro naši jídelnu získáme?', a: 'Prvním krokem je kontaktovat naše konzultanty, aby vám poradili s implementací modulu Anketa pro vaši závodní jídelnu.' },
+];
+---
+<Base title="Anketa pro jídelny – zpětná vazba strávníků v systému Septim"
+      description="Modul Anketa pro jídelny funguje jako feedback terminál: strávník se přihlásí kartou a ohodnotí polévku, hlavní chod i dezert zvlášť. Manažer vše vidí a předá kuchyni zpětnou vazbu.">
+  <SiteHeader />
+  <main>
+    <Hero eyebrow="Funkce systému Septim — jídelny" background="alt"
+          lead="Modul Anketa pro jídelny v systému Septim pomáhá provozovatelům závodních jídelen zjistit zpětnou vazbu strávníků — formou hodnocení konkrétních chodů.">
+      <Heading slot="title" as="h1" size="display">Anketa <em>pro jídelny</em></Heading>
+      <Fragment slot="actions">
+        <Button href="#poptavka">Chci Septim pro jídelnu</Button>
+        <Button href="/produkty/septim-jidelna" variant="secondary">Septim.Jídelna</Button>
+      </Fragment>
+    </Hero>
+
+    <Section background="default" space="lg">
+      <div class="prose">
+        <Heading as="h2" size="h2">Jak funguje Anketa v závodním stravování?</Heading>
+        <Text color="muted">Modul Anketa pro jídelny funguje v závodních restauracích jako feedback terminál. Strávník se při odchodu přihlásí svojí kartou nebo čipem a terminál mu zobrazí chody, které daný den měl. Polévku, hlavní chod a dezert může ohodnotit zvlášť.</Text>
+        <Text color="muted">Manažer pak vidí hodnocení ve svém rozhraní systému Septim a může podle nich dát jasnou zpětnou vazbu kuchyni.</Text>
+      </div>
+    </Section>
+
+    <USPGrid eyebrow="Výhody" title="Proč Anketa pro jídelny" items={benefits} background="alt" space="lg" minItemWidth="240px" />
+    <LogoWall label="Respektované provozy, které využívají Septim Anketa pro jídelny" background="default" />
+    <StatsBand />
+    <Faq items={faqs} title="Často kladené otázky k modulu Anketa pro jídelny" background="default" />
+    <LeadForm id="poptavka" variant="callback" background="alt"
+              title="Proberte s našimi konzultanty, jak na to"
+              lead="Nechte nám telefon — poradíme s implementací Ankety ve vaší jídelně." />
+  </main>
+  <SiteFooter />
+</Base>
+
+<style>
+  .prose { max-width: 760px; }
+  .prose > * + * { margin-top: var(--space-4); }
+</style>

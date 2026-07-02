@@ -18,6 +18,7 @@ export const grasonNav: NavItem[] = [
   },
   { label: 'Pro brigádníky', href: '/pro-brigadniky' },
   { label: 'O nás', href: '/o-nas' },
+  { label: 'Kontakt', href: '/kontakt' },
   pianoNavItem('grason'),
 ];
 
@@ -37,7 +38,18 @@ export const grasonFooter = {
         { label: 'Pro firmy', href: '/pro-firmy' },
         { label: 'Pro brigádníky', href: '/pro-brigadniky' },
         { label: 'O nás', href: '/o-nas' },
+        { label: 'Kontakt', href: '/kontakt' },
         { label: 'Konzultace zdarma', href: '/#poptavka' },
+      ] as NavLink[],
+    },
+    {
+      heading: 'Podpora',
+      links: [
+        { label: 'FAQ pro podniky', href: '/faq-companies' },
+        { label: 'FAQ pro pracovníky', href: '/faq-grason' },
+        { label: 'Volná místa', href: '/kariera' },
+        { label: 'Obchodní podmínky', href: '/obchodni-podminky' },
+        { label: 'Ochrana osobních údajů', href: '/ochrana-osobnich-udaju' },
       ] as NavLink[],
     },
   ],

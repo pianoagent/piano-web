@@ -1,0 +1,77 @@
+---
+/**
+ * Protel — landing „Inteligentní platby“. Obsah vytěžen z inteligentni-platby.html starého
+ * protelsystems.cz (jazykově uhlazeno). Vše ze sdílených komponent @piano/ui.
+ */
+import Base from '../layouts/Base.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+
+const related = [
+  { icon: "lucide:credit-card", title: "Platební řešení hotelu", text: "Plně integrované platby přímo v Protelu.", href: "/produkty/platebni-reseni-hotelu" },
+  { icon: "lucide:link", title: "PayByLink", text: "Výzvy k úhradě generované přímo z rezervace.", href: "/produkty/platebni-reseni-hotelu#pay-by-link" },
+  { icon: "lucide:calculator", title: "Napojení na platební terminál", text: "Částka k úhradě se přenese na terminál automaticky.", href: "/produkty/platebni-reseni-hotelu#napojeni-na-platebni-terminal" },
+  { icon: "lucide:receipt", title: "Fakturace", text: "Automatické účtování a vyrovnané účty.", href: "/produkty/hotelovy-system-protel#fakturace" },
+];
+---
+
+<Base title="Inteligentní platby | Protel"
+      description="Přepisujete čísla karet a částky do terminálu ručně? Zdlouhavý proces plný chyb umí Protel plně automatizovat — napojením na platební terminál a PayLink.">
+  <SiteHeader />
+
+  <main>
+    <Breadcrumb items={[{ label: 'Úvod', href: '/' }, { label: 'Řešení', href: '/#reseni' }, { label: "Inteligentní platby" }]} />
+
+    <Hero eyebrow="Řešení" background="gradient"
+          lead="Je většina vašich rezervací hrazená předem? A vy tyto platby stahujete přímo na terminálu tak, že do něj přepíšete číslo karty a částku k úhradě? Trápí vás, že je tento proces zdlouhavý a vzniká při něm mnoho chyb?">
+      <Heading slot="title" as="h1" size="display" color="on-dark">Inteligentní <em>platby</em></Heading>
+      <Fragment slot="actions">
+        <Button href="#poptavka">Vyzkoušet Protel zdarma</Button>
+        <Button href="/produkty" variant="secondary" onDark>Prohlédnout produkty</Button>
+      </Fragment>
+    </Hero>
+
+    <Section background="default" space="lg">
+      <div class="solution">
+        <Text size="label" color="accent">Protel má řešení</Text>
+        <Heading as="h2" size="h2">Automatizace plateb na terminál bez lidského zdroje!</Heading>
+        <Text size="lead" color="muted">Hotelový systém Protel je nejefektivnější odpovědí na vaše potřeby. S touto integrací získáte přímé propojení na platební terminál hotelu a PayLink, což umožní automatické zpracování plateb bez ručního zadávání údajů. Eliminuje se riziko chyb a celý proces platby se urychlí — zvýší se efektivita provozu i spokojenost hostů.</Text>
+      </div>
+    </Section>
+
+    <Section background="primary" space="lg">
+      <figure class="quoteband">
+        <span class="quoteband__mark"><Icon name="lucide:quote" size="lg" /></span>
+        <blockquote>
+          <Heading as="p" size="h3" color="on-dark" align="center">Výhodou inteligentních plateb je eliminace zdlouhavého a chybového ručního zadávání platebních údajů. Získáte automatické napojení na terminál a PayByLink.</Heading>
+        </blockquote>
+      </figure>
+    </Section>
+
+    <USPGrid eyebrow="Související" title="Související s inteligentními platbami"
+             items={related} minItemWidth="260px" background="alt" space="lg" />
+
+    <LeadForm id="poptavka" variant="full" background="default"
+              title="Vyzkoušejte Protel zdarma"
+              lead="Co byste u vás v hotelu rádi zlepšili? Nechte nám kontakt — ozveme se a ukážeme Protel přímo ve vašem hotelu." />
+  </main>
+
+  <SiteFooter />
+</Base>
+
+<style>
+  .solution { max-width: 800px; margin-inline: auto; }
+  .solution > :global(* + *) { margin-top: var(--space-4); }
+  .quoteband { margin: 0; max-width: 840px; margin-inline: auto; display: flex; flex-direction: column; align-items: center; gap: var(--space-4); text-align: center; }
+  .quoteband__mark { color: var(--color-text-on-dark); opacity: 0.7; }
+  .quoteband blockquote { margin: 0; }
+</style>

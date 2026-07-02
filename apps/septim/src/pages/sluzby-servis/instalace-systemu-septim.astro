@@ -1,0 +1,73 @@
+---
+/** Septim — Služby: Instalace systému Septim. Obsah: septim-obsah/sluzby-servis/instalace-systemu-septim.md. SEO meta nově. */
+import Base from '../../layouts/Base.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import StatsBand from '../../components/StatsBand.astro';
+import Faq from '@piano/ui/components/Faq.astro';
+
+const startBody = [
+  'Nastavení procesů organizace restaurace',
+  'Příprava používání skladů a správy surovin',
+  'Zaškolení personálu',
+  'Příprava na finanční řízení restaurace a datové přehledy',
+];
+const kroky = [
+  { icon: 'lucide:clipboard-list', title: '1. Příprava obsahu', text: 'S naším konzultantem zapíšete do systému receptury, sklady i skladové karty jednotlivých surovin.' },
+  { icon: 'lucide:calendar-check', title: '2. Asistované spuštění', text: 'Společně vybereme termín spuštění Septimu a dohlédneme, aby vše proběhlo hladce.' },
+  { icon: 'lucide:headset', title: '3. Servisní správa', text: 'Po spuštění máte k dispozici Helpdesk pro nastavení Septimu i Hotline pro potíže s hardwarem a softwarem.' },
+];
+const faqs = [
+  { q: 'Kdo mě instalací provede?', a: 'Celým procesem od výběru vhodného řešení až po spuštění systému Septim vás provede náš zkušený konzultant.' },
+  { q: 'Je instalace technicky nebo časově náročná?', a: 'Zásadní je správně popsat potřeby vašeho provozu a vedení restaurace a probrat vhodné řešení. Všechny technické věci s vámi vyřeší náš konzultant, který zbytek zorganizuje s našimi techniky. Nemusíte se bát technické ani časové náročnosti.' },
+  { q: 'Jaký je první krok?', a: 'Kontaktujte nás a spojte se s našimi zkušenými konzultanty. Navrhneme vhodné řešení pro váš provoz.' },
+];
+---
+<Base title="Instalace systému Septim – od výběru řešení po spuštění"
+      description="Instalace pokladního a provozního systému Septim: příprava receptur a skladů, asistované spuštění v domluvený termín a následná servisní správa. Provede vás zkušený konzultant.">
+  <SiteHeader />
+  <main>
+    <Hero eyebrow="Služby a servis" background="alt"
+          lead="Rozhodli jste se pro systém Septim? Podívejte se, jaký průběh instalace vás čeká. Celým procesem od výběru vhodného řešení až po spuštění vás provede náš zkušený konzultant — žádný ajťák!">
+      <Heading slot="title" as="h1" size="display">Instalace <em>systému Septim</em></Heading>
+      <Fragment slot="actions">
+        <Button href="#poptavka">Chci konzultaci</Button>
+        <Button href="/sluzby-servis" variant="secondary">Všechny služby</Button>
+      </Fragment>
+    </Hero>
+
+    <Section background="default" space="lg">
+      <div class="prose">
+        <Heading as="h2" size="h2">Start systému je příležitost pro celý provoz</Heading>
+        <Text color="muted">Spuštění Septimu vidíme jako klíčový krok pro restauraci. Zdaleka nejde jen o zapnutí pokladny — je to příležitost nastavit efektivní řízení restaurace:</Text>
+      </div>
+      <ul class="checklist">
+        {startBody.map((f) => (<li><Icon name="lucide:check" size="sm" class="checklist__icon" />{f}</li>))}
+      </ul>
+    </Section>
+
+    <USPGrid eyebrow="Průběh instalace" title="Jak instalace Septimu probíhá" items={kroky} background="alt" space="lg" minItemWidth="260px" />
+    <StatsBand background="default" />
+    <Faq items={faqs} title="Často kladené otázky k instalaci" background="alt" />
+    <LeadForm id="poptavka" variant="callback" background="default"
+              title="Proberte s našimi konzultanty, jak na to"
+              lead="Nechte nám telefon — navrhneme vhodné řešení pro váš provoz." />
+  </main>
+  <SiteFooter />
+</Base>
+
+<style>
+  .prose { max-width: 760px; margin-bottom: var(--space-6); }
+  .prose > * + * { margin-top: var(--space-4); }
+  .checklist { list-style: none; display: grid; gap: var(--space-3); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); max-width: 960px; }
+  .checklist li { display: flex; align-items: flex-start; gap: var(--space-2); font-size: var(--font-size-small); }
+  .checklist__icon { color: var(--color-primary); flex-shrink: 0; margin-top: 2px; }
+</style>

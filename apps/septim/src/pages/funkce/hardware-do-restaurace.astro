@@ -1,0 +1,103 @@
+---
+/** Septim — Funkce/vybavení: Hardware do restaurace. Obsah: septim-obsah/produkty/hardware-do-restaurace.md. Nové URL dle IA (/funkce/). SEO meta nově. */
+import Base from '../../layouts/Base.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import StatsBand from '../../components/StatsBand.astro';
+import LogoWall from '../../components/LogoWall.astro';
+import Faq from '@piano/ui/components/Faq.astro';
+
+const kategorie = [
+  {
+    title: 'Pokladny',
+    icon: 'lucide:monitor',
+    text: 'Pokladní systém Septim běží na počítačových pokladnách i standardních počítačích; obsluha markuje na dotykovém displeji. Nabízíme kvalitní a přesto cenově dostupné pokladny, které pracují bez poruchy i v náročném gastro provozu — odolné proti prachu i polití, většinou bezventilátorové, a tedy s malou spotřebou energie. Nenajdete u nás nekvalitní repasované počítače ani produkty určené spíš na hraní než na práci. Pokladny jsou už v základní ceně dodávány s 36měsíční zárukou.',
+  },
+  {
+    title: 'Tiskárny',
+    icon: 'lucide:printer',
+    text: 'Bez pokladní tiskárny se neobejde žádná provozovna — „bony“ informují zaměstnance o potřebě vydat nápoj nebo jídlo a tisknou přehledný účet hosta. Tiskárny účtů se umisťují k pokladně; kvůli nižší hlučnosti a tisku grafického loga jsou termální. Tiskárny objednávek míří do kuchyně — tam provozovatelé většinou volí jehličkové: jsou sice hlučnější, ale velmi stabilní, a hlučnost je v kuchyni spíš výhodou. Systém umožňuje instalaci většího počtu tiskáren, například zvlášť u výdejního pultu.',
+  },
+  {
+    title: 'Mobilní pokladny a mobilní číšníci',
+    icon: 'lucide:smartphone',
+    text: 'Pro zájemce o mobilní pokladny nabízíme profesionální řešení vyrobené speciálně pro nasazení v pohostinství — ergonomické, robustní a se zajímavým designem. Pokladna Septim nepoužívá nestabilní Wi-Fi, ale vlastní rádiový přenos, který je zárukou spolehlivého fungování.',
+  },
+  {
+    title: 'Čtečky',
+    icon: 'lucide:scan-line',
+    text: 'Čtecí zařízení slouží k identifikaci hosta, personálu nebo zboží. Nejčastější je čtečka magnetických karet, kterou lze instalovat přímo na pokladnu; pořízení karet s vlastním potiskem není nákladné. Výjimkou jsou jídelny — strávník se identifikuje bezpečnější bezkontaktní kartou, často využívanou v celém objektu i pro vstup a docházku. Karta nese jen své číslo, veškeré údaje jsou v systému Septim, takže ztracenou kartu snadno nahradíte bez ztráty dat. Pro rychlejší prodej slouží čtečky čárových kódů.',
+  },
+  {
+    title: 'Pokladní zásuvky',
+    icon: 'lucide:archive',
+    text: 'Celokovové pokladní zásuvky napojíme přímo na pokladní systém, takže se otevřou tehdy, kdy je potřeba — po uzavření účtu. Vybaveny jsou i klasickým zámkem jako dalším bezpečnostním prvkem. Uvnitř je plastová vyjímatelná vložka na hotovost, volitelně uzamykatelná.',
+  },
+  {
+    title: 'Zákaznické displeje',
+    icon: 'lucide:tv',
+    text: 'V provozech rychlého občerstvení, závodních jídelnách i dalších provozech s pultovým prodejem je potřeba zákazníka viditelně informovat o výši účtu a operacích na pokladně. K tomu slouží zákaznický displej — integrovaný přímo do pokladny, nebo samostatný se sloupkem.',
+  },
+  {
+    title: 'Pokladní váhy',
+    icon: 'lucide:scale',
+    text: 'Dodáváme kvalitní váhy s přímým napojením na pokladní systém pro prodej váženého zboží v restauracích i jídelnách. Nejčastěji prodávané váhy jsou cejchované, váží zboží do 15 kg, mají vlastní displej a umožňují výpočet ceny.',
+  },
+];
+const faqs = [
+  { q: 'Mohu k Septimu použít vlastní hardware?', a: 'Můžete, ale zkonzultujte s námi vhodnost použití. My i vy máme zájem na tom, aby vám vše v provozu běželo a systém neměl výpadky — najděme k tomu tu nejlepší cestu.' },
+  { q: 'Jak vybrat správný hardware pro můj provoz?', a: 'Podle vašich potřeb vybereme nejvhodnější hardware. Spojte se s našimi konzultanty a podle typu provozu a způsobu používání vybereme nejlepší řešení.' },
+  { q: 'Kolik pokladen budu potřebovat?', a: 'Rozhoduje počet míst v restauraci, počet obsloužených hostů ve fast-foodu a počet vydaných jídel v jídelně. Pro restauraci je zlomovým číslem 80 míst — nad 80 míst jednoznačně doporučujeme počítat s více pokladnami. Výsledný počet ovlivňuje i velikost a členitost prostoru.' },
+  { q: 'Kdo se stará o instalaci a servis hardwaru?', a: 'Všechny práce spojené s hardwarem zařizujeme my — dokonce i rozvody a instalace wifi, audio a video techniky. Vše zároveň servisujeme stejně jako samotný systém Septim: zavoláte na Helpdesk a o zbytek se postaráme na jednom telefonním čísle, ať jde o hardware nebo software.' },
+];
+---
+<Base title="Hardware do restaurace – pokladny, tiskárny a příslušenství Septim"
+      description="Kompletní hardware k systému Septim: odolné dotykové pokladny se zárukou 36 měsíců, tiskárny, mobilní číšníci, čtečky, pokladní zásuvky, zákaznické displeje i váhy. Instalace a servis od nás.">
+  <SiteHeader />
+  <main>
+    <Hero eyebrow="Vybavení k systému Septim" background="alt"
+          lead="V nabídce máme kompletní škálu pokladen, tiskáren, mobilních pokladen, čteček, pokladních zásuvek, zákaznických displejů, vah a příslušenství. A protože ne každý má detailní znalosti IT, popisujeme vše jednoduše — a s výběrem pomůžeme.">
+      <Heading slot="title" as="h1" size="display">Hardware <em>do restaurace</em></Heading>
+      <Fragment slot="actions">
+        <Button href="#poptavka">Chci poradit s výběrem</Button>
+        <Button href="/produkty/septim-4" variant="secondary">O systému Septim</Button>
+      </Fragment>
+    </Hero>
+
+    <Section background="default" space="lg">
+      <div class="prose">
+        <Heading as="h2" size="h2">Jaký hardware k systému Septim dodáváme?</Heading>
+        <Text color="muted">Nároky v restauraci jsou vyšší než v kanceláři — hardware je proto potřeba moudře vybrat. Projděte si jednotlivé kategorie:</Text>
+      </div>
+      <div class="hw">
+        {kategorie.map((k) => (
+          <article class="hw__item">
+            <Heading as="h3" size="h3">{k.title}</Heading>
+            <Text size="small" color="muted">{k.text}</Text>
+          </article>
+        ))}
+      </div>
+    </Section>
+
+    <LogoWall label="Respektované provozy, které využívají náš hardware v systému Septim" background="alt" />
+    <StatsBand background="default" />
+    <Faq items={faqs} title="Často kladené otázky k hardwaru se systémem Septim" background="alt" />
+    <LeadForm id="poptavka" variant="callback" background="default"
+              title="Najdeme nejlepší hardwarové řešení"
+              lead="Nechte nám telefon — podle typu provozu a používání vybereme nejvhodnější sestavu." />
+  </main>
+  <SiteFooter />
+</Base>
+
+<style>
+  .prose { max-width: 760px; margin-bottom: var(--space-6); }
+  .prose > * + * { margin-top: var(--space-4); }
+  .hw { display: grid; gap: var(--space-5); grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+  .hw__item > :global(.heading) { margin-bottom: var(--space-2); }
+</style>

@@ -45,9 +45,7 @@ export const pecostaFooter = {
     { label: 'Facebook', href: 'https://www.facebook.com/pecosta', icon: 'lucide:facebook' },
   ],
   legal: [
-    { label: 'Obchodní podmínky', href: '/obchodni-podminky' },
     { label: 'Ochrana osobních údajů', href: '/ochrana-udaju' },
-    { label: 'Cookies', href: '/cookies' },
   ],
   copyright: `© ${year} PECOSTA, a.s.`,
 };

@@ -1,0 +1,147 @@
+---
+/**
+ * Protel — Ceník. Sloučeno z cenik.html (licence) a cenik-servisnich-sluzeb.html
+ * (servisní služby) starého protelsystems.cz. Ceny zachovány beze změny.
+ * Vše ze sdílených komponent @piano/ui.
+ */
+import Base from '../layouts/Base.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import Card from '@piano/ui/components/Card.astro';
+import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+
+const velikosti = [
+  { icon: 'lucide:home', title: 'Hotel do 30 pokojů', text: 'Penziony a menší hotely — plnohodnotný Protel bez velkých vstupních poplatků.' },
+  { icon: 'lucide:hotel', title: 'Hotel do 60 pokojů', text: 'Střední hotely — kompletní provoz od rezervací po reporting.' },
+  { icon: 'lucide:building-2', title: 'Hotel do 120 pokojů', text: 'Velké hotely a resorty — pokročilé funkce i integrace.' },
+];
+
+const servis = [
+  { popis: 'Vzdálený servisní zásah v pracovní době', jednotka: 'započatá hodina', czk: '1 500 CZK', eur: '60 €' },
+  { popis: 'Vzdálený servisní zásah mimo pracovní dobu / expres (100% příplatek)', jednotka: 'započatá hodina', czk: '3 000 CZK', eur: '120 €' },
+  { popis: 'Školení a autorský dozor u zákazníka', jednotka: 'započatá hodina', czk: '2 000 CZK', eur: '80 €' },
+  { popis: 'Školení a autorský dozor u zákazníka mimo pracovní dobu (50% příplatek)', jednotka: 'započatá hodina', czk: '3 000 CZK', eur: '120 €' },
+  { popis: 'Vývoj na míru', jednotka: '1 hod', czk: '2 000 CZK', eur: '80 €' },
+  { popis: 'Napojení návazného systému (API) nebo modulu', jednotka: '1 kus', czk: '12 500 CZK', eur: '500 €' },
+  { popis: 'Cestovné', jednotka: '1 km', czk: '15 CZK', eur: '0,6 €' },
+  { popis: 'Cesta po Praze', jednotka: 'cesta', czk: '1 000 CZK', eur: '40 €' },
+  { popis: 'Cestovní výlohy (odvoz zákazníkem, čas na cestě)', jednotka: 'započatá hodina', czk: '500 CZK', eur: '20 €' },
+];
+---
+
+<Base title="Ceník | Protel"
+      description="Bez velkých vstupních poplatků můžete používat to, co je top pro české a slovenské hoteliéry. Ceník licencí hotelového systému Protel a ceník servisních služeb.">
+  <SiteHeader />
+
+  <main>
+    <Breadcrumb items={[{ label: 'Úvod', href: '/' }, { label: 'Ceník' }]} />
+
+    <!-- CENÍK LICENCÍ -->
+    <Section id="licence" background="alt" space="lg">
+      <div class="head head--center">
+        <Text size="label" color="accent" align="center">Ceník licencí</Text>
+        <Heading as="h1" size="h1" align="center">Kolik mě bude Protel <em>stát?</em></Heading>
+        <Text size="lead" color="muted" align="center" balance>
+          Bez velkých vstupních poplatků můžete používat to, co je top pro české a slovenské hoteliéry.
+          Cena se odvíjí od velikosti vašeho hotelu — vyberte tu svou a my vám obratem připravíme nabídku na míru.
+        </Text>
+      </div>
+      <div class="sizes">
+        {velikosti.map((v) => (
+          <Card variant="bordered" padding="lg" as="article">
+            <div class="size">
+              <span class="size__icon"><Icon name={v.icon} size="lg" /></span>
+              <Heading as="h2" size="h3">{v.title}</Heading>
+              <Text size="small" color="muted">{v.text}</Text>
+              <Button href="#poptavka" variant="secondary">Zjistit cenu</Button>
+            </div>
+          </Card>
+        ))}
+      </div>
+    </Section>
+
+    <!-- CENÍK SERVISNÍCH SLUŽEB -->
+    <Section id="servisni-sluzby" background="default" space="lg">
+      <div class="head head--center">
+        <Text size="label" color="accent" align="center">Ceník servisních služeb</Text>
+        <Heading as="h2" size="h2" align="center">Profesionální péče pro váš <em>maximální komfort</em></Heading>
+        <Text size="lead" color="muted" align="center" balance>
+          Nabízíme kvalitní a profesionální péči pro váš maximální hotelový komfort.
+        </Text>
+      </div>
+
+      <div class="tablewrap">
+        <table class="pricetable">
+          <thead>
+            <tr>
+              <th scope="col">Popis servisní služby</th>
+              <th scope="col">Jednotka</th>
+              <th scope="col">Cena v CZK</th>
+              <th scope="col">Cena v €</th>
+            </tr>
+          </thead>
+          <tbody>
+            {servis.map((s) => (
+              <tr>
+                <td>{s.popis}</td>
+                <td>{s.jednotka}</td>
+                <td>{s.czk}</td>
+                <td>{s.eur}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="notes">
+        <Text size="small" color="muted">Náklady na ubytování, jízdenky, letenky nebo půjčení vozu jsou účtovány dle skutečnosti.</Text>
+        <Text size="small" color="muted">
+          Všechny ceny jsou uvedeny bez DPH. Uvedené ceny zahrnují slevy pro zákazníky, kteří mají uzavřenou servisní smlouvu
+          s protel systems s.r.o. V ostatních případech jsou uvedené hodinové sazby a cestovné o 50 % vyšší.
+          Ceníky jednotlivých obchodních partnerů se mohou lišit.
+        </Text>
+      </div>
+    </Section>
+
+    <LeadForm id="poptavka" variant="full" background="alt"
+              title="Zjistěte cenu pro svůj hotel"
+              lead="Nechte nám kontakt a okamžitě zjistíte, kolik zaplatí za Protel hotel vaší velikosti. Nezávazně a zdarma."
+              proofs={[
+                { icon: 'lucide:piggy-bank', title: 'Bez vstupních poplatků', text: 'Žádné velké investice na startu.' },
+                { icon: 'lucide:headset', title: 'CZ / SK podpora', text: 'Plnohodnotná lokální podpora.' },
+                { icon: 'lucide:gift', title: 'Vyzkoušení zdarma', text: 'Nezávazné předvedení systému.' },
+                { icon: 'lucide:badge-check', title: 'Globální standard', text: 'Mezinárodně respektovaný PMS.' },
+              ]} />
+  </main>
+
+  <SiteFooter />
+</Base>
+
+<style>
+  .head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-7); }
+  .head--center { text-align: center; }
+  .head > * + * { margin-top: var(--space-3); }
+
+  .sizes { display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); max-width: 1000px; margin-inline: auto; }
+  .size { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-3); }
+  .size__icon {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 56px; height: 56px; border-radius: var(--radius-md);
+    background: color-mix(in srgb, var(--color-primary) 10%, #fff); color: var(--color-primary);
+  }
+
+  .tablewrap { max-width: 900px; margin-inline: auto; overflow-x: auto; }
+  .pricetable { width: 100%; border-collapse: collapse; background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); overflow: hidden; }
+  .pricetable th, .pricetable td { padding: var(--space-3) var(--space-4); text-align: left; border-bottom: 1px solid var(--color-border); font-size: var(--font-size-small); }
+  .pricetable thead th { background: var(--color-bg-alt); color: var(--color-secondary); font-weight: var(--font-weight-semibold); }
+  .pricetable tbody tr:last-child td { border-bottom: none; }
+  .pricetable td:nth-child(3), .pricetable td:nth-child(4) { white-space: nowrap; font-weight: var(--font-weight-semibold); color: var(--color-text); }
+
+  .notes { max-width: 900px; margin-inline: auto; margin-top: var(--space-5); display: flex; flex-direction: column; gap: var(--space-2); }
+</style>

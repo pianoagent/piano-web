@@ -1,0 +1,32 @@
+---
+/** Septim — Integrace: Plánování směn (Grason). Obsah: septim-obsah/produkty/planovani-smen.md. Nové URL dle IA (/integrace/). SEO meta nově. */
+import IntegracePage from '../../components/IntegracePage.astro';
+const benefits = [
+  { icon: 'lucide:calendar-days', title: 'Směny podle eventů', text: 'Zobrazení směn podle názvu eventu — přehled na počítači i v mobilní aplikaci.' },
+  { icon: 'lucide:bell-ring', title: 'Chytré notifikace', text: 'Na vše upozorní — připomenou směnu i najdou náhradníka, když někdo onemocní.' },
+  { icon: 'lucide:copy', title: 'Šablony směn', text: 'Naplánovaný týden snadno zkopírujete na další týdny.' },
+  { icon: 'lucide:alert-triangle', title: 'Hlídání kolizí', text: 'Systém pohlídá kolizní směny pracovníků.' },
+  { icon: 'lucide:users', title: 'Sdílení personálu', text: 'Sdílejte personál mezi svými podniky.' },
+  { icon: 'lucide:user-plus', title: 'Náhrada za nemocné', text: 'Najde náhradu za nemocného kolegu.' },
+];
+const faqs = [
+  { q: 'Co všechno GrasonPlan řeší?', a: 'V GrasonPlanu máte vše na jednom místě: naplánujete směny, rozdělíte i zkontrolujete zadané úkoly, schválíte docházku a report pro účetní vygenerujete na dvě kliknutí.' },
+  { q: 'Jak vidí směny zaměstnanci?', a: 'Kdo a kdy pracuje vidíte na počítači i v mobilní aplikaci. Lidé si sami navolí, kdy nemohou pracovat, a chytré notifikace jim připomenou směnu — konec zmatků ve WhatsAppech, Messengerech a na přečmáraných tabulích.' },
+];
+---
+<IntegracePage
+  title="Plánování směn (GrasonPlan) – organizované týmy v gastru | Septim"
+  description="Díky partnerství se společností Grason pomáháme budovat organizované a spolehlivé týmy v gastronomii. Plánování směn, úkoly, docházka i reporty pro účetní na jednom místě."
+  eyebrow="Integrace a zařízení"
+  titleHtml="Plánování <em>směn</em>"
+  lead="Díky partnerství se společností Grason pomáháme budovat organizované a spolehlivé týmy v gastronomii. Změňte způsob, jak řídíte své zaměstnance."
+  intro={[
+    'V GrasonPlanu máte vše na jednom místě. Naplánujete směny, rozdělíte i zkontrolujete zadané úkoly, schválíte docházku a report pro účetní vygenerujete na dvě kliknutí.',
+    'Kdo a kdy pracuje vidíte na počítači i v mobilní aplikaci. Lidé si sami navolí, kdy nemohou pracovat — a chytré notifikace připomenou směnu i najdou náhradníka, když někdo onemocní.',
+  ]}
+  introHeading="Změňte způsob, jak řídíte své zaměstnance"
+  benefitsTitle="Jaké jsou výhody GrasonPlanu"
+  benefits={benefits}
+  faqs={faqs}
+  partner="Integrované řešení našeho partnera Grason."
+/>

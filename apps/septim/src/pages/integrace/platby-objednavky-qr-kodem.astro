@@ -1,0 +1,33 @@
+---
+/** Septim — Integrace: Platby a objednávky QR kódem (Qerko). Obsah: septim-obsah/produkty/platby-objednavky-qr-kodem.md. Nové URL dle IA (/integrace/). SEO meta nově. */
+import IntegracePage from '../../components/IntegracePage.astro';
+const benefits = [
+  { icon: 'lucide:qr-code', title: 'Platba od stolu', text: 'Host načte QR kód na stole, vybere položky, zadá spropitné a zaplatí přes Apple/Google Pay.' },
+  { icon: 'lucide:timer', title: 'Bez front u pokladny', text: 'Hosté rychle vyřeší svůj účet a nestojí frontu — hlavně v obědové špičce.' },
+  { icon: 'lucide:users', title: 'Úspora času personálu', text: 'Místo rozpočítávání účtů a vyřizování plateb se obsluha věnuje novým hostům.' },
+  { icon: 'lucide:hand-platter', title: 'Objednávky z aplikace', text: 'Hosté na „schovaných místech“ objednají od stolu — objednávka se objeví rovnou v pokladně.' },
+  { icon: 'lucide:star', title: 'Zpětná vazba', text: 'Hodnocení restaurace, jídla i personálu přímo od hostů.' },
+  { icon: 'lucide:megaphone', title: 'Marketing a rezervace', text: 'Marketingové akce v mobilu zákazníků a rezervační systém pro zamluvení stolu.' },
+];
+const faqs = [
+  { q: 'Jaké jsou výhody placení a objednávání QR kódem?', a: 'Výhody jsou pro hosta i personál restaurace — všichni šetří čas a využívají pohodlí moderních technologií. Zákazníci rychle vyřeší účet bez fronty u pokladny a personál se místo vyřizování plateb věnuje hostům.' },
+  { q: 'Jak QR platby v restauraci zavedeme?', a: 'První krok pro využití QR aplikace ve vaší restauraci vede přes naše konzultanty. Kontaktujte je ohledně napojení QR kódů na váš pokladní systém.' },
+  { q: 'Jak placení QR kódem funguje?', a: 'Funguje podobně jako e-shop a platební brána. Při načtení QR kódu nalepeného na stole vidí zákazník položky, které objednal. Vybere všechny nebo jen některé, zadá spropitné a zaplatí. Platba proběhne přes Apple/Google Pay a v pokladním systému se objeví jako zaplacená.' },
+];
+---
+<IntegracePage
+  title="Platby a objednávky QR kódem (Qerko) – Septim"
+  description="Díky partnerství s Qerkem nabízí Septim placení QR kódem přímo zákazníky: host vidí účet v mobilu, sám zaplatí přes Apple/Google Pay a platba se ihned objeví v pokladně Septim."
+  eyebrow="Integrace a zařízení"
+  titleHtml="Platby a objednávky <em>QR kódem</em>"
+  lead="Díky partnerství se společností Qerko nabízí pokladní systém Septim přelomovou funkci placení QR kódem přímo zákazníky. Aplikace ale umí mnohem víc — a zákazníci ji milují!"
+  intro={[
+    'S aplikací Qerko se stane placení či rozpočítávání účtů pro vaše zákazníky rychlé a pohodlné. Platba funguje na principu QR kódu, který je umístěn na stole a spárován s pokladním systémem.',
+    'Zákazník vidí všechny objednané položky ve svém mobilním telefonu a pohodlně přes aplikaci sám útratu zaplatí. A vy všechny úspěšné platby vidíte ihned ve své pokladně Septim.',
+  ]}
+  introHeading="Co je placení a objednávání přes QR v systému Septim?"
+  benefitsTitle="Co Qerko vaší restauraci přinese"
+  benefits={benefits}
+  faqs={faqs}
+  partner="Integrované řešení našeho partnera Qerko."
+/>

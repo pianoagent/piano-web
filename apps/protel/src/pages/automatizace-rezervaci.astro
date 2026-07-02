@@ -1,0 +1,77 @@
+---
+/**
+ * Protel — landing „Automatizace rezervací“. Obsah vytěžen z automatizace-rezervaci.html starého
+ * protelsystems.cz (jazykově uhlazeno). Vše ze sdílených komponent @piano/ui.
+ */
+import Base from '../layouts/Base.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+
+const related = [
+  { icon: "lucide:globe", title: "Webové rezervace", text: "Booking engine přímo na vašem webu.", href: "/produkty/webove-rezervace" },
+  { icon: "lucide:calendar-check", title: "Individuální rezervace", text: "Rezervace krok za krokem, bez chyb.", href: "/produkty/hotelovy-system-protel#individualni-rezervace" },
+  { icon: "lucide:users", title: "Skupinové rezervace", text: "Až sto pokojů v jedné rezervaci.", href: "/produkty/hotelovy-system-protel#skupinove-rezervace" },
+  { icon: "lucide:tags", title: "Cenotvorba", text: "Aktuální prodejní ceny na všech kanálech.", href: "/produkty/hotelovy-system-protel#cenotvorba" },
+];
+---
+
+<Base title="Automatizace rezervací | Protel"
+      description="Zadáváte rezervace ručně a přicházíte o pokoje kvůli neaktuální dostupnosti na prodejních kanálech? Protel rezervace zapisuje sám — správně, včas a bez chyb.">
+  <SiteHeader />
+
+  <main>
+    <Breadcrumb items={[{ label: 'Úvod', href: '/' }, { label: 'Řešení', href: '/#reseni' }, { label: "Automatizace rezervací" }]} />
+
+    <Hero eyebrow="Řešení" background="gradient"
+          lead="Trápí vás, že do hotelového systému zadáváte všechny rezervace ručně? Stojí vás to mnoho času a občas uděláte chybu? Přicházíte o možnost prodat pokoj, protože nemáte na prodejních kanálech aktualizovanou dostupnost pokojů?">
+      <Heading slot="title" as="h1" size="display" color="on-dark">Automatizace <em>rezervací</em></Heading>
+      <Fragment slot="actions">
+        <Button href="#poptavka">Vyzkoušet Protel zdarma</Button>
+        <Button href="/produkty" variant="secondary" onDark>Prohlédnout produkty</Button>
+      </Fragment>
+    </Hero>
+
+    <Section background="default" space="lg">
+      <div class="solution">
+        <Text size="label" color="accent">Protel má řešení</Text>
+        <Heading as="h2" size="h2">Automatizujte svůj hotel!</Heading>
+        <Text size="lead" color="muted">Hotelový systém Protel jednoduše napojíte na všechny dostupné channel managery, přímo na rezervační portály jako Booking.com, nebo využijete integrovaný formulář pro webové rezervace (booking engine). Díky těmto propojením se rezervace samy zaevidují do systému a zároveň se vždy aktualizuje dostupnost i prodejní ceny pokojů na mnoho měsíců dopředu. Automaticky zapsaná rezervace je vždy správně — včetně všech kontaktů na hosta, na správný termín a za správnou cenu.</Text>
+      </div>
+    </Section>
+
+    <Section background="primary" space="lg">
+      <figure class="quoteband">
+        <span class="quoteband__mark"><Icon name="lucide:quote" size="lg" /></span>
+        <blockquote>
+          <Heading as="p" size="h3" color="on-dark" align="center">Výhodou automatizace rezervací je zkrácení časových nároků, minimalizace chyb a lepší zážitek hostů.</Heading>
+        </blockquote>
+      </figure>
+    </Section>
+
+    <USPGrid eyebrow="Související" title="Související s automatizací rezervací"
+             items={related} minItemWidth="260px" background="alt" space="lg" />
+
+    <LeadForm id="poptavka" variant="full" background="default"
+              title="Vyzkoušejte Protel zdarma"
+              lead="Co byste u vás v hotelu rádi zlepšili? Nechte nám kontakt — ozveme se a ukážeme Protel přímo ve vašem hotelu." />
+  </main>
+
+  <SiteFooter />
+</Base>
+
+<style>
+  .solution { max-width: 800px; margin-inline: auto; }
+  .solution > :global(* + *) { margin-top: var(--space-4); }
+  .quoteband { margin: 0; max-width: 840px; margin-inline: auto; display: flex; flex-direction: column; align-items: center; gap: var(--space-4); text-align: center; }
+  .quoteband__mark { color: var(--color-text-on-dark); opacity: 0.7; }
+  .quoteband blockquote { margin: 0; }
+</style>

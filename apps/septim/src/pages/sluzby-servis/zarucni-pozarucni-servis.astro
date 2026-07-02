@@ -1,0 +1,61 @@
+---
+/** Septim — Služby: Záruční a pozáruční servis. Obsah: septim-obsah/sluzby-servis/zarucni-pozarucni-servis.md. SEO meta nově. */
+import Base from '../../layouts/Base.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import StatsBand from '../../components/StatsBand.astro';
+---
+<Base title="Záruční a pozáruční servis Septim – rychlá náprava HW i SW"
+      description="Záruční a pozáruční servis systému Septim: opravy počítačů do 48 hodin, záruka na software 12 měsíců, zápůjční hardware i servis po celé ČR. Podmínky reklamací přehledně.">
+  <SiteHeader />
+  <main>
+    <Hero eyebrow="Služby a servis" background="alt"
+          lead="I přes veškerou péči, kterou věnujeme našim instalacím, může v ojedinělých případech nastat porucha. Jsme plně nápomocni k rychlé a zdařilé nápravě softwaru i hardwaru.">
+      <Heading slot="title" as="h1" size="display">Záruční a <em>pozáruční servis</em></Heading>
+      <Fragment slot="actions">
+        <Button href="#poptavka">Potřebuji servis</Button>
+        <Button href="/sluzby-servis" variant="secondary">Všechny služby</Button>
+      </Fragment>
+    </Hero>
+
+    <Section background="default" space="lg" container="narrow">
+      <div class="servis">
+        <Text color="muted">Sjednanou záruční dobu naleznete uvedenou na předávacím nebo servisním protokolu. Předávací protokol je zároveň záručním listem.</Text>
+
+        <Heading as="h2" size="h3">Záruční podmínky pro hardware systému Septim</Heading>
+        <Text color="muted">Záruku poskytujeme na výrobní vady a vady materiálu. Neposkytujeme ji v případech, kdy je vada způsobena mechanickým poškozením, živelnou pohromou nebo nesprávným zacházením.</Text>
+        <Text color="muted">Příjem hardwarového vybavení k záručním opravám či výměnám probíhá v sídle nebo pobočce Morava společnosti Septim Systems a.s., nedomluvíme-li se jinak. Hardware nám můžete doručit osobně, nebo zaslat poštou či jinou zásilkovou službou. V případě opravy mimo sídlo nebo moravskou pobočku jsme oprávněni účtovat cestovní náklady a náklady na práci spojenou s odpojením a zapojením dle aktuálního ceníku.</Text>
+        <Text color="muted">Opravy či výměny počítačů provádíme nejdéle do 48 hodin od doručení do sídla nebo moravské pobočky. Opravy samostatných periferií (pokladny, tiskárny, monitory aj.) jsou provedeny do 48 hodin, pokud máme skladem náhradní díl. Pokud náhradní díl skladem není, periferie se odesílá výrobci a oprava proběhne do 30 dnů od příjmu zařízení k reklamaci.</Text>
+        <Text color="muted">Septim Systems a.s. disponuje hardwarem, který je připraven k zapůjčení dle podmínek uzavřené servisní smlouvy.</Text>
+
+        <Heading as="h2" size="h3">Záruční podmínky pro software systému Septim</Heading>
+        <Text color="muted">Na pokladní a provozní systém Septim poskytujeme záruku za jakost v délce 12 měsíců ode dne dodání.</Text>
+        <Text color="muted">Záruku poskytujeme na vady, které brání užívání softwaru v souladu s účelem, pro který byl dodán — za předpokladu, že zákazník vadu vytkl bez zbytečného odkladu poté, kdy měl možnost ji zjistit. Záruku neposkytujeme v případech, kdy je vada způsobena zacházením se softwarem, případně s hardwarovým vybavením, na kterém je software nainstalován.</Text>
+        <Text color="muted">Odstranění vady softwaru provádíme v sídle Septim Systems a.s. do 30 dnů od příjmu reklamace. V případě oprávněné reklamace zajistíme nejpozději do 48 hodin omezený provoz systému.</Text>
+
+        <Heading as="h2" size="h3">Pozáruční servis systému Septim</Heading>
+        <Text color="muted">Po uplynutí záruky poskytujeme standardní pozáruční servis hardwaru. I zde platí, že příjem zařízení probíhá v sídle nebo moravské pobočce, případně po domluvě jinak — osobně, poštou nebo zásilkovou službou.</Text>
+        <Text color="muted">Hardware po přijetí diagnostikujeme a sdělíme vám popis závady společně s návrhem opravy a odhadem ceny. V případech, kdy není ekonomicky výhodné hardware opravit, navrhujeme koupi nového zařízení nebo odkup zápůjčního, byla-li zápůjčka využita.</Text>
+        <Text color="muted">Vyřízení opravy provádíme do 30 dnů od data příjmu zařízení. Rychlost započetí řešení vad ovlivňuje závažnost vady a typ uzavřené servisní smlouvy.</Text>
+      </div>
+    </Section>
+
+    <StatsBand />
+    <LeadForm id="poptavka" variant="callback" background="default"
+              title="Potřebujete záruční nebo pozáruční servis?"
+              lead="Nechte nám telefon — poradíme s reklamací i opravou hardwaru a softwaru." />
+  </main>
+  <SiteFooter />
+</Base>
+
+<style>
+  .servis { max-width: 760px; }
+  .servis > :global(* + *) { margin-top: var(--space-4); }
+  .servis > :global(.heading) { margin-top: var(--space-6); }
+</style>

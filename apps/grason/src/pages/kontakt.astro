@@ -1,0 +1,57 @@
+---
+/** Grason — Kontakt. Údaje ze starého webu (contact_markup, cs.json) + footer config. */
+import Base from '../layouts/Base.astro';
+import Header from '@piano/ui/components/Header.astro';
+import Footer from '@piano/ui/components/Footer.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import { grasonNav, grasonCta, grasonFooter } from '../config/nav';
+
+const contacts = [
+  { icon: 'lucide:phone', label: 'Zavolejte', value: '+420 739 877 799', href: 'tel:+420739877799' },
+  { icon: 'lucide:mail', label: 'Napište nám', value: 'info@grason.cz', href: 'mailto:info@grason.cz' },
+  { icon: 'lucide:map-pin', label: 'Sídlo', value: 'Thámova 166/18, 186 00 Praha 8', href: null },
+  { icon: 'lucide:building-2', label: 'Společnost', value: 'Grason Solutions s.r.o. · IČ 06884156', href: null },
+];
+---
+<Base title="Kontakt | Grason"
+      description="Spojte se s Grasonem — telefon +420 739 877 799, e-mail info@grason.cz. Grason Solutions s.r.o., Thámova 166/18, Praha 8.">
+  <Header brand="Grason" logoSrc="/logos/grason_logo.svg" logoHeight="28px" homeHref="/" nav={grasonNav} cta={grasonCta} />
+  <main>
+    <Hero eyebrow="Kontakt" background="alt" space="md"
+          lead="Ozvěte se nám — poradíme s výběrem služby i s nastavením účtu.">
+      <Heading slot="title" as="h1" size="h1">Jsme tu pro vás</Heading>
+    </Hero>
+
+    <Section background="default" space="lg">
+      <div class="cards">
+        {contacts.map((c) => (
+          <article class="card">
+            <span class="card__icon"><Icon name={c.icon} size="md" /></span>
+            <Text size="label" color="muted">{c.label}</Text>
+            {c.href
+              ? <a class="card__value" href={c.href}>{c.value}</a>
+              : <span class="card__value">{c.value}</span>}
+          </article>
+        ))}
+      </div>
+    </Section>
+
+    <LeadForm id="poptavka" variant="full" background="alt"
+              title="Napište nám"
+              lead="Nechte nám kontakt a krátkou zprávu — ozveme se co nejdříve." />
+  </main>
+  <Footer {...grasonFooter} />
+</Base>
+
+<style>
+  .cards { display: grid; gap: var(--space-5); grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+  .card { display: flex; flex-direction: column; gap: var(--space-2); align-items: flex-start; padding: var(--space-5); border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-bg); }
+  .card__icon { color: var(--color-primary); }
+  .card__value { font-weight: var(--font-weight-semibold); color: var(--color-text); text-decoration: none; }
+  a.card__value:hover { color: var(--color-primary); }
+</style>

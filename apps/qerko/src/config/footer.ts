@@ -44,7 +44,7 @@ export const qerkoFooter = {
   ],
   legal: [
     { label: 'Obchodní podmínky', href: 'https://www.qerko.com/legal' },
-    { label: 'Ochrana osobních údajů', href: 'https://www.qerko.com/legal' },
+    { label: 'Ochrana osobních údajů', href: '/ochrana-udaju' },
     { label: 'Cookies', href: 'https://www.qerko.com/legal' },
   ],
   copyright: `© ${year} Qerko s.r.o. · IČO 06678815 · Držitel licence ČNB (platební instituce).`,

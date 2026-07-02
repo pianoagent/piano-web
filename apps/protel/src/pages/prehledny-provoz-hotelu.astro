@@ -1,0 +1,77 @@
+---
+/**
+ * Protel — landing „Přehledný provoz hotelu“. Obsah vytěžen z prehledny-provoz-hotelu.html starého
+ * protelsystems.cz (jazykově uhlazeno). Vše ze sdílených komponent @piano/ui.
+ */
+import Base from '../layouts/Base.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+
+const related = [
+  { icon: "lucide:layout-dashboard", title: "Hotelový systém Protel", text: "Celý hotel na jedné obrazovce.", href: "/produkty/hotelovy-system-protel" },
+  { icon: "lucide:smartphone", title: "Aplikace pro housekeeping", text: "Stav pokojů a úkoly přímo v mobilu.", href: "/produkty/housekeeping#aplikace-pro-housekeeping" },
+  { icon: "lucide:presentation", title: "Konference", text: "Function sheet vždy s aktuálními údaji.", href: "/produkty/konference" },
+  { icon: "lucide:concierge-bell", title: "Room Service", text: "Objednávky rovnou do kuchyně díky Septimu.", href: "/produkty/room-service" },
+];
+---
+
+<Base title="Přehledný provoz hotelu | Protel"
+      description="Jak rychle sdílet stále se měnící informace mezi provozními úseky, když pokojské, kuchaři ani číšníci nemohou být stále u počítače? Protel má řešení.">
+  <SiteHeader />
+
+  <main>
+    <Breadcrumb items={[{ label: 'Úvod', href: '/' }, { label: 'Řešení', href: '/#reseni' }, { label: "Přehledný provoz hotelu" }]} />
+
+    <Hero eyebrow="Řešení" background="gradient"
+          lead="Přemýšlíte, jak správně a rychle sdílet stále se měnící informace mezi provozními úseky? Navíc když pokojské, kuchaři nebo číšníci nemohou být stále u počítače…">
+      <Heading slot="title" as="h1" size="display" color="on-dark">Přehledný <em>provoz</em> hotelu</Heading>
+      <Fragment slot="actions">
+        <Button href="#poptavka">Vyzkoušet Protel zdarma</Button>
+        <Button href="/produkty" variant="secondary" onDark>Prohlédnout produkty</Button>
+      </Fragment>
+    </Hero>
+
+    <Section background="default" space="lg">
+      <div class="solution">
+        <Text size="label" color="accent">Protel má řešení</Text>
+        <Heading as="h2" size="h2">Hotelový systém Protel je na vše připraven!</Heading>
+        <Text size="lead" color="muted">Sdílení informací mezi provozními úseky vyřeší aplikace, moduly a propojení mezi systémy používanými v rámci hotelu. Pokojské v aplikaci na telefonu nebo tabletu nastaví aktuální stav pokoje, zadají závadu nebo si přečtou poznámku z recepce. Pro číšníky ze systému rovnou vygenerujete function sheet s aktuálními údaji k dané akci. Personálu navíc práci usnadní nadstandardní propojení PMS Protel a POS Septim.</Text>
+      </div>
+    </Section>
+
+    <Section background="primary" space="lg">
+      <figure class="quoteband">
+        <span class="quoteband__mark"><Icon name="lucide:quote" size="lg" /></span>
+        <blockquote>
+          <Heading as="p" size="h3" color="on-dark" align="center">Výhodou přehledného provozu hotelu je efektivní sdílení informací mezi odděleními — na mobilu, počítači nebo tabletu. Vše v reálném čase!</Heading>
+        </blockquote>
+      </figure>
+    </Section>
+
+    <USPGrid eyebrow="Související" title="Související s přehledným provozem"
+             items={related} minItemWidth="260px" background="alt" space="lg" />
+
+    <LeadForm id="poptavka" variant="full" background="default"
+              title="Vyzkoušejte Protel zdarma"
+              lead="Co byste u vás v hotelu rádi zlepšili? Nechte nám kontakt — ozveme se a ukážeme Protel přímo ve vašem hotelu." />
+  </main>
+
+  <SiteFooter />
+</Base>
+
+<style>
+  .solution { max-width: 800px; margin-inline: auto; }
+  .solution > :global(* + *) { margin-top: var(--space-4); }
+  .quoteband { margin: 0; max-width: 840px; margin-inline: auto; display: flex; flex-direction: column; align-items: center; gap: var(--space-4); text-align: center; }
+  .quoteband__mark { color: var(--color-text-on-dark); opacity: 0.7; }
+  .quoteband blockquote { margin: 0; }
+</style>

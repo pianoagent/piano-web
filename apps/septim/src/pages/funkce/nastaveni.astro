@@ -1,0 +1,78 @@
+---
+/** Septim — Funkce: Nastavení. Obsah: septim-obsah/produkty/nastaveni.md. Nové URL dle IA (/funkce/). SEO meta nově. */
+import Base from '../../layouts/Base.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import StatsBand from '../../components/StatsBand.astro';
+import LogoWall from '../../components/LogoWall.astro';
+import Faq from '@piano/ui/components/Faq.astro';
+
+const oblasti = [
+  'Nastavení pokladny — oprávnění používání, storna apod.',
+  'Nastavení pokladny — rozložení stolů a nabídky',
+  'Nastavení CRM modulu — věrnostní systém',
+  'Nastavení finančních a provozních přehledů',
+  'Nastavení vzdáleného přístupu do sekce Manažer',
+  'Nastavení skladového hospodářství, receptur, inventur a závěrek',
+  'Nastavení naskladňování a automatického naskladňování',
+  'Nastavení funkce docházky personálu',
+];
+const benefits = [
+  { icon: 'lucide:sliders-horizontal', title: 'Maximální přizpůsobení', text: 'Míra přizpůsobení, o které většina jiných systémů ani neuvažovala.' },
+  { icon: 'lucide:user-check', title: 'Kompetence pod kontrolou', text: 'Personální omezení podle reálných kompetencí — kdo co může dělat a kdo co reálně udělal.' },
+  { icon: 'lucide:users', title: 'Nejste na to sami', text: 'Podle vašich potřeb vám s nastavením pomohou naši konzultanti.' },
+];
+const faqs = [
+  { q: 'Jaký je hlavní přínos modulu Nastavení?', a: 'Hlavní přínos je kontrola provozu — v tom, co kdo v budoucnu bude moci udělat, a zpětná kontrola, co kdo udělal. Efektivita restaurace tím zásadně roste.' },
+  { q: 'Jak začít s nastavením Septimu pro můj provoz?', a: 'Ideálním prvním krokem je kontaktovat naše zkušené konzultanty, kteří budou společně s vámi hledat ideální nastavení pokladního a provozního systému Septim pro váš provoz.' },
+];
+---
+<Base title="Nastavení systému Septim – precizní ovládání vašeho provozu"
+      description="Modul Nastavení v systému Septim umožňuje pokročilé přizpůsobení: oprávnění personálu, rozložení stolů, CRM, přehledy, sklady i docházku. S konfigurací pomohou naši konzultanti.">
+  <SiteHeader />
+  <main>
+    <Hero eyebrow="Funkce systému Septim" background="alt"
+          lead="Nastavení v systému Septim vám umožní precizní ovládání systému — a tím i vaší restaurace. Míra přizpůsobení, o které většina jiných systémů ani neuvažovala.">
+      <Heading slot="title" as="h1" size="display"><em>Nastavení</em></Heading>
+      <Fragment slot="actions">
+        <Button href="#poptavka">Chci Septim</Button>
+        <Button href="/produkty/septim-4" variant="secondary">Součást Septim.4</Button>
+      </Fragment>
+    </Hero>
+
+    <Section background="default" space="lg">
+      <div class="prose">
+        <Heading as="h2" size="h2">Jak funguje Nastavení v restauraci?</Heading>
+        <Text size="lead" color="muted">V modulu Nastavení provozního systému můžete přizpůsobit následující oblasti vašeho provozu:</Text>
+      </div>
+      <ul class="checklist">
+        {oblasti.map((f) => (<li><Icon name="lucide:check" size="sm" class="checklist__icon" />{f}</li>))}
+      </ul>
+    </Section>
+
+    <USPGrid eyebrow="Výhody" title="Proč Nastavení v Septimu" items={benefits} background="alt" space="lg" minItemWidth="240px" />
+    <LogoWall label="Restaurace, které používají Septim Nastavení" background="default" />
+    <StatsBand />
+    <Faq items={faqs} title="Často kladené otázky k modulu Nastavení" background="default" />
+    <LeadForm id="poptavka" variant="callback" background="alt"
+              title="Najdeme ideální nastavení pro váš provoz"
+              lead="Nechte nám telefon — naši konzultanti s vámi proberou možnosti nastavení Septimu." />
+  </main>
+  <SiteFooter />
+</Base>
+
+<style>
+  .prose { max-width: 760px; margin-bottom: var(--space-6); }
+  .prose > * + * { margin-top: var(--space-4); }
+  .checklist { list-style: none; display: grid; gap: var(--space-3); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); max-width: 960px; margin-inline: auto; }
+  .checklist li { display: flex; align-items: flex-start; gap: var(--space-2); font-size: var(--font-size-small); }
+  .checklist__icon { color: var(--color-primary); flex-shrink: 0; margin-top: 2px; }
+</style>

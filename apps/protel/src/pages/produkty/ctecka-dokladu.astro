@@ -1,0 +1,125 @@
+---
+/**
+ * Protel — produkt „Čtečka dokladů“. Obsah vytěžen z produkty/ctecka-dokladu.html
+ * starého protelsystems.cz (jazykově uhlazeno, fakta zachována).
+ * Vše ze sdílených komponent @piano/ui.
+ */
+import Base from '../../layouts/Base.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+
+const features = [
+  {
+    id: "rychlost", icon: "lucide:zap", title: "Rychlost",
+    paras: [
+      "Zaznamenání všech údajů z hostova dokladu trvá jen několik sekund. Check-in se tím výrazně zrychluje a hosté tráví u recepce minimum času.",
+    ],
+  },
+  {
+    id: "bezchybnost", icon: "lucide:check-check", title: "Bezchybnost",
+    paras: [
+      "Automatické načítání údajů z dokladů eliminuje ruční opisování čísel a dalších informací. Odpadají chyby způsobené lidským faktorem a evidence údajů je přesná a spolehlivá.",
+    ],
+  },
+  {
+    id: "ctecka-jako-hardware", icon: "lucide:scan-line", title: "Čtečka jako hardware",
+    paras: [
+      "Hardware umožňuje využít celostránkový skener, nebo načítání ze strojově čitelné zóny dokladů. Evidence informací o hostech je rychlá a spolehlivá.",
+    ],
+  },
+];
+
+const related = [
+  { icon: "lucide:file-signature", title: "Digitální registrační karta", text: "Registrace hosta digitálně — konec papírování.", href: "/produkty/digitalni-registracni-karta" },
+  { icon: "lucide:monitor-smartphone", title: "Kiosek", text: "Samoobslužný check-in/out terminál přímo v hotelu.", href: "/produkty/kiosek" },
+  { icon: "lucide:smartphone", title: "Online check-in/out", text: "Host vyřídí check-in i check-out přes mobil, bez fronty na recepci.", href: "/produkty/online-check-in-out" },
+  { icon: "lucide:layout-dashboard", title: "Hotelový systém", text: "Správa pokojů, rezervací, hostů a statistik — snadné používání a pokročilé funkce pro kompletní přehled o provozu.", href: "/produkty/hotelovy-system-protel" },
+];
+---
+
+<Base title="Čtečka dokladů | Protel"
+      description="Údaje o hostech načtete do hotelového systému rychle přímo z jejich dokladů. Stejná čtečka zvládne i platební karty.">
+  <SiteHeader />
+
+  <main>
+    <Breadcrumb items={[{ label: 'Úvod', href: '/' }, { label: 'Produkty', href: '/produkty' }, { label: "Čtečka dokladů" }]} />
+
+    <Hero eyebrow="Produkty" background="gradient"
+          lead="Údaje o svých hotelových hostech načtete do hotelového systému rychle přímo z jejich dokladů pomocí čtečky. Stejná čtečka zvládne načíst i údaje o platebních kartách.">
+      <Heading slot="title" as="h1" size="display" color="on-dark">Čtečka <em>dokladů</em></Heading>
+      <Fragment slot="actions">
+        <Button href="#poptavka">Vyzkoušet Protel zdarma</Button>
+        <Button href="/produkty" variant="secondary" onDark>Všechny produkty</Button>
+      </Fragment>
+    </Hero>
+
+    <Section background="default" space="lg">
+      <nav class="jump" aria-label="Funkce produktu">
+        {features.map((f) => (
+          <a class="jump__chip" href={`#${f.id}`}>{f.title}</a>
+        ))}
+      </nav>
+      <div class="features">
+        {features.map((f) => (
+          <article class="feature" id={f.id}>
+            <span class="feature__icon"><Icon name={f.icon} size="lg" /></span>
+            <Heading as="h2" size="h3">{f.title}</Heading>
+            {f.paras.map((p) => (
+              <Text color="muted">{p}</Text>
+            ))}
+          </article>
+        ))}
+      </div>
+    </Section>
+
+    <Section background="primary" space="lg">
+      <figure class="quoteband">
+        <span class="quoteband__mark"><Icon name="lucide:quote" size="lg" /></span>
+        <blockquote>
+          <Heading as="p" size="h3" color="on-dark" align="center">Čtečka dokladů je nezbytný nástroj, který umí číst nejen cestovní doklady, ale i platební karty. Zvyšuje efektivitu a bezpečnost registrace hostů.</Heading>
+        </blockquote>
+      </figure>
+    </Section>
+
+    <USPGrid eyebrow="Dále by vás mohlo zajímat" title="Související produkty"
+             items={related} minItemWidth="260px" background="alt" space="lg" />
+
+    <LeadForm id="poptavka" variant="full" background="default"
+              title="Vyzkoušejte Protel zdarma"
+              lead="Co byste u vás v hotelu rádi zlepšili? Nechte nám kontakt — ozveme se a ukážeme Protel přímo ve vašem hotelu." />
+  </main>
+
+  <SiteFooter />
+</Base>
+
+<style>
+  .jump { display: flex; flex-wrap: wrap; gap: var(--space-2); justify-content: center; margin-bottom: var(--space-8); }
+  .jump__chip {
+    display: inline-flex; padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-border); border-radius: var(--radius-full);
+    background: var(--color-bg-alt); color: var(--color-text);
+    font-size: var(--font-size-small); font-weight: var(--font-weight-semibold);
+    text-decoration: none; transition: border-color var(--duration-base) var(--easing);
+  }
+  .jump__chip:hover { border-color: var(--color-primary); color: var(--color-text-accent); }
+  .features { max-width: 800px; margin-inline: auto; display: flex; flex-direction: column; gap: var(--space-9); }
+  .feature { scroll-margin-top: var(--space-9); }
+  .feature > :global(* + *) { margin-top: var(--space-3); }
+  .feature__icon {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 56px; height: 56px; border-radius: var(--radius-md);
+    background: color-mix(in srgb, var(--color-primary) 10%, #fff); color: var(--color-primary);
+  }
+  .quoteband { margin: 0; max-width: 840px; margin-inline: auto; display: flex; flex-direction: column; align-items: center; gap: var(--space-4); text-align: center; }
+  .quoteband__mark { color: var(--color-text-on-dark); opacity: 0.7; }
+  .quoteband blockquote { margin: 0; }
+</style>

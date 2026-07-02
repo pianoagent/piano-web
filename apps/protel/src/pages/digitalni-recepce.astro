@@ -1,0 +1,79 @@
+---
+/**
+ * Protel — landing „Digitální recepce“. Obsah vytěžen z digitalni-recepce.html starého
+ * protelsystems.cz (jazykově uhlazeno). Vše ze sdílených komponent @piano/ui.
+ */
+import Base from '../layouts/Base.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+
+const related = [
+  { icon: "lucide:smartphone", title: "Online check-in/out", text: "Přihlášení i odhlášení hosta odkudkoliv, přes mobil.", href: "/produkty/online-check-in-out" },
+  { icon: "lucide:monitor-smartphone", title: "Kiosek", text: "Samoobslužné odbavení přímo v hotelu.", href: "/produkty/kiosek" },
+  { icon: "lucide:file-signature", title: "Digitální registrační karta", text: "Vyplnění údajů a upsell přes telefon hosta.", href: "/produkty/digitalni-registracni-karta" },
+  { icon: "lucide:book-open", title: "Digitální hotelová kniha", text: "Informace i nabídky služeb bez tištěné knihy.", href: "/produkty/digitalni-hotelova-kniha" },
+  { icon: "lucide:scan-line", title: "Čtečka dokladů", text: "Ověření dokladů bez ručního opisování.", href: "/produkty/ctecka-dokladu" },
+  { icon: "lucide:mail", title: "Automatický mailing", text: "Automatické rozesílání e-mailů hostům.", href: "/produkty/automaticky-mailing" },
+];
+---
+
+<Base title="Digitální recepce | Protel"
+      description="Digitální recepce umožňuje hostům provádět recepční úkony přes mobilní telefon zcela bez vaší fyzické asistence. Chcete si na recepci ušetřit práci? Protel má řešení.">
+  <SiteHeader />
+
+  <main>
+    <Breadcrumb items={[{ label: 'Úvod', href: '/' }, { label: 'Řešení', href: '/#reseni' }, { label: "Digitální recepce" }]} />
+
+    <Hero eyebrow="Řešení" background="gradient"
+          lead="Digitální recepce je inovativní technologické řešení, které umožňuje hostům provádět recepční úkony prostřednictvím mobilního telefonu — zcela bez vaší fyzické asistence. Chcete si na recepci ušetřit práci?">
+      <Heading slot="title" as="h1" size="display" color="on-dark">Digitální <em>recepce</em></Heading>
+      <Fragment slot="actions">
+        <Button href="#poptavka">Vyzkoušet Protel zdarma</Button>
+        <Button href="/produkty" variant="secondary" onDark>Prohlédnout produkty</Button>
+      </Fragment>
+    </Hero>
+
+    <Section background="default" space="lg">
+      <div class="solution">
+        <Text size="label" color="accent">Protel má řešení</Text>
+        <Heading as="h2" size="h2">Zvažujete, že váš hotel bude zcela bez recepce?</Heading>
+        <Text size="lead" color="muted">Pak můžete vybírat z kombinace několika modulů, které pro tyto účely nabízíme. Vše začíná automatickým rozesíláním e-mailů nebo SMS. Technologie za vás dále vyřeší vyplnění údajů a ověření dokladů, platbu za rezervaci, přístup do pokoje, upsell i přihlášení a odhlášení hosta. Vaši hosté vše obslouží přes svůj chytrý telefon.</Text>
+      </div>
+    </Section>
+
+    <Section background="primary" space="lg">
+      <figure class="quoteband">
+        <span class="quoteband__mark"><Icon name="lucide:quote" size="lg" /></span>
+        <blockquote>
+          <Heading as="p" size="h3" color="on-dark" align="center">Výhodou digitální recepce je ohromné zvýšení efektivity provozu a extrémní úspora času, financí i lidských zdrojů!</Heading>
+        </blockquote>
+      </figure>
+    </Section>
+
+    <USPGrid eyebrow="Související" title="Moduly digitální recepce"
+             items={related} minItemWidth="260px" background="alt" space="lg" />
+
+    <LeadForm id="poptavka" variant="full" background="default"
+              title="Vyzkoušejte Protel zdarma"
+              lead="Co byste u vás v hotelu rádi zlepšili? Nechte nám kontakt — ozveme se a ukážeme Protel přímo ve vašem hotelu." />
+  </main>
+
+  <SiteFooter />
+</Base>
+
+<style>
+  .solution { max-width: 800px; margin-inline: auto; }
+  .solution > :global(* + *) { margin-top: var(--space-4); }
+  .quoteband { margin: 0; max-width: 840px; margin-inline: auto; display: flex; flex-direction: column; align-items: center; gap: var(--space-4); text-align: center; }
+  .quoteband__mark { color: var(--color-text-on-dark); opacity: 0.7; }
+  .quoteband blockquote { margin: 0; }
+</style>

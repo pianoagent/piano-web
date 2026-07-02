@@ -1,0 +1,40 @@
+---
+/**
+ * Grason — Kariéra. Ze starého webu (careers_markup, cs.json).
+ * POZOR: inzerát převzat ze starého webu — před publikací ověřit aktuálnost.
+ */
+import Base from '../layouts/Base.astro';
+import Header from '@piano/ui/components/Header.astro';
+import Footer from '@piano/ui/components/Footer.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import { grasonNav, grasonCta, grasonFooter } from '../config/nav';
+---
+<Base title="Volná místa | Grason"
+      description="Přidejte se ke Grasonu — budujeme nejmodernější nástroj pro řízení lidí v gastronomii.">
+  <Header brand="Grason" logoSrc="/logos/grason_logo.svg" logoHeight="28px" homeHref="/" nav={grasonNav} cta={grasonCta} />
+  <main>
+    <Hero eyebrow="Kariéra" background="alt" space="md"
+          lead="Budujeme nejmodernější nástroj pro řízení lidí v gastru. Grason propojuje restaurace s ověřenými brigádníky a pomáhá majitelům efektivně řídit tým.">
+      <Heading slot="title" as="h1" size="h1">Volná místa</Heading>
+    </Hero>
+
+    <Section background="default" space="lg" container="narrow">
+      <article class="job">
+        <Heading as="h2" size="h3">Obchodník</Heading>
+        <Text color="muted">Pro obchodní oddělení potřebujeme člověka, který si umí normálně pokecat a vysvětlit, proč Grason podniku pomůže.</Text>
+        <Button href="https://jobs.grason.cz/2726-obchodnik-pojd-prodavat-nejlepsi-platformu-na-brigadniky-do-gastra-a-planovac-smen-v-grason" target="_blank" rel="noopener">Detail pozice</Button>
+      </article>
+      <Text size="small" color="muted">Nenašli jste svou pozici? Napište nám na <a href="mailto:info@grason.cz">info@grason.cz</a> — šikovným lidem se ozveme vždy.</Text>
+    </Section>
+  </main>
+  <Footer {...grasonFooter} />
+</Base>
+
+<style>
+  .job { display: flex; flex-direction: column; gap: var(--space-3); align-items: flex-start; padding: var(--space-6); border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-bg); margin-bottom: var(--space-5); }
+  a { color: var(--color-text-accent); }
+</style>

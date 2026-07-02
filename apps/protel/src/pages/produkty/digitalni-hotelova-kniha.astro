@@ -1,0 +1,147 @@
+---
+/**
+ * Protel — produkt „Digitální hotelová kniha“. Obsah vytěžen z produkty/digitalni-hotelova-kniha.html
+ * starého protelsystems.cz (jazykově uhlazeno, fakta zachována).
+ * Vše ze sdílených komponent @piano/ui.
+ */
+import Base from '../../layouts/Base.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+
+const features = [
+  {
+    id: "bez-nutnosti-stahovat-aplikaci", icon: "lucide:qr-code", title: "Bez nutnosti stahovat aplikaci",
+    paras: [
+      "Digitální hotelová kniha (Digital Guest Directory) dává hostům veškeré informace o hotelu a jeho službách — bez instalace jakékoli aplikace. Stačí načíst QR kód, který můžete mít umístěný kdekoli po hotelu, a vše se otevře v běžném webovém prohlížeči.",
+    ],
+  },
+  {
+    id: "nejlevnejsi-hotelova-kniha", icon: "lucide:piggy-bank", title: "Nejlevnější hotelová kniha",
+    paras: [
+      "Oproti tištěným knihám odpadají náklady na tisk nových stránek — aktualizace digitální knihy jsou levné a šetrné k životnímu prostředí. V Protelu ji proto označujeme za nejlevnější hotelovou knihu na světě!",
+      "Hostům stačí načíst QR kód a v reálném čase vidí aktuální údaje a nabídky vašeho hotelu.",
+    ],
+  },
+  {
+    id: "hodnoceni-naprimo", icon: "lucide:star", title: "Hodnocení napřímo",
+    paras: [
+      "Zpětnou vazbu získáváte ještě během pobytu hosta. Recepce či management na ni mohou okamžitě reagovat a ovlivnit hodnocení dřív, než host odjede.",
+      "Hosté mohou využít i funkci „Zrušit úklid pokoje“ — jednoduše dají vědět, že další den úklid nepotřebují. Zvyšuje se komfort na obou stranách a šetří se zdroje.",
+    ],
+  },
+  {
+    id: "vyssi-vynosy-pomoci-primych-rezervaci", icon: "lucide:trending-up", title: "Vyšší výnosy pomocí přímých rezervací",
+    paras: [
+      "Kompletní řešení pro udržení loajality mezi hotelem a hosty — bez podpůrných nástrojů třetích stran. Snadno vytváříte personalizované nabídky: jídlo na pokoj, wellness procedury, další pobyt se slevou a mnoho dalšího.",
+      "Držíte svůj hotelový byznys pevně ve svých rukách a efektivně zvyšujete příjmy nabídkami, které odpovídají preferencím vašich hostů.",
+    ],
+  },
+  {
+    id: "roomservis", icon: "lucide:concierge-bell", title: "Roomservis",
+    paras: [
+      "Hosté si přes digitální hotelovou knihu procházejí nabídku jídel a nápojů včetně cen a objednávají přímo z mobilu nebo tabletu — kdykoli během dne i noci, bez čekání na spojení s recepcí či restaurací.",
+      "Pro personál znamená digitalizace objednávek méně telefonátů a snazší správu — provoz je efektivnější a servis lepší.",
+    ],
+  },
+  {
+    id: "bez-nutnosti-napojeni-na-pms", icon: "lucide:unplug", title: "Bez nutnosti napojení na PMS",
+    paras: [
+      "Digitální hotelová kniha nemusí být napojena na hotelový systém (PMS). I bez integrace hosté rezervují, objednávají služby jako pokojovou službu nebo úklid, zadávají požadavky a zpětnou vazbu, nebo se informují o hotelu a akcích.",
+    ],
+  },
+];
+
+const related = [
+  { icon: "lucide:smartphone", title: "Online check-in/out", text: "Host vyřídí check-in i check-out přes mobil, bez fronty na recepci.", href: "/produkty/online-check-in-out" },
+  { icon: "lucide:concierge-bell", title: "Room Service", text: "Host načte QR kód a objednávka jde přímo do Septimu v kuchyni či baru. Plně automatizované.", href: "/produkty/room-service" },
+  { icon: "lucide:mail", title: "Automatický mailing", text: "Personalizované e-maily hostům bez zásahu recepčního.", href: "/produkty/automaticky-mailing" },
+  { icon: "lucide:file-signature", title: "Digitální registrační karta", text: "Registrace hosta digitálně — konec papírování.", href: "/produkty/digitalni-registracni-karta" },
+];
+---
+
+<Base title="Digitální hotelová kniha | Protel"
+      description="Digitální informační hotelová kniha (Digital Guest Directory) zcela nahrazuje tištěnou verzi. Šetří náklady na tisk, umožňuje flexibilní aktualizace a zvyšuje prodej služeb přímo v hotelu.">
+  <SiteHeader />
+
+  <main>
+    <Breadcrumb items={[{ label: 'Úvod', href: '/' }, { label: 'Produkty', href: '/produkty' }, { label: "Digitální hotelová kniha" }]} />
+
+    <Hero eyebrow="Produkty" background="gradient"
+          lead="Společně s partnerem Straiv představujeme digitální informační hotelovou knihu, která úplně nahrazuje tištěnou verzi. Šetří náklady na tisk, umožňuje flexibilní aktualizace a funguje jako účinný nástroj pro zvyšování prodeje služeb přímo v hotelu.">
+      <Heading slot="title" as="h1" size="display" color="on-dark">Digitální <em>hotelová kniha</em></Heading>
+      <Fragment slot="actions">
+        <Button href="#poptavka">Vyzkoušet Protel zdarma</Button>
+        <Button href="/produkty" variant="secondary" onDark>Všechny produkty</Button>
+      </Fragment>
+    </Hero>
+
+    <Section background="default" space="lg">
+      <nav class="jump" aria-label="Funkce produktu">
+        {features.map((f) => (
+          <a class="jump__chip" href={`#${f.id}`}>{f.title}</a>
+        ))}
+      </nav>
+      <div class="features">
+        {features.map((f) => (
+          <article class="feature" id={f.id}>
+            <span class="feature__icon"><Icon name={f.icon} size="lg" /></span>
+            <Heading as="h2" size="h3">{f.title}</Heading>
+            {f.paras.map((p) => (
+              <Text color="muted">{p}</Text>
+            ))}
+          </article>
+        ))}
+      </div>
+    </Section>
+
+    <Section background="primary" space="lg">
+      <figure class="quoteband">
+        <span class="quoteband__mark"><Icon name="lucide:quote" size="lg" /></span>
+        <blockquote>
+          <Heading as="p" size="h3" color="on-dark" align="center">Digitální hotelová kniha výrazně snižuje náklady na tisk a umožňuje snadné aktualizace. Navíc slouží jako účinný nástroj pro prodej dalších služeb a přímou komunikaci s hosty.</Heading>
+        </blockquote>
+      </figure>
+    </Section>
+
+    <USPGrid eyebrow="Dále by vás mohlo zajímat" title="Související produkty"
+             items={related} minItemWidth="260px" background="alt" space="lg" />
+
+    <LeadForm id="poptavka" variant="full" background="default"
+              title="Vyzkoušejte Protel zdarma"
+              lead="Co byste u vás v hotelu rádi zlepšili? Nechte nám kontakt — ozveme se a ukážeme Protel přímo ve vašem hotelu." />
+  </main>
+
+  <SiteFooter />
+</Base>
+
+<style>
+  .jump { display: flex; flex-wrap: wrap; gap: var(--space-2); justify-content: center; margin-bottom: var(--space-8); }
+  .jump__chip {
+    display: inline-flex; padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-border); border-radius: var(--radius-full);
+    background: var(--color-bg-alt); color: var(--color-text);
+    font-size: var(--font-size-small); font-weight: var(--font-weight-semibold);
+    text-decoration: none; transition: border-color var(--duration-base) var(--easing);
+  }
+  .jump__chip:hover { border-color: var(--color-primary); color: var(--color-text-accent); }
+  .features { max-width: 800px; margin-inline: auto; display: flex; flex-direction: column; gap: var(--space-9); }
+  .feature { scroll-margin-top: var(--space-9); }
+  .feature > :global(* + *) { margin-top: var(--space-3); }
+  .feature__icon {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 56px; height: 56px; border-radius: var(--radius-md);
+    background: color-mix(in srgb, var(--color-primary) 10%, #fff); color: var(--color-primary);
+  }
+  .quoteband { margin: 0; max-width: 840px; margin-inline: auto; display: flex; flex-direction: column; align-items: center; gap: var(--space-4); text-align: center; }
+  .quoteband__mark { color: var(--color-text-on-dark); opacity: 0.7; }
+  .quoteband blockquote { margin: 0; }
+</style>

@@ -1,0 +1,63 @@
+---
+/** Septim — Funkce: Objednávky a výdej pro jídelny. Obsah: septim-obsah/produkty/objednavky-vydej-pro-jidelny.md. Nové URL dle IA (/funkce/). SEO meta nově. */
+import Base from '../../layouts/Base.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import StatsBand from '../../components/StatsBand.astro';
+import LogoWall from '../../components/LogoWall.astro';
+import Faq from '@piano/ui/components/Faq.astro';
+
+const funkce = [
+  { icon: 'lucide:laptop', title: 'Objednávky odkudkoli', text: 'Objednávkový kiosek přímo v jídelně, nebo pohodlnější webové objednávky z vlastního počítače.' },
+  { icon: 'lucide:repeat', title: 'Burza jídel', text: 'Nestihli jste zrušit objednávku? Přesuňte jídlo do Burzy — poslouží kolegům, kteří si naopak nestihli objednat.' },
+  { icon: 'lucide:door-open', title: 'Výdejní terminál', text: 'Bezproblémový výdej objednaného jídla správnému strávníkovi.' },
+  { icon: 'lucide:credit-card', title: 'Identifikace kartou', text: 'Strávník se kartou identifikuje, objednává na své jméno a odebírá objednané jídlo.' },
+];
+const faqs = [
+  { q: 'Jaký je hlavní přínos modulu Objednávky a výdej?', a: 'Hlavním přínosem je na míru nastavené objednávání jídel zaměstnanci. Jídelna pak může plánovat stravování bez zbytečných přebytků.' },
+  { q: 'Jak začít se softwarem pro řízení jídelny?', a: 'Software pro řízení jídelen a kantýn je komplexní věc, se kterou vám pomohou naši konzultanti. V prvním kroku projdeme vaše potřeby a požadavky, podle kterých připravíme návrh řešení.' },
+];
+---
+<Base title="Objednávky a výdej pro jídelny – efektivní závodní stravování se Septimem"
+      description="Modul Objednávky a výdej pro jídelny: zaměstnanci objednávají jídla předem z kiosku i webu, Burza jídel řeší zrušené objednávky a výdejní terminál hlídá výdej. Přesný počet porcí bez přebytků.">
+  <SiteHeader />
+  <main>
+    <Hero eyebrow="Funkce systému Septim — jídelny" background="alt"
+          lead="V závodním stravování je klíčové objednávání jídel předem — osobně v podniku, nebo na dálku z vlastního počítače. Přesně to řeší modul Objednávky a výdej pro jídelny.">
+      <Heading slot="title" as="h1" size="display">Objednávky a výdej <em>pro jídelny</em></Heading>
+      <Fragment slot="actions">
+        <Button href="#poptavka">Chci Septim pro jídelnu</Button>
+        <Button href="/produkty/septim-jidelna" variant="secondary">Septim.Jídelna</Button>
+      </Fragment>
+    </Hero>
+
+    <Section background="default" space="lg">
+      <div class="prose">
+        <Heading as="h2" size="h2">Jak fungují objednávky a výdej v závodní kuchyni?</Heading>
+        <Text color="muted">Pro závodní stravování je systém rozšířen o objednávky jídel na předem dohodnuté období. Ve výrobních podnicích může strávník objednat přímo v jídelně na objednávkovém kiosku; pokud mají všichni ve firmě přístup k počítači, poslouží pohodlnější webové objednávky. Ve stanoveném limitu lze objednávku samozřejmě změnit nebo zrušit.</Text>
+        <Text color="muted">Výhodou je strávníkova jistota, že mu bude vydáno zvolené jídlo — a provozovatel zase získá přesný počet objednaných porcí.</Text>
+      </div>
+    </Section>
+
+    <USPGrid eyebrow="Co modul umí" title="Objednávky, Burza jídel i výdej" items={funkce} background="alt" space="lg" minItemWidth="240px" />
+    <LogoWall label="Respektované provozy, které využívají Septim Objednávky a výdej" background="default" />
+    <StatsBand />
+    <Faq items={faqs} title="Často kladené otázky k modulu Objednávky a výdej" background="default" />
+    <LeadForm id="poptavka" variant="callback" background="alt"
+              title="Naplánujte stravování bez přebytků"
+              lead="Nechte nám telefon — projdeme vaše potřeby a připravíme návrh řešení pro vaši jídelnu." />
+  </main>
+  <SiteFooter />
+</Base>
+
+<style>
+  .prose { max-width: 760px; }
+  .prose > * + * { margin-top: var(--space-4); }
+</style>

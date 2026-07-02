@@ -1,0 +1,74 @@
+---
+/** Septim — SEO landing: Spolehlivý pokladní systém. Obsah: septim-obsah/spolehlivy-pokladni-system.md. Starý slug zachován kvůli SEO. */
+import Base from '../layouts/Base.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import StatsBand from '../components/StatsBand.astro';
+import LogoWall from '../components/LogoWall.astro';
+import Testimonials from '../components/Testimonials.astro';
+import Faq from '@piano/ui/components/Faq.astro';
+
+const segmenty = [
+  { icon: 'lucide:coffee', title: 'Kavárny a bistra', text: 'Jednoduchý start a nízké vstupní náklady s edicí Septim.Air.', href: '/reseni/kavarny-bistra-bary' },
+  { icon: 'lucide:utensils-crossed', title: 'Velké restaurace', text: 'Septim.4 na míru — od pokladny po finanční řízení provozu.', href: '/reseni/restaurace' },
+  { icon: 'lucide:network', title: 'Jídelny a řetězce', text: 'Centrální správa, sdílené receptury a přehledy napříč pobočkami.', href: '/reseni/jidelny' },
+];
+const mozek = [
+  { icon: 'lucide:bar-chart-3', title: 'Reporty pro manažery', text: 'Přehled o tržbách, nákladech i personálu — podklad pro rozhodování.', href: '/funkce/reporty-prehledy' },
+  { icon: 'lucide:award', title: 'Věrnostní program', text: 'Akce, kupóny a body, které vracejí hosty zpět k vám.', href: '/funkce/vernostni-system' },
+  { icon: 'lucide:chef-hat', title: 'Receptury', text: 'Přesné receptury a surovinová náročnost pod kontrolou.' },
+];
+const sklad = [
+  { icon: 'lucide:boxes', title: 'Evidence skladových zásob', text: 'Aktuální stav zásob v každém okamžiku.' },
+  { icon: 'lucide:file-input', title: 'Automatizovaný import dodacích listů', text: 'Dodací listy se do systému zapíší samy — bez ručního přepisování.' },
+  { icon: 'lucide:clipboard-check', title: 'Inventury a odpisy', text: 'Vyhodnocování inventur a odpisy ze skladu pro maximální nákladovou efektivitu.' },
+];
+const kroky = [
+  { icon: 'lucide:search', title: '1. Zjistíme vaše potřeby' },
+  { icon: 'lucide:file-text', title: '2. Dostanete nabídku' },
+  { icon: 'lucide:wrench', title: '3. Nainstalujeme systém a hardware' },
+  { icon: 'lucide:graduation-cap', title: '4. Proškolíme vás a váš personál' },
+  { icon: 'lucide:headset', title: '5. Jsme tu pro vás 24/7' },
+  { icon: 'lucide:refresh-cw', title: '6. Systém pravidelně aktualizujeme' },
+];
+const faqs = [
+  { q: 'V čem je Septim jiný než konkurence?', a: 'Konkurence často řeší jen základní vlastnosti pokladního systému. V opravdu šlapajícím provozu ale naši klienti oceňují pokročilou správu skladů, automatické naskladňování, správu cen, receptur a další drobnosti, které dělají z obyčejné restaurace výdělečný byznys.' },
+  { q: 'Kdy mohu začít Septim používat?', a: 'Prakticky ihned! Záleží, jak velký provoz máte, kolik pokladen budeme instalovat a jaké moduly potřebujete. Jiné je také startovat novou restauraci a jiné přecházet za běhu z jiného systému. Vše s vámi projde náš zkušený Septim konzultant.' },
+  { q: 'Jaký je první krok pro získání pokladního systému Septim?', a: 'Prvním krokem je dobrý plán! Zažádejte si o nabídku zdarma a my pro vás sestavíme dobře nastavený systém. Dobrý plán je pro dobře šlapající provoz základ úspěchu.' },
+];
+---
+<Base title="Spolehlivý pokladní systém pro restaurace – Septim"
+      description="Pokladní systém, na který se můžete spolehnout. Vždycky. Septim není jen pokladna — vydělává vašemu podniku peníze a dává přehled o tom, co se u vás děje. Česká podpora 24/7.">
+  <SiteHeader />
+  <main>
+    <Hero eyebrow="Pokladní a provozní systém" background="alt"
+          lead="Septim není jen pokladna, ale systém, který vašemu podniku vydělá peníze a dá přehled o tom, co se u vás děje."
+          usp={['Česká podpora 24/7', 'Manažerské funkce', 'Skladové hospodářství']}>
+      <Heading slot="title" as="h1" size="display">Pokladní systém, na který se můžete spolehnout. <em>Vždycky.</em></Heading>
+      <Fragment slot="actions">
+        <Button href="#poptavka">Chci nabídku zdarma</Button>
+        <Button href="/produkty/septim-4" variant="secondary">O systému Septim</Button>
+      </Fragment>
+    </Hero>
+
+    <USPGrid eyebrow="Pro koho" title="Septim je ideální pro malé, střední i ty největší" lead="Ať už provozujete jakýkoliv typ provozu, máme řešení přímo pro vás." items={segmenty} background="default" space="lg" minItemWidth="260px" />
+    <LogoWall label="Septim používá více než 2 000 provozů" background="alt" />
+    <USPGrid eyebrow="Víc než pokladna" title="Ostatní vám prodají jen pokladnu. Septim je mozek celého provozu!" lead="Jiní vám prodají opravdu čistě jen pokladnu. Septim dodá mozek celému vašemu provozu — a bude vám vydělávat." items={mozek} background="default" space="lg" minItemWidth="260px" />
+    <USPGrid eyebrow="Skladové hospodářství" title="Skvěle propracované skladové hospodářství" lead="Evidence dodacích listů, receptur, odpisy ze skladu i vyhodnocování inventur — vše směřuje k cíli být nákladově co nejefektivnější." items={sklad} background="alt" space="lg" minItemWidth="260px" />
+    <USPGrid eyebrow="Jak to probíhá" title="Jak to u Septimu probíhá?" items={kroky} background="default" space="lg" minItemWidth="220px" />
+    <StatsBand />
+    <Testimonials title="Co o nás říkají klienti?" background="default" />
+    <Faq items={faqs} title="Nejčastější dotazy" background="alt" />
+    <LeadForm id="poptavka" variant="full" background="default"
+              title="Pojďte do toho s námi!"
+              lead="Nechte nám kontakt — připravíme vám nabídku zdarma pro provoz vaší velikosti." />
+  </main>
+  <SiteFooter />
+</Base>

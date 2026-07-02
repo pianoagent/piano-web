@@ -1,0 +1,145 @@
+---
+/**
+ * Protel — produkt „Platební řešení hotelu“. Obsah vytěžen z produkty/platebni-reseni-hotelu.html
+ * starého protelsystems.cz (jazykově uhlazeno, fakta zachována).
+ * Vše ze sdílených komponent @piano/ui.
+ */
+import Base from '../../layouts/Base.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+
+const features = [
+  {
+    id: "pay-by-link", icon: "lucide:link", title: "PayByLink",
+    paras: [
+      "Výzvy k úhradě (PayLinky) generujete přímo z rezervace — můžete požadovat platbu nebo souhlas s předautorizací. PayLinky se hostům zasílají automaticky podle předem nastavených pravidel.",
+      "Platba přes PayLink je zabezpečena technologií 3D Secure, takže banka nemá možnost nárokovat peníze zpět. Jakmile host zaplatí, úhrada se eviduje jako záloha přímo k rezervaci.",
+    ],
+  },
+  {
+    id: "napojeni-na-platebni-terminal", icon: "lucide:calculator", title: "Napojení na platební terminál",
+    paras: [
+      "S terminálem napojeným na Protel se částka zadaná k úhradě automaticky přenese na platební terminál — žádné ruční přepisování. Transakce se dokončí pouze v případě, že platba na terminálu proběhla úspěšně. Platby jsou tak bezpečné a spolehlivé.",
+    ],
+  },
+  {
+    id: "automaticke-stahovani-zalohovych-plateb", icon: "lucide:download", title: "Automatické stahování zálohových plateb",
+    paras: [
+      "Pokud host poskytne údaje platební karty, systém podle nastavených pravidel automaticky strhne dohodnutou zálohu. Součástí je evidence platby a vystavení daňového dokladu v reálném čase — správa financí je transparentní a efektivní.",
+    ],
+  },
+  {
+    id: "predautorizace-a-top-ups", icon: "lucide:trending-up", title: "Předautorizace a top-ups",
+    paras: [
+      "Když host překročí předautorizovanou částku, systém vás okamžitě upozorní. Předautorizaci lze automaticky navýšit, takže minimalizujete riziko odmítnuté platby i nekomfortní situace pro hosta. Předautorizovanou částku lze využít i k platbě za služby během pobytu.",
+      "Po odjezdu hosta systém nevyužitou část předautorizace automaticky uvolní — prostředky nejsou zbytečně blokovány a nikoho nemusíte zdržovat ručním uvolňováním.",
+    ],
+  },
+  {
+    id: "bezpecnost", icon: "lucide:shield-check", title: "Bezpečnost",
+    paras: [
+      "Řešení odpovídá normám PCI (Payment Card Industry). Platební karty jsou tokenizovány — celé číslo karty není nikdy uloženo v hotelovém systému a platby probíhají přímo tokenizovanou kartou. Ochrana dat je pro nás absolutní priorita.",
+    ],
+  },
+  {
+    id: "nizke-poplatky", icon: "lucide:piggy-bank", title: "Nízké poplatky",
+    paras: [
+      "Většina hostů dnes platí kartou — a Protel si za tyto transakce účtuje jen minimální poplatky. Provozní náklady hotelu tak zůstávají nízké a hostům přesto nabídnete pohodlné a bezpečné platební možnosti.",
+    ],
+  },
+];
+
+const related = [
+  { icon: "lucide:layout-dashboard", title: "Hotelový systém", text: "Správa pokojů, rezervací, hostů a statistik — snadné používání a pokročilé funkce pro kompletní přehled o provozu.", href: "/produkty/hotelovy-system-protel" },
+  { icon: "lucide:smartphone", title: "Online check-in/out", text: "Host vyřídí check-in i check-out přes mobil, bez fronty na recepci.", href: "/produkty/online-check-in-out" },
+  { icon: "lucide:monitor-smartphone", title: "Kiosek", text: "Samoobslužný check-in/out terminál přímo v hotelu.", href: "/produkty/kiosek" },
+  { icon: "lucide:globe", title: "Webové rezervace", text: "Přímé rezervace přes web hotelu, bez provizí třetích stran.", href: "/produkty/webove-rezervace" },
+];
+---
+
+<Base title="Platební řešení hotelu | Protel"
+      description="Protel má vlastní plně integrované platební řešení. Zefektivněte práci s platbami, minimalizujte chybovost a snižte riziko vracení transakcí.">
+  <SiteHeader />
+
+  <main>
+    <Breadcrumb items={[{ label: 'Úvod', href: '/' }, { label: 'Produkty', href: '/produkty' }, { label: "Platební řešení hotelu" }]} />
+
+    <Hero eyebrow="Produkty" background="gradient"
+          lead="Protel má vlastní plně integrované platební řešení. Díky této integraci výrazně zefektivníte práci s platbami, minimalizujete chybovost a snížíte riziko vracení transakcí.">
+      <Heading slot="title" as="h1" size="display" color="on-dark">Platební <em>řešení</em> hotelu</Heading>
+      <Fragment slot="actions">
+        <Button href="#poptavka">Vyzkoušet Protel zdarma</Button>
+        <Button href="/produkty" variant="secondary" onDark>Všechny produkty</Button>
+      </Fragment>
+    </Hero>
+
+    <Section background="default" space="lg">
+      <nav class="jump" aria-label="Funkce produktu">
+        {features.map((f) => (
+          <a class="jump__chip" href={`#${f.id}`}>{f.title}</a>
+        ))}
+      </nav>
+      <div class="features">
+        {features.map((f) => (
+          <article class="feature" id={f.id}>
+            <span class="feature__icon"><Icon name={f.icon} size="lg" /></span>
+            <Heading as="h2" size="h3">{f.title}</Heading>
+            {f.paras.map((p) => (
+              <Text color="muted">{p}</Text>
+            ))}
+          </article>
+        ))}
+      </div>
+    </Section>
+
+    <Section background="primary" space="lg">
+      <figure class="quoteband">
+        <span class="quoteband__mark"><Icon name="lucide:quote" size="lg" /></span>
+        <blockquote>
+          <Heading as="p" size="h3" color="on-dark" align="center">Protel disponuje vlastním komplexně propojeným platebním řešením. Integrace znamená výrazně efektivnější práci s platbami, méně chyb a minimální riziko vracení transakcí.</Heading>
+        </blockquote>
+      </figure>
+    </Section>
+
+    <USPGrid eyebrow="Dále by vás mohlo zajímat" title="Související produkty"
+             items={related} minItemWidth="260px" background="alt" space="lg" />
+
+    <LeadForm id="poptavka" variant="full" background="default"
+              title="Vyzkoušejte Protel zdarma"
+              lead="Co byste u vás v hotelu rádi zlepšili? Nechte nám kontakt — ozveme se a ukážeme Protel přímo ve vašem hotelu." />
+  </main>
+
+  <SiteFooter />
+</Base>
+
+<style>
+  .jump { display: flex; flex-wrap: wrap; gap: var(--space-2); justify-content: center; margin-bottom: var(--space-8); }
+  .jump__chip {
+    display: inline-flex; padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-border); border-radius: var(--radius-full);
+    background: var(--color-bg-alt); color: var(--color-text);
+    font-size: var(--font-size-small); font-weight: var(--font-weight-semibold);
+    text-decoration: none; transition: border-color var(--duration-base) var(--easing);
+  }
+  .jump__chip:hover { border-color: var(--color-primary); color: var(--color-text-accent); }
+  .features { max-width: 800px; margin-inline: auto; display: flex; flex-direction: column; gap: var(--space-9); }
+  .feature { scroll-margin-top: var(--space-9); }
+  .feature > :global(* + *) { margin-top: var(--space-3); }
+  .feature__icon {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 56px; height: 56px; border-radius: var(--radius-md);
+    background: color-mix(in srgb, var(--color-primary) 10%, #fff); color: var(--color-primary);
+  }
+  .quoteband { margin: 0; max-width: 840px; margin-inline: auto; display: flex; flex-direction: column; align-items: center; gap: var(--space-4); text-align: center; }
+  .quoteband__mark { color: var(--color-text-on-dark); opacity: 0.7; }
+  .quoteband blockquote { margin: 0; }
+</style>

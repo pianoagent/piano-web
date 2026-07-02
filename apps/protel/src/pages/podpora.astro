@@ -1,0 +1,122 @@
+---
+/**
+ * Protel — Podpora. Obsah z podpora.html starého protelsystems.cz.
+ * Vše ze sdílených komponent @piano/ui.
+ */
+import Base from '../layouts/Base.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import Card from '@piano/ui/components/Card.astro';
+import Badge from '@piano/ui/components/Badge.astro';
+import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+
+const linky = [
+  {
+    badge: 'Helpdesk v pracovní době',
+    note: 'Po–Pá 8:30–17:00',
+    phone: '+420 257 011 107',
+    phoneHref: 'tel:+420257011107',
+    icon: 'lucide:headset',
+  },
+  {
+    badge: 'Hotline mimo pracovní dobu',
+    note: 'Pro urgentní provozní situace',
+    phone: '+420 778 776 835',
+    phoneHref: 'tel:+420778776835',
+    icon: 'lucide:phone-call',
+  },
+];
+---
+
+<Base title="Podpora | Protel"
+      description="Patříte do rodiny Protel a nevíte si rady? Helpdesk, hotline, vzdálená podpora přes TeamViewer i znalostní databáze — podpora z ČR, žádné callcentrum v zahraničí.">
+  <SiteHeader />
+
+  <main>
+    <Breadcrumb items={[{ label: 'Úvod', href: '/' }, { label: 'Podpora' }]} />
+
+    <Section background="alt" space="lg">
+      <div class="head head--center">
+        <Text size="label" color="accent" align="center">Podpora</Text>
+        <Heading as="h1" size="h1" align="center">Podpora produktů <em>Protel</em></Heading>
+        <Text size="lead" color="muted" align="center" balance>
+          Podpora z ČR, žádné callcentrum v zahraničí. Komunikujte s odborníky, kteří mluví česky.
+          Patříte již do rodiny Protel a nevíte si rady? Níže najdete kontakty pro okamžitou pomoc — připravte si svůj servisní kód.
+        </Text>
+      </div>
+
+      <div class="lines">
+        {linky.map((l) => (
+          <Card variant="elevated" padding="lg" as="article">
+            <div class="line">
+              <span class="line__icon"><Icon name={l.icon} size="lg" /></span>
+              <Badge variant="primary">{l.badge}</Badge>
+              <a class="line__phone" href={l.phoneHref}>{l.phone}</a>
+              <a class="line__mail" href="mailto:help@protelsystems.cz">help@protelsystems.cz</a>
+              <Text size="small" color="muted">{l.note}</Text>
+            </div>
+          </Card>
+        ))}
+      </div>
+    </Section>
+
+    <Section background="default" space="lg">
+      <div class="head head--center">
+        <Heading as="h2" size="h2" align="center">Vzdálená podpora <em>TeamViewer</em></Heading>
+        <Text size="lead" color="muted" align="center" balance>
+          Stáhněte si nástroj pro vzdálenou podporu — náš technik se s vámi spojí přímo na vašem počítači.
+        </Text>
+      </div>
+      <div class="actions">
+        <Button href="https://download.teamviewer.com/download/TeamViewerQS_x64.exe">
+          Mám počítač s Windows
+        </Button>
+        <Button href="https://download.teamviewer.com/download/TeamViewerQS.dmg" variant="secondary">
+          Mám Apple macOS
+        </Button>
+      </div>
+    </Section>
+
+    <Section background="invert" space="md">
+      <div class="kb">
+        <Heading as="h2" size="h3" color="on-dark" align="center">Hledejte odpovědi ve znalostní databázi Protel</Heading>
+        <Text color="on-dark-muted" align="center">Návody, postupy a odpovědi na časté dotazy na jednom místě.</Text>
+        <div class="actions">
+          <Button href="https://protel.helpjuice.com/en_US" target="_blank" rel="noopener">Přejít na databázi odpovědí</Button>
+        </div>
+      </div>
+    </Section>
+
+    <LeadForm id="poptavka" variant="full" background="alt"
+              title="Napište přímo naší podpoře"
+              lead="Popište nám, s čím si nevíte rady — ozveme se co nejdříve. Nezapomeňte uvést svůj servisní kód." />
+  </main>
+
+  <SiteFooter />
+</Base>
+
+<style>
+  .head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-7); }
+  .head--center { text-align: center; }
+  .head > * + * { margin-top: var(--space-3); }
+
+  .lines { display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); max-width: 900px; margin-inline: auto; }
+  .line { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-3); }
+  .line__icon {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 56px; height: 56px; border-radius: var(--radius-md);
+    background: color-mix(in srgb, var(--color-primary) 10%, #fff); color: var(--color-primary);
+  }
+  .line__phone { font-size: var(--font-size-h2); font-weight: var(--font-weight-bold); color: var(--color-secondary); text-decoration: none; line-height: 1.1; }
+  .line__phone:hover, .line__mail:hover { color: var(--color-text-accent); }
+  .line__mail { font-weight: var(--font-weight-semibold); color: var(--color-text); text-decoration: none; }
+
+  .actions { display: flex; gap: var(--space-3); justify-content: center; flex-wrap: wrap; }
+  .kb { max-width: 720px; margin-inline: auto; display: flex; flex-direction: column; gap: var(--space-4); }
+</style>

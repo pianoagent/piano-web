@@ -1,0 +1,103 @@
+---
+/**
+ * Protel — Fantastický hotel (koncept Protel + Straiv). Obsah
+ * z fantasticky-hotel.html starého protelsystems.cz.
+ * Vše ze sdílených komponent @piano/ui.
+ */
+import Base from '../layouts/Base.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import Testimonials from '@piano/ui/components/Testimonials.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+
+const zaklady = [
+  { icon: 'lucide:layout-dashboard', title: 'Protel PMS', text: 'Komplexní řešení pro vedení hotelu a platební řešení, které každý den využívá více než 14 000 zákazníků po celém světě.', href: '/produkty/hotelovy-system-protel' },
+  { icon: 'lucide:smartphone', title: 'Straiv', text: 'Nadstavbové moduly: online check-in, chytré odemykání, digitální hotelová kniha, optimalizace úklidu, hodnocení napřímo od hostů i online check-out — bez nutnosti třetích stran.', href: '/produkty/online-check-in-out' },
+];
+
+const prvky = [
+  { icon: 'lucide:share-2', title: 'Napojení na OTA a channel managery', text: 'Rezervace z Booking.com, Expedia.com a všech respektovaných channel managerů se zapisují do Protelu automaticky a v reálném čase. Vždy aktuální obsazenost, méně chyb, nižší náklady na lidské zdroje.' },
+  { icon: 'lucide:trending-up', title: 'Vydělávejte chytře', text: 'Omezte lidské zdroje a soustřeďte se na zcela automatizovaný provoz, který budou hosté milovat — a budou se k vám vracet.' },
+  { icon: 'lucide:piggy-bank', title: 'Neskutečná úspora', text: 'Šetřete peníze i čas. Protel se automaticky postará o veškerý provoz spojený s vedením hotelové agendy.' },
+  { icon: 'lucide:mouse-pointer-click', title: 'Snadné užívání', text: 'Přehlednost a srozumitelnost na obou stranách hotelového byznysu — pro vás i vaše hosty.' },
+  { icon: 'lucide:log-in', title: 'Online check-in', text: 'Ušetří hotelu ohromné množství času i peněz. Lidský zdroj na straně recepce už není potřeba.' },
+  { icon: 'lucide:key-round', title: 'Chytré odemykání', text: 'Žádné klíče, karty ani zbytečně drahý personál. Vše elektronicky, jednoduše a levně.' },
+  { icon: 'lucide:book-open', title: 'Digitální hotelová kniha', text: 'Žádné stahování aplikace a ohromná úspora papíru. Hosté mají všechny informace na dosah ruky a služby si rezervují přes chytrý telefon.' },
+  { icon: 'lucide:sparkles', title: 'Zvyšte další prodeje', text: 'Vytvářejte příjmy pomocí personalizovaných nabídek a služeb pro hotelové hosty. Opečovaní hosté budou vaše nadstavbové služby milovat.' },
+  { icon: 'lucide:brush-cleaning', title: 'Optimalizace úklidu', text: 'S možností „Zrušit úklid pokoje“ vás hosté jednoduše informují, že další den úklid nepotřebují. Šetříte náklady i zdroje.' },
+  { icon: 'lucide:star', title: 'Hodnocení napřímo a online check-out', text: 'Feedback od hostů ještě před koncem pobytu — hodnocení ovlivníte dřív, než host odjede. Bez podpůrných nástrojů třetích stran držíte svůj byznys pevně ve svých rukách.' },
+];
+
+const reference = [
+  { initials: 'MB', headline: 'Vynikající volba', quote: 'Protel je pro CPI Hotels vynikající volba. Jeho intuitivní rozhraní, spolehlivost a efektivita nám umožňují snadno řídit rezervace, spravovat hosty a sledovat statistiky. Integrace moderních technologií nám pomohla zlepšit guest journey a poskytovat personalizované služby.', author: 'Michaela Bieliková', role: 'CPI Hotels' },
+];
+---
+
+<Base title="Fantastický hotel | Protel"
+      description="Nejmodernější způsob provozování hotelu díky spojení toho nejlepšího z Protelu a Straiv. Bezkonkurenční koncept řízení hotelu, který využívají špičky v českém a slovenském hotelovém byznysu.">
+  <SiteHeader />
+
+  <main>
+    <Breadcrumb items={[{ label: 'Úvod', href: '/' }, { label: 'Fantastický hotel' }]} />
+
+    <Hero eyebrow="Koncept Protel + Straiv" background="gradient"
+          lead="Představujeme nejmodernější způsob provozování hotelu a hotelových služeb díky spojení toho nejlepšího z Protelu a Straiv. Bezkonkurenční koncept řízení hotelu, který využívají špičky v českém a slovenském hotelovém byznysu."
+          usp={[{ text: 'Plně automatizovaný provoz', icon: 'lucide:refresh-cw' }, { text: 'Úspora financí i lidí', icon: 'lucide:piggy-bank' }, { text: 'Feedback ještě během pobytu', icon: 'lucide:star' }]}>
+      <Heading slot="title" as="h1" size="display" color="on-dark">Fantastický <em>hotel</em></Heading>
+      <Fragment slot="actions">
+        <Button href="#poptavka">Chci fantastický hotel</Button>
+        <Button href="#koncept" variant="secondary" onDark>Jak to funguje</Button>
+      </Fragment>
+    </Hero>
+
+    <Section id="koncept" background="default" space="lg">
+      <div class="head head--center">
+        <Text size="label" color="accent" align="center">Co je Fantastický hotel</Text>
+        <Heading as="h2" size="h2" align="center">Hotel, který <em>vydělává a neplýtvá</em></Heading>
+        <Text size="lead" color="muted" align="center" balance>
+          Každý chce mít svůj fantastický hotel: vydělává, neplýtvá finančními ani lidskými zdroji, má naprostý přehled o dění i v nejodlehlejších koutech hotelu a feedback od hostů dostává ještě v průběhu pobytu. Zkrátka plně automatizovaný efektivní hotel.
+        </Text>
+      </div>
+    </Section>
+
+    <USPGrid eyebrow="Dva pilíře" title="Protel PMS + Straiv"
+             items={zaklady} minItemWidth="320px" background="alt" space="lg" />
+
+    <USPGrid eyebrow="Co získáte" title="Stavební kameny fantastického hotelu"
+             items={prvky} minItemWidth="280px" background="default" space="lg" />
+
+    <Section background="primary" space="lg">
+      <figure class="quoteband">
+        <span class="quoteband__mark"><Icon name="lucide:quote" size="lg" /></span>
+        <blockquote>
+          <Heading as="p" size="h3" color="on-dark" align="center">Nezní to celé skvěle? Nejenže zní — ono to i funguje! Právě proto Fantastický hotel používají špičky v českém a slovenském hotelovém byznysu.</Heading>
+        </blockquote>
+      </figure>
+    </Section>
+
+    <Testimonials items={reference} eyebrow="Reference" title="Co říkají zákazníci" background="alt" />
+
+    <LeadForm id="poptavka" variant="full" background="default"
+              title="Chci svůj fantastický hotel"
+              lead="Nechte nám kontakt — ukážeme vám, jak koncept Protel + Straiv funguje přímo ve vašem hotelu." />
+  </main>
+
+  <SiteFooter />
+</Base>
+
+<style>
+  .head { max-width: 800px; margin-inline: auto; }
+  .head--center { text-align: center; }
+  .head > * + * { margin-top: var(--space-3); }
+  .quoteband { margin: 0; max-width: 840px; margin-inline: auto; display: flex; flex-direction: column; align-items: center; gap: var(--space-4); text-align: center; }
+  .quoteband__mark { color: var(--color-text-on-dark); opacity: 0.7; }
+  .quoteband blockquote { margin: 0; }
+</style>

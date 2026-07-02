@@ -1,0 +1,128 @@
+---
+/**
+ * Protel — produkt „Room Service“. Obsah vytěžen z produkty/room-service.html
+ * starého protelsystems.cz (jazykově uhlazeno, fakta zachována).
+ * Vše ze sdílených komponent @piano/ui.
+ */
+import Base from '../../layouts/Base.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+
+const features = [
+  {
+    id: "objednavka-bez-volani", icon: "lucide:qr-code", title: "Objednávka bez volání",
+    paras: [
+      "Online Room Service umožňuje hostům objednávat jídlo a nápoje na pokoj přímo z mobilního telefonu přes QR kód nebo odkaz. Host nemusí kontaktovat recepci ani čekat na spojení — celá objednávka proběhne rychle, přehledně a zcela digitálně.",
+      "Objednávkové rozhraní je vždy aktuální a odpovídá skutečné nabídce hotelové restaurace nebo baru. Minimalizují se tak chyby v objednávkách a host má plnou kontrolu kdykoli během pobytu.",
+    ],
+  },
+  {
+    id: "plna-automatizace-systemu", icon: "lucide:refresh-cw", title: "Plná automatizace systému",
+    paras: [
+      "Room Service je plně automatizovaný díky přímému propojení hotelového systému Protel a restauračního systému Septim. Objednávky se okamžitě a bez zásahu personálu propisují přímo do gastronomického provozu.",
+      "Recepce není zatěžována přepisováním ani telefonickým předáváním informací mezi kuchyní a barem. Celý proces je rychlejší, přesnější a výrazně méně náchylný k chybám z ruční komunikace.",
+    ],
+  },
+  {
+    id: "mene-prace-vice-kontroly", icon: "lucide:gauge", title: "Méně práce, více kontroly",
+    paras: [
+      "Online Room Service snižuje zátěž recepce, zrychluje obsluhu hostů a dává přehled nad objednávkami v reálném čase. Personál se může soustředit na služby hostům místo operativních telefonátů.",
+      "Řešení je dlouhodobě ověřené v ostrém hotelovém provozu — například v Grandhotelu Pupp. Hotel získává vyšší efektivitu, lepší kontrolu nad procesy a moderní Room Service odpovídající očekáváním dnešních hostů.",
+    ],
+  },
+];
+
+const related = [
+  { icon: "lucide:layout-dashboard", title: "Hotelový systém", text: "Správa pokojů, rezervací, hostů a statistik — snadné používání a pokročilé funkce pro kompletní přehled o provozu.", href: "/produkty/hotelovy-system-protel" },
+  { icon: "lucide:book-open", title: "Digitální hotelová kniha", text: "Hotelová kniha elektronicky, vždy aktuální a po ruce.", href: "/produkty/digitalni-hotelova-kniha" },
+  { icon: "lucide:soup", title: "MealPlan", text: "Digitální evidence snídaní, obědů a večeří bez papírů a Excelu.", href: "/produkty/meal-plan" },
+  { icon: "lucide:bed-double", title: "Housekeeping", text: "Digitální správa úklidu a údržby pokojů — vše v reálném čase.", href: "/produkty/housekeeping" },
+];
+---
+
+<Base title="Room Service | Protel"
+      description="Room Service od Protelu je rarita: host načte QR kód a má nabídku ve svém telefonu. Protel pozná, ze kterého pokoje host objednává, a napojený restaurační systém Septim se postará o vše v kuchyni i na baru.">
+  <SiteHeader />
+
+  <main>
+    <Breadcrumb items={[{ label: 'Úvod', href: '/' }, { label: 'Produkty', href: '/produkty' }, { label: "Room Service" }]} />
+
+    <Hero eyebrow="Produkty" background="gradient"
+          lead="Náš Room Service je naprostá rarita! Stačí načíst QR kód a host má nabídku Room Service ihned ve svém telefonu. Protel sám pozná, ze kterého pokoje host objednává, a napojený restaurační systém Septim se postará o vše v kuchyni i na baru. Plně automatizovaně a jednoduše.">
+      <Heading slot="title" as="h1" size="display" color="on-dark">Room <em>Service</em></Heading>
+      <Fragment slot="actions">
+        <Button href="#poptavka">Vyzkoušet Protel zdarma</Button>
+        <Button href="/produkty" variant="secondary" onDark>Všechny produkty</Button>
+      </Fragment>
+    </Hero>
+
+    <Section background="default" space="lg">
+      <nav class="jump" aria-label="Funkce produktu">
+        {features.map((f) => (
+          <a class="jump__chip" href={`#${f.id}`}>{f.title}</a>
+        ))}
+      </nav>
+      <div class="features">
+        {features.map((f) => (
+          <article class="feature" id={f.id}>
+            <span class="feature__icon"><Icon name={f.icon} size="lg" /></span>
+            <Heading as="h2" size="h3">{f.title}</Heading>
+            {f.paras.map((p) => (
+              <Text color="muted">{p}</Text>
+            ))}
+          </article>
+        ))}
+      </div>
+    </Section>
+
+    <Section background="primary" space="lg">
+      <figure class="quoteband">
+        <span class="quoteband__mark"><Icon name="lucide:quote" size="lg" /></span>
+        <blockquote>
+          <Heading as="p" size="h3" color="on-dark" align="center">V Česku výjimečné řešení! Plně automatizovaný Online Room Service bez zbytečných mezikroků a telefonické komunikace.</Heading>
+        </blockquote>
+      </figure>
+    </Section>
+
+    <USPGrid eyebrow="Dále by vás mohlo zajímat" title="Související produkty"
+             items={related} minItemWidth="260px" background="alt" space="lg" />
+
+    <LeadForm id="poptavka" variant="full" background="default"
+              title="Vyzkoušejte Protel zdarma"
+              lead="Co byste u vás v hotelu rádi zlepšili? Nechte nám kontakt — ozveme se a ukážeme Protel přímo ve vašem hotelu." />
+  </main>
+
+  <SiteFooter />
+</Base>
+
+<style>
+  .jump { display: flex; flex-wrap: wrap; gap: var(--space-2); justify-content: center; margin-bottom: var(--space-8); }
+  .jump__chip {
+    display: inline-flex; padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-border); border-radius: var(--radius-full);
+    background: var(--color-bg-alt); color: var(--color-text);
+    font-size: var(--font-size-small); font-weight: var(--font-weight-semibold);
+    text-decoration: none; transition: border-color var(--duration-base) var(--easing);
+  }
+  .jump__chip:hover { border-color: var(--color-primary); color: var(--color-text-accent); }
+  .features { max-width: 800px; margin-inline: auto; display: flex; flex-direction: column; gap: var(--space-9); }
+  .feature { scroll-margin-top: var(--space-9); }
+  .feature > :global(* + *) { margin-top: var(--space-3); }
+  .feature__icon {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 56px; height: 56px; border-radius: var(--radius-md);
+    background: color-mix(in srgb, var(--color-primary) 10%, #fff); color: var(--color-primary);
+  }
+  .quoteband { margin: 0; max-width: 840px; margin-inline: auto; display: flex; flex-direction: column; align-items: center; gap: var(--space-4); text-align: center; }
+  .quoteband__mark { color: var(--color-text-on-dark); opacity: 0.7; }
+  .quoteband blockquote { margin: 0; }
+</style>

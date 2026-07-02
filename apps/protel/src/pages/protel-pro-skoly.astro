@@ -1,0 +1,144 @@
+---
+/**
+ * Protel — Protel pro školy. Obsah z protel-pro-skoly.html starého
+ * protelsystems.cz (ceny zachovány). Vše ze sdílených komponent @piano/ui.
+ */
+import Base from '../layouts/Base.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import Card from '@piano/ui/components/Card.astro';
+import Badge from '@piano/ui/components/Badge.astro';
+import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+
+const plany = [
+  {
+    badge: 'Demo zdarma',
+    title: '1× přístup do sdílené databáze',
+    price: 'Zdarma',
+    text: 'Zcela zdarma získáte jeden přístup pro pedagoga do sdílené demo databáze, na které může vyučující prezentovat studentům (např. na dataprojektoru), jak systém funguje.',
+    items: ['1× přístup pro pedagoga', 'Sdílená demo databáze', 'Prezentace výuky na dataprojektoru'],
+  },
+  {
+    badge: 'Plná verze',
+    title: '29× plný přístup pro studenty + pedagog',
+    price: '650 Kč / měsíc za třídu',
+    text: 'Studenti si mohou vytvořit a spravovat „vlastní hotel“ stejně jako v reálném životě. Pracují s reálnými scénáři a získávají praktické dovednosti od prvních dnů studia.',
+    items: ['29× plný přístup pro studenty', '1× plný přístup pro pedagoga', 'Volitelně 5× konferenční místnost za 150 Kč / měsíc na třídu'],
+  },
+];
+---
+
+<Base title="Protel pro školy | Hotelový systém Protel"
+      description="Využijte špičkový hotelový systém Protel pro vaši školu zcela zdarma a připravte studenty na reálný svět hotelového průmyslu. Plná verze pro celou třídu za 650 Kč měsíčně.">
+  <SiteHeader />
+
+  <main>
+    <Breadcrumb items={[{ label: 'Úvod', href: '/' }, { label: 'Protel pro školy' }]} />
+
+    <Hero eyebrow="Protel pro školy" background="gradient"
+          lead="Jmenuji se Protel. Jsem vaše chytrá asistentka, která pomůže studentům otevřít dveře reálného světa hotelové praxe."
+          usp={[{ text: 'Demo zdarma', icon: 'lucide:gift' }, { text: 'Reálný systém z praxe', icon: 'lucide:badge-check' }, { text: 'Celá třída za 650 Kč/měsíc', icon: 'lucide:graduation-cap' }]}>
+      <Heading slot="title" as="h1" size="display" color="on-dark">Protel <em>pro školy</em></Heading>
+      <Fragment slot="actions">
+        <Button href="#poptavka">Chci Protel pro školu</Button>
+        <Button href="/produkty/hotelovy-system-protel" variant="secondary" onDark>Poznat hotelový systém</Button>
+      </Fragment>
+    </Hero>
+
+    <Section background="default" space="lg">
+      <div class="head head--center">
+        <Text size="label" color="accent" align="center">Nabídka pro školy</Text>
+        <Heading as="h2" size="h2" align="center">Praxe od <em>prvního dne</em> studia</Heading>
+        <Text size="lead" color="muted" align="center" balance>
+          Využijte špičkový hotelový systém Protel pro vaši školu zcela zdarma a připravte studenty na reálný svět hotelového průmyslu. Osvojí si praktické dovednosti, které jim zajistí hladký přechod do praxe.
+        </Text>
+      </div>
+      <div class="plans">
+        {plany.map((p) => (
+          <Card variant="bordered" padding="lg" as="article">
+            <div class="plan">
+              <Badge variant="primary">{p.badge}</Badge>
+              <Heading as="h3" size="h3">{p.title}</Heading>
+              <p class="plan__price">{p.price}</p>
+              <Text size="small" color="muted">{p.text}</Text>
+              <ul class="plan__list">
+                {p.items.map((i) => (
+                  <li><Icon name="lucide:check" size="sm" /> {i}</li>
+                ))}
+              </ul>
+            </div>
+          </Card>
+        ))}
+      </div>
+    </Section>
+
+    <Section background="primary" space="lg">
+      <figure class="quoteband">
+        <span class="quoteband__mark"><Icon name="lucide:quote" size="lg" /></span>
+        <blockquote>
+          <Heading as="p" size="h3" color="on-dark" align="center">Vaši studenti budou od prvních dnů studia pracovat s reálným systémem, který pak potkají ve své hotelové praxi. Na budoucí kariéru v hotelnictví tak budou dokonale připraveni.</Heading>
+        </blockquote>
+        <figcaption>
+          <Text color="on-dark-muted" align="center">Systém Protel používají špičky v oboru — vaši studenti se učí na tomtéž systému.</Text>
+        </figcaption>
+      </figure>
+    </Section>
+
+    <Section background="alt" space="lg">
+      <div class="head head--center">
+        <Heading as="h2" size="h2" align="center">Zní to pro vaši školu zajímavě?</Heading>
+        <Text size="lead" color="muted" align="center" balance>Kontaktujte našeho kolegu Kamila — probere s vámi nasazení Protelu ve výuce.</Text>
+      </div>
+      <div class="contact">
+        <a class="contact__item" href="tel:+420775890106"><Icon name="lucide:phone" size="md" /> +420 775 890 106</a>
+        <a class="contact__item" href="mailto:kamil.koncel@protelsystems.cz"><Icon name="lucide:mail" size="md" /> kamil.koncel@protelsystems.cz</a>
+      </div>
+    </Section>
+
+    <LeadForm id="poptavka" variant="full" background="default"
+              title="Chci Protel pro svou školu"
+              lead="Nechte nám kontakt — ozveme se a domluvíme demo i nasazení do výuky."
+              proofs={[
+                { icon: 'lucide:gift', title: 'Demo zdarma', text: 'Sdílená databáze pro pedagoga.' },
+                { icon: 'lucide:graduation-cap', title: '650 Kč / měsíc', text: '29 přístupů pro studenty + pedagog.' },
+                { icon: 'lucide:badge-check', title: 'Reálný systém', text: 'Stejný PMS jako v hotelové praxi.' },
+                { icon: 'lucide:headset', title: 'CZ / SK podpora', text: 'Plnohodnotná lokální podpora.' },
+              ]} />
+  </main>
+
+  <SiteFooter />
+</Base>
+
+<style>
+  .head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-7); }
+  .head--center { text-align: center; }
+  .head > * + * { margin-top: var(--space-3); }
+
+  .plans { display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); max-width: 900px; margin-inline: auto; }
+  .plan { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-3); }
+  .plan__price { font-size: var(--font-size-h2); font-weight: var(--font-weight-bold); color: var(--color-secondary); line-height: 1.1; }
+  .plan__list { list-style: none; display: flex; flex-direction: column; gap: var(--space-2); }
+  .plan__list li { display: flex; align-items: center; gap: var(--space-2); color: var(--color-text); }
+  .plan__list :global(svg) { color: var(--color-primary); flex-shrink: 0; }
+
+  .quoteband { margin: 0; max-width: 840px; margin-inline: auto; display: flex; flex-direction: column; align-items: center; gap: var(--space-4); text-align: center; }
+  .quoteband__mark { color: var(--color-text-on-dark); opacity: 0.7; }
+  .quoteband blockquote { margin: 0; }
+
+  .contact { display: flex; flex-wrap: wrap; gap: var(--space-4); justify-content: center; }
+  .contact__item {
+    display: inline-flex; align-items: center; gap: var(--space-2);
+    padding: var(--space-3) var(--space-5); border: 1px solid var(--color-border);
+    border-radius: var(--radius-full); background: var(--color-bg);
+    color: var(--color-text); font-weight: var(--font-weight-semibold); text-decoration: none;
+  }
+  .contact__item :global(svg) { color: var(--color-primary); }
+  .contact__item:hover { color: var(--color-text-accent); }
+</style>

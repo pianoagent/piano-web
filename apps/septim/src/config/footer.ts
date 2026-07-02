@@ -15,16 +15,34 @@ export const septimFooter = {
       links: [
         { label: 'O společnosti', href: '/o-spolecnosti' },
         { label: 'Reference', href: '/reference' },
+        { label: 'Případová studie Kolkovna', href: '/kolkovna/10x-restaurant' },
         { label: 'Kariéra', href: '/kariera' },
         { label: 'Kontakt', href: '/kontakt' },
       ],
     },
     {
-      heading: 'Podpora',
+      heading: 'Podpora a servis',
       links: [
         { label: 'Ceník', href: '/cenik' },
         { label: 'Služby a servis', href: '/sluzby-servis' },
+        { label: 'Helpdesk a Hotline', href: '/sluzby-servis/helpdesk-hotline' },
+        { label: 'Podmínky servisní smlouvy', href: '/sluzby-servis/podminky-servisni-smlouvy' },
+        { label: 'Konzultace a školení', href: '/sluzby-servis/konzultace-skoleni' },
+        { label: 'Technické rady a FAQ', href: '/technicke-rady-faq' },
         { label: 'Blog', href: '/blog' },
+      ],
+    },
+    {
+      heading: 'Produkty a moduly',
+      links: [
+        { label: 'Spolehlivý pokladní systém', href: '/spolehlivy-pokladni-system' },
+        { label: 'Hardware do restaurace', href: '/funkce/hardware-do-restaurace' },
+        { label: 'Nastavení', href: '/funkce/nastaveni' },
+        { label: 'Anketa pro jídelny', href: '/funkce/anketa-pro-jidelny' },
+        { label: 'Objednávky a výdej pro jídelny', href: '/funkce/objednavky-vydej-pro-jidelny' },
+        { label: 'Platby QR kódem (Qerko)', href: '/integrace/platby-objednavky-qr-kodem' },
+        { label: 'Automatické naskladňování', href: '/integrace/automaticke-naskladnovani' },
+        { label: 'Plánování směn (Grason)', href: '/integrace/planovani-smen' },
       ],
     },
   ],
@@ -45,6 +63,7 @@ export const septimFooter = {
   ],
   legal: [
     { label: 'Obchodní podmínky', href: '/obchodni-podminky' },
+    { label: 'Převod licence', href: '/prevod-licence' },
     { label: 'Ochrana osobních údajů', href: '/ochrana-udaju' },
     { label: 'Cookies', href: '/cookies' },
   ],

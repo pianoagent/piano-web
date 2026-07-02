@@ -1,0 +1,32 @@
+---
+/** Septim — Integrace: Automatické naskladňování (Pecosta). Obsah: septim-obsah/produkty/automaticke-naskladnovani.md. Nové URL dle IA (/integrace/). SEO meta nově. */
+import IntegracePage from '../../components/IntegracePage.astro';
+const benefits = [
+  { icon: 'lucide:timer', title: 'Úspora 95 % času', text: 'Dodací listy přestanete přepisovat — budete je jen kontrolovat.' },
+  { icon: 'lucide:file-input', title: 'Data přímo od dodavatelů', text: 'Pecosta má domluvu se všemi většími dodavateli v Česku — dodací listy chodí elektronicky.' },
+  { icon: 'lucide:boxes', title: 'Rovnou na sklady', text: 'Zboží se zapisuje přímo na sklady provozního systému Septim.' },
+  { icon: 'lucide:check-check', title: 'Kontrola jedním kliknutím', text: 'Zkontrolujete, opravíte, co nesedí, a zbytek jedním kliknutím připíšete na sklad.' },
+];
+const faqs = [
+  { q: 'Jaký je přínos automatického naskladňování?', a: 'Přínosem automatického naskladňování v provozním systému Septim je úspora času. Prakticky přestanete přepisovat dodací listy — budete je jen kontrolovat a ušetříte 95 % času.' },
+  { q: 'Jak automatické naskladňování zapneme?', a: 'Zkontrolujeme, jestli je napojení automatického naskladňování připravené pro vaši verzi systému, a můžeme začít. Kontaktujte naše konzultanty.' },
+  { q: 'Jak to vypadá v praxi?', a: 'Ráno vám přijde zboží, které přeberete. V kanceláři pak otevřete provozní systém Septim a zkontrolujete, jestli dodané zboží sedí se zaslanými dodacími listy. Co nesedí, přepíšete nebo zrušíte, a zbytek zboží jedním kliknutím připíšete na sklady.' },
+];
+---
+<IntegracePage
+  title="Automatické naskladňování (Pecosta) – dodací listy bez přepisování | Septim"
+  description="Automatické naskladňování v systému Septim: integrace Pecosta zapisuje dodané zboží přímo na sklady. Vy jen kontrolujete dodací listy — a šetříte 95 % času při naskladňování."
+  eyebrow="Integrace a zařízení"
+  titleHtml="Automatické <em>naskladňování</em>"
+  lead="Integrované řešení našeho partnera Pecosta skvěle doplňuje modul Skladové hospodářství — a šetří restauracím desítky hodin času měsíčně."
+  intro={[
+    'Automatické naskladňování systému Pecosta umožňuje zapisovat dodané zboží přímo na sklady provozního systému Septim. Vy si jen zkontrolujete, jestli je dodací list v pořádku, a při prvním naskladnění vyberete, na který sklad patří.',
+    'Systém Pecosta má připravenou domluvu se všemi většími dodavateli v Česku. Stačí podpis smlouvy o zprostředkování vašich dat — a dodavatelé začnou s dodaným zbožím posílat data dodacích listů do systému Pecosta, který je zpracuje a předá díky připravenému napojení do Septimu.',
+    'Největší výhodou je úspora času: už nemusíte ručně přepisovat položky, vybírat, kam patří, a vypisovat cenu a množství. Tato práce proběhne za zlomek času.',
+  ]}
+  introHeading="Co je automatické naskladňování v systému Septim?"
+  benefitsTitle="Co integrace přináší"
+  benefits={benefits}
+  faqs={faqs}
+  partner="Integrované řešení našeho partnera Pecosta."
+/>

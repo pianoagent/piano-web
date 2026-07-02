@@ -1,0 +1,97 @@
+---
+/** Septim — Technické rady a FAQ. Obsah: septim-obsah/technicke-rady-faq.md (otázky rekonstruovány z odpovědí). SEO meta nově. */
+import Base from '../layouts/Base.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import StatsBand from '../components/StatsBand.astro';
+import Faq from '@piano/ui/components/Faq.astro';
+
+const predNakupem = [
+  { q: 'Čím se Septim liší od běžné pokladny?', a: 'Septim není zdaleka jen pokladna. Jeho největší přínos je ve finančním, skladovém a lidském řízení celého provozu. Proto je to provozní systém, nikoliv jen pokladní — a to jako jeden z mála na trhu. Systém Septim ve své nejaktuálnější verzi 4.1 je nejnovější a nejrespektovanější provozní software pro restaurace v ČR. Michelinské restaurace, přední sítě top restaurací i známí šéfkuchaři — většina používá ve svých restauracích právě Septim.' },
+  { q: 'Kolik Septim stojí?', a: 'Cena se odvíjí od velikosti provozu, využití hardwaru a počtu zakoupených licencí a modulů — od několika stovek korun pro malé provozy až po miliony korun za napojení do provozního celku velkých sítí restauračních řetězců. Zásadní otázka na začátku je, co vše má systém řešit: kolik máte pokladen, jaké manažerské funkce budete potřebovat a jaké nástroje bude nutné napojit. V principu existují dva přístupy — buď si kupujete licenci i se vším zařízením jednorázově a následně platíte servisní poplatek, nebo platíte minimální vstupní náklady a vše ostatní si pronajímáte, podobně jako auto na operativní leasing. Ve zkratce: pro menší provozy je vhodný Septim.Air s měsíčním paušálem, pro větší provozy máme Septim.4 na míru a pro závodní stravování Septim.Jídelna.' },
+  { q: 'Umíte upravit systém na míru našemu provozu?', a: 'Ano, samozřejmě! V některých unikátních případech je vhodné upravit pokladní a provozní systém Septim na míru dané restauraci nebo síti restaurací. I takovou službu nabízíme.' },
+  { q: 'Jak dlouho trvá instalace?', a: 'Instalace se odehraje v rámci několika týdnů. Záleží, jak velký provoz máte, kolik pokladen budeme instalovat a jaké moduly potřebujete. Jiné je také startovat novou restauraci a jiné přecházet za běhu z jiného systému — toto s vámi projde náš konzultant.' },
+  { q: 'Nabízíte konzultace ještě před nákupem?', a: 'Ano. Před začátkem používání systému Septim nabízíme konzultace v oblasti zjištění potřeb provozu a následné přípravy ideálního řešení řízení provozu. Kontaktujte naše konzultanty a zjistěte nezávazně, jak vám Septim pomůže.' },
+];
+
+const pokladna = [
+  { q: 'Může host zaplatit v jedné měně a nechat si vrátit v jiné?', a: 'Ano, je to možné. Nejprve přijmu částku v měně platby zadáním do „Placeno“ a založím platbu. Tím dojde k přeplatku a u následující platby, kterou se bude vracet, pouze přepnu, v jaké měně bude platba s vrácením provedena.' },
+  { q: 'Jak na pokladně změním způsob platby u účtu?', a: 'Na pokladně lze změnit jednosměrně pouze platbu v hotovosti na libovolnou trasu peněz. Měnit způsob platby je možné pouze u účtů s jedinou platbou. Pokud účet obsahuje více plateb (i více plateb stejného typu), změnu platby účtu není možné provést.' },
+  { q: 'Pokladna se po spuštění hned ukončí. Co s tím?', a: 'Nejprve zkontrolujte kasa.log. Pokladna v Septimu 4.1 „nečeká na spuštění DB serveru“ a nepřipojuje se cyklicky — pokud tedy Kasa DB server po spuštění nenajde, hned se ukončí.' },
+  { q: 'Jak nastavím tisk více účtenek najednou?', a: 'V parametrech trasy peněz je nutné zadat příkaz POCETUCTENEK=x, kde za x dosadíme počet, kolik účtenek se má vytisknout.' },
+  { q: 'V grafických rezervacích nevidím všechny stoly. Proč?', a: 'Pravděpodobně je na jednu obrazovku umístěno více než 33 objektů k rezervaci. Použijte tlačítka „+“ a „−“ v pravé spodní části grafického editoru rezervací — pomocí nich upravíte zoom na optimální velikost, při které se zobrazí všechny objekty k rezervaci.' },
+];
+
+const sklady = [
+  { q: 'Jak zavedu počáteční skladové zásoby při přechodu z jiného systému?', a: 'Teoreticky jsou dvě možnosti: založit fiktivní dodací list, nebo založit inventuru a do ní zadat aktuální zásoby. Založení inventury však není dobrý postup, protože tím vzniknou skladové zásoby s nulovou cenou. Prakticky jediným rozumným řešením je fiktivní dodací list, který může vycházet z fyzické inventury; ceny by se měly použít podle účetních hodnot z předchozího systému.' },
+  { q: 'Co je skladová karta?', a: 'Na skladové kartě jsou zobrazeny veškeré skladové operace k dané skladové položce. Skladová karta se vytváří náhledem nad tabulkami, které obsahují skladové operace (denní výdeje, dodací listy, převody, inventury a další).' },
+  { q: 'Jak se ze skladu odepisují ingredience namarkovaných receptur?', a: 'Ingredience se ze skladu odtěžují k účetnímu datu tak, že se odpisy každé skladové položky postupně sčítají. Takto odepsané množství je pak ve skladové kartě v Manažeru uvedeno jako jeden záznam „Denní výdeje“. Když v daném dni neexistuje inventura, jsou denní výdeje vztaženy k účetnímu datu a času 23:59:59. Pokud je v daném dni vytvořena inventura, rozdělí se množství na část před inventurou (se stejným časem, jako je čas založení inventury) a po inventuře (čas 23:59:59).' },
+  { q: 'Jaký je rozdíl mezi množstvím podle Septima a skutečným množstvím?', a: '„Množství podle Septima“ je množství, které Septim na skladě očekává na základě svých výpočtů. „Množství skutečné“ nebo také „fyzické množství“ je množství, které se ve skladu našlo při inventuře.' },
+  { q: 'Co se stane, když opravím starší dodací list?', a: 'Změna se projeví v nejbližší inventuře za opraveným dodacím listem — změní se množství dle Septima. Změna se projeví i na skladové kartě, která zobrazuje historii operací se skladovou položkou, tedy i přebytky a vyřazení inventurou. Nezmění se fyzické množství v inventuře, a tedy ani aktuální zásoby.' },
+];
+
+const reporting = [
+  { q: 'Kde nastavím kurzy cizích měn?', a: 'V Manažeru ve „Volby → Peníze → Měny“ se ve spodním pohledu nastavují kurzy vybrané měny. Kurz se nastavuje pro určitý kurzový model, jehož časovou platnost lze vymezit ve „Volby → Peníze → Kurzový lístek“.' },
+  { q: 'Jak zařídím, aby se u trasy peněz neevidoval zůstatek?', a: 'Při zakládání nové trasy peněz stačí odškrtnout volbu „Evidovat zůstatek v peněžní pokladně“. U stávajících tras už to není možné. Používá se např. u trasy peněz typu „Nevrácené částky“, kde se v peněžních pokladnách kumuluje jejich záporný zůstatek a následně nejde uzavřít peněžní pokladna.' },
+  { q: 'Jak v obratech zobrazím poskytnuté slevy?', a: 'Jsou dvě možnosti: v menu „Finance → Obraty“ zvolíte pohled „Seskupení položek podle výše slevy“, nebo v menu „Finance → Obraty“ zaškrtnete „Zobrazovat základní cenu“.' },
+  { q: 'Proč se liší tržby při omezení dle pokladny a dle peněžní pokladny?', a: 'Je to kvůli účtům stornovaným v Manažeru. Pokud stornuji účet v Manažeru a zobrazím si podrobné tržby, při omezení dle pokladny se toto storno v tržbách neprojeví, při omezení na peněžní pokladnu ano. V takovém případě je lepší používat omezení dle peněžní pokladny.' },
+];
+
+const ceny = [
+  { q: 'Co je tarif a jak souvisí s cenovou kategorií?', a: 'Tarifem si můžeme zakoupit cenovou kategorii na určité období. Když je na zákazníka otevřen účet, je mu přidělena cenová kategorie zakoupená tarifem. Cenová kategorie u zákazníka se nemění a vstoupí v platnost po vypršení tarifu.' },
+  { q: 'Jaká cenová kategorie se použije při otevření účtu na zákazníka?', a: 'Cenová kategorie se nastaví dle zákazníka (podle jeho cenové kategorie). Pokud má zákazník platný tarif, použije se cenová kategorie dle tarifu.' },
+  { q: 'Jak nastavím automatické změny cen v určitých hodinách?', a: 'Automatické změny cen se v Septimu řeší prostřednictvím Happy Hours. Happy Hours mění cenovou kategorii za jinou, nebo nastaví zadanou slevu.' },
+  { q: 'Jaký je rozdíl mezi slevou a cenovou kategorií?', a: 'Sleva se uplatňuje na všechny receptury ve stejné výši (v procentech). Cenová kategorie umožňuje pro každou recepturu definovat různé výše slev (nebo přirážek) tím, že pro cenovou kategorii a recepturu definuji konkrétní cenu.' },
+  { q: 'Lze mít různý tiskový vzor poukázky pro různá zařízení?', a: 'Ne, tiskový vzor poukázky se volí pomocí globálního parametru a je jeden stejný pro všechna zařízení.' },
+];
+
+const nastaveni = [
+  { q: 'Jak u zákazníka evidovat alergeny?', a: 'Jde to nastavit hned při zakládání zákazníka v aplikaci Manažer přes samostatnou záložku editačního dialogu zákazníka. Dodatečně pak v menu „Zákazníci → Zákazníci“ v závislém pohledu „Alergeny“.' },
+  { q: 'Jak založím nového uživatele systému?', a: 'V aplikaci Manažer ve „Volby → Přístupová práva → Uživatelé systému“ vložíme nový záznam. Vyplníme údaje o uživateli — nezbytné jsou „Jméno“, „Uživatelské jméno“ (přihlašovací jméno do systému) a pokud se uživatel bude přihlašovat kartou, do kolonky „Identifikace“ zadáme nebo načteme čtečkou kód karty či čipu. Nově založeného uživatele poté aktivujeme (tlačítkem „A“ na horním ovládacím panelu); při aktivaci je uživatel vyzván k nastavení hesla. Nakonec uživatele vložíme ve spodním závislém pohledu do příslušných skupin pro oprávnění — tím získá veškerá oprávnění nadefinovaná pro tyto skupiny.' },
+  { q: 'Jak uživateli povolím vkládat jiné uživatele do skupin?', a: 'V aplikaci Manažer ve „Volby → Přístupová práva → Skupiny uživatelů“ označíme skupinu, jejímž je uživatel členem, a v podřízeném pohledu „Skupiny, do kterých se mohou vkládat uživatelé (skupiny)“ zvolíme skupiny, do kterých má uživatel moci jiné uživatele (případně celé skupiny) zařazovat. Abychom mohli uživatele do nějaké skupiny vložit, musíme navíc sami mít přidělena všechna práva jako skupina, do které chceme uživatele vložit.' },
+  { q: 'Co je hlavní (master) zákazník?', a: 'Hlavní zákazník je ten, ke kterému lze přiřazovat jiné (slave) zákazníky. Když má zákazník přiřazeného hlavního zákazníka, lze konto hlavního zákazníka použít při platbě účtu. Platbu z master konta jde omezit pouze na vybrané receptury.' },
+  { q: 'Jak uzavřu účet bez tisku účtenky?', a: 'V nabídkách vzhledu obrazovky pro pokladnu, v okně uzavření účtu, vytvořte nové tlačítko. Tomuto tlačítku přiřaďte příkaz „Uzavři účet“ a v jeho parametrech nastavte, že se nemá tisknout účet.' },
+];
+
+const obecne = [
+  { q: 'Může se pokladna připojovat k databázovému serveru přes internet?', a: 'Ano, je to možné, ale jen za podmínky, že download/upload rychlost internetového připojení bude nejméně 4/2 Mb/s a latence nanejvýš 15 ms. Při omezenějších možnostech internetu doporučujeme jiné řešení.' },
+  { q: 'K čemu slouží ceník?', a: 'Ceník slouží pro vymezení platnosti určitého cenového modelu. Pro cenové modely se pak definují ceny receptur.' },
+  { q: 'Co je tára a kde se nastavuje?', a: 'Tárou je myšlena hmotnost obalu — např. talíře nebo misky — která se při vážení má odečíst z celkové váhy. Táry se nastavují v Manažeru v menu „Volby → Základní parametry → Táry“. Na obrazovku markování do účtu v Kase je pak potřeba přidat komponentu „Seznam tár pro váhu“. Při propojení pokladny s váhou dle protokolu Welmec je možné u receptury se zaškrtnutým příznakem „Chráněná vážená položka“ nastavit přednastavenou hodnotu táry.' },
+  { q: 'Musí obraty přesně sedět na součet položek účtů?', a: 'Nemusí. Obraty sumarizují cenu bez DPH, výši DPH a cenu s DPH tak, jak je vedena v položkách uzavřených účtů (vše zaokrouhleno na 2 desetinná místa). Rozdíl se může pohybovat v řádu korun a je způsoben zaokrouhlováním.' },
+  { q: 'Z tiskárny vyjíždí objednávky opakovaně. Čím to je?', a: 'Může to být tím, že je spuštěno více aplikací „Pokladna“ se stejnou klientskou aplikací v ini souboru — připojují se pak jako identické zařízení a vznikají problémy s vyjížděním tisků. Spuštěné klientské aplikace zjistíte v Manažeru ve „Volby → Přístupová práva → Seznam připojených uživatelů“, kde je vidět, z jaké IP adresy je jaká aplikace připojena. Každá aplikace pokladny by zde měla mít dva záznamy: KASA (aplikace pokladna) a SERVICE (vlastní tiskový server kasy). Pokud je pro jednu aplikaci PC Pokladna záznamů víc, je někde spuštěna duplicitně — řešením je duplicitní aplikaci vypnout. V případě nejasností se obraťte na Helpdesk společnosti Septim Systems.' },
+];
+---
+<Base title="Technické rady a FAQ k systému Septim"
+      description="Technické rady a často kladené otázky k systému Septim: dotazy před nákupem, používání pokladny, skladové hospodářství, reporting, ceny a akce, nastavení i obecné dotazy.">
+  <SiteHeader />
+  <main>
+    <Hero eyebrow="Podpora" background="alt"
+          lead="Odpovědi na nejčastější dotazy před zakoupením systému Septim i v průběhu užívání — pro personál na place i pro management provozů.">
+      <Heading slot="title" as="h1" size="display">Technické rady a <em>FAQ</em></Heading>
+      <Fragment slot="actions">
+        <Button href="/sluzby-servis/helpdesk-hotline">Helpdesk a Hotline</Button>
+        <Button href="/sluzby-servis" variant="secondary">Služby a servis</Button>
+      </Fragment>
+    </Hero>
+
+    <Faq items={predNakupem} title="Otázky před zakoupením systému Septim" background="default" />
+    <Faq items={pokladna} title="Používání pokladny na place (pro personál)" background="alt" />
+    <Faq items={sklady} title="Aplikace Manažer — skladové hospodářství" background="default" />
+    <Faq items={reporting} title="Aplikace Manažer — reporting a finanční správa" background="alt" />
+    <Faq items={ceny} title="Aplikace Manažer — práce s cenami a akcemi" background="default" />
+    <Faq items={nastaveni} title="Nastavení a práce s pokladnou a účty" background="alt" />
+    <Faq items={obecne} title="Obecné dotazy" background="default" />
+
+    <StatsBand />
+    <LeadForm id="poptavka" variant="callback" background="default"
+              title="Nenašli jste odpověď?"
+              lead="Nechte nám telefon — proberte to s našimi konzultanty nebo podporou." />
+  </main>
+  <SiteFooter />
+</Base>

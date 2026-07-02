@@ -1,0 +1,47 @@
+---
+/**
+ * ABX HARSYS — Zásady zpracování osobních údajů (kontaktní formulář).
+ * ⚠️ K REVIZI: starý web právní stránku neměl / nebyla dostupná — text je adaptace
+ * šablony skupiny Piano. Před spuštěním nechat zkontrolovat (lhůty, zpracovatelé).
+ */
+import Base from '../layouts/Base.astro';
+import Header from '@piano/ui/components/Header.astro';
+import Footer from '@piano/ui/components/Footer.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import { harsysNav, harsysCta } from '../config/nav';
+---
+<Base title="Ochrana osobních údajů | ABX HARSYS" description="Zásady zpracování osobních údajů z kontaktního formuláře. ABX software s.r.o., IČO 27968588." noindex>
+  <Header brand="ABX HARSYS" logoSrc="/logos/abx_logo.svg" logoHeight="26px" homeHref="/" nav={harsysNav} cta={harsysCta} />
+  <main>
+    <Hero eyebrow="Právní informace" background="alt" space="md">
+      <Heading slot="title" as="h1" size="h1">Ochrana osobních údajů</Heading>
+    </Hero>
+    <Section background="default" space="lg" container="narrow">
+      <div class="legal">
+        <h2>Kdo je správcem vašich údajů</h2>
+        <p>Správcem osobních údajů je společnost <strong>ABX software s.r.o.</strong>, IČO 27968588, DIČ CZ27968588, se sídlem Olomouc (dále jen „my"). Ve věcech ochrany osobních údajů nás můžete kontaktovat na e-mailu <a href="mailto:office@ab-x.cz">office@ab-x.cz</a>.</p>
+        <h2>Jaké údaje zpracováváme a proč</h2>
+        <p>Prostřednictvím kontaktního a poptávkového formuláře na webu www.abxharsys.cz zpracováváme údaje, které nám sami poskytnete — zpravidla jméno a příjmení, e-mailovou adresu, telefonní číslo, název podniku a obsah vaší zprávy.</p>
+        <p>Tyto údaje zpracováváme za účelem vyřízení vašeho dotazu či poptávky a navazující obchodní komunikace. Právním základem zpracování je provedení opatření před uzavřením smlouvy na vaši žádost a náš oprávněný zájem na odpovědi na vaši poptávku (čl. 6 odst. 1 písm. b) a f) GDPR).</p>
+        <h2>Jak dlouho údaje uchováváme</h2>
+        <p>Údaje z formuláře uchováváme po dobu vyřizování vaší poptávky a následně nejdéle po dobu 3 let od poslední komunikace, nevznikne-li mezitím smluvní vztah. Poté je smažeme.</p>
+        <h2>Komu údaje předáváme</h2>
+        <p>Údaje z formuláře ukládáme do našeho CRM systému. Nepředáváme je žádným třetím stranám pro marketingové účely. Na zpracování se mohou podílet naši smluvní poskytovatelé IT služeb (hosting, CRM) v roli zpracovatelů.</p>
+        <h2>Vaše práva</h2>
+        <p>Máte právo na přístup ke svým osobním údajům, jejich opravu či výmaz, omezení zpracování, přenositelnost a právo vznést námitku proti zpracování. Se stížností se můžete obrátit na Úřad pro ochranu osobních údajů (www.uoou.cz).</p>
+        <p>Pro uplatnění svých práv nás kontaktujte na <a href="mailto:office@ab-x.cz">office@ab-x.cz</a>.</p>
+      </div>
+    </Section>
+  </main>
+  <Footer legal={[{ label: 'Ochrana osobních údajů', href: '/ochrana-udaju' }]} logoSrc="/logos/abx_by_piano.svg" logoAlt="ABX HARSYS by Piano" parentNote={{ text: 'Harsys je součástí skupiny Piano', href: 'https://piano.cz' }} />
+</Base>
+<style>
+  .legal { max-width: 760px; }
+  .legal :global(h2) { font-weight: var(--font-weight-medium); font-size: var(--font-size-h3); color: var(--color-secondary); margin: var(--space-7) 0 var(--space-3); }
+  .legal :global(p) { color: var(--color-text-muted); line-height: var(--line-height-body); margin-bottom: var(--space-3); }
+  .legal :global(a) { color: var(--color-text-accent); }
+  .legal :global(strong) { color: var(--color-text); }
+  .legal :global(h2:first-child) { margin-top: 0; }
+</style>

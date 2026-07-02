@@ -1,0 +1,46 @@
+---
+/** Septim — Služby: Vývoj na míru. Obsah: septim-obsah/sluzby-servis/vyvoj-na-miru.md. SEO meta nově. */
+import Base from '../../layouts/Base.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import StatsBand from '../../components/StatsBand.astro';
+---
+<Base title="Vývoj na míru – přizpůsobení systému Septim vašemu provozu"
+      description="V unikátních případech upravíme provozní systém Septim na míru vašemu provozu nebo celé síti. Konzultace potřeb, návrh řešení a specifické přizpůsobení funkčního systému.">
+  <SiteHeader />
+  <main>
+    <Hero eyebrow="Služby a servis" background="alt"
+          lead="V některých unikátních případech je vhodné upravit provozní systém Septim na míru danému provozu nebo celé síti provozů. I takovou službu nabízíme.">
+      <Heading slot="title" as="h1" size="display">Vývoj <em>na míru</em></Heading>
+      <Fragment slot="actions">
+        <Button href="#poptavka">Chci konzultaci</Button>
+        <Button href="/sluzby-servis" variant="secondary">Všechny služby</Button>
+      </Fragment>
+    </Hero>
+
+    <Section background="default" space="lg">
+      <div class="prose">
+        <Heading as="h2" size="h2">Konzultace k systému Septim</Heading>
+        <Text color="muted">Před začátkem používání systému Septim nabízíme konzultace zaměřené na zjištění potřeb provozu a následnou přípravu ideálního řešení řízení provozu. Kontaktujte naše konzultanty a zjistěte nezávazně, jak vám Septim pomůže.</Text>
+        <Text color="muted">Pokud už jste našimi zákazníky, konzultace vám pomohou s nastavením, podrobnějšími přehledy provozu a rozšířením automatizace — a v unikátních případech navrhneme i specifické přizpůsobení systému přesně podle potřeb vaší restaurace či sítě restaurací.</Text>
+      </div>
+    </Section>
+
+    <StatsBand />
+    <LeadForm id="poptavka" variant="callback" background="default"
+              title="Proberte s našimi konzultanty, jak na to"
+              lead="Nechte nám telefon — probereme, zda je pro váš provoz vhodná úprava systému na míru." />
+  </main>
+  <SiteFooter />
+</Base>
+
+<style>
+  .prose { max-width: 760px; }
+  .prose > * + * { margin-top: var(--space-4); }
+</style>

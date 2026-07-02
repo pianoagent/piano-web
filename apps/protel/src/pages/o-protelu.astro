@@ -1,0 +1,111 @@
+---
+/**
+ * Protel — O Protelu. Obsah z o-protelu.html starého protelsystems.cz.
+ * Vše ze sdílených komponent @piano/ui.
+ */
+import Base from '../layouts/Base.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+
+const rozcestnik = [
+  { icon: 'lucide:layout-dashboard', title: 'Produkty', text: 'Kompletní nabídka produktů Protel — od PMS po digitální recepci.', href: '/produkty' },
+  { icon: 'lucide:plug', title: 'Napojení', text: 'Integrace do PMS Protel: platby, channel managery, zámky i účetnictví.', href: '/napojeni' },
+  { icon: 'lucide:star', title: 'Naši zákazníci', text: 'Reference hotelových špiček z Česka i Slovenska.', href: '/nasi-zakaznici' },
+  { icon: 'lucide:tags', title: 'Ceník', text: 'Ceník licencí i servisních služeb na jednom místě.', href: '/cenik' },
+  { icon: 'lucide:life-buoy', title: 'Podpora', text: 'Helpdesk, hotline i znalostní databáze — česky.', href: '/podpora' },
+  { icon: 'lucide:graduation-cap', title: 'Protel pro školy', text: 'Špičkový hotelový systém pro výuku, demo zdarma.', href: '/protel-pro-skoly' },
+];
+---
+
+<Base title="O Protelu | Hotelový systém Protel"
+      description="Naším cílem je zpříjemnit a zefektivnit provoz hotelů pro všechny, kdo se podílejí na hotelovém chodu. PMS Protel optimalizuje náklady, šetří lidské zdroje a zlepšuje efektivitu práce.">
+  <SiteHeader />
+
+  <main>
+    <Breadcrumb items={[{ label: 'Úvod', href: '/' }, { label: 'O Protelu' }]} />
+
+    <Hero eyebrow="Hotel PMS Protel" background="gradient"
+          lead="Naším cílem je zpříjemnit a zefektivnit provoz hotelů pro všechny, kteří se podílejí na hotelovém chodu — od hoteliérů přes pokojské a recepční až po kuchaře v hotelové kuchyni.">
+      <Heading slot="title" as="h1" size="display" color="on-dark">O <em>Protelu</em></Heading>
+      <Fragment slot="actions">
+        <Button href="#poptavka">Vyzkoušet Protel zdarma</Button>
+        <Button href="/kontakt" variant="secondary" onDark>Kontakt</Button>
+      </Fragment>
+    </Hero>
+
+    <Section background="default" space="lg">
+      <div class="story">
+        <div class="story__block">
+          <Text size="label" color="accent">Kdo jsme</Text>
+          <Heading as="h2" size="h2">Partner pro <em>moderní řízení</em> hotelu</Heading>
+          <Text size="lead" color="muted">
+            PMS hotelový systém Protel optimalizuje náklady, šetří lidské zdroje a zlepšuje efektivitu práce — vytváří tak příjemnější a produktivnější pracovní prostředí. Jsme partnerem pro každého, kdo chce svůj hotel řídit moderně. Pro všechny, kteří to myslí se svým hotelem vážně a chtějí hostům připravit opravdu skvělý zážitek.
+          </Text>
+        </div>
+        <div class="story__block">
+          <Heading as="h3" size="h3">Jsme jedni z vás!</Heading>
+          <Text color="muted">
+            Naši konzultanti jsou zkušení odborníci z hotelového byznysu, které nakonec zlákal svět softwaru. Dostáváte tak rady od lidí se zkušenostmi z reálných hotelových provozů. Neporadí vám jen, jak nainstalovat Protel — pomohou vám reálně zvýšit výkonnost celého hotelu.
+          </Text>
+        </div>
+        <div class="story__block">
+          <Heading as="h3" size="h3">Fantastický hotel</Heading>
+          <Text color="muted">
+            Chceme, aby byl váš hotel úspěšný. Přímo fantastický! Chceme, aby se k vám lidé rádi vraceli. Proto se postaráme o efektivní provozní zázemí vašeho provozu, abyste měli čas a prostor soustředit se na to hlavní: spokojeného hosta.
+          </Text>
+          <div class="story__cta"><Button href="/fantasticky-hotel" variant="secondary">Poznat koncept Fantastický hotel</Button></div>
+        </div>
+      </div>
+    </Section>
+
+    <Section background="primary" space="lg">
+      <figure class="quoteband">
+        <span class="quoteband__mark"><Icon name="lucide:quote" size="lg" /></span>
+        <blockquote>
+          <Heading as="p" size="h3" color="on-dark" align="center">Protel je globálně respektovaný hotelový systém s plnohodnotnou lokální podporou a dokonalým napojením. Snadné používání, přehlednost a množství pokročilých funkcí z něho dělá jedničku na českém a slovenském trhu!</Heading>
+        </blockquote>
+      </figure>
+    </Section>
+
+    <USPGrid eyebrow="Rozcestník" title="Kam dál"
+             items={rozcestnik} minItemWidth="280px" background="alt" space="lg" />
+
+    <Section background="default" space="md">
+      <div class="career">
+        <Heading as="h2" size="h3" align="center">Kariéra v <em>Protelu</em></Heading>
+        <Text color="muted" align="center" balance>
+          Milujete svět hotelů a pohostinství a máte vztah k technologiím a IT? Kariéra v Protelu vás zavede k jedničce mezi hotelovými systémy v České republice a na Slovensku. Myslíte, že můžete být pro Protel přínosem? Napište nám na
+          <a href="mailto:sales@protelsystems.cz">sales@protelsystems.cz</a> a my se vám ozveme.
+        </Text>
+      </div>
+    </Section>
+
+    <LeadForm id="poptavka" variant="full" background="alt"
+              title="Vyzkoušejte Protel zdarma"
+              lead="Co byste u vás v hotelu rádi zlepšili? Pojďme to probrat — ozveme se a ukážeme Protel přímo ve vašem hotelu." />
+  </main>
+
+  <SiteFooter />
+</Base>
+
+<style>
+  .story { max-width: 800px; margin-inline: auto; display: flex; flex-direction: column; gap: var(--space-8); }
+  .story__block > :global(* + *) { margin-top: var(--space-3); }
+  .story__cta { margin-top: var(--space-4); }
+
+  .quoteband { margin: 0; max-width: 840px; margin-inline: auto; display: flex; flex-direction: column; align-items: center; gap: var(--space-4); text-align: center; }
+  .quoteband__mark { color: var(--color-text-on-dark); opacity: 0.7; }
+  .quoteband blockquote { margin: 0; }
+
+  .career { max-width: 720px; margin-inline: auto; display: flex; flex-direction: column; gap: var(--space-3); }
+  .career a { color: var(--color-text-accent); font-weight: var(--font-weight-semibold); }
+</style>

@@ -1,6 +1,7 @@
 /**
  * Patička webu Protel (per-web data pro sdílený @piano/ui Footer).
  * Kontakty ze starého protelsystems.cz / protel-context.md.
+ * Sloupec „Řešení" zpřístupňuje tematické landing pages (SEO).
  */
 const year = new Date().getFullYear();
 
@@ -14,19 +15,37 @@ export const protelFooter = {
     {
       heading: 'Produkty',
       links: [
-        { label: 'Hotelový systém (PMS)', href: '/#pms' },
-        { label: 'Platební řešení', href: '/#produkty' },
-        { label: 'Online check-in/out', href: '/#recepce' },
-        { label: 'Room Service', href: '/#produkty' },
-        { label: 'Konference', href: '/#produkty' },
+        { label: 'Hotelový systém (PMS)', href: '/produkty/hotelovy-system-protel' },
+        { label: 'Platební řešení hotelu', href: '/produkty/platebni-reseni-hotelu' },
+        { label: 'Online check-in/out', href: '/produkty/online-check-in-out' },
+        { label: 'Room Service', href: '/produkty/room-service' },
+        { label: 'Hotelové řetězce', href: '/produkty/hotelove-retezce' },
+        { label: 'Napojení a integrace', href: '/napojeni' },
+        { label: 'Všechny produkty', href: '/produkty' },
+      ],
+    },
+    {
+      heading: 'Řešení',
+      links: [
+        { label: 'Digitální recepce', href: '/digitalni-recepce' },
+        { label: 'Automatizace rezervací', href: '/automatizace-rezervaci' },
+        { label: 'Inteligentní platby', href: '/inteligentni-platby' },
+        { label: 'Úspory v hotelu', href: '/uspory-v-hotelu' },
+        { label: 'Přehledný provoz hotelu', href: '/prehledny-provoz-hotelu' },
+        { label: 'Čísla pod kontrolou', href: '/cisla-pod-kontrolou' },
+        { label: 'Řízení více hotelů', href: '/rizeni-vice-hotelu' },
+        { label: 'Legislativa hotelu', href: '/legislativa-hotelu' },
+        { label: 'Fantastický hotel', href: '/fantasticky-hotel' },
       ],
     },
     {
       heading: 'Společnost',
       links: [
-        { label: 'O Protelu', href: '/#o-nas' },
-        { label: 'Naši zákazníci', href: '/#reference' },
-        { label: 'Ceník', href: '/#cenik' },
+        { label: 'O Protelu', href: '/o-protelu' },
+        { label: 'Naši zákazníci', href: '/nasi-zakaznici' },
+        { label: 'Ceník', href: '/cenik' },
+        { label: 'Podpora', href: '/podpora' },
+        { label: 'Protel pro školy', href: '/protel-pro-skoly' },
         { label: 'Kontakt', href: '/kontakt' },
       ],
     },

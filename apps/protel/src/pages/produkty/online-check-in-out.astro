@@ -1,0 +1,149 @@
+---
+/**
+ * Protel — produkt „Online check-in/out“. Obsah vytěžen z produkty/online-check-in-out.html
+ * starého protelsystems.cz (jazykově uhlazeno, fakta zachována).
+ * Vše ze sdílených komponent @piano/ui.
+ */
+import Base from '../../layouts/Base.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+
+const features = [
+  {
+    id: "bez-nutnosti-stahovat-aplikaci", icon: "lucide:smartphone", title: "Bez nutnosti stahovat aplikaci",
+    paras: [
+      "Napojení systémů Protel a Straiv zkracuje hostům čekání u recepce a zvyšuje jejich spokojenost. Online check-in před příjezdem snižuje počet recepčních a zvyšuje prodej dodatečných služeb, jako jsou upgrady pokojů nebo rezervace v restauraci.",
+      "Host nepotřebuje stahovat žádnou aplikaci. Systém je plně webový — všechny funkce včetně napojení na zámkový systém fungují přímo v prohlížeči chytrého telefonu.",
+    ],
+  },
+  {
+    id: "vyplneni-kontaktnich-udaju", icon: "lucide:user-check", title: "Vyplnění kontaktních údajů",
+    paras: [
+      "Povinné údaje a profil hosta se při online check-inu vyřídí automaticky, bez zásahu recepce. Číslo a platnost dokladu zadá host ručně, nebo je načte přímo z dokladu.",
+      "Hosté vyplní vše rychle v online formuláři — bez stahování aplikací a bez registrací na dalších webech. Ubytování tak proběhne plynule a bez problémů.",
+    ],
+  },
+  {
+    id: "registracni-karta", icon: "lucide:file-signature", title: "Registrační karta",
+    paras: [
+      "Součástí online check-inu je podepsání registrační karty — potvrzení podmínek pobytu a odpovědnosti za hotelové vybavení. Host ji podepíše přímo na svém mobilu nebo tabletu, bez návštěvy recepce.",
+      "Všechny registrační karty se ukládají elektronicky v cloudu a jsou k dispozici kdykoli a odkudkoli. Evidence pobytových informací je bezpečná a vždy po ruce.",
+    ],
+  },
+  {
+    id: "platba-pri-online-check-in", icon: "lucide:credit-card", title: "Platba při online check-inu",
+    paras: [
+      "Host může zaplatit ještě před příjezdem: vybere nebo zadá fakturační adresu a díky napojení na platební bránu uhradí pobyt z domova. K dispozici jsou různé platební metody.",
+      "Hotel získává rychlejší zpracování plateb a jistotu zajištěné rezervace. Platba přes bránu probíhá bezpečně a spolehlivě — a s hladkým provozem pomáhají i předautorizace a top-ups.",
+    ],
+  },
+  {
+    id: "vstup-do-pokoje", icon: "lucide:key-round", title: "Vstup do pokoje",
+    paras: [
+      "Vstup do pokoje řeší buď napojení na webový zámkový systém, nebo vygenerovaný vstupní kód. Hosté otevřou dveře chytrým zařízením či kartou, případně zadají kód do panelu u dveří.",
+      "Hosté se nemusí spoléhat na obsluhu a vy šetříte lidské zdroje. Plně digitální řešení zajišťuje efektivitu a plynulost celého procesu.",
+    ],
+  },
+  {
+    id: "online-check-out", icon: "lucide:log-out", title: "Online check-out",
+    paras: [
+      "Host dokončí pobyt přes internet, bez návštěvy recepce: zkontroluje účet, zaplatí za služby a získá potvrzení o odjezdu — přímo z pokoje nebo cestou z hotelu.",
+      "Pro hotel to znamená menší nápor na recepci, okamžité zpracování plateb, jednodušší účetnictví a cenná data pro analýzu provozu. Automatizace snižuje chybovost a zvyšuje spokojenost i loajalitu hostů.",
+    ],
+  },
+];
+
+const related = [
+  { icon: "lucide:monitor-smartphone", title: "Kiosek", text: "Samoobslužný check-in/out terminál přímo v hotelu.", href: "/produkty/kiosek" },
+  { icon: "lucide:file-signature", title: "Digitální registrační karta", text: "Registrace hosta digitálně — konec papírování.", href: "/produkty/digitalni-registracni-karta" },
+  { icon: "lucide:book-open", title: "Digitální hotelová kniha", text: "Hotelová kniha elektronicky, vždy aktuální a po ruce.", href: "/produkty/digitalni-hotelova-kniha" },
+  { icon: "lucide:credit-card", title: "Platební řešení hotelu", text: "Plně integrované platby přímo v Protelu. Méně chyb a nižší riziko vracení transakcí.", href: "/produkty/platebni-reseni-hotelu" },
+];
+---
+
+<Base title="Online check-in/out | Protel"
+      description="Online check-in/out pro digitální recepci je díky partnerství se Straiv přímo součástí Protelu. Zkraťte hostům čekání u recepce, snižte počet recepčních a zvyšte prodej dodatečných služeb už před příjezdem.">
+  <SiteHeader />
+
+  <main>
+    <Breadcrumb items={[{ label: 'Úvod', href: '/' }, { label: 'Produkty', href: '/produkty' }, { label: "Online check-in/out" }]} />
+
+    <Hero eyebrow="Produkty" background="gradient"
+          lead="Nástroj online check-in/out pro digitální recepci je díky partnerství se Straiv přímo součástí hotelového systému Protel. Zkrátíte hostům dobu čekání u recepce, snížíte počet recepčních a zvýšíte prodej dodatečných služeb již před příjezdem. Check-in i check-out může host provést odkudkoliv.">
+      <Heading slot="title" as="h1" size="display" color="on-dark">Online <em>check-in/out</em></Heading>
+      <Fragment slot="actions">
+        <Button href="#poptavka">Vyzkoušet Protel zdarma</Button>
+        <Button href="/produkty" variant="secondary" onDark>Všechny produkty</Button>
+      </Fragment>
+    </Hero>
+
+    <Section background="default" space="lg">
+      <nav class="jump" aria-label="Funkce produktu">
+        {features.map((f) => (
+          <a class="jump__chip" href={`#${f.id}`}>{f.title}</a>
+        ))}
+      </nav>
+      <div class="features">
+        {features.map((f) => (
+          <article class="feature" id={f.id}>
+            <span class="feature__icon"><Icon name={f.icon} size="lg" /></span>
+            <Heading as="h2" size="h3">{f.title}</Heading>
+            {f.paras.map((p) => (
+              <Text color="muted">{p}</Text>
+            ))}
+          </article>
+        ))}
+      </div>
+    </Section>
+
+    <Section background="primary" space="lg">
+      <figure class="quoteband">
+        <span class="quoteband__mark"><Icon name="lucide:quote" size="lg" /></span>
+        <blockquote>
+          <Heading as="p" size="h3" color="on-dark" align="center">Náš hotelový systém poskytuje hostům co nejlepší uživatelský zážitek a zároveň usnadňuje celý provoz hotelu bez nutnosti recepčních. Vše plně a zcela automatizovaně!</Heading>
+        </blockquote>
+      </figure>
+    </Section>
+
+    <USPGrid eyebrow="Dále by vás mohlo zajímat" title="Související produkty"
+             items={related} minItemWidth="260px" background="alt" space="lg" />
+
+    <LeadForm id="poptavka" variant="full" background="default"
+              title="Vyzkoušejte Protel zdarma"
+              lead="Co byste u vás v hotelu rádi zlepšili? Nechte nám kontakt — ozveme se a ukážeme Protel přímo ve vašem hotelu." />
+  </main>
+
+  <SiteFooter />
+</Base>
+
+<style>
+  .jump { display: flex; flex-wrap: wrap; gap: var(--space-2); justify-content: center; margin-bottom: var(--space-8); }
+  .jump__chip {
+    display: inline-flex; padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-border); border-radius: var(--radius-full);
+    background: var(--color-bg-alt); color: var(--color-text);
+    font-size: var(--font-size-small); font-weight: var(--font-weight-semibold);
+    text-decoration: none; transition: border-color var(--duration-base) var(--easing);
+  }
+  .jump__chip:hover { border-color: var(--color-primary); color: var(--color-text-accent); }
+  .features { max-width: 800px; margin-inline: auto; display: flex; flex-direction: column; gap: var(--space-9); }
+  .feature { scroll-margin-top: var(--space-9); }
+  .feature > :global(* + *) { margin-top: var(--space-3); }
+  .feature__icon {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 56px; height: 56px; border-radius: var(--radius-md);
+    background: color-mix(in srgb, var(--color-primary) 10%, #fff); color: var(--color-primary);
+  }
+  .quoteband { margin: 0; max-width: 840px; margin-inline: auto; display: flex; flex-direction: column; align-items: center; gap: var(--space-4); text-align: center; }
+  .quoteband__mark { color: var(--color-text-on-dark); opacity: 0.7; }
+  .quoteband blockquote { margin: 0; }
+</style>

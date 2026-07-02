@@ -1,0 +1,105 @@
+---
+/** Septim — Služby: Podmínky servisní smlouvy. Obsah: septim-obsah/sluzby-servis/podminky-servisni-smlouvy.md. SEO meta nově. */
+import Base from '../../layouts/Base.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import Card from '@piano/ui/components/Card.astro';
+import Badge from '@piano/ui/components/Badge.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import LogoWall from '../../components/LogoWall.astro';
+
+const oblasti = [
+  { icon: 'lucide:lightbulb', title: 'Poradenství', text: 'Rady v oblasti používání systému Septim.' },
+  { icon: 'lucide:wrench', title: 'Řešení potíží', text: 'Řešení nastalých potíží se systémem i hardwarem.' },
+  { icon: 'lucide:zap', title: 'Rychlá podpora', text: 'Co nejrychlejší podpora v případě akutního problému.' },
+  { icon: 'lucide:refresh-cw', title: 'Aktuální verze', text: 'Dostupná aktuální verze systému Septim.' },
+  { icon: 'lucide:scale', title: 'Legislativa', text: 'Legislativní aktualizace, například změny DPH.' },
+];
+const standard = [
+  'Poskytnutí aktuální verze softwaru Septim zdarma, včetně zapracování legislativních změn (DPH atp.)',
+  'Prioritní řešení problému v rámci helpdesku',
+  'Kontakt na servisní podporu i mimo pracovní dobu',
+  'NON-STOP hotline po zadání přiděleného servisního kódu',
+  'Garance, že požadavek na servisní podporu je během pracovní doby řešen bez zbytečného odkladu; po pracovní době jste spojeni přímo s technikem',
+  'Garance zásahů prostřednictvím dálkového servisu v pracovní době — efektivní řešení požadavků bez nutnosti výjezdu',
+  'Garance, že servis je na základě objednávky uskutečněn nejpozději další pracovní den',
+  'Zvýhodněný ceník vlastního servisního zásahu a servisních služeb',
+];
+const plus = [
+  'Veškeré servisní zásahy a konzultace servisního charakteru (vyjma cestovného)',
+  'Servis hardwaru mladšího 3 let dodaného naší společností (vyjma náhradních dílů)',
+  'Hromadné školení 1 tematického okruhu pro 1 osobu ročně — pořádané v prostorách Septim Systems',
+  'Pro vzdálené servisní zásahy je uplatňována Fair User Policy (FUP)',
+];
+---
+<Base title="Podmínky servisní smlouvy Septim – Standard a Plus"
+      description="Servisní smlouva systému Septim zajišťuje neustálou pomoc a podporu: aktualizace, NON-STOP hotline, garantované termíny zásahů. Porovnejte varianty Standard a Plus.">
+  <SiteHeader />
+  <main>
+    <Hero eyebrow="Služby a servis" background="alt"
+          lead="Ihned po spuštění systému Septim na provozovně začíná běžet servisní smlouva. Zajišťuje poradenství, řešení potíží, rychlou podporu i aktuální verzi systému.">
+      <Heading slot="title" as="h1" size="display">Podmínky <em>servisní smlouvy</em></Heading>
+      <Fragment slot="actions">
+        <Button href="#poptavka">Chci probrat servisní smlouvu</Button>
+        <Button href="/sluzby-servis" variant="secondary">Všechny služby</Button>
+      </Fragment>
+    </Hero>
+
+    <USPGrid eyebrow="Co smlouva zajišťuje" title="Klíčové oblasti servisní smlouvy" items={oblasti} background="default" space="lg" minItemWidth="220px"
+             lead="Vlastní servisní práce mohou být, v závislosti na typu servisní smlouvy, zpoplatněny zvlášť." />
+
+    <Section background="alt" space="lg">
+      <div class="prose">
+        <Heading as="h2" size="h2">Typy servisních smluv systému Septim</Heading>
+        <Text color="muted">Provozní systém Septim nabízí dva typy servisní podpory. Obě varianty jsou určeny zákazníkům, kteří chtějí mít přístup k novým aktualizacím a jistotu NON-STOP možnosti kontaktu servisní linky.</Text>
+      </div>
+      <div class="plans">
+        <Card variant="bordered" padding="lg">
+          <Badge variant="neutral">Standard</Badge>
+          <Heading as="h3" size="h3">Servisní smlouva Standard</Heading>
+          <ul class="plan__list">
+            {standard.map((f) => (<li><Icon name="lucide:check" size="sm" class="plan__icon" />{f}</li>))}
+          </ul>
+        </Card>
+        <Card variant="bordered" padding="lg">
+          <Badge variant="primary">Plus</Badge>
+          <Heading as="h3" size="h3">Servisní smlouva Plus</Heading>
+          <Text size="small" color="muted">Obsahuje vše, co je v rámci podpory Standard, a navíc:</Text>
+          <ul class="plan__list">
+            {plus.map((f) => (<li><Icon name="lucide:plus" size="sm" class="plan__icon" />{f}</li>))}
+          </ul>
+        </Card>
+      </div>
+    </Section>
+
+    <Section background="default" space="md">
+      <div class="prose">
+        <Heading as="h2" size="h3">Co servisní smlouvy neobsahují</Heading>
+        <Text color="muted">Servisní smlouvy v žádné variantě v paušálním poplatku nezahrnují cestovné a dále konzultace, školení, rozšíření provozu a ostatní podobné služby neodstraňující problém.</Text>
+      </div>
+    </Section>
+
+    <LogoWall label="Důvěřují nám ti nejlepší" background="alt" />
+    <LeadForm id="poptavka" variant="callback" background="default"
+              title="Který typ smlouvy je pro vás?"
+              lead="Nechte nám telefon — poradíme vám s výběrem servisní smlouvy pro váš provoz." />
+  </main>
+  <SiteFooter />
+</Base>
+
+<style>
+  .prose { max-width: 760px; margin-bottom: var(--space-6); }
+  .prose > * + * { margin-top: var(--space-4); }
+  .plans { display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); align-items: start; }
+  .plans :global(.heading) { margin: var(--space-2) 0 var(--space-3); }
+  .plan__list { list-style: none; margin-top: var(--space-3); display: flex; flex-direction: column; gap: var(--space-2); }
+  .plan__list li { display: flex; align-items: flex-start; gap: var(--space-2); font-size: var(--font-size-small); color: var(--color-text-muted); }
+  .plan__icon { color: var(--color-primary); flex-shrink: 0; margin-top: 2px; }
+</style>

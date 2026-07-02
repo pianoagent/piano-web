@@ -1,0 +1,149 @@
+---
+/**
+ * Protel — produkt „Hotelové řetězce“. Obsah vytěžen z produkty/hotelove-retezce.html
+ * starého protelsystems.cz (jazykově uhlazeno, fakta zachována).
+ * Vše ze sdílených komponent @piano/ui.
+ */
+import Base from '../../layouts/Base.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+
+const features = [
+  {
+    id: "konfigurace", icon: "lucide:settings", title: "Konfigurace",
+    paras: [
+      "Veškerá nastavení a provozní procesy řídíte a monitorujete z centrálního místa — typy pokojů, cenovou politiku, dostupnost, marketingové aktivity a další aspekty provozu v celém řetězci.",
+      "Změny a aktualizace provedete napříč všemi hotely bez ručního zásahu na každém místě zvlášť. Minimalizujete chyby a udržíte konzistentní standardy — a díky aktuálním datům se rozhodujete rychle.",
+    ],
+  },
+  {
+    id: "profily-hostu", icon: "lucide:users", title: "Profily hostů",
+    paras: [
+      "Profily hostů se sdílejí napříč celým řetězcem. Informace o hostech, kteří se ubytovávají v různých hotelech, spravujete centrálně.",
+      "Manažeři lépe rozumí chování a preferencím hostů a mohou cílit marketing: znalost toho, co host preferuje v jednom hotelu, využijete pro personalizované nabídky ostatních hotelů v řetězci.",
+    ],
+  },
+  {
+    id: "centralni-rezervace", icon: "lucide:calendar-days", title: "Centrální rezervace",
+    paras: [
+      "Rezervace provozujete z jednoho centrálního místa: sledujete dostupnost pokojů a rezervujete napříč celým řetězcem. Rezervace lze navíc jednoduše přesouvat mezi hotely.",
+      "Centralizace minimalizuje duplicitní práci, umožňuje koordinovat obsazenost a optimálně využít kapacitu všech hotelů.",
+    ],
+  },
+  {
+    id: "reporting", icon: "lucide:line-chart", title: "Reporting",
+    paras: [
+      "Management vidí všechna důležitá čísla napříč všemi provozy na jedné obrazovce. Dashboardy graficky zobrazují klíčové ukazatele, manažerské sestavy poskytují detail o obsazenosti, obratu a výsledcích dle segmentace.",
+      "Provozní sestavy si přizpůsobíte volbou sloupců a filtrů a uložíte pro opakované použití. Všechny reporty se mohou automaticky zasílat e-mailem ve zvolených formátech.",
+    ],
+  },
+  {
+    id: "segmentace", icon: "lucide:pie-chart", title: "Segmentace",
+    paras: [
+      "Trh rozdělíte na skupiny hostů s podobnými potřebami, preferencemi a chováním — podle demografických, geografických, psychografických i behaviorálních kritérií.",
+      "Cílená komunikace a přizpůsobené služby zvyšují spokojenost a loajalitu hostů, efektivitu marketingových rozpočtů i celkové výnosy řetězce.",
+    ],
+  },
+  {
+    id: "eventy", icon: "lucide:party-popper", title: "Eventy",
+    paras: [
+      "Konference, svatby, firemní školení, gala večery i kulturní a sportovní události — organizace akcí vyžaduje precizní plánování a koordinaci prostor, vybavení a cateringu.",
+      "Speciální balíčky s ubytováním, stravováním a dalšími službami vytvářejí komplexní zážitek, přitahují nové hosty a firmy a posilují pověst hotelu jako místa pro významné akce.",
+    ],
+  },
+];
+
+const related = [
+  { icon: "lucide:layout-dashboard", title: "Hotelový systém", text: "Správa pokojů, rezervací, hostů a statistik — snadné používání a pokročilé funkce pro kompletní přehled o provozu.", href: "/produkty/hotelovy-system-protel" },
+  { icon: "lucide:presentation", title: "Konference", text: "Rezervace konferenčních místností, správa stravování, fakturace i účastníci akcí.", href: "/produkty/konference" },
+  { icon: "lucide:mail", title: "Automatický mailing", text: "Personalizované e-maily hostům bez zásahu recepčního.", href: "/produkty/automaticky-mailing" },
+  { icon: "lucide:credit-card", title: "Platební řešení hotelu", text: "Plně integrované platby přímo v Protelu. Méně chyb a nižší riziko vracení transakcí.", href: "/produkty/platebni-reseni-hotelu" },
+];
+---
+
+<Base title="Hotelové řetězce | Protel"
+      description="Řídíte dva a více hotelů? Řešení navržené přímo pro hotelové řetězce: efektivnější řízení, nižší náklady a lepší zážitek hostů. Z jednoho místa!">
+  <SiteHeader />
+
+  <main>
+    <Breadcrumb items={[{ label: 'Úvod', href: '/' }, { label: 'Produkty', href: '/produkty' }, { label: "Hotelové řetězce" }]} />
+
+    <Hero eyebrow="Produkty" background="gradient"
+          lead="Pokud řídíte dva nebo více hotelů a toužíte po efektivitě, zvolte řešení navržené přímo pro hotelové řetězce. Budete řídit své hotely efektivněji, snižovat náklady a zlepšovat zážitky hostů. Z jednoho místa!">
+      <Heading slot="title" as="h1" size="display" color="on-dark">Hotelové <em>řetězce</em></Heading>
+      <Fragment slot="actions">
+        <Button href="#poptavka">Vyzkoušet Protel zdarma</Button>
+        <Button href="/produkty" variant="secondary" onDark>Všechny produkty</Button>
+      </Fragment>
+    </Hero>
+
+    <Section background="default" space="lg">
+      <nav class="jump" aria-label="Funkce produktu">
+        {features.map((f) => (
+          <a class="jump__chip" href={`#${f.id}`}>{f.title}</a>
+        ))}
+      </nav>
+      <div class="features">
+        {features.map((f) => (
+          <article class="feature" id={f.id}>
+            <span class="feature__icon"><Icon name={f.icon} size="lg" /></span>
+            <Heading as="h2" size="h3">{f.title}</Heading>
+            {f.paras.map((p) => (
+              <Text color="muted">{p}</Text>
+            ))}
+          </article>
+        ))}
+      </div>
+    </Section>
+
+    <Section background="primary" space="lg">
+      <figure class="quoteband">
+        <span class="quoteband__mark"><Icon name="lucide:quote" size="lg" /></span>
+        <blockquote>
+          <Heading as="p" size="h3" color="on-dark" align="center">Díky hotelovému systému Protel efektivně řídíte a koordinujete provoz všech hotelů v řetězci. Kompletní řízení hotelů z jednoho místa!</Heading>
+        </blockquote>
+      </figure>
+    </Section>
+
+    <USPGrid eyebrow="Dále by vás mohlo zajímat" title="Související produkty"
+             items={related} minItemWidth="260px" background="alt" space="lg" />
+
+    <LeadForm id="poptavka" variant="full" background="default"
+              title="Vyzkoušejte Protel zdarma"
+              lead="Co byste u vás v hotelu rádi zlepšili? Nechte nám kontakt — ozveme se a ukážeme Protel přímo ve vašem hotelu." />
+  </main>
+
+  <SiteFooter />
+</Base>
+
+<style>
+  .jump { display: flex; flex-wrap: wrap; gap: var(--space-2); justify-content: center; margin-bottom: var(--space-8); }
+  .jump__chip {
+    display: inline-flex; padding: var(--space-2) var(--space-4);
+    border: 1px solid var(--color-border); border-radius: var(--radius-full);
+    background: var(--color-bg-alt); color: var(--color-text);
+    font-size: var(--font-size-small); font-weight: var(--font-weight-semibold);
+    text-decoration: none; transition: border-color var(--duration-base) var(--easing);
+  }
+  .jump__chip:hover { border-color: var(--color-primary); color: var(--color-text-accent); }
+  .features { max-width: 800px; margin-inline: auto; display: flex; flex-direction: column; gap: var(--space-9); }
+  .feature { scroll-margin-top: var(--space-9); }
+  .feature > :global(* + *) { margin-top: var(--space-3); }
+  .feature__icon {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 56px; height: 56px; border-radius: var(--radius-md);
+    background: color-mix(in srgb, var(--color-primary) 10%, #fff); color: var(--color-primary);
+  }
+  .quoteband { margin: 0; max-width: 840px; margin-inline: auto; display: flex; flex-direction: column; align-items: center; gap: var(--space-4); text-align: center; }
+  .quoteband__mark { color: var(--color-text-on-dark); opacity: 0.7; }
+  .quoteband blockquote { margin: 0; }
+</style>

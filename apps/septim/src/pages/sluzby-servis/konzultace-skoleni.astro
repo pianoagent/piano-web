@@ -1,0 +1,120 @@
+---
+/** Septim — Služby: Konzultace a školení. Obsah: septim-obsah/sluzby-servis/konzultace-skoleni.md. SEO meta nově. */
+import Base from '../../layouts/Base.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Card from '@piano/ui/components/Card.astro';
+import Badge from '@piano/ui/components/Badge.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import StatsBand from '../../components/StatsBand.astro';
+import Faq from '@piano/ui/components/Faq.astro';
+
+const skoleni = [
+  {
+    title: 'Skladové hospodářství',
+    audience: 'Pro skladové účetní, provozní a manažery restaurací',
+    intro: 'Školení je určeno k osvojení kompletní problematiky skladového hospodářství v systému Septim.',
+    topics: [
+      'Uživatelské rozhraní a ovládání (vyhledávání, filtry, exporty dat, tiskové sestavy)',
+      'Skladová položka (hlavní i vedlejší, skupiny, koeficient odpadu)',
+      'Dodací listy (vkládání, automatický import, položky dodacích listů)',
+      'Výdeje ze skladu (převody, prodeje, prodeje pokladnou, znehodnocení)',
+      'Bourání a substituce, normování',
+      'Inventura (zakládání, posun inventury)',
+      'Stavy zásob na skladu (aktuální, minimální a kritické)',
+      'Skladová karta a skladová cena (přepočty skladových cen)',
+      'Přepočty skladů a kontrolní činnost',
+      'Čárové kódy a evidence trvanlivosti',
+      'Tipy pro používání',
+    ],
+  },
+  {
+    title: 'Konfigurace prodeje',
+    audience: 'Pro majitele, provozní a manažery restaurací',
+    intro: 'Školení je určeno k osvojení kompletní problematiky provozní a prodejní části systému Septim.',
+    topics: [
+      'Zákazníci — evidence, zákaznická konta, personální stravování, přednabité karty, bonusy, slevy, firemní konta',
+      'Prodej — receptury, podreceptury, prodejní ceny, Happy Hours, podpora prodeje',
+      'Uživatelé — definice uživatelských práv, skupiny uživatelů',
+      'Konfigurace pokladny a volby obecně',
+      'Tipy pro používání Septimu — vybrané FAQ',
+      'Zajímavé vlastnosti a jejich praktické využití',
+      'Sdílení receptur mezi více provozovnami',
+    ],
+  },
+  {
+    title: 'Vyhodnocení prodeje',
+    audience: 'Pro majitele, provozní a manažery restaurací',
+    intro: 'Školení je určeno k osvojení kompletní problematiky vyhodnocování a rentability provozu s akcentem na otázku bezpečnosti.',
+    topics: [
+      'Uzavřené účty',
+      'Obraty a tržby',
+      'Statistiky',
+      'Surovinová náročnost',
+      'Hospodaření',
+      'Kontrolní nástroje',
+      'Uživatelská oprávnění',
+    ],
+  },
+];
+const faqs = [
+  { q: 'Kdy a pro kolik lidí se školení konají?', a: 'Termíny školení vypisujeme podle zájmu, zpravidla pro 5–12 lidí. Pokud chcete z vaší společnosti proškolit 5 a více lidí, domluvíme termín přímo pro vás. Pokud méně, spojíme vás do třídy s dalšími zájemci a termín včas upřesníme.' },
+  { q: 'Kolik školení a konzultace stojí?', a: 'V rámci placené servisní smlouvy jsou konzultace a školení cenově zvýhodněné. Cenu vám upřesníme podle konkrétní situace.' },
+  { q: 'Jak fungují konzultace Septim?', a: 'Před začátkem používání systému Septim nabízíme konzultace v oblasti zjištění potřeb provozu a následné přípravy ideálního řešení řízení provozu. Pokud už jste našimi zákazníky, konzultace vám pomohou s nastavením, podrobnějšími přehledy provozu a rozšířením automatizace.' },
+];
+---
+<Base title="Konzultace a školení Septim – využijte systém na maximum"
+      description="Konzultace a školení k pokladnímu a provoznímu systému Septim: skladové hospodářství, konfigurace prodeje a vyhodnocení prodeje. Fyzicky i online, termíny dle zájmu i na míru.">
+  <SiteHeader />
+  <main>
+    <Hero eyebrow="Služby a servis" background="alt"
+          lead="Provozní systém Septim má mnoho možností, jak pomoci vašemu provozu — efektivita kuchyně, skladové hospodářství i finanční řízení. Využijte Septim na maximum díky konzultacím a školením.">
+      <Heading slot="title" as="h1" size="display">Konzultace a <em>školení</em></Heading>
+      <Fragment slot="actions">
+        <Button href="#poptavka">Mám zájem o školení</Button>
+        <Button href="/sluzby-servis" variant="secondary">Všechny služby</Button>
+      </Fragment>
+    </Hero>
+
+    <Section background="default" space="lg">
+      <div class="prose">
+        <Heading as="h2" size="h2">Školení k systému Septim</Heading>
+        <Text color="muted">Školení jsou vhodná před začátkem používání systému i pro stávající zákazníky. Děláme je fyzicky i online jako webináře — termíny volíme podle aktuálního zájmu. Napište nám a dáme vám vědět ohledně následujícího termínu. V případě zájmu připravíme školení na míru.</Text>
+      </div>
+      <div class="courses">
+        {skoleni.map((s) => (
+          <Card variant="bordered" padding="lg">
+            <Heading as="h3" size="h3">{s.title}</Heading>
+            <Badge variant="primary" size="sm">{s.audience}</Badge>
+            <Text size="small" color="muted" class="course__intro">{s.intro}</Text>
+            <Text size="small" weight="semibold" as="p">Obsah školení:</Text>
+            <ul class="course__topics">
+              {s.topics.map((t) => (<li>{t}</li>))}
+            </ul>
+          </Card>
+        ))}
+      </div>
+    </Section>
+
+    <StatsBand />
+    <Faq items={faqs} title="Často kladené otázky ke školením a konzultacím" background="default" />
+    <LeadForm id="poptavka" variant="callback" background="alt"
+              title="Mám zájem o školení nebo konzultaci"
+              lead="Nechte nám telefon — dáme vám vědět termín nejbližšího školení, nebo připravíme školení na míru." />
+  </main>
+  <SiteFooter />
+</Base>
+
+<style>
+  .prose { max-width: 760px; margin-bottom: var(--space-6); }
+  .prose > * + * { margin-top: var(--space-4); }
+  .courses { display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); align-items: start; }
+  .courses :global(.badge) { margin: var(--space-2) 0; }
+  .course__intro { margin-bottom: var(--space-3); }
+  .course__topics { margin: var(--space-2) 0 0 var(--space-4); display: flex; flex-direction: column; gap: var(--space-1); color: var(--color-text-muted); font-size: var(--font-size-small); }
+</style>

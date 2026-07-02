@@ -1,0 +1,77 @@
+---
+/**
+ * Protel — landing „Úspory v hotelu“. Obsah vytěžen z uspory-v-hotelu.html starého
+ * protelsystems.cz (jazykově uhlazeno). Vše ze sdílených komponent @piano/ui.
+ */
+import Base from '../layouts/Base.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+
+const related = [
+  { icon: "lucide:mail", title: "Automatický mailing", text: "Účty a komunikace e-mailem, bez papíru.", href: "/produkty/automaticky-mailing" },
+  { icon: "lucide:file-signature", title: "Digitální registrační karta", text: "Podpis na tabletu místo papírování.", href: "/produkty/digitalni-registracni-karta" },
+  { icon: "lucide:bed-double", title: "Housekeeping", text: "Úklid a výměna ručníků jen na přání hosta.", href: "/produkty/housekeeping" },
+  { icon: "lucide:line-chart", title: "Reporting", text: "Aktuální reporty kdykoli ve vašem telefonu.", href: "/produkty/hotelovy-system-protel#reporting" },
+];
+---
+
+<Base title="Úspory v hotelu | Protel"
+      description="Plýtvání energiemi a papírem umí Protel zastavit: řízení budov napojené na PMS, úklid na přání, účty e-mailem a reporty v telefonu. Ušetřete, aniž byste slevili ze standardu.">
+  <SiteHeader />
+
+  <main>
+    <Breadcrumb items={[{ label: 'Úvod', href: '/' }, { label: 'Řešení', href: '/#reseni' }, { label: "Úspory v hotelu" }]} />
+
+    <Hero eyebrow="Řešení" background="gradient"
+          lead="Máte pocit, že se v hotelu zbytečně plýtvá — například energiemi? Vyhazujete nebo skladujete mnoho papíru? Přemýšlíte, jak plýtvání zabránit a ušetřit, a přitom hostům dál poskytovat stejný nebo ještě lepší standard?">
+      <Heading slot="title" as="h1" size="display" color="on-dark">Úspory <em>v hotelu</em></Heading>
+      <Fragment slot="actions">
+        <Button href="#poptavka">Vyzkoušet Protel zdarma</Button>
+        <Button href="/produkty" variant="secondary" onDark>Prohlédnout produkty</Button>
+      </Fragment>
+    </Hero>
+
+    <Section background="default" space="lg">
+      <div class="solution">
+        <Text size="label" color="accent">Protel má řešení</Text>
+        <Heading as="h2" size="h2">Stačí udělat pár změn a úspory uvidíte velice rychle!</Heading>
+        <Text size="lead" color="muted">Napojte řídicí jednotku vašeho hotelu na hotelový systém Protel a v pokojích se bude topit nebo klimatizovat, jen když je to potřeba. Hostům můžete dát možnost objednat si úklid nebo výměnu ručníků, jen když to opravdu potřebují. Účty hostům rovnou zašlete e-mailem, registrační kartu necháte podepsat na tabletu a vždy aktuální reporty si zobrazíte ve svém telefonu.</Text>
+      </div>
+    </Section>
+
+    <Section background="primary" space="lg">
+      <figure class="quoteband">
+        <span class="quoteband__mark"><Icon name="lucide:quote" size="lg" /></span>
+        <blockquote>
+          <Heading as="p" size="h3" color="on-dark" align="center">Výhodou hotelového systému Protel je efektivní využití energií, minimalizace plýtvání a vyšší komfort hostů díky personalizovaným službám.</Heading>
+        </blockquote>
+      </figure>
+    </Section>
+
+    <USPGrid eyebrow="Související" title="Související s úsporami"
+             items={related} minItemWidth="260px" background="alt" space="lg" />
+
+    <LeadForm id="poptavka" variant="full" background="default"
+              title="Vyzkoušejte Protel zdarma"
+              lead="Co byste u vás v hotelu rádi zlepšili? Nechte nám kontakt — ozveme se a ukážeme Protel přímo ve vašem hotelu." />
+  </main>
+
+  <SiteFooter />
+</Base>
+
+<style>
+  .solution { max-width: 800px; margin-inline: auto; }
+  .solution > :global(* + *) { margin-top: var(--space-4); }
+  .quoteband { margin: 0; max-width: 840px; margin-inline: auto; display: flex; flex-direction: column; align-items: center; gap: var(--space-4); text-align: center; }
+  .quoteband__mark { color: var(--color-text-on-dark); opacity: 0.7; }
+  .quoteband blockquote { margin: 0; }
+</style>

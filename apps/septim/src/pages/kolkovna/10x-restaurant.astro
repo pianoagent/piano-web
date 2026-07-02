@@ -1,0 +1,85 @@
+---
+/** Septim — Case study: Kolkovna Group. Obsah: septim-obsah/kolkovna/10x-restaurant.md. Starý slug zachován kvůli SEO. */
+import Base from '../../layouts/Base.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import StatsBand from '../../components/StatsBand.astro';
+
+const provozy = [
+  { num: '10×', lbl: 'restaurace Kolkovna' },
+  { num: '1×', lbl: 'jídelna Aroma' },
+  { num: '1×', lbl: 'bistro Break Time' },
+  { num: '1×', lbl: 'bistro Gauč na Výstavišti' },
+];
+const cisla = [
+  { num: '9 662', lbl: 'naimportovaných dodacích listů' },
+  { num: '85 448', lbl: 'naimportovaných položek dodáků' },
+  { num: '3 081', lbl: 'objednávek z e-shopu' },
+];
+const personal = [
+  { icon: 'lucide:mouse-pointer-click', title: 'Uživatelsky jednoduché', text: 'Uživatelsky bezesporu nejjednodušší pokladní systém. Plně digitální, minimum ruční práce.' },
+  { icon: 'lucide:timer', title: 'Urychlení práce', text: 'Septim s integrovaným řešením šetří každé pobočce Kolkovny 30 minut času denně!' },
+];
+const vedeni = [
+  { icon: 'lucide:bar-chart-3', title: 'Hospodaření na jednom místě', text: 'Stabilní provoz včetně integrace pro automatické naskladňování a QR platby.', href: '/integrace/automaticke-naskladnovani' },
+  { icon: 'lucide:git-merge', title: 'Jeden vstup, Septim počítá sám', text: 'Celá společnost KOLKOVNA GROUP a.s. běží kompletně přes Septim už od roku 2001!' },
+];
+---
+<Base title="Kolkovna & Septim – 23 let spolu | případová studie"
+      description="Případová studie: síť KOLKOVNA GROUP řídí přes Septim 10 restaurací, jídelnu i 2 bistra už od roku 2001. Automatické naskladňování, QR platby a úspora 30 minut denně na pobočce.">
+  <SiteHeader />
+  <main>
+    <Hero eyebrow="Kolkovna Group + Septim — případová studie" background="gradient"
+          lead="Již v roce 2001 se renomovaná restaurační síť KOLKOVNA GROUP rozhodla pro implementaci pokladního systému Septim do svých provozoven. Od té doby tato spolupráce nejen přežila zkoušky času, ale stala se jedním z nejúspěšnějších a dlouhodobě nejstabilnějších partnerství v gastronomii v ČR.">
+      <Heading slot="title" as="h1" size="display" color="on-dark">10× restaurace. <em>23 let spolu.</em></Heading>
+      <Fragment slot="actions">
+        <Button href="#poptavka">Chci podobné řešení</Button>
+        <Button href="/reference" variant="secondary" onDark>Další reference</Button>
+      </Fragment>
+    </Hero>
+
+    <Section background="default" space="lg">
+      <div class="prose">
+        <Heading as="h2" size="h2">Celá skupina na jednom systému</Heading>
+        <Text color="muted">Příběh, na němž provozy KOLKOVNA GROUP stále rostou a vyvíjejí se, ukazuje, jak efektivní, jednoduchý a spolehlivý provozní systém může být klíčem k úspěchu v konkurenčním světě restaurací, jídelen a bister. Přes Septim dnes běží:</Text>
+      </div>
+      <StatsBand items={provozy} background="default" />
+    </Section>
+
+    <Section background="alt" space="lg">
+      <div class="prose">
+        <Heading as="h2" size="h2">Pár provozních čísel ze spolupráce</Heading>
+        <Text color="muted">Nechme promluvit čísla ze spolupráce KOLKOVNA GROUP a Septim za období 1. ledna až 30. června 2023:</Text>
+      </div>
+      <StatsBand items={cisla} background="alt" />
+    </Section>
+
+    <USPGrid eyebrow="Výhody pro personál" title="Co oceňuje personál" items={personal} background="default" space="lg" minItemWidth="280px" />
+    <USPGrid eyebrow="Výhody pro vedení" title="Co oceňuje vedení" items={vedeni} background="alt" space="lg" minItemWidth="280px" />
+
+    <Section background="default" space="lg">
+      <div class="prose">
+        <Text size="label" color="accent">Septim — na míru dobrým restauracím</Text>
+        <Heading as="h2" size="h2">Chceme gastro podnikům zefektivnit podnikání</Heading>
+        <Text color="muted">Proto vyvíjíme komplexní a moderní provozní systém včetně manažerské aplikace. Jsme partnerem pro každého, kdo chce svou restauraci řídit efektivně — pro všechny, kteří chtějí svým hostům připravit opravdu skvělý zážitek.</Text>
+      </div>
+    </Section>
+
+    <LeadForm id="poptavka" variant="full" background="alt"
+              title="Máte dotaz? Napište nám"
+              lead="Ukážeme vám, jak by Septim fungoval ve vašem provozu nebo síti provozů." />
+  </main>
+  <SiteFooter />
+</Base>
+
+<style>
+  .prose { max-width: 760px; margin-bottom: var(--space-5); }
+  .prose > * + * { margin-top: var(--space-4); }
+</style>

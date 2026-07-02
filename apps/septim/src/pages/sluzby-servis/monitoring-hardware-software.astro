@@ -1,0 +1,71 @@
+---
+/** Septim — Služby: Monitoring hardware a software. Obsah: septim-obsah/sluzby-servis/monitoring-hardware-software.md. SEO meta nově. */
+import Base from '../../layouts/Base.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import StatsBand from '../../components/StatsBand.astro';
+
+const sledujeme = [
+  'Dostatek volného místa na disku',
+  'Nepoškozenou databázi',
+  'Životnost a stav pevného disku pomocí technologie SMART',
+  'Pravidelné zálohování',
+  'Stav záložního zdroje',
+  'Dostupnost a funkčnost služby WebCare',
+  'Dostupnost a funkčnost Centrální databáze zákazníků',
+  'Rychlost odezvy služeb WebCare a Centrální databáze zákazníků',
+  'Další služby dle vašeho provozu',
+];
+---
+<Base title="Monitoring hardware a software Septim – předcházejte problémům"
+      description="Vzdálený dohled nad hardwarem i softwarem systému Septim: disky, databáze, zálohování, záložní zdroje i dostupnost služeb. Varovné signály aktivně řešíme dřív, než ohrozí provoz.">
+  <SiteHeader />
+  <main>
+    <Hero eyebrow="Služby a servis" background="alt"
+          lead="Pro naše klienty nabízíme nástavbu k servisní smlouvě v podobě monitoringu blížících se potenciálních problémů. Předcházejte riziku a mějte svůj systém pod kontrolou.">
+      <Heading slot="title" as="h1" size="display">Monitoring <em>hardware a software</em></Heading>
+      <Fragment slot="actions">
+        <Button href="#poptavka">Mám zájem o monitoring</Button>
+        <Button href="/sluzby-servis" variant="secondary">Všechny služby</Button>
+      </Fragment>
+    </Hero>
+
+    <Section background="default" space="lg">
+      <div class="prose">
+        <Heading as="h2" size="h2">Co je monitoring HW a SW systému Septim?</Heading>
+        <Text color="muted">Pro předcházení problémům nabízíme vzdálený dohled nad hardwarem i softwarem systému Septim. Každá z hlídaných oblastí může při poruše způsobit na provozu vážné problémy. Sledujeme zejména:</Text>
+      </div>
+      <ul class="checklist">
+        {sledujeme.map((f) => (<li><Icon name="lucide:activity" size="sm" class="checklist__icon" />{f}</li>))}
+      </ul>
+    </Section>
+
+    <Section background="alt" space="md">
+      <div class="prose">
+        <Heading as="h2" size="h3">Nejen sledování — aktivní řešení</Heading>
+        <Text color="muted">Běžnou součástí našich služeb je nejen samotný monitoring, ale zejména aktivní řešení varovných signálů. Pokud například u služeb WebCare nebo Centrální databáze zákazníků roste doba odezvy, pomáhá monitoring problém řešit dříve, než si stěžuje první zákazník. O možném problému vás bezodkladně informujeme a v rámci vaší objednávky servisních služeb jsme připraveni jej rovnou začít řešit.</Text>
+      </div>
+    </Section>
+
+    <StatsBand background="default" />
+    <LeadForm id="poptavka" variant="callback" background="alt"
+              title="Mám zájem o monitorovací službu"
+              lead="Nechte nám telefon — probereme s vámi rozsah monitoringu pro váš provoz." />
+  </main>
+  <SiteFooter />
+</Base>
+
+<style>
+  .prose { max-width: 760px; margin-bottom: var(--space-5); }
+  .prose > * + * { margin-top: var(--space-4); }
+  .checklist { list-style: none; display: grid; gap: var(--space-3); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); max-width: 960px; }
+  .checklist li { display: flex; align-items: flex-start; gap: var(--space-2); font-size: var(--font-size-small); }
+  .checklist__icon { color: var(--color-primary); flex-shrink: 0; margin-top: 2px; }
+</style>

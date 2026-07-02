@@ -1,0 +1,41 @@
+---
+/** Grason — Nejčastější dotazy — podniky. Ze starého webu (faq-companies, cs.json). Slug zachován kvůli SEO. */
+import Base from '../layouts/Base.astro';
+import Header from '@piano/ui/components/Header.astro';
+import Footer from '@piano/ui/components/Footer.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Faq from '@piano/ui/components/Faq.astro';
+import { grasonNav, grasonCta, grasonFooter } from '../config/nav';
+
+const items = [
+  { q: 'Jak mohu zaregistrovat podnik a vytvořit směnu?', a: 'Registrovat se můžete na webu nebo si do telefonu stáhnout aplikaci a zaregistrovat se pomocí volby \'\'Jsem zaměstnavatel a hledám výpomoc\'\'. Vyplňte základní údaje o vaší společnosti a kontaktní osobu.' },
+  { q: 'Jak funguje předplatné GrasonFlexi?', a: 'Předplatné GrasonFlexi vám umožňuje nabízet směny tisícům potenciálních pracovníků v rámci předplaceného období. Díky flexi směnám můžete poptávat výpomoc pro zajištění plynulého chodu vašeho podniku. K aktivaci nového balíčku dojde v den připsání platby na náš bankovní účet, existující předplatné se prodlouží o nově zakoupené období. Veškeré informace ohledně cen jednotlivých balíčků předplatného naleznete na www.grason.cz/pro-firmy.' },
+  { q: 'Jaký je rozdíl mezi směnou a zaměstnáním?', a: 'Směna je nabídka práce na konkrétní den nebo více dní. Její součástí je popis práce, aby zájemci mohli posoudit, zda na danou práci stačí. U přihlášených zájemců vidíte zkušenosti, hodnocení z předchozích prací a požadovanou hodinovou sazbu, abyste si mohli vybrat toho nejvhodnějšího. Pracovníka vyplatíte způsobem, který jste si zvolili, tj. hotově po směně nebo převodem na účet, a po odpracování směny pracovníka ohodnotíte. V případě, že hledáte někoho na stálý či částečný pracovní poměr, je vhodné vypsat si zaměstnání. Funguje jako klasická inzerce. Vystavíte si inzerát a po dobu jednoho měsíce bude zveřejněn na našich webových stránkách a v aplikaci.' },
+  { q: 'Kdo pracovníky zaměstnává, s kým mají smlouvu?', a: 'Smluvní vztah je vždy uzavřen mezi podnikem inzerujícím brigády a konkrétním pracovníkem. Typicky se pro tyto účely využívají smlouvy na DPP nebo DPČ. Aplikace Grason jako taková pracovníky nezaměstnává, ani žádnou pracovní smlouvu s pracovníky svým jménem neuzavírá.' },
+  { q: 'Kdy musím pracovníkovi potvrdit směnu?', a: 'Čím dřív pracovníkovi směnu potvrdíte, tím spíš s vámi bude počítat a nebude hledat jinde. Pracovníci se mohou hlásit na více směn najednou a jakmile ho některý podnik potvrdí, ostatní nabídky na směny ve stejný čas se automaticky zruší. Každá přihláška má svou platnost a následně expiruje. Délku platnosti vidíte na kartě uživatele a připomeneme vám ji i notifikací, které doporučujeme mít zapnuté.' },
+  { q: 'Kdo určuje hodinovou sazbu?', a: 'Záleží na vzájemné dohodě. Při vytváření směny můžete pracovníkům indikovat vaši preferovanou hodinovou sazbu, včetně toho, zda je v čistém nebo hrubém. Následně je na pracovnících, zda-li ji akceptují, nebo navrhnou vlastní sazbu. Volba, kdo a za kolik k vám půjde pracovat, je na vás. Finální je částka, za kterou si pracovníka potvrdíte.' },
+  { q: 'Jak zařídit, aby se ke mně vraceli stejní pracovníci?', a: 'Je dobré pracovníkovi po směně sdělit, že jste s ním byli spokojeni a budete rádi, když se k Vám vrátí. Pokud po směně vyberete možnost, že jste s pracovníkem byli maximálně spokojeni, přidáme ho do vašich oblíbených. Následně budete moci vypisovat směny do celého tržiště nebo jen okruhu oblíbených pracovníků.' },
+  { q: 'Jsou pracovníci spolehliví?', a: 'Průměrné hodnocení grasona je 4,75. Všechny grasony, kterým spadne hodnocení pod 3 hvězdičky kontaktujeme a pokud se jejich výkon nezlepší, z aplikace je vyloučíme. Ti, co na směnu nedorazí, jsou z aplikace vyloučeni automaticky. V Grasonu se můžeme pyšnit, že bez omluvy se na směnu nedostaví méně než 3 grasoni ze 100.' },
+  { q: 'Co zahrnuje hodinová mzda v nabídce uživatele?', a: 'Je to mzda, se kterou pracovník počítá. Pokud budete chtít, můžete mu pochopitelně dát i víc, třeba podíl na spropitném. Nikdy mu však nesmíte vyplatit částku nižší než tu, kterou jste si dohodli. Hodinová sazba je předem daná a platí se každá započatá půlhodina.' },
+  { q: 'Je potřeba po každé směně pracovníka hodnotit?', a: 'Hodnocení je pro nás, pro vás i pro ostatní podniky velmi důležité. Hodnocení reflektuje schopnosti daného pracovníka a díky vašemu hodnocení se Grason a kvalita pracovníků může zlepšovat.' },
+  { q: 'Vidí pracovník mnou udělené hodnocení?', a: 'Ne. Vaše hodnocení uživateli nezobrazíme. Poté, co nasbírá hodnocení od 3 dalších podniků, mu všechna tři hodnocení přepočítáme do jednoho průměrného čísla obdrženého od všech podniků za celé působení v aplikaci. Vaše hodnocení tak zůstane naprosto anonymní. Manažerům zobrazujeme detailní rozpad hodnocení získaný od všech podniků. Vidíte, jak pracovníka hodnotí a jaké jsou dle ostatních manažerů pracovníkovy silné a slabé stránky.' },
+  { q: 'Pracovníka nakonec v podniku nepotřebuji, co mám dělat?', a: 'V případě, že pracovníka na směnu nepotřebujete, je potřeba směnu včas smazat. Udělat to můžete v záložce Mé práce přímo v detailu konkrétní směny.' },
+  { q: 'Mohu v aplikaci spravovat více podniků naráz?', a: 'Ano, aplikace vám umožňuje vytvářet směny pod různými podniky, aniž byste se museli odhlašovat. Jednoduše se v rámci aplikace překliknete do jiného profilu. Pro zpřístupnění této funkce kontaktujte zákaznickou podporu na tel.: 739 877 799.' },
+  { q: 'Může aplikaci spravovat více manažerů najednou?', a: 'Ano, počet manažerských přístupů k vašemu účtu není omezen. Nové manažery si jednoduše přidáte v mobilní nebo webové aplikaci.' },
+  { q: 'Co když pracovník nepřijde?', a: 'Pokud pracovník nedorazil a nedaří se vám ho kontaktovat na telefonu v jeho profilu, označte ho v detailu směny jako “Nepřišel”. Aplikace vám umožní vytvořit náhradní směnu.' },
+  { q: 'Mohu využívat pracovníky, kteří u mne pracovali, aniž bych jim vypsal směny v aplikaci?', a: 'Ano, grasona si můžete tzv. odkoupit za 5 000 Kč a následně se s ním domlouvat napřímo mimo aplikaci. Nicméně doporučujeme tento krok neuspěchávat. Je lepší si důkladně ověřit, že vám spolupráce oboustranně vyhovuje. Ostatně i běžná zkušební doba trvá 3 měsíce. V případě odkupu nás kontaktujte na čísle 739 877 799 nebo nám napište na info@grason.cz. Jinak se vystavujete riziku pokuty ve výši 50.000 Kč.' },
+  { q: 'Kde všude Grason aplikace funguje?', a: 'Grason funguje po celé republice. Jste-li z odlehlejšího regionu a máte-li tu možnost, je vhodné k práci nabídnout i ubytování. Grasoni rádi přijedou i do horských či turistických lokalit.' },
+];
+---
+<Base title="Nejčastější dotazy — podniky | Grason"
+      description="Odpovědi na nejčastější dotazy podniků: registrace, předplatné GrasonFlexi, směny, smlouvy s pracovníky, hodinové sazby.">
+  <Header brand="Grason" logoSrc="/logos/grason_logo.svg" logoHeight="28px" homeHref="/" nav={grasonNav} cta={grasonCta} />
+  <main>
+    <Hero eyebrow="Podpora" background="alt" space="md" lead="Registrace podniku, směny, předplatné i vyplácení pracovníků — vše na jednom místě.">
+      <Heading slot="title" as="h1" size="h1">Nejčastější dotazy — podniky</Heading>
+    </Hero>
+    <Faq items={items} title="" background="default" />
+  </main>
+  <Footer {...grasonFooter} />
+</Base>

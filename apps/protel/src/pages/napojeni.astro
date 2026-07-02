@@ -1,0 +1,85 @@
+---
+/**
+ * Protel — Napojení (integrace do PMS). Obsah z napojeni.html starého
+ * protelsystems.cz. Vše ze sdílených komponent @piano/ui.
+ */
+import Base from '../layouts/Base.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+
+const partneri = [
+  { icon: 'lucide:utensils-crossed', title: 'Restaurační systém Septim', text: 'Nadstandardní propojení PMS a POS — Room Service, restaurace i bar napojené přímo na hotelový účet hosta.' },
+  { icon: 'lucide:credit-card', title: 'Platební řešení Planet', text: 'Integrované platby: terminály, PayByLink, předautorizace a automatické stahování záloh.' },
+  { icon: 'lucide:smartphone', title: 'Online check-in/out a Kiosek Straiv', text: 'Digitální recepce — check-in i check-out přes mobil hosta nebo samoobslužný kiosek.' },
+  { icon: 'lucide:bot', title: 'Hotel AI DialogShift', text: 'Hotelová AI, která automaticky odpovídá hostům bez nutnosti zapojení personálu.' },
+  { icon: 'lucide:trending-up', title: 'Cenová optimalizace RevControl', text: 'Automatická optimalizace prodejních cen podle poptávky a obsazenosti.' },
+];
+
+const kategorie = [
+  { icon: 'lucide:share-2', title: 'Channel Manager (CRS)', text: 'Distribuce dostupnosti a cen na online prodejní kanály.' },
+  { icon: 'lucide:heart-handshake', title: 'Věrnostní programy (CRM)', text: 'Práce s profily hostů a věrnostními systémy.' },
+  { icon: 'lucide:line-chart', title: 'Business Intelligence a Revenue Management', text: 'Analytika, reporting a řízení výnosů nad daty z PMS.' },
+  { icon: 'lucide:tv', title: 'Televizní systémy', text: 'Hotelová TV propojená s údaji o hostech a účtech.' },
+  { icon: 'lucide:key-round', title: 'Zámkové systémy', text: 'Vstup do pokoje kartou, kódem i mobilem hosta.' },
+  { icon: 'lucide:building', title: 'Řízení budov', text: 'Topení a klimatizace jen tam, kde je to potřeba.' },
+  { icon: 'lucide:waves', title: 'Wellness a sportovní systémy', text: 'Rezervace procedur a sportovišť napojené na pobyt.' },
+  { icon: 'lucide:refresh-cw', title: 'Automatizace provozu', text: 'Automatické procesy napříč hotelovým provozem.' },
+  { icon: 'lucide:calculator', title: 'Účetní programy', text: 'Tři druhy standardních exportů, které lze upravit na míru — napojíte téměř každý účetní systém otevřený integraci.' },
+  { icon: 'lucide:plug', title: 'Ostatní napojení', text: 'A mnoho dalších partnerů a systémů podle potřeb vašeho provozu.' },
+];
+---
+
+<Base title="Napojení a integrace | Protel"
+      description="Napojení hotelového systému na další platformy je nezbytný krok pro efektivní provoz. Integrace Protelu umožní vašemu hotelu maximalizovat výnosy, optimalizovat náklady a zlepšit zážitek hostů.">
+  <SiteHeader />
+
+  <main>
+    <Breadcrumb items={[{ label: 'Úvod', href: '/' }, { label: 'Napojení' }]} />
+
+    <Hero eyebrow="Napojení" background="gradient"
+          lead="Napojení hotelového systému na různé platformy je zásadní a nezbytný krok pro efektivní provoz a vysokou úroveň služeb. Naše integrace umožní vašemu hotelu maximalizovat výnosy, optimalizovat náklady a zlepšit celkový zážitek hostů.">
+      <Heading slot="title" as="h1" size="display" color="on-dark">Integrace do <em>PMS Protel</em></Heading>
+      <Fragment slot="actions">
+        <Button href="#poptavka">Poptat napojení</Button>
+        <Button href="https://store.protel.io/" variant="secondary" onDark target="_blank" rel="noopener">Protel MarketPlace</Button>
+      </Fragment>
+    </Hero>
+
+    <USPGrid eyebrow="Nejčastěji napojovaní partneři" title="Klíčové integrace"
+             lead="Partneři, které do Protelu napojujeme nejčastěji."
+             items={partneri} minItemWidth="280px" background="default" space="lg" />
+
+    <USPGrid eyebrow="Kategorie napojení" title="Protel mluví s celým vaším zázemím"
+             lead="Přehled kategorií systémů, které lze do hotelového systému Protel napojit."
+             items={kategorie} minItemWidth="260px" background="alt" space="lg" />
+
+    <Section background="invert" space="md">
+      <div class="market">
+        <Heading as="h2" size="h3" color="on-dark" align="center">Kompletní výpis všech napojovaných systémů a programů</Heading>
+        <Text color="on-dark-muted" align="center">Celý katalog integrací najdete na oficiálním Protel MarketPlace.</Text>
+        <div class="market__cta">
+          <Button href="https://store.protel.io/" target="_blank" rel="noopener">Přejít na Protel MarketPlace</Button>
+        </div>
+      </div>
+    </Section>
+
+    <LeadForm id="poptavka" variant="full" background="default"
+              title="Poptejte napojení pro svůj hotel"
+              lead="Napište nám, jaké systémy používáte — poradíme s výběrem integrací a připravíme řešení na míru." />
+  </main>
+
+  <SiteFooter />
+</Base>
+
+<style>
+  .market { max-width: 720px; margin-inline: auto; display: flex; flex-direction: column; gap: var(--space-4); }
+  .market__cta { display: flex; justify-content: center; }
+</style>
