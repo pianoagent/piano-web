@@ -1,0 +1,65 @@
+---
+/**
+ * 404 — page not found (English).
+ * Build generuje dist/en/404.html; Apache ji servíruje pro /en/ přes public/en/.htaccess.
+ */
+import Base from '../../layouts/Base.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import { locPath } from '../../i18n';
+---
+
+<Base locale="en"
+      title="Page not found | Piano"
+      description="We couldn't find this page. Head back to the Piano homepage."
+      noindex={true}
+      contactBand={false}>
+
+  <section class="nf">
+    <div class="nf__inner">
+      <img class="nf__img" src="/images/404-piano.webp"
+           alt="Broken piano" width="885" height="851" loading="eager" />
+
+      <Heading as="h1" size="display" class="nf__title">Something's <em>out of tune</em></Heading>
+
+      <Text size="lead" color="muted" align="center" class="nf__text">
+        This page took a break, but our tools for hospitality are in full swing.
+        We have everything you need under one roof. Shall we pick up the tune elsewhere?
+      </Text>
+
+      <div class="nf__actions">
+        <Button href={locPath('/', 'en')}>Back to the homepage</Button>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .nf {
+    display: grid;
+    place-items: center;
+    text-align: center;
+    padding: clamp(72px, 11vh, 140px) var(--space-4);
+    min-height: 60vh;
+  }
+  .nf__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 640px;
+  }
+  .nf__img {
+    width: auto;
+    height: auto;
+    max-width: 340px;
+    max-height: 320px;
+    margin-bottom: var(--space-6);
+  }
+  .nf__text { margin-top: var(--space-4); max-width: 560px; }
+  .nf__actions { margin-top: var(--space-7); }
+
+  @media (max-width: 560px) {
+    .nf__img { max-width: 240px; max-height: 240px; }
+  }
+</style>

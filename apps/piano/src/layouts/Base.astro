@@ -124,7 +124,7 @@ const schemas = [organizationSchema, ...(schema ? [schema] : [])];
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NC3PW2KC"
       height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
-    <Header logoSrc={LOGO} transparent={headerTransparent} homeHref={homeHref} nav={nav} cta={headerCta} localeSwitch={langSwitch} />
+    <Header logoSrc={LOGO} transparent={headerTransparent} homeHref={homeHref} nav={nav} cta={headerCta} localeSwitch={langSwitch} locale={locale} />
     <main>
       <slot />
     </main>
@@ -144,7 +144,7 @@ const schemas = [organizationSchema, ...(schema ? [schema] : [])];
     </section>
     )}
 
-    <Footer logoSrc={LOGO} logoAlt="Piano" homeHref={homeHref} tagline={t.footerTagline}
+    <Footer logoSrc={LOGO} logoAlt="Piano" homeHref={homeHref} tagline={t.footerTagline} locale={locale}
             columns={footerColumns} offices={footerOffices} contact={footerContact} legal={getLegalNav(locale)} />
   </body>
 </html>

@@ -5,7 +5,7 @@
  * `locPath` u zatím nepřeložených cílů vrátí českou URL (žádné 404 mezitím).
  * Jak přibývají EN stránky, stačí přidat jejich cestu do EN_READY.
  */
-import type { NavItem, NavLink } from '@piano/ui/config/nav';
+import type { NavItem, NavLink, MegaPanel } from '@piano/ui/config/nav';
 import { mainNav, headerCta, companyNav, legalNav, contact } from '@piano/ui/config/nav';
 
 export type Locale = 'cs' | 'en';
@@ -47,9 +47,60 @@ export function localeFromPath(pathname: string): Locale {
 /* Navigace — EN varianta (fáze 1: ploché odkazy, cíle přes locPath)   */
 /* ------------------------------------------------------------------ */
 
+// EN mega — Products (celý ekosystém). Interní hrefy lokalizuje getNav přes locPath.
+const produktyMegaEn: MegaPanel = {
+  featured: {
+    label: 'New',
+    items: [
+      { label: 'Piano Pilot', href: '/pilot', description: 'Your whole operation in a mobile app. Data, inventory, AI recommendations.', icon: '/brand/piano.svg', badge: 'New' },
+      { label: 'Piano Terminal', href: '/terminal', description: 'A terminal where the payment is just the start. Data and supplier payments.', icon: '/brand/piano.svg' },
+    ],
+  },
+  columns: [
+    {
+      label: 'POS & operations',
+      links: [
+        { label: 'Septim', href: 'https://www.septim.cz', description: 'POS and operations system', icon: '/brand/septim.svg', external: true },
+        { label: 'ABX Harsys', href: 'https://www.abxharsys.cz', description: 'POS system', icon: '/brand/abx.svg', external: true },
+        { label: 'Savarin', href: 'https://cominn.cz', description: 'POS system', icon: '/brand/savarin.svg', external: true },
+        { label: 'Autset', href: 'https://autset.com', description: 'Automatic stocking', icon: '/brand/autset.svg', external: true },
+        { label: 'Pecosta', href: 'https://pecosta.cz', description: 'Auction-based ingredient purchasing', icon: '/brand/pecosta.svg', external: true },
+      ],
+    },
+    {
+      label: 'Guests & staff',
+      links: [
+        { label: 'Qerko', href: 'https://www.qerko.com', description: 'QR payments, tips, Google reviews', icon: '/brand/qerko.svg', external: true },
+        { label: 'Grason', href: 'https://www.grason.cz', description: 'Part-timers, shifts, time tracking', icon: '/brand/grason.svg', external: true },
+      ],
+    },
+    {
+      label: 'For hotels',
+      links: [
+        { label: 'Protel', href: 'https://www.protelsystems.cz', description: 'Hotel PMS system', icon: '/brand/protel.svg', external: true },
+      ],
+    },
+  ],
+};
+
+// EN mega — Solutions (podle problému). Interní hrefy lokalizuje getNav přes locPath.
+const reseniMegaEn: MegaPanel = {
+  columns: [
+    {
+      label: 'Solutions by problem',
+      links: [
+        { label: 'POS and hotel systems', href: '/reseni/pokladna', description: 'Chaos in orders and inventory', icon: 'lucide:monitor' },
+        { label: 'Payments & marketing', href: '/reseni/platby', description: 'Queues, low tips, no reviews', icon: 'lucide:credit-card' },
+        { label: 'Purchasing & inventory', href: '/reseni/nakupy', description: 'Overpriced ingredients, manual rewriting', icon: 'lucide:shopping-cart' },
+        { label: 'Staff', href: '/reseni/personal', description: 'Missing part-timers, shift chaos', icon: 'lucide:users' },
+      ],
+    },
+  ],
+};
+
 const mainNavEn: NavItem[] = [
-  { label: 'Products', href: '/produkty' },
-  { label: 'Solutions', href: '/reseni' },
+  { label: 'Products', href: '/produkty', mega: produktyMegaEn },
+  { label: 'Solutions', href: '/reseni', mega: reseniMegaEn },
   { label: 'EET 2.0', href: '/eet' },
   { label: 'About us', href: '/o-nas' },
   { label: 'Contact', href: '#kontakt' },

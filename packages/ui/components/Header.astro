@@ -23,6 +23,7 @@ interface Props {
   nav?: NavItem[];      // per-web navigace (default sdílená mainNav)
   cta?: NavLink;        // per-web hlavní CTA (default sdílená headerCta)
   localeSwitch?: { href: string; label: string; title?: string };  // přepínač jazyků (volitelný)
+  locale?: 'cs' | 'en';  // jazyk aria-labelů (default cs)
 }
 const {
   transparent = false,
@@ -33,7 +34,12 @@ const {
   nav = mainNav,
   cta = headerCta,
   localeSwitch,
+  locale = 'cs',
 } = Astro.props;
+
+const A = locale === 'en'
+  ? { home: 'home', mainNav: 'Main navigation', open: 'Open menu', close: 'Close menu', mobileNav: 'Mobile navigation', menu: 'Menu' }
+  : { home: 'domů', mainNav: 'Hlavní navigace', open: 'Otevřít menu', close: 'Zavřít menu', mobileNav: 'Mobilní navigace', menu: 'Menu' };
 
 const classes = ['header', transparent && 'header--transparent'].filter(Boolean).join(' ');
 ---
@@ -41,7 +47,7 @@ const classes = ['header', transparent && 'header--transparent'].filter(Boolean)
 <header class={classes} data-header style={`--logo-h: ${logoHeight};`}>
   <div class="header__inner">
     <!-- Logo -->
-    <a href={homeHref} class="header__logo" aria-label={`${brand}, domů`}>
+    <a href={homeHref} class="header__logo" aria-label={`${brand}, ${A.home}`}>
       {logoSrc ? (
         <img class="header__logo-img" src={logoSrc} alt={brand} />
       ) : (
@@ -53,7 +59,7 @@ const classes = ['header', transparent && 'header--transparent'].filter(Boolean)
     </a>
 
     <!-- Desktop navigace -->
-    <nav class="header__nav" aria-label="Hlavní navigace">
+    <nav class="header__nav" aria-label={A.mainNav}>
       <ul class="header__menu">
         {nav.map((item) => (
           item.mega ? (
@@ -147,7 +153,7 @@ const classes = ['header', transparent && 'header--transparent'].filter(Boolean)
         <a href={localeSwitch.href} class="header__lang" title={localeSwitch.title} aria-label={localeSwitch.title}>{localeSwitch.label}</a>
       )}
       <Button href={cta.href} variant="primary" size="sm" class="header__cta">{cta.label}</Button>
-      <button class="header__burger" aria-label="Otevřít menu" aria-expanded="false" aria-controls="mobile-drawer" data-burger>
+      <button class="header__burger" aria-label={A.open} aria-expanded="false" aria-controls="mobile-drawer" data-burger>
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -156,14 +162,14 @@ const classes = ['header', transparent && 'header--transparent'].filter(Boolean)
   <!-- Mobilní drawer -->
   <div class="drawer" id="mobile-drawer" data-drawer hidden>
     <div class="drawer__overlay" data-drawer-overlay></div>
-    <div class="drawer__panel" role="dialog" aria-modal="true" aria-label="Menu">
+    <div class="drawer__panel" role="dialog" aria-modal="true" aria-label={A.menu}>
       <div class="drawer__head">
         {logoSrc ? <img class="header__logo-img" src={logoSrc} alt={brand} /> : <span class="header__wordmark">{brand}</span>}
-        <button class="drawer__close" aria-label="Zavřít menu" data-drawer-close>
+        <button class="drawer__close" aria-label={A.close} data-drawer-close>
           <Icon name="lucide:x" size="md" />
         </button>
       </div>
-      <nav class="drawer__nav" aria-label="Mobilní navigace">
+      <nav class="drawer__nav" aria-label={A.mobileNav}>
         <ul class="drawer__menu">
           {nav.map((item) => {
             const sub = megaToLinks(item);
