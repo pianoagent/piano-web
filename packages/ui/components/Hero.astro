@@ -65,7 +65,7 @@ const innerClasses = [
       {useSlides ? (
         <div class="hero__rot">
           {slides.map((s, i) => (
-            <div class={`hero__slide${i === 0 ? ' is-active' : ''}`} data-hero-slide={i}>
+            <div class={`hero__slide${i === 0 ? ' is-active' : ''}`} data-hero-slide={i} role="tabpanel" id={`hero-panel-${i}`} aria-labelledby={`hero-tab-${i}`}>
               {s.eyebrow && <p class="hero__eyebrow">{s.eyebrow}</p>}
               <Heading as="h1" size="display" color={onDark ? 'on-dark' : 'default'}><Fragment set:html={s.title} /></Heading>
               {s.lead && <Text size="lead" color={onDark ? 'on-dark-muted' : 'muted'} class="hero__lead">{s.lead}</Text>}
@@ -104,7 +104,7 @@ const innerClasses = [
       {isCarousel && (
         <div class="hero__dots" role="tablist" aria-label="Přepnout sdělení">
           {slides.map((_, i) => (
-            <button type="button" class={`hero__dot${i === 0 ? ' is-active' : ''}`} data-hero-dot={i} aria-label={`Sdělení ${i + 1}`}></button>
+            <button type="button" role="tab" id={`hero-tab-${i}`} aria-selected={i === 0 ? 'true' : 'false'} aria-controls={`hero-panel-${i}`} class={`hero__dot${i === 0 ? ' is-active' : ''}`} data-hero-dot={i} aria-label={`Sdělení ${i + 1}`}></button>
           ))}
         </div>
       )}
@@ -142,7 +142,10 @@ const innerClasses = [
         i = (k + n) % n;
         texts.forEach((el, idx) => el.classList.toggle('is-active', idx === i));
         medias.forEach((el) => el.classList.toggle('is-active', Number(el.dataset.heroMslide) === i));
-        dots.forEach((el, idx) => el.classList.toggle('is-active', idx === i));
+        dots.forEach((el, idx) => {
+          el.classList.toggle('is-active', idx === i);
+          el.setAttribute('aria-selected', idx === i ? 'true' : 'false');
+        });
       };
       const stop = () => { if (timer) clearInterval(timer); timer = undefined; };
       const start = () => { if (reduce) return; stop(); timer = setInterval(() => go(i + 1), 4000); };
@@ -201,15 +204,19 @@ const innerClasses = [
   .hero__media-rot > img { width: auto; height: auto; max-width: 100%; max-height: 460px; }
 
   /* Tečky */
-  .hero__dots { display: flex; gap: var(--space-2); margin-top: var(--space-7); }
+  .hero__dots { display: flex; gap: 0; margin-top: var(--space-6); }
+  /* Vizuální tečka 10px, ale klikací plocha 26px (padding + content-box) pro pohodlný dotyk. */
   .hero__dot {
-    width: 10px; height: 10px; padding: 0; border: none; cursor: pointer;
-    border-radius: var(--radius-full); background: var(--color-border);
+    box-sizing: content-box;
+    width: 10px; height: 10px; padding: 8px; border: none; cursor: pointer;
+    border-radius: var(--radius-full);
+    background-color: var(--color-border);
+    background-clip: content-box;
     transition: var(--transition);
   }
-  .hero__dot.is-active { width: 26px; background: var(--color-primary); }
-  .hero__inner--on-dark .hero__dot { background: var(--color-border-on-dark); }
-  .hero__inner--on-dark .hero__dot.is-active { background: var(--color-secondary-gold); }
+  .hero__dot.is-active { width: 26px; background-color: var(--color-primary); }
+  .hero__inner--on-dark .hero__dot { background-color: var(--color-border-on-dark); }
+  .hero__inner--on-dark .hero__dot.is-active { background-color: var(--color-secondary-gold); }
   @media (prefers-reduced-motion: reduce) { .hero__slide { transition: none; } }
 
   /* Eyebrow */
