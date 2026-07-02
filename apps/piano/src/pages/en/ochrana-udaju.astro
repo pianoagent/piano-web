@@ -1,0 +1,109 @@
+---
+/**
+ * Personal data protection (GDPR) — piano.cz/en/ochrana-udaju.
+ * Content adapted from the existing site piano.cz/gdpr.
+ */
+import Base from '../../layouts/Base.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+
+const gdpr = `<h2>Brief information on the processing of personal data of natural persons at Piano Solutions s.r.o. in supplier-customer relationships and when using the website www.piano.cz</h2>
+      <p>Your privacy is important to us. This document contains information on how Piano Solutions s.r.o. processes the personal data of natural persons within supplier-customer relationships, business communication, marketing activities and when using the website www.piano.cz, in accordance with Regulation (EU) 2016/679 of the European Parliament and of the Council (GDPR).</p>
+      <h2>1. Who is the controller of your personal data?</h2>
+      <p>The controller of your personal data is:</p>
+      <p>Piano Solutions s.r.o. IČO: 19780974 Registered office: Křižíkova 148/34, Karlín, 186 00 Praha E-mail: info@piano.cz (hereinafter referred to as the „Controller“)</p>
+      <p>Within the Piano group, certain personal data may also be processed by other members of the Piano group, in particular by Piano Payments s.r.o., Septim Systems a.s. and Pecosta a.s., always in accordance with applicable legal regulations and concluded agreements on joint or separate processing of personal data.</p>
+      <h2>2. In which situations and for what purpose do we process your personal data?</h2>
+      <h3>When do we process data with your consent?</h3>
+      <p>We will ask for your consent, either directly or through another party, in particular when you are neither our customer nor have any other similar relationship with us meeting the requirements of recital 47 GDPR and you wish to receive marketing offers from us.</p>
+      <p>On the basis of your consent, we further process technical and analytical data through cookies and similar technologies used on our website.</p>
+      <h3>When do we process data without your consent?</h3>
+      <p>Without your consent, we may process your personal data on the basis of the following legal grounds and for the following purposes:</p>
+      <h3>Legal ground: performance of a contract or taking steps prior to entering into a contract at your request</h3>
+      <p>Purposes of processing:</p>
+      <ul><li>fulfilment of the contractual obligation, including related business and financial communication;</li><li>management of supplier-customer relationships;</li><li>handling your enquiry or a message sent through the contact form;</li><li>provision of products and services;</li><li>loyalty program.</li></ul>
+      <h3>Legal ground: legitimate interest of the Controller</h3>
+      <p>Purposes of processing:</p>
+      <ul><li>communication with you;</li><li>protection of the rights and legally protected interests of the Controller;</li><li>recovery of amounts owed for supplied goods or other receivables of the Controller;</li><li>assessment of your creditworthiness and trustworthiness in selected cases;</li><li>direct marketing directed solely at our customers and persons meeting the requirements of recital 47 GDPR, consisting of offering products and services provided by the Controller;</li><li>optimisation of the website and measurement of traffic.</li></ul>
+      <h3>Legal ground: compliance with a legal obligation</h3>
+      <p>Purposes of processing:</p>
+      <ul><li>providing cooperation to state authorities on the basis of and within the limits of the law;</li><li>retention of data in accordance with legal regulations;</li><li>bookkeeping;</li><li>fulfilment of obligations arising from tax, accounting and other legal regulations.</li></ul>
+      <h2>3. What personal data do we process?</h2>
+      <p>We process in particular the following personal data:</p>
+      <ul><li>identification and contact data;</li><li>data on the products you have purchased or the services you provide to us;</li><li>data from our mutual communication, whether it took place in person, in writing, by telephone or otherwise;</li><li>payment data (e.g. information on the amount paid or owed, account number, etc.);</li><li>in selected cases, data on your creditworthiness and trustworthiness;</li><li>technical and analytical data, for example IP address, device type, browser used, data on behaviour on the website and interaction with advertising;</li><li>data obtained through cookies and similar technologies.</li></ul>
+      <h2>4. From which sources do we obtain personal data?</h2>
+      <p>We obtain your personal data in particular from the following sources:</p>
+      <ul><li>you provided the data to us, for example in connection with entering into a contract or during our cooperation;</li><li>you provided the data to a third party and consented to that third party passing your personal data on to us;</li><li>we may also obtain personal data from third parties, in particular from our business partners, intermediaries or persons who recommended you to us or arranged the contact;</li><li>we also process data obtained from public sources, lists and registers, for example from the commercial register, the trade licensing register, the insolvency register or the land register;</li><li>we obtain some data automatically when you use our website through cookies and similar technologies.</li></ul>
+      <p>If we did not obtain your personal data directly from you but from a third party, we will provide you with this information at the latest upon our first communication with you, or at the latest within one month of obtaining your personal data, whichever occurs first.</p>
+      <h2>5. Cookies and third-party tools</h2>
+      <p>On our website we use cookies and similar technologies for analytical and marketing purposes.</p>
+      <p>For these purposes we use in particular the following tools:</p>
+      <ul><li>Google Analytics 4 – measurement of traffic and user behaviour;</li><li>Google Ads – conversion tracking and ad targeting;</li><li>Meta Pixel (Facebook Pixel) – measurement and personalisation of ads on Meta platforms;</li><li>Sklik (Seznam.cz) – remarketing and targeting of advertising campaigns.</li></ul>
+      <p>The use of these tools is based on your consent to cookies, which you can adjust or withdraw at any time through the cookie bar on our website.</p>
+      <h2>6. Cross-site remarketing within the Piano group</h2>
+      <p>Within the Piano group we may use so-called cross-site remarketing. This means that information about your visit to one of our websites (e.g. www.piano.cz) may be used to display targeted advertising on another website within the Piano group (e.g. www.qerko.cz), and vice versa.</p>
+      <p>Thanks to this, we can show you relevant offers across the Piano group's projects that might interest you. This processing takes place solely on the basis of your consent to marketing cookies.</p>
+      <h2>7. To whom may personal data be disclosed?</h2>
+      <p>We pass on your personal data only in justified cases and to the extent necessary to the following categories of recipients:</p>
+      <ul><li>other companies within the Piano group;</li><li>our contractual partners whom we need for normal operation and the performance of the contractual relationship, for example information technology suppliers, web hosting providers, providers of analytical and advertising services, providers of courier or postal services, providers of technical administration and security;</li><li>Google, Meta and Seznam.cz to the extent necessary for the provision of analytical and marketing services;</li><li>other entities in cases where the provision of data is required by legal regulations or where it is necessary for the protection of our legitimate interests (e.g. courts, the Police of the Czech Republic or administrative authorities).</li></ul>
+      <p>We have concluded the relevant data processing agreements pursuant to Article 28 GDPR with all processors of personal data.</p>
+      <h2>8. How long do we retain your personal data?</h2>
+      <p>Personal data processed for the purpose of negotiating the conclusion of a contract are retained for the duration of the pre-contractual negotiations and subsequently for the period necessary to protect our legal claims.</p>
+      <p>In the event that a contract is concluded, we process personal data for the duration of the contractual relationship and subsequently for the period stipulated by legal regulations or for the period necessary for the establishment, exercise or defence of legal claims.</p>
+      <p>Personal data processed on the basis of consent are retained until the consent is withdrawn.</p>
+      <p>Data from the contact form are retained for a maximum of 12 months from the last communication.</p>
+      <p>Data obtained through cookies are retained according to the type of the specific cookie, but for no longer than 26 months.</p>
+      <h2>9. What rights do you have in connection with the processing of personal data?</h2>
+      <p>With regard to your personal data, you have the following rights:</p>
+      <h3>Right of access</h3>
+      <p>You have the right to ask the Controller for access to the personal data that we process about you. The Controller will also provide you with a copy of the processed personal data.</p>
+      <h3>Right to rectification</h3>
+      <p>You have the right to request the rectification of inaccurate or incomplete personal data.</p>
+      <h3>Right to erasure</h3>
+      <p>You have the right to request the erasure of personal data if:</p>
+      <ul><li>the personal data are no longer necessary for the purposes for which they were collected or otherwise processed;</li><li>you have withdrawn the consent on the basis of which the personal data were processed and there is no other legal ground for their processing;</li><li>you have objected to the processing of personal data for direct marketing purposes;</li><li>the personal data have been processed unlawfully;</li><li>the personal data must be erased in order to comply with a legal obligation;</li><li>the personal data have been collected in connection with the offer of information society services.</li></ul>
+      <h3>Right to restriction of processing</h3>
+      <p>You have the right to request the restriction of the processing of personal data if:</p>
+      <ul><li>you contest the accuracy of the personal data;</li><li>the processing is unlawful and you object to erasure;</li><li>the Controller no longer needs the data, but you require them for the establishment, exercise or defence of legal claims;</li><li>you have objected to the processing.</li></ul>
+      <h3>Right to data portability</h3>
+      <p>In the cases provided for by the GDPR, you have the right to obtain the personal data concerning you which you have provided to the Controller, in a structured, commonly used and machine-readable format.</p>
+      <h3>Right to withdraw consent</h3>
+      <p>If the processing of your personal data is based on consent, you have the right to withdraw that consent at any time.</p>
+      <h3>Right to object</h3>
+      <p>You have the right to object at any time to the processing of personal data carried out on the basis of the legitimate interest of the Controller, in particular to processing for direct marketing purposes.</p>
+      <h3>Right to lodge a complaint</h3>
+      <p>You have the right to lodge a complaint with the supervisory authority, which is:</p>
+      <p>Úřad pro ochranu osobních údajů Pplk. Sochora 27 170 00 Praha 7 www.uoou.cz</p>
+      <h2>10. Is giving consent voluntary?</h2>
+      <p>We will ask for your consent in particular if you are neither our customer nor have any other similar relationship with us meeting the requirements of recital 47 GDPR and you wish to receive marketing offers from us.</p>
+      <p>Giving consent is entirely voluntary and is not a condition for obtaining any product or service of Piano Solutions s.r.o. or any company within the Piano group.</p>
+      <h2>11. How can consent be withdrawn?</h2>
+      <p>Consent given for marketing purposes or the use of marketing cookies can be withdrawn at any time.</p>
+      <p>You can withdraw your consent:</p>
+      <ul><li>through the cookie bar on the website;</li><li>by written notice sent to the company's registered office address;</li><li>by e-mail sent to info@piano.cz.</li></ul>
+      <h2>12. How can you object to direct marketing?</h2>
+      <p>You have the right to object at any time, free of charge, to the processing of your personal data for direct marketing purposes.</p>
+      <h2>13. How can you exercise your rights?</h2>
+      <p>You can exercise all of your rights by e-mail: info@piano.cz.</p>
+      <p>We will handle your request without undue delay, but at the latest within 30 days of receiving it.</p>
+      <h2>14. Changes to these principles</h2>
+      <p>This version of the principles is valid from 7 May 2026.</p>
+      <p>We reserve the right to update or change these principles at any time. The current version will always be available on the website www.piano.cz.</p>`;
+---
+
+<Base locale="en" title="Personal data protection | Piano"
+      description="Information on the processing of personal data at Piano Solutions s.r.o. (GDPR).">
+  <Section background="default" space="lg" container="narrow">
+    <Heading as="h1" size="h1">Personal data protection</Heading>
+    <div class="prose" set:html={gdpr} />
+  </Section>
+</Base>
+
+<style>
+  .prose { margin-top: var(--space-6); max-width: 760px; }
+  .prose :global(h2) { font-size: var(--font-size-h3); margin-top: var(--space-7); margin-bottom: var(--space-3); }
+  .prose :global(h3) { font-size: var(--font-size-lead); margin-top: var(--space-5); margin-bottom: var(--space-2); }
+  .prose :global(p) { margin-bottom: var(--space-3); line-height: var(--line-height-body); color: var(--color-text-muted); }
+  .prose :global(ul) { margin: 0 0 var(--space-4) var(--space-5); display: flex; flex-direction: column; gap: var(--space-2); color: var(--color-text-muted); }
+  .prose :global(li) { list-style: disc; }
+</style>

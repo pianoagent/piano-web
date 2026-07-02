@@ -1,0 +1,32 @@
+---
+/**
+ * Thank you — landing page after a lead is submitted (LeadForm successUrl).
+ */
+import Base from '../../layouts/Base.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import { locPath } from '../../i18n';
+---
+
+<Base locale="en" title="Thank you for your enquiry" description="Thank you, we will be in touch as soon as possible." noindex>
+  <Section background="warm" space="lg" container="narrow">
+    <div class="ty">
+      <span class="ty__icon"><Icon name="lucide:check" size="lg" /></span>
+      <Heading as="h1" size="h1" align="center">Thank you! We will be in touch as soon as possible.</Heading>
+      <Text size="lead" color="muted" align="center" class="ty__lead">
+        We have received your enquiry. We usually get back to you within one business day.
+      </Text>
+      <Button href={locPath('/', 'en')}>Back to the homepage</Button>
+    </div>
+  </Section>
+</Base>
+
+<style>
+  .ty { display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--space-4); }
+  .ty__icon { display: grid; place-items: center; width: 64px; height: 64px; border-radius: var(--radius-full); background: var(--color-success); color: #fff; margin-bottom: var(--space-2); }
+  .ty__lead { max-width: 480px; }
+  .ty :global(.btn) { margin-top: var(--space-4); }
+</style>

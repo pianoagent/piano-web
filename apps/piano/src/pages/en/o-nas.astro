@@ -1,0 +1,85 @@
+---
+/**
+ * About us — piano.cz/en/o-nas. Content mirrored from piano.cz. Shared components @piano/ui.
+ */
+import Base from '../../layouts/Base.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+
+const stats = [
+  { num: 'CZK 36bn', lbl: 'flows through our tools every year' },
+  { num: '6,000+', lbl: 'businesses in Czechia trust us' },
+  { num: '10+', lbl: 'tools for complete operations management' },
+];
+---
+
+<Base locale="en"
+      title="About us, Piano"
+      description="We focus on digitalizing hospitality. We believe in connected hospitality, from farmers and suppliers through chefs to guests.">
+
+  <Hero eyebrow="About us" background="primary"
+        lead="We believe in connected hospitality. We support everyone who makes up its entire chain, from farmers and suppliers through chefs to guests. We help those who want to do hospitality better.">
+    <Heading slot="title" as="h1" size="display" color="on-dark">We focus on <em>digitalizing</em> hospitality</Heading>
+    <img slot="media" src="/images/about-team.webp" alt="The Piano team" width="1100" height="733" />
+  </Hero>
+
+  <!-- Stats -->
+  <Section background="alt" space="md">
+    <div class="stats">
+      {stats.map((s) => (<div class="stat"><span class="stat__num">{s.num}</span><span class="stat__lbl">{s.lbl}</span></div>))}
+    </div>
+  </Section>
+
+  <!-- Vision -->
+  <Section background="default" space="lg" container="narrow">
+    <Text size="label" color="accent" align="center">Our vision</Text>
+    <Heading as="h2" size="h2" align="center" class="vize__title">For better hospitality for guests and operators alike</Heading>
+    <div class="vize__body">
+      <Text color="muted">Hospitality has been changing in recent years. The main driver is the shift in guest behavior after Covid. At the same time, the industry has a technological lag that needs to be caught up. The generation of people in the industry is changing too, and with it come new needs.</Text>
+      <Text color="muted">Running a hospitality business is complex and takes a lot of time. We want operators to be able to focus on what they enjoy and do well. Technology will help them with the rest.</Text>
+      <Text color="muted">But the human touch has to stay. People's passion is the foundation of hospitality. Modern tools can make work easier where it makes sense, and help people do what they are best at.</Text>
+    </div>
+  </Section>
+
+  <!-- Why we are here + values -->
+  <Section background="invert" space="lg" container="narrow">
+    <div class="vals">
+      <div class="val">
+        <Text size="label" color="on-dark-muted">Why we are here</Text>
+        <Heading as="h2" size="h3" color="on-dark">Using new technology and data, we digitalize Czech hospitality to make it easier to run a business.</Heading>
+        <Text color="on-dark-muted">A successful business = a happy owner = a happy guest.</Text>
+      </div>
+      <div class="val">
+        <Text size="label" color="on-dark-muted">Our values</Text>
+        <Heading as="h2" size="h3" color="on-dark">We believe great food has the power to change lives.</Heading>
+        <Text color="on-dark-muted">We build on sustainability, fair relationships and a love of the craft. We want hospitality to be healthy for people, business and the planet.</Text>
+      </div>
+    </div>
+  </Section>
+
+  <LeadForm id="poptavka" variant="full" locale="en"
+            title="Let's digitalize your hospitality"
+            lead="Get in touch and we will put together an offer tailored to your operation." />
+
+</Base>
+
+<style>
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); text-align: center; }
+  .stat { display: flex; flex-direction: column; gap: var(--space-1); }
+  .stat__num { font-family: var(--font-sans); font-weight: var(--font-weight-semibold); font-size: clamp(28px, 4vw, 44px); color: var(--color-text-accent); letter-spacing: var(--letter-spacing-tight); }
+  .stat__lbl { font-size: var(--font-size-small); color: var(--color-text-muted); }
+
+  .vize__title { margin: var(--space-2) 0 var(--space-6); }
+  .vize__body { display: flex; flex-direction: column; gap: var(--space-4); }
+
+  .vals { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-7); }
+  .val :global(h2) { margin: var(--space-2) 0 var(--space-3); }
+
+  @media (max-width: 720px) {
+    .stats { grid-template-columns: 1fr; gap: var(--space-5); }
+    .vals { grid-template-columns: 1fr; gap: var(--space-6); }
+  }
+</style>

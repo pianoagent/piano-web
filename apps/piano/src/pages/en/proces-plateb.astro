@@ -1,0 +1,99 @@
+---
+/**
+ * Payment process — English page piano.cz/en/proces-plateb (layout follows the real piano.cz).
+ * Whole section on warm white, alternating steps (text/image), CTA + contact band.
+ */
+import Base from '../../layouts/Base.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+
+const steps = [
+  { img: '/images/proces-1.webp', label: 'Granting access', title: 'Approval without the owner/manager', points: [
+    'Business owners grant staff permission to authorize supplier payments in the Qerko admin.',
+    'Your data is safe: staff never see your payment card or bank account and have no access to them.',
+  ] },
+  { img: '/images/proces-2.webp', label: 'QR code on delivery', title: 'Scan the QR code on receipt', points: [
+    'When handing over the goods, the supplier generates a unique QR code linked to a specific payment and merchant.',
+    'After receiving the goods, staff scan the QR code using the Qerko app.',
+  ] },
+  { img: '/images/proces-3.webp', label: 'Payment authorization', title: 'Fast payment', points: [
+    'If the payment is authorized (by the venue’s staff), a simple screen appears with an “Authorize (amount)” option.',
+  ] },
+  { img: '/images/proces-4.webp', label: 'Payment verification', title: 'Payment status', points: [
+    'The delivery driver instantly sees on their device that the payment has been successfully authorized.',
+  ] },
+];
+---
+
+<Base locale="en"
+      title="Supplier payment process, Piano Terminal"
+      description="How authorization of cashless supplier payments works via Piano Terminal and Qerko, step by step, securely and without staff access to your account.">
+
+  <!-- Process — all on warm white, alternating steps -->
+  <Section background="warm" space="lg">
+    <Heading as="h1" size="h1" align="center" class="pp-title">The supplier payment authorization process</Heading>
+    <ol class="pp-steps">
+      {steps.map((s) => (
+        <li class="pp-step">
+          <figure class="pp-step__img"><img src={s.img} alt={s.title} width="360" height="354" loading="lazy" /></figure>
+          <div class="pp-step__body">
+            <Text size="label" color="accent">{s.label}</Text>
+            <Heading as="h2" size="h3">{s.title}</Heading>
+            <ul class="pp-step__list">{s.points.map((p) => <li>{p}</li>)}</ul>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </Section>
+
+  <!-- CTA -->
+  <Section background="default" space="lg">
+    <div class="pp-cta">
+      <Heading as="h2" size="h2">Use our tools and take your business <em>to the next level</em></Heading>
+      <Text color="muted">Thanks to our close cooperation, we can bring to market innovations and services that truly save you time, increase profit and make life easier. Get in touch and we will put together an offer tailored to your needs.</Text>
+    </div>
+  </Section>
+
+  <!-- Contact band -->
+  <div class="contactband">
+    <a class="contactband__half" href="tel:+420770320248">+420 770 320 248</a>
+    <a class="contactband__half contactband__half--alt" href="mailto:info@piano.cz">info@piano.cz</a>
+  </div>
+
+  <LeadForm id="poptavka" variant="full" locale="en"
+            title="Contact us today for a free consultation"
+            lead="Get in touch and we will put together an offer tailored to your operation." />
+
+</Base>
+
+<style>
+  .pp-title { margin-bottom: var(--space-8); }
+  .pp-steps { list-style: none; display: flex; flex-direction: column; gap: var(--space-8); max-width: 980px; margin: 0 auto; }
+  .pp-step { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: var(--space-7); align-items: center; }
+  .pp-step:nth-child(even) .pp-step__img { order: 2; }
+  .pp-step__img { margin: 0; display: grid; place-items: center; background: color-mix(in srgb, var(--color-secondary-terracotta) 14%, #FFF5E8); border-radius: var(--radius-md); padding: var(--space-6); }
+  .pp-step__img img { display: block; width: 100%; max-width: 260px; height: auto; }
+  .pp-step__body :global(h2) { margin: var(--space-1) 0 var(--space-3); }
+  .pp-step__list { list-style: none; display: flex; flex-direction: column; gap: var(--space-3); }
+  .pp-step__list li { position: relative; padding-left: var(--space-5); color: var(--color-text-muted); }
+  .pp-step__list li::before { content: "•"; position: absolute; left: var(--space-1); color: var(--color-text-accent); font-weight: 700; }
+
+  /* CTA */
+  .pp-cta { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-7); align-items: center; max-width: var(--container-max); }
+
+  /* Contact band — two crimson halves */
+  .contactband { display: flex; flex-wrap: wrap; }
+  .contactband__half { flex: 1 1 50%; text-align: center; text-decoration: none; color: var(--color-text-on-dark); background: var(--color-primary-bg); padding: var(--space-6) var(--space-4); font-size: var(--font-size-lead); font-weight: var(--font-weight-medium); transition: var(--transition); }
+  .contactband__half:hover { background: var(--color-primary-bg-hover); }
+  .contactband__half--alt { background: var(--color-primary); }
+  .contactband__half--alt:hover { background: var(--color-primary-hover); }
+
+  @media (max-width: 720px) {
+    .pp-step { grid-template-columns: 1fr; gap: var(--space-4); }
+    .pp-step:nth-child(even) .pp-step__img { order: 0; }
+    .pp-cta { grid-template-columns: 1fr; gap: var(--space-4); }
+    .contactband__half { flex-basis: 100%; }
+  }
+</style>

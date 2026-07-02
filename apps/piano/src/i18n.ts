@@ -13,7 +13,12 @@ export const DEFAULT_LOCALE: Locale = 'cs';
 export const LOCALES: Locale[] = ['cs', 'en'];
 
 /** Cesty, které už mají hotovou EN verzi (rozšiřuje se během rolloutu). */
-export const EN_READY = new Set<string>(['/']);
+export const EN_READY = new Set<string>([
+  '/',
+  '/terminal', '/pilot', '/produkty', '/o-nas', '/eet', '/proces-plateb',
+  '/reseni/nakupy', '/reseni/personal', '/reseni/platby', '/reseni/pokladna',
+  '/obchodni-podminky', '/ochrana-udaju', '/dekujeme', '/pro-media',
+]);
 
 const isNonPage = (p: string) =>
   !p || p.startsWith('#') || p.startsWith('http') || p.startsWith('mailto') || p.startsWith('tel');
@@ -26,9 +31,10 @@ export function locPath(path: string, locale: Locale): string {
   return clean === '/' ? '/en/' : '/en' + clean;
 }
 
-/** Odstraní jazykový prefix → kanonická (CS) cesta. */
+/** Odstraní jazykový prefix i koncové lomítko → kanonická (CS) cesta. */
 export function stripLocale(pathname: string): string {
-  const s = pathname.replace(/^\/en(?=\/|$)/, '');
+  let s = pathname.replace(/^\/en(?=\/|$)/, '');
+  s = s.replace(/\/+$/, ''); // koncové lomítko (Astro generuje /terminal/)
   return s === '' ? '/' : s;
 }
 

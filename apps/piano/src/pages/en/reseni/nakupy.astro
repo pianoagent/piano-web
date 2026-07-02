@@ -1,0 +1,42 @@
+---
+/**
+ * Solutions — Purchasing & inventory (piano.cz/en/reseni/nakupy).
+ * Content mirrors CS page piano.cz/reseni/nakupy.
+ */
+import Base from '../../../layouts/Base.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Button from '@piano/ui/components/Button.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import { locPath } from '../../../i18n';
+
+const benefits = [
+  { icon: 'lucide:shopping-cart', title: 'Cheaper purchasing from one place', text: 'Every supplier has different ordering processes, prices keep rising and comparison is nearly impossible. Order equally high-quality goods from various suppliers in one place, anytime and at unbeatable prices.' },
+  { icon: 'lucide:truck', title: 'Automatic stocking in a few minutes', text: 'You no longer have to retype an endless pile of delivery notes by hand. Automate the whole stocking process, eliminate errors and save up to 1 hour of work a day.' },
+  { icon: 'lucide:boxes', title: 'A clear inventory and peace of mind', text: 'Inventory management is the foundation of a successful business. Keep track of how much stock you have, make stocktaking easier and prevent waste and theft.' },
+];
+---
+
+<Base locale="en"
+      title="Purchasing and inventory, a solution for your operation | Piano"
+      description="We speed up and cut the cost of purchasing and stocking. Save up to 30 hours a month and 16% of your costs, all from one place.">
+
+  <Hero eyebrow="Solution" background="warm"
+        lead="Save up to 30 hours a month and 16% of your costs with us."
+        usp={[{ text: 'Everything under one roof', icon: 'lucide:layers' }, { text: '6,000+ businesses', icon: 'lucide:store' }, { text: '10+ tools', icon: 'lucide:grid-2x2' }]}>
+    <Heading slot="title" as="h1" size="display">We speed up and cut the cost of purchasing and stocking</Heading>
+    <Fragment slot="actions">
+      <Button href="#poptavka">Book a free consultation</Button>
+      <Button href={locPath('/produkty', 'en')} variant="secondary">Explore the tools</Button>
+    </Fragment>
+    <img slot="media" src="/images/cat-nakupy.webp" alt="Purchasing and inventory, Piano" width="1100" height="733" />
+  </Hero>
+
+  <USPGrid eyebrow="How we solve it" title="Purchasing and inventory under control"
+           items={benefits} columns={3} background="default" minItemWidth="280px" />
+
+  <LeadForm id="poptavka" variant="full" locale="en"
+            title="Sort out purchasing and stocking today"
+            lead="Contact us for a free consultation and we will design a solution tailored to your operation." />
+</Base>
