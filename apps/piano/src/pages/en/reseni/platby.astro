@@ -1,0 +1,41 @@
+---
+/**
+ * Solutions — Payments & guest communication (piano.cz/en/reseni/platby).
+ * Content mirrors CS page piano.cz/reseni/platby.
+ */
+import Base from '../../../layouts/Base.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Button from '@piano/ui/components/Button.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import { locPath } from '../../../i18n';
+
+const benefits = [
+  { icon: 'lucide:utensils', title: 'More tables served', text: 'Payment takes up too much time for both guests and staff. At peak times, guests waiting to pay take up seats meant for newcomers, and staff handle payments instead of orders. Let guests pay on their own, serve more of them and significantly increase revenue.' },
+  { icon: 'lucide:message-circle-heart', title: 'Better guest communication', text: 'Get to know your customers better, discover your regulars and reward them for their loyalty. Earn more positive reviews, more social media followers and private, constructive feedback.' },
+];
+---
+
+<Base locale="en"
+      title="Payments and guest communication, a solution | Piano"
+      description="We speed up payments and increase table turnover. Serve more tables, boost revenue by hundreds of thousands and tips by up to 40%.">
+
+  <Hero eyebrow="Solution" background="warm"
+        lead="Serve more tables, boost revenue by hundreds of thousands and tips by up to 40%."
+        usp={[{ text: 'Everything under one roof', icon: 'lucide:layers' }, { text: '6,000+ businesses', icon: 'lucide:store' }, { text: '10+ tools', icon: 'lucide:grid-2x2' }]}>
+    <Heading slot="title" as="h1" size="display">We speed up payments and increase table turnover</Heading>
+    <Fragment slot="actions">
+      <Button href="#poptavka">Book a free consultation</Button>
+      <Button href={locPath('/produkty', 'en')} variant="secondary">Explore the tools</Button>
+    </Fragment>
+    <img slot="media" src="/images/cat-platby.webp" alt="Payments and guest communication, Piano" width="1100" height="733" />
+  </Hero>
+
+  <USPGrid eyebrow="How we solve it" title="Faster payments, happier guests"
+           items={benefits} columns={2} background="default" minItemWidth="320px" />
+
+  <LeadForm id="poptavka" variant="full" locale="en"
+            title="Sort out faster payments and guest communication today"
+            lead="Contact us for a free consultation and we will design a solution tailored to your operation." />
+</Base>

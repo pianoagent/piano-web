@@ -1,0 +1,41 @@
+---
+/**
+ * Solutions — People & staff (piano.cz/en/reseni/personal).
+ * Content mirrors CS page piano.cz/reseni/personal.
+ */
+import Base from '../../../layouts/Base.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Button from '@piano/ui/components/Button.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import { locPath } from '../../../i18n';
+
+const benefits = [
+  { icon: 'lucide:user-check', title: 'Fast hiring of vetted staff', text: 'Finding employees is hard, especially in hospitality, where turnover is high and reliability is low. Get candidates for both long-term and short-term cooperation with a transparent work history, all in one place.' },
+  { icon: 'lucide:calendar-days', title: 'Simple shift planning', text: 'A shift schedule looks trivial, but the opposite is true, some of it is on paper, some on WhatsApp and some just gets mentioned in passing. Plan shifts, assign and check tasks and approve attendance from one place, without having to chase anyone.' },
+];
+---
+
+<Base locale="en"
+      title="People and staff, a solution for your operation | Piano"
+      description="We make staff recruitment and shift planning easier. Access to more than 40,000 workers and shift planning done easily and efficiently.">
+
+  <Hero eyebrow="Solution" background="warm"
+        lead="Get access to more than 40,000 workers and plan shifts easily and efficiently."
+        usp={[{ text: 'Everything under one roof', icon: 'lucide:layers' }, { text: '6,000+ businesses', icon: 'lucide:store' }, { text: '10+ tools', icon: 'lucide:grid-2x2' }]}>
+    <Heading slot="title" as="h1" size="display">We make staff recruitment and shift planning easier</Heading>
+    <Fragment slot="actions">
+      <Button href="#poptavka">Book a free consultation</Button>
+      <Button href={locPath('/produkty', 'en')} variant="secondary">Explore the tools</Button>
+    </Fragment>
+    <img slot="media" src="/images/cat-personal.webp" alt="People and staff, Piano" width="1100" height="733" />
+  </Hero>
+
+  <USPGrid eyebrow="How we solve it" title="Staff who are never missing"
+           items={benefits} columns={2} background="default" minItemWidth="320px" />
+
+  <LeadForm id="poptavka" variant="full" locale="en"
+            title="Sort out recruitment and shift planning today"
+            lead="Contact us for a free consultation and we will design a solution tailored to your operation." />
+</Base>

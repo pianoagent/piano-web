@@ -1,0 +1,99 @@
+---
+/**
+ * Products — overview of the entire Piano ecosystem (piano.cz/en/produkty).
+ */
+import Base from '../../layouts/Base.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import { locPath } from '../../i18n';
+
+const groups = [
+  {
+    label: 'New from Piano',
+    items: [
+      { name: 'Piano Pilot', icon: 'lucide:smartphone', desc: 'Your whole operation in a mobile app, data, inventory and AI recommendations in real time.', href: '/pilot', badge: 'New' },
+      { name: 'Piano Terminal', icon: 'lucide:credit-card', desc: 'A terminal where the payment is just the start, guest data and supplier payments.', href: '/terminal', badge: 'New' },
+    ],
+  },
+  {
+    label: 'POS & operations',
+    items: [
+      { name: 'Septim', icon: 'lucide:monitor', desc: 'The most respected POS and operations system on the market.', href: 'https://www.septim.cz', external: true },
+      { name: 'ABX Harsys', icon: 'lucide:square-terminal', desc: 'Multifunctional POS systems and registers.', href: 'https://www.abxharsys.cz', external: true },
+      { name: 'Savarin', icon: 'lucide:utensils', desc: 'Complete solution for food service and accommodation.', href: 'https://cominn.cz', external: true },
+      { name: 'Autset', icon: 'lucide:package', desc: 'Automatic stocking from delivery notes.', href: 'https://autset.com', external: true },
+      { name: 'Pecosta', icon: 'lucide:gavel', desc: 'Auction-based ingredient purchasing, up to 16% cheaper.', href: 'https://pecosta.cz', external: true },
+    ],
+  },
+  {
+    label: 'Guests & staff',
+    items: [
+      { name: 'Qerko', icon: 'lucide:qr-code', desc: 'The most convenient table payment and guest communication.', href: 'https://www.qerko.com', external: true },
+      { name: 'Grason', icon: 'lucide:users', desc: 'Part-timers, shift planning and paperwork in one app.', href: 'https://www.grason.cz', external: true },
+    ],
+  },
+  {
+    label: 'For hotels',
+    items: [
+      { name: 'Protel', icon: 'lucide:building-2', desc: 'Software for efficient hotel management.', href: 'https://www.protelsystems.cz', external: true },
+    ],
+  },
+];
+---
+
+<Base locale="en"
+      title="Products, the entire Piano ecosystem | Piano"
+      description="An overview of all Piano tools: POS systems, payments, purchasing, inventory, staff and hotel PMS. One connected ecosystem for hospitality.">
+
+  <Hero eyebrow="Products" background="warm"
+        lead="Piano brings proven hospitality tools together into one connected ecosystem. Pick them individually, or unlock their full power in combination.">
+    <Heading slot="title" as="h1" size="display">The entire toolkit for your operation</Heading>
+    <Fragment slot="actions">
+      <Button href="#poptavka">Book a consultation</Button>
+    </Fragment>
+  </Hero>
+
+  {groups.map((g, gi) => (
+    <Section background={gi % 2 === 0 ? 'default' : 'alt'} space="lg">
+      <div class="prod-head">
+        <Text size="label" color="accent">{g.label}</Text>
+      </div>
+      <div class="prod-grid">
+        {g.items.map((p) => (
+          <a class="prod-card" href={p.external ? p.href : locPath(p.href, 'en')} target={p.external ? '_blank' : undefined} rel={p.external ? 'noopener noreferrer' : undefined}>
+            <span class="prod-card__icon"><Icon name={p.icon} size="md" /></span>
+            <span class="prod-card__name">{p.name}{p.badge && <span class="prod-card__badge">{p.badge}</span>}</span>
+            <Text size="small" color="muted">{p.desc}</Text>
+            <span class="prod-card__link">{p.external ? 'Open website' : 'Learn more'} <Icon name={p.external ? 'lucide:external-link' : 'lucide:arrow-right'} size="xs" /></span>
+          </a>
+        ))}
+      </div>
+    </Section>
+  ))}
+
+  <LeadForm id="poptavka" variant="full" locale="en"
+            title="Not sure what fits you best?"
+            lead="Get in touch and we will design a combination of tools tailored to your operation." />
+</Base>
+
+<style>
+  .prod-head { margin-bottom: var(--space-6); }
+  .prod-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-5); }
+  .prod-card {
+    display: flex; flex-direction: column; gap: var(--space-2);
+    padding: var(--space-6); background: var(--color-bg); border: 1px solid var(--color-border);
+    border-radius: var(--radius-md); text-decoration: none; color: var(--color-text); transition: var(--transition);
+  }
+  .prod-card:hover { border-color: var(--color-primary); transform: translateY(-4px); box-shadow: var(--shadow-lg, 0 18px 40px rgba(0,0,0,.10)); }
+  .prod-card__icon { display: grid; place-items: center; width: 48px; height: 48px; border-radius: var(--radius-sm); background: var(--color-bg-accent-soft, rgba(190,30,45,.08)); color: var(--color-primary); margin-bottom: var(--space-2); }
+  .prod-card__name { display: inline-flex; align-items: center; gap: var(--space-2); font-family: var(--font-sans); font-weight: var(--font-weight-semibold); font-size: var(--font-size-lead); }
+  .prod-card__badge { font-size: var(--font-size-caption); font-weight: var(--font-weight-medium); color: var(--color-primary); background: var(--color-bg-accent-soft, rgba(190,30,45,.08)); padding: 1px var(--space-2); border-radius: var(--radius-full); }
+  .prod-card__link { display: inline-flex; align-items: center; gap: var(--space-1); margin-top: var(--space-2); color: var(--color-text-accent); font-weight: var(--font-weight-medium); font-size: var(--font-size-small); }
+  @media (max-width: 860px) { .prod-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .prod-grid { grid-template-columns: 1fr; } }
+</style>

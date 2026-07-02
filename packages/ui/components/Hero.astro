@@ -37,9 +37,10 @@ interface Props {
   space?: 'sm' | 'md' | 'lg';
   usp?: (string | { text: string; icon?: string })[];   // klíčové body → proužek uvnitř hero; ikonu lze určit per bod
   slides?: HeroSlide[];  // rotující eyebrow+nadpis+lead+obrázek; actions a usp zůstávají fixní
+  carouselLabel?: string;  // aria-label přepínače (teček) carouselu; default česky
 }
 
-const { eyebrow, title, lead, align = 'left', background = 'default', space = 'lg', usp = [], slides = [] } = Astro.props;
+const { eyebrow, title, lead, align = 'left', background = 'default', space = 'lg', usp = [], slides = [], carouselLabel = 'Přepnout sdělení' } = Astro.props;
 const uspItems = usp.map((u) => (typeof u === 'string' ? { text: u, icon: 'lucide:check' } : { text: u.text, icon: u.icon ?? 'lucide:check' }));
 
 const useSlides = slides.length > 0;
@@ -102,7 +103,7 @@ const innerClasses = [
       )}
 
       {isCarousel && (
-        <div class="hero__dots" role="tablist" aria-label="Přepnout sdělení">
+        <div class="hero__dots" role="tablist" aria-label={carouselLabel}>
           {slides.map((_, i) => (
             <button type="button" role="tab" id={`hero-tab-${i}`} aria-selected={i === 0 ? 'true' : 'false'} aria-controls={`hero-panel-${i}`} class={`hero__dot${i === 0 ? ' is-active' : ''}`} data-hero-dot={i} aria-label={`Sdělení ${i + 1}`}></button>
           ))}

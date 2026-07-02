@@ -1,0 +1,41 @@
+---
+/**
+ * Solutions — POS & hotel systems (piano.cz/en/reseni/pokladna).
+ * Content mirrors CS page piano.cz/reseni/pokladna.
+ */
+import Base from '../../../layouts/Base.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Button from '@piano/ui/components/Button.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import { locPath } from '../../../i18n';
+
+const benefits = [
+  { icon: 'lucide:bar-chart-3', title: 'A clear overview above all', text: 'A complete overview of revenue, costs and inventory is the fundamental building block of success. Make your business more efficient and your life easier with a reliable system backed by regular service and customer support.' },
+  { icon: 'lucide:monitor-smartphone', title: 'A quality working environment', text: 'Finding a user-friendly, intuitive POS system that employees will enjoy working with is like looking for a needle in a haystack. Just as the owner needs an overview of the whole business, staff need complete visibility of what is happening on the floor, and thereby increase order values.' },
+];
+---
+
+<Base locale="en"
+      title="POS and hotel systems, a solution | Piano"
+      description="We bring your operation under control. An overview of revenue, costs and inventory in one place, with service and support.">
+
+  <Hero eyebrow="Solution" background="warm"
+        lead="Get an overview of what is happening in your business and where you are spending more than you should."
+        usp={[{ text: 'Everything under one roof', icon: 'lucide:layers' }, { text: '6,000+ businesses', icon: 'lucide:store' }, { text: '10+ tools', icon: 'lucide:grid-2x2' }]}>
+    <Heading slot="title" as="h1" size="display">We bring your operation under control</Heading>
+    <Fragment slot="actions">
+      <Button href="#poptavka">Book a free consultation</Button>
+      <Button href={locPath('/produkty', 'en')} variant="secondary">Explore the tools</Button>
+    </Fragment>
+    <img slot="media" src="/images/cat-pokladna.webp" alt="POS and hotel systems, Piano" width="1100" height="733" />
+  </Hero>
+
+  <USPGrid eyebrow="How we solve it" title="Your operation under control"
+           items={benefits} columns={2} background="default" minItemWidth="320px" />
+
+  <LeadForm id="poptavka" variant="full" locale="en"
+            title="Get a POS system built just for you"
+            lead="Contact us for a free consultation and we will design a solution tailored to your operation." />
+</Base>

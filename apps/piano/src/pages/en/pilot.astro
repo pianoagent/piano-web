@@ -1,0 +1,190 @@
+---
+/**
+ * Pilot — English product page piano.cz/en/pilot.
+ * Zrcadlí CS stránku (pilot.astro) se stejným layoutem/CSS, přeložený obsah.
+ */
+import Base from '../../layouts/Base.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+
+const steps = [
+  { title: 'Connect your system', text: 'Set up in 5 minutes with no complicated installation (Septim, POS Expert, Harsys), or run without a POS in the LITE version.' },
+  { title: 'See your data in real time', text: 'Revenue, best-selling items, stock levels, all in one app, with no switching between systems.' },
+  { title: 'AI advises you on what to do better', text: 'The AI assistant analyzes your data and suggests how to increase margins, cut costs or bring in more guests.' },
+];
+
+const benefits = [
+  { title: 'Freedom and peace of mind', text: 'The owner has an overview of revenue and inventory from the beach or from home in real time.' },
+  { title: 'The end of the administrative nightmare', text: 'Automatic scanning of paper receipts saves hours of manual retyping.' },
+  { title: 'Fast return on investment', text: 'Even a 1% improvement in efficiency at a typical 10% margin significantly increases net profit.' },
+];
+
+const features = [
+  { icon: 'lucide:line-chart', title: 'Revenue overview', text: 'Daily, weekly and monthly trends on one screen. Compare with the previous period instantly.' },
+  { icon: 'lucide:pie-chart', title: 'Sales analysis', text: 'Your best-selling and weakest items and the structure of your revenue. You know exactly what makes you money.' },
+  { icon: 'lucide:boxes', title: 'Stock levels', text: 'Inventory control, fluctuations and better purchase planning. No more surprises at stocktaking.' },
+  { icon: 'lucide:message-circle', title: 'AI assistant', text: '“What sells for more nearby?” “Where am I losing the most margin?” You ask, the AI answers.' },
+  { icon: 'lucide:scan-line', title: 'Receipt scanning', text: 'Take a photo of a delivery note, Pilot recognizes the items and VAT and transfers them into the system. No retyping.' },
+  { icon: 'lucide:map-pin', title: 'Local market data', text: 'Compare prices and demand in your area, so you know where you have room to improve.' },
+];
+---
+
+<Base locale="en"
+      title="Piano Pilot, your whole operation in a mobile app"
+      description="Pilot is a mobile app for restaurant and bar owners. Revenue, sales, inventory and AI recommendations in real time, one place to make decisions.">
+
+  <Hero eyebrow="Piano Pilot" background="primary"
+        lead="A mobile app for restaurant owners and bar and bistro managers. One app, one overview, one place to make decisions, anytime and anywhere.">
+    <Heading slot="title" as="h1" size="display" color="on-dark">Running on gut feeling is expensive. With <em>data</em> you decide better.</Heading>
+    <Fragment slot="actions">
+      <Button href="#poptavka">I want to try it</Button>
+    </Fragment>
+    <img slot="media" src="/images/pilot-app.webp" alt="Piano Pilot, costs and revenue in a mobile app" width="694" height="574" />
+  </Hero>
+
+  <!-- Jak to funguje — tři číslované kroky + pilulky -->
+  <Section background="default" space="lg">
+    <div class="head-center">
+      <Text size="label" color="accent">How it works</Text>
+      <Heading as="h2" size="h2">Three steps to an overview of your operation</Heading>
+    </div>
+    <ol class="nsteps">
+      {steps.map((s, i) => (
+        <li class="nstep">
+          <span class="nstep__num">{i + 1}</span>
+          <Heading as="h3" size="h3">{s.title}</Heading>
+          <Text color="muted">{s.text}</Text>
+        </li>
+      ))}
+    </ol>
+    <div class="pills">
+      <span class="pill">End-to-end encryption</span>
+      <span class="pill">Handled with care</span>
+    </div>
+  </Section>
+
+  <!-- Benefity + fotka provozní -->
+  <Section background="warm" space="lg">
+    <div class="ben">
+      <ol class="ben__list">
+        {benefits.map((b, i) => (
+          <li class="ben__item">
+            <span class="ben__num">{i + 1}</span>
+            <div>
+              <Heading as="h3" size="h3">{b.title}</Heading>
+              <Text color="muted">{b.text}</Text>
+            </div>
+          </li>
+        ))}
+      </ol>
+      <figure class="ben__photo"><img src="/images/pilot-chef.webp" alt="A manager using the Piano Pilot app" width="640" height="828" loading="lazy" /></figure>
+    </div>
+  </Section>
+
+  <USPGrid eyebrow="Key features" title="Everything you need for smart decisions"
+           items={features} background="default" />
+
+  <!-- Dvě verze produktu -->
+  <Section background="warm" space="lg">
+    <Heading as="h2" size="h2" align="center">Two product versions</Heading>
+    <Text size="lead" color="muted" align="center" class="pilot-sub">
+      Choose the plan that suits you. Start for free and upgrade when you need more.
+    </Text>
+    <div class="plans">
+      <article class="plan plan--pro">
+        <Text size="label" color="on-dark">With a connected Piano POS</Text>
+        <Heading as="h3" size="h3" color="on-dark">Pilot Pro</Heading>
+        <ul class="plan__list">
+          <li>Revenue and sales in real time</li>
+          <li>Inventory connected to the POS</li>
+          <li>Premium AI modules: chat over your data, receipt scanning, trends</li>
+        </ul>
+        <Button href="#poptavka" full>I want Pilot Pro</Button>
+      </article>
+      <article class="plan">
+        <Text size="label" color="accent">Works on its own, without our POS</Text>
+        <Heading as="h3" size="h3">Pilot Lite</Heading>
+        <ul class="plan__list">
+          <li>Market data and competitor overview</li>
+          <li>Trends and price comparison</li>
+          <li>Receipt scanning</li>
+        </ul>
+        <Button href="#poptavka" variant="secondary" full>I want Pilot Lite</Button>
+      </article>
+    </div>
+  </Section>
+
+  <!-- Reference přes fotku interiéru -->
+  <section class="testi">
+    <img class="testi__bg" src="/images/pilot-bg.webp" alt="" loading="lazy" />
+    <div class="testi__inner">
+      <Text size="label" color="on-dark-muted">What our clients say</Text>
+      <Text size="lead" color="on-dark" class="testi__quote">
+        “I use Kukátko every day. Quickly and clearly, I have data on revenue
+        and sales frequency in one place, which used to be a hassle to obtain.
+        Now I am testing GastroPilot and looking forward to further development.”
+      </Text>
+      <Text color="on-dark" weight="semibold">Přemysl Hejda</Text>
+      <Text size="small" color="on-dark-muted">owner, Fresherie</Text>
+    </div>
+  </section>
+
+  <LeadForm id="poptavka" variant="full" locale="en"
+            title="Take your business to the next level"
+            lead="Get in touch and we will put together an offer tailored to your needs." />
+
+</Base>
+
+<style>
+  .head-center { text-align: center; max-width: 640px; margin: 0 auto var(--space-7); }
+  .head-center :global(h2) { margin-top: var(--space-2); }
+
+  /* Číslované kroky */
+  .nsteps { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); max-width: 980px; margin: 0 auto; }
+  .nstep { display: flex; flex-direction: column; gap: var(--space-2); }
+  .nstep__num { display: grid; place-items: center; width: 40px; height: 40px; background: var(--color-primary); color: var(--color-text-on-dark); border-radius: var(--radius-full); font-weight: var(--font-weight-semibold); margin-bottom: var(--space-2); }
+  .pills { display: flex; flex-wrap: wrap; gap: var(--space-3); justify-content: center; margin-top: var(--space-7); }
+  .pill { display: inline-flex; align-items: center; padding: var(--space-2) var(--space-4); background: var(--color-bg-alt); border: 1px solid var(--color-border); border-radius: var(--radius-full); font-size: var(--font-size-small); color: var(--color-text-muted); }
+
+  /* Benefity + fotka */
+  .ben { display: grid; grid-template-columns: 1fr 0.8fr; gap: var(--space-8); align-items: center; }
+  .ben__list { list-style: none; display: flex; flex-direction: column; gap: var(--space-6); }
+  .ben__item { display: grid; grid-template-columns: 40px 1fr; gap: var(--space-4); align-items: start; }
+  .ben__item :global(h3) { margin-bottom: var(--space-1); }
+  .ben__num { display: grid; place-items: center; width: 40px; height: 40px; background: var(--color-primary); color: var(--color-text-on-dark); border-radius: var(--radius-full); font-weight: var(--font-weight-semibold); }
+  .ben__photo { margin: 0; justify-self: center; }
+  .ben__photo img { display: block; width: 100%; max-width: 360px; height: auto; }
+
+  /* Verze */
+  .pilot-sub { margin-top: var(--space-3); }
+  .plans { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-5); margin-top: var(--space-7); }
+  .plan { display: flex; flex-direction: column; gap: var(--space-3); padding: var(--space-6); background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); }
+  .plan--pro { background: var(--color-primary-bg); border-color: transparent; }
+  .plan--pro .plan__list li { color: var(--color-text-on-dark-muted); }
+  .plan--pro .plan__list li::before { color: var(--color-text-on-dark); }
+  .plan__list { list-style: none; display: flex; flex-direction: column; gap: var(--space-2); margin: var(--space-2) 0 var(--space-4); }
+  .plan__list li { position: relative; padding-left: var(--space-5); color: var(--color-text-muted); }
+  .plan__list li::before { content: "✓"; position: absolute; left: 0; color: var(--color-text-accent); font-weight: 700; }
+  .plan :global(.btn) { margin-top: auto; }
+
+  /* Reference přes fotku */
+  .testi { position: relative; display: grid; place-items: center; overflow: hidden; min-height: 420px; }
+  .testi__bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .testi__inner { position: relative; max-width: 760px; padding: var(--space-9) var(--container-pad); text-align: center; display: flex; flex-direction: column; gap: var(--space-2); align-items: center; }
+  .testi__inner::before { content: ""; position: absolute; inset: -100vw -100vw; background: rgba(17, 21, 27, 0.6); z-index: -1; }
+  .testi__quote { margin: var(--space-3) 0; }
+
+  @media (max-width: 880px) {
+    .nsteps { grid-template-columns: 1fr; gap: var(--space-5); }
+    .ben { grid-template-columns: 1fr; gap: var(--space-6); }
+    .ben__photo { order: -1; }
+  }
+  @media (max-width: 720px) {
+    .plans { grid-template-columns: 1fr; }
+  }
+</style>

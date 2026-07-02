@@ -1,12 +1,10 @@
 ---
 /**
- * Piano — homepage piano.cz
- * Spojení nejlepšího z původního WP webu (obsah: pain pointy, kategorie,
- * ekosystém, reference, FAQ) a referenčního webu (silný hero, stats, logo wall).
- * Vše ze sdílených komponent @piano/ui; produkty žijící na piano.cz odkazují
- * dovnitř, ostatní na demo <produkt>-web.pages.dev.
+ * Piano — English homepage (piano.cz/en/).
+ * Zrcadlí CS homepage (index.astro) se stejným layoutem/CSS, přeložený obsah.
+ * Interní produktové odkazy vedou přes locPath (upgradují se, jak přibývají EN stránky).
  */
-import Base from '../layouts/Base.astro';
+import Base from '../../layouts/Base.astro';
 import Section from '@piano/ui/components/Section.astro';
 import Hero from '@piano/ui/components/Hero.astro';
 import Heading from '@piano/ui/components/Heading.astro';
@@ -16,83 +14,86 @@ import Icon from '@piano/ui/components/Icon.astro';
 import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import LogoWall from '@piano/ui/components/LogoWall.astro';
+import { locPath } from '../../i18n';
+
+const L = 'en' as const;
 
 const stats = [
-  { num: '6 000+', lbl: 'podniků v ČR nám důvěřuje' },
-  { num: '36 mld Kč', lbl: 'proteče přes naše nástroje ročně' },
-  { num: '30 let', lbl: 'inovací v gastronomii' },
-  { num: '10+', lbl: 'propojených nástrojů' },
+  { num: '6,000+', lbl: 'businesses in Czechia trust us' },
+  { num: 'CZK 36bn', lbl: 'flows through our tools every year' },
+  { num: '30 years', lbl: 'of innovation in hospitality' },
+  { num: '10+', lbl: 'connected tools' },
 ];
 
-// Novinky od Piana — vlastní vlajkové produkty (spotlight hned pod hero)
+// New from Piano — flagship in-house products
 const novinky = [
-  { logo: '/brand/pilot_logo.svg', alt: 'Piano Pilot', image: '/images/hero-pilot.webp', text: 'Celý provoz v jedné mobilní aplikaci. Tržby, sklad i AI doporučení v reálném čase.', href: '/pilot' },
-  { logo: '/brand/terminal_logo.svg', alt: 'Piano Terminál', image: '/images/hero-terminal.webp', text: 'Platební Terminál, který platbou kartou teprve začíná. Data o hostech a platby dodavatelům.', href: '/terminal' },
+  { logo: '/brand/pilot_logo.svg', alt: 'Piano Pilot', image: '/images/hero-pilot.webp', text: 'Your entire operation in one mobile app. Sales, inventory and AI recommendations in real time.', href: '/pilot' },
+  { logo: '/brand/terminal_logo.svg', alt: 'Piano Terminal', image: '/images/hero-terminal.webp', text: 'A payment Terminal where the card payment is just the beginning. Guest data and payments to suppliers.', href: '/terminal' },
 ];
 
-// Hero — rotující sdělení (mění se nadpis + lead + obrázek; CTA a USP zůstávají)
+// Hero — rotating message (title + lead + image change; CTA and USP stay)
 const heroSlides = [
   {
-    eyebrow: 'Technologie pro gastronomii a hotely',
-    title: 'Všechny klíčové nástroje<br>pro pohostinství<br>pod jednou střechou',
-    lead: 'Piano představuje sehraný orchestr nástrojů, který vyladí váš provoz, ušetří vám čas a zvýší zisk. Ať už provozujete restauraci, kavárnu, bistro, jídelnu či hotel, máme pro vás řešení.',
+    eyebrow: 'Technology for restaurants and hotels',
+    title: 'Every key tool<br>for hospitality<br>under one roof',
+    lead: 'Piano is a well-tuned orchestra of tools that fine-tunes your operation, saves you time and grows your profit. Whether you run a restaurant, café, bistro, canteen or hotel, we have a solution for you.',
     image: '/images/home-hero-dark.webp',
-    imageAlt: 'Piano, pokladna, terminál a mobilní aplikace',
+    imageAlt: 'Piano POS, terminal and mobile app',
   },
   {
-    eyebrow: 'Novinka: Piano Pilot',
-    title: 'Všechny přehledy<br>o vašem provozu<br>v jedné aplikaci',
-    lead: 'Tržby, sklad i AI doporučení v reálném čase. S Pilotem máte přehled o podniku odkudkoliv, přímo z telefonu.',
+    eyebrow: 'New: Piano Pilot',
+    title: 'Every insight<br>into your operation<br>in one app',
+    lead: 'Sales, inventory and AI recommendations in real time. With Pilot you have an overview of your business from anywhere, right from your phone.',
     image: '/images/hero-pilot.webp',
-    imageAlt: 'Piano Pilot, mobilní aplikace pro provoz',
+    imageAlt: 'Piano Pilot, the mobile app for operations',
   },
   {
-    eyebrow: 'Novinka: Piano Terminál',
-    title: 'Terminál,<br>který platbou<br>teprve začíná',
-    lead: 'Data o hostech a automatické platby dodavatelům. Z obyčejného platebního terminálu děláme chytrý nástroj pro celý provoz.',
+    eyebrow: 'New: Piano Terminal',
+    title: 'A terminal<br>where the payment<br>is just the start',
+    lead: 'Guest data and automatic payments to suppliers. We turn an ordinary payment terminal into a smart tool for your whole operation.',
     image: '/images/hero-terminal.webp',
-    imageAlt: 'Piano Terminál, platební terminál',
+    imageAlt: 'Piano Terminal, the payment terminal',
   },
 ];
 
 const pains = [
-  { icon: 'lucide:user-x', title: 'Nedostatek personálu', text: 'Neustálé hledání nových lidí je drahé a únavné. Kvalitních lidí je čím dál méně.' },
-  { icon: 'lucide:clock', title: 'Úbytek zákazníků', text: 'Dlouhé čekání na objednání nebo platbu znamená ztrátu tržeb.' },
-  { icon: 'lucide:file-stack', title: 'Zdlouhavé papírování', text: 'Nástroje a systémy nespolupracují, nebo neumí to, co potřebujete.' },
-  { icon: 'lucide:trending-up', title: 'Rostoucí ceny', text: 'Marže se zmenšují, ceny se špatně kontrolují, dodavatelé zdražují.' },
+  { icon: 'lucide:user-x', title: 'Staff shortages', text: 'Constantly hunting for new people is costly and exhausting. Quality staff are ever harder to find.' },
+  { icon: 'lucide:clock', title: 'Losing customers', text: 'Long waits to order or pay mean lost revenue.' },
+  { icon: 'lucide:file-stack', title: 'Tedious paperwork', text: 'Tools and systems do not talk to each other, or cannot do what you need.' },
+  { icon: 'lucide:trending-up', title: 'Rising costs', text: 'Margins shrink, prices are hard to control, suppliers keep raising them.' },
 ];
 
 const categories = [
-  { img: '/images/cat-nakupy.webp', title: 'Nákupy a sklady', headline: 'Nakupujte chytře, skladujte přesně', text: 'Skladové hospodářství, automatické naskladňování z dodacích listů a lepší ceny u dodavatelů, vše propojené.', items: ['Skladové hospodářství', 'Automatické naskladňování', 'Lepší ceny u dodavatelů'] },
-  { img: '/images/cat-personal.webp', title: 'Lidé a personál', headline: 'Personál, který nechybí', text: 'Více obsloužených hostů, plánování směn i nábor brigádníků na pár kliknutí.', items: ['Více obsloužených hostů', 'Plánování směn', 'Nábor personálu'] },
-  { img: '/images/cat-pokladna.webp', title: 'Pokladní a manažerské systémy', headline: 'Provoz pod kontrolou', text: 'Pokladní systémy, reporting dat a management hotelů, přehled o všem na jednom místě.', items: ['Reporting dat', 'Pokladní systémy', 'Management hotelů'] },
-  { img: '/images/cat-platby.webp', title: 'Platby a komunikace s hosty', headline: 'Hosté, kteří se vracejí', text: 'Rychlé platby, rezervace, věrnostní program a komunikace se zákazníkem.', items: ['Komunikace se zákazníkem', 'Rezervační systém', 'Věrnostní program'] },
+  { img: '/images/cat-nakupy.webp', title: 'Purchasing & inventory', headline: 'Buy smart, stock precisely', text: 'Inventory management, automatic stocking from delivery notes and better supplier prices, all connected.', items: ['Inventory management', 'Automatic stocking', 'Better supplier prices'] },
+  { img: '/images/cat-personal.webp', title: 'People & staff', headline: 'Staff who are never missing', text: 'More guests served, shift planning and hiring part-timers in a few clicks.', items: ['More guests served', 'Shift planning', 'Staff recruitment'] },
+  { img: '/images/cat-pokladna.webp', title: 'POS & management systems', headline: 'Your operation under control', text: 'POS systems, data reporting and hotel management, an overview of everything in one place.', items: ['Data reporting', 'POS systems', 'Hotel management'] },
+  { img: '/images/cat-platby.webp', title: 'Payments & guest communication', headline: 'Guests who keep coming back', text: 'Fast payments, reservations, loyalty program and customer communication.', items: ['Customer communication', 'Reservation system', 'Loyalty program'] },
 ];
 
-// Ekosystém — odkazy: piano-hosté dovnitř (/), ostatní na ostré produkční domény
+// Ecosystem — Piano-hosted products go inside (locPath), others to production domains
 const ecosystem = [
-  { name: 'Piano Pilot', logo: '/brand/pilot_logo.svg', desc: 'Celý provoz v mobilní aplikaci s daty a AI.', href: '/pilot', badge: 'Novinka' },
-  { name: 'Piano Terminál', logo: '/brand/terminal_logo.svg', desc: 'Terminál, který platbou teprve začíná, data o hostech i platby dodavatelům.', href: '/terminal', badge: 'Novinka' },
-  { name: 'Septim', logo: '/brand/septim_logo.svg', desc: 'Nejrespektovanější pokladní a provozní systém na trhu.', href: 'https://www.septim.cz' },
-  { name: 'Qerko', logo: '/brand/qerko_logo.svg', desc: 'Nejpohodlnější platba u stolu a komunikace s hosty.', href: 'https://www.qerko.com' },
-  { name: 'Pecosta', logo: '/brand/pecosta_logo.svg', desc: 'Aukční nákupy surovin, levněji až o 16 %.', href: 'https://www.pecosta.cz' },
-  { name: 'Grason', logo: '/brand/grason_logo.svg', desc: 'Brigádníci, plánování směn a papírování v jedné appce.', href: 'https://www.grason.cz' },
-  { name: 'Autset', logo: '/brand/autset_logo.svg', desc: 'Automatické naskladňování z dodacích listů.', href: 'https://autset.com' },
-  { name: 'ABX Harsys', logo: '/brand/abx_logo.svg', desc: 'Multifunkční pokladní systémy a pokladny.', href: 'https://www.abxharsys.cz' },
-  { name: 'Savarin', logo: '/brand/savarin_logo.svg', desc: 'Komplexní řešení pro stravovací a ubytovací provozy.', href: 'https://cominn.cz' },
-  { name: 'Protel', logo: '/brand/protel_logo.svg', desc: 'Software pro efektivní řízení hotelů.', href: 'https://www.protelsystems.cz' },
+  { name: 'Piano Pilot', logo: '/brand/pilot_logo.svg', desc: 'Your whole operation in a mobile app with data and AI.', href: '/pilot', badge: 'New' },
+  { name: 'Piano Terminal', logo: '/brand/terminal_logo.svg', desc: 'A terminal where the payment is just the start, guest data and supplier payments.', href: '/terminal', badge: 'New' },
+  { name: 'Septim', logo: '/brand/septim_logo.svg', desc: 'The most respected POS and operations system on the market.', href: 'https://www.septim.cz' },
+  { name: 'Qerko', logo: '/brand/qerko_logo.svg', desc: 'The most convenient table payment and guest communication.', href: 'https://www.qerko.com' },
+  { name: 'Pecosta', logo: '/brand/pecosta_logo.svg', desc: 'Auction-based ingredient purchasing, up to 16% cheaper.', href: 'https://www.pecosta.cz' },
+  { name: 'Grason', logo: '/brand/grason_logo.svg', desc: 'Part-timers, shift planning and paperwork in one app.', href: 'https://www.grason.cz' },
+  { name: 'Autset', logo: '/brand/autset_logo.svg', desc: 'Automatic stocking from delivery notes.', href: 'https://autset.com' },
+  { name: 'ABX Harsys', logo: '/brand/abx_logo.svg', desc: 'Multifunctional POS systems and registers.', href: 'https://www.abxharsys.cz' },
+  { name: 'Savarin', logo: '/brand/savarin_logo.svg', desc: 'Complete solution for food service and accommodation.', href: 'https://cominn.cz' },
+  { name: 'Protel', logo: '/brand/protel_logo.svg', desc: 'Software for efficient hotel management.', href: 'https://www.protelsystems.cz' },
 ];
 
 const benefits = [
-  { icon: 'lucide:lightbulb', title: 'Více času na kreativitu', text: 'Soustřeďte se na nové nápady a cashflow, zatímco tým se věnuje hostům.' },
-  { icon: 'lucide:line-chart', title: 'Rychlejší finanční rozhodování', text: 'Přehled cen a nákladů. S námi ušetříte v průměru 16 %.' },
-  { icon: 'lucide:users-round', title: 'Spokojenější personál', text: 'Přístup k široké databázi profesí, když vám někdo vypadne, i nastálo.' },
+  { icon: 'lucide:lightbulb', title: 'More time for creativity', text: 'Focus on new ideas and cashflow while your team looks after guests.' },
+  { icon: 'lucide:line-chart', title: 'Faster financial decisions', text: 'A clear view of prices and costs. On average our customers save 16%.' },
+  { icon: 'lucide:users-round', title: 'Happier staff', text: 'Access to a broad talent pool when someone drops out, or for permanent hires.' },
 ];
 
 const testimonials = [
-  { quote: 'Provozní systém Septim je zásadní součástí restaurace FIELD. Díky němu mám jistotu, že celý provoz běží stabilně a efektivně.', author: 'Radek Kašpárek', role: 'Šéfkuchař a zakladatel FIELD' },
-  { quote: 'Na Septimu mi nejvíce vyhovuje, že si mohu nadefinovat jakoukoli sestavu a okamžitě dostanu vyhodnocení. Mám pak naprostý přehled.', author: 'Václav Vojíř', role: "Majitel Bugsy's baru" },
-  { quote: 'Když dokážeme proces automatizovat, vše na jednom portálu, porovnání cen od konkurence, je to úspora času a ve finále i peněz.', author: 'Lukáš Pytloun', role: 'CEO Pytloun Hotels' },
+  { quote: 'The Septim operations system is a crucial part of FIELD. Thanks to it I know the whole operation runs stably and efficiently.', author: 'Radek Kašpárek', role: 'Head chef and founder of FIELD' },
+  { quote: 'What I like most about Septim is that I can define any report and get the results instantly. I have a complete overview.', author: 'Václav Vojíř', role: "Owner of Bugsy's Bar" },
+  { quote: 'When we can automate a process, everything in one portal, comparing competitors’ prices, it saves time and ultimately money.', author: 'Lukáš Pytloun', role: 'CEO of Pytloun Hotels' },
 ];
 
 const refLogos = [
@@ -103,10 +104,10 @@ const refLogos = [
 ];
 
 const faqs = [
-  { q: 'Co tvoří skupinu Piano?', a: 'Uskupení chytrých nástrojů, které společně digitalizují a zefektivňují podnikání v gastronomii, hotelnictví a maloobchodu, Septim, Qerko, Grason, POS Experts, Savarin, Harsys, Protel a Pecosta. Každý funguje samostatně, společně tvoří nejkomplexnější řešení pro pohostinství v Česku.' },
-  { q: 'Proč bych si měl vybrat zrovna vaše produkty?', a: 'Naše produkty používá přes 6 000 podniků a ročně přes ně proteče 36 miliard Kč. Od pokladen přes platby a řízení personálu po sklady a marketing, šetří čas, minimalizují chyby a zvyšují zisk, ať máte kavárnu, síť restaurací nebo hotel.' },
-  { q: 'Kolik budu mít smluv a kontaktů?', a: 'Zatím se pro vás nic nemění, stejný obchodní zástupce i podmínky. Smlouvy a kontakty budeme postupně sjednocovat, vždy s vaším souhlasem a ve váš prospěch.' },
-  { q: 'Co mám dělat, když chci další produkty?', a: 'Ozvěte se na +420 773 798 758 nebo info@piano.cz, společně projdeme, co vás zajímá, a najdeme nejlepší řešení pro váš podnik.' },
+  { q: 'What makes up the Piano group?', a: 'A group of smart tools that together digitalize and streamline businesses in hospitality, hotels and retail: Septim, Qerko, Grason, POS Experts, Savarin, Harsys, Protel and Pecosta. Each works on its own; together they form the most complete solution for hospitality in Czechia.' },
+  { q: 'Why should I choose your products?', a: 'Our products are used by over 6,000 businesses and more than CZK 36 billion flows through them each year. From POS through payments and staff management to inventory and marketing, they save time, minimize errors and grow profit, whether you run a café, a restaurant chain or a hotel.' },
+  { q: 'How many contracts and contacts will I have?', a: 'Nothing changes for you for now, the same sales rep and the same terms. We will gradually consolidate contracts and contacts, always with your consent and to your benefit.' },
+  { q: 'What should I do if I want more products?', a: 'Call +420 773 798 758 or email info@piano.cz and we will go through what interests you and find the best fit for your business.' },
 ];
 
 const faqSchema = {
@@ -115,32 +116,33 @@ const faqSchema = {
 };
 ---
 
-<Base title="Všechny klíčové nástroje pro pohostinství pod jednou střechou | Piano"
-      description="Piano nabízí technologie pro restaurace a hotely od pokladních systémů po personál a marketing vašeho podniku."
+<Base locale="en"
+      title="Every key tool for hospitality under one roof | Piano"
+      description="Piano provides technology for restaurants and hotels, from POS systems to staff management and marketing for your business."
       schema={faqSchema}>
 
-  <Hero background="warm" slides={heroSlides}
-        usp={[{ text: '6 000+ podniků', icon: 'lucide:store' }, { text: '36 mld Kč ročně', icon: 'lucide:banknote' }, { text: '30 let inovací', icon: 'lucide:calendar-check' }]}>
+  <Hero background="warm" slides={heroSlides} carouselLabel="Switch message"
+        usp={[{ text: '6,000+ venues', icon: 'lucide:store' }, { text: 'CZK 36bn per year', icon: 'lucide:banknote' }, { text: '30 years of innovation', icon: 'lucide:calendar-check' }]}>
     <Fragment slot="actions">
-      <Button href="#poptavka">Domluvit konzultaci</Button>
-      <Button href="#ekosystem" variant="secondary">Prozkoumat ekosystém</Button>
+      <Button href="#poptavka">Book a consultation</Button>
+      <Button href="#ekosystem" variant="secondary">Explore the ecosystem</Button>
     </Fragment>
   </Hero>
 
-  <!-- NOVINKY OD PIANA — spotlight vlastních produktů -->
+  <!-- NEW FROM PIANO — in-house product spotlight -->
   <Section background="primary" space="lg">
     <div class="novinky__head">
-      <Heading as="h2" size="h2" color="on-dark" align="center">Novinky z Piana</Heading>
-      <Text color="on-dark-muted" align="center" class="novinky__sub">Vyvinuto přímo pro české pohostinství.</Text>
+      <Heading as="h2" size="h2" color="on-dark" align="center">New from Piano</Heading>
+      <Text color="on-dark-muted" align="center" class="novinky__sub">Built specifically for Czech hospitality.</Text>
     </div>
     <div class="novinky__grid">
       {novinky.map((n) => (
-        <a class="nov__card" href={n.href}>
+        <a class="nov__card" href={locPath(n.href, L)}>
           <div class="nov__media"><img src={n.image} alt={n.alt} loading="lazy" /></div>
           <div class="nov__body">
             <img class="nov__logo" src={n.logo} alt={n.alt} loading="lazy" />
             <Text size="small" color="muted">{n.text}</Text>
-            <span class="nov__link">Zjistit víc <Icon name="lucide:arrow-right" size="xs" /></span>
+            <span class="nov__link">Learn more <Icon name="lucide:arrow-right" size="xs" /></span>
           </div>
         </a>
       ))}
@@ -148,22 +150,22 @@ const faqSchema = {
   </Section>
 
   <!-- LOGO WALL -->
-  <LogoWall background="alt" label="Víc jak 6 000 podniků spoléhá na nástroje od Piana" logos={refLogos} />
+  <LogoWall background="alt" label="More than 6,000 businesses rely on Piano tools" logos={refLogos} />
 
   <!-- PAIN POINTS -->
-  <USPGrid eyebrow="Znáte to?" title="Co dnes brzdí váš provoz"
+  <USPGrid eyebrow="Sound familiar?" title="What is holding your operation back"
            items={pains} columns={4} background="default" minItemWidth="220px" />
 
-  <!-- KATEGORIE NÁSTROJŮ — sticky scroll -->
+  <!-- TOOL CATEGORIES — sticky scroll -->
   <section class="solscroll" data-solscroll>
     <div class="solscroll__pin" style={`height: ${(categories.length + 1) * 100}vh;`}>
       <div class="solscroll__inner">
         <div class="solscroll__content">
 
-          <!-- Levý sloupec: VEŠKERÝ text (přepínač + rozbalený detail) -->
+          <!-- Left column: ALL text (switcher + expanded detail) -->
           <div class="solscroll__text-col">
-            <Text size="label" color="accent">Každý provoz je jedinečný</Text>
-            <Heading as="h2" size="h3" class="solscroll__title">Široká paleta nástrojů, která se přizpůsobí vám</Heading>
+            <Text size="label" color="accent">Every operation is unique</Text>
+            <Heading as="h2" size="h3" class="solscroll__title">A broad palette of tools that adapts to you</Heading>
 
             <nav class="solscroll__acc">
               {categories.map((c, i) => (
@@ -184,7 +186,7 @@ const faqSchema = {
             </div>
           </div>
 
-          <!-- Pravý sloupec: jen velká fotka -->
+          <!-- Right column: large photo only -->
           <div class="solscroll__media">
             {categories.map((c, i) => (
               <img class:list={['solscroll__photo', i === 0 && 'is-active']} data-photo src={c.img} alt={c.title} loading="lazy" width="900" height="675" />
@@ -196,28 +198,28 @@ const faqSchema = {
     </div>
   </section>
 
-  <!-- EKOSYSTÉM -->
+  <!-- ECOSYSTEM -->
   <Section id="ekosystem" background="default" space="lg">
     <div class="head-center">
-      <Text size="label" color="accent" align="center">30 let inovací</Text>
-      <Heading as="h2" size="h2" align="center">Sehraný orchestr pro snadný provoz</Heading>
-      <Text size="lead" color="muted" align="center" class="head-sub">Jeden propojený ekosystém místo deseti nesourodých aplikací. Nástroje Piana spolu mluví a táhnou váš provoz stejným směrem.</Text>
+      <Text size="label" color="accent" align="center">30 years of innovation</Text>
+      <Heading as="h2" size="h2" align="center">A well-tuned orchestra for effortless operations</Heading>
+      <Text size="lead" color="muted" align="center" class="head-sub">One connected ecosystem instead of ten disjointed apps. Piano tools talk to each other and pull your operation in the same direction.</Text>
     </div>
     <div class="eco">
       {ecosystem.map((p) => (
-        <a class="eco__card" href={p.href}>
+        <a class="eco__card" href={locPath(p.href, L)} target={p.href.startsWith('http') ? '_blank' : undefined} rel={p.href.startsWith('http') ? 'noopener noreferrer' : undefined}>
           {p.badge && <span class="eco__badge">{p.badge}</span>}
           <img class="eco__logo" src={p.logo} alt={p.name} loading="lazy" />
           <span class="eco__desc">{p.desc}</span>
-          <span class="eco__more">Zjistit víc <Icon name="lucide:arrow-right" size="xs" /></span>
+          <span class="eco__more">Learn more <Icon name="lucide:arrow-right" size="xs" /></span>
         </a>
       ))}
     </div>
   </Section>
 
-  <!-- TESTIMONIALY -->
+  <!-- TESTIMONIALS -->
   <Section background="invert" space="lg">
-    <Heading as="h2" size="h2" align="center" color="on-dark">Věří nám ti nejlepší v oboru</Heading>
+    <Heading as="h2" size="h2" align="center" color="on-dark">The best in the industry trust us</Heading>
     <div class="quotes">
       {testimonials.map((t) => (
         <figure class="quote">
@@ -231,13 +233,13 @@ const faqSchema = {
     </div>
   </Section>
 
-  <!-- BENEFITY -->
-  <USPGrid eyebrow="Co tím získáte" title="Posuňte své podnikání na vyšší úroveň"
+  <!-- BENEFITS -->
+  <USPGrid eyebrow="What you gain" title="Take your business to the next level"
            items={benefits} columns={3} background="default" />
 
   <!-- FAQ -->
   <Section background="alt" space="lg" container="narrow">
-    <Heading as="h2" size="h2" align="center">Často kladené dotazy</Heading>
+    <Heading as="h2" size="h2" align="center">Frequently asked questions</Heading>
     <div class="faq">
       {faqs.map((f) => (
         <details class="faq__item">
@@ -249,14 +251,14 @@ const faqSchema = {
   </Section>
 
   <!-- LEADFORM -->
-  <LeadForm id="poptavka" variant="full"
-            title="Kontaktujte nás pro konzultaci zdarma"
-            lead="Ozvěte se a uděláme vám nabídku šitou na míru vašemu provozu." />
+  <LeadForm id="poptavka" variant="full" locale="en"
+            title="Contact us for a free consultation"
+            lead="Get in touch and we will put together an offer tailored to your operation." />
 
 </Base>
 
 <style>
-  /* Novinky od Piana — spotlight */
+  /* New from Piano — spotlight */
   .novinky__head { max-width: 720px; margin: 0 auto var(--space-7); text-align: center; }
   .novinky__head :global(h2) { margin-top: var(--space-2); }
   .novinky__sub { margin-top: var(--space-3); }
@@ -287,7 +289,7 @@ const faqSchema = {
   .stat__num { font-family: var(--font-sans); font-weight: var(--font-weight-semibold); font-size: clamp(28px, 4vw, 44px); color: var(--color-text-accent); letter-spacing: var(--letter-spacing-tight); }
   .stat__lbl { font-size: var(--font-size-small); color: var(--color-text-muted); }
 
-  /* Kategorie — sticky scroll: VEŠKERÝ text vlevo, velká fotka vpravo */
+  /* Categories — sticky scroll: ALL text left, large photo right */
   .solscroll { background: var(--color-bg-alt); }
   .solscroll__pin { position: relative; }
   .solscroll__inner { position: sticky; top: 0; height: 100vh; display: flex; align-items: center; overflow: hidden; }
@@ -296,10 +298,8 @@ const faqSchema = {
     width: 100%; max-width: var(--container-max); margin: 0 auto; padding-inline: var(--container-pad);
   }
 
-  /* Levý sloupec — všechen text */
   .solscroll__title { margin: var(--space-3) 0 var(--space-6); }
 
-  /* Accordion kategorií (přepínač + rozbalený detail aktivní) */
   .solscroll__acc { display: flex; flex-direction: column; gap: var(--space-2); }
   .solscroll__item { border-left: 2px solid var(--color-border); padding-left: var(--space-5); opacity: 0.38; transition: border-color var(--duration-base) var(--easing), opacity var(--duration-base) var(--easing); }
   .solscroll__item.is-active { border-left-color: var(--color-primary); opacity: 1; }
@@ -312,7 +312,6 @@ const faqSchema = {
   }
   .solscroll__head:hover { color: var(--color-text); }
   .solscroll__item.is-active .solscroll__head { color: var(--color-text-accent); font-weight: var(--font-weight-semibold); }
-  /* tělo — rozbalí se jen u aktivní (grid-rows trik, plynule) */
   .solscroll__body { display: grid; grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows var(--duration-base) var(--easing), opacity var(--duration-base) var(--easing); }
   .solscroll__body > * { overflow: hidden; min-height: 0; }
   .solscroll__item.is-active .solscroll__body { grid-template-rows: 1fr; opacity: 1; padding-bottom: var(--space-3); }
@@ -325,12 +324,10 @@ const faqSchema = {
   .solscroll__dot { width: 7px; height: 7px; border-radius: var(--radius-full); background: var(--color-border-strong); transition: var(--transition); }
   .solscroll__dot.is-active { background: var(--color-primary); transform: scale(1.4); }
 
-  /* Pravý sloupec — velká fotka (cross-fade) */
   .solscroll__media { position: relative; aspect-ratio: 4 / 3; border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-lg); }
   .solscroll__photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity var(--duration-base) var(--easing); }
   .solscroll__photo.is-active { opacity: 1; }
 
-  /* Mobil / tablet — pin se vypne, všechny kategorie rozbalené, fotky skryté */
   @media (max-width: 880px) {
     .solscroll__pin { height: auto !important; }
     .solscroll__inner { position: static; height: auto; padding-block: var(--space-8); }
@@ -345,7 +342,7 @@ const faqSchema = {
     .solscroll__photo, .solscroll__body { transition: none; }
   }
 
-  /* Ekosystém */
+  /* Ecosystem */
   .eco { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-5); }
   .eco__card { position: relative; display: flex; flex-direction: column; gap: var(--space-2); padding: var(--space-6); background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); text-decoration: none; transition: var(--transition); }
   .eco__badge { position: absolute; top: var(--space-4); right: var(--space-4); font-size: var(--font-size-caption); font-weight: var(--font-weight-medium); color: var(--color-primary); background: var(--color-bg-accent-soft, rgba(190,30,45,.08)); padding: 2px var(--space-2); border-radius: var(--radius-full); }
@@ -354,13 +351,7 @@ const faqSchema = {
   .eco__desc { font-size: var(--font-size-small); color: var(--color-text-muted); flex: 1; }
   .eco__more { display: inline-flex; align-items: center; gap: var(--space-1); font-size: var(--font-size-small); font-weight: var(--font-weight-medium); color: var(--color-text-accent); margin-top: var(--space-2); }
 
-  /* Logo wall */
-  .lw__label { margin-bottom: var(--space-5); }
-  .lw { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: var(--space-6) var(--space-7); max-width: var(--container-max); margin: 0 auto; padding-inline: var(--container-pad); }
-  .lw img { height: 32px; width: auto; opacity: 0.62; filter: grayscale(1); transition: var(--transition); }
-  .lw img:hover { opacity: 1; filter: none; }
-
-  /* Testimonialy */
+  /* Testimonials */
   .quotes { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-5); margin-top: var(--space-6); }
   .quote { display: flex; flex-direction: column; gap: var(--space-4); padding: var(--space-6); border: 1px solid var(--color-border-on-dark); border-radius: var(--radius-md); }
   .quote__text { font-size: var(--font-size-lead); line-height: var(--line-height-lead); }

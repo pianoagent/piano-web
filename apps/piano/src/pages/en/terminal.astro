@@ -1,0 +1,276 @@
+---
+/**
+ * Terminal — English product page piano.cz/en/terminal.
+ * Zrcadlí CS stránku (terminal.astro) se stejným layoutem/CSS, přeložený obsah.
+ */
+import Base from '../../layouts/Base.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import { locPath } from '../../i18n';
+
+const benefits = [
+  { icon: 'lucide:credit-card', title: 'Worry-free payments', text: 'Forget cash for delivery drivers and tracking invoice due dates. Pay for goods online in a single click.' },
+  { icon: 'lucide:users', title: 'Data that makes money', text: 'Find out how often guests come back and who spends the most with you. See customer loyalty over time.' },
+  { icon: 'lucide:headset', title: 'Czech support 24/7', text: 'We connect remotely and resolve your query right away. With us, you are not on your own.' },
+  { icon: 'lucide:wallet', title: 'We pay out every business day', text: 'Your money is safe, we hold a pan-European CNB license and send it every business day.' },
+];
+
+const data = [
+  { title: 'No more guesswork', text: 'Get to know your regulars and spot in time when someone stops coming, so you can react.' },
+  { title: 'Clear trends', text: 'See in black and white which days bring in new faces and when your regular crowd keeps the venue going.' },
+  { title: 'Key customers', text: 'The system automatically identifies your most loyal guests, the ones who spend the most with you.' },
+  { title: 'Business health', text: 'Spot that something is happening before it shows up in revenue. Stay ahead and anticipate both growth and decline.' },
+];
+
+const supplier = [
+  { icon: 'lucide:hand-coins', title: 'Pay from what you earn', text: 'No trips to the ATM and no cash for deliveries, payments to suppliers are cashless.' },
+  { icon: 'lucide:receipt', title: 'One statement', text: 'A single statement for all transactions from the terminal, Qerko and payments to suppliers.' },
+  { icon: 'lucide:shield-check', title: 'No access to your bank', text: 'You authorize only the people who can receive and pay for a delivery, with no access to your card or bank.' },
+  { icon: 'lucide:repeat', title: 'Everything automatically', text: 'No extra fees for direct cashless payments to suppliers.' },
+];
+
+const steps = [
+  { icon: 'lucide:truck', title: 'The supplier delivers the goods' },
+  { icon: 'lucide:qr-code', title: 'An authorized person pays via Qerko' },
+  { icon: 'lucide:receipt', title: 'The amount is automatically deducted from the statement.' },
+];
+
+// Srovnání: Piano vždy ✓; ostatní terminály — no (nemají) / maybe (možná) / yes (mají)
+const compare = [
+  { label: 'Unique guest data over time (regulars vs. new)', other: 'no' },
+  { label: 'Supplier payments in one click (no cash)', other: 'no' },
+  { label: 'Express service', other: 'no' },
+  { label: 'Personal Account Manager', other: 'no' },
+  { label: 'Pan-European CNB license', other: 'maybe' },
+  { label: 'Czech support 24/7', other: 'maybe' },
+  { label: 'Full integration with the POS', other: 'maybe' },
+  { label: 'All in one (mobile waiter, ordering, ringing up, printing)', other: 'yes' },
+  { label: 'Higher tips thanks to a smart display', other: 'yes' },
+  { label: 'Revenue paid out every business day', other: 'yes' },
+  { label: 'Meal voucher card support', other: 'yes' },
+  { label: 'Rugged hardware (up to 10 hours of battery)', other: 'yes' },
+];
+---
+
+<Base locale="en"
+      title="Piano Terminal, payments and guest data"
+      description="Piano Terminal is not just a payment terminal. It brings unique guest data, automatic payments to suppliers and payouts every business day. Czech support 24/7.">
+
+  <Hero eyebrow="Piano Terminal" background="primary"
+        lead="Ordinary terminals end with the payment. With Piano Terminal the payment is just the start.">
+    <Heading slot="title" as="h1" size="display" color="on-dark">Get to know your guests and pay invoices <em>automatically</em></Heading>
+    <Fragment slot="actions">
+      <Button href="#poptavka">I want to try it</Button>
+      <Button href={locPath('/proces-plateb', 'en')} variant="secondary" onDark>How does it work?</Button>
+    </Fragment>
+    <img slot="media" src="/images/hero-terminal.webp" alt="Piano Terminal" width="900" height="998" />
+  </Hero>
+
+  <USPGrid eyebrow="Everything in one device" title="What Piano Terminal does on top"
+           items={benefits} columns={4} background="default" minItemWidth="220px" />
+
+  <!-- Data o hostech — se screenshotem -->
+  <Section background="alt" space="lg">
+    <div class="td-head">
+      <Text size="label" color="accent">Guest data</Text>
+      <Heading as="h2" size="h2">Get unique data about your guests</Heading>
+      <Text size="lead" color="muted" class="td-lead">Track in real time how many people came to you for the first time and who keeps coming back regularly.</Text>
+    </div>
+    <div class="td-grid">
+      <figure class="td-img"><img src="/images/term-data.webp" alt="Overview of guest data in Piano Terminal" width="709" height="457" loading="lazy" /></figure>
+      <ul class="td-list">
+        {data.map((d) => (
+          <li><strong>{d.title}</strong><span>{d.text}</span></li>
+        ))}
+      </ul>
+    </div>
+  </Section>
+
+  <!-- Platby dodavatelům — telefon uprostřed, text po stranách -->
+  <Section background="warm" space="lg">
+    <Heading as="h2" size="h2" align="center">I pay suppliers automatically</Heading>
+    <div class="sup">
+      <div class="sup__col">
+        {[supplier[0], supplier[1]].map((s) => (
+          <div class="sup__item"><Heading as="h3" size="h3">{s.title}</Heading><Text color="muted">{s.text}</Text></div>
+        ))}
+      </div>
+      <figure class="sup__phone"><img src="/images/term-supplier.webp" alt="Authorizing a payment to a supplier on the phone" width="322" height="656" loading="lazy" /></figure>
+      <div class="sup__col">
+        {[supplier[2], supplier[3]].map((s) => (
+          <div class="sup__item"><Heading as="h3" size="h3">{s.title}</Heading><Text color="muted">{s.text}</Text></div>
+        ))}
+      </div>
+    </div>
+  </Section>
+
+  <!-- Krok za krokem — timeline -->
+  <Section background="warm" space="lg">
+    <Heading as="h2" size="h2" align="center">Step by step</Heading>
+    <ol class="timeline">
+      {steps.map((s) => (
+        <li class="tl__step">
+          <span class="tl__icon"><Icon name={s.icon} size="md" /></span>
+          <span class="tl__title">{s.title}</span>
+        </li>
+      ))}
+    </ol>
+    <div class="steps-cta"><Button href={locPath('/proces-plateb', 'en')} variant="secondary">How does it work?</Button></div>
+
+    <ul class="paylogos">
+      {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (<li><img src={`/images/pay-${n}.webp`} alt="" height="28" loading="lazy" /></li>))}
+    </ul>
+  </Section>
+
+  <!-- Srovnání -->
+  <Section background="default" space="lg">
+    <Heading as="h2" size="h2" align="center">Why is Piano Terminal better?</Heading>
+    <div class="cmp">
+      <table class="cmp__table">
+        <thead>
+          <tr><th>Feature / service</th><th>Piano Terminal</th><th>Other terminals</th></tr>
+        </thead>
+        <tbody>
+          {compare.map((row) => (
+            <tr>
+              <td>{row.label}</td>
+              <td class="cmp__yes"><Icon name="lucide:check" size="sm" /></td>
+              <td>
+                {row.other === 'yes' && <span class="cmp__yes"><Icon name="lucide:check" size="sm" /></span>}
+                {row.other === 'no' && <span class="cmp__no"><Icon name="lucide:x" size="sm" /></span>}
+                {row.other === 'maybe' && <span class="cmp__maybe" title="Depends on the provider">?</span>}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </Section>
+
+  <!-- Ceník -->
+  <Section background="warm" space="lg">
+    <Heading as="h2" size="h2" align="center">Pricing</Heading>
+    <div class="prices">
+      <article class="price">
+        <Text size="label" color="muted">Standalone</Text>
+        <Heading as="h3" size="h3">Terminal</Heading>
+        <dl class="price__rows">
+          <div><dt>Service price</dt><dd>Individual offer</dd></div>
+          <div><dt>Hardware price</dt><dd>CZK 380/month or free*</dd></div>
+          <div><dt>Commitment</dt><dd>24 months</dd></div>
+        </dl>
+        <Button href="#poptavka" full>I want this offer</Button>
+      </article>
+      <article class="price price--featured">
+        <Text size="label" color="accent">Combination</Text>
+        <Heading as="h3" size="h3">Terminal + Qerko</Heading>
+        <dl class="price__rows">
+          <div><dt>Service price</dt><dd>Individual offer, 15% off the first year**</dd></div>
+          <div><dt>Hardware price</dt><dd>CZK 380/month or free*</dd></div>
+          <div><dt>Commitment</dt><dd>24 months</dd></div>
+        </dl>
+        <Button href="#poptavka" full>I want this offer</Button>
+      </article>
+    </div>
+    <Text size="caption" color="muted" class="price__note">
+      *Based on a defined turnover through Piano Terminal, min. 1 unit free.
+      **The discount applies to the Piano Terminal solution as well as to cases where the business already uses Qerko.
+    </Text>
+  </Section>
+
+  <LeadForm id="poptavka" variant="full" locale="en"
+            title="Take your business to the next level"
+            lead="Get in touch and we will put together an offer tailored to your operation." />
+
+  <!-- Technická podpora -->
+  <Section background="default" space="md" container="narrow">
+    <div class="tech">
+      <Heading as="h2" size="h3" align="center">Technical support</Heading>
+      <Text color="muted" align="center" class="tech__lead">Already have our terminals in your venue and need help with something? Reach out to our technical support, with us you are not on your own.</Text>
+      <div class="tech__contacts">
+        <a href="tel:+420228886881"><Icon name="lucide:phone" size="sm" /> +420 228 886 881</a>
+        <a href="mailto:podpora@piano.cz"><Icon name="lucide:mail" size="sm" /> podpora@piano.cz</a>
+      </div>
+    </div>
+  </Section>
+
+</Base>
+
+<style>
+  /* Data o hostech */
+  .td-head { max-width: 720px; margin: 0 auto var(--space-7); text-align: center; }
+  .td-head :global(h2) { margin-top: var(--space-2); }
+  .td-lead { margin-top: var(--space-3); }
+  .td-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: var(--space-7); align-items: center; }
+  .td-img { margin: 0; border-radius: var(--radius-md); overflow: hidden; }
+  .td-img img { display: block; width: 100%; height: auto; }
+  .td-list { list-style: none; display: flex; flex-direction: column; gap: var(--space-5); }
+  .td-list li { display: flex; flex-direction: column; gap: 4px; padding-left: var(--space-4); border-left: 2px solid var(--color-primary); }
+  .td-list strong { font-weight: var(--font-weight-semibold); color: var(--color-text); }
+  .td-list span { color: var(--color-text-muted); font-size: var(--font-size-small); }
+
+  /* Platby dodavatelům — telefon uprostřed */
+  .sup { display: grid; grid-template-columns: 1fr auto 1fr; gap: var(--space-7); align-items: center; margin-top: var(--space-7); }
+  .sup__col { display: flex; flex-direction: column; gap: var(--space-6); }
+  .sup__item :global(h3) { margin-bottom: var(--space-2); }
+  .sup__phone { margin: 0; }
+  .sup__phone img { display: block; width: 280px; max-width: 100%; height: auto; filter: drop-shadow(var(--shadow-lg)); }
+
+  /* Krok za krokem — timeline */
+  .timeline { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); max-width: 880px; margin: var(--space-7) auto 0; position: relative; }
+  .timeline::before { content: ""; position: absolute; top: 28px; left: 16%; right: 16%; height: 2px; background: var(--color-primary); z-index: 0; }
+  .tl__step { display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--space-3); }
+  .tl__icon { position: relative; z-index: 1; width: 56px; height: 56px; display: grid; place-items: center; color: var(--color-text-accent); background: var(--color-bg-warm, #FFF5E8); }
+  .tl__title { color: var(--color-text-accent); font-size: var(--font-size-lead); font-weight: var(--font-weight-medium); max-width: 22ch; }
+
+  .steps-cta { text-align: center; margin-top: var(--space-6); }
+
+  /* Platební loga */
+  .paylogos { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: var(--space-5) var(--space-7); margin-top: var(--space-8); }
+  .paylogos img { height: 28px; width: auto; display: block; }
+
+  /* Srovnání */
+  .cmp { margin-top: var(--space-7); overflow-x: auto; }
+  .cmp__table { width: 100%; border-collapse: collapse; max-width: 820px; margin: 0 auto; }
+  .cmp__table th, .cmp__table td { padding: var(--space-3) var(--space-4); border-bottom: 1px solid var(--color-border); text-align: left; }
+  .cmp__table thead th { font-family: var(--font-sans); font-size: var(--font-size-small); color: var(--color-text-muted); font-weight: var(--font-weight-semibold); }
+  .cmp__table thead th:nth-child(2) { color: var(--color-text-accent); }
+  .cmp__table th:nth-child(2), .cmp__table th:nth-child(3),
+  .cmp__table td:nth-child(2), .cmp__table td:nth-child(3) { text-align: center; width: 130px; }
+  .cmp__table td:first-child { color: var(--color-text); }
+  .cmp__yes { color: var(--color-success); }
+  .cmp__no { color: var(--color-error); }
+  .cmp__maybe { color: var(--color-neutral-400); font-weight: var(--font-weight-semibold); }
+
+  /* Ceník */
+  .prices { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-5); margin-top: var(--space-7); }
+  .price { display: flex; flex-direction: column; gap: var(--space-3); padding: var(--space-6); background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); }
+  .price--featured { border-color: var(--color-primary); box-shadow: var(--shadow-md); }
+  .price__rows { display: flex; flex-direction: column; gap: var(--space-3); margin: var(--space-2) 0 var(--space-4); }
+  .price__rows div { display: flex; flex-direction: column; gap: 2px; }
+  .price__rows dt { font-size: var(--font-size-small); color: var(--color-text-muted); }
+  .price__rows dd { font-weight: var(--font-weight-semibold); color: var(--color-text); }
+  .price :global(.btn) { margin-top: auto; }
+  .price__note { display: block; margin-top: var(--space-5); text-align: center; }
+
+  /* Technická podpora */
+  .tech { text-align: center; }
+  .tech__lead { margin: var(--space-3) auto var(--space-5); max-width: 540px; }
+  .tech__contacts { display: flex; flex-wrap: wrap; gap: var(--space-5); justify-content: center; }
+  .tech__contacts a { display: inline-flex; align-items: center; gap: var(--space-2); color: var(--color-text-accent); text-decoration: none; font-weight: var(--font-weight-medium); }
+
+  @media (max-width: 720px) {
+    .td-grid { grid-template-columns: 1fr; }
+    .prices { grid-template-columns: 1fr; }
+    .sup { grid-template-columns: 1fr; }
+    .sup__phone { order: -1; justify-self: center; }
+    .timeline { grid-template-columns: 1fr; }
+    .timeline::before { display: none; }
+  }
+</style>

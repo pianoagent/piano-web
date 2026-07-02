@@ -8,6 +8,12 @@ export default defineConfig({
   site: 'https://piano.cz',
   output: 'static',          // stránky statické; /api/lead je on-demand (prerender=false)
   adapter: cloudflare(),
+  // Vícejazyčnost: čeština v rootu (/), angličtina pod /en/ (stránky v src/pages/en/).
+  i18n: {
+    defaultLocale: 'cs',
+    locales: ['cs', 'en'],
+    routing: { prefixDefaultLocale: false },
+  },
   integrations: [
     // Skryté / noindex stránky vynechat ze sitemapy (kalkulačka pro obchodníky, děkovací stránka)
     sitemap({

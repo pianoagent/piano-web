@@ -25,6 +25,7 @@ interface Props {
   social?: Social[];
   legal?: NavLink[];
   copyright?: string;
+  locale?: 'cs' | 'en';
 }
 
 const year = new Date().getFullYear();
@@ -59,8 +60,10 @@ const {
   social = socialLinks,
   legal = legalNav,
   copyright = `© ${year} Piano Solutions s.r.o.`,
+  locale = 'cs',
 } = Astro.props;
 
+const homeLabel = locale === 'en' ? 'home' : 'domů';
 const hasOffices = !!(offices && offices.items.length > 0);
 
 // Mřížka: brand + N sloupců odkazů + kontakt (přes proměnnou, ať média dotazy přebijí)
@@ -72,7 +75,7 @@ const topStyle = `--footer-cols: ${columns.length + (hasOffices ? 1 : 0) + 1};`;
     <div class="footer__top" style={topStyle}>
       <!-- Brand -->
       <div class="footer__brand">
-        <a href={homeHref} class="footer__logo" aria-label={`${brand}, domů`}>
+        <a href={homeHref} class="footer__logo" aria-label={`${brand}, ${homeLabel}`}>
           {logoSrc ? (
             <img class="footer__logo-img" src={logoSrc} alt={logoAlt ?? brand} />
           ) : (

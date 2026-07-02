@@ -9,6 +9,9 @@
  *   background  — 'default' | 'alt' (pruh Section)
  *   id          — kotva sekce
  *   ext         — přípona souborů ('svg' default, 'png' pro rastry)
+ *   logoHeight  — výška log (default '96px'; např. Pecosta '34px')
+ *   gap         — mezera mezi logy (default 'var(--space-9)')
+ *   duration    — rychlost marquee (default '60s')
  */
 import Section from './Section.astro';
 import Text from './Text.astro';
@@ -19,6 +22,9 @@ interface Props {
   background?: 'default' | 'alt';
   id?: string;
   ext?: string;
+  logoHeight?: string;
+  gap?: string;
+  duration?: string;
 }
 const {
   logos,
@@ -26,6 +32,9 @@ const {
   background = 'alt',
   id,
   ext = 'svg',
+  logoHeight = '96px',
+  gap = 'var(--space-9)',
+  duration = '60s',
 } = Astro.props;
 
 const niceAlt = (l: string) => l.replace(/^ref-/, '').replace(/-/g, ' ');
@@ -33,7 +42,7 @@ const niceAlt = (l: string) => l.replace(/^ref-/, '').replace(/-/g, ' ');
 
 <Section background={background} space="md" container={false} id={id}>
   {label && <Text size="label" color="muted" align="center" class="logos__label">{label}</Text>}
-  <div class="logos">
+  <div class="logos" style={`--logo-h: ${logoHeight}; --logo-gap: ${gap}; --logo-dur: ${duration};`}>
     <div class="logos__track">
       {[...logos, ...logos].map((l, i) => (
         <img
@@ -50,8 +59,8 @@ const niceAlt = (l: string) => l.replace(/^ref-/, '').replace(/-/g, ' ');
 <style>
   .logos__label { margin-bottom: var(--space-5); }
   .logos { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
-  .logos__track { display: flex; align-items: center; gap: var(--space-9); width: max-content; animation: logos-scroll 60s linear infinite; }
-  .logos__track img { height: 96px; width: auto; max-width: 280px; object-fit: contain; opacity: 0.7; filter: grayscale(1); flex-shrink: 0; transition: var(--transition); }
+  .logos__track { display: flex; align-items: center; gap: var(--logo-gap, var(--space-9)); width: max-content; animation: logos-scroll var(--logo-dur, 60s) linear infinite; }
+  .logos__track img { height: var(--logo-h, 96px); width: auto; max-width: 280px; object-fit: contain; opacity: 0.7; filter: grayscale(1); flex-shrink: 0; transition: var(--transition); }
   .logos__track img:hover { opacity: 1; filter: none; }
   @keyframes logos-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
   @media (prefers-reduced-motion: reduce) { .logos__track { animation: none; flex-wrap: wrap; justify-content: center; gap: var(--space-6); } }

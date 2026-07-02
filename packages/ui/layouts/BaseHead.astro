@@ -20,6 +20,7 @@ interface Props {
   siteName?: string;
   siteUrl?: string;
   locale?: string;
+  alternates?: { lang: string; href: string }[];  // hreflang varianty (jazykové mutace)
   schemas?: object[];
 }
 
@@ -32,6 +33,7 @@ const {
   siteName = 'Piano',
   siteUrl = 'https://piano.cz',
   locale = 'cs_CZ',
+  alternates = [],
   schemas = [],
 } = Astro.props;
 
@@ -47,6 +49,9 @@ const ogImage = image ? new URL(image, siteUrl).href : undefined;
 {description && <meta name="description" content={description} />}
 <link rel="canonical" href={canonical} />
 {noindex && <meta name="robots" content="noindex, nofollow" />}
+{alternates.map((a) => (
+  <link rel="alternate" hreflang={a.lang} href={a.href} />
+))}
 
 <meta property="og:type" content={type} />
 <meta property="og:title" content={fullTitle} />
