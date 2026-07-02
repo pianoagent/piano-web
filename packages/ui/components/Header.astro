@@ -22,6 +22,7 @@ interface Props {
   homeHref?: string;    // odkaz loga (default "/")
   nav?: NavItem[];      // per-web navigace (default sdílená mainNav)
   cta?: NavLink;        // per-web hlavní CTA (default sdílená headerCta)
+  localeSwitch?: { href: string; label: string; title?: string };  // přepínač jazyků (volitelný)
 }
 const {
   transparent = false,
@@ -31,6 +32,7 @@ const {
   homeHref = '/',
   nav = mainNav,
   cta = headerCta,
+  localeSwitch,
 } = Astro.props;
 
 const classes = ['header', transparent && 'header--transparent'].filter(Boolean).join(' ');
@@ -141,6 +143,9 @@ const classes = ['header', transparent && 'header--transparent'].filter(Boolean)
 
     <!-- CTA + hamburger -->
     <div class="header__actions">
+      {localeSwitch && (
+        <a href={localeSwitch.href} class="header__lang" title={localeSwitch.title} aria-label={localeSwitch.title}>{localeSwitch.label}</a>
+      )}
       <Button href={cta.href} variant="primary" size="sm" class="header__cta">{cta.label}</Button>
       <button class="header__burger" aria-label="Otevřít menu" aria-expanded="false" aria-controls="mobile-drawer" data-burger>
         <span></span><span></span><span></span>
@@ -182,6 +187,9 @@ const classes = ['header', transparent && 'header--transparent'].filter(Boolean)
           })}
         </ul>
         <Button href={cta.href} variant="primary" full class="drawer__cta">{cta.label}</Button>
+        {localeSwitch && (
+          <a href={localeSwitch.href} class="drawer__lang" title={localeSwitch.title}>{localeSwitch.label}</a>
+        )}
       </nav>
     </div>
   </div>
@@ -416,6 +424,23 @@ const classes = ['header', transparent && 'header--transparent'].filter(Boolean)
 
   /* Actions */
   .header__actions { display: flex; align-items: center; gap: var(--space-3); }
+
+  /* Přepínač jazyků */
+  .header__lang {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 40px; min-height: 40px; padding: 0 var(--space-2);
+    font-family: var(--font-sans); font-size: var(--font-size-small); font-weight: var(--font-weight-semibold);
+    color: var(--color-text); text-decoration: none; border-radius: var(--radius-sm);
+    transition: var(--transition);
+  }
+  .header__lang:hover { color: var(--color-text-accent); background: var(--color-bg-hover); }
+  .header--transparent:not(.is-scrolled) .header__lang { color: var(--color-text-on-dark); }
+  .drawer__lang {
+    display: inline-flex; align-items: center; justify-content: center;
+    margin-top: var(--space-4); padding: var(--space-2) var(--space-4);
+    font-family: var(--font-sans); font-weight: var(--font-weight-semibold);
+    color: var(--color-text); text-decoration: none; border: 1px solid var(--color-border); border-radius: var(--radius-sm);
+  }
 
   /* Hamburger */
   .header__burger {

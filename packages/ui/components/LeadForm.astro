@@ -43,31 +43,61 @@ interface Props {
   background?: 'default' | 'alt' | 'invert' | 'primary';
   space?: 'sm' | 'md' | 'lg';
   id?: string;
+  locale?: 'cs' | 'en';
 }
 
-const defaultProofs: Proof[] = [
-  { icon: 'lucide:headset', title: 'Podpora 24/7', text: 'Česká podpora každý den v roce.' },
-  { icon: 'lucide:store', title: '6 000+ provozů', text: 'Důvěřují nám restaurace i hotely v celé ČR.' },
-  { icon: 'lucide:calendar-check', title: '30 let na trhu', text: 'Zkušenosti s gastro a hotelovým provozem.' },
-  { icon: 'lucide:gift', title: 'Konzultace zdarma', text: 'Nezávazně a bez rizika.' },
-];
+const LEAD_I18N = {
+  cs: {
+    name: 'Jméno', email: 'E-mail', phone: 'Telefon', company: 'Název podniku', city: 'Město',
+    phoneHelper: 'Zavoláme vám zpět, jakmile to půjde.',
+    consentPre: 'Souhlasím se zpracováním osobních údajů dle ', consentLink: 'zásad ochrany údajů', consentPost: '.',
+    submitFull: 'Odeslat poptávku', submitCallback: 'Zavolejte mi',
+    statusOk: 'Děkujeme! Ozveme se vám co nejdříve.',
+    statusErr: 'Něco se nepovedlo. Zkuste to prosím znovu, nebo nám zavolejte.',
+    consentHref: '/ochrana-udaju',
+    proofs: [
+      { icon: 'lucide:headset', title: 'Podpora 24/7', text: 'Česká podpora každý den v roce.' },
+      { icon: 'lucide:store', title: '6 000+ provozů', text: 'Důvěřují nám restaurace i hotely v celé ČR.' },
+      { icon: 'lucide:calendar-check', title: '30 let na trhu', text: 'Zkušenosti s gastro a hotelovým provozem.' },
+      { icon: 'lucide:gift', title: 'Konzultace zdarma', text: 'Nezávazně a bez rizika.' },
+    ] as Proof[],
+  },
+  en: {
+    name: 'Name', email: 'Email', phone: 'Phone', company: 'Business name', city: 'City',
+    phoneHelper: 'We will call you back as soon as we can.',
+    consentPre: 'I agree to the processing of personal data under the ', consentLink: 'privacy policy', consentPost: '.',
+    submitFull: 'Send inquiry', submitCallback: 'Call me back',
+    statusOk: 'Thank you! We will get back to you shortly.',
+    statusErr: 'Something went wrong. Please try again, or give us a call.',
+    consentHref: '/ochrana-udaju',
+    proofs: [
+      { icon: 'lucide:headset', title: '24/7 support', text: 'Support every day of the year.' },
+      { icon: 'lucide:store', title: '6,000+ venues', text: 'Trusted by restaurants and hotels across Czechia.' },
+      { icon: 'lucide:calendar-check', title: '30 years on the market', text: 'Deep experience in hospitality operations.' },
+      { icon: 'lucide:gift', title: 'Free consultation', text: 'No commitment, no risk.' },
+    ] as Proof[],
+  },
+} as const;
 
 const {
   variant = 'full',
   title,
   lead,
-  proofs = defaultProofs,
+  proofs,
   action = '/api/lead.php',
   successUrl = '/dekujeme',
   submitLabel,
   background = 'alt',
   space = 'md',
   id,
+  locale = 'cs',
 } = Astro.props;
 
+const L = LEAD_I18N[locale];
+const proofsList: Proof[] = proofs ?? L.proofs;
 const isCallback = variant === 'callback';
 const onDark = background === 'invert' || background === 'primary';
-const submitText = submitLabel ?? (isCallback ? 'Zavolejte mi' : 'Odeslat poptávku');
+const submitText = submitLabel ?? (isCallback ? L.submitCallback : L.submitFull);
 ---
 
 <Section background={background} space={space} id={id}>
@@ -78,9 +108,9 @@ const submitText = submitLabel ?? (isCallback ? 'Zavolejte mi' : 'Odeslat poptá
       {title && <Heading as="h2" size="h2" color={onDark ? 'on-dark' : 'default'}>{title}</Heading>}
       {lead && <Text size="lead" color={onDark ? 'on-dark-muted' : 'muted'} class="leadform__lead">{lead}</Text>}
 
-      {proofs.length > 0 && (
+      {proofsList.length > 0 && (
         <ul class:list={['leadform__proofs', onDark && 'leadform__proofs--on-dark']}>
-          {proofs.map((p) => (
+          {proofsList.map((p) => (
             <li class="leadform__proof">
               {p.icon && <span class="leadform__proof-icon"><Icon name={p.icon} size="md" /></span>}
               <span class="leadform__proof-body">
@@ -111,28 +141,28 @@ const submitText = submitLabel ?? (isCallback ? 'Zavolejte mi' : 'Odeslat poptá
       <div class="leadform__fields">
         {isCallback ? (
           <Field
-            label="Telefon"
+            label={L.phone}
             name="phone"
             type="tel"
             placeholder="+420 123 456 789"
-            helper="Zavoláme vám zpět, jakmile to půjde."
+            helper={L.phoneHelper}
             autocomplete="tel"
             inputmode="tel"
             required
           />
         ) : (
           <>
-            <Field label="Jméno" name="name" placeholder="John Doe" autocomplete="name" required />
-            <Field label="E-mail" name="email" type="email" placeholder="info@podnik.cz" autocomplete="email" required />
-            <Field label="Telefon" name="phone" type="tel" placeholder="+420 123 456 789" autocomplete="tel" inputmode="tel" />
-            <Field label="Název podniku" name="company" placeholder="Restaurace U Lva" autocomplete="organization" />
-            <Field label="Město" name="city" placeholder="Praha" autocomplete="address-level2" />
+            <Field label={L.name} name="name" placeholder="John Doe" autocomplete="name" required />
+            <Field label={L.email} name="email" type="email" placeholder="info@podnik.cz" autocomplete="email" required />
+            <Field label={L.phone} name="phone" type="tel" placeholder="+420 123 456 789" autocomplete="tel" inputmode="tel" />
+            <Field label={L.company} name="company" placeholder="Restaurace U Lva" autocomplete="organization" />
+            <Field label={L.city} name="city" placeholder="Praha" autocomplete="address-level2" />
 
             <label class="leadform__consent">
               <input type="checkbox" name="consent" required />
               <span class="leadform__check" aria-hidden="true"></span>
               <span class="leadform__consent-text">
-                Souhlasím se zpracováním osobních údajů dle <a href="/ochrana-udaju">zásad ochrany údajů</a>.
+                {L.consentPre}<a href={L.consentHref}>{L.consentLink}</a>{L.consentPost}
               </span>
             </label>
           </>
@@ -144,10 +174,10 @@ const submitText = submitLabel ?? (isCallback ? 'Zavolejte mi' : 'Odeslat poptá
       </div>
 
       <p class="leadform__status leadform__status--ok" data-success hidden>
-        Děkujeme! Ozveme se vám co nejdříve.
+        {L.statusOk}
       </p>
       <p class="leadform__status leadform__status--err" data-error hidden>
-        Něco se nepovedlo. Zkuste to prosím znovu, nebo nám zavolejte.
+        {L.statusErr}
       </p>
     </form>
   </div>

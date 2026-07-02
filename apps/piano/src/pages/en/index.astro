@@ -1,0 +1,413 @@
+---
+/**
+ * Piano — English homepage (piano.cz/en/).
+ * Zrcadlí CS homepage (index.astro) se stejným layoutem/CSS, přeložený obsah.
+ * Interní produktové odkazy vedou přes locPath (upgradují se, jak přibývají EN stránky).
+ */
+import Base from '../../layouts/Base.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import LogoWall from '@piano/ui/components/LogoWall.astro';
+import { locPath } from '../../i18n';
+
+const L = 'en' as const;
+
+const stats = [
+  { num: '6,000+', lbl: 'businesses in Czechia trust us' },
+  { num: 'CZK 36bn', lbl: 'flows through our tools every year' },
+  { num: '30 years', lbl: 'of innovation in hospitality' },
+  { num: '10+', lbl: 'connected tools' },
+];
+
+// New from Piano — flagship in-house products
+const novinky = [
+  { logo: '/brand/pilot_logo.svg', alt: 'Piano Pilot', image: '/images/hero-pilot.webp', text: 'Your entire operation in one mobile app. Sales, inventory and AI recommendations in real time.', href: '/pilot' },
+  { logo: '/brand/terminal_logo.svg', alt: 'Piano Terminal', image: '/images/hero-terminal.webp', text: 'A payment Terminal where the card payment is just the beginning. Guest data and payments to suppliers.', href: '/terminal' },
+];
+
+// Hero — rotating message (title + lead + image change; CTA and USP stay)
+const heroSlides = [
+  {
+    eyebrow: 'Technology for restaurants and hotels',
+    title: 'Every key tool<br>for hospitality<br>under one roof',
+    lead: 'Piano is a well-tuned orchestra of tools that fine-tunes your operation, saves you time and grows your profit. Whether you run a restaurant, café, bistro, canteen or hotel, we have a solution for you.',
+    image: '/images/home-hero-dark.webp',
+    imageAlt: 'Piano POS, terminal and mobile app',
+  },
+  {
+    eyebrow: 'New: Piano Pilot',
+    title: 'Every insight<br>into your operation<br>in one app',
+    lead: 'Sales, inventory and AI recommendations in real time. With Pilot you have an overview of your business from anywhere, right from your phone.',
+    image: '/images/hero-pilot.webp',
+    imageAlt: 'Piano Pilot, the mobile app for operations',
+  },
+  {
+    eyebrow: 'New: Piano Terminal',
+    title: 'A terminal<br>where the payment<br>is just the start',
+    lead: 'Guest data and automatic payments to suppliers. We turn an ordinary payment terminal into a smart tool for your whole operation.',
+    image: '/images/hero-terminal.webp',
+    imageAlt: 'Piano Terminal, the payment terminal',
+  },
+];
+
+const pains = [
+  { icon: 'lucide:user-x', title: 'Staff shortages', text: 'Constantly hunting for new people is costly and exhausting. Quality staff are ever harder to find.' },
+  { icon: 'lucide:clock', title: 'Losing customers', text: 'Long waits to order or pay mean lost revenue.' },
+  { icon: 'lucide:file-stack', title: 'Tedious paperwork', text: 'Tools and systems do not talk to each other, or cannot do what you need.' },
+  { icon: 'lucide:trending-up', title: 'Rising costs', text: 'Margins shrink, prices are hard to control, suppliers keep raising them.' },
+];
+
+const categories = [
+  { img: '/images/cat-nakupy.webp', title: 'Purchasing & inventory', headline: 'Buy smart, stock precisely', text: 'Inventory management, automatic stocking from delivery notes and better supplier prices, all connected.', items: ['Inventory management', 'Automatic stocking', 'Better supplier prices'] },
+  { img: '/images/cat-personal.webp', title: 'People & staff', headline: 'Staff who are never missing', text: 'More guests served, shift planning and hiring part-timers in a few clicks.', items: ['More guests served', 'Shift planning', 'Staff recruitment'] },
+  { img: '/images/cat-pokladna.webp', title: 'POS & management systems', headline: 'Your operation under control', text: 'POS systems, data reporting and hotel management, an overview of everything in one place.', items: ['Data reporting', 'POS systems', 'Hotel management'] },
+  { img: '/images/cat-platby.webp', title: 'Payments & guest communication', headline: 'Guests who keep coming back', text: 'Fast payments, reservations, loyalty program and customer communication.', items: ['Customer communication', 'Reservation system', 'Loyalty program'] },
+];
+
+// Ecosystem — Piano-hosted products go inside (locPath), others to production domains
+const ecosystem = [
+  { name: 'Piano Pilot', logo: '/brand/pilot_logo.svg', desc: 'Your whole operation in a mobile app with data and AI.', href: '/pilot', badge: 'New' },
+  { name: 'Piano Terminal', logo: '/brand/terminal_logo.svg', desc: 'A terminal where the payment is just the start, guest data and supplier payments.', href: '/terminal', badge: 'New' },
+  { name: 'Septim', logo: '/brand/septim_logo.svg', desc: 'The most respected POS and operations system on the market.', href: 'https://www.septim.cz' },
+  { name: 'Qerko', logo: '/brand/qerko_logo.svg', desc: 'The most convenient table payment and guest communication.', href: 'https://www.qerko.com' },
+  { name: 'Pecosta', logo: '/brand/pecosta_logo.svg', desc: 'Auction-based ingredient purchasing, up to 16% cheaper.', href: 'https://www.pecosta.cz' },
+  { name: 'Grason', logo: '/brand/grason_logo.svg', desc: 'Part-timers, shift planning and paperwork in one app.', href: 'https://www.grason.cz' },
+  { name: 'Autset', logo: '/brand/autset_logo.svg', desc: 'Automatic stocking from delivery notes.', href: 'https://autset.com' },
+  { name: 'ABX Harsys', logo: '/brand/abx_logo.svg', desc: 'Multifunctional POS systems and registers.', href: 'https://www.abxharsys.cz' },
+  { name: 'Savarin', logo: '/brand/savarin_logo.svg', desc: 'Complete solution for food service and accommodation.', href: 'https://cominn.cz' },
+  { name: 'Protel', logo: '/brand/protel_logo.svg', desc: 'Software for efficient hotel management.', href: 'https://www.protelsystems.cz' },
+];
+
+const benefits = [
+  { icon: 'lucide:lightbulb', title: 'More time for creativity', text: 'Focus on new ideas and cashflow while your team looks after guests.' },
+  { icon: 'lucide:line-chart', title: 'Faster financial decisions', text: 'A clear view of prices and costs. On average our customers save 16%.' },
+  { icon: 'lucide:users-round', title: 'Happier staff', text: 'Access to a broad talent pool when someone drops out, or for permanent hires.' },
+];
+
+const testimonials = [
+  { quote: 'The Septim operations system is a crucial part of FIELD. Thanks to it I know the whole operation runs stably and efficiently.', author: 'Radek Kašpárek', role: 'Head chef and founder of FIELD' },
+  { quote: 'What I like most about Septim is that I can define any report and get the results instantly. I have a complete overview.', author: 'Václav Vojíř', role: "Owner of Bugsy's Bar" },
+  { quote: 'When we can automate a process, everything in one portal, comparing competitors’ prices, it saves time and ultimately money.', author: 'Lukáš Pytloun', role: 'CEO of Pytloun Hotels' },
+];
+
+const refLogos = [
+  'ref-field-michelin-restaurant', 'ref-cafe-savoy', 'ref-kolkovna', 'ref-sasazu',
+  'ref-O2-arena', 'ref-clarion-hotel', 'ref-zatisi-group', 'ref-420-restaurant',
+  'ref-pizza-coloseum', 'ref-entree', 'ref-100-chuti-brna', 'ref-sisters-bistro',
+  'ref-mirakulum',
+];
+
+const faqs = [
+  { q: 'What makes up the Piano group?', a: 'A group of smart tools that together digitalize and streamline businesses in hospitality, hotels and retail: Septim, Qerko, Grason, POS Experts, Savarin, Harsys, Protel and Pecosta. Each works on its own; together they form the most complete solution for hospitality in Czechia.' },
+  { q: 'Why should I choose your products?', a: 'Our products are used by over 6,000 businesses and more than CZK 36 billion flows through them each year. From POS through payments and staff management to inventory and marketing, they save time, minimize errors and grow profit, whether you run a café, a restaurant chain or a hotel.' },
+  { q: 'How many contracts and contacts will I have?', a: 'Nothing changes for you for now, the same sales rep and the same terms. We will gradually consolidate contracts and contacts, always with your consent and to your benefit.' },
+  { q: 'What should I do if I want more products?', a: 'Call +420 773 798 758 or email info@piano.cz and we will go through what interests you and find the best fit for your business.' },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org', '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
+---
+
+<Base locale="en"
+      title="Every key tool for hospitality under one roof | Piano"
+      description="Piano provides technology for restaurants and hotels, from POS systems to staff management and marketing for your business."
+      schema={faqSchema}>
+
+  <Hero background="warm" slides={heroSlides}
+        usp={[{ text: '6,000+ venues', icon: 'lucide:store' }, { text: 'CZK 36bn per year', icon: 'lucide:banknote' }, { text: '30 years of innovation', icon: 'lucide:calendar-check' }]}>
+    <Fragment slot="actions">
+      <Button href="#poptavka">Book a consultation</Button>
+      <Button href="#ekosystem" variant="secondary">Explore the ecosystem</Button>
+    </Fragment>
+  </Hero>
+
+  <!-- NEW FROM PIANO — in-house product spotlight -->
+  <Section background="primary" space="lg">
+    <div class="novinky__head">
+      <Heading as="h2" size="h2" color="on-dark" align="center">New from Piano</Heading>
+      <Text color="on-dark-muted" align="center" class="novinky__sub">Built specifically for Czech hospitality.</Text>
+    </div>
+    <div class="novinky__grid">
+      {novinky.map((n) => (
+        <a class="nov__card" href={locPath(n.href, L)}>
+          <div class="nov__media"><img src={n.image} alt={n.alt} loading="lazy" /></div>
+          <div class="nov__body">
+            <img class="nov__logo" src={n.logo} alt={n.alt} loading="lazy" />
+            <Text size="small" color="muted">{n.text}</Text>
+            <span class="nov__link">Learn more <Icon name="lucide:arrow-right" size="xs" /></span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </Section>
+
+  <!-- LOGO WALL -->
+  <LogoWall background="alt" label="More than 6,000 businesses rely on Piano tools" logos={refLogos} />
+
+  <!-- PAIN POINTS -->
+  <USPGrid eyebrow="Sound familiar?" title="What is holding your operation back"
+           items={pains} columns={4} background="default" minItemWidth="220px" />
+
+  <!-- TOOL CATEGORIES — sticky scroll -->
+  <section class="solscroll" data-solscroll>
+    <div class="solscroll__pin" style={`height: ${(categories.length + 1) * 100}vh;`}>
+      <div class="solscroll__inner">
+        <div class="solscroll__content">
+
+          <!-- Left column: ALL text (switcher + expanded detail) -->
+          <div class="solscroll__text-col">
+            <Text size="label" color="accent">Every operation is unique</Text>
+            <Heading as="h2" size="h3" class="solscroll__title">A broad palette of tools that adapts to you</Heading>
+
+            <nav class="solscroll__acc">
+              {categories.map((c, i) => (
+                <div class:list={['solscroll__item', i === 0 && 'is-active']} data-item>
+                  <button class="solscroll__head" data-navitem data-idx={i} type="button">{c.title}</button>
+                  <div class="solscroll__body">
+                    <div class="solscroll__body-inner">
+                      <Text color="muted" class="solscroll__lead">{c.text}</Text>
+                      <ul class="solscroll__list">{c.items.map((it) => <li>{it}</li>)}</ul>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </nav>
+
+            <div class="solscroll__dots">
+              {categories.map((_, i) => (<span class:list={['solscroll__dot', i === 0 && 'is-active']} data-dot></span>))}
+            </div>
+          </div>
+
+          <!-- Right column: large photo only -->
+          <div class="solscroll__media">
+            {categories.map((c, i) => (
+              <img class:list={['solscroll__photo', i === 0 && 'is-active']} data-photo src={c.img} alt={c.title} loading="lazy" width="900" height="675" />
+            ))}
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ECOSYSTEM -->
+  <Section id="ekosystem" background="default" space="lg">
+    <div class="head-center">
+      <Text size="label" color="accent" align="center">30 years of innovation</Text>
+      <Heading as="h2" size="h2" align="center">A well-tuned orchestra for effortless operations</Heading>
+      <Text size="lead" color="muted" align="center" class="head-sub">One connected ecosystem instead of ten disjointed apps. Piano tools talk to each other and pull your operation in the same direction.</Text>
+    </div>
+    <div class="eco">
+      {ecosystem.map((p) => (
+        <a class="eco__card" href={locPath(p.href, L)} target={p.href.startsWith('http') ? '_blank' : undefined} rel={p.href.startsWith('http') ? 'noopener noreferrer' : undefined}>
+          {p.badge && <span class="eco__badge">{p.badge}</span>}
+          <img class="eco__logo" src={p.logo} alt={p.name} loading="lazy" />
+          <span class="eco__desc">{p.desc}</span>
+          <span class="eco__more">Learn more <Icon name="lucide:arrow-right" size="xs" /></span>
+        </a>
+      ))}
+    </div>
+  </Section>
+
+  <!-- TESTIMONIALS -->
+  <Section background="invert" space="lg">
+    <Heading as="h2" size="h2" align="center" color="on-dark">The best in the industry trust us</Heading>
+    <div class="quotes">
+      {testimonials.map((t) => (
+        <figure class="quote">
+          <Text color="on-dark" class="quote__text">„{t.quote}“</Text>
+          <figcaption class="quote__by">
+            <span class="quote__author">{t.author}</span>
+            <span class="quote__role">{t.role}</span>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </Section>
+
+  <!-- BENEFITS -->
+  <USPGrid eyebrow="What you gain" title="Take your business to the next level"
+           items={benefits} columns={3} background="default" />
+
+  <!-- FAQ -->
+  <Section background="alt" space="lg" container="narrow">
+    <Heading as="h2" size="h2" align="center">Frequently asked questions</Heading>
+    <div class="faq">
+      {faqs.map((f) => (
+        <details class="faq__item">
+          <summary class="faq__q">{f.q}</summary>
+          <div class="faq__a"><Text color="muted">{f.a}</Text></div>
+        </details>
+      ))}
+    </div>
+  </Section>
+
+  <!-- LEADFORM -->
+  <LeadForm id="poptavka" variant="full" locale="en"
+            title="Contact us for a free consultation"
+            lead="Get in touch and we will put together an offer tailored to your operation." />
+
+</Base>
+
+<style>
+  /* New from Piano — spotlight */
+  .novinky__head { max-width: 720px; margin: 0 auto var(--space-7); text-align: center; }
+  .novinky__head :global(h2) { margin-top: var(--space-2); }
+  .novinky__sub { margin-top: var(--space-3); }
+  .novinky__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-6); max-width: 880px; margin: 0 auto; }
+
+  .nov__card {
+    display: flex; flex-direction: column; overflow: hidden;
+    background: var(--color-bg-warm, #FFF5E8); border-radius: var(--radius-lg, 16px);
+    text-decoration: none; color: var(--color-text); transition: var(--transition);
+  }
+  .nov__card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg, 0 18px 40px rgba(0,0,0,.18)); }
+  .nov__media {
+    display: grid; place-items: center; height: 300px; padding: var(--space-6) var(--space-6) 0;
+    background: linear-gradient(180deg, var(--color-bg) 0%, rgba(255,255,255,0) 92%);
+  }
+  .nov__media img { width: auto; max-width: 80%; max-height: 240px; }
+  .nov__body { display: flex; flex-direction: column; gap: var(--space-3); padding: var(--space-5) var(--space-6) var(--space-6); }
+  .nov__logo { height: 26px; width: auto; align-self: flex-start; }
+  .nov__link { display: inline-flex; align-items: center; gap: var(--space-1); margin-top: var(--space-1); color: var(--color-text-accent); font-weight: var(--font-weight-medium); font-size: var(--font-size-small); }
+  @media (max-width: 880px) { .novinky__grid { grid-template-columns: 1fr; max-width: 420px; } }
+
+  .head-center { text-align: center; max-width: 720px; margin: 0 auto var(--space-7); }
+  .head-center :global(.head-sub) { margin-top: var(--space-3); }
+
+  /* Stats band */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-5); text-align: center; }
+  .stat { display: flex; flex-direction: column; gap: var(--space-1); }
+  .stat__num { font-family: var(--font-sans); font-weight: var(--font-weight-semibold); font-size: clamp(28px, 4vw, 44px); color: var(--color-text-accent); letter-spacing: var(--letter-spacing-tight); }
+  .stat__lbl { font-size: var(--font-size-small); color: var(--color-text-muted); }
+
+  /* Categories — sticky scroll: ALL text left, large photo right */
+  .solscroll { background: var(--color-bg-alt); }
+  .solscroll__pin { position: relative; }
+  .solscroll__inner { position: sticky; top: 0; height: 100vh; display: flex; align-items: center; overflow: hidden; }
+  .solscroll__content {
+    display: grid; grid-template-columns: 0.82fr 1.18fr; gap: var(--space-8); align-items: center;
+    width: 100%; max-width: var(--container-max); margin: 0 auto; padding-inline: var(--container-pad);
+  }
+
+  .solscroll__title { margin: var(--space-3) 0 var(--space-6); }
+
+  .solscroll__acc { display: flex; flex-direction: column; gap: var(--space-2); }
+  .solscroll__item { border-left: 2px solid var(--color-border); padding-left: var(--space-5); opacity: 0.38; transition: border-color var(--duration-base) var(--easing), opacity var(--duration-base) var(--easing); }
+  .solscroll__item.is-active { border-left-color: var(--color-primary); opacity: 1; }
+  .solscroll__item:hover { opacity: 0.7; }
+  .solscroll__item.is-active:hover { opacity: 1; }
+  .solscroll__head {
+    text-align: left; background: none; border: none; cursor: pointer; width: 100%;
+    font-family: var(--font-sans); font-size: var(--font-size-lead); font-weight: var(--font-weight-medium);
+    color: var(--color-text-muted); padding: var(--space-2) 0; transition: var(--transition);
+  }
+  .solscroll__head:hover { color: var(--color-text); }
+  .solscroll__item.is-active .solscroll__head { color: var(--color-text-accent); font-weight: var(--font-weight-semibold); }
+  .solscroll__body { display: grid; grid-template-rows: 0fr; opacity: 0; transition: grid-template-rows var(--duration-base) var(--easing), opacity var(--duration-base) var(--easing); }
+  .solscroll__body > * { overflow: hidden; min-height: 0; }
+  .solscroll__item.is-active .solscroll__body { grid-template-rows: 1fr; opacity: 1; padding-bottom: var(--space-3); }
+  .solscroll__lead { margin-bottom: var(--space-3); }
+  .solscroll__list { list-style: none; display: flex; flex-direction: column; gap: var(--space-2); }
+  .solscroll__list li { position: relative; padding-left: var(--space-5); color: var(--color-text-muted); font-size: var(--font-size-small); }
+  .solscroll__list li::before { content: "✓"; position: absolute; left: 0; color: var(--color-text-accent); font-weight: 700; }
+
+  .solscroll__dots { display: flex; gap: var(--space-2); margin-top: var(--space-6); }
+  .solscroll__dot { width: 7px; height: 7px; border-radius: var(--radius-full); background: var(--color-border-strong); transition: var(--transition); }
+  .solscroll__dot.is-active { background: var(--color-primary); transform: scale(1.4); }
+
+  .solscroll__media { position: relative; aspect-ratio: 4 / 3; border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-lg); }
+  .solscroll__photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity var(--duration-base) var(--easing); }
+  .solscroll__photo.is-active { opacity: 1; }
+
+  @media (max-width: 880px) {
+    .solscroll__pin { height: auto !important; }
+    .solscroll__inner { position: static; height: auto; padding-block: var(--space-8); }
+    .solscroll__content { grid-template-columns: 1fr; gap: var(--space-5); }
+    .solscroll__dots { display: none; }
+    .solscroll__head { cursor: default; }
+    .solscroll__item { opacity: 1; }
+    .solscroll__body, .solscroll__item.is-active .solscroll__body { grid-template-rows: 1fr; opacity: 1; padding-bottom: var(--space-3); }
+    .solscroll__media { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .solscroll__photo, .solscroll__body { transition: none; }
+  }
+
+  /* Ecosystem */
+  .eco { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-5); }
+  .eco__card { position: relative; display: flex; flex-direction: column; gap: var(--space-2); padding: var(--space-6); background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); text-decoration: none; transition: var(--transition); }
+  .eco__badge { position: absolute; top: var(--space-4); right: var(--space-4); font-size: var(--font-size-caption); font-weight: var(--font-weight-medium); color: var(--color-primary); background: var(--color-bg-accent-soft, rgba(190,30,45,.08)); padding: 2px var(--space-2); border-radius: var(--radius-full); }
+  .eco__card:hover { border-color: var(--color-primary); box-shadow: var(--shadow-md); transform: translateY(-2px); }
+  .eco__logo { height: 32px; width: auto; max-width: 72%; object-fit: contain; object-position: left center; align-self: flex-start; margin-bottom: var(--space-3); }
+  .eco__desc { font-size: var(--font-size-small); color: var(--color-text-muted); flex: 1; }
+  .eco__more { display: inline-flex; align-items: center; gap: var(--space-1); font-size: var(--font-size-small); font-weight: var(--font-weight-medium); color: var(--color-text-accent); margin-top: var(--space-2); }
+
+  /* Testimonials */
+  .quotes { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-5); margin-top: var(--space-6); }
+  .quote { display: flex; flex-direction: column; gap: var(--space-4); padding: var(--space-6); border: 1px solid var(--color-border-on-dark); border-radius: var(--radius-md); }
+  .quote__text { font-size: var(--font-size-lead); line-height: var(--line-height-lead); }
+  .quote__by { display: flex; flex-direction: column; gap: 2px; }
+  .quote__author { font-weight: var(--font-weight-semibold); color: var(--color-text-on-dark); }
+  .quote__role { font-size: var(--font-size-small); color: var(--color-text-on-dark-muted); }
+
+  /* FAQ */
+  .faq { margin-top: var(--space-6); display: flex; flex-direction: column; gap: var(--space-3); }
+  .faq__item { background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-4) var(--space-5); }
+  .faq__q { cursor: pointer; font-family: var(--font-sans); font-weight: var(--font-weight-semibold); color: var(--color-text); list-style: none; display: flex; justify-content: space-between; align-items: center; gap: var(--space-4); }
+  .faq__q::-webkit-details-marker { display: none; }
+  .faq__q::after { content: "+"; color: var(--color-text-accent); font-size: 1.4em; line-height: 1; flex-shrink: 0; }
+  .faq__item[open] .faq__q::after { content: "−"; }
+  .faq__a { margin-top: var(--space-3); }
+
+  @media (max-width: 720px) {
+    .stats { grid-template-columns: repeat(2, 1fr); gap: var(--space-6) var(--space-4); }
+  }
+</style>
+
+<script>
+  const root = document.querySelector('[data-solscroll]') as HTMLElement | null;
+  if (root) {
+    const pin = root.querySelector('.solscroll__pin') as HTMLElement;
+    const items = Array.from(root.querySelectorAll('[data-item]'));
+    const photos = Array.from(root.querySelectorAll('[data-photo]'));
+    const navs = Array.from(root.querySelectorAll('[data-navitem]'));
+    const dots = Array.from(root.querySelectorAll('[data-dot]'));
+    const N = items.length;
+    const desktop = window.matchMedia('(min-width: 881px)');
+    let current = -1;
+
+    const setActive = (i: number) => {
+      if (i === current) return;
+      current = i;
+      items.forEach((s, n) => s.classList.toggle('is-active', n === i));
+      photos.forEach((s, n) => s.classList.toggle('is-active', n === i));
+      dots.forEach((s, n) => s.classList.toggle('is-active', n === i));
+    };
+
+    const onScroll = () => {
+      if (!desktop.matches) return;
+      const seg = (pin.offsetHeight - window.innerHeight) / N;
+      const scrolled = -pin.getBoundingClientRect().top;
+      setActive(Math.max(0, Math.min(N - 1, Math.floor(scrolled / seg))));
+    };
+
+    navs.forEach((btn, i) => btn.addEventListener('click', () => {
+      const seg = (pin.offsetHeight - window.innerHeight) / N;
+      window.scrollTo({ top: pin.offsetTop + i * seg + seg * 0.5, behavior: 'smooth' });
+    }));
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    setActive(0);
+    onScroll();
+  }
+</script>

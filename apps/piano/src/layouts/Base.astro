@@ -9,21 +9,11 @@ import '../styles/theme.css';
 import BaseHead from '@piano/ui/layouts/BaseHead.astro';
 import Header from '@piano/ui/components/Header.astro';
 import Footer from '@piano/ui/components/Footer.astro';
-import { companyNav, contact } from '@piano/ui/config/nav';
-
-// Patička piano.cz: sloupce Společnost / Pobočky / Kontakt (telefon + e-mail na konci).
-const footerColumns = [{ heading: 'Společnost', links: companyNav }];
-const footerOffices = { heading: 'Pobočky', items: contact.offices };
-const footerContact = {
-  heading: 'Kontakt',
-  items: [
-    { value: contact.company },
-    { label: 'IČ', value: contact.ic },
-    { label: 'DIČ', value: contact.dic },
-    { value: contact.phone, href: `tel:${contact.phone.replace(/\s/g, '')}` },
-    { value: contact.email, href: `mailto:${contact.email}` },
-  ],
-};
+import {
+  getNav, getCompanyNav, getLegalNav, getHeaderCta,
+  contactInfo, ui, switchHref, stripLocale, EN_READY, localeFromPath,
+  type Locale,
+} from '../i18n';
 
 interface Props {
   title: string;
@@ -34,6 +24,7 @@ interface Props {
   schema?: object;             // JSON-LD per stránka
   headerTransparent?: boolean; // overlay header přes hero (per stránka)
   contactBand?: boolean;       // globální pruh „Spojte se s námi" nad patičkou (default true)
+  locale?: Locale;             // jazyk stránky (default dle URL: /en/ → en, jinak cs)
 }
 
 const SITE_NAME = 'Piano';
@@ -49,7 +40,39 @@ const {
   schema,
   headerTransparent = false,
   contactBand = true,
+  locale = localeFromPath(Astro.url.pathname),
 } = Astro.props;
+
+const t = ui[locale];
+const homeHref = locale === 'en' ? '/en/' : '/';
+
+// Navigace + patička v jazyce stránky
+const nav = getNav(locale);
+const headerCta = getHeaderCta(locale);
+const footerColumns = [{ heading: t.footerCompany, links: getCompanyNav(locale) }];
+const footerOffices = { heading: t.footerOffices, items: contactInfo.offices };
+const footerContact = {
+  heading: t.footerContact,
+  items: [
+    { value: contactInfo.company },
+    { label: 'IČ', value: contactInfo.ic },
+    { label: 'DIČ', value: contactInfo.dic },
+    { value: contactInfo.phone, href: `tel:${contactInfo.phone.replace(/\s/g, '')}` },
+    { value: contactInfo.email, href: `mailto:${contactInfo.email}` },
+  ],
+};
+
+// Přepínač jazyků + hreflang (jen když existuje EN protějšek)
+const langSwitch = { href: switchHref(Astro.url.pathname, locale), label: t.switchTo, title: t.switchLabel };
+const canonicalPath = stripLocale(Astro.url.pathname);
+const hasAlt = EN_READY.has(canonicalPath);
+const alternates = hasAlt
+  ? [
+      { lang: 'cs', href: new URL(canonicalPath, SITE_URL).href },
+      { lang: 'en', href: new URL(canonicalPath === '/' ? '/en/' : '/en' + canonicalPath, SITE_URL).href },
+      { lang: 'x-default', href: new URL(canonicalPath, SITE_URL).href },
+    ]
+  : [];
 
 const organizationSchema = {
   '@context': 'https://schema.org',
@@ -72,7 +95,7 @@ const schemas = [organizationSchema, ...(schema ? [schema] : [])];
 ---
 
 <!doctype html>
-<html lang="cs">
+<html lang={locale}>
   <head>
     <!-- Google Search Console — ověření přes HTML tag (DNS na hostingu blokované) -->
     <meta name="google-site-verification" content="KgZuNpYxxMSjYosWLt0mC_2B8zkvHz-DUCYw_HbbtKw" />
@@ -91,6 +114,8 @@ const schemas = [organizationSchema, ...(schema ? [schema] : [])];
       noindex={noindex}
       siteName={SITE_NAME}
       siteUrl={SITE_URL}
+      locale={locale === 'en' ? 'en_US' : 'cs_CZ'}
+      alternates={alternates}
       schemas={schemas}
     />
   </head>
@@ -99,7 +124,7 @@ const schemas = [organizationSchema, ...(schema ? [schema] : [])];
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NC3PW2KC"
       height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
-    <Header logoSrc={LOGO} transparent={headerTransparent} />
+    <Header logoSrc={LOGO} transparent={headerTransparent} homeHref={homeHref} nav={nav} cta={headerCta} localeSwitch={langSwitch} />
     <main>
       <slot />
     </main>
@@ -108,18 +133,19 @@ const schemas = [organizationSchema, ...(schema ? [schema] : [])];
     {contactBand && (
     <section id="kontakt" class="contactband">
       <div class="contactband__inner">
-        <p class="contactband__eyebrow">Konzultace zdarma</p>
-        <h2 class="contactband__title">Spojte se s námi</h2>
-        <p class="contactband__lead">Zavolejte nebo napište, společně projdeme, co vás zajímá, a najdeme nejlepší řešení přesně pro váš podnik.</p>
+        <p class="contactband__eyebrow">{t.contactEyebrow}</p>
+        <h2 class="contactband__title">{t.contactTitle}</h2>
+        <p class="contactband__lead">{t.contactLead}</p>
         <div class="contactband__links">
-          <a href="tel:+420773798758" class="contactband__link"><span>Zavolejte</span>+420 773 798 758</a>
-          <a href="mailto:info@piano.cz" class="contactband__link"><span>Napište</span>info@piano.cz</a>
+          <a href="tel:+420773798758" class="contactband__link"><span>{t.contactCall}</span>+420 773 798 758</a>
+          <a href="mailto:info@piano.cz" class="contactband__link"><span>{t.contactWrite}</span>info@piano.cz</a>
         </div>
       </div>
     </section>
     )}
 
-    <Footer logoSrc={LOGO} logoAlt="Piano" columns={footerColumns} offices={footerOffices} contact={footerContact} />
+    <Footer logoSrc={LOGO} logoAlt="Piano" homeHref={homeHref} tagline={t.footerTagline}
+            columns={footerColumns} offices={footerOffices} contact={footerContact} legal={getLegalNav(locale)} />
   </body>
 </html>
 
