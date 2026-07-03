@@ -30,7 +30,7 @@ export const PIANO_PRODUCTS: PianoProduct[] = [
   { id: 'harsys',   label: 'ABX Harsys',     href: 'https://www.abxharsys.cz',      description: 'Pokladní systém',                icon: '/brand/abx.svg', group: 'pokladna' },
   { id: 'savarin',  label: 'Savarin',        href: 'https://cominn.cz',             description: 'Pokladní systém',                icon: '/brand/savarin.svg',        group: 'pokladna' },
   { id: 'autset',   label: 'Autset',         href: 'https://autset.com',            description: 'Automatické naskladňování',      icon: '/brand/autset.svg',         group: 'pokladna' },
-  { id: 'pecosta',  label: 'Pecosta',        href: 'https://pecosta.cz',            description: 'Aukční nákupy surovin',          icon: '/brand/pecosta.svg',           group: 'pokladna' },
+  { id: 'pecosta',  label: 'Pecosta',        href: 'https://pecosta.cz',            description: 'Aukční nákupy',          icon: '/brand/pecosta.svg',           group: 'pokladna' },
 
   { id: 'protel',   label: 'Protel',         href: 'https://www.protelsystems.cz',  description: 'Hotelový PMS systém',            icon: '/brand/protel.svg',      group: 'hotely' },
 
