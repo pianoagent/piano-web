@@ -64,7 +64,7 @@ const produktyMegaEn: MegaPanel = {
         { label: 'ABX Harsys', href: 'https://www.abxharsys.cz', description: 'POS system', icon: '/brand/abx.svg', external: true },
         { label: 'Savarin', href: 'https://cominn.cz', description: 'POS system', icon: '/brand/savarin.svg', external: true },
         { label: 'Autset', href: 'https://autset.com', description: 'Automatic stocking', icon: '/brand/autset.svg', external: true },
-        { label: 'Pecosta', href: 'https://pecosta.cz', description: 'Auction-based ingredient purchasing', icon: '/brand/pecosta.svg', external: true },
+        { label: 'Pecosta', href: 'https://pecosta.cz', description: 'Auction-based purchasing', icon: '/brand/pecosta.svg', external: true },
       ],
     },
     {

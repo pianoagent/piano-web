@@ -6,7 +6,7 @@
 
 - [Septim](https://septim-web.pages.dev): Pokladní a provozní systém
 - [Qerko](https://qerko-web.pages.dev): QR platby a komunikace s hosty
-- [Pecosta](https://pecosta-web.pages.dev): Aukční nákupy surovin
+- [Pecosta](https://pecosta-web.pages.dev): Aukční nákupy
 - [Grason](https://grason-web.pages.dev): Personál, směny a docházka
 - [Protel](https://protel-web.pages.dev): Hotelový PMS
 - [ABX Harsys](https://harsys-web.pages.dev): Multifunkční pokladní systémy
