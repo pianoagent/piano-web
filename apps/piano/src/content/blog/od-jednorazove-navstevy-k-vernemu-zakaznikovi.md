@@ -3,7 +3,7 @@ title: "Od jednorázové návštěvy k věrnému zákazníkovi: Jak pro restaura
 description: "Praktický průvodce moderního marketingu a zákaznické zkušenosti v pohostinství"
 pubDate: 2024-12-27
 image: "/images/blog/od-jednorazove-navstevy-k-vernemu-zakaznikovi.webp"
-categories: ["Jak zacit", "Marketing", "Podnikani"]
+categories: ["Platby a hosté"]
 ---
 
 *Praktický průvodce moderního marketingu a zákaznické zkušenosti v pohostinství*

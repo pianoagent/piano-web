@@ -3,7 +3,7 @@ title: "E-mailový marketing pro restaurace: Kompletní průvodce pro české ga
 description: "E-mailový marketing je jedním z nejefektivnějších nástrojů pro udržení kontaktu se zákazníky, budování loajality a zvyšování tržeb. Podívejte se na výhody"
 pubDate: 2024-12-24
 image: "/images/blog/e-mailovy-marketing-pro-restaurace.webp"
-categories: ["Legislativa", "Marketing", "Podnikani"]
+categories: ["Podnikání v gastru"]
 ---
 
 ### Proč by restaurace měly investovat do e-mailového marketingu?

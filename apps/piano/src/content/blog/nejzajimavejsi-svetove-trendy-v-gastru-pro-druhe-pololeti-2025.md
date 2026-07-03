@@ -3,7 +3,7 @@ title: "Nejzajímavější světové trendy v gastru pro druhé pololetí 2025"
 description: "Druhá polovina roku 2025 bude pro gastro provozy ve znamení pokračující adaptace na měnící se spotřebitelské chování, rostoucí náklady a nedostatek personálu. Podívejte se, jak na situaci reagovat,co se dá změnit a zlepšit."
 pubDate: 2025-01-07
 image: "/images/blog/nejzajimavejsi-svetove-trendy-v-gastru-pro-druhe-pololeti-2025.webp"
-categories: ["Marketing", "Podnikani", "Trendy"]
+categories: ["Data a trendy trhu"]
 ---
 
 ## Kontext a výzvy pro druhé pololetí 2025

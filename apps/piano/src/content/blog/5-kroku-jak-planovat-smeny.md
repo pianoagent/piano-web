@@ -3,7 +3,7 @@ title: "5 kroků, jak efektivně plánovat směny a předejít zbytečným přes
 description: "Plánování směn je každodenní realitou provozních v gastronomii. Pokud není dobře zvládnuté, vede nejen k frustraci personálu, ale také k neefektivnímu využívání zdrojů, zbytečným přesčasům a tím i vyšším nákladům. Pojďme se v 5 krocích podívat, jak se dají směny pokrýt chytře a efektivně."
 pubDate: 2025-05-01
 image: "/images/blog/5-kroku-jak-planovat-smeny.webp"
-categories: ["Personál", "Podnikani", "Technologie"]
+categories: ["Lidé a směny"]
 ---
 
 Plánování směn je každodenní realitou provozních v gastronomii. Pokud není dobře zvládnuté, vede nejen k frustraci personálu, ale také k neefektivnímu využívání lidských zdrojů, zbytečným přesčasům a tím i k vyšším nákladům.

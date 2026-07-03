@@ -3,7 +3,7 @@ title: "Kdy nabírat zaměstnance na sezónu? Časování, které rozhoduje o ú
 description: "Kdy je nejlepší čas na hledání nových zaměstnanců a kolegů v gastru? Podívejte se na doporučení, vycházející z analýz a zkušeností."
 pubDate: 2024-12-08
 image: "/images/blog/kdy-nabirat-zamestnance-na-sezonu.webp"
-categories: ["Jak zacit", "Podnikani", "Pribehy"]
+categories: ["Lidé a směny"]
 ---
 
 ##### Sezónní nábor v gastronomii je jedním z nejkritičtějších období pro provozovatele restaurací, kaváren a dalších pohostinských zařízení. Správné načasování může rozhodnout o tom, zda získáte kvalitní kandidáty, nebo budete v rozhodující chvíli řešit personální krizi. Kdy tedy začít a jak si správně naplánovat náborový proces?

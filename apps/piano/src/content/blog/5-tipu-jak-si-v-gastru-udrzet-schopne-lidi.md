@@ -3,7 +3,7 @@ title: "5 tipů, jak si v gastru udržet schopné lidi"
 description: "Asi všichni známe ten pocit zklamání, že nám zase dal zaměstnanec výpověď. Právě jste jej zaškolili, začínal si rozumět s týmem, hosté si jej oblíbili – a najednou odchází. A vy můžete začínat znovu. Fluktuace v gastru je opravdu veliká. Nejen že musíte hledat náhradu a znovu školit, ale mezitím se zbylý tým otravuje přesčasy […]"
 pubDate: 2025-09-11
 image: "/images/blog/5-tipu-jak-si-v-gastru-udrzet-schopne-lidi.webp"
-categories: ["Uncategorized"]
+categories: ["Lidé a směny"]
 ---
 
 Asi všichni známe ten pocit zklamání, že nám zase dal zaměstnanec výpověď. Právě jste jej zaškolili, začínal si rozumět s týmem, hosté si jej oblíbili – a najednou odchází. A vy můžete začínat znovu.

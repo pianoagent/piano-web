@@ -14,6 +14,18 @@ const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
 );
 
+// Kategorie blogu (pevné pořadí). Zobrazí se jen ty, které mají alespoň jeden článek.
+const CATEGORIES = [
+  'Podnikání v gastru',
+  'Legislativa a povinnosti',
+  'Platby a hosté',
+  'Lidé a směny',
+  'Nákupy a úspory',
+  'Data a trendy trhu',
+];
+const used = new Set(posts.flatMap((p) => p.data.categories ?? []));
+const categories = CATEGORIES.filter((c) => used.has(c));
+
 const fmtDate = (d: Date) => d.toLocaleDateString('cs-CZ', { day: 'numeric', month: 'long', year: 'numeric' });
 ---
 
@@ -26,9 +38,15 @@ const fmtDate = (d: Date) => d.toLocaleDateString('cs-CZ', { day: 'numeric', mon
   </Hero>
 
   <Section background="default" space="lg">
-    <div class="blog-grid">
+    <div class="blog-filter" role="tablist" aria-label="Kategorie článků">
+      <button class="blog-chip is-active" type="button" data-filter="" aria-pressed="true">Vše</button>
+      {categories.map((c) => (
+        <button class="blog-chip" type="button" data-filter={c} aria-pressed="false">{c}</button>
+      ))}
+    </div>
+    <div class="blog-grid" data-blog-grid>
       {posts.map((p) => (
-        <a class="blog-card" href={`/blog/${p.id}`}>
+        <a class="blog-card" href={`/blog/${p.id}`} data-cats={(p.data.categories ?? []).join('|')}>
           {p.data.image && <div class="blog-card__media"><img src={p.data.image} alt={p.data.title} loading="lazy" /></div>}
           <div class="blog-card__body">
             <div class="blog-card__meta">
@@ -46,6 +64,17 @@ const fmtDate = (d: Date) => d.toLocaleDateString('cs-CZ', { day: 'numeric', mon
 </Base>
 
 <style>
+  /* Filtr kategorií */
+  .blog-filter { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-bottom: var(--space-7); }
+  .blog-chip {
+    font-family: var(--font-sans); font-size: var(--font-size-small); font-weight: var(--font-weight-medium);
+    color: var(--color-text); background: var(--color-bg); border: 1px solid var(--color-border);
+    border-radius: var(--radius-full); padding: var(--space-2) var(--space-4); cursor: pointer; transition: var(--transition);
+  }
+  .blog-chip:hover { border-color: var(--color-primary); color: var(--color-text-accent); }
+  .blog-chip.is-active { background: var(--color-primary); border-color: var(--color-primary); color: var(--color-text-on-dark); }
+  .blog-card.is-hidden { display: none; }
+
   .blog-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-6); }
   .blog-card { display: flex; flex-direction: column; background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); overflow: hidden; text-decoration: none; color: var(--color-text); transition: var(--transition); }
   .blog-card:hover { border-color: var(--color-primary); transform: translateY(-4px); box-shadow: var(--shadow-lg, 0 18px 40px rgba(0,0,0,.10)); }
@@ -59,3 +88,22 @@ const fmtDate = (d: Date) => d.toLocaleDateString('cs-CZ', { day: 'numeric', mon
   @media (max-width: 860px) { .blog-grid { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 560px) { .blog-grid { grid-template-columns: 1fr; } }
 </style>
+
+<script>
+  const chips = Array.from(document.querySelectorAll<HTMLButtonElement>('.blog-chip'));
+  const cards = Array.from(document.querySelectorAll<HTMLElement>('[data-blog-grid] .blog-card'));
+  chips.forEach((chip) => {
+    chip.addEventListener('click', () => {
+      const filter = chip.dataset.filter || '';
+      chips.forEach((c) => {
+        const active = c === chip;
+        c.classList.toggle('is-active', active);
+        c.setAttribute('aria-pressed', String(active));
+      });
+      cards.forEach((card) => {
+        const cats = (card.dataset.cats || '').split('|');
+        card.classList.toggle('is-hidden', filter !== '' && !cats.includes(filter));
+      });
+    });
+  });
+</script>

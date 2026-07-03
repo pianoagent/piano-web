@@ -3,7 +3,7 @@ title: "ROI marketingových aktivit: Která investice se opravdu vyplatí"
 description: "ROI v gastru – co to je, jak se měří, jaké jsou hodnoty a proč se vyplatí je sledovat? Přečtěte si kompletní přehled o nákladech."
 pubDate: 2025-07-23
 image: "/images/blog/roi-v-gastru-marketingove-aktivity.webp"
-categories: ["Marketing"]
+categories: ["Podnikání v gastru"]
 ---
 
 ### Pravda o marketingu v gastru – proč 7 z 10 restaurací utratí peníze zbytečně

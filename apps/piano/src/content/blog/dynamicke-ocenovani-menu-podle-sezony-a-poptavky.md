@@ -3,7 +3,7 @@ title: "Dynamické oceňování menu podle sezóny a poptávky"
 description: "Dynamické ceny – dá se se stejným jídlem a stejnou obsluhou vydělávat o čtvrtinu více? Ano. Přestaňte věřit v dogma fixních cen a začněte oceňovat své menu podle reality"
 pubDate: 2024-12-20
 image: "/images/blog/dynamicke-ocenovani-menu-podle-sezony-a-poptavky.webp"
-categories: ["Podnikani", "Poplatky", "Trendy"]
+categories: ["Podnikání v gastru"]
 ---
 
 Když ceny pracují za vás – jak zvýšit zisk bez změny receptur?

@@ -2,7 +2,7 @@
 title: "Spropitné v EET 2.0: malá změna, velké pasti"
 description: "Osvobození dýšek od daně zní jako jednoduchá dobrá zpráva. Pak přijdou provozovny, couvert a kontrola, a z jednoduchého pravidla je najednou věc, na které se dá pohořet."
 pubDate: 2026-06-01
-categories: ["EET 2.0"]
+categories: ["Legislativa a povinnosti", "Platby a hosté"]
 ---
 
 **Lukáš Urban** — CEO, Septim Systems a.s. · 1. června 2026

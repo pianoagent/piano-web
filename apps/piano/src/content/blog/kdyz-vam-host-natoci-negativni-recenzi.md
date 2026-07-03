@@ -3,7 +3,7 @@ title: "Když vám host natočí negativní recenzi, je čas na krizový managem
 description: "Co dělat, když nespokojeý host zveřejní negativní recenzi? Jak reagovat, aby k vám nepřestali chodit zákazníci? Krizová komunikace"
 pubDate: 2025-01-02
 image: "/images/blog/kdyz-vam-host-natoci-negativni-recenzi.webp"
-categories: ["Marketing", "Personál"]
+categories: ["Platby a hosté"]
 ---
 
 Je pondělní ráno, otevíráte restauraci a telefon vám začne vyzvánět jako šílený. Kamarád volá: *Viděl jsi to video na TikToku? Tam nějaká holka řve, že jste jí podali syrové kuře!* Do večera má video 50 tisíc zhlédnutí, 200 komentářů a místní facebooková skupina už plánuje bojkot vaší restaurace. Vítejte v krizovém managementu generace sociálních sítí. Jak z toho ven? 

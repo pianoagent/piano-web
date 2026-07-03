@@ -3,7 +3,7 @@ title: "Automatizace v gastro provozu: Co dává smysl a co je jen hype?"
 description: "Gastronomie prožívá další vlnu technologické revoluce. Ale pozor – ne každá technologie, která vypadá impozantně na veletrhu, se vyplatí v běžném provozu."
 pubDate: 2024-12-29
 image: "/images/blog/automatizace-v-gastro-provozu.webp"
-categories: ["Marketing", "Personál", "Technologie"]
+categories: ["Podnikání v gastru"]
 ---
 
 Gastronomie prožívá další vlnu technologické revoluce. Zatímco ještě před pár lety se zdály robotické kuchyně a AI asistenti jako sci-fi, dnes jsou realitou mnoha provozů. Mezi rostoucími náklady na energie, personálními problémy a požadavky na efektivitu hledají majitelé restaurací a hotelů cestu vpřed. Ale pozor – ne každá technologie, která vypadá impozantně na veletrhu, se vyplatí v běžném provozu.

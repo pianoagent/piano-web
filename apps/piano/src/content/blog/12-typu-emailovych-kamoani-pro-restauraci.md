@@ -3,7 +3,7 @@ title: "12 typů e-mailových kampaní, které pomohou vaší restauraci růst"
 description: "Správně načasovaný e-mail vám může přivést hosta ve správnou chvíli. Tady je přehled 12 konkrétních typů kampaní, které můžete rovnou využít"
 pubDate: 2024-12-25
 image: "/images/blog/12-typu-emailovych-kamoani-pro-restauraci.webp"
-categories: ["Jak zacit", "Marketing", "Podnikani"]
+categories: ["Podnikání v gastru"]
 ---
 
 Správně načasovaný e-mail vám může přivést hosta ve správnou chvíli. Nejde jen o newsletter jednou za měsíc – e-mailový marketing pro gastro provozy může být bohatý, pestrý a účinný. Tady je přehled **12 konkrétních typů kampaní**, které můžete rovnou využít (a nebo automatizovat):

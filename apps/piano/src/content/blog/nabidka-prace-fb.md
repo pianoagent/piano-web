@@ -3,7 +3,7 @@ title: "Kolik procent lidí ve FB skupině vidí příspěvek s nabídkou práce
 description: "Facebookové skupiny jsou populárním místem pro sdílení pracovních nabídek, ale mnoho zaměstnavatelů vůbec netuší, kolik lidí vlastně jejich příspěvek uvidí. Podívejte se,jak to skutečně je"
 pubDate: 2024-12-31
 image: "/images/blog/nabidka-prace-fb.webp"
-categories: ["Jak zacit", "Marketing", "Personál"]
+categories: ["Lidé a směny"]
 ---
 
 Facebook skupiny jsou populárním místem pro sdílení pracovních nabídek, ale mnoho zaměstnavatelů vůbec netuší, kolik lidí vlastně jejich příspěvek uvidí. Odpověď může být překvapivá a ne vždy příjemná.

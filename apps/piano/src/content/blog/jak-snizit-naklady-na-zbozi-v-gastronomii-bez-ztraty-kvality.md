@@ -3,7 +3,7 @@ title: "Jak snížit náklady na zboží v gastronomii bez ztráty kvality"
 description: "Jak snížit náklady na suroviny a vybavení v gastru? Praktické tipy pro efektivní nákup, skladování a výběr dodavatelů pro restaurace a kavárny."
 pubDate: 2025-10-22
 image: "/images/blog/jak-snizit-naklady-na-zbozi-v-gastronomii-bez-ztraty-kvality.webp"
-categories: ["Uncategorized"]
+categories: ["Nákupy a úspory"]
 ---
 
 Provozovat úspěšnou restauraci, kavárnu nebo jiné gastro zařízení znamená balancovat na tenké hranici mezi kvalitou a rentabilitou. Každý šéfkuchař a majitel podniku ví, že hosté poznají rozdíl mezi průměrnými a špičkovými surovinami – a právě kvalita je často tím, co je k vám přivede a přiměje se vracet. Na druhou stranu vás ale rostoucí ceny energií, potravin a provozních nákladů nutí hledat úspory a snižovat náklady všude, kde to jde.

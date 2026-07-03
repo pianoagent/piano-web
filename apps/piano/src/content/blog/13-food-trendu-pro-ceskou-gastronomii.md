@@ -3,7 +3,7 @@ title: "13 food trendů pro českou gastronomii –  co letos hýbe talíři?"
 description: "Gastronomický svět se neustále mění a vyvíjí rychleji než kdykoliv předtím. O co majíhosté zájem? Na základě analýzy českého i zahraničního trhu představujeme 13 food trendů"
 pubDate: 2024-12-10
 image: "/images/blog/13-food-trendu-pro-ceskou-gastronomii.webp"
-categories: ["Hygiena", "Jak zacit", "Legislativa"]
+categories: ["Data a trendy trhu"]
 ---
 
 Gastronomický svět se neustále mění a vyvíjí rychleji než kdykoliv předtím. O co majíhosté zájem? Co je trendem v gastronomii v roce 2025? Na základě analýzy českého i zahraničního trhu představujeme 13 zásadních trendů, které formují naše talíře. 
