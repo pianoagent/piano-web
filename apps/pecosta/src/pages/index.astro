@@ -19,6 +19,7 @@ import Icon from '@piano/ui/components/Icon.astro';
 import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import LogoWall from '@piano/ui/components/LogoWall.astro';
+import { pecostaLeadProofs } from '../config/leadProofs';
 
 const stats = [
   { num: '16 %', lbl: 'průměrná úspora na surovinách' },
@@ -29,14 +30,14 @@ const stats = [
 
 const steps = [
   { icon: 'lucide:calculator', title: 'Analýza zdarma', text: 'Připravíme cenové porovnání a kalkulaci úspor bez závazků. Vidíte reálná čísla ještě před podpisem.' },
-  { icon: 'lucide:plug', title: 'Napojení dodavatelů', text: 'Napojíme vaše stávající dodavatele na platformu. Nemusíte je měnit — soutěží o vaše objednávky.' },
-  { icon: 'lucide:shopping-cart', title: 'Nakupujete z jednoho místa', text: 'Vše na jednom portálu. Porovnáte ceny, objednáte a dostanete fakturu.' },
-  { icon: 'lucide:package-check', title: 'Automatické naskladnění', text: 'Dodací listy jdou automaticky do Septimu nebo vašeho skladového systému přes Autset.' },
+  { icon: 'lucide:plug', title: 'Napojení dodavatelů', text: 'Napojíme vaše stávající dodavatele na náš nákupní portál. Nemusíte je měnit — soutěží o vaši přízeň.' },
+  { icon: 'lucide:shopping-cart', title: 'Nakupujete z jednoho místa', text: 'Nakupujete od všech svých dodavatelů z jednoho portálu za ceny z aukcí.' },
+  { icon: 'lucide:package-check', title: 'Automatické naskladnění', text: 'Dodací listy jdou automaticky do vašeho skladového systému přes Autset.' },
 ];
 
 const features = [
   { icon: 'lucide:gavel', title: 'Aukční nákupy surovin', text: 'E-aukce od ověřených dodavatelů. Ceny srovnané u stovek dodavatelů najednou.' },
-  { icon: 'lucide:zap', title: 'Energie pro gastro', text: 'Úspora až 25 % na elektřině a plynu. Burzovní obchody přímo pro vaši provozovnu.' },
+  { icon: 'lucide:zap', title: 'Energie pro gastro', text: 'Úspora až 25 % na elektřině a plynu. Energie sdružíme a vyjednáme lepší ceny.' },
   { icon: 'lucide:package', title: 'Autset — automatické naskladnění', text: 'Dodací listy od 400+ dodavatelů se automaticky přenesou do vašeho skladového systému.' },
   { icon: 'lucide:bar-chart-3', title: 'Přehled nákladů', text: 'Jeden portál pro všechny nákupy. Vidíte, kde utrácíte a kde šetříte.' },
   { icon: 'lucide:shield-check', title: 'Ověření dodavatelé', text: 'Nakupujete od prověřených partnerů. Kvalita se nemění, cena jde dolů.' },
@@ -44,14 +45,14 @@ const features = [
 ];
 
 const integrations = [
-  'Autset — automatické naskladnění dodacích listů',
-  'Septim — přímé napojení na skladový systém',
-  '400+ dodavatelů potravin a nápojů',
+  'Chytrý nákup za aukční ceny',
+  'Automatické naskladnění dodacích listů',
+  'Přímé napojení na skladový systém',
 ];
 
 const testimonials = [
-  { initials: 'MŠ', headline: 'Šetříme miliony ročně', quote: 'Díky automatickému naskladňování v každém z našich hotelů každý den ušetříme svým lidem minimálně hodinu práce. 80 % nákupů realizujeme přes Pecostu a šetříme několik milionů ročně.', author: 'Maroš Šivec', role: 'Executive F&B Director, CPI Hotels (24 hotelů v ČR)' },
-  { initials: 'PH', headline: 'Úspora času je nedocenitelná', quote: 'Úspora času je nedocenitelná. Pecosta nám pomáhá mít náklady pod kontrolou a soustředit se na to, co nás baví.', author: 'Finanční ředitelka', role: 'Pytloun Hotels' },
+  { initials: 'CPI', headline: 'Šetříme miliony ročně', quote: 'Díky automatickému naskladňování v každém z našich hotelů každý den ušetříme svým lidem minimálně hodinu práce. 80 % nákupů realizujeme přes Pecostu a šetříme několik milionů ročně.', author: 'Maroš Šivec', role: 'Executive F&B Director, CPI Hotels' },
+  { initials: 'PH', headline: 'Úspora času je nedocenitelná', quote: 'Úspora času je nedocenitelná. Pecosta nám pomáhá mít náklady pod kontrolou a soustředit se na to, co nás baví.', author: 'Michaela Bakrlíková', role: 'Finanční ředitelka, Pytloun Hotels' },
   { initials: 'HP', headline: 'Zlomili jsme tříletý trend', quote: 'Zlomili jsme tříletý trend růstu nákladů. Výsledky překonaly naše očekávání.', author: 'Tomáš Šico', role: 'HP Tronic' },
 ];
 
@@ -62,19 +63,13 @@ const refLogos = [
 ];
 
 const faqs = [
-  { q: 'Jak funguje aukční nákup?', a: 'Pecosta sdruží poptávky stovek provozů a vyjedná hromadné ceny — dostanete ceny, na které byste jako jednotlivec nedosáhli. Dodavatelé soutěží, vy vyděláváte.' },
+  { q: 'Jak funguje aukční nákup?', a: 'Pecosta pravidelně sdružuje poptávky stovek provozů a vyjednává hromadné ceny — dostanete ceny, na které byste jako jednotlivec nedosáhli. Dodavatelé soutěží, vy vyděláváte.' },
   { q: 'Kolik reálně ušetřím?', a: 'V průměru až 16 % na surovinách a 25 % na energiích. Konkrétní číslo pro váš provoz spočítáme v bezplatné analýze.' },
-  { q: 'Musím měnit dodavatele?', a: 'Ne nutně. Nákupy řešíte z jednoho místa a Pecosta vám najde nejlepší ceny od ověřených dodavatelů.' },
+  { q: 'Musím měnit dodavatele?', a: 'Není třeba. Nákupy řešíte z jednoho místa a Pecosta vám nabízí nejlepší ceny od ověřených dodavatelů. S největší pravděpodobností zde najdete i 90 % těch svých. Nakupovat však můžete i nadále od svých lokálních dodavatelů a na nákupní portál je dodatečně zařadit.' },
   { q: 'Co je automatické naskladnění?', a: 'Dodací listy se naskladní automaticky (přes Autset), bez ručního přepisování — ušetříte hodiny administrativy každý měsíc.' },
-  { q: 'Hodí se Pecosta i pro menší provoz?', a: 'Ano. Čím víc nakupujete, tím víc ušetříte, ale benefit z lepších cen má i menší kavárna nebo bistro.' },
+  { q: 'Hodí se Pecosta i pro menší provoz?', a: 'Ano. Automatické naskladňování šetří čas menší kavárně stejně jako hotelovým sítím. Aukční nákupy pak doporučujeme hlavně provozům, jejichž objem nákupů přesahuje 5 mil. Kč ročně. Čím víc nakupujete, tím víc ušetříte.' },
 ];
 
-const leadProofs = [
-  { icon: 'lucide:badge-percent', title: 'Úspora až 16 %', text: 'Na surovinách, v průměru každý měsíc.' },
-  { icon: 'lucide:store', title: '960+ provozů', text: 'Restaurace, hotely i instituce v celé ČR.' },
-  { icon: 'lucide:calendar-check', title: '15 let na trhu', text: 'Zkušenosti s nákupem pro gastro.' },
-  { icon: 'lucide:gift', title: 'Analýza zdarma', text: 'Kalkulaci úspor máte do 48 hodin.' },
-];
 ---
 
 <Base title="Nákupčí pro váš podnik | Pecosta"
@@ -125,8 +120,8 @@ const leadProofs = [
 
   <!-- FUNKCE (USPGrid neforwarduje id → kotva na wrapperu) -->
   <div id="funkce">
-    <USPGrid eyebrow="Co Pecosta umí" title="Nakupujte chytřeji, ne víc"
-             lead="Jeden portál pro nákup surovin i energií — a naskladnění, které proběhne samo."
+    <USPGrid eyebrow="Co Pecosta umí" title="Nakupujte chytřeji. Nakupujte za míň."
+             lead="Aukční nákupy surovin, výhodnější energie a automatické naskladnění — vše z jednoho místa."
              items={features} minItemWidth="280px" background="alt" space="lg" />
   </div>
 
@@ -134,8 +129,11 @@ const leadProofs = [
   <Section background="invert" space="lg">
     <div class="head head--center">
       <Text size="label" color="accent" align="center">Integrace</Text>
-      <Heading as="h2" size="h2" align="center" color="on-dark">Pecosta + Autset + Septim = <em>nákup bez práce</em></Heading>
+      <Heading as="h2" size="h2" align="center" color="on-dark">Pecosta + Autset = <em>nákup bez práce</em></Heading>
       <Text size="lead" color="on-dark-muted" align="center">Od objednávky po naskladnění bez ručního přepisování.</Text>
+      <Text color="on-dark-muted" align="center" balance>
+        Naše řešení je propojeno s většinou gastro systémů na českém trhu a s více než 400 dodavateli potravin a nápojů.
+      </Text>
     </div>
     <ul class="chips">
       {integrations.map((i) => (
@@ -150,7 +148,7 @@ const leadProofs = [
       <Text size="label" color="accent" align="center">Reference</Text>
       <Heading as="h2" size="h2" align="center">Spoří s námi <em>ti nejlepší</em></Heading>
       <Text size="lead" color="muted" align="center" balance>
-        Od hotelových skupin po michelinské restaurace — Pecosta drží jejich náklady pod kontrolou.
+        Od hotelových skupin po michelinské restaurace — Pecosta drží náklady pod kontrolou.
       </Text>
     </div>
     <div class="quotes">
@@ -210,7 +208,7 @@ const leadProofs = [
             title="Zjistěte, kolik ušetříte"
             lead="Nechte nám kontakt — připravíme cenové porovnání a kalkulaci úspor. Zdarma a bez závazků."
             submitLabel="Chci analýzu zdarma"
-            proofs={leadProofs} />
+            proofs={pecostaLeadProofs} />
 
   </main>
 

@@ -9,6 +9,7 @@ import Heading from '@piano/ui/components/Heading.astro';
 import Text from '@piano/ui/components/Text.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
+import { pecostaLeadProofs } from '../config/leadProofs';
 
 const contacts = [
   { icon: 'lucide:mail', label: 'E-mail', value: 'pecosta@pecosta.cz', href: 'mailto:pecosta@pecosta.cz' },
@@ -45,7 +46,7 @@ const contacts = [
     <LeadForm id="poptavka" variant="full" background="alt"
               title="Nechte nám kontakt"
               lead="Připravíme cenové porovnání a kalkulaci úspor pro váš provoz. Zdarma a bez závazků."
-              submitLabel="Chci analýzu zdarma" />
+              submitLabel="Chci analýzu zdarma" proofs={pecostaLeadProofs} />
   </main>
   <SiteFooter />
 </Base>

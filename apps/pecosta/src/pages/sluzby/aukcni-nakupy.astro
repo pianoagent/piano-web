@@ -14,6 +14,7 @@ import LeadForm from '@piano/ui/components/LeadForm.astro';
 import StatsBand from '../../components/StatsBand.astro';
 import LogoWall from '../../components/LogoWall.astro';
 import Faq from '@piano/ui/components/Faq.astro';
+import { pecostaLeadProofs } from '../../config/leadProofs';
 
 const features = [
   'E-aukce od ověřených dodavatelů', 'Ceny srovnané u stovek dodavatelů najednou',
@@ -22,15 +23,15 @@ const features = [
 ];
 const benefits = [
   { icon: 'lucide:badge-percent', title: 'Úspora až 16 %', text: 'Průměrná úspora na nákladech na suroviny — každý měsíc, bez ztráty kvality.' },
-  { icon: 'lucide:gavel', title: 'Dodavatelé soutěží', text: 'V e-aukci se o vaši objednávku uchází více dodavatelů. Vy vybíráte nejlepší cenu.' },
-  { icon: 'lucide:layers', title: 'Vše na jednom místě', text: 'Objednávky, ceny i doklady z jednoho portálu — přehled bez papírování.' },
+  { icon: 'lucide:gavel', title: 'Dodavatelé soutěží', text: 'V e-aukci se o vaši přízeň uchází více dodavatelů. Nejdřív se soutěží, pak nakupujete nejlepší cenu.' },
+  { icon: 'lucide:layers', title: 'Vše z jednoho místa', text: 'Nákupy řešíte z jednoho místa. Na portále najdete nejlepší vysoutěžené ceny při zachování stejné kvality.' },
   { icon: 'lucide:shield-check', title: 'Ověření partneři', text: 'Nakupujete jen od prověřených dodavatelů. Kvalita zůstává, cena jde dolů.' },
 ];
 const faqs = [
-  { q: 'Jak funguje aukční nákup?', a: 'Pecosta sdruží poptávky stovek provozů a vyjedná hromadné ceny — dostanete ceny, na které byste jako jednotlivec nedosáhli. Dodavatelé soutěží, vy vyděláváte.' },
-  { q: 'Musím měnit dodavatele?', a: 'Ne nutně. Nákupy řešíte z jednoho místa a Pecosta vám najde nejlepší ceny od ověřených dodavatelů.' },
+  { q: 'Jak funguje aukční nákup?', a: 'Pecosta pravidelně sdružuje poptávky stovek provozů a vyjednává hromadné ceny — dostanete ceny, na které byste jako jednotlivec nedosáhli. Dodavatelé soutěží, vy vyděláváte.' },
+  { q: 'Musím měnit dodavatele?', a: 'Není třeba. Nákupy řešíte z jednoho místa a Pecosta vám nabízí nejlepší ceny od ověřených dodavatelů. S největší pravděpodobností zde najdete i 90 % těch svých. Nakupovat však můžete i nadále od svých lokálních dodavatelů a na nákupní portál je dodatečně zařadit.' },
   { q: 'Kolik reálně ušetřím?', a: 'V průměru až 16 % na surovinách. Konkrétní číslo pro váš provoz spočítáme v bezplatné analýze.' },
-  { q: 'Hodí se to i pro menší provoz?', a: 'Ano. Čím víc nakupujete, tím víc ušetříte, ale lepší ceny pomohou i menší kavárně nebo bistru.' },
+  { q: 'Hodí se to i pro menší provoz?', a: 'Ano. Aukční nákupy doporučujeme hlavně provozům, jejichž objem nákupů přesahuje 5 mil. Kč ročně (u sítí se objemy provozů sčítají). Čím víc nakupujete, tím víc ušetříte.' },
 ];
 ---
 <Base title="Aukční nákupy surovin – ušetřete až 16 % | Pecosta"
@@ -38,7 +39,7 @@ const faqs = [
   <SiteHeader />
   <main>
     <Hero eyebrow="Služba Pecosta" background="alt"
-          lead="Pecosta sdruží poptávky stovek provozů a nakoupí suroviny formou e-aukce. Dodavatelé soutěží o vaši objednávku — vy získáváte ceny, na které byste sami nedosáhli.">
+          lead="Pecosta sdruží poptávky stovek provozů a nakoupí suroviny formou e-aukce. Dodavatelé soutěží o vaši přízeň — vy získáváte ceny, na které byste sami nedosáhli.">
       <Heading slot="title" as="h1" size="display"><em>Aukční nákupy</em> surovin</Heading>
       <Fragment slot="actions">
         <Button href="#poptavka">Chci analýzu zdarma</Button>
@@ -48,9 +49,9 @@ const faqs = [
 
     <Section background="default" space="lg">
       <div class="prose">
-        <Heading as="h2" size="h2">Nakupujte chytřeji, ne víc</Heading>
+        <Heading as="h2" size="h2">Nakupujte chytřeji. Nakupujte za míň.</Heading>
         <Text size="lead" color="muted">
-          Místo individuálního smlouvání nakupujete přes platformu, kde se o každou objednávku
+          Místo individuálního smlouvání nakupujete přes portál, kde se o každou objednávku
           uchází více ověřených dodavatelů. Ročně přes Pecostu proteče nákupní objem 2,5 mld. Kč —
           tu vyjednávací sílu dostáváte k dispozici i vy.
         </Text>
@@ -78,7 +79,7 @@ const faqs = [
     <LeadForm id="poptavka" variant="full" background="default"
               title="Zjistěte, kolik ušetříte"
               lead="Připravíme cenové porovnání a kalkulaci úspor zdarma a bez závazků."
-              submitLabel="Chci analýzu zdarma" />
+              submitLabel="Chci analýzu zdarma" proofs={pecostaLeadProofs} />
   </main>
   <SiteFooter />
 </Base>

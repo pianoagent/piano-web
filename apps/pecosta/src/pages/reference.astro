@@ -12,10 +12,11 @@ import Icon from '@piano/ui/components/Icon.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import StatsBand from '../components/StatsBand.astro';
 import LogoWall from '../components/LogoWall.astro';
+import { pecostaLeadProofs } from '../config/leadProofs';
 
 const testimonials = [
-  { initials: 'MŠ', headline: 'Šetříme miliony ročně', quote: 'Díky automatickému naskladňování v každém z našich hotelů každý den ušetříme svým lidem minimálně hodinu práce. 80 % nákupů realizujeme přes Pecostu a šetříme několik milionů ročně.', author: 'Maroš Šivec', role: 'Executive F&B Director, CPI Hotels (24 hotelů v ČR)' },
-  { initials: 'PH', headline: 'Úspora času je nedocenitelná', quote: 'Úspora času je nedocenitelná. Pecosta nám pomáhá mít náklady pod kontrolou a soustředit se na to, co nás baví.', author: 'Finanční ředitelka', role: 'Pytloun Hotels' },
+  { initials: 'CPI', headline: 'Šetříme miliony ročně', quote: 'Díky automatickému naskladňování v každém z našich hotelů každý den ušetříme svým lidem minimálně hodinu práce. 80 % nákupů realizujeme přes Pecostu a šetříme několik milionů ročně.', author: 'Maroš Šivec', role: 'Executive F&B Director, CPI Hotels' },
+  { initials: 'PH', headline: 'Úspora času je nedocenitelná', quote: 'Úspora času je nedocenitelná. Pecosta nám pomáhá mít náklady pod kontrolou a soustředit se na to, co nás baví.', author: 'Michaela Bakrlíková', role: 'Finanční ředitelka, Pytloun Hotels' },
   { initials: 'HP', headline: 'Zlomili jsme tříletý trend', quote: 'Zlomili jsme tříletý trend růstu nákladů. Výsledky překonaly naše očekávání.', author: 'Tomáš Šico', role: 'HP Tronic' },
   { initials: 'KO', headline: 'Přesnější podklady', quote: 'Způsob zpracování naskladnění a dodacích listů přes Autset pomáhá i skladové účetní — podklady jsou přesnější a nemusí je kontrolovat položkově.', author: 'Kolkovna', role: 'Síť restaurací' },
 ];
@@ -87,7 +88,7 @@ const clients = [
     <LeadForm id="poptavka" variant="full" background="default"
               title="Chcete být další referencí?"
               lead="Začněte analýzou zdarma — připravíme cenové porovnání a kalkulaci úspor pro váš provoz."
-              submitLabel="Chci analýzu zdarma" />
+              submitLabel="Chci analýzu zdarma" proofs={pecostaLeadProofs} />
   </main>
   <SiteFooter />
 </Base>

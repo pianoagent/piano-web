@@ -12,12 +12,13 @@ import Icon from '@piano/ui/components/Icon.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import StatsBand from '../components/StatsBand.astro';
 import Faq from '@piano/ui/components/Faq.astro';
+import { pecostaLeadProofs } from '../config/leadProofs';
 
 const steps = [
   { icon: 'lucide:calculator', title: 'Analýza zdarma', text: 'Připravíme cenové porovnání a kalkulaci úspor bez závazků. Vidíte reálná čísla ještě před podpisem — výsledek máte do 48 hodin.' },
-  { icon: 'lucide:plug', title: 'Napojení dodavatelů', text: 'Napojíme vaše stávající dodavatele na platformu. Nemusíte je měnit — naopak soutěží o vaše objednávky v e-aukcích.' },
-  { icon: 'lucide:shopping-cart', title: 'Nakupujete z jednoho místa', text: 'Vše na jednom portálu: porovnáte ceny, objednáte a dostanete fakturu. Přehled o nákladech bez papírování.' },
-  { icon: 'lucide:package-check', title: 'Automatické naskladnění', text: 'Dodací listy jdou automaticky do Septimu nebo vašeho skladového systému přes Autset — bez ručního přepisování.' },
+  { icon: 'lucide:plug', title: 'Napojení dodavatelů', text: 'Napojíme vaše stávající dodavatele na náš nákupní portál. Nemusíte je měnit — naopak soutěží o vaši přízeň v e-aukcích.' },
+  { icon: 'lucide:shopping-cart', title: 'Nakupujete z jednoho místa', text: 'Nakupujete od všech svých dodavatelů z jednoho portálu za ceny z aukcí. Přehled o nákladech bez papírování.' },
+  { icon: 'lucide:package-check', title: 'Automatické naskladnění', text: 'Dodací listy jdou automaticky do vašeho skladového systému přes Autset — bez ručního přepisování.' },
 ];
 const faqs = [
   { q: 'Začíná spolupráce závazkem?', a: 'Ne. Začínáme bezplatnou analýzou — připravíme cenové porovnání a kalkulaci úspor. Teprve pak se rozhodnete, zda do toho jdete.' },
@@ -63,7 +64,7 @@ const faqs = [
     <LeadForm id="poptavka" variant="full" background="alt"
               title="Začněte analýzou zdarma"
               lead="Nechte nám kontakt — připravíme cenové porovnání a kalkulaci úspor do 48 hodin."
-              submitLabel="Chci analýzu zdarma" />
+              submitLabel="Chci analýzu zdarma" proofs={pecostaLeadProofs} />
   </main>
   <SiteFooter />
 </Base>

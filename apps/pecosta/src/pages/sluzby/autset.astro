@@ -13,30 +13,31 @@ import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import StatsBand from '../../components/StatsBand.astro';
 import Faq from '@piano/ui/components/Faq.astro';
+import { pecostaLeadProofs } from '../../config/leadProofs';
 
 const steps = [
   { icon: 'lucide:phone-call', title: 'Kontaktování dodavatele', text: 'Autset s dodavatelem domluví zasílání dodacích listů v elektronické podobě.' },
-  { icon: 'lucide:scan-line', title: 'Zpracování', text: 'Dodací list je zvalidován, strojově zpracován a uložen — bez ručního přepisování.' },
-  { icon: 'lucide:settings-2', title: 'Příprava dat', text: 'Data jsou transformována a připravena pro váš cílový skladový systém.' },
-  { icon: 'lucide:send', title: 'Odeslání dat', text: 'Naskladnění dorazí do vašeho systému. Vše funguje dál jako dosud — jen samo.' },
+  { icon: 'lucide:scan-line', title: 'Zpracování', text: 'Dodací list se ověří, zpracuje a uloží — bez ručního přepisování.' },
+  { icon: 'lucide:settings-2', title: 'Příprava dat', text: 'Data jsou připravena pro váš cílový skladový systém.' },
+  { icon: 'lucide:send', title: 'Odeslání do skladu', text: 'Naskladnění dorazí do vašeho skladového systému. Vše funguje dál jako dosud — jen samo.' },
 ];
 const benefits = [
   { icon: 'lucide:clock', title: 'Úspora až 1 hodiny denně', text: 'Konec ručního přepisování dodacích listů. Čas navíc pro manažery i provozní.' },
-  { icon: 'lucide:shield-check', title: 'Žádné chyby z přepisu', text: 'Validační mechanismy hlídají chyby. Podklady jsou přesnější a nemusíte je kontrolovat položkově.' },
-  { icon: 'lucide:plug', title: '400+ dodavatelů', text: 'Napojení na většinu běžných skladových a účetních systémů v gastru, vč. Septimu.' },
+  { icon: 'lucide:shield-check', title: 'Žádné chyby z přepisu', text: 'Kontrolní mechanismy hlídají chyby. Podklady jsou přesnější a nemusíte je kontrolovat položkově.' },
+  { icon: 'lucide:plug', title: '400+ dodavatelů', text: 'Autset je propojen s většinou skladových a účetních systémů na trhu ČR.' },
   { icon: 'lucide:wand-2', title: 'Individuální přístup', text: 'Formát každého dodavatele přizpůsobíme — i EDI doklady přes univerzální rozhraní.' },
 ];
 const faqs = [
-  { q: 'Co je automatické naskladnění?', a: 'Dodací listy od dodavatelů se zpracují strojově a naskladní automaticky do vašeho skladového systému — bez ručního přepisování položek.' },
-  { q: 'S jakými systémy se Autset propojí?', a: 'S většinou běžných skladových a účetních systémů používaných v gastru, včetně Septimu. Napojení řešíme přes univerzální rozhraní a zvládáme i EDI doklady.' },
-  { q: 'Kolik času ušetřím?', a: 'Provozy s Autsetem šetří až 1 hodinu práce denně. CPI Hotels uvádí minimálně hodinu denně v každém ze svých hotelů.' },
+  { q: 'Co je automatické naskladnění?', a: 'Dodací listy od dodavatelů se zpracují a naskladní automaticky do vašeho skladového systému — bez ručního přepisování položek.' },
+  { q: 'S jakými systémy se Autset propojí?', a: 'S většinou běžných skladových a účetních systémů používaných v gastru na trhu ČR. Napojení řešíme přes univerzální rozhraní a zvládáme i EDI doklady.' },
+  { q: 'Kolik času ušetřím?', a: 'Provozy s Autsetem šetří až 1 hodinu práce denně — Autset ušetří až 80 % času stráveného naskladněním.' },
   { q: 'Musím měnit dodavatele nebo systém?', a: 'Ne. Autset se napojí na vaše stávající dodavatele i cílový systém. Vše funguje dál jako dosud, jen bez ruční práce.' },
 ];
 const autsetStats = [
   { num: '1 hod.', lbl: 'ušetřená práce denně' },
   { num: '400+', lbl: 'napojených dodavatelů' },
   { num: '0', lbl: 'ručně přepsaných dokladů' },
-  { num: '24', lbl: 'hotelů CPI v ČR využívá Autset' },
+  { num: '80 %', lbl: 'úspory času z naskladnění' },
 ];
 ---
 <Base title="Autset – automatické naskladnění dodacích listů | Pecosta"
@@ -44,7 +45,7 @@ const autsetStats = [
   <SiteHeader />
   <main>
     <Hero eyebrow="Služba Pecosta" background="alt"
-          lead="Nepřepisujte, AUTSETUJTE. Dodací listy od 400+ dodavatelů se zpracují strojově a naskladní automaticky do vašeho skladového systému — bez chyb a bez hodin administrativy.">
+          lead="Nepřepisujte, AUTSETUJTE. Dodací listy od 400+ dodavatelů se naskladní automaticky do vašeho skladového systému — bez chyb a bez hodin administrativy.">
       <Heading slot="title" as="h1" size="display"><em>Autset</em> — naskladnění bez práce</Heading>
       <Fragment slot="actions">
         <Button href="#poptavka">Chci analýzu zdarma</Button>
@@ -57,12 +58,12 @@ const autsetStats = [
         <Heading as="h2" size="h2">Konec ručního přepisování dodacích listů</Heading>
         <Text size="lead" color="muted">
           Naskladnění zboží z dodacích listů zabere denně hodiny — a každý ruční přepis je riziko chyby.
-          Autset celý proces zautomatizuje: dodací list zvaliduje, zpracuje a odešle data přímo
+          Autset celý proces zautomatizuje: dodací list ověří, zpracuje a odešle data přímo
           do vašeho skladového systému.
         </Text>
         <Text color="muted">
           Skladové účetní tak mají přesnější podklady a nemusí je kontrolovat položku po položce.
-          Autset je součástí rodiny Pecosta a propojuje se i se Septimem.
+          Autset je součástí rodiny Pecosta a je propojen s většinou skladových systémů na trhu ČR.
         </Text>
       </div>
     </Section>
@@ -90,7 +91,7 @@ const autsetStats = [
     <LeadForm id="poptavka" variant="full" background="alt"
               title="Ukážeme vám naskladnění bez práce"
               lead="Nechte nám kontakt — předvedeme Autset na vašich dodavatelích a systému. Zdarma a bez závazků."
-              submitLabel="Chci analýzu zdarma" />
+              submitLabel="Chci analýzu zdarma" proofs={pecostaLeadProofs} />
   </main>
   <SiteFooter />
 </Base>
