@@ -3,7 +3,7 @@ title: "Jak najít a udržet kvalitního kuchaře? Tohle funguje!"
 description: "Kde vzít opravdu dobrého kuchaře? Proč je to těžké, co nefunguje a co naopak pomáhá? Podívejte se na rady a tipy z praxe."
 pubDate: 2025-05-09
 image: "/images/blog/jak-najit-a-udrzet-kvalitniho-kuchare.webp"
-categories: ["Personál", "Technologie", "Trendy"]
+categories: ["Lidé a směny"]
 ---
 
 Nedostatek kvalifikovaného personálu v gastronomii není nový problém, jen se rok co rok stupňuje. Podle dat AHR ČR (2024) chybí v oboru přes **15 000 pracovníků**, z toho **až 40 % připadá na kuchaře a pomocný personál**. Jaký je důvod a jak to můžete změnit? Podívejte se na tipy z praxe.

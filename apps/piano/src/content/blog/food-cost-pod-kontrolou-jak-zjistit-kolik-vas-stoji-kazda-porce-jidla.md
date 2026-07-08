@@ -3,7 +3,7 @@ title: "Food cost pod kontrolou: Kolik vás stojí každá porce?"
 description: "Víte, kolik vás stojí porce jídla (food cost)? Rozdíl mezi odhadem a realitou bývá klidně 10–15 %, a to už je rozdíl mezi ziskem a ztrátou"
 pubDate: 2025-07-16
 image: "/images/blog/food-cost-pod-kontrolou-jak-zjistit-kolik-vas-stoji-kazda-porce-jidla.webp"
-categories: ["Podnikani"]
+categories: ["Podnikání v gastru"]
 ---
 
 „Přesně vím, co ten burger stojí.“ Víte to opravdu? Včetně všech surovin, odpadu, ztrát a reálné spotřeby? Zkušenost ukazuje, že rozdíl mezi odhadem a realitou bývá klidně 10–15 %. A to už je rozdíl mezi ziskem a ztrátou.

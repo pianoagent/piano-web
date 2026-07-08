@@ -3,7 +3,7 @@ title: "10 skrytých nákladů, které vám tiše ukusují ze zisku"
 description: "Podívejme se na 10 nejčastějších skrytých nákladů a konkrétní způsoby, jak je eliminovat."
 pubDate: 2024-06-14
 image: "/images/blog/10-skrytych-nakladu-ktere-vam-tise-ukusuji-ze-zisku.webp"
-categories: ["Personál", "Podnikani", "Trendy"]
+categories: ["Podnikání v gastru"]
 ---
 
 A jak je konečně dostat pod kontrolu

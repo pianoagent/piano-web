@@ -3,7 +3,7 @@ title: "Případová studie: Pět drobností, které zvedly tržby o 15 % – be
 description: "Chcete něco změnit, ale nevíte kde začít a máte obavy z výsledku? Podívejte se, jak se ke změnám postavila jedna malá restaurace. A co jí pomohlo zvednout tržby."
 pubDate: 2024-12-23
 image: "/images/blog/pripadova-studie-5-veci-ktere-zvedly-trzby-o-15-procent.webp"
-categories: ["Marketing", "Podnikani", "Pribehy"]
+categories: ["Podnikání v gastru"]
 ---
 
 Chcete něco změnit, ale nevíte kde začít a máte obavy z výsledku? Podívejte se, jak se ke změnám postavila jedna malá restaurace. A co jí pomohlo zvednout tržby.

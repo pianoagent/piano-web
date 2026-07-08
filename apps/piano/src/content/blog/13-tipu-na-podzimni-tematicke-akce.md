@@ -3,7 +3,7 @@ title: "13 tipů na podzimní tématické akce"
 description: "Jak přilákat návštěvníky do bistra nebo restaurace na podzim? Připravte podzimní tématické akce, využijte lokální dodavatele. 13 tipů zde."
 pubDate: 2024-12-15
 image: "/images/blog/13-tipu-na-podzimni-tematicke-akce.webp"
-categories: ["Jak zacit", "Marketing", "Trendy"]
+categories: ["Podnikání v gastru"]
 ---
 
 Udělejte ze svého podniku hit!

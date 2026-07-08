@@ -3,7 +3,7 @@ title: "Jaké podmínky se v gastru musí změnit, aby se pracovníci chtěli vr
 description: "Pracovníci z gastronomie odešli, ale jaké změny by je motivovaly k návratu do tohoto oboru? Získali jsme odpovědi od 350 lidí, kteří z gastronomie odešli."
 pubDate: 2024-12-22
 image: "/images/blog/gastro-pracovni-podminky.webp"
-categories: ["Podnikani", "Pribehy", "Recenze"]
+categories: ["Lidé a směny"]
 ---
 
 Pracovníci z gastronomie odešli, ale jaké změny by je motivovaly k návratu do tohoto oboru? Získali jsme odpovědi od 350 lidí, kteří z gastronomie odešli. Jsou mezi nimi zastoupené všechny profese od šéfkuchařů, číšníků, servírek, barmanů až po baristy. Díky tomu víme, co je pro 70% lidí tím největším motivátorem k návratu. Podle odpovědí si snadno uděláte obrázek o tom, jak změnit svůj náborový proces.

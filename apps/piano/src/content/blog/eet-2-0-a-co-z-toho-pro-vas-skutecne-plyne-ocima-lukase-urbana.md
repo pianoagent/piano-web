@@ -3,7 +3,7 @@ title: "EET 2.0 a co z toho pro vás skutečně plyne očima Lukáše Urbana"
 description: "Lukáš Urban sleduje české gastro z první linie přes dvacet pět let. EET 2.0 nepovažuje za katastrofu, ale netvrdí ani, že se jeho zavedení obejde bez třecích ploch. Co můžou provozovatelé restaurací tentokrát udělat jinak? Během první vlny EET v roce 2016 sledoval, jak většina malých provozů sáhla po nejlevnějším řešení, jen aby splnila zákon. […]"
 pubDate: 2026-06-01
 image: "/images/blog/eet-2-0-a-co-z-toho-pro-vas-skutecne-plyne-ocima-lukase-urbana.webp"
-categories: ["Uncategorized"]
+categories: ["Legislativa a povinnosti"]
 ---
 
 Lukáš Urban sleduje české gastro z první linie přes dvacet pět let. EET 2.0 nepovažuje za katastrofu, ale netvrdí ani, že se jeho zavedení obejde bez třecích ploch. Co můžou provozovatelé restaurací tentokrát udělat jinak?

@@ -3,7 +3,7 @@ title: "Data místo dojmů: Proč nejlepší šéfové neřídí podnik podle po
 description: "Vést restauraci nebo hotelový provoz stylem „nějak to vychází“ fungovalo možná před deseti lety. Dnes se v gastro segmentu hraje jiná hra. Ti nejlepší už nečekají na konec měsíce, aby zjistili, jak na tom jsou. Vědí to každý den. Mají data."
 pubDate: 2025-07-16
 image: "/images/blog/data-misto-dojmu-proc-nejlepsi-sefove-neridi-podnik-podle-pocitu.webp"
-categories: ["Podnikani", "Technologie", "Trendy"]
+categories: ["Podnikání v gastru"]
 ---
 
 Gastro – to jsou emoce, atmosféra a lidé. Ale úspěšní provozní dnes vědí, že bez tvrdých dat se podnik řídit nedá.

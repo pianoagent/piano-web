@@ -72,16 +72,16 @@ const categories = [
 
 // Ecosystem — Piano-hosted products go inside (locPath), others to production domains
 const ecosystem = [
-  { name: 'Piano Pilot', logo: '/brand/pilot_logo.svg', desc: 'Your whole operation in a mobile app with data and AI.', href: '/pilot', badge: 'New' },
-  { name: 'Piano Terminal', logo: '/brand/terminal_logo.svg', desc: 'A terminal where the payment is just the start, guest data and supplier payments.', href: '/terminal', badge: 'New' },
-  { name: 'Septim', logo: '/brand/septim_logo.svg', desc: 'The most respected POS and operations system on the market.', href: 'https://www.septim.cz' },
-  { name: 'Qerko', logo: '/brand/qerko_logo.svg', desc: 'The most convenient table payment and guest communication.', href: 'https://www.qerko.com' },
-  { name: 'Pecosta', logo: '/brand/pecosta_logo.svg', desc: 'Auction-based purchasing', href: 'https://www.pecosta.cz' },
-  { name: 'Grason', logo: '/brand/grason_logo.svg', desc: 'Part-timers, shift planning and paperwork in one app.', href: 'https://www.grason.cz' },
-  { name: 'Autset', logo: '/brand/autset_logo.svg', desc: 'Automatic stocking from delivery notes.', href: 'https://autset.com' },
-  { name: 'ABX Harsys', logo: '/brand/abx_logo.svg', desc: 'Multifunctional POS systems and registers.', href: 'https://www.abxharsys.cz' },
-  { name: 'Savarin', logo: '/brand/savarin_logo.svg', desc: 'Complete solution for food service and accommodation.', href: 'https://cominn.cz' },
-  { name: 'Protel', logo: '/brand/protel_logo.svg', desc: 'Software for efficient hotel management.', href: 'https://www.protelsystems.cz' },
+  { name: 'Piano Pilot', logo: '/brand/pilot_logo.svg', h: 28, desc: 'Your whole operation in a mobile app with data and AI.', href: '/pilot', badge: 'New' },
+  { name: 'Piano Terminal', logo: '/brand/terminal_logo.svg', h: 28, desc: 'A terminal where the payment is just the start, guest data and supplier payments.', href: '/terminal', badge: 'New' },
+  { name: 'Septim', logo: '/brand/septim_logo.svg', h: 42, desc: 'The most respected POS and operations system on the market.', href: 'https://www.septim.cz' },
+  { name: 'Qerko', logo: '/brand/qerko_logo.svg', h: 26, desc: 'The most convenient table payment and guest communication.', href: 'https://www.qerko.com' },
+  { name: 'Pecosta', logo: '/brand/pecosta_logo.svg', h: 28, desc: 'Auction-based purchasing', href: 'https://www.pecosta.cz' },
+  { name: 'Protel', logo: '/brand/protel_logo.svg', h: 40, desc: 'Software for efficient hotel management.', href: 'https://www.protelsystems.cz' },
+  { name: 'Autset', logo: '/brand/autset_logo.svg', h: 28, desc: 'Automatic stocking from delivery notes.', href: 'https://autset.com' },
+  { name: 'ABX Harsys', logo: '/brand/abx_logo.svg', h: 28, desc: 'Multifunctional POS systems and registers.', href: 'https://www.abxharsys.cz' },
+  { name: 'Savarin', logo: '/brand/savarin_logo.svg', h: 30, desc: 'Complete solution for food service and accommodation.', href: 'https://cominn.cz' },
+  { name: 'Grason', logo: '/brand/grason_logo.svg', h: 28, desc: 'Part-timers, shift planning and paperwork in one app.', href: 'https://www.grason.cz' },
 ];
 
 const benefits = [
@@ -209,7 +209,7 @@ const faqSchema = {
       {ecosystem.map((p) => (
         <a class="eco__card" href={locPath(p.href, L)} target={p.href.startsWith('http') ? '_blank' : undefined} rel={p.href.startsWith('http') ? 'noopener noreferrer' : undefined}>
           {p.badge && <span class="eco__badge">{p.badge}</span>}
-          <img class="eco__logo" src={p.logo} alt={p.name} loading="lazy" />
+          <img class="eco__logo" src={p.logo} alt={p.name} loading="lazy" style={`--eco-logo-h:${p.h}px`} />
           <span class="eco__desc">{p.desc}</span>
           <span class="eco__more">Learn more <Icon name="lucide:arrow-right" size="xs" /></span>
         </a>
@@ -344,10 +344,10 @@ const faqSchema = {
 
   /* Ecosystem */
   .eco { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-5); }
-  .eco__card { position: relative; display: flex; flex-direction: column; gap: var(--space-2); padding: var(--space-6); background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); text-decoration: none; transition: var(--transition); }
+  .eco__card { position: relative; display: flex; flex-direction: column; gap: var(--space-2); padding: var(--space-7) var(--space-6) var(--space-6); background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); text-decoration: none; transition: var(--transition); }
   .eco__badge { position: absolute; top: var(--space-4); right: var(--space-4); font-size: var(--font-size-caption); font-weight: var(--font-weight-medium); color: var(--color-primary); background: var(--color-bg-accent-soft, rgba(190,30,45,.08)); padding: 2px var(--space-2); border-radius: var(--radius-full); }
   .eco__card:hover { border-color: var(--color-primary); box-shadow: var(--shadow-md); transform: translateY(-2px); }
-  .eco__logo { height: 32px; width: auto; max-width: 72%; object-fit: contain; object-position: left center; align-self: flex-start; margin-bottom: var(--space-3); }
+  .eco__logo { height: var(--eco-logo-h, 28px); width: auto; max-width: 100%; object-fit: contain; object-position: left center; align-self: flex-start; margin-bottom: var(--space-3); }
   .eco__desc { font-size: var(--font-size-small); color: var(--color-text-muted); flex: 1; }
   .eco__more { display: inline-flex; align-items: center; gap: var(--space-1); font-size: var(--font-size-small); font-weight: var(--font-weight-medium); color: var(--color-text-accent); margin-top: var(--space-2); }
 

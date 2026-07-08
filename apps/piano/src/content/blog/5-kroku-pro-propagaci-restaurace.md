@@ -3,7 +3,7 @@ title: "5 klíčových kroků pro propagaci vaší restaurace v jarní sezóně"
 description: "V dnešní době je propagace restaurace klíčovým faktorem úspěchu v gastronomickém průmyslu. Podívejte se na 5 klíčových kroků pro propagaci restaurace na jaře"
 pubDate: 2025-01-10
 image: "/images/blog/5-kroku-pro-propagaci-restaurace.webp"
-categories: ["Personál", "Recenze", "Technologie"]
+categories: ["Podnikání v gastru"]
 ---
 
 V dnešní době je propagace restaurace klíčovým faktorem úspěchu v gastronomickém průmyslu. V tomto článku se zaměříme na 5 klíčových kroků, jak propagovat vaši restauraci v jarní sezóně. Připravte se na to, jak využít jarní sezónu a posunout svou restauraci na novou úroveň!

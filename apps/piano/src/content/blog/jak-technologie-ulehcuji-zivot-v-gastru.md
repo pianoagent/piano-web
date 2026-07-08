@@ -3,7 +3,7 @@ title: "Jak technologie ulehčují život v gastru"
 description: "Objevte, jak moderní technologie proměňují gastronomii – od automatizace objednávek až po chytré řízení zásob. Díky nim zvýšíte efektivitu, navíc snížíte náklady a nakonec zlepšíte zákaznický servis ve vašem podniku."
 pubDate: 2025-09-11
 image: "/images/blog/jak-technologie-ulehcuji-zivot-v-gastru.webp"
-categories: ["Jak zacit", "Podnikani", "Technologie"]
+categories: ["Podnikání v gastru"]
 ---
 
 Známe to všichni – den v restauraci nebo kavárně může začít už před svítáním a končí někdy kolem půlnoci. Mezi tím řešíte směny, jednáte s dodavateli, přijímáte rezervace a snažíte se, aby všechno fungovalo jako hodinky. A výsledek? Na to, co vás opravdu baví, tedy rozvoj podniku a péči o hosty, nezbývá moc času.

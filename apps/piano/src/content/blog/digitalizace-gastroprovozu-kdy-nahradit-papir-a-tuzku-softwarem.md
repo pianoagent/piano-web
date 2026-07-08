@@ -3,7 +3,7 @@ title: "Digitalizace gastroprovozu: Kdy nahradit papír a tužku softwarem"
 description: "Kdy začít s digitalizací gastroprovozu? Co vám usnadní, jak ji naplánovat a po jakých krocích gastro podik digitalizovat?"
 pubDate: 2025-07-16
 image: "/images/blog/digitalizace-gastroprovozu-kdy-nahradit-papir-a-tuzku-softwarem.webp"
-categories: ["Marketing", "Technologie"]
+categories: ["Podnikání v gastru"]
 ---
 
 **Papírové docházky, ruční kalkulace food costu a Excel tabulky pro plánování směn. Zní vám to povědomě? Pokud ano, možná je čas zamyslet se nad tím, zda tradiční způsoby řízení gastro provozu ještě stačí na dnešní konkurenční trh.**
