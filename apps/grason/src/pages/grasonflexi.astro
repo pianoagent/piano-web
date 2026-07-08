@@ -24,7 +24,7 @@ const rows = [
 const steps = [
   { title: 'Vypíšete směnu', text: 'V appce nebo webovém rozhraní zadáte kdy, kde a koho potřebujete. Trvá to 2 minuty.' },
   { title: 'Brigádníci se hlásí', text: 'Ověření pracovníci z vašeho okolí dostanou notifikaci a zájemci se přihlásí.' },
-  { title: 'Potvrdíte výběr', text: 'Vyberete vhodného kandidáta. Grason zařídí smlouvu i papírování (DPP).' },
+  { title: 'Potvrdíte výběr', text: 'Vyberete vhodného kandidáta. Zaměstnavatelem jste vy — DPP můžete podepsat i přes appku (za příplatek).' },
   { title: 'Odpracováno a ohodnoceno', text: 'Pracovník dorazí na směnu, vy mu připravíte výplatu z podkladů a po směně ho ohodnotíte.' },
 ];
 
@@ -37,22 +37,22 @@ const testimonials = [
 const leadProofs = [
   { icon: 'lucide:gift', title: '14 dní zdarma', text: 'Bez platební karty, nezávazně.' },
   { icon: 'lucide:zap', title: 'Směna za pár minut', text: 'Pozici obsadíte dřív než konkurence.' },
-  { icon: 'lucide:users', title: '3 357+ brigádníků', text: 'Ověření pracovníci po celé ČR.' },
-  { icon: 'lucide:badge-check', title: 'DPP řeší Grason', text: 'Smlouva i papírování za vás.' },
+  { icon: 'lucide:users', title: '3 357+ brigádníků', text: 'Ověření pracovníci napříč 82+ městy.' },
+  { icon: 'lucide:badge-check', title: 'Podpis přes appku', text: 'DPP podepíšete i online (příplatek).' },
 ];
 ---
 
 <Base title="GrasonFlexi — brigádníci na směnu | Grason"
-      description="GrasonFlexi je nejrychlejší cesta k brigádníkům: vypíšete směnu, ověření pracovníci se přihlásí a vy vyberete. Grason vyřídí smlouvu a papírování (DPP).">
+      description="GrasonFlexi je nejrychlejší cesta k brigádníkům: vypíšete směnu, ověření pracovníci se přihlásí a vy vyberete. Zaměstnavatelem zůstáváte vy, Grason lidi zprostředkuje.">
   <Header brand="Grason" logoSrc="/logos/grason_logo.svg" logoHeight="28px" homeHref="/" nav={grasonNav} cta={grasonCta} />
 
   <main>
   <Hero eyebrow="GrasonFlexi" background="gradient"
-        lead="Vypíšete směnu, ověření brigádníci se přihlásí a vy vyberete. Grason vyřídí smlouvu a papírování (DPP) — podklady pro výplatu máte připravené, samotnou výplatu provedete vy.">
+        lead="Vypíšete směnu, ověření brigádníci se přihlásí a vy vyberete. Zaměstnavatelem zůstáváte vy — Grason lidi zprostředkuje a připraví podklady. DPP lze podepsat i přes appku (příplatková služba).">
     <Heading slot="title" as="h1" size="display" color="on-dark">Brigádníci <span class="accent">na jedno kliknutí</span></Heading>
     <Fragment slot="actions">
-      <Button href="#poptavka">Chci brigádníky</Button>
-      <Button href="#jak" variant="secondary" onDark>Jak to funguje</Button>
+      <Button href="https://www.grason.cz">Zaregistrovat firmu zdarma</Button>
+      <Button href="#poptavka" variant="secondary" onDark>Konzultace zdarma</Button>
     </Fragment>
     <figure slot="media" class="hero-figure">
       <img src="/images/for-companies-hero.webp" alt="GrasonFlexi — výběr brigádníků na směnu" width="720" height="560" loading="eager" />
@@ -103,7 +103,7 @@ const leadProofs = [
   <Section background="alt" space="lg">
     <div class="head head--center">
       <Text size="label" color="accent" align="center">Ceník</Text>
-      <Heading as="h2" size="h2" align="center">Předplatné <span class="accent">bez poplatků ze mzdy</span></Heading>
+      <Heading as="h2" size="h2" align="center">Platíte <span class="accent">předvídatelný paušál</span></Heading>
     </div>
     <div class="single-price">
       <article class="price">
@@ -111,10 +111,10 @@ const leadProofs = [
         <Heading as="h3" size="h3">Balíčky na míru</Heading>
         <Text color="muted" size="small">Podle počtu směn, poboček a funkcí. Závazek na 3, 6 nebo 12 měsíců.</Text>
         <ul class="checklist">
-          <li><Icon name="lucide:check" size="sm" class="hl-check" />Bez poplatků ze mzdy brigádníka</li>
+          <li><Icon name="lucide:check" size="sm" class="hl-check" />Předvídatelný měsíční paušál</li>
           <li><Icon name="lucide:check" size="sm" class="hl-check" />Od základního po prémiový tarif</li>
           <li><Icon name="lucide:check" size="sm" class="hl-check" />Enterprise: neomezené směny + account manager</li>
-          <li><Icon name="lucide:check" size="sm" class="hl-check" />Enterprise navíc: zpracování a vyplácení mezd</li>
+          <li><Icon name="lucide:check" size="sm" class="hl-check" />Podpis DPP přes appku (příplatková služba)</li>
         </ul>
         <div class="price__cta"><Button href="#poptavka">Chci nabídku</Button></div>
       </article>

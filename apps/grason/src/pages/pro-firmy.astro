@@ -20,16 +20,16 @@ const products = [
     img: '/images/for-companies-choose-candidates.webp',
     tag: 'GrasonFlexi',
     title: 'Brigádníci na směnu',
-    text: 'Vypíšete směnu, ověření brigádníci se přihlásí a vy vyberete. Grason vyřídí smlouvu i papírování (DPP).',
-    points: ['3 357+ ověřených pracovníků', 'Obsazení směny během minut', 'DPP papírování řeší Grason'],
+    text: 'Vypíšete směnu, ověření brigádníci se přihlásí a vy vyberete. Zaměstnavatelem zůstáváte vy — Grason lidi zprostředkuje a připraví podklady.',
+    points: ['3 357+ ověřených pracovníků', 'Obsazení směny během minut', 'Podpis DPP i přes appku (příplatek)'],
     href: '/grasonflexi',
   },
   {
     img: '/images/illustration-calendar.webp',
     tag: 'GrasonPlan',
     title: 'Plánování směn vlastního týmu',
-    text: 'Přehledný rozvrh pro stálé zaměstnance. Součástí je docházka (digitální píchačky), úkoly i podklady pro mzdy.',
-    points: ['Plán na PC i v mobilu', 'Docházka přes GPS / WiFi', 'Podklady pro mzdy · od 990 Kč/měs'],
+    text: 'Vypíšete směny a buď je přidělíte, nebo je necháte přihlásit. K tomu úkoly, mzdové podklady a docházka jako doplňkový modul.',
+    points: ['Plán na PC i v mobilu', 'Přidělení i samopřihlášení', 'od 990 Kč/měs, 1. měsíc zdarma'],
     href: '/grasonplan',
   },
   {
@@ -85,7 +85,7 @@ const leadProofs = [
     </div>
     <div class="pillars">
       {products.map((p) => (
-        <article class="pillar">
+        <a class="pillar" href={p.href}>
           <div class="pillar__media">
             <img src={p.img} alt="" loading="lazy" />
             {p.badge && <span class="pillar__badge">{p.badge}</span>}
@@ -97,9 +97,9 @@ const leadProofs = [
             <ul class="pillar__points">
               {p.points.map((pt) => (<li><Icon name="lucide:check" size="sm" class="pillar__check" />{pt}</li>))}
             </ul>
-            <a href={p.href} class="pillar__link">Prozkoumat <Icon name="lucide:arrow-right" size="sm" /></a>
+            <span class="pillar__link">Prozkoumat <Icon name="lucide:arrow-right" size="sm" /></span>
           </div>
-        </article>
+        </a>
       ))}
     </div>
   </Section>
@@ -108,9 +108,9 @@ const leadProofs = [
   <Section id="cenik" background="alt" space="lg">
     <div class="head head--center">
       <Text size="label" color="accent" align="center">Ceník</Text>
-      <Heading as="h2" size="h2" align="center">Předplatné <span class="accent">bez poplatků ze mzdy</span></Heading>
+      <Heading as="h2" size="h2" align="center">Ceník <span class="accent">podle produktu</span></Heading>
       <Text size="lead" color="muted" align="center" balance>
-        Žádné poplatky odvozené ze mzdy pracovníka. Díky předplatnému předem přesně víte, kolik a za co měsíčně platíte.
+        U předplatného předem přesně víte, kolik a za co měsíčně platíte. Vyberte si jen to, co potřebujete.
       </Text>
     </div>
     <div class="pricing pricing--3">
@@ -119,7 +119,7 @@ const leadProofs = [
         <Heading as="h3" size="h3">Balíčky na míru</Heading>
         <Text color="muted" size="small">Podle počtu směn, poboček a funkcí. Závazek na 3, 6 nebo 12 měsíců.</Text>
         <ul class="checklist">
-          <li><Icon name="lucide:check" size="sm" class="hl-check" />Bez poplatků ze mzdy brigádníka</li>
+          <li><Icon name="lucide:check" size="sm" class="hl-check" />Předvídatelný měsíční paušál</li>
           <li><Icon name="lucide:check" size="sm" class="hl-check" />Od základního po prémiový tarif</li>
           <li><Icon name="lucide:check" size="sm" class="hl-check" />Enterprise: neomezené směny + account manager</li>
         </ul>
@@ -132,8 +132,8 @@ const leadProofs = [
         <Text color="muted" size="small">1 podnik, do 25 uživatelů. Každý další uživatel +50 Kč/měsíc.</Text>
         <ul class="checklist">
           <li><Icon name="lucide:check" size="sm" class="hl-check" />Plánování směn, dovolených i záskoků</li>
-          <li><Icon name="lucide:check" size="sm" class="hl-check" />Docházka (píchačky) a podklady pro mzdy</li>
-          <li><Icon name="lucide:check" size="sm" class="hl-check" />Úkoly, checklisty, notifikace</li>
+          <li><Icon name="lucide:check" size="sm" class="hl-check" />Úkoly, checklisty, mzdové podklady</li>
+          <li><Icon name="lucide:check" size="sm" class="hl-check" />Docházka jako doplněk (+490 Kč/měs)</li>
         </ul>
         <div class="price__cta"><Button href="/grasonplan">Více o GrasonPlanu</Button></div>
       </article>
@@ -194,6 +194,7 @@ const leadProofs = [
   /* Produktové karty */
   .pillars { display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
   .pillar { display: flex; flex-direction: column; background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sm); transition: var(--transition); }
+  .pillar { color: inherit; text-decoration: none; }
   .pillar:hover { border-color: var(--color-primary); box-shadow: var(--shadow-md); }
   .pillar__media { position: relative; background: var(--color-bg-alt); line-height: 0; }
   .pillar__media img { width: 100%; height: 200px; object-fit: contain; display: block; padding: var(--space-5); }
