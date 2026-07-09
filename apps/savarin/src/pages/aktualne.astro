@@ -10,22 +10,18 @@ import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
 import Section from '@piano/ui/components/Section.astro';
 import Hero from '@piano/ui/components/Hero.astro';
 import Heading from '@piano/ui/components/Heading.astro';
-import Text from '@piano/ui/components/Text.astro';
 import Icon from '@piano/ui/components/Icon.astro';
+import { getCollection, render } from 'astro:content';
 import { savarinNav, savarinCta } from '../config/nav';
 
-const novinky = [
-  {
-    date: '9. 12. 2024',
-    title: 'Nová verze SW Savarin 5.24.16',
-    text: 'Od 9. 12. je v distribuci nová verze SW Savarin 5.24.16 — informace jsme rozeslali newsletterem 5. 12. Je to poslední verze pro rok 2024. V lednu 2025 budeme distribuovat verzi modulu Recepce s novými statistickými výkazy pro rok 2025.',
-  },
-  {
-    date: 'Prosinec 2024',
-    title: 'Provozní doba na konci roku',
-    text: 'V pracovní dny 23. 12., 27. 12. a 30. 12. jsme vám k dispozici standardně 08:00–16:00. Na Silvestra zavřeno. Hotline 24/7 funguje pro smluvní zákazníky standardně.',
-  },
-];
+// Novinky se čtou z Markdown souborů v src/content/aktualne/ (viz README tamtéž).
+// Přidání novinky = nový .md soubor, žádná editace kódu.
+const entries = (await getCollection('aktualne', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const novinky = await Promise.all(
+  entries.map(async (e) => ({ ...e.data, Content: (await render(e)).Content })),
+);
+const dateFmt = new Intl.DateTimeFormat('cs-CZ', { day: 'numeric', month: 'long', year: 'numeric' });
 
 const schema = {
   '@context': 'https://schema.org',
@@ -56,9 +52,9 @@ const schema = {
     <ol class="news">
       {novinky.map((n) => (
         <li class="news__item">
-          <span class="news__date"><Icon name="lucide:calendar" size="sm" />{n.date}</span>
+          <span class="news__date"><Icon name="lucide:calendar" size="sm" />{dateFmt.format(n.date)}</span>
           <Heading as="h2" size="h3">{n.title}</Heading>
-          <Text color="muted">{n.text}</Text>
+          <div class="news__body"><n.Content /></div>
         </li>
       ))}
     </ol>
@@ -72,4 +68,9 @@ const schema = {
   .news__item { background: var(--color-bg); border: 1px solid var(--color-border); border-left: 3px solid var(--color-primary); border-radius: var(--radius-sm); padding: var(--space-5) var(--space-6); }
   .news__item > * + * { margin-top: var(--space-2); }
   .news__date { display: inline-flex; align-items: center; gap: var(--space-2); font-size: var(--font-size-small); color: var(--color-text-accent); font-weight: var(--font-weight-semibold); }
+  .news__body { color: var(--color-text-muted); line-height: var(--line-height-body); }
+  .news__body :global(p) { margin: 0; }
+  .news__body :global(p + p) { margin-top: var(--space-3); }
+  .news__body :global(ul) { margin: var(--space-2) 0 0; padding-left: var(--space-5); }
+  .news__body :global(a) { color: var(--color-text-accent); }
 </style>

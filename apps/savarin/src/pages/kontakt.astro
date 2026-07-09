@@ -40,16 +40,22 @@ import { savarinNav, savarinCta } from '../config/nav';
           IČO: 47906499 · DIČ: CZ47906499<br />
           Zapsaná v OR u KS v Brně, oddíl C, vložka 9523.
         </Text>
+        <a class="contact__map" href="https://mapy.com/cs/zakladni?pid=100812822&newest=1&yaw=6.018&fov=1.257&pitch=0.028&x=17.6799517&y=49.2299863&z=19&ovl=8" target="_blank" rel="noopener">
+          <Icon name="lucide:map" size="sm" />Zobrazit na mapě (Street View)
+        </a>
       </article>
 
       <article class="contact__card">
         <span class="contact__icon"><Icon name="lucide:phone" size="md" /></span>
-        <Heading as="h2" size="h3">Telefon / fax</Heading>
+        <Heading as="h2" size="h3">Telefon</Heading>
         <Text color="muted">
           <a href="tel:+420577925145">(+420) 577 925 145</a><br />
           <a href="tel:+420577925407">(+420) 577 925 407</a>
         </Text>
-        <Text size="small" color="muted">Hotline 24/7 pro smluvní zákazníky.</Text>
+        <Text size="small" color="muted">
+          Dostupnost: pracovní dny 08:00–16:00.<br />
+          Přístup na hotline 24/7 získá zákazník po uzavření servisní smlouvy.
+        </Text>
       </article>
 
       <article class="contact__card">
@@ -61,7 +67,7 @@ import { savarinNav, savarinCta } from '../config/nav';
     </div>
   </Section>
 
-  <LeadForm id="poptavka" variant="full" background="alt"
+  <LeadForm id="poptavka" variant="full" message background="alt"
             title="Napište nám"
             lead="Pomocí formuláře nás můžete kontaktovat. Stručně popište svůj provoz a my se vám co nejdříve ozveme."
             successUrl="/dekujeme" />
@@ -78,4 +84,6 @@ import { savarinNav, savarinCta } from '../config/nav';
   .contact__icon { display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: var(--radius-md); background: var(--color-bg-alt); color: var(--color-primary); }
   .contact__card a { color: var(--color-text-accent); text-decoration: none; }
   .contact__card a:hover { color: var(--color-secondary-terracotta); }
+  .contact__map { display: inline-flex; align-items: center; gap: var(--space-2); margin-top: var(--space-2); font-size: var(--font-size-small); font-weight: var(--font-weight-semibold); }
+  .contact__map:hover { text-decoration: underline; }
 </style>
