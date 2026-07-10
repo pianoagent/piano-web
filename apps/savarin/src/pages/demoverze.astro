@@ -42,8 +42,8 @@ const schema = {
   <Breadcrumb items={[{ label: 'Domů', href: '/' }, { label: 'Demoverze' }]} />
 
   <Hero eyebrow="Demoverze zdarma" align="center" background="gradient" space="sm"
-        lead="Vyplňte prosím své údaje — demoverzi vám zašleme e-mailem.">
-    <Heading slot="title" as="h1" size="h1" align="center" color="on-dark">Žádost o zaslání demoverze Savarin</Heading>
+        lead="Vyzkoušejte Savarin nezávazně — pokladnu, sklady a kalkulace i recepci.">
+    <Heading slot="title" as="h1" size="h1" align="center" color="on-dark">Demoverze Savarin</Heading>
   </Hero>
 
   <!-- CO DEMOVERZE OBSAHUJE -->
@@ -63,11 +63,12 @@ const schema = {
     <Text size="small" color="muted" align="center" class="note">Ke každé demoverzi přikládáme stručný manuál. Zašleme ji elektronicky nebo na CD-ROM.</Text>
   </Section>
 
-  <LeadForm id="poptavka" variant="full" layout="stacked" background="alt"
+  <LeadForm id="poptavka" variant="full" background="alt"
             title="Žádost o demoverzi"
+            lead="Vyplňte prosím své údaje — demoverzi vám zašleme e-mailem."
             message="Poznámka" messagePlaceholder="Poznámka, info o provozovně, požadavky…"
             submitLabel="Odeslat žádost"
-            proofs={[]} successUrl="/dekujeme" />
+            successUrl="/dekujeme" />
 
   </main>
 
