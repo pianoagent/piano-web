@@ -42,6 +42,7 @@ interface Props {
   submitLabel?: string;
   message?: boolean | string;  // přidá pole „Zpráva" (textarea); string = vlastní popisek
   messagePlaceholder?: string; // placeholder pole Zpráva
+  layout?: 'split' | 'stacked'; // split = proofs vlevo + formulář vpravo; stacked = jen formulář na střed
   background?: 'default' | 'alt' | 'invert' | 'primary';
   space?: 'sm' | 'md' | 'lg';
   id?: string;
@@ -95,11 +96,14 @@ const {
   submitLabel,
   message = false,
   messagePlaceholder,
+  layout = 'split',
   background = 'alt',
   space = 'md',
   id,
   locale = 'cs',
 } = Astro.props;
+
+const isStacked = layout === 'stacked';
 
 const L = LEAD_I18N[locale];
 const successUrlResolved = successUrl ?? L.successUrl;
@@ -112,7 +116,7 @@ const submitText = submitLabel ?? (isCallback ? L.submitCallback : L.submitFull)
 ---
 
 <Section background={background} space={space} id={id}>
-  <div class:list={['leadform__layout', isCallback && 'leadform__layout--callback']}>
+  <div class:list={['leadform__layout', isCallback && 'leadform__layout--callback', isStacked && 'leadform__layout--stacked']}>
 
     <!-- Levý sloupec: nadpis + proofs -->
     <div class="leadform__intro">
@@ -208,6 +212,14 @@ const submitText = submitLabel ?? (isCallback ? L.submitCallback : L.submitFull)
   .leadform__layout--callback {
     grid-template-columns: 1fr minmax(0, 360px);
   }
+  /* Stacked — jen formulář (bez postranního sloupce), na střed */
+  .leadform__layout--stacked {
+    grid-template-columns: minmax(0, 560px);
+    justify-content: center;
+  }
+  .leadform__layout--stacked .leadform__intro { text-align: center; }
+  .leadform__layout--stacked .leadform__lead { margin-inline: auto; }
+  .leadform__layout--stacked .leadform__proofs { margin-inline: auto; }
 
   .leadform__lead { margin-top: var(--space-3); max-width: 460px; }
 
