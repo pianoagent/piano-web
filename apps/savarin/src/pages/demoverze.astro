@@ -1,20 +1,19 @@
 ---
 /**
- * Savarin — Demoverze. Krátká hero výzva + přehled obsahu dema + formulář žádosti.
+ * Savarin — Demoverze. Krátká hero výzva + formulář žádosti;
+ * vedle formuláře je přehled toho, co demoverze obsahuje (místo generických USP).
  * Sdílené komponenty @piano/ui.
  */
 import Base from '../layouts/Base.astro';
 import Header from '@piano/ui/components/Header.astro';
 import Footer from '@piano/ui/components/Footer.astro';
 import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
-import Section from '@piano/ui/components/Section.astro';
 import Hero from '@piano/ui/components/Hero.astro';
 import Heading from '@piano/ui/components/Heading.astro';
-import Text from '@piano/ui/components/Text.astro';
-import Icon from '@piano/ui/components/Icon.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import { savarinNav, savarinCta } from '../config/nav';
 
+// Přehled obsahu demoverze — zobrazí se vedle formuláře (proofs LeadFormu).
 const obsah = [
   { icon: 'lucide:monitor', title: 'Registrační pokladna', text: 'Demoverze pokladny Savarin. Po spuštění je na klávese F1 dostupný manuál.' },
   { icon: 'lucide:calculator', title: 'Sklady a kalkulace', text: 'Obsahuje programy HRMTZ a HRKALKUL — skladová evidence a kalkulace jídel.' },
@@ -46,26 +45,10 @@ const schema = {
     <Heading slot="title" as="h1" size="h1" align="center" color="on-dark">Demoverze Savarin</Heading>
   </Hero>
 
-  <!-- CO DEMOVERZE OBSAHUJE -->
-  <Section background="default" space="md">
-    <div class="head head--center">
-      <Heading as="h2" size="h2" align="center">Co demoverze obsahuje</Heading>
-    </div>
-    <div class="cards">
-      {obsah.map((o) => (
-        <article class="card">
-          <span class="card__icon"><Icon name={o.icon} size="md" /></span>
-          <Heading as="h3" size="h3">{o.title}</Heading>
-          <Text size="small" color="muted">{o.text}</Text>
-        </article>
-      ))}
-    </div>
-    <Text size="small" color="muted" align="center" class="note">Ke každé demoverzi přikládáme stručný manuál. Zašleme ji elektronicky nebo na CD-ROM.</Text>
-  </Section>
-
   <LeadForm id="poptavka" variant="full" background="alt"
-            title="Žádost o demoverzi"
-            lead="Vyplňte prosím své údaje — demoverzi vám zašleme e-mailem."
+            title="Co demoverze obsahuje"
+            lead="Ke každé demoverzi přikládáme stručný manuál — zašleme ji elektronicky nebo na CD-ROM."
+            proofs={obsah}
             message="Poznámka" messagePlaceholder="Poznámka, info o provozovně, požadavky…"
             submitLabel="Odeslat žádost"
             successUrl="/dekujeme" />
@@ -74,15 +57,3 @@ const schema = {
 
   <Footer legal={[{ label: 'Ochrana osobních údajů', href: '/ochrana-udaju' }]} logoSrc="/logos/savarin_by_piano.svg" logoAlt="Savarin by Piano" parentNote={{ text: 'Savarin je součástí skupiny Piano', href: 'https://piano.cz' }} />
 </Base>
-
-<style>
-  .head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-6); }
-  .head--center { text-align: center; }
-
-  .cards { display: grid; gap: var(--space-5); grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
-  .card { background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-6) var(--space-5); transition: var(--transition); }
-  .card:hover { border-color: var(--color-primary); box-shadow: var(--shadow-sm); }
-  .card > * + * { margin-top: var(--space-3); }
-  .card__icon { display: inline-flex; color: var(--color-text-accent); }
-  .note { margin-top: var(--space-6); }
-</style>
