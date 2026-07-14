@@ -11,11 +11,11 @@ import Hero from '@piano/ui/components/Hero.astro';
 import Heading from '@piano/ui/components/Heading.astro';
 import Text from '@piano/ui/components/Text.astro';
 import Button from '@piano/ui/components/Button.astro';
-import { grasonNav, grasonCta, grasonFooter } from '../config/nav';
+import { grasonNav, grasonCta, grasonFooter, grasonLogin } from '../config/nav';
 ---
 <Base title="Volná místa | Grason"
       description="Přidejte se ke Grasonu — budujeme nejmodernější nástroj pro řízení lidí v gastronomii.">
-  <Header brand="Grason" logoSrc="/logos/grason_logo.svg" logoHeight="28px" homeHref="/" nav={grasonNav} cta={grasonCta} />
+  <Header brand="Grason" logoSrc="/logos/grason_logo.svg" logoHeight="28px" homeHref="/" nav={grasonNav} cta={grasonCta} login={grasonLogin} />
   <main>
     <Hero eyebrow="Kariéra" background="alt" space="md"
           lead="Budujeme nejmodernější nástroj pro řízení lidí v gastru. Grason propojuje restaurace s ověřenými brigádníky a pomáhá majitelům efektivně řídit tým.">

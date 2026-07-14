@@ -9,7 +9,7 @@ import Heading from '@piano/ui/components/Heading.astro';
 import Text from '@piano/ui/components/Text.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
-import { grasonNav, grasonCta, grasonFooter } from '../config/nav';
+import { grasonNav, grasonCta, grasonFooter, grasonLogin } from '../config/nav';
 
 const contacts = [
   { icon: 'lucide:phone', label: 'Zavolejte', value: '+420 739 877 799', href: 'tel:+420739877799' },
@@ -20,7 +20,7 @@ const contacts = [
 ---
 <Base title="Kontakt | Grason"
       description="Spojte se s Grasonem — telefon +420 739 877 799, e-mail info@grason.cz. Grason Solutions s.r.o., Thámova 166/18, Praha 8.">
-  <Header brand="Grason" logoSrc="/logos/grason_logo.svg" logoHeight="28px" homeHref="/" nav={grasonNav} cta={grasonCta} />
+  <Header brand="Grason" logoSrc="/logos/grason_logo.svg" logoHeight="28px" homeHref="/" nav={grasonNav} cta={grasonCta} login={grasonLogin} />
   <main>
     <Hero eyebrow="Kontakt" background="alt" space="md"
           lead="Ozvěte se nám — poradíme s výběrem služby i s nastavením účtu.">

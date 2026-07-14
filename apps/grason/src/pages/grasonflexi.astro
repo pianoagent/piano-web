@@ -13,7 +13,9 @@ import Text from '@piano/ui/components/Text.astro';
 import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
-import { grasonNav, grasonCta, grasonFooter } from '../config/nav';
+import Faq from '@piano/ui/components/Faq.astro';
+import { grasonNav, grasonCta, grasonFooter, grasonLogin } from '../config/nav';
+import { flexiFaqs } from '../config/faq';
 
 const rows = [
   { img: '/images/for-companies-choose-candidates.webp', title: 'Vybírejte si podle zkušeností a hodnocení', text: 'Vždycky víte, kdo k vám přijde pracovat. Pracovníky vybíráte podle jejich profilů, zkušeností a hodnocení od jiných firem.' },
@@ -67,7 +69,7 @@ const priceFeatures = [
 
 <Base title="GrasonFlexi — brigádníci na směnu | Grason"
       description="GrasonFlexi je nejrychlejší cesta k brigádníkům: vypíšete směnu, ověření pracovníci se přihlásí a vy vyberete. Zaměstnavatelem zůstáváte vy, Grason lidi zprostředkuje.">
-  <Header brand="Grason" logoSrc="/logos/grason_logo.svg" logoHeight="28px" homeHref="/" nav={grasonNav} cta={grasonCta} />
+  <Header brand="Grason" logoSrc="/logos/grason_logo.svg" logoHeight="28px" homeHref="/" nav={grasonNav} cta={grasonCta} login={grasonLogin} />
 
   <main class="pa-flexi">
   <Hero eyebrow="GrasonFlexi" background="gradient"
@@ -199,6 +201,8 @@ const priceFeatures = [
       ))}
     </div>
   </Section>
+
+  <Faq items={flexiFaqs} title="Časté dotazy — GrasonFlexi" background="default" />
 
   <LeadForm id="poptavka" variant="full" background="alt"
             title="Chci brigádníky"

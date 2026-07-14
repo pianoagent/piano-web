@@ -14,7 +14,9 @@ import Text from '@piano/ui/components/Text.astro';
 import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
-import { grasonNav, grasonCta, grasonFooter } from '../config/nav';
+import Faq from '@piano/ui/components/Faq.astro';
+import { grasonNav, grasonCta, grasonFooter, grasonLogin } from '../config/nav';
+import { planFaqs } from '../config/faq';
 
 const PHONE = '739 877 799';
 
@@ -53,7 +55,7 @@ const leadProofs = [
 
 <Base title="GrasonPlan — plánování směn vlastního týmu | Grason"
       description="GrasonPlan je moderní nástroj na řízení personálu: rozvrh na PC i v mobilu, úkoly, reporty pro účetní a docházka jako doplňkový modul. První měsíc zdarma.">
-  <Header brand="Grason" logoSrc="/logos/grason_logo.svg" logoHeight="28px" homeHref="/" nav={grasonNav} cta={grasonCta} />
+  <Header brand="Grason" logoSrc="/logos/grason_logo.svg" logoHeight="28px" homeHref="/" nav={grasonNav} cta={grasonCta} login={grasonLogin} />
 
   <main class="plan">
   <!-- HERO -->
@@ -190,6 +192,8 @@ const leadProofs = [
       </article>
     </div>
   </Section>
+
+  <Faq items={planFaqs} title="Časté dotazy — GrasonPlan" background="default" />
 
   <LeadForm id="poptavka" variant="full" background="default"
             title="Vyzkoušejte GrasonPlan zdarma"

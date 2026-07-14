@@ -14,7 +14,9 @@ import Text from '@piano/ui/components/Text.astro';
 import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
-import { grasonNav, grasonCta, grasonFooter } from '../config/nav';
+import Faq from '@piano/ui/components/Faq.astro';
+import { grasonNav, grasonCta, grasonFooter, grasonLogin } from '../config/nav';
+import { jobsFaqs } from '../config/faq';
 
 const steps = [
   { title: 'Vystavíte inzerát', text: 'Zadáte volnou pozici — název, podnik, město, plat. Inzerát se objeví v nabídce.' },
@@ -40,7 +42,7 @@ const leadProofs = [
 
 <Base title="GrasonJobs — inzerce a nábor stálých zaměstnanců | Grason"
       description="GrasonJobs vystaví inzerát na stálou pozici (HPP, DPČ) a automaticky ho propaguje tisícům lidí v gastru přes cílené kampaně. Jakmile pozici obsadíte, kampaň sama skončí.">
-  <Header brand="Grason" logoSrc="/logos/grason_logo.svg" logoHeight="28px" homeHref="/" nav={grasonNav} cta={grasonCta} />
+  <Header brand="Grason" logoSrc="/logos/grason_logo.svg" logoHeight="28px" homeHref="/" nav={grasonNav} cta={grasonCta} login={grasonLogin} />
 
   <main class="pa-jobs">
   <Hero eyebrow="GrasonJobs · Novinka" background="invert" align="center"
@@ -103,6 +105,8 @@ const leadProofs = [
       </article>
     </div>
   </Section>
+
+  <Faq items={jobsFaqs} title="Časté dotazy — GrasonJobs" background="default" />
 
   <LeadForm id="poptavka" variant="full" background="alt"
             title="Chci inzerovat pozici"
