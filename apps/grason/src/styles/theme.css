@@ -141,4 +141,4 @@
 .accent { color: var(--color-secondary-azure); }
 
 /* Kotvy (#cenik apod.) nesmí zajet pod sticky header */
-:where([id]) { scroll-margin-top: 96px; }
+:where([id]) { scroll-margin-top: 120px; }
