@@ -33,9 +33,9 @@ const pichackyPoints = [
 ];
 
 const extras = [
-  { icon: 'lucide:check-check', title: 'Úkoly a checklisty', text: 'Mějte přehled o plnění úkolů, i když nejste v podniku. Zaměstnanec potvrdí splnění fotkou, textem, číslem nebo odškrtnutím.' },
   { icon: 'lucide:file-spreadsheet', title: 'Reporty pro účetní', text: 'Report s odpracovanými hodinami i příplatkovými časy vygenerujete jedním kliknutím.' },
   { icon: 'lucide:trending-up', title: 'Přehled mzdových nákladů', text: 'Mzdové náklady a vytížení lidí vidíte v reálném čase i pro nadcházející období.' },
+  { icon: 'lucide:building-2', title: 'Sdílení mezi provozovnami', text: 'Sdílejte personál mezi svými podniky a obsazujte směny napříč provozovnami.' },
 ];
 
 const stats = [
@@ -66,7 +66,7 @@ const leadProofs = [
       <Button href="#cenik" variant="secondary" onDark>Ukázat cenu</Button>
     </Fragment>
     <figure slot="media" class="hero-figure">
-      <img src="/images/illustration-calendar.webp" alt="GrasonPlan — plánování směn v kalendáři" width="720" height="560" loading="eager" />
+      <img class="shot" src="/images/plan-kalendar.png" alt="GrasonPlan — týdenní plán směn v kalendáři" width="1200" height="675" loading="eager" />
     </figure>
   </Hero>
 
@@ -80,7 +80,7 @@ const leadProofs = [
 
   <Section background="default" space="lg">
     <div class="split">
-      <figure class="split__media"><img src="/images/for-companies-hire-people.webp" alt="GrasonPlan — kopírování a plánování směn" loading="lazy" /></figure>
+      <figure class="split__media split__media--phone"><img src="/images/plan-mobil-smeny.png" alt="Seznam směn v mobilní aplikaci GrasonPlan" loading="lazy" /></figure>
       <div class="split__text">
         <Heading as="h2" size="h2">Rozvrh, který se <span class="accent">naplánuje skoro sám</span></Heading>
         <ul class="checklist">
@@ -108,6 +108,24 @@ const leadProofs = [
         </li>
       ))}
     </ul>
+  </Section>
+
+  <Section background="alt" space="lg">
+    <div class="split split--reverse">
+      <figure class="split__media"><img class="shot" src="/images/plan-ukoly.png" alt="GrasonPlan — přehled úkolů a checklistů" loading="lazy" /></figure>
+      <div class="split__text">
+        <Text size="label" color="accent">Úkolník</Text>
+        <Heading as="h2" size="h2">Úkoly a checklisty, <span class="accent">i když nejste v podniku</span></Heading>
+        <Text size="lead" color="muted" balance>
+          Zadáte úkoly ke směně a v přehledu vidíte, co je hotové. Zaměstnanec splnění potvrdí odškrtnutím, textem, číslem nebo fotkou.
+        </Text>
+        <ul class="checklist">
+          <li><Icon name="lucide:check" size="sm" class="hl-check" />Denní i pravidelné checklisty</li>
+          <li><Icon name="lucide:check" size="sm" class="hl-check" />Důkaz splnění fotkou přímo z appky</li>
+          <li><Icon name="lucide:check" size="sm" class="hl-check" />Přehled plnění napříč provozy a dny</li>
+        </ul>
+      </div>
+    </div>
   </Section>
 
   <Section background="default" space="lg">
@@ -174,7 +192,10 @@ const leadProofs = [
   .split__media img { width: 100%; height: auto; display: block; }
   .split__text > * + * { margin-top: var(--space-4); }
   .split__cta { margin-top: var(--space-5); }
-  @media (max-width: 880px) { .split { grid-template-columns: 1fr; gap: var(--space-6); } .split__media { order: -1; } }
+  .split--reverse .split__media { order: 2; }
+  .split__media--phone img { max-width: 300px; margin-inline: auto; filter: drop-shadow(0 20px 40px rgba(32, 29, 61, 0.18)); }
+  .hero-figure img.shot, .split__media img.shot { filter: none; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); border: 1px solid var(--color-border); }
+  @media (max-width: 880px) { .split { grid-template-columns: 1fr; gap: var(--space-6); } .split__media, .split--reverse .split__media { order: -1; } }
   .checklist { list-style: none; display: grid; gap: var(--space-2); }
   .checklist li { display: flex; align-items: flex-start; gap: var(--space-2); color: var(--color-text); }
   .cards { list-style: none; display: grid; gap: var(--space-5); grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
