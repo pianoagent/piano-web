@@ -42,8 +42,8 @@ const leadProofs = [
       description="GrasonJobs vystaví inzerát na stálou pozici (HPP, DPČ) a automaticky ho propaguje tisícům lidí v gastru přes cílené kampaně. Jakmile pozici obsadíte, kampaň sama skončí.">
   <Header brand="Grason" logoSrc="/logos/grason_logo.svg" logoHeight="28px" homeHref="/" nav={grasonNav} cta={grasonCta} />
 
-  <main>
-  <Hero eyebrow="GrasonJobs · Novinka" background="gradient" align="center"
+  <main class="pa-jobs">
+  <Hero eyebrow="GrasonJobs · Novinka" background="invert" align="center"
         lead="Hledáte stálého kolegu na HPP nebo DPČ? Vystavíte inzerát a Grason ho automaticky propaguje tisícům lidí v gastru přes cílené kampaně. Jakmile pozici obsadíte, kampaň sama skončí.">
     <Heading slot="title" as="h1" size="display" color="on-dark" align="center">Nábor stálých lidí <span class="accent">na míru</span></Heading>
     <Fragment slot="actions">
@@ -114,6 +114,11 @@ const leadProofs = [
 </Base>
 
 <style>
+  /* GrasonJobs brand: bílá + tmavě modrá (minimal, bez tyrkysu) */
+  .pa-jobs { --color-secondary-azure: #343160; --color-text-accent: #343160; }
+  .pa-jobs :global(.heading--on-dark) .accent { color: #fff; }
+  .pa-jobs .step__num { color: #fff; }
+
   .head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-7); }
   .head--center { text-align: center; }
   .head > * + * { margin-top: var(--space-3); }

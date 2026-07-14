@@ -69,7 +69,7 @@ const priceFeatures = [
       description="GrasonFlexi je nejrychlejší cesta k brigádníkům: vypíšete směnu, ověření pracovníci se přihlásí a vy vyberete. Zaměstnavatelem zůstáváte vy, Grason lidi zprostředkuje.">
   <Header brand="Grason" logoSrc="/logos/grason_logo.svg" logoHeight="28px" homeHref="/" nav={grasonNav} cta={grasonCta} />
 
-  <main>
+  <main class="pa-flexi">
   <Hero eyebrow="GrasonFlexi" background="gradient"
         lead="Vypíšete směnu, ověření brigádníci se přihlásí a vy vyberete. Zaměstnavatelem zůstáváte vy — Grason lidi zprostředkuje a připraví podklady. DPP lze podepsat i přes appku (příplatková služba).">
     <Heading slot="title" as="h1" size="display" color="on-dark">Brigádníci <span class="accent">na jedno kliknutí</span></Heading>
@@ -210,6 +210,11 @@ const priceFeatures = [
 </Base>
 
 <style>
+  /* GrasonFlexi brand: růžová jako akcent (sekundární), navy primární */
+  .pa-flexi { --color-secondary-azure: #F24D83; --color-text-accent: #D63A70; }
+  .pa-flexi :global(.heading--on-dark) .accent { color: #FA80A8; }
+  .pa-flexi .step__num { color: #fff; }
+
   .hero-figure { margin: 0; width: 100%; line-height: 0; }
   .hero-figure img { width: 100%; height: auto; display: block; filter: drop-shadow(0 24px 48px rgba(7, 7, 7, 0.22)); }
   .head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-7); }

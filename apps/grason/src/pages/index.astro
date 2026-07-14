@@ -40,6 +40,7 @@ const products = [
     text: 'Vypíšete směnu, ověření brigádníci se přihlásí a vy vyberete. Zaměstnavatelem zůstáváte vy — Grason vám lidi jen zprostředkuje a připraví podklady.',
     points: ['3 357+ ověřených pracovníků', 'Obsazení směny během minut', 'Podpis DPP i přes appku (za příplatek)', 'Gastro, sklady i maloobchod'],
     href: '/grasonflexi',
+    tone: 'flexi',
   },
   {
     img: '/images/illustration-calendar.webp',
@@ -48,6 +49,7 @@ const products = [
     text: 'Přehledný rozvrh pro stálé zaměstnance. Vypíšete směny a buď je přidělíte, nebo je necháte přihlásit. K tomu úkoly, mzdové podklady a docházka jako doplňkový modul.',
     points: ['Plán na PC i v mobilu', 'Přidělení i samopřihlášení na směny', 'Úkoly, checklisty a mzdové podklady', 'od 990 Kč/měs, 1. měsíc zdarma'],
     href: '/grasonplan',
+    tone: 'plan',
   },
   {
     img: '/images/for-companies-choose-favourite-workers.webp',
@@ -57,6 +59,7 @@ const products = [
     text: 'Hledáte stálého kolegu na HPP nebo DPČ? Vystavíte inzerát a Grason ho automaticky propaguje tisícům lidí v gastru — dokud pozici neobsadíte.',
     points: ['Inzerce stálých úvazků', 'Automatická propagace inzerátů', 'Oslovíte tisíce lidí v gastru', 'Obsazeno = konec kampaně'],
     href: '/grasonjobs',
+    tone: 'jobs',
   },
 ];
 
@@ -123,7 +126,7 @@ const leadProofs = [
     </div>
     <div class="pillars">
       {products.map((p) => (
-        <a class="pillar" href={p.href}>
+        <a class:list={['pillar', `pillar--${p.tone}`]} href={p.href}>
           <div class="pillar__media">
             <img src={p.img} alt="" loading="lazy" />
             {p.badge && <span class="pillar__badge">{p.badge}</span>}
@@ -243,7 +246,11 @@ const leadProofs = [
     transition: var(--transition);
   }
   .pillar { color: inherit; text-decoration: none; }
-  .pillar:hover { border-color: var(--color-primary); box-shadow: var(--shadow-md); }
+  /* Per-produktové odstíny karet */
+  .pillar--flexi { --tone-fill: #F24D83; --tone-ink: #D63A70; }
+  .pillar--plan  { --tone-fill: #FAD531; --tone-ink: #8A6D00; }
+  .pillar--jobs  { --tone-fill: #343160; --tone-ink: #343160; }
+  .pillar:hover { border-color: var(--tone-fill, var(--color-primary)); box-shadow: var(--shadow-md); }
   .pillar__media { position: relative; background: var(--color-bg-alt); line-height: 0; }
   .pillar__media img { width: 100%; height: 200px; object-fit: contain; display: block; padding: var(--space-5); }
   .pillar__badge {
@@ -257,13 +264,13 @@ const leadProofs = [
   .pillar__tag {
     align-self: flex-start; font-size: var(--font-size-caption); font-weight: var(--font-weight-semibold);
     text-transform: uppercase; letter-spacing: var(--letter-spacing-wide);
-    color: var(--color-text-accent); background: color-mix(in srgb, var(--color-secondary-azure) 14%, #fff);
+    color: var(--tone-ink, var(--color-text-accent)); background: color-mix(in srgb, var(--tone-fill, var(--color-secondary-azure)) 16%, #fff);
     padding: var(--space-1) var(--space-3); border-radius: var(--radius-full);
   }
   .pillar__points { list-style: none; display: flex; flex-direction: column; gap: var(--space-2); margin-top: var(--space-2); }
   .pillar__points li { display: flex; align-items: flex-start; gap: var(--space-2); font-size: var(--font-size-small); color: var(--color-text); }
-  .pillar__check { color: var(--color-secondary-azure); flex-shrink: 0; margin-top: 2px; }
-  .pillar__link { display: inline-flex; align-items: center; gap: var(--space-1); margin-top: auto; padding-top: var(--space-4); color: var(--color-text-accent); font-weight: var(--font-weight-semibold); font-size: var(--font-size-small); text-decoration: none; }
+  .pillar__check { color: var(--tone-ink, var(--color-secondary-azure)); flex-shrink: 0; margin-top: 2px; }
+  .pillar__link { display: inline-flex; align-items: center; gap: var(--space-1); margin-top: auto; padding-top: var(--space-4); color: var(--tone-ink, var(--color-text-accent)); font-weight: var(--font-weight-semibold); font-size: var(--font-size-small); text-decoration: none; }
   .pillar__link:hover { gap: var(--space-2); }
 
   /* App split */
