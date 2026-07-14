@@ -122,6 +122,9 @@ const leadProofs = [
   .pa-jobs { --color-secondary-azure: #343160; --color-text-accent: #343160; }
   .pa-jobs :global(.heading--on-dark) .accent { color: #fff; }
   .pa-jobs .step__num { color: #fff; }
+  /* Na tmavém (navy) hero je primární CTA bílé (brand Jobs: bílá + navy) */
+  .pa-jobs :global(.section--bg-invert .btn--primary) { background: #fff; border-color: #fff; color: var(--color-secondary); }
+  .pa-jobs :global(.section--bg-invert .btn--primary:hover) { background: var(--color-neutral-100); border-color: var(--color-neutral-100); }
 
   .head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-7); }
   .head--center { text-align: center; }
