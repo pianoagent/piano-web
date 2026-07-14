@@ -174,9 +174,10 @@ const leadProofs = [
     </div>
     <div class="single-price">
       <article class="price price--featured">
-        <span class="price__badge">1. měsíc zdarma</span>
+        <span class="price__badge">Bez závazku</span>
         <span class="price__tag">GrasonPlan</span>
-        <p class="price__amount">990 Kč<span>/měsíc bez DPH</span></p>
+        <p class="price__amount">1. měsíc zdarma</p>
+        <p class="price__after">poté <strong>990 Kč</strong>/měsíc bez DPH</p>
         <Text color="muted" size="small">1 podnik, do 25 uživatelů. Každý další uživatel +50 Kč/měsíc.</Text>
         <ul class="checklist">
           <li><Icon name="lucide:check" size="sm" class="hl-check" />Plánování směn (přiřazení i burza)</li>
@@ -270,6 +271,8 @@ const leadProofs = [
   .price__tag { font-size: var(--font-size-caption); font-weight: var(--font-weight-semibold); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide); color: var(--color-text-accent); }
   .price__amount { font-size: var(--font-size-h1); font-weight: var(--font-weight-bold); color: var(--color-secondary); line-height: 1; }
   .price__amount span { display: inline-block; font-size: var(--font-size-small); font-weight: var(--font-weight-regular); color: var(--color-text-muted); margin-left: var(--space-2); }
+  .price__after { font-size: var(--font-size-lead); color: var(--color-text-muted); }
+  .price__after strong { color: var(--color-text); font-weight: var(--font-weight-bold); }
   .price__badge { position: absolute; top: var(--space-5); right: var(--space-5); background: var(--plan-yellow); color: var(--color-secondary); font-size: var(--font-size-caption); font-weight: var(--font-weight-bold); padding: var(--space-1) var(--space-3); border-radius: var(--radius-full); }
   .price .checklist { margin-top: var(--space-2); }
   .price__note { font-size: var(--font-size-small); color: var(--color-text-muted); border-top: 1px solid var(--color-border); padding-top: var(--space-3); margin-top: var(--space-2); }
