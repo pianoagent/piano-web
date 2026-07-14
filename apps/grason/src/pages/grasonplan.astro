@@ -17,12 +17,12 @@ import LeadForm from '@piano/ui/components/LeadForm.astro';
 import { grasonNav, grasonCta, grasonFooter } from '../config/nav';
 
 const planPoints = [
-  'Plánování směn na počítači i v mobilu',
-  'Směny přidělíte, nebo je necháte přihlásit',
-  'Chytré notifikace — připomenou směnu, najdou náhradníka',
-  'Šablony směn (kopírování na další týdny) a hlídání kolizí',
-  'Obsaďte těžko obsaditelné směny zaměstnanci z jiných provozoven',
-  'Přehled mzdových nákladů v reálném čase',
+  'Kdo a kdy pracuje — na počítači i v mobilní aplikaci',
+  'Více druhů plánování: přiřadíte směny, nebo otevřete burzu směn',
+  'Lidé si sami navolí, kdy nemohou pracovat',
+  'Chytré notifikace připomenou směnu a najdou náhradníka za nemocného',
+  'Šablony směn zkopírujete na další týdny; systém hlídá kolize',
+  'Sdílení personálu mezi vašimi podniky',
 ];
 
 const pichackyPoints = [
@@ -33,9 +33,9 @@ const pichackyPoints = [
 ];
 
 const extras = [
-  { icon: 'lucide:check-check', title: 'Úkoly a checklisty', text: 'Zadáte úkol ke směně a zaměstnanec potvrdí splnění — odškrtnutím, textem, číslem nebo fotkou.' },
-  { icon: 'lucide:file-spreadsheet', title: 'Podklady pro mzdy', text: 'Z docházky připravíte podklady pro mzdovou účetní jedním kliknutím. Konec ručního přepisování.' },
-  { icon: 'lucide:building-2', title: 'Více provozoven', text: 'Sdílejte personál mezi svými podniky a obsazujte směny napříč provozovnami.' },
+  { icon: 'lucide:check-check', title: 'Úkoly a checklisty', text: 'Mějte přehled o plnění úkolů, i když nejste v podniku. Zaměstnanec potvrdí splnění fotkou, textem, číslem nebo odškrtnutím.' },
+  { icon: 'lucide:file-spreadsheet', title: 'Reporty pro účetní', text: 'Report s odpracovanými hodinami i příplatkovými časy vygenerujete jedním kliknutím.' },
+  { icon: 'lucide:trending-up', title: 'Přehled mzdových nákladů', text: 'Mzdové náklady a vytížení lidí vidíte v reálném čase i pro nadcházející období.' },
 ];
 
 const stats = [
@@ -48,19 +48,19 @@ const stats = [
 const leadProofs = [
   { icon: 'lucide:gift', title: '1. měsíc zdarma', text: 'Vyzkoušíte bez rizika a závazku.' },
   { icon: 'lucide:calendar-days', title: '220 000+ směn', text: 'Naplánováno přes GrasonPlan.' },
-  { icon: 'lucide:map-pin', title: 'Docházka s GPS', text: 'Digitální píchačky v ceně.' },
+  { icon: 'lucide:map-pin', title: 'Docházka volitelně', text: 'Digitální píchačky jako doplňkový modul.' },
   { icon: 'lucide:phone', title: 'Lidská podpora', text: '+420 739 877 799' },
 ];
 ---
 
 <Base title="GrasonPlan — plánování směn vlastního týmu | Grason"
-      description="GrasonPlan je nástroj pro plánování směn vlastních zaměstnanců: rozvrh na PC i v mobilu, docházka (digitální píchačky), úkoly a podklady pro mzdy. První měsíc zdarma.">
+      description="GrasonPlan je moderní nástroj na řízení personálu: rozvrh na PC i v mobilu, úkoly, reporty pro účetní a docházka jako doplňkový modul. První měsíc zdarma.">
   <Header brand="Grason" logoSrc="/logos/grason_logo.svg" logoHeight="28px" homeHref="/" nav={grasonNav} cta={grasonCta} />
 
   <main>
   <Hero eyebrow="GrasonPlan" background="gradient"
-        lead="Rozvrh bez Excelu a skupinových chatů. Vypíšete směny a buď je přidělíte, nebo je necháte přihlásit. Náhradník za nemocného se najde snadno. K tomu úkoly a mzdové podklady.">
-    <Heading slot="title" as="h1" size="display" color="on-dark">Plánování směn <span class="accent">vlastního týmu</span></Heading>
+        lead="Vše na jednom místě: naplánujete směny, rozdělíte i zkontrolujete úkoly, schválíte docházku a report pro účetní vygenerujete na dvě kliknutí. Dejte sbohem zmatkům ve WhatsAppech, Messengerech a přečmáraných tabulích.">
+    <Heading slot="title" as="h1" size="display" color="on-dark">Změňte způsob, jak <span class="accent">řídíte svůj tým</span></Heading>
     <Fragment slot="actions">
       <Button href="#poptavka">Vyzkoušet zdarma</Button>
       <Button href="#cenik" variant="secondary" onDark>Ukázat cenu</Button>
