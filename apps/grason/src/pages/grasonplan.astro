@@ -1,8 +1,8 @@
 ---
 /**
  * GrasonPlan — dedikovaná produktová stránka (plánování směn vlastního týmu).
- * Obsah z grason-context.md (GrasonPlan) + page_for-companies_* (cs.json).
- * Docházka (digitální píchačky), úkoly a mzdové podklady jsou funkce GrasonPlanu.
+ * Obsah + vizuály dle mirroru grasonplan.cz (podklady-migrace/grasonplan-mirror).
+ * Brand GrasonPlanu: žlutá + tmavě modrá + bílá (page-scoped akcenty).
  */
 import Base from '../layouts/Base.astro';
 import Header from '@piano/ui/components/Header.astro';
@@ -16,40 +16,38 @@ import Icon from '@piano/ui/components/Icon.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import { grasonNav, grasonCta, grasonFooter } from '../config/nav';
 
-const planPoints = [
-  'Kdo a kdy pracuje — na počítači i v mobilní aplikaci',
-  'Více druhů plánování: přiřadíte směny, nebo otevřete burzu směn',
-  'Lidé si sami navolí, kdy nemohou pracovat',
-  'Chytré notifikace připomenou směnu a najdou náhradníka za nemocného',
-  'Šablony směn zkopírujete na další týdny; systém hlídá kolize',
-  'Sdílení personálu mezi vašimi podniky',
-];
-
-const pichackyPoints = [
-  { icon: 'lucide:map-pin', title: 'GPS okruh 30–300 m', text: 'Systém ověří, že zaměstnanec opravdu dorazil na provozovnu.' },
-  { icon: 'lucide:wifi', title: 'Ověření přes WiFi', text: 'Příchod lze potvrdit i připojením k síti provozovny.' },
-  { icon: 'lucide:hand', title: 'Odbavení kliknutím', text: 'Zaměstnanec se odbaví v appce kliknutím — bez kartiček a papírů.' },
-  { icon: 'lucide:banknote', title: 'Podklad pro mzdy', text: 'Odpracované hodiny rovnou do reportu pro účetní.' },
-];
-
-const extras = [
-  { icon: 'lucide:file-spreadsheet', title: 'Reporty pro účetní', text: 'Report s odpracovanými hodinami i příplatkovými časy vygenerujete jedním kliknutím.' },
-  { icon: 'lucide:trending-up', title: 'Přehled mzdových nákladů', text: 'Mzdové náklady a vytížení lidí vidíte v reálném čase i pro nadcházející období.' },
-  { icon: 'lucide:building-2', title: 'Sdílení mezi provozovnami', text: 'Sdílejte personál mezi svými podniky a obsazujte směny napříč provozovnami.' },
-];
+const PHONE = '739 877 799';
 
 const stats = [
   { num: '5 let', lbl: 'na trhu' },
-  { num: '220 000+', lbl: 'naplánovaných směn' },
+  { num: '220 000+', lbl: 'naplánovaných směn' },
   { num: '80+', lbl: 'restaurací, hotelů a cateringů' },
   { num: '1. měsíc', lbl: 'zdarma' },
+];
+
+// Bento „Prozkoumejte všechny špičkové funkce" (dle mirroru)
+const bento = [
+  { icon: 'lucide:clock', title: 'Docházka', text: 'U každého pracovníka zaznamenáte přesný čas příchodu a odchodu. Volitelný modul s ověřením přes GPS (30–300 m) nebo WiFi.', variant: 'navy' },
+  { icon: 'lucide:layers', title: 'Více druhů plánování', text: 'Přiřazení směn zaměstnancům, nebo burza směn pro brigádníky.', variant: 'navy' },
+  { icon: 'lucide:file-spreadsheet', title: 'Reporty pro účetní', text: 'Vygenerujte report s odpracovanými hodinami pro mzdovou účetní jedním kliknutím. Ihned máte spočítané hodiny v daném období i příplatkových časech.', variant: 'yellow' },
+  { icon: 'lucide:trending-up', title: 'Přehled mzdových nákladů', text: 'Mzdové náklady a vytížení zaměstnanců vidíte v reálném čase i pro nadcházející období.', variant: 'wide' },
+];
+
+// „Šetřete svůj čas s ještě více funkcemi" (žluté dlaždice)
+const moreFeatures = [
+  { icon: 'lucide:party-popper', label: 'Zobrazení směn podle názvu eventu' },
+  { icon: 'lucide:message-square', label: 'Chytré notifikace na vše upozorní' },
+  { icon: 'lucide:copy', label: 'Šablony směn snadno zkopírujete na další týdny' },
+  { icon: 'lucide:construction', label: 'Pohlídá kolizní směny pracovníků' },
+  { icon: 'lucide:building-2', label: 'Sdílení personálu mezi svými podniky' },
+  { icon: 'lucide:refresh-cw', label: 'Najde náhradu za nemocného kolegu' },
 ];
 
 const leadProofs = [
   { icon: 'lucide:gift', title: '1. měsíc zdarma', text: 'Vyzkoušíte bez rizika a závazku.' },
   { icon: 'lucide:calendar-days', title: '220 000+ směn', text: 'Naplánováno přes GrasonPlan.' },
-  { icon: 'lucide:map-pin', title: 'Docházka volitelně', text: 'Digitální píchačky jako doplňkový modul.' },
-  { icon: 'lucide:phone', title: 'Lidská podpora', text: '+420 739 877 799' },
+  { icon: 'lucide:building-2', title: '80+ provozů', text: 'Restaurace, hotely a cateringy.' },
+  { icon: 'lucide:phone', title: 'Lidská podpora', text: '+420 ' + PHONE },
 ];
 ---
 
@@ -57,7 +55,8 @@ const leadProofs = [
       description="GrasonPlan je moderní nástroj na řízení personálu: rozvrh na PC i v mobilu, úkoly, reporty pro účetní a docházka jako doplňkový modul. První měsíc zdarma.">
   <Header brand="Grason" logoSrc="/logos/grason_logo.svg" logoHeight="28px" homeHref="/" nav={grasonNav} cta={grasonCta} />
 
-  <main>
+  <main class="plan">
+  <!-- HERO -->
   <Hero eyebrow="GrasonPlan" background="gradient"
         lead="Vše na jednom místě: naplánujete směny, rozdělíte i zkontrolujete úkoly, schválíte docházku a report pro účetní vygenerujete na dvě kliknutí. Dejte sbohem zmatkům ve WhatsAppech, Messengerech a přečmáraných tabulích.">
     <Heading slot="title" as="h1" size="display" color="on-dark">Změňte způsob, jak <span class="accent">řídíte svůj tým</span></Heading>
@@ -70,6 +69,7 @@ const leadProofs = [
     </figure>
   </Hero>
 
+  <!-- STATS -->
   <Section background="alt" space="sm">
     <ul class="stats">
       {stats.map((s) => (
@@ -78,38 +78,54 @@ const leadProofs = [
     </ul>
   </Section>
 
+  <!-- MĚJTE VŽDY PŘEHLED -->
   <Section background="default" space="lg">
     <div class="split">
       <figure class="split__media split__media--phone"><img src="/images/plan-mobil-smeny.png" alt="Seznam směn v mobilní aplikaci GrasonPlan" loading="lazy" /></figure>
       <div class="split__text">
-        <Heading as="h2" size="h2">Rozvrh, který se <span class="accent">naplánuje skoro sám</span></Heading>
-        <ul class="checklist">
-          {planPoints.map((p) => (<li><Icon name="lucide:check" size="sm" class="hl-check" />{p}</li>))}
-        </ul>
+        <Heading as="h2" size="h2">Mějte vždy <span class="accent">přehled</span></Heading>
+        <Text size="lead" color="muted" balance>
+          Kdo a kdy pracuje vidíte na počítači i v mobilní aplikaci. Dejte sbohem zmatkům ve WhatsAppech, Messengerech a přečmáraných tabulích.
+        </Text>
         <div class="split__cta"><Button href="#poptavka">Vyzkoušet zdarma</Button></div>
       </div>
     </div>
   </Section>
 
-  <Section id="pichacky" background="invert" space="lg">
-    <div class="head head--center">
-      <Text size="label" color="accent" align="center">Doplňkový modul · Digitální píchačky</Text>
-      <Heading as="h2" size="h2" align="center" color="on-dark">Přesně víte, <span class="accent">kdo přišel a kdy</span></Heading>
-      <Text size="lead" color="on-dark-muted" align="center" balance>
-        Zaměstnanec se v appce odbaví kliknutím a systém přes GPS nebo WiFi ověří, že je opravdu v provozovně. Žádné dohady, jen fakta. Docházka je doplňkový modul — 1. měsíc zdarma, poté 490 Kč/měs bez DPH.
-      </Text>
+  <!-- NEZTRÁCEJTE ČAS -->
+  <Section background="alt" space="lg">
+    <div class="split split--reverse">
+      <figure class="split__media split__media--phone"><img src="/images/plan-mobil-upozorneni.png" alt="Upozornění a notifikace v aplikaci GrasonPlan" loading="lazy" /></figure>
+      <div class="split__text">
+        <Heading as="h2" size="h2">Neztrácejte čas voláním, <span class="accent">kdo má kdy čas</span></Heading>
+        <Text size="lead" color="muted" balance>
+          Lidé si sami navolí, kdy nemohou pracovat. Chytré notifikace navíc připomenou směnu i najdou náhradníka, když někdo onemocní.
+        </Text>
+        <div class="split__cta"><Button href="#poptavka">Vyzkoušet zdarma</Button></div>
+      </div>
     </div>
-    <ul class="cards cards--dark">
-      {pichackyPoints.map((p) => (
-        <li class="mini">
-          <span class="mini__icon"><Icon name={p.icon} size="md" /></span>
-          <Heading as="h3" size="h3" color="on-dark">{p.title}</Heading>
-          <Text size="small" color="on-dark-muted">{p.text}</Text>
-        </li>
-      ))}
-    </ul>
   </Section>
 
+  <!-- BENTO FUNKCE -->
+  <Section background="default" space="lg">
+    <div class="head head--center">
+      <Text size="label" color="accent" align="center">Špičkové funkce</Text>
+      <Heading as="h2" size="h2" align="center">Objevte klíčové výhody <span class="accent">GrasonPlanu</span></Heading>
+    </div>
+    <div class="bento">
+      {bento.map((c) => (
+        <article class:list={['bento__card', `bento__card--${c.variant}`]}>
+          <div class="bento__body">
+            <Heading as="h3" size="h3">{c.title}</Heading>
+            <p class="bento__text">{c.text}</p>
+          </div>
+          <span class="bento__icon"><Icon name={c.icon} size="lg" /></span>
+        </article>
+      ))}
+    </div>
+  </Section>
+
+  <!-- ÚKOLNÍK (screenshot) -->
   <Section background="alt" space="lg">
     <div class="split split--reverse">
       <figure class="split__media"><img class="shot" src="/images/plan-ukoly.png" alt="GrasonPlan — přehled úkolů a checklistů" loading="lazy" /></figure>
@@ -128,25 +144,33 @@ const leadProofs = [
     </div>
   </Section>
 
+  <!-- JEŠTĚ VÍCE FUNKCÍ (žluté dlaždice) -->
   <Section background="default" space="lg">
     <div class="head head--center">
-      <Heading as="h2" size="h2" align="center">A k tomu <span class="accent">všechno kolem</span></Heading>
+      <Heading as="h2" size="h2" align="center">Šetřete svůj čas <span class="accent">s ještě více funkcemi</span></Heading>
     </div>
-    <ul class="cards cards--light">
-      {extras.map((p) => (
-        <li class="mini">
-          <span class="mini__icon"><Icon name={p.icon} size="md" /></span>
-          <Heading as="h3" size="h3">{p.title}</Heading>
-          <Text size="small" color="muted">{p.text}</Text>
+    <ul class="feats">
+      {moreFeatures.map((f) => (
+        <li class="feat">
+          <span class="feat__tile"><Icon name={f.icon} size="md" /></span>
+          <span class="feat__label">{f.label}</span>
         </li>
       ))}
     </ul>
+    <div class="feats__cta">
+      <Button href="#poptavka">Vyzkoušet zdarma</Button>
+      <p class="feats__note">První měsíc ZDARMA! Máte otázky? Volejte <a href={`tel:+420${PHONE.replace(/\s/g, '')}`}>{PHONE}</a></p>
+    </div>
   </Section>
 
+  <!-- CENÍK -->
   <Section id="cenik" background="alt" space="lg">
     <div class="head head--center">
       <Text size="label" color="accent" align="center">Ceník</Text>
       <Heading as="h2" size="h2" align="center">Jednoduchá cena, <span class="accent">první měsíc zdarma</span></Heading>
+      <Text size="lead" color="muted" align="center" balance>
+        Vyzkoušejte GrasonPlan první měsíc zcela zdarma a přesvědčte se, jak vám ulehčí práci s řízením personálu.
+      </Text>
     </div>
     <div class="single-price">
       <article class="price price--featured">
@@ -155,10 +179,10 @@ const leadProofs = [
         <p class="price__amount">990 Kč<span>/měsíc bez DPH</span></p>
         <Text color="muted" size="small">1 podnik, do 25 uživatelů. Každý další uživatel +50 Kč/měsíc.</Text>
         <ul class="checklist">
-          <li><Icon name="lucide:check" size="sm" class="hl-check" />Plánování směn, dovolených i záskoků</li>
-          <li><Icon name="lucide:check" size="sm" class="hl-check" />Úkoly, checklisty, notifikace</li>
-          <li><Icon name="lucide:check" size="sm" class="hl-check" />Podklady pro mzdovou účetní</li>
-          <li><Icon name="lucide:check" size="sm" class="hl-check" />První měsíc zdarma, bez závazku</li>
+          <li><Icon name="lucide:check" size="sm" class="hl-check" />Plánování směn (přiřazení i burza)</li>
+          <li><Icon name="lucide:check" size="sm" class="hl-check" />Úkolník a checklisty</li>
+          <li><Icon name="lucide:check" size="sm" class="hl-check" />Reporty pro účetní a mzdové náklady</li>
+          <li><Icon name="lucide:check" size="sm" class="hl-check" />Notifikace, šablony, hlídání kolizí</li>
         </ul>
         <p class="price__note">+ Docházkový modul (digitální píchačky): 490 Kč/měs bez DPH, 1. měsíc zdarma.</p>
         <div class="price__cta"><Button href="#poptavka">Vyzkoušet zdarma</Button></div>
@@ -176,41 +200,77 @@ const leadProofs = [
 </Base>
 
 <style>
+  /* GrasonPlan brand: žlutá + tmavě modrá + bílá (page-scoped) */
+  .plan { --plan-yellow: var(--color-secondary-gold); --plan-navy: var(--color-neutral-900); }
+  /* Žlutá CTA tlačítka (primary) na této stránce */
+  .plan :global(.btn--primary) { background: var(--plan-yellow); border-color: var(--plan-yellow); color: var(--color-secondary); }
+  .plan :global(.btn--primary:hover) { background: #EAC21A; border-color: #EAC21A; }
+  /* Akcentní slovo: na tmavém pozadí žlutá, na světlém tmavě modrá */
+  .accent { color: var(--color-secondary); }
+  .plan :global(.heading--on-dark) .accent { color: var(--plan-yellow); }
+
   .hero-figure { margin: 0; width: 100%; line-height: 0; }
-  .hero-figure img { width: 100%; height: auto; display: block; filter: drop-shadow(0 24px 48px rgba(7, 7, 7, 0.22)); }
+  .hero-figure img.shot, .split__media img.shot { border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); border: 1px solid var(--color-border); }
   .head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-7); }
   .head--center { text-align: center; }
   .head > * + * { margin-top: var(--space-3); }
-  .hl-check { color: var(--color-secondary-azure); flex-shrink: 0; }
+  .hl-check { color: var(--plan-yellow); flex-shrink: 0; }
+
+  /* Stats */
   .stats { list-style: none; display: grid; gap: var(--space-5); grid-template-columns: repeat(4, 1fr); text-align: center; }
   .stats__item { display: flex; flex-direction: column; gap: var(--space-1); }
   .stats__num { font-size: var(--font-size-h1); font-weight: var(--font-weight-bold); line-height: 1; color: var(--color-secondary); white-space: nowrap; }
   .stats__lbl { font-size: var(--font-size-small); color: var(--color-text-muted); }
   @media (max-width: 720px) { .stats { grid-template-columns: repeat(2, 1fr); gap: var(--space-6); } }
+
+  /* Split */
   .split { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-8); align-items: center; }
   .split__media { margin: 0; line-height: 0; }
   .split__media img { width: 100%; height: auto; display: block; }
+  .split__media--phone img { max-width: 300px; margin-inline: auto; filter: drop-shadow(0 20px 40px rgba(32, 29, 61, 0.18)); }
   .split__text > * + * { margin-top: var(--space-4); }
   .split__cta { margin-top: var(--space-5); }
   .split--reverse .split__media { order: 2; }
-  .split__media--phone img { max-width: 300px; margin-inline: auto; filter: drop-shadow(0 20px 40px rgba(32, 29, 61, 0.18)); }
-  .hero-figure img.shot, .split__media img.shot { filter: none; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); border: 1px solid var(--color-border); }
   @media (max-width: 880px) { .split { grid-template-columns: 1fr; gap: var(--space-6); } .split__media, .split--reverse .split__media { order: -1; } }
+
   .checklist { list-style: none; display: grid; gap: var(--space-2); }
   .checklist li { display: flex; align-items: flex-start; gap: var(--space-2); color: var(--color-text); }
-  .cards { list-style: none; display: grid; gap: var(--space-5); grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
-  .mini { padding: var(--space-6); border-radius: var(--radius-md); }
-  .cards--dark .mini { background: rgba(255,255,255,0.04); border: 1px solid var(--color-border-on-dark); }
-  .cards--light .mini { background: var(--color-bg); border: 1px solid var(--color-border); box-shadow: var(--shadow-sm); }
-  .mini > * + * { margin-top: var(--space-3); }
-  .mini__icon { display: inline-flex; color: var(--color-secondary-azure); }
+
+  /* Bento */
+  .bento { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); }
+  .bento__card { display: flex; flex-direction: column; justify-content: space-between; gap: var(--space-6); border-radius: var(--radius-lg); padding: var(--space-6); min-height: 240px; }
+  .bento__card--navy { background: var(--plan-navy); color: #fff; }
+  .bento__card--yellow { background: var(--plan-yellow); color: var(--color-secondary); grid-column: 3; grid-row: 1 / span 2; }
+  .bento__card--wide { background: var(--plan-navy); color: #fff; grid-column: 1 / span 2; }
+  .bento__card :global(.heading) { color: inherit; }
+  .bento__text { font-size: var(--font-size-small); line-height: var(--line-height-body); opacity: 0.92; }
+  .bento__card--yellow .bento__text { opacity: 1; }
+  .bento__icon { display: inline-flex; }
+  .bento__card--yellow .bento__icon { color: var(--color-secondary); }
+  @media (max-width: 880px) {
+    .bento { grid-template-columns: 1fr; }
+    .bento__card--yellow, .bento__card--wide { grid-column: auto; grid-row: auto; }
+  }
+
+  /* Feats (žluté dlaždice) */
+  .feats { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); max-width: 980px; margin-inline: auto; }
+  .feat { display: flex; align-items: center; gap: var(--space-4); }
+  .feat__tile { flex-shrink: 0; width: 56px; height: 56px; border-radius: var(--radius-md); background: var(--plan-yellow); color: var(--color-secondary); display: inline-flex; align-items: center; justify-content: center; }
+  .feat__label { font-weight: var(--font-weight-bold); color: var(--color-secondary); line-height: var(--line-height-tight); }
+  @media (max-width: 880px) { .feats { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .feats { grid-template-columns: 1fr; } }
+  .feats__cta { text-align: center; margin-top: var(--space-8); }
+  .feats__note { margin-top: var(--space-3); font-size: var(--font-size-small); color: var(--color-text-muted); }
+  .feats__note a { color: var(--color-text); font-weight: var(--font-weight-semibold); }
+
+  /* Ceník */
   .single-price { max-width: 480px; margin-inline: auto; }
   .price { position: relative; background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-7); box-shadow: var(--shadow-sm); display: flex; flex-direction: column; gap: var(--space-3); }
-  .price--featured { border-color: var(--color-primary); box-shadow: var(--shadow-md); }
+  .price--featured { border-color: var(--plan-yellow); box-shadow: var(--shadow-md); }
   .price__tag { font-size: var(--font-size-caption); font-weight: var(--font-weight-semibold); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide); color: var(--color-text-accent); }
   .price__amount { font-size: var(--font-size-h1); font-weight: var(--font-weight-bold); color: var(--color-secondary); line-height: 1; }
   .price__amount span { display: inline-block; font-size: var(--font-size-small); font-weight: var(--font-weight-regular); color: var(--color-text-muted); margin-left: var(--space-2); }
-  .price__badge { position: absolute; top: var(--space-5); right: var(--space-5); background: var(--color-secondary-terracotta); color: #fff; font-size: var(--font-size-caption); font-weight: var(--font-weight-semibold); padding: var(--space-1) var(--space-3); border-radius: var(--radius-full); }
+  .price__badge { position: absolute; top: var(--space-5); right: var(--space-5); background: var(--plan-yellow); color: var(--color-secondary); font-size: var(--font-size-caption); font-weight: var(--font-weight-bold); padding: var(--space-1) var(--space-3); border-radius: var(--radius-full); }
   .price .checklist { margin-top: var(--space-2); }
   .price__note { font-size: var(--font-size-small); color: var(--color-text-muted); border-top: 1px solid var(--color-border); padding-top: var(--space-3); margin-top: var(--space-2); }
   .price__cta { margin-top: var(--space-4); }
