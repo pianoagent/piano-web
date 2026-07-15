@@ -5,15 +5,10 @@
  * Vzhled a markup řeší sdílená komponenta — NEFORKOVAT.
  */
 import UiLogoWall from '@piano/ui/components/LogoWall.astro';
+import { klientiGastro } from '../config/klienti';
 
-interface Props { label?: string; background?: 'default' | 'alt'; id?: string; }
-const { label = 'Spoří s námi přední restaurace, hotely i instituce', background = 'alt', id } = Astro.props;
-
-const logos = [
-  'ref-clarion-hotel', 'ref-cafe-savoy', 'ref-kolkovna', 'ref-zatisi-group',
-  'ref-O2-arena', 'ref-field-michelin-restaurant', 'ref-100-chuti-brna', 'ref-sasazu',
-  'ref-entree', 'ref-420-restaurant', 'ref-pizza-coloseum', 'ref-sisters-bistro',
-];
+interface Props { label?: string; background?: 'default' | 'alt'; logos?: string[]; id?: string; }
+const { label = 'Spoří s námi přední restaurace, hotely i instituce', background = 'alt', logos = klientiGastro, id } = Astro.props;
 ---
 
-<UiLogoWall logos={logos} label={label} background={background} id={id} logoHeight="34px" gap="var(--space-8)" duration="48s" />
+<UiLogoWall logos={logos} label={label} background={background} ext="webp" id={id} logoHeight="44px" gap="var(--space-8)" duration="60s" />

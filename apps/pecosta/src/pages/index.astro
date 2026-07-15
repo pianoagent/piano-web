@@ -20,6 +20,7 @@ import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import LogoWall from '@piano/ui/components/LogoWall.astro';
 import { pecostaLeadProofs } from '../config/leadProofs';
+import { klientiGastro } from '../config/klienti';
 
 const stats = [
   { num: '16 %', lbl: 'průměrná úspora na surovinách' },
@@ -56,11 +57,6 @@ const testimonials = [
   { initials: 'HP', headline: 'Zlomili jsme tříletý trend', quote: 'Zlomili jsme tříletý trend růstu nákladů. Výsledky překonaly naše očekávání.', author: 'Tomáš Šico', role: 'HP Tronic' },
 ];
 
-const refLogos = [
-  'ref-clarion-hotel', 'ref-cafe-savoy', 'ref-kolkovna', 'ref-zatisi-group',
-  'ref-O2-arena', 'ref-field-michelin-restaurant', 'ref-100-chuti-brna', 'ref-sasazu',
-  'ref-entree', 'ref-420-restaurant', 'ref-pizza-coloseum', 'ref-sisters-bistro',
-];
 
 const faqs = [
   { q: 'Jak funguje aukční nákup?', a: 'Pecosta pravidelně sdružuje poptávky stovek provozů a vyjednává hromadné ceny — dostanete ceny, na které byste jako jednotlivec nedosáhli. Dodavatelé soutěží, vy vyděláváte.' },
@@ -95,7 +91,7 @@ const faqs = [
   </Hero>
 
   <!-- LOGA KLIENTŮ — hned pod hero -->
-  <LogoWall id="zakaznici" background="default" label="Spoří s námi přední restaurace, hotely i instituce" logos={refLogos} />
+  <LogoWall id="zakaznici" background="default" label="Spoří s námi přední restaurace, hotely i instituce" logos={klientiGastro} ext="webp" logoHeight="44px" />
 
   <!-- JAK TO FUNGUJE -->
   <Section id="jak-to-funguje" background="default" space="lg">
