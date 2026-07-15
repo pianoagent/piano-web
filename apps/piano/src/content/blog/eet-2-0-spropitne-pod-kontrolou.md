@@ -2,6 +2,7 @@
 title: "EET 2.0 s jistotou: se Pianem budete mít legislativní změny kolem spropitného pod kontrolou"
 description: "Osvobození spropitného od daní zní jednoduše, ale detaily rozhodují: kontaktní platba, 7% limit za celé IČO, kdo na úlevu dosáhne a proč důkazní břemeno leží v mzdové účtárně."
 pubDate: 2026-07-15
+image: "/images/blog/eet-2-0-spropitne-pod-kontrolou.webp"
 categories: ["Legislativa a povinnosti", "Platby a hosté"]
 ---
 
