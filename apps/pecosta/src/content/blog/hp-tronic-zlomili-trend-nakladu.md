@@ -2,7 +2,7 @@
 title: "„Zlomili jsme tříletý trend růstu nákladů.“ Tomas Šico z HP Tronic"
 description: "6 milionů korun úspor a změna myšlení v týmu."
 pubDate: 2025-03-24
-image: "https://pecosta.cz/wp-content/uploads/2025/03/Rozhovor_Tomas_Sico_HP-Tronic_Pecosta-scaled.jpg"
+image: "/images/blog/hp-tronic-zlomili-trend-nakladu/cover.webp"
 categories: ["Případové studie"]
 ---
 
@@ -53,3 +53,13 @@ Celý projekt probíhal ve spolupráci se společností PECOSTA, kterou Šico ho
 #### **HP Tronic: Diversifikovaný lídr na českém trhu**
 
 Společnost HP Tronic je významným hráčem na českém trhu s širokým portfoliem značek a služeb. Kromě provozování wellness hotelů je známá především díky značkám jako DATART a ETA, které patří mezi přední jména v oblasti elektroniky a domácích spotřebičů. Díky své dlouholeté tradici a důrazu na kvalitu si HP Tronic vybudoval silnou pozici na trhu a důvěru zákazníků.
+
+
+<!-- galerie -->
+
+## Galerie
+
+<div class="gallery">
+<img src="/images/blog/hp-tronic-zlomili-trend-nakladu/HP-Tronic-Lanterna.webp" alt="" loading="lazy" />
+</div>
+

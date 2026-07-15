@@ -2,7 +2,7 @@
 title: "„Úspora času je nedocenitelná,“ říká finanční ředitelka Pytloun Hotels"
 description: "Inspirace skutečnou praxí. O tom byl další brunch společnosti PECOSTA, a."
 pubDate: 2025-03-20
-image: "https://pecosta.cz/wp-content/uploads/2025/03/Michaela-Bakrlikova.jpg"
+image: "/images/blog/pytloun-hotels-uspora-casu/cover.webp"
 categories: ["Případové studie"]
 ---
 
@@ -33,3 +33,14 @@ Brunch opět ukázal, že když se otevře prostor pro sdílení zkušeností me
 [Jak odbourat hodiny práce a stresu v sociálních službách?](/novinky/autset-v-socialnich-sluzbach)
 
 [Česká síť PYTLOUN HOTELS oslavila 20 let](https://pecosta.cz/2023/09/20/6-9-2023-20-let-pytloun-hotels/)
+
+
+<!-- galerie -->
+
+## Galerie
+
+<div class="gallery">
+<img src="/images/blog/pytloun-hotels-uspora-casu/HP-Tronic-Lanterna.webp" alt="" loading="lazy" />
+<img src="/images/blog/pytloun-hotels-uspora-casu/Pytloun-Kampa-Garden-Hotel-Prague-1.webp" alt="" loading="lazy" />
+</div>
+

@@ -2,7 +2,7 @@
 title: "Stěhování a nová appka. Léto ve znamení změn."
 description: "Koncem června se PECOSTA přestěhovala do nových prostor."
 pubDate: 2023-07-20
-image: "https://pecosta.cz/wp-content/uploads/2023/07/230622_PECOSTA_stehovani_grilovacka-7.jpg"
+image: "/images/blog/stehovani-a-nova-aplikace/cover.webp"
 categories: ["Novinky"]
 ---
 
@@ -33,3 +33,15 @@ Vývoj aplikace je plně v rukou našeho šéfa vývoje a SW architekta Tomáše
 #### **Sledujte nás**
 
 linkedinfacebookyoutube
+
+
+<!-- galerie -->
+
+## Galerie
+
+<div class="gallery">
+<img src="/images/blog/stehovani-a-nova-aplikace/230622_PECOSTA_stehovani_grilovacka-9.webp" alt="" loading="lazy" />
+<img src="/images/blog/stehovani-a-nova-aplikace/HotelTime-Vento-hotel.webp" alt="" loading="lazy" />
+<img src="/images/blog/stehovani-a-nova-aplikace/dotykacka-pict.webp" alt="" loading="lazy" />
+</div>
+

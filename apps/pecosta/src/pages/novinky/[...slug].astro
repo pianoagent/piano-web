@@ -81,6 +81,8 @@ const articleSchema = {
   .prose :global(li) { list-style: disc; }
   .prose :global(a) { color: var(--color-text-accent); }
   .prose :global(img) { max-width: 100%; height: auto; border-radius: var(--radius-md); margin: var(--space-4) 0; }
+  .prose :global(.gallery) { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-3); margin: var(--space-5) 0; }
+  .prose :global(.gallery img) { margin: 0; width: 100%; height: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
   .prose :global(h2:first-child), .prose :global(p:first-child) { margin-top: 0; }
   .cta { margin-top: var(--space-8); }
 </style>

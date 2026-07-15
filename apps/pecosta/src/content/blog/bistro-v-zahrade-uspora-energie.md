@@ -2,7 +2,7 @@
 title: "Jak v Bistru V Zahradě ušetřili 60 tisíc korun na energiích"
 description: "Lenka a Pavel provozují restauraci Bistro V Zahradě."
 pubDate: 2026-01-20
-image: "https://pecosta.cz/wp-content/uploads/2026/01/Bistro-V-Zahrade-th-M.jpg"
+image: "/images/blog/bistro-v-zahrade-uspora-energie/cover.webp"
 categories: ["Případové studie"]
 ---
 

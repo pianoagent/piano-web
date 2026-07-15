@@ -2,7 +2,7 @@
 title: "Z MÉDIÍ: AUTSET šetří čas a zvyšuje kvalitu služeb v gastronomii"
 description: "I když se někdy novým technologiím vyhýbáme, jsou aplikace, bez kterých už si život neumíme představit."
 pubDate: 2023-12-04
-image: "https://pecosta.cz/wp-content/uploads/2023/12/iDNES-vystup-th3-scaled.jpg"
+image: "/images/blog/z-medii-autset-kvalita-sluzeb/cover.webp"
 categories: ["Z médií"]
 ---
 
@@ -61,3 +61,16 @@ Přehled dodavatelů, od nichž je možné autsetovat, tedy naskladňovat automa
 #### **Sledujte nás:**
 
 linkedinfacebookyoutube
+
+
+<!-- galerie -->
+
+## Galerie
+
+<div class="gallery">
+<img src="/images/blog/z-medii-autset-kvalita-sluzeb/AUTSET_dodavatele_V3b.webp" alt="" loading="lazy" />
+<img src="/images/blog/z-medii-autset-kvalita-sluzeb/Chuchle-Arena-Praha-Derby-Club.webp" alt="" loading="lazy" />
+<img src="/images/blog/z-medii-autset-kvalita-sluzeb/Hotel-Maximus-Resort-Brno_spickove-wellness4.webp" alt="" loading="lazy" />
+<img src="/images/blog/z-medii-autset-kvalita-sluzeb/Resort-Kovarna-terasa-panorama-1024x916.webp" alt="" loading="lazy" />
+</div>
+

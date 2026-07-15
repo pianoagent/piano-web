@@ -2,7 +2,7 @@
 title: "Symbol demokracie, útočiště bratří Čapků i Jana Wericha. To je Café Slávia."
 description: "Návštěva v kavárně Slávia Vás doslova vtáhne do minulosti."
 pubDate: 2023-04-26
-image: "https://pecosta.cz/wp-content/uploads/2023/04/CafeSlavia-kolaz1600x900.jpg"
+image: "/images/blog/cafe-slavia/cover.webp"
 categories: ["Případové studie"]
 ---
 
@@ -33,3 +33,14 @@ Máte zájem o AUTSET? Neváhejte nás kontaktovat.
 #### **Sledujte nás**
 
 linkedinfacebookyoutube
+
+
+<!-- galerie -->
+
+## Galerie
+
+<div class="gallery">
+<img src="/images/blog/cafe-slavia/66130660_2336588423089683_839796033423671296_n.webp" alt="" loading="lazy" />
+<img src="/images/blog/cafe-slavia/KavarnaSlavia-1024x684.webp" alt="" loading="lazy" />
+</div>
+

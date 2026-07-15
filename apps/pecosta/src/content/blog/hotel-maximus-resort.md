@@ -2,7 +2,7 @@
 title: "Zažít špičkové wellness? Pak Hotel Maximus Resort"
 description: "Ať už plánujete víkendový relax, kongres pro 300 osob, svatbu, nebo jste gurmán, co si jen rád vychutná jídlo, Hotel Maximus Resort vás rozhodně nezklame."
 pubDate: 2023-10-16
-image: "https://pecosta.cz/wp-content/uploads/2023/10/Hotel-Maximus-Resort-Brno_vstup.jpg"
+image: "/images/blog/hotel-maximus-resort/cover.webp"
 categories: ["Případové studie"]
 ---
 
@@ -39,3 +39,13 @@ Od chvíle, kdy jsme objevili službu AutSet od společnosti Pecosta, se situace
 #### **Sledujte nás**
 
 linkedinfacebookyoutube
+
+
+<!-- galerie -->
+
+## Galerie
+
+<div class="gallery">
+<img src="/images/blog/hotel-maximus-resort/Marek-Bouska-Reditel-hotelu-Maximus-Resort-a.s.-Brno-650x880.webp" alt="" loading="lazy" />
+</div>
+

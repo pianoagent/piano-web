@@ -2,7 +2,7 @@
 title: "Z médií: Revoluční novinka šetří čas restauracím a hotelům"
 description: "Zdroj: iDNES.cz / Kavárna Slavia, síť restaurací Kolkovna Restaurants, největší hotelová síť v Česku CPI Hotels, Hotel Rott nebo Perfect Canteen od světově oceňovaného kuchaře Filipa Sajlera."
 pubDate: 2023-05-25
-image: "https://pecosta.cz/wp-content/uploads/2023/05/iDnes-AUTSET-clanek-video-PECOSTA.V2-scaled.jpg"
+image: "/images/blog/z-medii-revolucni-novinka/cover.webp"
 categories: ["Z médií"]
 ---
 
@@ -84,3 +84,18 @@ Chcete získat zdarma cenové porovnání a zjistit, zda byste mohli šetřit n�
 #### **Sledujte nás**
 
 linkedinfacebookyoutube
+
+
+<!-- galerie -->
+
+## Galerie
+
+<div class="gallery">
+<img src="/images/blog/z-medii-revolucni-novinka/1_AUTSET-Kavarna-Slavia-autsetuje-a-setri-tak-cas.-1024x683.webp" alt="" loading="lazy" />
+<img src="/images/blog/z-medii-revolucni-novinka/2_Perfect-Canteen-Filip-Sajler-vyuziva-AUTSET-ve-vsech-kanty.webp" alt="" loading="lazy" />
+<img src="/images/blog/z-medii-revolucni-novinka/3_AUTSET-CPI-HOTELS-clarion-congress-hotel-prague-1024x496.webp" alt="" loading="lazy" />
+<img src="/images/blog/z-medii-revolucni-novinka/4_LUKP1-1024x565.webp" alt="" loading="lazy" />
+<img src="/images/blog/z-medii-revolucni-novinka/6_Do-AUTSETU-se-zapojilo-uz-pres-120-dodavatelu-potravin-a-n.webp" alt="" loading="lazy" />
+<img src="/images/blog/z-medii-revolucni-novinka/hotelRott.webp" alt="" loading="lazy" />
+</div>
+

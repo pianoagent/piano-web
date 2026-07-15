@@ -2,7 +2,7 @@
 title: "AUTSET Aplikace spuštěna. Stovky hodin ušetří další gastro provozy."
 description: "I když se někdy novým technologiím vyhýbáme, jsou aplikace, bez kterých se už neobejdeme."
 pubDate: 2023-10-30
-image: "https://pecosta.cz/wp-content/uploads/2023/10/AUTSET-aplikace-6-2400x1350-1.jpg"
+image: "/images/blog/autset-aplikace-spustena/cover.webp"
 categories: ["Novinky"]
 ---
 
@@ -47,3 +47,16 @@ linkedinfacebookyoutube
 #### **Související články:**
 
 [iDNES.cz - Autsetujte. Revoluční novinka šetří čas restauracím a hotelům](https://sdeleni.idnes.cz/zpravy/autsetujte-revolucni-novinka-setri-cas-restauracim-a-hotelum.A230522_101759_zpr_sdeleni_zuje)
+
+
+<!-- galerie -->
+
+## Galerie
+
+<div class="gallery">
+<img src="/images/blog/autset-aplikace-spustena/AUTSET-Michal-Tuma-Kolkovna-Reportaz-Praha.webp" alt="" loading="lazy" />
+<img src="/images/blog/autset-aplikace-spustena/AUTSET-aplikace-2-scaled.webp" alt="" loading="lazy" />
+<img src="/images/blog/autset-aplikace-spustena/AUTSET_dodavatele_V3b.webp" alt="" loading="lazy" />
+<img src="/images/blog/autset-aplikace-spustena/Hotel-Golf-Prague.V2-800x1075-1.webp" alt="" loading="lazy" />
+</div>
+

@@ -2,7 +2,7 @@
 title: "Nová cesta, nové možnosti. PECOSTA se stala součástí skupiny PIANO."
 description: "Praha, 29. ledna 2026 – Automatizujeme proces nákupu, abychom lidem zjednodušili práci."
 pubDate: 2026-01-29
-image: "https://pecosta.cz/wp-content/uploads/2026/01/piano_guests.jpg"
+image: "/images/blog/pecosta-soucasti-skupiny-piano/cover.webp"
 categories: ["Novinky"]
 ---
 
@@ -41,3 +41,14 @@ Piano Group spojuje osm technologických firem a jejich systémů (Qerko, Septim
 **Kontakt pro média**Markéta Bohumská  
 tel: +420 774 722 222  
 info@piano.cz
+
+
+<!-- galerie -->
+
+## Galerie
+
+<div class="gallery">
+<img src="/images/blog/pecosta-soucasti-skupiny-piano/Piano-board.webp" alt="" loading="lazy" />
+<img src="/images/blog/pecosta-soucasti-skupiny-piano/banner-web-tiskovka.webp" alt="" loading="lazy" />
+</div>
+

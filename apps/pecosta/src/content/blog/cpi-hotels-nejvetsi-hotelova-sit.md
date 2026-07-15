@@ -2,7 +2,7 @@
 title: "Hotely Clarion, Mamaison, Comfort a další. To je CPI Hotels."
 description: "CPI Hotels je jednou z největších hotelových skupin v České republice."
 pubDate: 2023-05-15
-image: "https://pecosta.cz/wp-content/uploads/2023/05/CPI-clarion-congress-hotel-prague_retina.jpg"
+image: "/images/blog/cpi-hotels-nejvetsi-hotelova-sit/cover.webp"
 categories: ["Případové studie"]
 ---
 
@@ -37,3 +37,13 @@ Chcete získat zdarma cenové porovnání a zjistit, zda byste mohli šetřit n�
 #### **Sledujte nás**
 
 linkedinfacebookyoutube
+
+
+<!-- galerie -->
+
+## Galerie
+
+<div class="gallery">
+<img src="/images/blog/cpi-hotels-nejvetsi-hotelova-sit/CPI-Hotels-Maros-Sivec-Executive-Food-Beverage-Director.webp" alt="" loading="lazy" />
+</div>
+

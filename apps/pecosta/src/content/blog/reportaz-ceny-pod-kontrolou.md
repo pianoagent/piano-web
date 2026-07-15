@@ -2,7 +2,7 @@
 title: "REPORTÁŽ: Jak mít ceny pod kontrolou?"
 description: "Máslo za 50, za 60, za 80 korun. Mít pod kontrolou, kolik utratíme v obchodě, je čím dál těžší."
 pubDate: 2022-12-06
-image: "https://pecosta.cz/wp-content/uploads/2022/12/PECOSTA-Jak-mit-ceny-pod-kontrolou-th6-scaled.jpg"
+image: "/images/blog/reportaz-ceny-pod-kontrolou/cover.webp"
 categories: ["Z médií"]
 ---
 

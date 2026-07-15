@@ -2,7 +2,7 @@
 title: "Spouštíme novou službu - AUTSET Katalog"
 description: "Jak mít přehled o aktuálních cenách dodavatelů, šetřit čas a zvládnout provoz hotelu či restaurace i s novými či ne tak zkušenými zaměstnanci?"
 pubDate: 2023-02-28
-image: "https://pecosta.cz/wp-content/uploads/2023/02/VIDEO-AUTSET-Katalog_PECOSTA-scaled.jpg"
+image: "/images/blog/autset-katalog/cover.webp"
 categories: ["Novinky"]
 ---
 

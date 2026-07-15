@@ -2,7 +2,7 @@
 title: "REPORTÁŽ:  Nepřepisujte, AUTSETUJTE!"
 description: "Vy, kteří pracujete v gastro-provozu, víte, že přepisovat dodací listy není nic jednoduchého."
 pubDate: 2022-03-28
-image: "https://pecosta.cz/wp-content/uploads/2022/03/PeKo-foto-brunch-2-scaled.jpg"
+image: "/images/blog/reportaz-neprepisujte-autsetujte/cover.webp"
 categories: ["Z médií"]
 ---
 
@@ -25,3 +25,15 @@ Už žádné přepisování a chyby a značná úspora času. Právě díky tomu
 **Michal Tůma, g****enerální manažer, Kolkovna Restaurants***"Samozřejmě ten Autset bych doporučil do gastro zařízení stoprocentně."*
 
 Více informací o systému je možné získat na [www.AUTSET.com](http://www.AUTSET.com).
+
+
+<!-- galerie -->
+
+## Galerie
+
+<div class="gallery">
+<img src="/images/blog/reportaz-neprepisujte-autsetujte/Reportaz-24.03.2022_Brunch-Praha-Ladislav-Hlava-Turnovska-pi.webp" alt="" loading="lazy" />
+<img src="/images/blog/reportaz-neprepisujte-autsetujte/Reportaz-24.03.2022_Brunch-Praha-Petr-Kostelny.V4_M.webp" alt="" loading="lazy" />
+<img src="/images/blog/reportaz-neprepisujte-autsetujte/Reportaz-24.03.2022_Brunch-Praha-Petra-Simcakova_M.webp" alt="" loading="lazy" />
+</div>
+

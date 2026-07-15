@@ -2,7 +2,7 @@
 title: "Chuchle Aréna Praha. Multifunkční areál pro milovníky koní"
 description: "Dostihy, parkury, soukromé i firemní akce, festivaly i ubytování."
 pubDate: 2024-01-17
-image: "https://pecosta.cz/wp-content/uploads/2024/01/Chuchle-Arena-Praha-AUTSETUJE-web-2400x1350-1.jpg"
+image: "/images/blog/chuchle-arena-praha/cover.webp"
 categories: ["Případové studie"]
 ---
 
@@ -30,3 +30,15 @@ Vít Málek, Manager gastro provozu, Chuchle Aréna Praha, s.r.o.:
 #### **Sledujte nás**
 
 linkedinfacebookyoutube
+
+
+<!-- galerie -->
+
+## Galerie
+
+<div class="gallery">
+<img src="/images/blog/chuchle-arena-praha/Chuchle-Arena-Praha-10.webp" alt="" loading="lazy" />
+<img src="/images/blog/chuchle-arena-praha/Chuchle-Arena-Praha-11.webp" alt="" loading="lazy" />
+<img src="/images/blog/chuchle-arena-praha/Chuchle-Arena-Praha-7.webp" alt="" loading="lazy" />
+</div>
+
