@@ -6,6 +6,7 @@ image: "/images/blog/autset-aplikace-spustena/cover.webp"
 categories: ["Novinky"]
 ---
 
+
 **I když se někdy novým technologiím vyhýbáme, jsou aplikace, bez kterých se už neobejdeme. Ať je to Waze či google maps pro řidiče, nebo budík na mobilu, který nemusíme chystat každý den. Stejně funguje i AUTSET. Kdo jednou zkusí, už nechce jinak.**
 
 Nakupovat na eshopech už dnes umí i děti na základce a jediné, co nejčastěji nakupujeme do svých domácností v obchodě, jsou potraviny a nápoje. A teď si představte, že přijdete domů z Lidlu, Kauflandu, Billy či Tesca a každý jogurt, minerálku, či pečivo na účtence byste museli ručně přepsat do počítače. Děsivá představa, že?
@@ -24,6 +25,8 @@ Na základě dlouholeté spolupráce se stovkami dodavatelů potravin a nápojů
 
 Automaticky je dnes možné naskladňovat už od více než dvěstěpadesáti dodavatelů jako je Kofola, Plzeňský Prazdroj, KBJ, Makro, Bidfood, Alimpex, Madeta nebo Penam, ale také od desítek menších či lokálních firem a výrobců. Skupina dodavatelů, kteří chtějí automatizaci podporovat, i nadále roste.
 
+<img src="/images/blog/autset-aplikace-spustena/AUTSET_dodavatele_V3b.webp" alt="" loading="lazy" />
+
 Stovky hotelů, restaurací, kaváren a pivovarů díky tomu šetří až 2 hodiny denně ve svých provozech. A to je jen za dva roky hromada času, který mohli využít jinak.
 
 #### **Zcela nové možnosti otevírá nová AUTSET APLIKACE**
@@ -31,6 +34,8 @@ Stovky hotelů, restaurací, kaváren a pivovarů díky tomu šetří až 2 hodi
 Ta umožňuje propojit i skladové a pokladní systémy, u nichž byla integrace náročnější, nebo se jejich provozovatelé rozhodli jít cestou ještě většího komfortu pro klienty. Aplikace totiž dává navíc přehled dodacích listů, přehledy spárovaných položek na skladové karty, a umožňuje sledovat a kontrolovat další hodnoty nákupů.
 
 "*Rychlé napojení nových gastronomických systémů se systémem AUTSET prostřednictvím API rozhraní není jediným důvodem vzniku aplikace AUTSET. Klient si díky ní může samostatně nakonfigurovat, jaké dodavatele chce napojit, přidat novou pobočku, upravit osobu zajišťující samotné párování položek se skladovými kartami apod. Klient si tak na pár kliknutí upraví službu dle svých požadavků.* " uvádí Petr Kostelný, CEO PECOSTA.
+
+<img src="/images/blog/autset-aplikace-spustena/AUTSET-aplikace-2-scaled.webp" alt="" loading="lazy" />
 
 *"Aplikace AUTSET je napojitelná na jakýkoliv skladový systém, nejen v České republice, nýbrž kdekoliv na světě, "doplňuje Petr Kostelný. "Letošní návštěva na světové výstavě Hospitality Innovation Expo v Londýně potvrdila, že služba, jakou je AUTSET, na světě zcela chybí. Zavazuje nás to k tomu, abychom velmi intenzivně pracovali na co nejširším rozšíření služby. Je přeci zbytečné, aby provozní pracovníci restaurací trávili svůj drahocený čas přepisováním dokumentů, které předtím někdo vytiskl z počítače.*" uzavžel Petr Kostelný.
 
@@ -49,14 +54,7 @@ linkedinfacebookyoutube
 [iDNES.cz - Autsetujte. Revoluční novinka šetří čas restauracím a hotelům](https://sdeleni.idnes.cz/zpravy/autsetujte-revolucni-novinka-setri-cas-restauracim-a-hotelum.A230522_101759_zpr_sdeleni_zuje)
 
 
-<!-- galerie -->
-
-## Galerie
-
 <div class="gallery">
 <img src="/images/blog/autset-aplikace-spustena/AUTSET-Michal-Tuma-Kolkovna-Reportaz-Praha.webp" alt="" loading="lazy" />
-<img src="/images/blog/autset-aplikace-spustena/AUTSET-aplikace-2-scaled.webp" alt="" loading="lazy" />
-<img src="/images/blog/autset-aplikace-spustena/AUTSET_dodavatele_V3b.webp" alt="" loading="lazy" />
 <img src="/images/blog/autset-aplikace-spustena/Hotel-Golf-Prague.V2-800x1075-1.webp" alt="" loading="lazy" />
 </div>
-

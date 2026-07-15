@@ -6,6 +6,7 @@ image: "/images/blog/autset-v-socialnich-sluzbach/cover.webp"
 categories: ["Případové studie"]
 ---
 
+
 **Představte si svět, kde se papíry přestanou množit, dodací listy se samy zaevidují do systému a výběrová řízení zvládne za vás někdo jiný. Sci-fi? Ani omylem. dnes již běžná praxe. Na Moravské konferenci sociálních služeb 2024, která proběhla 19.–20. listopadu v Brně, jsme ukázali, jak moderní nástroje jako AUKČNÍ NÁKUPY a AUTSET odbourávají hodiny práce a obav z administrativy a fungují tak ... jako antistres.**
 
 **A upřímně? Kdyby něco podobného fungovalo i na domácí nákupy a evidence účtů, nebrali bychom to všemi deseti?**
@@ -18,9 +19,16 @@ Pravidelné porovnávání cen v aukci, nastavování kvalitativních požadavk�
 
 Aukční nákupy jsou prověřené nejen více než 200 organizacemi Moravskoslezského kraje, ale také dlouholetou praxí největších hotelových sítí ČR, jako CPI Hotels nebo PYTLOUN Hotels, a stovek restaurací napříč republikou.
 
+<div class="gallery">
+<img src="/images/blog/autset-v-socialnich-sluzbach/PeKo-Pytloun-reference.webp" alt="" loading="lazy" />
+<img src="/images/blog/autset-v-socialnich-sluzbach/domovjistoty-logo.webp" alt="" loading="lazy" />
+</div>
+
 Ředitelka Domova Jistoty, p.o.
 
 "*Aukční nákupy jsou pro nás velkým přínosem, protože na portále máme díky tomu vysoutěžené potraviny, které bychom jinak museli sami soutěžit. Na  to samozřejmě nemáme možnosti ani personál, takže nám to šetří spoustu času a administrativní zátěže. Na nákupním portále je celkem  široká škála zboží, ze kterého si lze vybrat. Naše organizace realizuje prostřednictvím portálu cca 90% nákupů všech potravin.  Z  dodavatelů, kteří prostřednictvím portálu zboží  dodávají, si člověk může vyprofilovat ty, kteří jsou ověření a jejich  kvalita nám vyhovuje. Klienti si  u nás  za jídlo platí, takže kvalita je pro nás velmi zásadní. Výběr zboží a dodavatelů je tedy na nás, ale stále máme zaručeno, že realizujeme kvalitní nákupy potravin za ceny obvyklé."*
+
+<img src="/images/blog/autset-v-socialnich-sluzbach/6E1A3748-1600x1066-2.webp" alt="" loading="lazy" />
 
 ### **AUTSET: Dodací listy? Za nás zařídí robot**
 
@@ -35,14 +43,3 @@ Aukční nákupy a AUTSET nejsou jen chytrá technologie. Jsou **antistresová z
 ### **Chcete antistres i pro svou organizaci?**
 
 Implementace systému trvá pouhých 14 dnů. Kontaktujte nás na **simcakova@pecosta.cz** a zjistěte, jak snadno můžete zbavit svůj provoz stresu. A kdo ví, možná jednou přijde den, kdy si něco podobného zavedeme i doma. Do té doby se těšíme, že vám ukážeme, jak snadné to může být.
-
-
-<!-- galerie -->
-
-## Galerie
-
-<div class="gallery">
-<img src="/images/blog/autset-v-socialnich-sluzbach/6E1A3748-1600x1066-2.webp" alt="" loading="lazy" />
-<img src="/images/blog/autset-v-socialnich-sluzbach/PeKo-Pytloun-reference.webp" alt="" loading="lazy" />
-</div>
-

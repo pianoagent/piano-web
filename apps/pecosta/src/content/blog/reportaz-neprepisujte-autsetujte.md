@@ -6,6 +6,7 @@ image: "/images/blog/reportaz-neprepisujte-autsetujte/cover.webp"
 categories: ["Z médií"]
 ---
 
+
 **Vy, kteří pracujete v gastro-provozu, víte, že přepisovat dodací listy není nic jednoduchého. S tím je ale konec.**Podívejte se na REPORTÁŽ
 
 [▶ Přehrát video na YouTube](https://www.youtube.com/watch?v=K9kIOW8pJy0)
@@ -27,13 +28,8 @@ Už žádné přepisování a chyby a značná úspora času. Právě díky tomu
 Více informací o systému je možné získat na [www.AUTSET.com](http://www.AUTSET.com).
 
 
-<!-- galerie -->
-
-## Galerie
-
 <div class="gallery">
-<img src="/images/blog/reportaz-neprepisujte-autsetujte/Reportaz-24.03.2022_Brunch-Praha-Ladislav-Hlava-Turnovska-pi.webp" alt="" loading="lazy" />
-<img src="/images/blog/reportaz-neprepisujte-autsetujte/Reportaz-24.03.2022_Brunch-Praha-Petr-Kostelny.V4_M.webp" alt="" loading="lazy" />
 <img src="/images/blog/reportaz-neprepisujte-autsetujte/Reportaz-24.03.2022_Brunch-Praha-Petra-Simcakova_M.webp" alt="" loading="lazy" />
+<img src="/images/blog/reportaz-neprepisujte-autsetujte/Reportaz-24.03.2022_Brunch-Praha-Petr-Kostelny.V4_M.webp" alt="" loading="lazy" />
+<img src="/images/blog/reportaz-neprepisujte-autsetujte/Reportaz-24.03.2022_Brunch-Praha-Ladislav-Hlava-Turnovska-pi.webp" alt="" loading="lazy" />
 </div>
-

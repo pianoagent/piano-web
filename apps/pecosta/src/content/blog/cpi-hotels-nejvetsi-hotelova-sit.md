@@ -6,6 +6,7 @@ image: "/images/blog/cpi-hotels-nejvetsi-hotelova-sit/cover.webp"
 categories: ["Případové studie"]
 ---
 
+
 **CPI Hotels je jednou z největších hotelových skupin v České republice. Jejich hotely naleznete v 6 evropských zemích a 16 destinacích. V portfoliu najdete hotely značek Clarion, Quality, Comfort, Mamaison, Courtyard by Marriott, Buddha-Bar, nebo Spa & Kur. Úspěchu pomáhají i nové technologie jako Nákupní portál a AUTSET.**
 
 Úspěch v tak velkém měřítku se nedostavil přes noc. Předcházel mu mnohaletý vývoj a nabírání zkušeností.
@@ -39,11 +40,4 @@ Chcete získat zdarma cenové porovnání a zjistit, zda byste mohli šetřit n�
 linkedinfacebookyoutube
 
 
-<!-- galerie -->
-
-## Galerie
-
-<div class="gallery">
 <img src="/images/blog/cpi-hotels-nejvetsi-hotelova-sit/CPI-Hotels-Maros-Sivec-Executive-Food-Beverage-Director.webp" alt="" loading="lazy" />
-</div>
-

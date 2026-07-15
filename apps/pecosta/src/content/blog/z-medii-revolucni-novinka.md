@@ -6,6 +6,7 @@ image: "/images/blog/z-medii-revolucni-novinka/cover.webp"
 categories: ["Z médií"]
 ---
 
+
 **Zdroj: iDNES.cz / Kavárna Slavia, síť restaurací Kolkovna Restaurants, největší hotelová síť v Česku CPI Hotels, Hotel Rott nebo Perfect Canteen od světově oceňovaného kuchaře Filipa Sajlera. Stovky restaurací a hotelů před rokem odstartovaly nový boom v gastronomii. Začaly „autsetovat“. Co to znamená v praxi?**
 
 [Celý článek na iDNES.cz zde](https://sdeleni.idnes.cz/zpravy/autsetujte-revolucni-novinka-setri-cas-restauracim-a-hotelum.A230522_101759_zpr_sdeleni_zuje)
@@ -20,6 +21,11 @@ Autset totiž znamená „automaticky nastavit“. Ti, co [autsetují](https://
 
 *„S firmou [Pecosta](https://pecosta.cz/) spolupracujeme v Café Slavia již něco málo přes rok především kvůli usnadnění a zefektivnění procesů při naskladňování dodacích listů do pokladního systému. Po nastavení s dodavateli je služba celkem bezúdržbová, a tím i lehce uchopitelná do téměř každého provozu,*“ sdílí svou zkušenost Frederik Španer, manager známé pražské kavárny Café & Restaurant Slavia.
 
+<div class="gallery">
+<img src="/images/blog/z-medii-revolucni-novinka/1_AUTSET-Kavarna-Slavia-autsetuje-a-setri-tak-cas.-1024x683.webp" alt="" loading="lazy" />
+<img src="/images/blog/z-medii-revolucni-novinka/2_Perfect-Canteen-Filip-Sajler-vyuziva-AUTSET-ve-vsech-kanty.webp" alt="" loading="lazy" />
+</div>
+
 ### **Novinku si chválí světově oceňovaný šéfkuchař i největší hotelová síť v Česku**
 
 „Se systémem [AUTSET šetříme čas](https://www.autset.com/) provozním managerům našich restaurací při naskladnění dodaných položek. Způsob zpracování naskladnění a dodacích listů přes AUTSET pomáhá i skladové účetní, podklady jsou přesnější, nemusí je kontrolovat položkově. Tento systém jsme díky jeho efektivnosti nasadili již na všech provozovaných kantýnách a restauracích,“říká známý šéfkuchař Filip Sajler, zakladatel Perfect Canteen, Cibule a dalších projektů, který se mimo jiné podílel i na nejvýznamnější světové gastronomické soutěži Bocuse d´Or v Česku.
@@ -29,6 +35,8 @@ Mezi prvními, kteří začali autsetovat, byla největší hotelová síť v �
 „*CPI Hotels má 40 hotelů po celé Evropě. Jen v České republice máme 24 provozů, z čehož 80 % jsou 5\* nebo 4\* hotely. Díky automatickému naskladňování (AUTSET) v každém z našich hotelů, každý den ušetříme svým lidem minimálně hodinu práce. Čas navíc mohou naši manažeři a provozní využít efektivněji,*“ vysvětluje Maroš Šivec, Executive Food & Beverage Director CPI HOTELS, a.s.
 
 "*Zakládáme si na vysoké kvalitě služeb a nové technologie jsou jedna z cest. Právě proto již řadu let využíváme od společnosti PECOSTA, a.s. také Aukční nákupy, kdy 80 % nákupu realizujeme přes jednotný nákupní portál a šetříme tak několik milionu ročně,*“ doplňuje Maroš Šivec.
+
+<img src="/images/blog/z-medii-revolucni-novinka/3_AUTSET-CPI-HOTELS-clarion-congress-hotel-prague-1024x496.webp" alt="" loading="lazy" />
 
 Autset totiž není první revolucí na trhu, se kterou společnost PECOSTA přišla. Již před léty zavedla velmi propracovaný nákupní portál, kde nejen hotely a restaurace, ale i školy, nemocnice a organizace měst a obcí, vidí ceny porovnané na trhu a nakupují kvalitní potraviny za ceny z aukcí. I menší provozy tak šetří až statisíce korun za rok.
 
@@ -43,9 +51,13 @@ To potvrzuje i Lukáš Pytloun, který vybudoval významnou českou hotelovou s�
 
 „*Jestliže se někdo musí zabývat nějakým procesem a dokážeme ten proces automatizovat, že třeba všechno najde na jednom portálu, nemusí překlikávat, má porovnání cen od celé konkurence, může si to jednoduše vyzobat, tak je to pro mě rozhodně úspora času a ve finále i peněz.*“
 
+<img src="/images/blog/z-medii-revolucni-novinka/4_LUKP1-1024x565.webp" alt="" loading="lazy" />
+
 ### **Automaticky od více než 120 dodavatelů potravin a nápojů**
 
 AUTSET dnes nabízí možnost automatického naskladňování už od více než stodvaceti dodavatelů, jako je MAKRO, Kofola, Bidfood, Madeta, Fany, Penam nebo třeba Plezňský Prazdroj a další. Mezi tyto dodavatele se každý týden přidávají další firmy podle toho, o které dodavatele mají restaurace a hotely zájem.
+
+<img src="/images/blog/z-medii-revolucni-novinka/6_Do-AUTSETU-se-zapojilo-uz-pres-120-dodavatelu-potravin-a-n.webp" alt="" loading="lazy" />
 
 „*AUTSET ušetří hodně moc času, protože každou položku na všech dodacích listech jsem musel prakticky přeťukat do počítače a některé dodací listy mají dvacet, třicet položek. Tento systém umožňuje jenom pár kliknutí a máte to hotové, takže to je obrovská úspora času,*“ potvrzuje Michal Tůma, generální manažer sítě restaurací Kolkovna Restaurants, a.s.
 
@@ -77,6 +89,8 @@ Ti, co autsetují, už si návrat k ručnímu přepisování dodacích listů ne
 
 Zdroj: <https://sdeleni.idnes.cz/zpravy/autsetujte-revolucni-novinka-setri-cas-restauracim-a-hotelum.A230522_101759_zpr_sdeleni_zuje>
 
+<img src="/images/blog/z-medii-revolucni-novinka/hotelRott.webp" alt="" loading="lazy" />
+
 Chcete získat zdarma cenové porovnání a zjistit, zda byste mohli šetřit náklady i Vy? Neváhejte nás kontaktovat.
 
 **Alice Mazurková - T: 734 380 547 / E: [mazurkova@pecosta.cz](mailto:mazurkova@pecosta.cz)**
@@ -84,18 +98,3 @@ Chcete získat zdarma cenové porovnání a zjistit, zda byste mohli šetřit n�
 #### **Sledujte nás**
 
 linkedinfacebookyoutube
-
-
-<!-- galerie -->
-
-## Galerie
-
-<div class="gallery">
-<img src="/images/blog/z-medii-revolucni-novinka/1_AUTSET-Kavarna-Slavia-autsetuje-a-setri-tak-cas.-1024x683.webp" alt="" loading="lazy" />
-<img src="/images/blog/z-medii-revolucni-novinka/2_Perfect-Canteen-Filip-Sajler-vyuziva-AUTSET-ve-vsech-kanty.webp" alt="" loading="lazy" />
-<img src="/images/blog/z-medii-revolucni-novinka/3_AUTSET-CPI-HOTELS-clarion-congress-hotel-prague-1024x496.webp" alt="" loading="lazy" />
-<img src="/images/blog/z-medii-revolucni-novinka/4_LUKP1-1024x565.webp" alt="" loading="lazy" />
-<img src="/images/blog/z-medii-revolucni-novinka/6_Do-AUTSETU-se-zapojilo-uz-pres-120-dodavatelu-potravin-a-n.webp" alt="" loading="lazy" />
-<img src="/images/blog/z-medii-revolucni-novinka/hotelRott.webp" alt="" loading="lazy" />
-</div>
-

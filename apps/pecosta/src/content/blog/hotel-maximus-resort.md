@@ -6,6 +6,7 @@ image: "/images/blog/hotel-maximus-resort/cover.webp"
 categories: ["Případové studie"]
 ---
 
+
 **Ať už plánujete víkendový relax, kongres pro 300 osob, svatbu, nebo jste gurmán, co si jen rád vychutná jídlo, Hotel Maximus Resort vás rozhodně nezklame. Ovšem jeho wellness & spa Infinit Maximus vás nepřestane fascinovat. Kvalita služeb zde stále roste, a to i díky digitalizaci a modernímu přístupu k práci zaměstnanců.**
 
 Nechte se omámit a nabít energií v malebné krajině Podkomorských lesů, jen několik metrů od Brněnské přehrady a pouhých 20 minut od centra města Brna. Právě k tomu zve klidné prostředí moderního hotelu, ubytování ve 4hvězdičkovém standardu, gurmánská restaurace a krásný svatební palouk Hotelu Resort Maximus.
@@ -21,6 +22,8 @@ Hotel Resort Maximus prošel v letech 2010-2015 rozsáhlou výstavbou a byl jako
 **Místo, kde se snoubí hluboký vztah k přírodě i moderní přístup, dnes tak nabízí rozhodně jedinečný zážitek.**
 
 Děkujeme, že můžeme být toho součástí.
+
+<img src="/images/blog/hotel-maximus-resort/Marek-Bouska-Reditel-hotelu-Maximus-Resort-a.s.-Brno-650x880.webp" alt="" loading="lazy" />
 
 Ředitel hotelu, Maximus Resort, a.s.
 
@@ -39,13 +42,3 @@ Od chvíle, kdy jsme objevili službu AutSet od společnosti Pecosta, se situace
 #### **Sledujte nás**
 
 linkedinfacebookyoutube
-
-
-<!-- galerie -->
-
-## Galerie
-
-<div class="gallery">
-<img src="/images/blog/hotel-maximus-resort/Marek-Bouska-Reditel-hotelu-Maximus-Resort-a.s.-Brno-650x880.webp" alt="" loading="lazy" />
-</div>
-

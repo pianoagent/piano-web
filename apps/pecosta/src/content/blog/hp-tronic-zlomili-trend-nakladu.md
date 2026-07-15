@@ -6,6 +6,7 @@ image: "/images/blog/hp-tronic-zlomili-trend-nakladu/cover.webp"
 categories: ["Případové studie"]
 ---
 
+
 **6 milionů korun úspor a změna myšlení v týmu. Tak HP Tronic popisuje zkušenost s aukčními nákupy. Jak vypadá digitální transformace nákupu v praxi? Ve společnosti HP Tronic se rozhodli jít cestou automatizace a aukcí – a výsledky na sebe nenechaly dlouho čekat. Tomas Šico, finanční manažer pro gastro a ubytování, popisuje konkrétní přínosy i výzvy, které implementace systému přinesla.**
 
 #### **Centrální nákup jako cíl**
@@ -55,11 +56,4 @@ Celý projekt probíhal ve spolupráci se společností PECOSTA, kterou Šico ho
 Společnost HP Tronic je významným hráčem na českém trhu s širokým portfoliem značek a služeb. Kromě provozování wellness hotelů je známá především díky značkám jako DATART a ETA, které patří mezi přední jména v oblasti elektroniky a domácích spotřebičů. Díky své dlouholeté tradici a důrazu na kvalitu si HP Tronic vybudoval silnou pozici na trhu a důvěru zákazníků.
 
 
-<!-- galerie -->
-
-## Galerie
-
-<div class="gallery">
 <img src="/images/blog/hp-tronic-zlomili-trend-nakladu/HP-Tronic-Lanterna.webp" alt="" loading="lazy" />
-</div>
-

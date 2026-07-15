@@ -6,9 +6,12 @@ image: "/images/blog/pecosta-soucasti-skupiny-piano/cover.webp"
 categories: ["Novinky"]
 ---
 
+
 **Praha, 29. ledna 2026 – Automatizujeme proces nákupu, abychom lidem zjednodušili práci. To bylo vždy naším posláním. Dnes tento závazek posilujeme. PECOSTA, a.s. se stala součástí skupiny Piano – prvního plně integrovaného ekosystému pro české a středoevropské restaurace a hotely. Co to znamená pro naše klienty? Jednodušší provoz, lepší přehled a reálné úspory.**Více v oficiální tiskové zprávě skupiny Piano:
 
 ### **Aby české gastro vzkvétalo.** **Piano spojilo sedm firem vyvíjejících technologie pro gastronomii. Ročně zpracovává transakce za 36 miliard korun.**
+
+<img src="/images/blog/pecosta-soucasti-skupiny-piano/banner-web-tiskovka.webp" alt="" loading="lazy" />
 
 **TISKOVÁ ZPRÁVA**
 
@@ -34,6 +37,8 @@ V managementu Piano pokračují zakladatelé a ex-ředitelé původních firem, 
 
 „Máme skvělý tým lidí, kteří našemu společnému projektu věří a vědí, jak ten segment funguje. Nezůstaneme ale jen u stávající nabídky. Budeme dál hledat nástroje, které hospodským a hoteliérům usnadňují práci. Těm, kteří berou pohostinství vážně a chtějí ho řídit profesionálně, chceme být partnerem, který jim nové technologie pomůže opravdu využívat. Protože dobré nástroje fungují pro všechny. Majitel má kontrolu a vydělává, personál má snazší práci, a to ve výsledku vytváří lepší zážitek pro hosty,” dodává Mráz.
 
+<img src="/images/blog/pecosta-soucasti-skupiny-piano/Piano-board.webp" alt="" loading="lazy" />
+
 #### **Více o společnosti Piano**
 
 Piano Group spojuje osm technologických firem a jejich systémů (Qerko, Septim, Pecosta, Harsys, POS Experts, Savarin, Protel a Grason) do prvního plně integrovaného ekosystému pro gastro provozovatele v Česku, na Slovensku a v Maďarsku. Přes nástroje Piano dnes proteče přibližně 36 miliard korun ročně z více než 6 000 provozoven. V čele společnosti stojí Tomáš Mráz, který patnáct let vedl obchod v Plzeňském Prazdroji, v managementu pokračují zakladatelé původních firem. Za projektem stojí investiční skupina Miton. Mezi klienty Piano patří například Zátiší Group, Kolkovna, gastroaliance Together, skupina Ambiente, AZ Catering, GTH Catering. Z hotelových skupin pak Old Town Hotels, Expandia Hotels, TMR Hotels a CPI Hotels.
@@ -41,14 +46,3 @@ Piano Group spojuje osm technologických firem a jejich systémů (Qerko, Septim
 **Kontakt pro média**Markéta Bohumská  
 tel: +420 774 722 222  
 info@piano.cz
-
-
-<!-- galerie -->
-
-## Galerie
-
-<div class="gallery">
-<img src="/images/blog/pecosta-soucasti-skupiny-piano/Piano-board.webp" alt="" loading="lazy" />
-<img src="/images/blog/pecosta-soucasti-skupiny-piano/banner-web-tiskovka.webp" alt="" loading="lazy" />
-</div>
-

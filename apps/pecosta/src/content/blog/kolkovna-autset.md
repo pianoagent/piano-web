@@ -6,6 +6,7 @@ image: "/images/blog/kolkovna-autset/cover.webp"
 categories: ["Případové studie"]
 ---
 
+
 TV REPORTÁŽ: **AUTSET, neboli automatické naskladňování dodacích listů je systém určený pro gastro provozy jako jsou hotely, restaurace, pivovary a podobně. Jedním z provozů, který systém využívají, je také síť restaurací Kolkovna.**
 
 [▶ Přehrát video na YouTube](https://www.youtube.com/watch?v=aGmyrsB5w8Y)
@@ -19,19 +20,14 @@ Kolkovny začaly pracovat se systémem AUTSET zhruba někdy před rokem a půl a
 Více informací o systému je možné získat na [www.AUTSET.com](http://www.AUTSET.com).
 
 
-<!-- galerie -->
-
-## Galerie
-
 <div class="gallery">
-<img src="/images/blog/kolkovna-autset/Kolkovna-1-automaticke-nakupy-system-septim-pecosta-piano-mi.webp" alt="" loading="lazy" />
-<img src="/images/blog/kolkovna-autset/Kolkovna-2-celnice-nakupy-uspory-skvele-jidlo-restaurace-bar.webp" alt="" loading="lazy" />
-<img src="/images/blog/kolkovna-autset/Kolkovna-5-Dock-Praha-uspory-skvele-jidlo-restaurace-pecosta.webp" alt="" loading="lazy" />
 <img src="/images/blog/kolkovna-autset/Snimek1-2.webp" alt="" loading="lazy" />
 <img src="/images/blog/kolkovna-autset/Snimek2-2.webp" alt="" loading="lazy" />
 <img src="/images/blog/kolkovna-autset/Snimek5-2.webp" alt="" loading="lazy" />
-<img src="/images/blog/kolkovna-autset/kolkovna-v-kolkovne-fb2-819x1024.webp" alt="" loading="lazy" />
+<img src="/images/blog/kolkovna-autset/Kolkovna-2-celnice-nakupy-uspory-skvele-jidlo-restaurace-bar.webp" alt="" loading="lazy" />
+<img src="/images/blog/kolkovna-autset/Kolkovna-5-Dock-Praha-uspory-skvele-jidlo-restaurace-pecosta.webp" alt="" loading="lazy" />
+<img src="/images/blog/kolkovna-autset/Kolkovna-1-automaticke-nakupy-system-septim-pecosta-piano-mi.webp" alt="" loading="lazy" />
 <img src="/images/blog/kolkovna-autset/kolkovna-v-kolkovne-fb3-819x1024.webp" alt="" loading="lazy" />
+<img src="/images/blog/kolkovna-autset/kolkovna-v-kolkovne-fb2-819x1024.webp" alt="" loading="lazy" />
 <img src="/images/blog/kolkovna-autset/kolkovna-v-kolkovne-fb4-819x1024.webp" alt="" loading="lazy" />
 </div>
-
