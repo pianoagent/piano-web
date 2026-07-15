@@ -40,7 +40,7 @@ const articleSchema = {
 };
 ---
 
-<Base title={`${post.data.title} | Piano blog`} description={post.data.description} type="article" schema={articleSchema}>
+<Base title={post.data.seoTitle ?? `${post.data.title} | Piano blog`} description={post.data.description} type="article" schema={articleSchema}>
   <Section background="default" space="lg" container="narrow">
     <Breadcrumb items={crumbs} />
     <div class="meta">

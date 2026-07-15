@@ -1,14 +1,15 @@
 ---
-title: "EET 2.0 s jistotou: se Pianem budete mít legislativní změny kolem spropitného pod kontrolou"
-description: "Osvobození spropitného od daní zní jednoduše, ale detaily rozhodují: kontaktní platba, 7% limit za celé IČO, kdo na úlevu dosáhne a proč důkazní břemeno leží v mzdové účtárně."
+title: "EET 2.0 s jistotou. S Pianem budete mít legislativní změny týkající se spropitného pod kontrolou"
+seoTitle: "Spropitné a EET 2.0: pravidla, limity a osvobození | Piano"
+description: "Spropitné v EET 2.0 od roku 2027: osvobození od daní, 7% limit za celé IČO, kdo na úlevu dosáhne a proč se limit hlídá v mzdové účtárně."
 pubDate: 2026-07-15
 image: "/images/blog/eet-2-0-spropitne-pod-kontrolou.webp"
 categories: ["Legislativa a povinnosti", "Platby a hosté"]
 ---
 
-**Lukáš Urban** — Head of Sales, Piano Group · 15. července 2026
+**Lukáš Urban, Head of Sales ve společnosti Piano Group**
 
-*Když Ministerstvo financí oznámilo, že od ledna 2027 osvobodí spropitné od daní a odvodů, většina provozovatelů v gastronomii to vnímala jako pozitivní zprávu. Pro majitele i jejich personál jde bezpochyby o vítanou změnu. Digitalizací a pokladními systémy v českém pohostinství se zabývám přes dvacet let, a proto vím, že i zdánlivě jednoduchá opatření s sebou často nesou důležité detaily. Nová legislativa kolem EET 2.0 jich přináší hned několik a vyplatí se jim věnovat pozornost, aby vše fungovalo hladce i v praxi.*
+**Když Ministerstvo financí oznámilo, že od ledna 2027 osvobodí spropitné od daní a odvodů, většina provozovatelů v gastronomii to vnímala jako pozitivní zprávu. Pro majitele i jejich personál jde bezpochyby o vítanou změnu. Digitalizací a pokladními systémy v českém pohostinství se zabývám přes dvacet let, a proto vím, že i zdánlivě jednoduchá opatření s sebou často nesou důležité detaily. Nová legislativa kolem EET 2.0 jich přináší hned několik a vyplatí se jim věnovat pozornost, aby vše fungovalo hladce i v praxi.**
 
 V posledních týdnech často odpovídám na otázky hoteliérů a majitelů větších provozů, kteří řeší, jak vyúčtovat velké akce. Typickým příkladem je svatební hostina nebo firemní konference s útratou v řádu statisíců. Spousta lidí předpokládá, že takovou sumu musí poslat do systému EET. Opak je pravdou. Klíčovým pojmem celé legislativy je takzvaná kontaktní platba. Stát vyžaduje evidenci pouze u transakcí, které hosté uhradí v osobním kontaktu přímo na místě, tedy typicky hotovostí nebo kartou u stolu či na baru.
 
