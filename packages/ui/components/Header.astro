@@ -22,6 +22,7 @@ interface Props {
   homeHref?: string;    // odkaz loga (default "/")
   nav?: NavItem[];      // per-web navigace (default sdílená mainNav)
   cta?: NavLink;        // per-web hlavní CTA (default sdílená headerCta)
+  login?: NavItem;      // sekundární "Přihlášení" (dropdown vedle CTA)
   localeSwitch?: { href: string; label: string; title?: string };  // přepínač jazyků (volitelný)
   locale?: 'cs' | 'en';  // jazyk aria-labelů (default cs)
 }
@@ -33,6 +34,7 @@ const {
   homeHref = '/',
   nav = mainNav,
   cta = headerCta,
+  login,
   localeSwitch,
   locale = 'cs',
 } = Astro.props;
@@ -152,6 +154,33 @@ const classes = ['header', transparent && 'header--transparent'].filter(Boolean)
       {localeSwitch && (
         <a href={localeSwitch.href} class="header__lang" title={localeSwitch.title} aria-label={localeSwitch.title}>{localeSwitch.label}</a>
       )}
+      {login && (
+        login.children && login.children.length > 0 ? (
+          <div class="header__item--dropdown header__login">
+            <a href={login.href} class="header__link header__link--toggle" aria-haspopup="true">
+              {login.label}
+              <Icon name="lucide:chevron-down" size="xs" class="header__chevron" />
+            </a>
+            <div class="header__dropdown header__dropdown--right">
+              <ul class="header__dropdown-list">
+                {login.children.map((c) => (
+                  <li>
+                    <a href={c.href} class="header__dropdown-link" target={c.external ? '_blank' : undefined} rel={c.external ? 'noopener noreferrer' : undefined}>
+                      {c.icon && <span class="header__dropdown-icon"><Icon name={c.icon} size="sm" /></span>}
+                      <span class="header__dropdown-body">
+                        <span class="header__dropdown-name">{c.label}</span>
+                        {c.description && <span class="header__dropdown-desc">{c.description}</span>}
+                      </span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ) : (
+          <a href={login.href} class="header__link header__login">{login.label}</a>
+        )
+      )}
       <Button href={cta.href} variant="primary" size="sm" class="header__cta">{cta.label}</Button>
       <button class="header__burger" aria-label={A.open} aria-expanded="false" aria-controls="mobile-drawer" data-burger>
         <span></span><span></span><span></span>
@@ -192,6 +221,14 @@ const classes = ['header', transparent && 'header--transparent'].filter(Boolean)
             );
           })}
         </ul>
+        {login && login.children && login.children.length > 0 && (
+          <div class="drawer__login">
+            <p class="drawer__login-label">{login.label}</p>
+            {login.children.map((c) => (
+              <a href={c.href} class="drawer__sublink" target={c.external ? '_blank' : undefined} rel={c.external ? 'noopener noreferrer' : undefined}>{c.label}</a>
+            ))}
+          </div>
+        )}
         <Button href={cta.href} variant="primary" full class="drawer__cta">{cta.label}</Button>
         {localeSwitch && (
           <a href={localeSwitch.href} class="drawer__lang" title={localeSwitch.title}>{localeSwitch.label}</a>
@@ -431,6 +468,12 @@ const classes = ['header', transparent && 'header--transparent'].filter(Boolean)
   /* Actions */
   .header__actions { display: flex; align-items: center; gap: var(--space-3); }
 
+  /* Přihlášení (dropdown vedle CTA) */
+  .header__login { position: relative; }
+  .header__dropdown--right { left: auto; right: 0; }
+  .drawer__login { margin-top: var(--space-5); padding-top: var(--space-4); border-top: 1px solid var(--color-border); }
+  .drawer__login-label { font-size: var(--font-size-caption); font-weight: var(--font-weight-semibold); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide); color: var(--color-text-muted); margin-bottom: var(--space-2); }
+
   /* Přepínač jazyků */
   .header__lang {
     display: inline-flex; align-items: center; justify-content: center;
@@ -556,6 +599,7 @@ const classes = ['header', transparent && 'header--transparent'].filter(Boolean)
     .header__nav { display: none; }
     /* CTA je vykreslené přes komponentu Button → scoped selektor ho netrefí, proto :global */
     .header__actions :global(.header__cta) { display: none; }
+    .header__login { display: none; }
     .header__burger { display: flex; }
     /* hamburger zarovnat doprava (nav je skrytá, tak ji nahradí actions) */
     .header__actions { margin-left: auto; }

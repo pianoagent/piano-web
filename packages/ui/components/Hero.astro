@@ -82,7 +82,7 @@ const innerClasses = [
             title && <Heading as="h1" size="display" color={onDark ? 'on-dark' : 'default'}>{title}</Heading>
           )}
           {lead && (
-            <Text size="lead" color={onDark ? 'on-dark-muted' : 'muted'} class="hero__lead">{lead}</Text>
+            <Text size="lead" align={align} color={onDark ? 'on-dark-muted' : 'muted'} class="hero__lead">{lead}</Text>
           )}
         </>
       )}
@@ -117,7 +117,8 @@ const innerClasses = [
           <div class="hero__rot hero__media-rot">
             {slides.map((s, i) => s.image && (
               <img class={`hero__slide${i === 0 ? ' is-active' : ''}`} data-hero-mslide={i}
-                   src={s.image} alt={s.imageAlt ?? ''} width="1100" height="733" loading={i === 0 ? 'eager' : 'lazy'} />
+                   src={s.image} alt={s.imageAlt ?? ''} width="1100" height="733"
+                   loading={i === 0 ? 'eager' : 'lazy'} fetchpriority={i === 0 ? 'high' : undefined} />
             ))}
           </div>
         ) : (

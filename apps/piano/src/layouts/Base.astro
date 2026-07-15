@@ -25,6 +25,7 @@ interface Props {
   headerTransparent?: boolean; // overlay header přes hero (per stránka)
   contactBand?: boolean;       // globální pruh „Spojte se s námi" nad patičkou (default true)
   locale?: Locale;             // jazyk stránky (default dle URL: /en/ → en, jinak cs)
+  preloadImage?: string;       // LCP obrázek k přednačtení (preload + fetchpriority) — např. hero
 }
 
 const SITE_NAME = 'Piano';
@@ -41,6 +42,7 @@ const {
   headerTransparent = false,
   contactBand = true,
   locale = localeFromPath(Astro.url.pathname),
+  preloadImage,
 } = Astro.props;
 
 const t = ui[locale];
@@ -99,6 +101,7 @@ const schemas = [organizationSchema, ...(schema ? [schema] : [])];
   <head>
     <!-- Google Search Console — ověření přes HTML tag (DNS na hostingu blokované) -->
     <meta name="google-site-verification" content="KgZuNpYxxMSjYosWLt0mC_2B8zkvHz-DUCYw_HbbtKw" />
+    {preloadImage && <link rel="preload" as="image" href={preloadImage} fetchpriority="high" />}
     <!-- Google Tag Manager -->
     <script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],

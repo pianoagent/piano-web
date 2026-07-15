@@ -17,7 +17,7 @@ export default defineConfig({
   integrations: [
     // Skryté / noindex stránky vynechat ze sitemapy (kalkulačka pro obchodníky, děkovací stránka)
     sitemap({
-      filter: (page) => !/\/(kalkulacka-terminal|dekujeme)\/?$/.test(page),
+      filter: (page) => !/\/(kalkulacka-terminal|dekujeme|kukatko-vseobecne-obchodni-podminky)\/?$/.test(page),
     }),
     // Lokální brandové SVG: src/icons/nazev.svg → name="nazev"
     // Sada Lucide jako zásoba → name="lucide:check"

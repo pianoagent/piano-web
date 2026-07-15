@@ -40,6 +40,9 @@ interface Props {
   action?: string;
   successUrl?: string;   // přesměrování po úspěšném odeslání (analytika); default "/dekujeme"
   submitLabel?: string;
+  message?: boolean | string;  // přidá pole „Zpráva" (textarea); string = vlastní popisek
+  messagePlaceholder?: string; // placeholder pole Zpráva
+  layout?: 'split' | 'stacked'; // split = proofs vlevo + formulář vpravo; stacked = jen formulář na střed
   background?: 'default' | 'alt' | 'invert' | 'primary';
   space?: 'sm' | 'md' | 'lg';
   id?: string;
@@ -49,6 +52,7 @@ interface Props {
 const LEAD_I18N = {
   cs: {
     name: 'Jméno', email: 'E-mail', phone: 'Telefon', company: 'Název podniku', city: 'Město',
+    message: 'Zpráva', msgPh: 'Popište nám svůj provoz a co potřebujete…',
     phoneHelper: 'Zavoláme vám zpět, jakmile to půjde.',
     consentPre: 'Souhlasím se zpracováním osobních údajů dle ', consentLink: 'zásad ochrany údajů', consentPost: '.',
     submitFull: 'Odeslat poptávku', submitCallback: 'Zavolejte mi',
@@ -65,6 +69,7 @@ const LEAD_I18N = {
   },
   en: {
     name: 'Name', email: 'Email', phone: 'Phone', company: 'Business name', city: 'City',
+    message: 'Message', msgPh: 'Tell us about your venue and what you need…',
     phoneHelper: 'We will call you back as soon as we can.',
     consentPre: 'I agree to the processing of personal data under the ', consentLink: 'privacy policy', consentPost: '.',
     submitFull: 'Send inquiry', submitCallback: 'Call me back',
@@ -89,22 +94,29 @@ const {
   action = '/api/lead.php',
   successUrl,
   submitLabel,
+  message = false,
+  messagePlaceholder,
+  layout = 'split',
   background = 'alt',
   space = 'md',
   id,
   locale = 'cs',
 } = Astro.props;
 
+const isStacked = layout === 'stacked';
+
 const L = LEAD_I18N[locale];
 const successUrlResolved = successUrl ?? L.successUrl;
 const proofsList: Proof[] = proofs ?? L.proofs;
+const showMessage = Boolean(message);
+const messageLabel = typeof message === 'string' ? message : L.message;
 const isCallback = variant === 'callback';
 const onDark = background === 'invert' || background === 'primary';
 const submitText = submitLabel ?? (isCallback ? L.submitCallback : L.submitFull);
 ---
 
 <Section background={background} space={space} id={id}>
-  <div class:list={['leadform__layout', isCallback && 'leadform__layout--callback']}>
+  <div class:list={['leadform__layout', isCallback && 'leadform__layout--callback', isStacked && 'leadform__layout--stacked']}>
 
     <!-- Levý sloupec: nadpis + proofs -->
     <div class="leadform__intro">
@@ -160,6 +172,9 @@ const submitText = submitLabel ?? (isCallback ? L.submitCallback : L.submitFull)
             <Field label={L.phone} name="phone" type="tel" placeholder="+420 123 456 789" autocomplete="tel" inputmode="tel" />
             <Field label={L.company} name="company" placeholder={L.phCompany} autocomplete="organization" />
             <Field label={L.city} name="city" placeholder={L.phCity} autocomplete="address-level2" />
+            {showMessage && (
+              <Field label={messageLabel} name="message" multiline rows={4} placeholder={messagePlaceholder ?? L.msgPh} />
+            )}
 
             <label class="leadform__consent">
               <input type="checkbox" name="consent" required />
@@ -197,6 +212,14 @@ const submitText = submitLabel ?? (isCallback ? L.submitCallback : L.submitFull)
   .leadform__layout--callback {
     grid-template-columns: 1fr minmax(0, 360px);
   }
+  /* Stacked — jen formulář (bez postranního sloupce), na střed */
+  .leadform__layout--stacked {
+    grid-template-columns: minmax(0, 560px);
+    justify-content: center;
+  }
+  .leadform__layout--stacked .leadform__intro { text-align: center; }
+  .leadform__layout--stacked .leadform__lead { margin-inline: auto; }
+  .leadform__layout--stacked .leadform__proofs { margin-inline: auto; }
 
   .leadform__lead { margin-top: var(--space-3); max-width: 460px; }
 

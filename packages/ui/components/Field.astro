@@ -30,6 +30,8 @@ interface Props {
   autocomplete?: string;
   inputmode?: string;
   value?: string;
+  multiline?: boolean;   // renderuje <textarea> místo <input>
+  rows?: number;         // počet řádků textarey (default 4)
   class?: string;
   [key: string]: any;
 }
@@ -46,6 +48,8 @@ const {
   autocomplete,
   inputmode,
   value,
+  multiline = false,
+  rows = 4,
   class: className,
   ...rest
 } = Astro.props;
@@ -63,19 +67,32 @@ const hasAdornment = Boolean(prefix || icon);
   <div class:list={['field__control', hasAdornment && 'field__control--adorned']}>
     {icon && <span class="field__icon"><Icon name={icon} size="sm" /></span>}
     {prefix && <span class="field__prefix">{prefix}</span>}
-    <input
-      class="field__input"
-      id={id}
-      name={name}
-      type={type}
-      placeholder={placeholder}
-      required={required}
-      autocomplete={autocomplete}
-      inputmode={inputmode}
-      value={value}
-      aria-describedby={helperId}
-      {...rest}
-    />
+    {multiline ? (
+      <textarea
+        class="field__input field__input--textarea"
+        id={id}
+        name={name}
+        placeholder={placeholder}
+        required={required}
+        rows={rows}
+        aria-describedby={helperId}
+        {...rest}
+      >{value}</textarea>
+    ) : (
+      <input
+        class="field__input"
+        id={id}
+        name={name}
+        type={type}
+        placeholder={placeholder}
+        required={required}
+        autocomplete={autocomplete}
+        inputmode={inputmode}
+        value={value}
+        aria-describedby={helperId}
+        {...rest}
+      />
+    )}
   </div>
 
   {helper && <p class="field__helper" id={helperId}>{helper}</p>}
@@ -127,6 +144,7 @@ const hasAdornment = Boolean(prefix || icon);
     color: var(--color-text);
   }
   .field__input::placeholder { color: var(--color-neutral-300); }
+  .field__input--textarea { resize: vertical; min-height: 96px; line-height: var(--line-height-body); }
 
   .field__helper {
     font-family: var(--font-sans);
