@@ -35,6 +35,7 @@ export const pecostaNav: NavItem[] = [
   { label: 'Jak to funguje', href: '/jak-to-funguje' },
   pianoNavItem('pecosta'),
   { label: 'Reference', href: '/reference' },
+  { label: 'Novinky', href: '/novinky' },
   { label: 'Kontakt', href: '/kontakt' },
 ];
 

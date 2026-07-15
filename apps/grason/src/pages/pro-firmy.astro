@@ -13,23 +13,23 @@ import Text from '@piano/ui/components/Text.astro';
 import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
-import { grasonNav, grasonCta, grasonFooter } from '../config/nav';
+import { grasonNav, grasonCta, grasonFooter, grasonLogin } from '../config/nav';
 
 const products = [
   {
     img: '/images/for-companies-choose-candidates.webp',
     tag: 'GrasonFlexi',
     title: 'Brigádníci na směnu',
-    text: 'Vypíšete směnu, ověření brigádníci se přihlásí a vy vyberete. Grason vyřídí smlouvu i papírování (DPP).',
-    points: ['3 357+ ověřených pracovníků', 'Obsazení směny během minut', 'DPP papírování řeší Grason'],
+    text: 'Vypíšete směnu, ověření brigádníci se přihlásí a vy vyberete. Zaměstnavatelem zůstáváte vy — Grason lidi zprostředkuje a připraví podklady.',
+    points: ['3 357+ ověřených pracovníků', 'Obsazení směny během minut', 'Podpis DPP i přes appku (příplatek)'],
     href: '/grasonflexi',
   },
   {
     img: '/images/illustration-calendar.webp',
     tag: 'GrasonPlan',
     title: 'Plánování směn vlastního týmu',
-    text: 'Přehledný rozvrh pro stálé zaměstnance. Součástí je docházka (digitální píchačky), úkoly i podklady pro mzdy.',
-    points: ['Plán na PC i v mobilu', 'Docházka přes GPS / WiFi', 'Podklady pro mzdy · od 990 Kč/měs'],
+    text: 'Vypíšete směny a buď je přidělíte, nebo je necháte přihlásit. K tomu úkoly, mzdové podklady a docházka jako doplňkový modul.',
+    points: ['Plán na PC i v mobilu', 'Přidělení i samopřihlášení', 'od 990 Kč/měs, 1. měsíc zdarma'],
     href: '/grasonplan',
   },
   {
@@ -59,7 +59,7 @@ const leadProofs = [
 
 <Base title="Pro firmy — Grason"
       description="Tři řešení pro celý personál: GrasonFlexi (brigádníci na směnu), GrasonPlan (plánování vlastního týmu, docházka, mzdové podklady) a GrasonJobs (inzerce a nábor stálých zaměstnanců).">
-  <Header brand="Grason" logoSrc="/logos/grason_logo.svg" logoHeight="28px" homeHref="/" nav={grasonNav} cta={grasonCta} />
+  <Header brand="Grason" logoSrc="/logos/grason_logo.svg" logoHeight="28px" homeHref="/" nav={grasonNav} cta={grasonCta} login={grasonLogin} />
 
   <main>
   <Hero eyebrow="Pro firmy" background="gradient"
@@ -85,10 +85,10 @@ const leadProofs = [
     </div>
     <div class="pillars">
       {products.map((p) => (
-        <article class="pillar">
+        <a class="pillar" href={p.href}>
+          {p.badge && <span class="pillar__badge">{p.badge}</span>}
           <div class="pillar__media">
             <img src={p.img} alt="" loading="lazy" />
-            {p.badge && <span class="pillar__badge">{p.badge}</span>}
           </div>
           <div class="pillar__body">
             <span class="pillar__tag">{p.tag}</span>
@@ -97,9 +97,9 @@ const leadProofs = [
             <ul class="pillar__points">
               {p.points.map((pt) => (<li><Icon name="lucide:check" size="sm" class="pillar__check" />{pt}</li>))}
             </ul>
-            <a href={p.href} class="pillar__link">Prozkoumat <Icon name="lucide:arrow-right" size="sm" /></a>
+            <span class="pillar__link">Prozkoumat <Icon name="lucide:arrow-right" size="sm" /></span>
           </div>
-        </article>
+        </a>
       ))}
     </div>
   </Section>
@@ -108,9 +108,9 @@ const leadProofs = [
   <Section id="cenik" background="alt" space="lg">
     <div class="head head--center">
       <Text size="label" color="accent" align="center">Ceník</Text>
-      <Heading as="h2" size="h2" align="center">Předplatné <span class="accent">bez poplatků ze mzdy</span></Heading>
+      <Heading as="h2" size="h2" align="center">Ceník <span class="accent">podle produktu</span></Heading>
       <Text size="lead" color="muted" align="center" balance>
-        Žádné poplatky odvozené ze mzdy pracovníka. Díky předplatnému předem přesně víte, kolik a za co měsíčně platíte.
+        U předplatného předem přesně víte, kolik a za co měsíčně platíte. Vyberte si jen to, co potřebujete.
       </Text>
     </div>
     <div class="pricing pricing--3">
@@ -119,7 +119,7 @@ const leadProofs = [
         <Heading as="h3" size="h3">Balíčky na míru</Heading>
         <Text color="muted" size="small">Podle počtu směn, poboček a funkcí. Závazek na 3, 6 nebo 12 měsíců.</Text>
         <ul class="checklist">
-          <li><Icon name="lucide:check" size="sm" class="hl-check" />Bez poplatků ze mzdy brigádníka</li>
+          <li><Icon name="lucide:check" size="sm" class="hl-check" />Předvídatelný měsíční paušál</li>
           <li><Icon name="lucide:check" size="sm" class="hl-check" />Od základního po prémiový tarif</li>
           <li><Icon name="lucide:check" size="sm" class="hl-check" />Enterprise: neomezené směny + account manager</li>
         </ul>
@@ -132,8 +132,8 @@ const leadProofs = [
         <Text color="muted" size="small">1 podnik, do 25 uživatelů. Každý další uživatel +50 Kč/měsíc.</Text>
         <ul class="checklist">
           <li><Icon name="lucide:check" size="sm" class="hl-check" />Plánování směn, dovolených i záskoků</li>
-          <li><Icon name="lucide:check" size="sm" class="hl-check" />Docházka (píchačky) a podklady pro mzdy</li>
-          <li><Icon name="lucide:check" size="sm" class="hl-check" />Úkoly, checklisty, notifikace</li>
+          <li><Icon name="lucide:check" size="sm" class="hl-check" />Úkoly, checklisty, mzdové podklady</li>
+          <li><Icon name="lucide:check" size="sm" class="hl-check" />Docházka jako doplněk (+490 Kč/měs)</li>
         </ul>
         <div class="price__cta"><Button href="/grasonplan">Více o GrasonPlanu</Button></div>
       </article>
@@ -193,12 +193,14 @@ const leadProofs = [
 
   /* Produktové karty */
   .pillars { display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-  .pillar { display: flex; flex-direction: column; background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sm); transition: var(--transition); }
+  .pillar { position: relative; display: flex; flex-direction: column; background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); transition: var(--transition); }
+  .pillar { color: inherit; text-decoration: none; }
   .pillar:hover { border-color: var(--color-primary); box-shadow: var(--shadow-md); }
-  .pillar__media { position: relative; background: var(--color-bg-alt); line-height: 0; }
+  .pillar__media { position: relative; background: var(--color-bg-alt); line-height: 0; overflow: hidden; border-top-left-radius: var(--radius-lg); border-top-right-radius: var(--radius-lg); }
   .pillar__media img { width: 100%; height: 200px; object-fit: contain; display: block; padding: var(--space-5); }
-  .pillar__badge { position: absolute; top: var(--space-4); right: var(--space-4); background: var(--color-secondary-terracotta); color: #fff; font-size: var(--font-size-caption); font-weight: var(--font-weight-semibold); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide); padding: var(--space-1) var(--space-3); border-radius: var(--radius-full); }
-  .pillar__body { flex: 1; padding: var(--space-6); display: flex; flex-direction: column; gap: var(--space-3); }
+  .pillar__badge { position: absolute; top: -12px; right: -10px; z-index: 3; display: inline-flex; align-items: center; gap: 5px; background: var(--color-secondary-terracotta); color: #fff; font-size: 11px; font-weight: var(--font-weight-bold); line-height: 1; text-transform: uppercase; letter-spacing: 0.05em; padding: 6px 12px; border-radius: var(--radius-full); box-shadow: 0 4px 12px rgba(32, 29, 61, 0.18); }
+  .pillar__badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; opacity: 0.9; }
+  .pillar__body { flex: 1; padding: var(--space-6); display: flex; flex-direction: column; gap: var(--space-3); border-bottom-left-radius: var(--radius-lg); border-bottom-right-radius: var(--radius-lg); }
   .pillar__tag { align-self: flex-start; font-size: var(--font-size-caption); font-weight: var(--font-weight-semibold); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide); color: var(--color-text-accent); background: color-mix(in srgb, var(--color-secondary-azure) 14%, #fff); padding: var(--space-1) var(--space-3); border-radius: var(--radius-full); }
   .pillar__points { list-style: none; display: flex; flex-direction: column; gap: var(--space-2); margin-top: var(--space-2); }
   .pillar__points li { display: flex; align-items: flex-start; gap: var(--space-2); font-size: var(--font-size-small); color: var(--color-text); }

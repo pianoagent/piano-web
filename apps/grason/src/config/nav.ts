@@ -13,7 +13,6 @@ export const grasonNav: NavItem[] = [
       { label: 'GrasonFlexi', href: '/grasonflexi', description: 'Brigádníci na směnu na jedno kliknutí', icon: 'lucide:users' },
       { label: 'GrasonPlan', href: '/grasonplan', description: 'Plánování směn, docházka a mzdové podklady', icon: 'lucide:calendar-days' },
       { label: 'GrasonJobs', href: '/grasonjobs', description: 'Inzerce a nábor stálých zaměstnanců', icon: 'lucide:megaphone' },
-      { label: 'Ceník', href: '/pro-firmy#cenik', description: 'Předplatné bez poplatků ze mzdy', icon: 'lucide:tag' },
     ],
   },
   { label: 'Pro brigádníky', href: '/pro-brigadniky' },
@@ -23,6 +22,17 @@ export const grasonNav: NavItem[] = [
 ];
 
 export const grasonCta: NavLink = { label: 'Konzultace zdarma', href: '/#poptavka' };
+
+/** Sekundární „Přihlášení" vedle hlavního CTA (dropdown na rozhraní). */
+export const grasonLogin: NavItem = {
+  label: 'Přihlášení',
+  href: '#',
+  children: [
+    // TODO: nahradit reálnými URL přihlášení do jednotlivých rozhraní
+    { label: 'GrasonFlexi', href: 'https://www.grason.cz', description: 'Rozhraní pro brigádníky', icon: 'lucide:log-in', external: true },
+    { label: 'GrasonPlan', href: 'https://www.grasonplan.cz', description: 'Plánování směn vlastního týmu', icon: 'lucide:log-in', external: true },
+  ],
+};
 
 /** Footer (per-web) — Grason data pro sdílený <Footer>. */
 export const grasonFooter = {

@@ -28,4 +28,6 @@ export const savarinNav: NavItem[] = [
   { label: 'Demoverze', href: '/demoverze' },
 ];
 
-export const savarinCta: NavLink = { label: 'Nezávazná poptávka', href: '/kontakt' };
+// CTA sjede na poptávkový formulář na aktuální stránce (#poptavka je na všech
+// modulových i konverzních stránkách). Relativní kotva = scroll bez přenačtení.
+export const savarinCta: NavLink = { label: 'Nezávazná poptávka', href: '#poptavka' };

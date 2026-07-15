@@ -12,13 +12,13 @@ import Heading from '@piano/ui/components/Heading.astro';
 import Text from '@piano/ui/components/Text.astro';
 import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
-import { grasonNav, grasonCta, grasonFooter } from '../config/nav';
+import { grasonNav, grasonCta, grasonFooter, grasonLogin } from '../config/nav';
 
 const PIANO_URL = 'https://piano.cz';
 ---
 
 <Base title="Děkujeme — Grason" noindex>
-  <Header brand="Grason" logoSrc="/logos/grason_logo.svg" logoHeight="28px" homeHref="/" nav={grasonNav} cta={grasonCta} />
+  <Header brand="Grason" logoSrc="/logos/grason_logo.svg" logoHeight="28px" homeHref="/" nav={grasonNav} cta={grasonCta} login={grasonLogin} />
 
   <main>
 

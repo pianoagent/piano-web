@@ -12,7 +12,9 @@ import Icon from '@piano/ui/components/Icon.astro';
 import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import Faq from '@piano/ui/components/Faq.astro';
+import LogoWall from '../../components/LogoWall.astro';
 import { pecostaLeadProofs } from '../../config/leadProofs';
+import { klientiVerejnySektor } from '../../config/klienti';
 
 const features = [
   'Nákup energií přes Komoditní burzu Praha (KBP)', 'Pro školy, školky, DPS, města, obce a kraje',
@@ -71,7 +73,8 @@ const faqs = [
     </Section>
 
     <USPGrid eyebrow="Výhody" title="Proč nakupovat přes burzu" items={benefits} background="default" space="lg" minItemWidth="240px" />
-    <Faq items={faqs} title="Časté otázky k burzovním obchodům" background="alt" />
+    <LogoWall logos={klientiVerejnySektor} label="Naši klienti" background="alt" />
+    <Faq items={faqs} title="Časté otázky k burzovním obchodům" background="default" />
     <LeadForm id="poptavka" variant="full" background="default"
               title="Zjistěte, kolik ušetříte na energiích"
               lead="Nechte nám kontakt — připravíme kalkulaci podle vaší spotřeby. Zdarma a bez závazků."

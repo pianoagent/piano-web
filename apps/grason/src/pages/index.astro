@@ -19,7 +19,9 @@ import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import LogoWall from '@piano/ui/components/LogoWall.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
-import { grasonNav, grasonCta, grasonFooter } from '../config/nav';
+import Faq from '@piano/ui/components/Faq.astro';
+import { grasonNav, grasonCta, grasonFooter, grasonLogin } from '../config/nav';
+import { flexiFaqs, planFaqs, jobsFaqs } from '../config/faq';
 
 const PHONE = '+420 739 877 799';
 const PHONE_HREF = 'tel:+420739877799';
@@ -37,17 +39,22 @@ const products = [
     img: '/images/for-companies-choose-candidates.webp',
     tag: 'GrasonFlexi',
     title: 'Brigádníci na směnu',
-    text: 'Vypíšete směnu, ověření brigádníci se přihlásí a vy vyberete. Grason vyřídí smlouvu i papírování (DPP) — podklady pro výplatu máte připravené.',
-    points: ['3 357+ ověřených pracovníků', 'Obsazení směny během minut', 'DPP papírování řeší Grason', 'Gastro, sklady i maloobchod'],
+    text: 'Vypíšete směnu, ověření brigádníci se přihlásí a vy vyberete. Zaměstnavatelem zůstáváte vy — Grason vám lidi jen zprostředkuje a připraví podklady.',
+    points: ['3 357+ ověřených pracovníků', 'Obsazení směny během minut', 'Podpis DPP i přes appku (za příplatek)', 'Gastro, sklady i maloobchod'],
     href: '/grasonflexi',
+    tone: 'flexi',
+    priceFrom: 'Cena od 1 990 Kč/měs',
   },
   {
     img: '/images/illustration-calendar.webp',
     tag: 'GrasonPlan',
+    badge: '1. měsíc zdarma',
     title: 'Plánování směn vlastního týmu',
-    text: 'Přehledný rozvrh pro stálé zaměstnance. Zadají dostupnost, vy potvrdíte plán. Součástí je docházka (digitální píchačky), úkoly i podklady pro mzdy.',
-    points: ['Plán na PC i v mobilu', 'Digitální píchačky (docházka)', 'Úkoly a checklisty', 'Podklady pro mzdy · od 990 Kč/měs'],
+    text: 'Přehledný rozvrh pro stálé zaměstnance. Vypíšete směny a buď je přidělíte, nebo je necháte přihlásit. K tomu úkoly, mzdové podklady a docházka jako doplňkový modul.',
+    points: ['Plán na PC i v mobilu', 'Přidělení i samopřihlášení na směny', 'Úkoly, checklisty a mzdové podklady', 'Digitální píchačky přes GPS'],
     href: '/grasonplan',
+    tone: 'plan',
+    priceFrom: 'Cena od 990 Kč/měs',
   },
   {
     img: '/images/for-companies-choose-favourite-workers.webp',
@@ -57,15 +64,9 @@ const products = [
     text: 'Hledáte stálého kolegu na HPP nebo DPČ? Vystavíte inzerát a Grason ho automaticky propaguje tisícům lidí v gastru — dokud pozici neobsadíte.',
     points: ['Inzerce stálých úvazků', 'Automatická propagace inzerátů', 'Oslovíte tisíce lidí v gastru', 'Obsazeno = konec kampaně'],
     href: '/grasonjobs',
+    tone: 'jobs',
+    priceFrom: 'Cena na míru',
   },
-];
-
-// „Jak to funguje" je čistě GrasonFlexi (obsazení směny brigádníkem)
-const steps = [
-  { title: 'Vypíšete směnu', text: 'V appce nebo webovém rozhraní zadáte kdy, kde a koho potřebujete. Trvá to 2 minuty.' },
-  { title: 'Brigádníci se hlásí', text: 'Ověření pracovníci z vašeho okolí dostanou notifikaci a zájemci se přihlásí.' },
-  { title: 'Potvrdíte výběr', text: 'Vyberete vhodného kandidáta. Grason zařídí smlouvu i papírování (DPP).' },
-  { title: 'Odpracováno a ohodnoceno', text: 'Pracovník dorazí na směnu, vy mu připravíte výplatu z podkladů a po směně ho ohodnotíte.' },
 ];
 
 const testimonials = [
@@ -75,19 +76,8 @@ const testimonials = [
 ];
 
 const refLogos = [
-  'ref-field-michelin-restaurant', 'ref-cafe-savoy', 'ref-kolkovna', 'ref-sasazu',
-  'ref-O2-arena', 'ref-clarion-hotel', 'ref-zatisi-group', 'ref-420-restaurant',
-  'ref-pizza-coloseum', 'ref-entree', 'ref-100-chuti-brna', 'ref-sisters-bistro',
-];
-
-const faqs = [
-  { q: 'Jak rychle obsadím směnu brigádníkem? (GrasonFlexi)', a: 'Brigádníky najdete na jedno kliknutí — ověření lidé, kteří se na vypsanou směnu sami přihlásí. Volnou směnu obsadíte i na poslední chvíli.' },
-  { q: 'Vyřídí Grason brigádníkovi výplatu? (GrasonFlexi)', a: 'Smlouvu a papírování (DPP) vyřídí Grason. Samotnou výplatu provádíte vy — Grason vám k ní připraví podklady. Brigádník tak má peníze rychle po směně.' },
-  { q: 'Umí Grason nábor stálých zaměstnanců? (GrasonJobs)', a: 'Ano — přes GrasonJobs vystavíte inzerát na stálý úvazek (HPP, DPČ) a my ho automaticky propagujeme tisícům lidí v gastru. Jakmile pozici obsadíte, kampaň skončí.' },
-  { q: 'Umí Grason plánování směn vlastního týmu? (GrasonPlan)', a: 'Ano — GrasonPlan zvládne plánování směn, dovolených i záskoků, přehledně na jednom místě. První měsíc zdarma.' },
-  { q: 'Jak funguje docházka / digitální píchačky? (GrasonPlan)', a: 'Zaměstnanec se odbaví v aplikaci kliknutím na tlačítko a systém přes GPS nebo WiFi ověří, že je opravdu v provozovně (okruh 30–300 m). Žádné kartičky ani papíry.' },
-  { q: 'Co umí úkoly a checklisty? (GrasonPlan)', a: 'Zadáte úkol ke směně a zaměstnanec potvrdí jeho splnění — odškrtnutím, textem, číslem nebo fotkou. Máte přehled, co bylo a nebylo splněno.' },
-  { q: 'Pomůže Grason se mzdami? (GrasonPlan)', a: 'Z odpracovaných směn a docházky připraví podklady pro mzdovou účetní jedním kliknutím — konec ručního přepisování. Samotné mzdy si zpracováváte sami.' },
+  'ref-grandhotel-pupp', 'ref-klub-malych-pivovaru', 'ref-foodway-catering',
+  'ref-majaland', 'ref-tower-park-praha', 'ref-kavarna-633',
 ];
 
 const leadProofs = [
@@ -100,7 +90,7 @@ const leadProofs = [
 
 <Base title="Personalista pro váš podnik | Grason"
       description="Grason je ekosystém pro řízení personálu v gastru: brigádníci na poslední chvíli, plánování směn, digitální píchačky, docházka a podklady pro mzdy. Vše na jednom místě.">
-  <Header brand="Grason" logoSrc="/logos/grason_logo.svg" logoHeight="28px" homeHref="/" nav={grasonNav} cta={grasonCta} />
+  <Header brand="Grason" logoSrc="/logos/grason_logo.svg" logoHeight="28px" homeHref="/" nav={grasonNav} cta={grasonCta} login={grasonLogin} />
 
   <main>
 
@@ -110,8 +100,8 @@ const leadProofs = [
         usp={[{ text: '3 357+ brigádníků', icon: 'lucide:users' }, { text: '82+ měst v ČR', icon: 'lucide:map-pin' }, { text: '220 000+ naplánovaných směn', icon: 'lucide:calendar-days' }]}>
     <Heading slot="title" as="h1" size="display" color="on-dark">Obsaďte volné pozice a naplánujte směny na pár kliknutí</Heading>
     <Fragment slot="actions">
-      <Button href="#poptavka">Vyzkoušet 14 dní zdarma</Button>
-      <Button href="#funkce" variant="secondary" onDark>Všechny funkce</Button>
+      <Button href="#poptavka">Konzultace zdarma</Button>
+      <Button href="#funkce" variant="secondary" onDark>Naše produkty</Button>
     </Fragment>
     <figure slot="media" class="hero-figure">
       <img src="/images/hp-hero.webp" alt="Grason — mobilní aplikace s nabídkami volných směn" width="720" height="560" loading="eager" />
@@ -119,23 +109,23 @@ const leadProofs = [
   </Hero>
 
   <!-- LOGA KLIENTŮ -->
-  <LogoWall id="zakaznici" background="default" label="Důvěřují nám restaurace, hotely i sklady po celé ČR" logos={refLogos} />
+  <LogoWall id="zakaznici" background="default" label="Důvěřují nám restaurace, hotely i cateringy po celé ČR" logos={refLogos} ext="png" logoHeight="52px" />
 
   <!-- TŘI PRODUKTY -->
   <Section id="funkce" background="default" space="lg">
     <div class="head head--center">
-      <Text size="label" color="accent" align="center">Tři produkty, jeden personalista</Text>
-      <Heading as="h2" size="h2" align="center">Tři řešení pro <span class="accent">celý personál</span></Heading>
+      <Text size="label" color="accent" align="center">Odborník na personál</Text>
+      <Heading as="h2" size="h2" align="center">Celý personál <span class="accent">vyřešíme</span></Heading>
       <Text size="lead" color="muted" align="center" balance>
-        Grason není jedna appka. Jsou to tři samostatné nástroje — vyberete si jeden, dva, nebo všechny tři podle toho, co váš provoz zrovna potřebuje.
+        Služby GrasonFlexi, GrasonPlan či GrasonJobs vám pokryjí celý personál od brigádníků přes plánování směn po stálé lidi.
       </Text>
     </div>
     <div class="pillars">
       {products.map((p) => (
-        <article class="pillar">
+        <a class:list={['pillar', `pillar--${p.tone}`]} href={p.href}>
+          {p.badge && <span class="pillar__badge">{p.badge}</span>}
           <div class="pillar__media">
             <img src={p.img} alt="" loading="lazy" />
-            {p.badge && <span class="pillar__badge">{p.badge}</span>}
           </div>
           <div class="pillar__body">
             <span class="pillar__tag">{p.tag}</span>
@@ -146,52 +136,14 @@ const leadProofs = [
                 <li><Icon name="lucide:check" size="sm" class="pillar__check" />{pt}</li>
               ))}
             </ul>
-            <a href={p.href} class="pillar__link">Prozkoumat <Icon name="lucide:arrow-right" size="sm" /></a>
+            <div class="pillar__foot">
+              <span class="pillar__price">{p.priceFrom}</span>
+              <span class="pillar__link">Prozkoumat <Icon name="lucide:arrow-right" size="sm" /></span>
+            </div>
           </div>
-        </article>
+        </a>
       ))}
     </div>
-  </Section>
-
-  <!-- MOBILNÍ APLIKACE (split) -->
-  <Section background="default" space="lg">
-    <div class="app">
-      <div class="app__text">
-        <Text size="label" color="accent">Mobilní aplikace</Text>
-        <Heading as="h2" size="h2">Mějte Grason <span class="accent">stále po ruce</span></Heading>
-        <Text size="lead" color="muted" balance>
-          S našimi technologiemi plánujete směny, sháníte brigádníky a hlídáte docházku odkudkoliv — od baru, z kanceláře i z gauče. GrasonFlexi a GrasonPlan mají vlastní appku pro iOS i Android.
-        </Text>
-        <ul class="app__points">
-          <li><Icon name="lucide:smartphone" size="sm" class="pillar__check" />iOS i Android, zdarma ke stažení</li>
-          <li><Icon name="lucide:bell-ring" size="sm" class="pillar__check" />Notifikace o přihlášených i nástupech</li>
-          <li><Icon name="lucide:refresh-cw" size="sm" class="pillar__check" />Vše synchronizováno v reálném čase</li>
-        </ul>
-        <div class="app__cta">
-          <Button href="#poptavka">Vyzkoušet 14 dní zdarma</Button>
-        </div>
-      </div>
-      <figure class="app__media">
-        <img src="/images/for-companies-hero.webp" alt="Grason — plánování směn a docházka v mobilní aplikaci" loading="lazy" />
-      </figure>
-    </div>
-  </Section>
-
-  <!-- JAK TO FUNGUJE -->
-  <Section background="invert" space="lg">
-    <div class="head head--center">
-      <Text size="label" color="accent" align="center">Jak to funguje</Text>
-      <Heading as="h2" size="h2" align="center" color="on-dark">Od potřeby k obsazené <span class="accent">směně za minuty</span></Heading>
-    </div>
-    <ol class="steps steps--dark">
-      {steps.map((s, i) => (
-        <li class="step step--dark">
-          <span class="step__num">{i + 1}</span>
-          <Heading as="h3" size="h3" color="on-dark">{s.title}</Heading>
-          <Text size="small" color="on-dark-muted">{s.text}</Text>
-        </li>
-      ))}
-    </ol>
   </Section>
 
   <!-- REFERENCE -->
@@ -226,27 +178,19 @@ const leadProofs = [
         Ať řešíte brigádníky, plánování vlastního týmu, nebo nábor stálých lidí — poradíme, které z našich řešení vám sedne. Konzultace je zdarma a nezávazná.
       </Text>
       <div class="cta-actions">
-        <Button href="#poptavka">Vyzkoušet zdarma</Button>
+        <Button href="#poptavka">Konzultace zdarma</Button>
         <Button href={PHONE_HREF} variant="secondary" onDark>{PHONE}</Button>
       </div>
     </div>
   </Section>
 
-  <!-- FAQ -->
-  <Section background="default" space="lg">
-    <div class="head head--center">
-      <Heading as="h2" size="h2" align="center">Často kladené dotazy</Heading>
-      <Text size="lead" color="muted" align="center">Nenašli jste odpověď? Ozvěte se nám, rádi vám poradíme.</Text>
-    </div>
-    <div class="faq">
-      {faqs.map((f) => (
-        <details class="faq__item">
-          <summary>{f.q}<Icon name="lucide:chevron-down" size="sm" class="faq__chev" /></summary>
-          <div class="faq__a"><Text color="muted">{f.a}</Text></div>
-        </details>
-      ))}
-    </div>
-  </Section>
+  <!-- FAQ — seskupené po produktech -->
+  <Faq title="Často kladené dotazy" background="default"
+       groups={[
+         { title: 'GrasonFlexi · brigádníci', items: flexiFaqs },
+         { title: 'GrasonPlan · plánování týmu', items: planFaqs },
+         { title: 'GrasonJobs · nábor', items: jobsFaqs },
+       ]} />
 
   <!-- POPTÁVKA -->
   <LeadForm id="poptavka" variant="full" background="alt"
@@ -287,32 +231,45 @@ const leadProofs = [
   /* Pilíře */
   .pillars { display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
   .pillar {
+    position: relative;
     display: flex; flex-direction: column;
     background: var(--color-bg); border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sm);
+    border-radius: var(--radius-lg); box-shadow: var(--shadow-sm);
     transition: var(--transition);
   }
-  .pillar:hover { border-color: var(--color-primary); box-shadow: var(--shadow-md); }
-  .pillar__media { position: relative; background: var(--color-bg-alt); line-height: 0; }
+  .pillar { color: inherit; text-decoration: none; }
+  /* Per-produktové odstíny karet */
+  .pillar--flexi { --tone-fill: #F24D83; --tone-ink: #D63A70; }
+  .pillar--plan  { --tone-fill: #FAD531; --tone-ink: #8A6D00; }
+  .pillar--jobs  { --tone-fill: #343160; --tone-ink: #343160; }
+  .pillar:hover { border-color: var(--tone-fill, var(--color-primary)); box-shadow: var(--shadow-md); }
+  .pillar__media { position: relative; background: var(--color-bg-alt); line-height: 0; overflow: hidden; border-top-left-radius: var(--radius-lg); border-top-right-radius: var(--radius-lg); }
   .pillar__media img { width: 100%; height: 200px; object-fit: contain; display: block; padding: var(--space-5); }
+  .pillar__body { border-bottom-left-radius: var(--radius-lg); border-bottom-right-radius: var(--radius-lg); }
   .pillar__badge {
-    position: absolute; top: var(--space-4); right: var(--space-4);
-    background: var(--color-secondary-terracotta); color: #fff;
-    font-size: var(--font-size-caption); font-weight: var(--font-weight-semibold);
-    text-transform: uppercase; letter-spacing: var(--letter-spacing-wide);
-    padding: var(--space-1) var(--space-3); border-radius: var(--radius-full);
+    position: absolute; top: -12px; right: -10px; z-index: 3;
+    display: inline-flex; align-items: center; gap: 5px;
+    background: var(--tone-fill, var(--color-secondary-terracotta)); color: #fff;
+    font-size: 11px; font-weight: var(--font-weight-bold); line-height: 1;
+    text-transform: uppercase; letter-spacing: 0.05em;
+    padding: 6px 12px; border-radius: var(--radius-full);
+    box-shadow: 0 4px 12px rgba(32, 29, 61, 0.18);
   }
+  .pillar__badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; opacity: 0.9; }
+  .pillar--plan .pillar__badge { color: var(--color-secondary); }  /* žlutá → tmavě modrý text */
   .pillar__body { flex: 1; padding: var(--space-6); display: flex; flex-direction: column; gap: var(--space-3); }
   .pillar__tag {
     align-self: flex-start; font-size: var(--font-size-caption); font-weight: var(--font-weight-semibold);
     text-transform: uppercase; letter-spacing: var(--letter-spacing-wide);
-    color: var(--color-text-accent); background: color-mix(in srgb, var(--color-secondary-azure) 14%, #fff);
+    color: var(--tone-ink, var(--color-text-accent)); background: color-mix(in srgb, var(--tone-fill, var(--color-secondary-azure)) 16%, #fff);
     padding: var(--space-1) var(--space-3); border-radius: var(--radius-full);
   }
   .pillar__points { list-style: none; display: flex; flex-direction: column; gap: var(--space-2); margin-top: var(--space-2); }
   .pillar__points li { display: flex; align-items: flex-start; gap: var(--space-2); font-size: var(--font-size-small); color: var(--color-text); }
-  .pillar__check { color: var(--color-secondary-azure); flex-shrink: 0; margin-top: 2px; }
-  .pillar__link { display: inline-flex; align-items: center; gap: var(--space-1); margin-top: auto; padding-top: var(--space-4); color: var(--color-text-accent); font-weight: var(--font-weight-semibold); font-size: var(--font-size-small); text-decoration: none; }
+  .pillar__check { color: var(--tone-ink, var(--color-secondary-azure)); flex-shrink: 0; margin-top: 2px; }
+  .pillar__foot { margin-top: auto; padding-top: var(--space-4); display: flex; flex-direction: column; gap: var(--space-2); }
+  .pillar__price { font-weight: var(--font-weight-bold); color: var(--color-secondary); font-size: var(--font-size-body); }
+  .pillar__link { display: inline-flex; align-items: center; gap: var(--space-1); color: var(--tone-ink, var(--color-text-accent)); font-weight: var(--font-weight-semibold); font-size: var(--font-size-small); text-decoration: none; }
   .pillar__link:hover { gap: var(--space-2); }
 
   /* App split */

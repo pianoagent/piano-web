@@ -25,6 +25,7 @@ export const pecostaFooter = {
       links: [
         { label: 'Jak to funguje', href: '/jak-to-funguje' },
         { label: 'Reference', href: '/reference' },
+        { label: 'Akce a novinky', href: '/novinky' },
         { label: 'Kontakt', href: '/kontakt' },
         { label: 'Skupina Piano', href: 'https://piano.cz' },
       ],

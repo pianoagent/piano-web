@@ -13,7 +13,9 @@ import Text from '@piano/ui/components/Text.astro';
 import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
-import { grasonNav, grasonCta, grasonFooter } from '../config/nav';
+import Faq from '@piano/ui/components/Faq.astro';
+import { grasonNav, grasonCta, grasonFooter, grasonLogin } from '../config/nav';
+import { flexiFaqs } from '../config/faq';
 
 const rows = [
   { img: '/images/for-companies-choose-candidates.webp', title: 'Vybírejte si podle zkušeností a hodnocení', text: 'Vždycky víte, kdo k vám přijde pracovat. Pracovníky vybíráte podle jejich profilů, zkušeností a hodnocení od jiných firem.' },
@@ -24,7 +26,7 @@ const rows = [
 const steps = [
   { title: 'Vypíšete směnu', text: 'V appce nebo webovém rozhraní zadáte kdy, kde a koho potřebujete. Trvá to 2 minuty.' },
   { title: 'Brigádníci se hlásí', text: 'Ověření pracovníci z vašeho okolí dostanou notifikaci a zájemci se přihlásí.' },
-  { title: 'Potvrdíte výběr', text: 'Vyberete vhodného kandidáta. Grason zařídí smlouvu i papírování (DPP).' },
+  { title: 'Potvrdíte výběr', text: 'Vyberete vhodného kandidáta. Zaměstnavatelem jste vy — DPP můžete podepsat i přes appku (za příplatek).' },
   { title: 'Odpracováno a ohodnoceno', text: 'Pracovník dorazí na směnu, vy mu připravíte výplatu z podkladů a po směně ho ohodnotíte.' },
 ];
 
@@ -37,22 +39,45 @@ const testimonials = [
 const leadProofs = [
   { icon: 'lucide:gift', title: '14 dní zdarma', text: 'Bez platební karty, nezávazně.' },
   { icon: 'lucide:zap', title: 'Směna za pár minut', text: 'Pozici obsadíte dřív než konkurence.' },
-  { icon: 'lucide:users', title: '3 357+ brigádníků', text: 'Ověření pracovníci po celé ČR.' },
-  { icon: 'lucide:badge-check', title: 'DPP řeší Grason', text: 'Smlouva i papírování za vás.' },
+  { icon: 'lucide:users', title: '3 357+ brigádníků', text: 'Ověření pracovníci napříč 82+ městy.' },
+  { icon: 'lucide:badge-check', title: 'Podpis přes appku', text: 'DPP podepíšete i online (příplatek).' },
+];
+
+// Ceník GrasonFlexi — přepínač délky předplatného (3/6/12 měsíců)
+const pricePeriods = [
+  { id: '3', label: '3 měsíců' },
+  { id: '6', label: '6 měsíců' },
+  { id: '12', label: '12 měsíců' },
+];
+const priceTiers = [
+  { name: 'Trial', fixed: '14 dní zdarma', cta: 'Vyzkoušet zdarma', href: 'https://www.grason.cz' },
+  { name: 'Lite', price: { '3': '3 330 Kč', '6': '2 490 Kč', '12': '1 990 Kč' }, unit: '/měsíc', cta: 'Vybrat tarif', href: '#poptavka' },
+  { name: 'Standard', featured: true, badge: 'Nejoblíbenější', price: { '3': '8 990 Kč', '6': '7 490 Kč', '12': '4 990 Kč' }, unit: '/měsíc', cta: 'Vybrat tarif', href: '#poptavka' },
+  { name: 'Enterprise', fixed: 'Na vyžádání', cta: 'Zanechat kontakt', href: '#poptavka' },
+];
+const priceFeatures = [
+  { label: 'Počet obsazených směn', vals: ['Neomezeně', '30', 'Neomezeně', 'Neomezeně'] },
+  { label: 'Pobočky', vals: ['1', '1', '1', 'Neomezeně'] },
+  { label: 'Role správce', vals: ['5', '5', '5', 'Neomezeně'] },
+  { label: 'Zákaznická linka', vals: [true, true, true, true] },
+  { label: 'Dedikovaný account manager', vals: [false, false, false, true] },
+  { label: 'Automatizace dokumentů', vals: [false, 'Na vyžádání', 'Na vyžádání', true] },
+  { label: 'Zpracování mezd', vals: [false, 'Na vyžádání', 'Na vyžádání', true] },
+  { label: 'Vyplácení mezd', vals: [false, 'Na vyžádání', 'Na vyžádání', true] },
 ];
 ---
 
 <Base title="GrasonFlexi — brigádníci na směnu | Grason"
-      description="GrasonFlexi je nejrychlejší cesta k brigádníkům: vypíšete směnu, ověření pracovníci se přihlásí a vy vyberete. Grason vyřídí smlouvu a papírování (DPP).">
-  <Header brand="Grason" logoSrc="/logos/grason_logo.svg" logoHeight="28px" homeHref="/" nav={grasonNav} cta={grasonCta} />
+      description="GrasonFlexi je nejrychlejší cesta k brigádníkům: vypíšete směnu, ověření pracovníci se přihlásí a vy vyberete. Zaměstnavatelem zůstáváte vy, Grason lidi zprostředkuje.">
+  <Header brand="Grason" logoSrc="/logos/grason_logo.svg" logoHeight="28px" homeHref="/" nav={grasonNav} cta={grasonCta} login={grasonLogin} />
 
-  <main>
+  <main class="pa-flexi">
   <Hero eyebrow="GrasonFlexi" background="gradient"
-        lead="Vypíšete směnu, ověření brigádníci se přihlásí a vy vyberete. Grason vyřídí smlouvu a papírování (DPP) — podklady pro výplatu máte připravené, samotnou výplatu provedete vy.">
+        lead="Vypíšete směnu, ověření brigádníci se přihlásí a vy vyberete. Zaměstnavatelem zůstáváte vy — Grason lidi zprostředkuje a připraví podklady.">
     <Heading slot="title" as="h1" size="display" color="on-dark">Brigádníci <span class="accent">na jedno kliknutí</span></Heading>
     <Fragment slot="actions">
-      <Button href="#poptavka">Chci brigádníky</Button>
-      <Button href="#jak" variant="secondary" onDark>Jak to funguje</Button>
+      <Button href="https://www.grason.cz">Zaregistrovat firmu zdarma</Button>
+      <Button href="#poptavka" variant="secondary" onDark>Konzultace zdarma</Button>
     </Fragment>
     <figure slot="media" class="hero-figure">
       <img src="/images/for-companies-hero.webp" alt="GrasonFlexi — výběr brigádníků na směnu" width="720" height="560" loading="eager" />
@@ -100,25 +125,59 @@ const leadProofs = [
     </ol>
   </Section>
 
-  <Section background="alt" space="lg">
+  <Section id="cenik" background="alt" space="lg">
     <div class="head head--center">
       <Text size="label" color="accent" align="center">Ceník</Text>
-      <Heading as="h2" size="h2" align="center">Předplatné <span class="accent">bez poplatků ze mzdy</span></Heading>
+      <Heading as="h2" size="h2" align="center">Vyberte plán <span class="accent">pro váš provoz</span></Heading>
+      <Text size="lead" color="muted" align="center" balance>
+        Předplatné na 3, 6 nebo 12 měsíců. Čím delší závazek, tím nižší měsíční cena.
+      </Text>
     </div>
-    <div class="single-price">
-      <article class="price">
-        <span class="price__tag">GrasonFlexi</span>
-        <Heading as="h3" size="h3">Balíčky na míru</Heading>
-        <Text color="muted" size="small">Podle počtu směn, poboček a funkcí. Závazek na 3, 6 nebo 12 měsíců.</Text>
-        <ul class="checklist">
-          <li><Icon name="lucide:check" size="sm" class="hl-check" />Bez poplatků ze mzdy brigádníka</li>
-          <li><Icon name="lucide:check" size="sm" class="hl-check" />Od základního po prémiový tarif</li>
-          <li><Icon name="lucide:check" size="sm" class="hl-check" />Enterprise: neomezené směny + account manager</li>
-          <li><Icon name="lucide:check" size="sm" class="hl-check" />Enterprise navíc: zpracování a vyplácení mezd</li>
-        </ul>
-        <div class="price__cta"><Button href="#poptavka">Chci nabídku</Button></div>
-      </article>
+
+    <div class="ptoggle" role="tablist" aria-label="Délka předplatného">
+      {pricePeriods.map((p, i) => (
+        <button type="button" class:list={['ptoggle__btn', i === 0 && 'is-active']} data-period={p.id} role="tab" aria-selected={i === 0 ? 'true' : 'false'}>{p.label}</button>
+      ))}
     </div>
+
+    <div class="ptable-scroll">
+      <table class="ptable" data-ptable>
+        <thead>
+          <tr>
+            <td class="ptable__corner"></td>
+            {priceTiers.map((t) => (
+              <th class:list={['ptier', t.featured && 'ptier--featured']} scope="col">
+                <span class:list={['ptier__badge', !t.badge && 'ptier__badge--ghost']} aria-hidden={!t.badge ? 'true' : undefined}>{t.badge ?? 'x'}</span>
+                <span class="ptier__name">{t.name}</span>
+                <span class="ptier__price">
+                  {t.fixed ? t.fixed : pricePeriods.map((p, pi) => (
+                    <span class="pval" data-period={p.id} hidden={pi !== 0}>{t.price[p.id]}<small>{t.unit}</small></span>
+                  ))}
+                </span>
+                <a href={t.href} class="ptier__cta">{t.cta}</a>
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {priceFeatures.map((f) => (
+            <tr>
+              <th class="ptable__feat" scope="row">{f.label}</th>
+              {f.vals.map((v, ci) => (
+                <td class:list={['ptable__cell', priceTiers[ci].featured && 'is-featured']}>
+                  {v === true ? <Icon name="lucide:check" size="sm" class="pcell-yes" />
+                    : v === false ? <Icon name="lucide:x" size="sm" class="pcell-no" />
+                    : <span>{v}</span>}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <Text size="small" color="muted" align="center" class="ptable__note">
+      Ceny jsou uvedeny bez DPH. Automatizace dokumentů a mzdové služby jsou u tarifů Lite a Standard na vyžádání.
+    </Text>
   </Section>
 
   <Section background="default" space="lg">
@@ -143,6 +202,8 @@ const leadProofs = [
     </div>
   </Section>
 
+  <Faq items={flexiFaqs} title="Časté dotazy — GrasonFlexi" background="default" />
+
   <LeadForm id="poptavka" variant="full" background="alt"
             title="Chci brigádníky"
             lead="Nechte nám kontakt — ukážeme GrasonFlexi ve vašem provozu a pomůžeme s rozjezdem."
@@ -153,6 +214,16 @@ const leadProofs = [
 </Base>
 
 <style>
+  /* GrasonFlexi brand: růžová jako akcent (sekundární), navy primární */
+  .pa-flexi { --color-secondary-azure: #F24D83; --color-text-accent: #D63A70; }
+  .pa-flexi :global(.heading--on-dark) .accent { color: #FA80A8; }
+  .pa-flexi .step__num { color: #fff; }
+  /* Primární tlačítka růžová (brand Flexi) */
+  .pa-flexi :global(.btn--primary) { background: #F24D83; border-color: #F24D83; color: #fff; }
+  .pa-flexi :global(.btn--primary:hover) { background: #D63A70; border-color: #D63A70; }
+  .pa-flexi .ptier__cta { background: #F24D83; }
+  .pa-flexi .ptier__cta:hover { background: #D63A70; }
+
   .hero-figure { margin: 0; width: 100%; line-height: 0; }
   .hero-figure img { width: 100%; height: auto; display: block; filter: drop-shadow(0 24px 48px rgba(7, 7, 7, 0.22)); }
   .head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-7); }
@@ -175,11 +246,33 @@ const leadProofs = [
   .step__num { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: var(--radius-full); background: var(--color-secondary-azure); color: var(--color-text-on-azure); font-size: var(--font-size-lead); font-weight: var(--font-weight-bold); }
   .checklist { list-style: none; display: grid; gap: var(--space-2); }
   .checklist li { display: flex; align-items: flex-start; gap: var(--space-2); color: var(--color-text); }
-  .single-price { max-width: 480px; margin-inline: auto; }
-  .price { position: relative; background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-7); box-shadow: var(--shadow-sm); display: flex; flex-direction: column; gap: var(--space-3); }
-  .price__tag { font-size: var(--font-size-caption); font-weight: var(--font-weight-semibold); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide); color: var(--color-text-accent); }
-  .price .checklist { margin-top: var(--space-2); }
-  .price__cta { margin-top: var(--space-4); }
+  /* Ceník — přepínač délky předplatného */
+  .ptoggle { display: flex; width: max-content; max-width: 100%; margin: 0 auto var(--space-7); gap: 4px; padding: 4px; background: var(--color-neutral-100); border-radius: var(--radius-full); }
+  .ptoggle__btn { border: none; background: transparent; padding: var(--space-2) var(--space-5); border-radius: var(--radius-full); font-family: var(--font-sans); font-size: var(--font-size-small); font-weight: var(--font-weight-semibold); color: var(--color-text-muted); cursor: pointer; transition: var(--transition); white-space: nowrap; }
+  .ptoggle__btn.is-active { background: var(--color-bg); color: var(--color-text); box-shadow: var(--shadow-sm); }
+
+  /* Ceník — srovnávací tabulka */
+  .ptable-scroll { overflow-x: auto; }
+  .ptable { width: 100%; border-collapse: collapse; min-width: 820px; }
+  .ptable th, .ptable td { padding: var(--space-4); text-align: center; }
+  .ptable__corner { background: transparent; border: 0; }
+  .ptier { vertical-align: top; background: var(--color-bg); border-bottom: 2px solid var(--color-border); }
+  .ptier--featured { background: color-mix(in srgb, var(--color-secondary-azure) 22%, #fff); border-bottom: 2px solid transparent; border-top-left-radius: var(--radius-lg); border-top-right-radius: var(--radius-lg); }
+  .ptier__badge { display: inline-block; background: var(--color-secondary-gold); color: var(--color-text); font-size: var(--font-size-caption); font-weight: var(--font-weight-bold); padding: 2px var(--space-3); border-radius: var(--radius-full); margin-bottom: var(--space-2); }
+  .ptier__badge--ghost { visibility: hidden; }
+  .ptier__name { display: block; font-size: var(--font-size-h3); font-weight: var(--font-weight-bold); color: var(--color-secondary); }
+  .ptier__price { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 2.8em; margin: var(--space-2) 0 var(--space-4); font-weight: var(--font-weight-semibold); color: var(--color-text); }
+  .ptier__price small { font-weight: var(--font-weight-regular); color: var(--color-text-muted); font-size: var(--font-size-small); }
+  .ptier__cta { display: inline-block; background: var(--color-primary); color: var(--color-text-on-dark); padding: var(--space-2) var(--space-5); border-radius: var(--radius-full); text-decoration: none; font-size: var(--font-size-small); font-weight: var(--font-weight-semibold); transition: var(--transition); }
+  .ptier__cta:hover { background: var(--color-primary-hover); }
+  .ptable__feat { text-align: left; font-weight: var(--font-weight-medium); color: var(--color-text); font-size: var(--font-size-small); }
+  .ptable tbody tr { border-bottom: 1px solid var(--color-border); }
+  .ptable__cell { font-size: var(--font-size-small); color: var(--color-text); }
+  .ptable__cell.is-featured { background: color-mix(in srgb, var(--color-secondary-azure) 12%, #fff); }
+  .ptable tbody tr:last-child .ptable__cell.is-featured { border-bottom-left-radius: var(--radius-lg); border-bottom-right-radius: var(--radius-lg); }
+  .pcell-yes { color: var(--color-secondary-azure); }
+  .pcell-no { color: var(--color-neutral-300); }
+  .ptable__note { margin-top: var(--space-5); }
   .quotes { display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
   .quote { margin: 0; display: flex; flex-direction: column; background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-6); box-shadow: var(--shadow-sm); }
   .quote__head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); margin-bottom: var(--space-4); }
@@ -193,3 +286,20 @@ const leadProofs = [
   .quote__mark { color: var(--color-secondary-azure); display: block; margin-bottom: var(--space-2); }
   .quote__text { font-size: var(--font-size-body); color: var(--color-text); line-height: var(--line-height-body); }
 </style>
+
+<script>
+  // Přepínač délky předplatného v ceníku GrasonFlexi
+  const btns = document.querySelectorAll<HTMLButtonElement>('.ptoggle__btn');
+  const vals = document.querySelectorAll<HTMLElement>('[data-ptable] .pval');
+  btns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const period = btn.dataset.period;
+      btns.forEach((b) => {
+        const active = b === btn;
+        b.classList.toggle('is-active', active);
+        b.setAttribute('aria-selected', String(active));
+      });
+      vals.forEach((el) => { el.hidden = el.dataset.period !== period; });
+    });
+  });
+</script>

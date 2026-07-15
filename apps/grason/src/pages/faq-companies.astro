@@ -6,7 +6,7 @@ import Footer from '@piano/ui/components/Footer.astro';
 import Hero from '@piano/ui/components/Hero.astro';
 import Heading from '@piano/ui/components/Heading.astro';
 import Faq from '@piano/ui/components/Faq.astro';
-import { grasonNav, grasonCta, grasonFooter } from '../config/nav';
+import { grasonNav, grasonCta, grasonFooter, grasonLogin } from '../config/nav';
 
 const items = [
   { q: 'Jak mohu zaregistrovat podnik a vytvořit směnu?', a: 'Registrovat se můžete na webu nebo si do telefonu stáhnout aplikaci a zaregistrovat se pomocí volby \'\'Jsem zaměstnavatel a hledám výpomoc\'\'. Vyplňte základní údaje o vaší společnosti a kontaktní osobu.' },
@@ -30,7 +30,7 @@ const items = [
 ---
 <Base title="Nejčastější dotazy — podniky | Grason"
       description="Odpovědi na nejčastější dotazy podniků: registrace, předplatné GrasonFlexi, směny, smlouvy s pracovníky, hodinové sazby.">
-  <Header brand="Grason" logoSrc="/logos/grason_logo.svg" logoHeight="28px" homeHref="/" nav={grasonNav} cta={grasonCta} />
+  <Header brand="Grason" logoSrc="/logos/grason_logo.svg" logoHeight="28px" homeHref="/" nav={grasonNav} cta={grasonCta} login={grasonLogin} />
   <main>
     <Hero eyebrow="Podpora" background="alt" space="md" lead="Registrace podniku, směny, předplatné i vyplácení pracovníků — vše na jednom místě.">
       <Heading slot="title" as="h1" size="h1">Nejčastější dotazy — podniky</Heading>
