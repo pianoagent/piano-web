@@ -7,12 +7,31 @@ import Section from '@piano/ui/components/Section.astro';
 import Hero from '@piano/ui/components/Hero.astro';
 import Heading from '@piano/ui/components/Heading.astro';
 import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 
 const stats = [
   { num: '36 mld Kč', lbl: 'proteče přes naše nástroje ročně' },
   { num: '6 000+', lbl: 'podniků v ČR nám důvěřuje' },
   { num: '10+', lbl: 'nástrojů pro kompletní správu provozu' },
+];
+
+// Piano v médiích — videorozhovory (řazeno od nejnovějšího)
+const videos = [
+  { publisher: 'e15', logo: '/images/press/logos/e15.webp', date: '2. 4. 2026', image: '/images/press/e15.webp', title: 'Pod Lupou: České gastro sbírá uznání, zároveň bojuje o lidi. Bez změn bude tlak jen sílit', href: 'https://www.e15.cz/podcasty/pod-lupou-ceske-gastro-sbira-uznani-zaroven-bojuje-o-lidi-bez-zmen-bude-tlak-jen-silit-1431865' },
+  { publisher: 'iDNES.cz', logo: '/images/press/logos/idnes.webp', date: '5. 3. 2026', image: '/images/press/idnes.webp', title: 'Berou jen hotovost a pak se diví prázdné hospodě? Trendem je QR kód', href: 'https://www.idnes.cz/ekonomika/domaci/idnes-lounge-digitalizace-pohostinstvi-restaurace-qerko.A260302_130547_eko-doprava_vov' },
+  { publisher: 'Reflex', logo: '/images/press/logos/reflex.webp', date: '5. 2. 2026', image: '/images/press/reflex.webp', title: 'Gastropodnik 2025: Vaše oblíbená hospoda si zaslouží být vidět, říká Tomáš Mráz z holdingu Piano', href: 'https://www.reflex.cz/clanek/byznys-x/134019/gastropodnik-2025-vase-oblibena-hospoda-si-zaslouzi-byt-videt-rika-tomas-mraz-z-holdingu-piano.html' },
+];
+
+// Napsali o nás
+const articles = [
+  { publisher: 'Novinky.cz', logo: '/images/press/logos/novinky.webp', image: '/images/press/novinky-eet.webp', date: '15. 7. 2026', title: 'Schváleno, EET se vrátí', href: 'https://www.novinky.cz/clanek/ekonomika-schvaleno-eet-se-vrati-40588218' },
+  { publisher: 'Euro', logo: '/images/press/logos/euro.webp', image: '/images/press/euro.webp', date: '6. 5. 2026', title: 'Jak ušetřit až čtvrtinu nákladů a zvýšit tržby. Kostelný z Piana popisuje problémy současné české gastronomie', href: 'https://www.euro.cz/clanky/jak-usetrit-az-ctvrtinu-nakladu-a-zvysit-trzby-restaurace-kostelny-z-piana-popisuje-problemy-soucasne-ceske-gastronomie/' },
+  { publisher: 'Ekonom', logo: '/images/press/logos/ekonom.webp', image: '/images/press/ekonom.webp', date: '5. 5. 2026', title: 'EET měla narovnat trh, ale víc změnila chování podniků. Teď se vrací s jednodušší verzí a novými riziky', href: 'https://ekonom.cz/c1-67873800-eet-mela-narovnat-trh-ale-vic-zmenila-chovani-podniku-ted-se-vraci-s-jednodussi-verzi-a-novymi-riziky' },
+  { publisher: 'MediaGuru', logo: '/images/press/logos/mediaguru.webp', image: '/images/press/mediaguru.webp', date: '29. 4. 2026', title: 'Piano Group zahajuje první kampaň, propojuje své značky', href: 'https://www.mediaguru.cz/piano-group-zahajuje-prvni-kampan-propojuje-sve-znacky' },
+  { publisher: 'CzechCrunch', logo: '/images/press/logos/czechcrunch.webp', image: '/images/press/cc-alza.webp', date: '16. 2. 2026', title: 'Při placení obědů ji miluje statisíce lidí. Teď mění majitele českou aplikaci, kterou poháněli i investoři Alzy', href: 'https://cc.cz/pri-placeni-obedu-ji-miluji-statisice-lidi-ted-meni-majitele-ceskou-aplikaci-pohaneli-i-investori-alzy/' },
+  { publisher: 'CzechCrunch', logo: '/images/press/logos/czechcrunch.webp', image: '/images/press/cc-miton.webp', date: '12. 6. 2025', title: 'Miton spojuje svých osm gastroprojektů pod novou značku. Letos cílí na čtvrtmiliardové tržby', href: 'https://cc.cz/miton-spojuje-svych-osm-gastroprojektu-pod-novou-znacku-letos-cili-na-ctvrtmiliardove-trzby/' },
 ];
 ---
 
@@ -59,6 +78,42 @@ const stats = [
     </div>
   </Section>
 
+  <!-- Videorozhovory -->
+  <Section background="default" space="lg">
+    <Heading as="h2" size="h2" align="center" class="pm-h">Videorozhovory</Heading>
+    <div class="pm-grid">
+      {videos.map((v) => (
+        <article class="pm-video">
+          <a class="pm-video__thumb" href={v.href} target="_blank" rel="noopener" aria-label={v.title}>
+            <img src={v.image} alt={v.title} loading="lazy" />
+            <span class="pm-video__play"><Icon name="lucide:play" size="md" /></span>
+          </a>
+          <span class="pm-pub"><img class="pm-logo" src={v.logo} alt={v.publisher} loading="lazy" /><span class="pm-pub__date">· {v.date}</span></span>
+          <p class="pm-card__title">{v.title}</p>
+          <Button href={v.href} variant="secondary" size="sm" target="_blank" rel="noopener noreferrer">Přehrát</Button>
+        </article>
+      ))}
+    </div>
+  </Section>
+
+  <!-- Napsali o nás -->
+  <Section background="warm" space="lg">
+    <Heading as="h2" size="h2" align="center" class="pm-h">Napsali o nás</Heading>
+    <div class="pm-grid pm-grid--articles">
+      {articles.map((a) => (
+        <a class="pm-article" href={a.href} target="_blank" rel="noopener noreferrer">
+          <div class="pm-article__media"><img src={a.image} alt={a.title} loading="lazy" /></div>
+          {a.logo
+            ? <img class="pm-logo pm-logo--article" src={a.logo} alt={a.publisher} loading="lazy" />
+            : <span class="pm-pub pm-pub--accent pm-pub--article">{a.publisher}</span>}
+          {a.date && <span class="pm-artdate">{a.date}</span>}
+          <p class="pm-card__title">{a.title}</p>
+          <span class="pm-more">Přečíst článek <Icon name="lucide:arrow-right" size="xs" /></span>
+        </a>
+      ))}
+    </div>
+  </Section>
+
   <LeadForm id="poptavka" variant="full"
             title="Pojďme digitalizovat vaši gastronomii"
             lead="Ozvěte se nám a uděláme vám nabídku šitou na míru vašemu provozu." />
@@ -80,5 +135,38 @@ const stats = [
   @media (max-width: 720px) {
     .stats { grid-template-columns: 1fr; gap: var(--space-5); }
     .vals { grid-template-columns: 1fr; gap: var(--space-6); }
+  }
+
+  /* Piano v médiích — videorozhovory + napsali o nás */
+  .pm-h { margin-bottom: var(--space-7); }
+  .pm-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-6); }
+  .pm-grid--articles { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+  .pm-pub { display: inline-flex; align-items: center; gap: var(--space-2); font-size: var(--font-size-caption); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide); font-weight: var(--font-weight-semibold); color: var(--color-text-muted); }
+  .pm-pub--accent { color: var(--color-text-accent); }
+  .pm-logo { height: 16px; width: auto; max-width: 120px; object-fit: contain; }
+  .pm-logo--article { height: 20px; display: block; margin-bottom: var(--space-1); }
+  .pm-pub__date { white-space: nowrap; }
+  .pm-card__title { font-family: var(--font-sans); font-weight: var(--font-weight-semibold); font-size: var(--font-size-body); line-height: var(--line-height-tight); margin: 0; }
+  .pm-more { display: inline-flex; align-items: center; gap: var(--space-1); color: var(--color-text-accent); font-weight: var(--font-weight-medium); font-size: var(--font-size-small); }
+
+  .pm-video { display: flex; flex-direction: column; align-items: center; gap: var(--space-2); text-align: center; }
+  .pm-video__thumb { position: relative; display: block; width: 100%; aspect-ratio: 16/9; border-radius: var(--radius-md); overflow: hidden; margin-bottom: var(--space-1); }
+  .pm-video__thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .pm-video__play { position: absolute; inset: 0; margin: auto; width: 54px; height: 54px; display: grid; place-items: center; border-radius: var(--radius-full); background: rgba(0,0,0,.55); color: #fff; transition: var(--transition); }
+  .pm-video__thumb:hover .pm-video__play { background: var(--color-primary); }
+  .pm-video :global(.btn) { margin-top: var(--space-2); }
+
+  .pm-article { display: flex; flex-direction: column; gap: var(--space-2); text-align: left; padding: 0 0 var(--space-5); background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); overflow: hidden; text-decoration: none; color: var(--color-text); transition: var(--transition); }
+  .pm-article:hover { border-color: var(--color-primary); transform: translateY(-4px); box-shadow: var(--shadow-lg, 0 18px 40px rgba(0,0,0,.10)); }
+  .pm-article__media { aspect-ratio: 16/9; overflow: hidden; background: var(--color-bg-alt); }
+  .pm-article__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .pm-article .pm-pub, .pm-article .pm-logo--article, .pm-article .pm-artdate, .pm-article .pm-card__title, .pm-article .pm-more { padding: 0 var(--space-5); }
+  .pm-article .pm-pub, .pm-article .pm-logo--article { margin-top: var(--space-4); }
+  .pm-artdate { font-size: var(--font-size-caption); color: var(--color-text-muted); }
+  .pm-article .pm-more { margin-top: var(--space-2); }
+
+  @media (max-width: 880px) {
+    .pm-grid, .pm-grid--articles { grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; }
   }
 </style>

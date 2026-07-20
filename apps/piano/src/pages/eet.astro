@@ -35,8 +35,7 @@ const timeline = [
   { date: 'Duben 2026', title: 'Vypořádání připomínek', state: 'done' },
   { date: 'Květen 2026', title: 'Návrh prošel prvním čtením', state: 'done' },
   { date: 'Červen 2026', title: 'Zveřejnění technické specifikace', state: 'done' },
-  { date: '15. července 2026', title: 'EET 2.0 schváleno Sněmovnou', state: 'current' },
-  { date: 'Červenec 2026', title: 'Zpřístupnění testovacího prostředí', state: 'future' },
+  { date: '15. července 2026', title: 'EET 2.0 schváleno Sněmovnou, zpřístupnění testovacího prostředí', state: 'current' },
   { date: 'Listopad 2026', title: 'Generování certifikátů v prostředí DIS+', state: 'future' },
   { date: 'Prosinec 2026', title: 'Spuštění aplikace MOJE EET', state: 'future' },
   { date: '1. ledna 2027', title: 'Zahájení běžného provozu EET 2.0', state: 'future' },
@@ -148,10 +147,13 @@ const faqSchema = {
       <div class="eetblog">
         {eetPosts.map((p) => (
           <a class="eetblog__card" href={`/blog/${p.id}`}>
-            <span class="eetblog__date">{fmtDate(p.data.pubDate)}</span>
-            <p class="eetblog__title">{p.data.title}</p>
-            {p.data.description && <span class="eetblog__desc">{p.data.description}</span>}
-            <span class="eetblog__more">Číst článek <Icon name="lucide:arrow-right" size="xs" /></span>
+            {p.data.image && <div class="eetblog__media"><img src={p.data.image} alt={p.data.title} loading="lazy" /></div>}
+            <div class="eetblog__body">
+              <span class="eetblog__date">{fmtDate(p.data.pubDate)}</span>
+              <p class="eetblog__title">{p.data.title}</p>
+              {p.data.description && <span class="eetblog__desc">{p.data.description}</span>}
+              <span class="eetblog__more">Číst článek <Icon name="lucide:arrow-right" size="xs" /></span>
+            </div>
           </a>
         ))}
       </div>
@@ -220,8 +222,11 @@ const faqSchema = {
 
   /* Z blogu */
   .eetblog { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-5); }
-  .eetblog__card { display: flex; flex-direction: column; gap: var(--space-2); padding: var(--space-6); background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); text-decoration: none; color: var(--color-text); transition: var(--transition); }
+  .eetblog__card { display: flex; flex-direction: column; background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); overflow: hidden; text-decoration: none; color: var(--color-text); transition: var(--transition); }
   .eetblog__card:hover { border-color: var(--color-primary); transform: translateY(-4px); box-shadow: var(--shadow-lg, 0 18px 40px rgba(0,0,0,.10)); }
+  .eetblog__media { aspect-ratio: 16 / 9; overflow: hidden; background: var(--color-bg-alt); }
+  .eetblog__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .eetblog__body { display: flex; flex-direction: column; gap: var(--space-2); padding: var(--space-6); flex: 1; }
   .eetblog__date { font-size: var(--font-size-caption); color: var(--color-text-muted); }
   .eetblog__title { margin: 0; font-family: var(--font-sans); font-weight: var(--font-weight-semibold); font-size: var(--font-size-lead); line-height: var(--line-height-tight); }
   .eetblog__desc { font-size: var(--font-size-small); color: var(--color-text-muted); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
