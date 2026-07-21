@@ -57,6 +57,7 @@ const situations = {
 
 const products = [
   {
+    id: 'hugo',
     tag: 'Mobilní pokladna',
     name: 'Hugo',
     sub: 'Pokladna přímo v telefonu',
@@ -72,6 +73,7 @@ const products = [
     cta: 'Chci Hugo',
   },
   {
+    id: 'septimair',
     tag: 'Cloudová pokladna',
     name: 'Septim Air',
     sub: 'All-in-one pokladna pro kamenné provozy',
@@ -87,6 +89,14 @@ const products = [
     cta: 'Chci Septim Air',
   },
 ];
+
+// Doptavaci otazka: co je pro klienta nejdulezitejsi -> doporuceni + duvod (vypichuje nasi silnou stranku)
+const needs = {
+  simple:   { label: 'Jednoduchost a rychlý start', rec: 'hugo', reason: 'Sázíte na jednoduchost? Hugo rozjedete během pár minut, pokladna je přímo v telefonu a zvládne ji každý.' },
+  stock:    { label: 'Skladové hospodářství a přehledy', rec: 'septimair', reason: 'Chcete mít věci pod kontrolou? Septim Air dá přehled o zásobách, recepturách, maržích i výkonu, ne jen o prodeji.' },
+  mobile:   { label: 'Mobilní prodej u stolu i na place', rec: 'hugo', reason: 'Prodáváte v pohybu? Hugo bere platby přes Tap to Pay i offline, ideální ke stolu, na place i do stánku.' },
+  allinone: { label: 'Kamenný provoz, vše v jednom', rec: 'septimair', reason: 'Máte kamenný provoz? Septim Air je all-in-one pokladna s tiskárnou, daty v cloudu a podporou 24/7.' },
+};
 
 // Co se meni
 const zmeny = [
@@ -290,6 +300,16 @@ const faqSchema = {
       </Text>
     </div>
 
+    <div class="needs">
+      <p class="needs__q">Co je pro vás nejdůležitější?</p>
+      <div class="needs__chips" role="group" aria-label="Co je pro vás nejdůležitější">
+        {Object.entries(needs).map(([key, n]) => (
+          <button type="button" class="chip chip--light" data-need={key}>{n.label}</button>
+        ))}
+      </div>
+      <p class="needs__reason" data-reason hidden></p>
+    </div>
+
     <div class="tiles">
       <!-- Sloupec 1: vas system (interaktivni, plni JS) -->
       <article class="tile tile--result">
@@ -320,7 +340,8 @@ const faqSchema = {
 
       <!-- Sloupce 2 a 3: nase produkty -->
       {products.map((p) => (
-        <article class="tile tile--product">
+        <article class="tile tile--product" data-product={p.id}>
+          <span class="tile__rec" data-rec hidden><Icon name="lucide:sparkles" size="xs" /> Doporučeno pro vás</span>
           <span class="tile__tag">{p.tag}</span>
           <h3 class="tile__name">{p.name}</h3>
           <p class="tile__sub">{p.sub}</p>
@@ -394,10 +415,21 @@ const faqSchema = {
   .checker__btn:focus-visible { outline: none; box-shadow: var(--shadow-focus); }
   .checker__hint { font-size: var(--font-size-caption); color: var(--color-text-muted); text-align: center; }
 
+  /* NEEDS (doptavaci otazka) */
+  .needs { max-width: 760px; margin: 0 auto var(--space-7); text-align: center; }
+  .needs__q { font-size: var(--font-size-body); font-weight: var(--font-weight-semibold); color: var(--color-text-on-dark); margin-bottom: var(--space-4); }
+  .needs__chips { display: flex; flex-wrap: wrap; gap: var(--space-3); justify-content: center; }
+  .chip--light { color: var(--color-text-on-dark); background: rgba(255, 255, 255, 0.08); border-color: var(--color-border-on-dark); }
+  .chip--light:hover { color: var(--color-text-on-dark); border-color: #fff; background: rgba(255, 255, 255, 0.16); }
+  .chip--light.is-active { background: #fff; border-color: #fff; color: var(--color-primary-bg); }
+  .needs__reason { margin-top: var(--space-5); font-size: var(--font-size-small); color: var(--color-text-on-dark); background: rgba(255, 255, 255, 0.08); border: 1px solid var(--color-border-on-dark); border-radius: var(--radius-md); padding: var(--space-4) var(--space-5); }
+
   /* TILES (3 sloupce vysledku) */
   .tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-5); align-items: stretch; }
-  .tile { display: flex; flex-direction: column; background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-6); box-shadow: var(--shadow-sm); }
+  .tile { position: relative; display: flex; flex-direction: column; background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-6); box-shadow: var(--shadow-sm); }
   .tile--product { border-color: var(--color-border-strong); }
+  .tile--product.is-recommended { border: 2px solid var(--color-secondary-gold); box-shadow: var(--shadow-lg); }
+  .tile__rec { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); display: inline-flex; align-items: center; gap: var(--space-1); white-space: nowrap; font-size: var(--font-size-caption); font-weight: var(--font-weight-semibold); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide); color: var(--color-primary-bg); background: var(--color-secondary-gold); padding: 4px var(--space-3); border-radius: var(--radius-full); box-shadow: var(--shadow-sm); }
   .tile__tag { align-self: flex-start; font-size: var(--font-size-caption); font-weight: var(--font-weight-semibold); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide); color: var(--color-text-on-dark); background: var(--color-primary); padding: 4px var(--space-3); border-radius: var(--radius-full); margin-bottom: var(--space-4); }
   .tile__tag--muted { color: var(--color-text-muted); background: var(--color-neutral-100); }
   .tile__name { font-family: var(--font-sans); font-size: var(--font-size-h3); font-weight: var(--font-weight-bold); color: var(--color-text); }
@@ -473,10 +505,10 @@ const faqSchema = {
   .faq__a { margin-top: var(--space-3); }
 </style>
 
-<script define:vars={{ situations }}>
+<script define:vars={{ situations, needs }}>
   const form = document.getElementById('checker-form');
   const select = document.getElementById('pos-situation');
-  const chips = Array.from(document.querySelectorAll('.chip'));
+  const chips = Array.from(document.querySelectorAll('[data-sit]'));
   const statusbar = document.querySelector('[data-r-statusbar]');
   const status = document.querySelector('[data-r-status]');
   const desc = document.querySelector('[data-r-desc]');
@@ -512,4 +544,24 @@ const faqSchema = {
       document.getElementById('vysledek')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   }
+
+  // Doptavaci otazka -> doporuceni produktu + duvod
+  const needChips = Array.from(document.querySelectorAll('[data-need]'));
+  const reason = document.querySelector('[data-reason]');
+  const productCards = Array.from(document.querySelectorAll('[data-product]'));
+
+  function recommend(key) {
+    const n = needs[key];
+    if (!n) return;
+    if (reason) { reason.textContent = n.reason; reason.hidden = false; }
+    needChips.forEach((c) => c.classList.toggle('is-active', c.dataset.need === key));
+    productCards.forEach((card) => {
+      const on = card.dataset.product === n.rec;
+      card.classList.toggle('is-recommended', on);
+      const badge = card.querySelector('[data-rec]');
+      if (badge) badge.hidden = !on;
+    });
+  }
+
+  needChips.forEach((c) => c.addEventListener('click', () => recommend(c.dataset.need)));
 </script>
