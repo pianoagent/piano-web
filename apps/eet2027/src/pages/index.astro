@@ -291,11 +291,17 @@ const faqSchema = {
     </div>
 
     <div class="tiles">
-      <!-- Sloupec 1: vas system (plni JS) -->
+      <!-- Sloupec 1: vas system (interaktivni, plni JS) -->
       <article class="tile tile--result">
         <span class="tile__tag tile__tag--muted">Váš systém</span>
         <h3 class="tile__name">Váš stávající systém</h3>
-        <p class="tile__sub" data-r-label>Vyberte typ systému v kontrole nahoře.</p>
+        <p class="tile__sub">Vyberte, co dnes používáte:</p>
+
+        <div class="chips" role="group" aria-label="Typ pokladního systému">
+          <button type="button" class="chip" data-sit="cloud">Cloudová pokladna</button>
+          <button type="button" class="chip" data-sit="legacy">Starší systém</button>
+          <button type="button" class="chip" data-sit="none">Papír / žádný</button>
+        </div>
 
         <div class="tile__statusbar" data-r-statusbar hidden>
           <span class="tile__status" data-r-status></span>
@@ -303,7 +309,7 @@ const faqSchema = {
 
         <hr class="tile__hr" />
 
-        <p class="tile__desc" data-r-desc>Po spuštění kontroly tu uvidíte, jestli váš systém EET 2.0 zvládne a jaké má základní funkce.</p>
+        <p class="tile__desc" data-r-desc>Vyberte typ systému výše a hned uvidíte, jestli je připravený na EET a jaké má základní funkce.</p>
 
         <ul class="tile__feats" data-r-feats></ul>
 
@@ -396,6 +402,11 @@ const faqSchema = {
   .tile__tag--muted { color: var(--color-text-muted); background: var(--color-neutral-100); }
   .tile__name { font-family: var(--font-sans); font-size: var(--font-size-h3); font-weight: var(--font-weight-bold); color: var(--color-text); }
   .tile__sub { margin-top: var(--space-1); font-size: var(--font-size-small); color: var(--color-text-muted); }
+  .chips { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-4); }
+  .chip { font: var(--text-small); font-family: var(--font-sans); font-weight: var(--font-weight-medium); color: var(--color-text); background: var(--color-bg); border: 1px solid var(--color-border-strong); border-radius: var(--radius-full); padding: 6px var(--space-4); cursor: pointer; transition: var(--transition); }
+  .chip:hover { border-color: var(--color-primary); color: var(--color-primary); }
+  .chip:focus-visible { outline: none; box-shadow: var(--shadow-focus); }
+  .chip.is-active { background: var(--color-primary); border-color: var(--color-primary); color: var(--color-text-on-dark); }
   .tile__statusbar { margin-top: var(--space-4); min-height: 28px; }
   .tile__status { display: inline-flex; align-items: center; gap: var(--space-2); font-size: var(--font-size-small); font-weight: var(--font-weight-semibold); padding: 5px var(--space-3); border-radius: var(--radius-full); }
   .tile__status--ok { color: var(--color-success); background: color-mix(in srgb, var(--color-success) 12%, #fff); }
@@ -465,7 +476,7 @@ const faqSchema = {
 <script define:vars={{ situations }}>
   const form = document.getElementById('checker-form');
   const select = document.getElementById('pos-situation');
-  const label = document.querySelector('[data-r-label]');
+  const chips = Array.from(document.querySelectorAll('.chip'));
   const statusbar = document.querySelector('[data-r-statusbar]');
   const status = document.querySelector('[data-r-status]');
   const desc = document.querySelector('[data-r-desc]');
@@ -480,7 +491,6 @@ const faqSchema = {
   function render(key) {
     const s = situations[key];
     if (!s) return;
-    label.textContent = s.label;
     status.textContent = s.status;
     status.className = 'tile__status tile__status--' + s.tone;
     statusbar.hidden = false;
@@ -488,10 +498,13 @@ const faqSchema = {
     feats.innerHTML = s.feats.map((f) =>
       '<li class="tile__feat tile__feat--' + f.state + '"><span class="tile__fico">' + icons[f.state] + '</span>' + f.text + '</li>'
     ).join('');
+    chips.forEach((c) => c.classList.toggle('is-active', c.dataset.sit === key));
+    if (select) select.value = key;
   }
 
+  chips.forEach((c) => c.addEventListener('click', () => render(c.dataset.sit)));
+
   if (form && select) {
-    render(select.value);
     select.addEventListener('change', () => render(select.value));
     form.addEventListener('submit', (e) => {
       e.preventDefault();
