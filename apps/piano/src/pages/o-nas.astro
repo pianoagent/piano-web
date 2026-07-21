@@ -19,6 +19,7 @@ const stats = [
 
 // Piano v médiích — videorozhovory (řazeno od nejnovějšího)
 const videos = [
+  { publisher: 'Česká televize', date: '17. 7. 2026', image: 'https://ctfs.ceskatelevize.cz/ivysimgct/upload/ivysilani/indexes/226/226411000100717/1198887.jpg?width=1200&height=675', title: 'Výjimky z EET (Události ČT)', href: 'https://www.ceskatelevize.cz/porady/1097181328-udalosti/226411000100717/cast/1198887/' },
   { publisher: 'e15', logo: '/images/press/logos/e15.webp', date: '2. 4. 2026', image: '/images/press/e15.webp', title: 'Pod Lupou: České gastro sbírá uznání, zároveň bojuje o lidi. Bez změn bude tlak jen sílit', href: 'https://www.e15.cz/podcasty/pod-lupou-ceske-gastro-sbira-uznani-zaroven-bojuje-o-lidi-bez-zmen-bude-tlak-jen-silit-1431865' },
   { publisher: 'iDNES.cz', logo: '/images/press/logos/idnes.webp', date: '5. 3. 2026', image: '/images/press/idnes.webp', title: 'Berou jen hotovost a pak se diví prázdné hospodě? Trendem je QR kód', href: 'https://www.idnes.cz/ekonomika/domaci/idnes-lounge-digitalizace-pohostinstvi-restaurace-qerko.A260302_130547_eko-doprava_vov' },
   { publisher: 'Reflex', logo: '/images/press/logos/reflex.webp', date: '5. 2. 2026', image: '/images/press/reflex.webp', title: 'Gastropodnik 2025: Vaše oblíbená hospoda si zaslouží být vidět, říká Tomáš Mráz z holdingu Piano', href: 'https://www.reflex.cz/clanek/byznys-x/134019/gastropodnik-2025-vase-oblibena-hospoda-si-zaslouzi-byt-videt-rika-tomas-mraz-z-holdingu-piano.html' },
@@ -29,7 +30,10 @@ const articles = [
   { publisher: 'Novinky.cz', logo: '/images/press/logos/novinky.webp', image: '/images/press/novinky-eet.webp', date: '15. 7. 2026', title: 'Schváleno, EET se vrátí', href: 'https://www.novinky.cz/clanek/ekonomika-schvaleno-eet-se-vrati-40588218' },
   { publisher: 'Euro', logo: '/images/press/logos/euro.webp', image: '/images/press/euro.webp', date: '6. 5. 2026', title: 'Jak ušetřit až čtvrtinu nákladů a zvýšit tržby. Kostelný z Piana popisuje problémy současné české gastronomie', href: 'https://www.euro.cz/clanky/jak-usetrit-az-ctvrtinu-nakladu-a-zvysit-trzby-restaurace-kostelny-z-piana-popisuje-problemy-soucasne-ceske-gastronomie/' },
   { publisher: 'Ekonom', logo: '/images/press/logos/ekonom.webp', image: '/images/press/ekonom.webp', date: '5. 5. 2026', title: 'EET měla narovnat trh, ale víc změnila chování podniků. Teď se vrací s jednodušší verzí a novými riziky', href: 'https://ekonom.cz/c1-67873800-eet-mela-narovnat-trh-ale-vic-zmenila-chovani-podniku-ted-se-vraci-s-jednodussi-verzi-a-novymi-riziky' },
+  { publisher: 'Hospodářské noviny', logo: '/images/press/logos/hospodarske-noviny.webp', image: 'https://img.ihned.cz/attachment.php/10/81336010/TPM84CcsWSpQrLyejD1x7BOg63GVUh9a/_B2_9248-original-3dc573.jpg', date: '3. 5. 2026', title: 'Malé hospody nezmizí, rozhodně ne kvůli EET, pomáhá jim. České gastro přesto čeká nástup franšíz', href: 'https://byznys.hn.cz/c1-67872140-eet-mela-narovnat-trh-ale-vic-zmenila-chovani-podniku-ted-se-vraci-s-jednodussi-verzi-a-novymi-riziky' },
   { publisher: 'MediaGuru', logo: '/images/press/logos/mediaguru.webp', image: '/images/press/mediaguru.webp', date: '29. 4. 2026', title: 'Piano Group zahajuje první kampaň, propojuje své značky', href: 'https://www.mediaguru.cz/piano-group-zahajuje-prvni-kampan-propojuje-sve-znacky' },
+  { publisher: 'Marketing & Media', logo: '/images/press/logos/marketing-a-media.webp', image: 'https://www.mam.cz/wp-content/uploads/2026/04/piano-gastro-1024x585.png', date: '28. 4. 2026', title: 'Piano spouští první kampaň v tempu gastro světa', href: 'https://www.mam.cz/novinky/kreativita-a-kampane/2026-04/piano-spousti-prvni-kampan-v-tempu-gastro-sveta/' },
+  { publisher: 'CzechCrunch', logo: '/images/press/logos/czechcrunch.webp', image: 'https://cc.cz/wp-content/uploads/2026/03/piano-26-1.jpg', date: '10. 3. 2026', title: 'Miton v gastru rozehrál miliardovou hru, kde investuje i Plzeňský Prazdroj. Spojil osm firem do jedné', href: 'https://cc.cz/miton-v-gastru-rozehral-miliardovou-hru-kde-investuje-i-plzensky-prazdroj-spojil-osm-firem-do-jedne/' },
   { publisher: 'CzechCrunch', logo: '/images/press/logos/czechcrunch.webp', image: '/images/press/cc-alza.webp', date: '16. 2. 2026', title: 'Při placení obědů ji miluje statisíce lidí. Teď mění majitele českou aplikaci, kterou poháněli i investoři Alzy', href: 'https://cc.cz/pri-placeni-obedu-ji-miluji-statisice-lidi-ted-meni-majitele-ceskou-aplikaci-pohaneli-i-investori-alzy/' },
   { publisher: 'CzechCrunch', logo: '/images/press/logos/czechcrunch.webp', image: '/images/press/cc-miton.webp', date: '12. 6. 2025', title: 'Miton spojuje svých osm gastroprojektů pod novou značku. Letos cílí na čtvrtmiliardové tržby', href: 'https://cc.cz/miton-spojuje-svych-osm-gastroprojektu-pod-novou-znacku-letos-cili-na-ctvrtmiliardove-trzby/' },
 ];
@@ -88,7 +92,9 @@ const articles = [
             <img src={v.image} alt={v.title} loading="lazy" />
             <span class="pm-video__play"><Icon name="lucide:play" size="md" /></span>
           </a>
-          <span class="pm-pub"><img class="pm-logo" src={v.logo} alt={v.publisher} loading="lazy" /><span class="pm-pub__date">· {v.date}</span></span>
+          <span class="pm-pub">{v.logo
+            ? <img class="pm-logo" src={v.logo} alt={v.publisher} loading="lazy" />
+            : <span class="pm-pub--accent">{v.publisher}</span>}<span class="pm-pub__date">· {v.date}</span></span>
           <p class="pm-card__title">{v.title}</p>
           <Button href={v.href} variant="secondary" size="sm" target="_blank" rel="noopener noreferrer">Přehrát</Button>
         </article>
