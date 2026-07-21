@@ -28,6 +28,7 @@ const videos = [
 // Napsali o nás
 const articles = [
   { publisher: 'Novinky.cz', logo: '/images/press/logos/novinky.webp', image: '/images/press/novinky-eet.webp', date: '15. 7. 2026', title: 'Schváleno, EET se vrátí', href: 'https://www.novinky.cz/clanek/ekonomika-schvaleno-eet-se-vrati-40588218' },
+  { publisher: 'iDNES.cz', logo: '/images/press/logos/idnes.webp', date: '15. 7. 2026', title: 'Méně administrativy i daňové úlevy. Co všechno přinese EET 2.0', href: 'https://www.idnes.cz/ekonomika/domaci/eet-2-0-vlada-zakon-leden-platby-pokladny.A260715_131439_ekonomika_vebe' },
   { publisher: 'Euro', logo: '/images/press/logos/euro.webp', image: '/images/press/euro.webp', date: '6. 5. 2026', title: 'Jak ušetřit až čtvrtinu nákladů a zvýšit tržby. Kostelný z Piana popisuje problémy současné české gastronomie', href: 'https://www.euro.cz/clanky/jak-usetrit-az-ctvrtinu-nakladu-a-zvysit-trzby-restaurace-kostelny-z-piana-popisuje-problemy-soucasne-ceske-gastronomie/' },
   { publisher: 'Ekonom', logo: '/images/press/logos/ekonom.webp', image: '/images/press/ekonom.webp', date: '5. 5. 2026', title: 'EET měla narovnat trh, ale víc změnila chování podniků. Teď se vrací s jednodušší verzí a novými riziky', href: 'https://ekonom.cz/c1-67873800-eet-mela-narovnat-trh-ale-vic-zmenila-chovani-podniku-ted-se-vraci-s-jednodussi-verzi-a-novymi-riziky' },
   { publisher: 'Hospodářské noviny', logo: '/images/press/logos/hospodarske-noviny.webp', image: 'https://img.ihned.cz/attachment.php/10/81336010/TPM84CcsWSpQrLyejD1x7BOg63GVUh9a/_B2_9248-original-3dc573.jpg', date: '3. 5. 2026', title: 'Malé hospody nezmizí, rozhodně ne kvůli EET, pomáhá jim. České gastro přesto čeká nástup franšíz', href: 'https://byznys.hn.cz/c1-67872140-eet-mela-narovnat-trh-ale-vic-zmenila-chovani-podniku-ted-se-vraci-s-jednodussi-verzi-a-novymi-riziky' },
@@ -108,7 +109,7 @@ const articles = [
     <div class="pm-grid pm-grid--articles">
       {articles.map((a) => (
         <a class="pm-article" href={a.href} target="_blank" rel="noopener noreferrer">
-          <div class="pm-article__media"><img src={a.image} alt={a.title} loading="lazy" /></div>
+          {a.image && <div class="pm-article__media"><img src={a.image} alt={a.title} loading="lazy" /></div>}
           {a.logo
             ? <img class="pm-logo pm-logo--article" src={a.logo} alt={a.publisher} loading="lazy" />
             : <span class="pm-pub pm-pub--accent pm-pub--article">{a.publisher}</span>}
