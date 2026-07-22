@@ -349,8 +349,8 @@ const faqSchema = {
   </Section>
 
   <!-- VYSLEDEK: vas system -> nabidka (vedeny tok) -->
-  <Section id="vysledek" background="primary" space="lg">
-    <div class="head-center">
+  <Section background="primary" space="lg">
+    <div class="head-center" id="vysledek">
       <Text size="label" color="on-dark-muted" align="center">Výsledek kontroly</Text>
       <Heading as="h2" size="h2" align="center" color="on-dark">Zhodnocení <em>vašeho systému</em></Heading>
       <Text size="lead" color="on-dark-muted" align="center" balance>
@@ -383,7 +383,7 @@ const faqSchema = {
       </article>
 
       <div class="yoursys__cta">
-        <Button href="#chybi" variant="secondary" onDark>Chybí vám něco na aktuálním POS?</Button>
+        <Button href="#chybi" variant="primary" size="lg" class="btn-attention">Chybí vám něco na aktuálním POS?</Button>
       </div>
     </div>
 
@@ -595,6 +595,9 @@ const faqSchema = {
   /* Vas system - samostatny blok se zvyraznenym stavem */
   .yoursys { max-width: 620px; margin: 0 auto; }
   .yoursys__cta { text-align: center; margin-top: var(--space-6); margin-bottom: var(--space-8); }
+  /* Zvyraznene tlacitko na tmavem pozadi (bila plna pilulka + zlaty prstenec) */
+  .yoursys__cta :global(.btn-attention) { background: #fff; color: var(--color-primary-bg); border-color: #fff; box-shadow: 0 0 0 4px rgba(232, 163, 61, 0.35), var(--shadow-md); }
+  .yoursys__cta :global(.btn-attention:hover) { background: var(--color-neutral-100); border-color: var(--color-neutral-100); }
   .tile--result .tile__statusbar { min-height: 0; }
   .tile--result .tile__status { font-size: var(--font-size-lead); font-weight: var(--font-weight-bold); padding: var(--space-2) var(--space-5); }
   .offer-cta { text-align: center; margin-top: var(--space-7); }
