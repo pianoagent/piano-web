@@ -90,13 +90,20 @@ const products = [
   },
 ];
 
-// Doptavaci otazka: co je pro klienta nejdulezitejsi -> doporuceni + duvod (vypichuje nasi silnou stranku)
-const needs = {
-  simple:   { label: 'Jednoduchost a rychlý start', rec: 'hugo', reason: 'Sázíte na jednoduchost? Hugo rozjedete během pár minut, pokladna je přímo v telefonu a zvládne ji každý.' },
-  stock:    { label: 'Skladové hospodářství a přehledy', rec: 'septimair', reason: 'Chcete mít věci pod kontrolou? Septim Air dá přehled o zásobách, recepturách, maržích i výkonu, ne jen o prodeji.' },
-  mobile:   { label: 'Mobilní prodej u stolu i na place', rec: 'hugo', reason: 'Prodáváte v pohybu? Hugo bere platby přes Tap to Pay i offline, ideální ke stolu, na place i do stánku.' },
-  allinone: { label: 'Kamenný provoz, vše v jednom', rec: 'septimair', reason: 'Máte kamenný provoz? Septim Air je all-in-one pokladna s tiskárnou, daty v cloudu a podporou 24/7.' },
-};
+// Leadgen: co klientovi na soucasne pokladne chybi (multi-vyber) -> nabidka reseni.
+// tier = nejnizsi nase edice, ktera funkci resi (air / enterprise); zdroj: mapa_funkci.
+const gaps = [
+  { label: 'Skladové hospodářství', tier: 'air' },
+  { label: 'Receptury a odpisy', tier: 'air' },
+  { label: 'Inventura', tier: 'air' },
+  { label: 'Mobilní číšník', tier: 'air' },
+  { label: 'Práce bez internetu (offline)', tier: 'air' },
+  { label: 'Stravenky a faktura', tier: 'air' },
+  { label: 'Věrnostní program (CRM)', tier: 'enterprise' },
+  { label: 'Rozvoz (Wolt, Foodora, Bolt)', tier: 'enterprise' },
+  { label: 'Více poboček z jednoho místa', tier: 'enterprise' },
+  { label: 'Pokročilé reporty', tier: 'enterprise' },
+];
 
 // Srovnani funkci nasich urovni (zdroj: mapa_funkci_handover, current.json -> brief).
 // Hodnoty: ANO / NE / WIP (Pripravujeme) / PARTNER (Pres partnera) / ANO* (s poznamkou).
@@ -350,14 +357,17 @@ const faqSchema = {
       </Text>
     </div>
 
-    <div class="needs">
-      <p class="needs__q">Co je pro vás nejdůležitější?</p>
-      <div class="needs__chips" role="group" aria-label="Co je pro vás nejdůležitější">
-        {Object.entries(needs).map(([key, n]) => (
-          <button type="button" class="chip chip--light" data-need={key}>{n.label}</button>
+    <div class="gaps">
+      <p class="gaps__q">Co vám na současné pokladně chybí? Zaškrtněte, co potřebujete.</p>
+      <div class="gaps__chips" role="group" aria-label="Co vám na pokladně chybí">
+        {gaps.map((g) => (
+          <button type="button" class="chip chip--light chip--check" data-gap={g.label} data-tier={g.tier} aria-pressed="false">{g.label}</button>
         ))}
       </div>
-      <p class="needs__reason" data-reason hidden></p>
+      <div class="gaps__result" data-gaps-result hidden>
+        <p class="gaps__lead" data-gaps-lead></p>
+        <ul class="gaps__list" data-gaps-list></ul>
+      </div>
     </div>
 
     <div class="tiles">
@@ -524,14 +534,23 @@ const faqSchema = {
   .checker__btn:focus-visible { outline: none; box-shadow: var(--shadow-focus); }
   .checker__hint { font-size: var(--font-size-caption); color: var(--color-text-muted); text-align: center; }
 
-  /* NEEDS (doptavaci otazka) */
-  .needs { max-width: 760px; margin: 0 auto var(--space-7); text-align: center; }
-  .needs__q { font-size: var(--font-size-body); font-weight: var(--font-weight-semibold); color: var(--color-text-on-dark); margin-bottom: var(--space-4); }
-  .needs__chips { display: flex; flex-wrap: wrap; gap: var(--space-3); justify-content: center; }
+  /* GAPS (leadgen: co vam chybi) */
+  .gaps { max-width: 820px; margin: 0 auto var(--space-7); text-align: center; }
+  .gaps__q { font-size: var(--font-size-body); font-weight: var(--font-weight-semibold); color: var(--color-text-on-dark); margin-bottom: var(--space-4); }
+  .gaps__chips { display: flex; flex-wrap: wrap; gap: var(--space-3); justify-content: center; }
   .chip--light { color: var(--color-text-on-dark); background: rgba(255, 255, 255, 0.08); border-color: var(--color-border-on-dark); }
   .chip--light:hover { color: var(--color-text-on-dark); border-color: #fff; background: rgba(255, 255, 255, 0.16); }
   .chip--light.is-active { background: #fff; border-color: #fff; color: var(--color-primary-bg); }
-  .needs__reason { margin-top: var(--space-5); font-size: var(--font-size-small); color: var(--color-text-on-dark); background: rgba(255, 255, 255, 0.08); border: 1px solid var(--color-border-on-dark); border-radius: var(--radius-md); padding: var(--space-4) var(--space-5); }
+  .chip--check::before { content: ""; display: inline-block; width: 15px; height: 15px; border: 1.5px solid currentColor; border-radius: 4px; margin-right: 8px; vertical-align: -3px; opacity: 0.7; }
+  .chip--check.is-active::before { background: var(--color-primary); border-color: var(--color-primary); opacity: 1; }
+  .gaps__result { margin-top: var(--space-6); text-align: left; background: rgba(255, 255, 255, 0.08); border: 1px solid var(--color-border-on-dark); border-radius: var(--radius-md); padding: var(--space-5) var(--space-6); }
+  .gaps__lead { font-size: var(--font-size-body); font-weight: var(--font-weight-semibold); color: var(--color-text-on-dark); }
+  .gaps__list { list-style: none; display: flex; flex-direction: column; gap: var(--space-2); margin-top: var(--space-4); }
+  .gaps__list li { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); font-size: var(--font-size-small); color: var(--color-text-on-dark); padding-bottom: var(--space-2); border-bottom: 1px solid var(--color-border-on-dark); }
+  .gaps__list li:last-child { border-bottom: none; padding-bottom: 0; }
+  .gaps__edition { flex-shrink: 0; font-size: var(--font-size-caption); font-weight: var(--font-weight-semibold); padding: 3px var(--space-3); border-radius: var(--radius-full); }
+  .gaps__edition--air { color: var(--color-primary-bg); background: #fff; }
+  .gaps__edition--enterprise { color: var(--color-primary-bg); background: var(--color-secondary-gold); }
 
   /* TILES (3 sloupce vysledku) */
   .tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-5); align-items: stretch; }
@@ -638,7 +657,7 @@ const faqSchema = {
   .faq__a { margin-top: var(--space-3); }
 </style>
 
-<script define:vars={{ situations, needs }}>
+<script define:vars={{ situations }}>
   const form = document.getElementById('checker-form');
   const select = document.getElementById('pos-situation');
   const chips = Array.from(document.querySelectorAll('[data-sit]'));
@@ -678,23 +697,63 @@ const faqSchema = {
     });
   }
 
-  // Doptavaci otazka -> doporuceni produktu + duvod
-  const needChips = Array.from(document.querySelectorAll('[data-need]'));
-  const reason = document.querySelector('[data-reason]');
+  // Leadgen: co vam chybi -> nabidka reseni + zapis do poptavky
+  const gapChips = Array.from(document.querySelectorAll('[data-gap]'));
+  const gRes = document.querySelector('[data-gaps-result]');
+  const gLead = document.querySelector('[data-gaps-lead]');
+  const gList = document.querySelector('[data-gaps-list]');
   const productCards = Array.from(document.querySelectorAll('[data-product]'));
+  const leadFormEl = document.querySelector('#konzultace [data-leadform]');
 
-  function recommend(key) {
-    const n = needs[key];
-    if (!n) return;
-    if (reason) { reason.textContent = n.reason; reason.hidden = false; }
-    needChips.forEach((c) => c.classList.toggle('is-active', c.dataset.need === key));
+  function highlight(productId) {
     productCards.forEach((card) => {
-      const on = card.dataset.product === n.rec;
-      card.classList.toggle('is-recommended', on);
+      const on = productId && card.dataset.product === productId;
+      card.classList.toggle('is-recommended', !!on);
       const badge = card.querySelector('[data-rec]');
       if (badge) badge.hidden = !on;
     });
   }
 
-  needChips.forEach((c) => c.addEventListener('click', () => recommend(c.dataset.need)));
+  function syncLead(labels) {
+    if (!leadFormEl) return;
+    let hidden = leadFormEl.querySelector('input[name="chybejici_funkce"]');
+    if (!hidden) {
+      hidden = document.createElement('input');
+      hidden.type = 'hidden';
+      hidden.name = 'chybejici_funkce';
+      leadFormEl.appendChild(hidden);
+    }
+    hidden.value = labels.join(', ');
+  }
+
+  function updateGaps() {
+    const sel = gapChips.filter((c) => c.classList.contains('is-active'));
+    if (sel.length === 0) {
+      gRes.hidden = true;
+      highlight(null);
+      syncLead([]);
+      return;
+    }
+    const labels = sel.map((c) => c.dataset.gap);
+    const hasEnt = sel.some((c) => c.dataset.tier === 'enterprise');
+    gLead.textContent = hasEnt
+      ? 'Vaše řešení: Septim. Základ pokryje Septim Air, pokročilé funkce Septim Enterprise.'
+      : 'Vaše řešení: Septim Air. Pokryje všechny vybrané funkce (' + sel.length + ').';
+    gList.innerHTML = sel.map((c) => {
+      const ent = c.dataset.tier === 'enterprise';
+      const ed = ent ? 'Septim Enterprise' : 'Septim Air';
+      const cls = ent ? 'enterprise' : 'air';
+      return '<li>' + c.dataset.gap + '<span class="gaps__edition gaps__edition--' + cls + '">' + ed + '</span></li>';
+    }).join('');
+    gRes.hidden = false;
+    highlight('septimair');
+    syncLead(labels);
+  }
+
+  gapChips.forEach((c) => c.addEventListener('click', () => {
+    const on = c.getAttribute('aria-pressed') === 'true';
+    c.setAttribute('aria-pressed', String(!on));
+    c.classList.toggle('is-active', !on);
+    updateGaps();
+  }));
 </script>
