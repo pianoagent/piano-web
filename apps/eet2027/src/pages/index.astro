@@ -58,15 +58,15 @@ const situations = {
 const products = [
   {
     id: 'hugo',
-    tag: 'Mobilní pokladna',
+    tag: 'Mikro a malý provoz',
     name: 'Hugo',
     sub: 'Pokladna přímo v telefonu',
     feats: [
-      'Připraveno na EET 2027',
-      'Tap to Pay na iPhonu i NFC na Androidu, bez čtečky',
-      'Funguje i offline, tržby se dorovnají',
-      'Rozúčtování účtu a spropitné jedním ťuknutím',
-      'Bez smlouvy, peníze další pracovní den',
+      'Připraveno na EET 2.0',
+      'Karta přes telefon (Tap to Pay), bez čtečky',
+      'Rychlý self-onboarding, spuštění během chvíle',
+      'Prodej u stolu i pultový, spropitné',
+      'Platba kartou i napojení terminálu',
     ],
     priceMain: '0 Kč',
     priceNote: 'za aplikaci, když platby berete přes Hugo',
@@ -74,15 +74,15 @@ const products = [
   },
   {
     id: 'septimair',
-    tag: 'Cloudová pokladna',
+    tag: 'Střední provoz',
     name: 'Septim Air',
     sub: 'All-in-one pokladna pro kamenné provozy',
     feats: [
-      'Připraveno na EET 2027, legislativní aktualizace v ceně',
-      'All-in-one pokladna s integrovanou tiskárnou',
-      'Data i zálohy v cloudu, bez vlastního serveru',
-      'Mobilní číšník zdarma',
-      'Instalace a školení zdarma, podpora 24/7',
+      'Připraveno na EET 2.0, legislativní aktualizace v ceně',
+      'Skladové hospodářství, receptury a inventura',
+      'Mobilní číšník a dělení účtů',
+      'Práce i bez internetu (offline)',
+      'Stravenky, faktura i více plateb na účtu',
     ],
     priceMain: 'od 1 990 Kč',
     priceNote: 'měsíčně, bez jednorázových nákladů',
@@ -96,6 +96,56 @@ const needs = {
   stock:    { label: 'Skladové hospodářství a přehledy', rec: 'septimair', reason: 'Chcete mít věci pod kontrolou? Septim Air dá přehled o zásobách, recepturách, maržích i výkonu, ne jen o prodeji.' },
   mobile:   { label: 'Mobilní prodej u stolu i na place', rec: 'hugo', reason: 'Prodáváte v pohybu? Hugo bere platby přes Tap to Pay i offline, ideální ke stolu, na place i do stánku.' },
   allinone: { label: 'Kamenný provoz, vše v jednom', rec: 'septimair', reason: 'Máte kamenný provoz? Septim Air je all-in-one pokladna s tiskárnou, daty v cloudu a podporou 24/7.' },
+};
+
+// Srovnani funkci nasich urovni (zdroj: mapa_funkci_handover, current.json -> brief).
+// Hodnoty: ANO / NE / WIP (Pripravujeme) / PARTNER (Pres partnera) / ANO* (s poznamkou).
+const srovnaniCols = [
+  { name: 'Hugo', sub: 'Mikro a malý provoz' },
+  { name: 'Septim Air', sub: 'Střední provoz' },
+  { name: 'Septim Enterprise', sub: 'Velký provoz a sítě' },
+];
+const srovnani = [
+  { theme: 'Legislativa a základ', rows: [
+    { f: 'EET 2.0 ready', v: ['ANO', 'ANO', 'ANO'] },
+    { f: 'Elektronická účtenka', v: ['ANO', 'ANO', 'ANO'] },
+    { f: 'Uzávěrky a reporty tržeb', v: ['ANO', 'ANO', 'ANO'] },
+  ]},
+  { theme: 'Prodej a platby', rows: [
+    { f: 'Pultový prodej i práce se stoly', v: ['ANO', 'ANO', 'ANO'] },
+    { f: 'Platba kartou', v: ['ANO', 'ANO', 'ANO'] },
+    { f: 'Karta přes telefon (Tap to Pay)', v: ['ANO', 'NE', 'NE'] },
+    { f: 'Stravenky a faktura', v: ['NE', 'ANO', 'ANO'] },
+    { f: 'Modifikátory a varianty', v: ['NE', 'ANO', 'ANO'] },
+  ]},
+  { theme: 'Provoz a obsluha', rows: [
+    { f: 'Mobilní číšník', v: ['NE', 'ANO', 'ANO'] },
+    { f: 'Dělení a přesouvání účtů', v: ['NE', 'ANO', 'ANO'] },
+    { f: 'Práce bez internetu (offline)', v: ['NE', 'ANO', 'ANO'] },
+    { f: 'Grafická mapa stolů', v: ['NE', 'NE', 'ANO'] },
+  ]},
+  { theme: 'Sklad a menu', rows: [
+    { f: 'Skladové hospodářství', v: ['NE', 'ANO', 'ANO'] },
+    { f: 'Receptury a odpisy', v: ['NE', 'ANO', 'ANO'] },
+    { f: 'Inventura', v: ['NE', 'ANO', 'ANO'] },
+    { f: 'Více skladů a převody', v: ['NE', 'ANO', 'ANO'] },
+  ]},
+  { theme: 'Hosté, rozvoz a rozšíření', rows: [
+    { f: 'Věrnostní program (CRM)', v: ['NE', 'WIP', 'ANO'] },
+    { f: 'Rezervace', v: ['NE', 'WIP', 'PARTNER'] },
+    { f: 'Delivery (Wolt, Foodora, Bolt)', v: ['NE', 'WIP', 'ANO*'] },
+    { f: 'Kuchyňský displej (KDS)', v: ['NE', 'WIP', 'PARTNER'] },
+    { f: 'Více poboček z jednoho místa', v: ['NE', 'WIP', 'ANO'] },
+    { f: 'Pokročilé reporty', v: ['NE', 'NE', 'ANO'] },
+  ]},
+];
+
+const markMeta = {
+  'ANO':     { cls: 'ok', ico: 'lucide:check', t: 'Ano' },
+  'ANO*':    { cls: 'ok', ico: 'lucide:check', t: 'Ano, s poznámkou', star: true },
+  'NE':      { cls: 'no', ico: 'lucide:minus', t: 'Ne' },
+  'WIP':     { cls: 'wip', ico: 'lucide:clock', t: 'Připravujeme' },
+  'PARTNER': { cls: 'partner', ico: 'lucide:handshake', t: 'Přes partnera' },
 };
 
 // Co se meni
@@ -373,6 +423,65 @@ const faqSchema = {
     <p class="tiles__note">Zhodnocení stávajícího systému je obecné a platí i pro řešení jiných dodavatelů. Přesnou připravenost vždy ověřte u svého dodavatele.</p>
   </Section>
 
+  <!-- SROVNANI FUNKCI (nase urovne) -->
+  <Section id="srovnani" background="default" space="lg">
+    <div class="head-center">
+      <Text size="label" color="accent" align="center">Srovnání funkcí</Text>
+      <Heading as="h2" size="h2" align="center">Co pokladna umí, <em>od malého provozu po síť</em></Heading>
+      <Text size="lead" color="muted" align="center" balance>
+        Vyberte úroveň podle velikosti provozu. S rostoucím provozem přibývají sklady, provozní funkce i rozvoz.
+      </Text>
+    </div>
+
+    <div class="cmpx-wrap">
+      <table class="cmpx">
+        <thead>
+          <tr>
+            <th class="cmpx__rowhead"><span class="cmpx__hh">Funkce</span></th>
+            {srovnaniCols.map((c) => (
+              <th class="cmpx__col">
+                <span class="cmpx__cname">{c.name}</span>
+                <span class="cmpx__csub">{c.sub}</span>
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {srovnani.map((grp) => (
+            <>
+              <tr class="cmpx__grp"><td colspan={srovnaniCols.length + 1}>{grp.theme}</td></tr>
+              {grp.rows.map((r) => (
+                <tr>
+                  <th scope="row" class="cmpx__rowhead">{r.f}</th>
+                  {r.v.map((val) => {
+                    const m = markMeta[val];
+                    return (
+                      <td class="cmpx__cell">
+                        <span class:list={['cmpx__mark', `cmpx__mark--${m.cls}`]} title={m.t}>
+                          <Icon name={m.ico} size="sm" />
+                          {m.star && <span class="cmpx__star" aria-hidden="true">*</span>}
+                          <span class="sr-only">{m.t}</span>
+                        </span>
+                      </td>
+                    );
+                  })}
+                </tr>
+              ))}
+            </>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="cmpx__legend">
+      <span><span class="cmpx__mark cmpx__mark--ok"><Icon name="lucide:check" size="sm" /></span> Ano</span>
+      <span><span class="cmpx__mark cmpx__mark--no"><Icon name="lucide:minus" size="sm" /></span> Ne</span>
+      <span><span class="cmpx__mark cmpx__mark--wip"><Icon name="lucide:clock" size="sm" /></span> Připravujeme</span>
+      <span><span class="cmpx__mark cmpx__mark--partner"><Icon name="lucide:handshake" size="sm" /></span> Přes partnera</span>
+    </div>
+    <p class="cmpx__note">* Delivery u Septim Enterprise: na integraci Bolt se pracuje. Přesný rozsah funkcí rádi projdeme na konzultaci.</p>
+  </Section>
+
   <!-- KONZULTACE -->
   <LeadForm id="konzultace" variant="full" background="alt"
             action="/api/lead"
@@ -461,6 +570,30 @@ const faqSchema = {
   .tile__link:hover { text-decoration: underline; }
   .tiles__note { margin-top: var(--space-6); font-size: var(--font-size-caption); color: var(--color-text-on-dark-muted); text-align: center; max-width: 760px; margin-inline: auto; }
   @media (max-width: 900px) { .tiles { grid-template-columns: 1fr; max-width: 460px; margin-inline: auto; } }
+
+  /* SROVNANI FUNKCI (tabulka nasich urovni) */
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+  .cmpx-wrap { overflow-x: auto; border: 1px solid var(--color-border); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); }
+  .cmpx { width: 100%; border-collapse: collapse; min-width: 640px; background: var(--color-bg); }
+  .cmpx th, .cmpx td { padding: var(--space-3) var(--space-4); text-align: center; border-bottom: 1px solid var(--color-border); }
+  .cmpx thead th { background: var(--color-bg-alt); vertical-align: bottom; }
+  .cmpx__rowhead { text-align: left; font-weight: var(--font-weight-medium); color: var(--color-text); font-size: var(--font-size-small); }
+  .cmpx__hh { font-size: var(--font-size-caption); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide); color: var(--color-text-muted); font-weight: var(--font-weight-semibold); }
+  .cmpx__col { min-width: 116px; }
+  .cmpx__cname { display: block; font-family: var(--font-sans); font-weight: var(--font-weight-bold); color: var(--color-secondary); }
+  .cmpx__csub { display: block; font-size: var(--font-size-caption); color: var(--color-text-muted); font-weight: var(--font-weight-regular); }
+  .cmpx__grp td { background: var(--color-neutral-50); text-align: left; font-size: var(--font-size-caption); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide); font-weight: var(--font-weight-semibold); color: var(--color-text-muted); }
+  .cmpx tbody tr:last-child th, .cmpx tbody tr:last-child td { border-bottom: none; }
+  .cmpx__mark { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: var(--radius-full); position: relative; }
+  .cmpx__mark--ok { color: var(--color-success); background: color-mix(in srgb, var(--color-success) 12%, #fff); }
+  .cmpx__mark--no { color: var(--color-neutral-400); }
+  .cmpx__mark--wip { color: var(--color-warning); background: color-mix(in srgb, var(--color-warning) 14%, #fff); }
+  .cmpx__mark--partner { color: var(--color-primary); background: color-mix(in srgb, var(--color-primary) 12%, #fff); }
+  .cmpx__star { position: absolute; top: -2px; right: 0; font-size: 11px; font-weight: var(--font-weight-bold); color: var(--color-warning); }
+  .cmpx__legend { display: flex; flex-wrap: wrap; gap: var(--space-4); justify-content: center; margin-top: var(--space-5); font-size: var(--font-size-small); color: var(--color-text-muted); }
+  .cmpx__legend > span { display: inline-flex; align-items: center; gap: var(--space-2); }
+  .cmpx__legend .cmpx__mark { width: 22px; height: 22px; }
+  .cmpx__note { margin-top: var(--space-3); font-size: var(--font-size-caption); color: var(--color-text-muted); text-align: center; max-width: 760px; margin-inline: auto; }
 
   /* Harmonogram */
   .tl { position: relative; max-width: 620px; margin: 0 auto; display: flex; flex-direction: column; gap: var(--space-4); padding-left: var(--space-1); }
