@@ -93,9 +93,10 @@ const products = [
 // Leadgen: co klientovi na soucasne pokladne chybi (multi-vyber) -> nabidka reseni.
 // tier = nejnizsi nase edice, ktera funkci resi (air / enterprise); zdroj: mapa_funkci.
 const gaps = [
+  { label: 'Karta přes telefon (Tap to Pay)', tier: 'hugo' },
+  { label: 'Rychlý start bez instalace', tier: 'hugo' },
   { label: 'Skladové hospodářství', tier: 'air' },
-  { label: 'Receptury a odpisy', tier: 'air' },
-  { label: 'Inventura', tier: 'air' },
+  { label: 'Receptury a inventura', tier: 'air' },
   { label: 'Mobilní číšník', tier: 'air' },
   { label: 'Práce bez internetu (offline)', tier: 'air' },
   { label: 'Stravenky a faktura', tier: 'air' },
@@ -535,22 +536,20 @@ const faqSchema = {
   .checker__hint { font-size: var(--font-size-caption); color: var(--color-text-muted); text-align: center; }
 
   /* GAPS (leadgen: co vam chybi) */
-  .gaps { max-width: 820px; margin: 0 auto var(--space-7); text-align: center; }
-  .gaps__q { font-size: var(--font-size-body); font-weight: var(--font-weight-semibold); color: var(--color-text-on-dark); margin-bottom: var(--space-4); }
-  .gaps__chips { display: flex; flex-wrap: wrap; gap: var(--space-3); justify-content: center; }
+  .gaps { max-width: 860px; margin: 0 auto var(--space-7); text-align: center; }
+  .gaps__q { font-size: var(--font-size-body); font-weight: var(--font-weight-semibold); color: var(--color-text-on-dark); margin-bottom: var(--space-5); }
+  .gaps__chips { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-3); }
   .chip--light { color: var(--color-text-on-dark); background: rgba(255, 255, 255, 0.08); border-color: var(--color-border-on-dark); }
   .chip--light:hover { color: var(--color-text-on-dark); border-color: #fff; background: rgba(255, 255, 255, 0.16); }
-  .chip--light.is-active { background: #fff; border-color: #fff; color: var(--color-primary-bg); }
-  .chip--check::before { content: ""; display: inline-block; width: 15px; height: 15px; border: 1.5px solid currentColor; border-radius: 4px; margin-right: 8px; vertical-align: -3px; opacity: 0.7; }
-  .chip--check.is-active::before { background: var(--color-primary); border-color: var(--color-primary); opacity: 1; }
+  .chip--check { display: inline-flex; align-items: center; justify-content: flex-start; text-align: left; width: 100%; }
+  .chip--check::before { content: ""; flex-shrink: 0; width: 16px; height: 16px; border: 1.5px solid currentColor; border-radius: 4px; margin-right: var(--space-3); opacity: 0.65; }
+  /* Aktivni zaskrtnute pole: bila pilulka + tmavy text (vysoka specificita, aby prebila obecny .chip.is-active) */
+  .gaps__chips .chip--check.is-active { background: #fff; border-color: #fff; color: var(--color-primary-bg); }
+  .gaps__chips .chip--check.is-active::before { background: var(--color-primary); border-color: var(--color-primary); opacity: 1; }
   .gaps__result { margin-top: var(--space-6); text-align: left; background: rgba(255, 255, 255, 0.08); border: 1px solid var(--color-border-on-dark); border-radius: var(--radius-md); padding: var(--space-5) var(--space-6); }
   .gaps__lead { font-size: var(--font-size-body); font-weight: var(--font-weight-semibold); color: var(--color-text-on-dark); }
-  .gaps__list { list-style: none; display: flex; flex-direction: column; gap: var(--space-2); margin-top: var(--space-4); }
-  .gaps__list li { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); font-size: var(--font-size-small); color: var(--color-text-on-dark); padding-bottom: var(--space-2); border-bottom: 1px solid var(--color-border-on-dark); }
-  .gaps__list li:last-child { border-bottom: none; padding-bottom: 0; }
-  .gaps__edition { flex-shrink: 0; font-size: var(--font-size-caption); font-weight: var(--font-weight-semibold); padding: 3px var(--space-3); border-radius: var(--radius-full); }
-  .gaps__edition--air { color: var(--color-primary-bg); background: #fff; }
-  .gaps__edition--enterprise { color: var(--color-primary-bg); background: var(--color-secondary-gold); }
+  @media (max-width: 700px) { .gaps__chips { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 460px) { .gaps__chips { grid-template-columns: 1fr; } }
 
   /* TILES (3 sloupce vysledku) */
   .tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-5); align-items: stretch; }
@@ -575,12 +574,6 @@ const faqSchema = {
   .tile__hr { border: none; border-top: 1px solid var(--color-border); margin: var(--space-5) 0; }
   .tile__desc { font-size: var(--font-size-small); color: var(--color-text-muted); line-height: var(--line-height-body); }
   .tile__feats { list-style: none; display: flex; flex-direction: column; gap: var(--space-3); margin-top: var(--space-4); }
-  .tile__feat { display: flex; align-items: flex-start; gap: var(--space-3); font-size: var(--font-size-small); color: var(--color-text); }
-  .tile__fico { display: inline-flex; flex-shrink: 0; margin-top: 1px; }
-  .tile__feat--ok .tile__fico { color: var(--color-success); }
-  .tile__feat--no { color: var(--color-text-muted); }
-  .tile__feat--no .tile__fico { color: var(--color-error); }
-  .tile__feat--q .tile__fico { color: var(--color-text-muted); }
   .tile__price { margin-top: var(--space-5); padding: var(--space-4) var(--space-5); background: var(--color-bg-alt); border-radius: var(--radius-md); }
   .tile__price-main { display: block; font-size: var(--font-size-h3); font-weight: var(--font-weight-bold); color: var(--color-secondary); }
   .tile__price-note { display: block; margin-top: 2px; font-size: var(--font-size-caption); color: var(--color-text-muted); }
@@ -657,6 +650,24 @@ const faqSchema = {
   .faq__a { margin-top: var(--space-3); }
 </style>
 
+<!-- Globalni styly pro prvky vkladane pres JS (innerHTML) - scoped styly na ne nedosahnou -->
+<style is:global>
+  .tile__feat { display: flex; align-items: flex-start; gap: 12px; font-size: 14px; color: var(--color-text); }
+  .tile__fico { display: inline-flex; flex-shrink: 0; margin-top: 1px; }
+  .tile__feat--ok .tile__fico { color: var(--color-success); }
+  .tile__feat--no { color: var(--color-text-muted); }
+  .tile__feat--no .tile__fico { color: var(--color-error); }
+  .tile__feat--q .tile__fico { color: var(--color-text-muted); }
+
+  .gaps__list { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+  .gaps__list li { display: flex; align-items: center; justify-content: space-between; gap: 16px; font-size: 14px; color: var(--color-text-on-dark); padding-bottom: 8px; border-bottom: 1px solid var(--color-border-on-dark); }
+  .gaps__list li:last-child { border-bottom: none; padding-bottom: 0; }
+  .gaps__edition { flex-shrink: 0; font-size: 12px; font-weight: 600; padding: 3px 12px; border-radius: 999px; white-space: nowrap; }
+  .gaps__edition--hugo { color: var(--color-primary-bg); background: color-mix(in srgb, var(--color-secondary-azure) 35%, #fff); }
+  .gaps__edition--air { color: var(--color-primary-bg); background: #fff; }
+  .gaps__edition--enterprise { color: var(--color-primary-bg); background: var(--color-secondary-gold); }
+</style>
+
 <script define:vars={{ situations }}>
   const form = document.getElementById('checker-form');
   const select = document.getElementById('pos-situation');
@@ -726,6 +737,8 @@ const faqSchema = {
     hidden.value = labels.join(', ');
   }
 
+  const editionName = { hugo: 'Hugo', air: 'Septim Air', enterprise: 'Septim Enterprise' };
+
   function updateGaps() {
     const sel = gapChips.filter((c) => c.classList.contains('is-active'));
     if (sel.length === 0) {
@@ -735,18 +748,27 @@ const faqSchema = {
       return;
     }
     const labels = sel.map((c) => c.dataset.gap);
-    const hasEnt = sel.some((c) => c.dataset.tier === 'enterprise');
-    gLead.textContent = hasEnt
-      ? 'Vaše řešení: Septim. Základ pokryje Septim Air, pokročilé funkce Septim Enterprise.'
-      : 'Vaše řešení: Septim Air. Pokryje všechny vybrané funkce (' + sel.length + ').';
+    const tiers = sel.map((c) => c.dataset.tier);
+    const hasAir = tiers.includes('air');
+    const hasEnt = tiers.includes('enterprise');
+    const hasSeptim = hasAir || hasEnt;
+    const recProduct = hasSeptim ? 'septimair' : 'hugo';
+
+    if (!hasSeptim) {
+      gLead.textContent = 'Vaše řešení: Hugo. Pokryje všechny vybrané funkce (' + sel.length + ').';
+    } else if (hasEnt) {
+      gLead.textContent = 'Vaše řešení: Septim. Základ pokryje Septim Air, pokročilejší funkce Septim Enterprise.';
+    } else {
+      gLead.textContent = 'Vaše řešení: Septim Air. Pokryje všechny vybrané funkce (' + sel.length + ').';
+    }
+
     gList.innerHTML = sel.map((c) => {
-      const ent = c.dataset.tier === 'enterprise';
-      const ed = ent ? 'Septim Enterprise' : 'Septim Air';
-      const cls = ent ? 'enterprise' : 'air';
-      return '<li>' + c.dataset.gap + '<span class="gaps__edition gaps__edition--' + cls + '">' + ed + '</span></li>';
+      const t = c.dataset.tier;
+      return '<li>' + c.dataset.gap + '<span class="gaps__edition gaps__edition--' + t + '">' + editionName[t] + '</span></li>';
     }).join('');
+
     gRes.hidden = false;
-    highlight('septimair');
+    highlight(recProduct);
     syncLead(labels);
   }
 
