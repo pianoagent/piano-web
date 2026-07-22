@@ -23,6 +23,7 @@ interface PianoProduct {
 
 /** Zdroj pravdy pro celé portfolio. */
 export const PIANO_PRODUCTS: PianoProduct[] = [
+  { id: 'hugo',     label: 'Hugo',           href: 'https://piano.cz', path: '/hugo',     description: 'Jednoduchá pokladna pro malé provozy. Spustíš sami za pár minut.', icon: '/brand/hugo.svg', badge: 'Novinka', group: 'novinky' },
   { id: 'pilot',    label: 'Piano Pilot',    href: 'https://piano.cz', path: '/pilot',    description: 'Celý provoz v mobilní appce. Data, sklad, AI doporučení.', icon: '/brand/piano.svg',  badge: 'Nový', group: 'novinky' },
   { id: 'terminal', label: 'Piano Terminál', href: 'https://piano.cz', path: '/terminal', description: 'Terminál, který platbou začíná. Data i platby dodavatelům.', icon: '/brand/piano.svg', group: 'novinky' },
 
