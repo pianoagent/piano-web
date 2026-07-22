@@ -87,7 +87,7 @@ const leadProofs = [
       <Button href="#vybaveni" variant="secondary" onDark>Co k tomu potřebuju?</Button>
     </Fragment>
     <div slot="media" class="hero-media">
-      <img class="hero-media__device" src="/images/hugo-hero.webp" alt="Piano Terminál s pokladnou Hugo" width="342" height="558" loading="eager" />
+      <img class="hero-media__device" src="/images/hugo-hero.webp" alt="Piano Terminál s pokladnou Hugo" width="513" height="837" loading="eager" />
       <div class="hero-card">
         <span class="hero-card__dot" aria-hidden="true"></span>
         <div class="hero-card__body">
@@ -253,7 +253,9 @@ const leadProofs = [
 
   /* HERO média — terminál + plovoucí karta */
   .hero-media { position: relative; display: flex; justify-content: center; align-items: center; min-height: 440px; }
-  .hero-media__device { width: auto; max-height: 460px; filter: drop-shadow(var(--shadow-lg)); display: block; }
+  /* Vyšší specificita než globální .hero__media img { width:100% } v Hero.astro,
+     jinak by se terminál roztáhl do šířky. */
+  .hero-media .hero-media__device { width: auto; max-width: 100%; height: auto; max-height: 480px; object-fit: contain; filter: drop-shadow(var(--shadow-lg)); display: block; }
   .hero-card {
     position: absolute; left: 0; top: 22%; z-index: 3;
     display: flex; align-items: center; gap: var(--space-4);
