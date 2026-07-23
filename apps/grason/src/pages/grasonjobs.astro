@@ -1,6 +1,6 @@
 ---
 /**
- * GrasonJobs — dedikovaná produktová stránka (inzerce a nábor stálých zaměstnanců).
+ * GrasonJobs, dedikovaná produktová stránka (inzerce a nábor stálých zaměstnanců).
  * Obsah z grason-context.md + Grason_JOBS_automatizace (automatizovaná propagace
  * inzerátů přes feed otevřených pozic).
  */
@@ -19,7 +19,7 @@ import { grasonNav, grasonCta, grasonFooter, grasonLogin } from '../config/nav';
 import { jobsFaqs } from '../config/faq';
 
 const steps = [
-  { title: 'Vystavíte inzerát', text: 'Zadáte volnou pozici — název, podnik, město, plat. Inzerát se objeví v nabídce.' },
+  { title: 'Vystavíte inzerát', text: 'Zadáte volnou pozici: název, podnik, město i plat. Inzerát se objeví v nabídce.' },
   { title: 'Grason ho automaticky propaguje', text: 'Inzerát se sám propíše do cílených reklamních kampaní a osloví tisíce lidí v gastru ve vašem okolí.' },
   { title: 'Kandidáti se hlásí', text: 'Zájemci reagují přímo na inzerát. Vy si z nich vybíráte ty správné.' },
   { title: 'Obsazeno → konec kampaně', text: 'Jakmile pozici obsadíte, inzerát i reklama se samy vypnou. Platíte jen za to, co reálně běží.' },
@@ -28,8 +28,8 @@ const steps = [
 const points = [
   { icon: 'lucide:megaphone', title: 'Automatická propagace', text: 'Inzerát se sám propaguje přes cílené reklamy. Žádné ruční zakládání kampaní každý týden.' },
   { icon: 'lucide:target', title: 'Cílení na gastro', text: 'Oslovíte tisíce lidí v oboru ve vašem okolí, ne náhodné publikum.' },
-  { icon: 'lucide:refresh-cw', title: 'Vždy aktuální', text: 'Obsazená pozice zmizí z inzerce i z reklamy — platíte jen za to, co běží.' },
-  { icon: 'lucide:file-text', title: 'Stálé úvazky', text: 'HPP, DPČ i částečné úvazky — inzerce přímo mezi pracovníky v gastru.' },
+  { icon: 'lucide:refresh-cw', title: 'Vždy aktuální', text: 'Obsazená pozice zmizí z inzerce i z reklamy, platíte jen za to, co běží.' },
+  { icon: 'lucide:file-text', title: 'Stálé úvazky', text: 'HPP, DPČ i částečné úvazky, inzerce přímo mezi pracovníky v gastru.' },
 ];
 
 const leadProofs = [
@@ -40,7 +40,7 @@ const leadProofs = [
 ];
 ---
 
-<Base title="GrasonJobs — inzerce a nábor stálých zaměstnanců | Grason"
+<Base title="GrasonJobs: inzerce a nábor stálých zaměstnanců | Grason"
       description="GrasonJobs vystaví inzerát na stálou pozici (HPP, DPČ) a automaticky ho propaguje tisícům lidí v gastru přes cílené kampaně. Jakmile pozici obsadíte, kampaň sama skončí.">
   <Header brand="Grason" logoSrc="/logos/grason_logo.svg" logoHeight="28px" homeHref="/" nav={grasonNav} cta={grasonCta} login={grasonLogin} />
 
@@ -106,11 +106,11 @@ const leadProofs = [
     </div>
   </Section>
 
-  <Faq items={jobsFaqs} title="Časté dotazy — GrasonJobs" background="default" />
+  <Faq items={jobsFaqs} title="Časté dotazy ke GrasonJobs" background="default" />
 
   <LeadForm id="poptavka" variant="full" background="alt"
             title="Chci inzerovat pozici"
-            lead="Nechte nám kontakt — pomůžeme vystavit inzerát a rozjedeme nábor přes GrasonJobs."
+            lead="Nechte nám kontakt, pomůžeme vystavit inzerát a rozjedeme nábor přes GrasonJobs."
             proofs={leadProofs} successUrl="/dekujeme" />
   </main>
 
@@ -122,7 +122,10 @@ const leadProofs = [
   .pa-jobs { --color-secondary-azure: #343160; --color-text-accent: #343160; }
   .pa-jobs :global(.heading--on-dark) .accent { color: #fff; }
   .pa-jobs .step__num { color: #fff; }
-  /* Na tmavém (navy) hero je primární CTA bílé (brand Jobs: bílá + navy) */
+  /* Brand Jobs = bílá + navy: primární CTA navy (ne růžová) */
+  .pa-jobs :global(.btn--primary) { background: var(--color-secondary); border-color: var(--color-secondary); color: #fff; }
+  .pa-jobs :global(.btn--primary:hover) { background: #2A2850; border-color: #2A2850; }
+  /* Na tmavém (navy) hero je primární CTA bílé */
   .pa-jobs :global(.section--bg-invert .btn--primary) { background: #fff; border-color: #fff; color: var(--color-secondary); }
   .pa-jobs :global(.section--bg-invert .btn--primary:hover) { background: var(--color-neutral-100); border-color: var(--color-neutral-100); }
 

@@ -49,11 +49,11 @@
   --text-h2:      600 var(--font-size-h2)/var(--line-height-heading) var(--font-sans);
   --text-h3:      600 var(--font-size-h3)/var(--line-height-snug) var(--font-sans);
 
-  /* ----- Primary - modrá (brandová identita, CTA) ----- */
-  --color-primary:          #343160;
-  --color-primary-hover:    #2A2850;
-  --color-primary-active:   #20203C;
-  --color-primary-bg:       #343160;  /* tmavé modré pozadí sekcí */
+  /* ----- Primary - růžová (hlavní CTA dle originálu grason.cz) ----- */
+  --color-primary:          #F24D83;
+  --color-primary-hover:    #D63A70;
+  --color-primary-active:   #C13366;
+  --color-primary-bg:       #343160;  /* tmavé modré pozadí sekcí (brand modrá) */
   --color-primary-bg-hover: #2A2850;
 
   /* ----- Secondary - modrá (čísla, zvýraznění) + akcentní role ----- */
