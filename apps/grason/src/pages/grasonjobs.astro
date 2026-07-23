@@ -1,8 +1,8 @@
 ---
 /**
- * GrasonJobs, dedikovaná produktová stránka (inzerce a nábor stálých zaměstnanců).
- * Obsah z grason-context.md + Grason_JOBS_automatizace (automatizovaná propagace
- * inzerátů přes feed otevřených pozic).
+ * GrasonJobs: inzerce a nábor stálých zaměstnanců.
+ * Obsah dle podkladů a ceníku od marketingu (balíčky Basic..Gold + příplatky).
+ * Brand GrasonJobs: bílá + tmavě modrá.
  */
 import Base from '../layouts/Base.astro';
 import Header from '@piano/ui/components/Header.astro';
@@ -18,34 +18,50 @@ import { grasonNav, grasonCta, grasonFooter, grasonLogin } from '../config/nav';
 import { jobsFaqs } from '../config/faq';
 
 const steps = [
-  { title: 'Vystavíte inzerát', text: 'Zadáte volnou pozici: název, podnik, město i plat. Inzerát se objeví v nabídce.' },
-  { title: 'Grason ho automaticky propaguje', text: 'Inzerát se sám propíše do cílených reklamních kampaní a osloví tisíce lidí v gastru ve vašem okolí.' },
-  { title: 'Kandidáti se hlásí', text: 'Zájemci reagují přímo na inzerát. Vy si z nich vybíráte ty správné.' },
-  { title: 'Obsazeno → konec kampaně', text: 'Jakmile pozici obsadíte, inzerát i reklama se samy vypnou. Platíte jen za to, co reálně běží.' },
+  { title: 'Vystavíte inzerát', text: 'Zadáte pozici, podnik, lokalitu a text inzerátu. S textací vám rádi pomůžeme (copywriting jako příplatek).' },
+  { title: 'Zveřejníme a oslovíme', text: 'Inzerát zveřejníme v mobilní aplikaci i na webu na 30 dní a vhodné kandidáty upozorníme cílenými notifikacemi.' },
+  { title: 'Kandidáti se hlásí', text: 'Zájemci se přihlásí na pohovor nebo zkoušku přímo v aplikaci. Vy si vybíráte ty správné.' },
+  { title: 'Vyberete a domluvíte nástup', text: 'Z přihlášených si vyberete a domluvíte nástup. U vyšších balíčků inzerát podpoříme i placenou reklamou na sítích.' },
 ];
 
 const points = [
-  { icon: 'lucide:megaphone', title: 'Automatická propagace', text: 'Inzerát se sám propaguje přes cílené reklamy. Žádné ruční zakládání kampaní každý týden.' },
-  { icon: 'lucide:target', title: 'Cílení na gastro', text: 'Oslovíte tisíce lidí v oboru ve vašem okolí, ne náhodné publikum.' },
-  { icon: 'lucide:refresh-cw', title: 'Vždy aktuální', text: 'Obsazená pozice zmizí z inzerce i z reklamy, platíte jen za to, co běží.' },
-  { icon: 'lucide:file-text', title: 'Stálé úvazky', text: 'HPP, DPČ i částečné úvazky, inzerce přímo mezi pracovníky v gastru.' },
+  { icon: 'lucide:megaphone', title: 'Inzerát v appce i na webu', text: 'Vaši pozici zveřejníme v mobilní aplikaci i na webu, na 30 dní.' },
+  { icon: 'lucide:bell', title: 'Cílené oslovení notifikacemi', text: 'Vhodné kandidáty upozorníme cílenými notifikacemi přímo v aplikaci.' },
+  { icon: 'lucide:check-check', title: 'Přihlášení přes aplikaci', text: 'Kandidáti se přihlásí na pohovor nebo zkoušku přímo v appce.' },
+  { icon: 'lucide:trending-up', title: 'Placená propagace navíc', text: 'U balíčků Standard a výš přidáme placenou reklamu na sociálních sítích.' },
 ];
 
-const leadProofs = [
-  { icon: 'lucide:megaphone', title: 'Nábor bez práce', text: 'Kampaně se spravují samy.' },
-  { icon: 'lucide:target', title: 'Cílené publikum', text: 'Tisíce lidí přímo z gastra.' },
-  { icon: 'lucide:wallet', title: 'Platíte za výsledek', text: 'Jen za běžící inzeráty.' },
-  { icon: 'lucide:phone', title: 'Lidská podpora', text: '+420 739 877 799' },
+// Ceník GrasonJobs (dle podkladu)
+const jobsTiers = [
+  { name: 'Basic', note: 'Pouze v Praze', price: '1 490 Kč' },
+  { name: 'Standard', price: '2 990 Kč' },
+  { name: 'Premium', price: '5 990 Kč' },
+  { name: 'Gold', price: '17 990 Kč' },
+];
+const jobsFeatures = [
+  { label: 'Zveřejnění inzerátu v aplikaci a na webu', vals: ['na 30 dní', 'na 30 dní', 'na 30 dní', 'na 30 dní'] },
+  { label: 'Přihlášení na pohovor nebo zkoušku přes aplikaci', vals: [true, true, true, true] },
+  { label: 'Cílené oslovení vhodných kandidátů notifikacemi', vals: [true, true, true, true] },
+  { label: 'Marketingová kampaň (placená reklama na sítích)', vals: [false, true, true, true] },
+  { label: '1 000 Kč na promo na sociálních sítích', vals: [false, true, false, false] },
+  { label: '3 000 Kč na promo na sociálních sítích', vals: [false, false, true, true] },
+  { label: 'Landing page pro inzerát', vals: [false, false, false, true] },
+];
+const jobsAddons = [
+  { label: 'HotJob 3 dny', price: '490 Kč' },
+  { label: 'HotJob 7 dní', price: '690 Kč' },
+  { label: 'HotJob 14 dní', price: '990 Kč' },
+  { label: 'Copywriting', price: '490 Kč' },
 ];
 ---
 
 <Base title="GrasonJobs: inzerce a nábor stálých zaměstnanců | Grason"
-      description="GrasonJobs vystaví inzerát na stálou pozici (HPP, DPČ) a automaticky ho propaguje tisícům lidí v gastru přes cílené kampaně. Jakmile pozici obsadíte, kampaň sama skončí.">
+      description="GrasonJobs zveřejní inzerát na stálou pozici v mobilní aplikaci i na webu a osloví vhodné kandidáty notifikacemi. Balíčky Basic až Gold.">
   <Header brand="Grason" logoSrc="/logos/grason_logo.svg" logoHeight="28px" homeHref="/" nav={grasonNav} cta={grasonCta} login={grasonLogin} />
 
   <main class="pa-jobs">
-  <Hero eyebrow="GrasonJobs · Novinka" background="invert" align="center"
-        lead="Hledáte stálého kolegu na HPP nebo DPČ? Vystavíte inzerát a Grason ho automaticky propaguje tisícům lidí v gastru přes cílené kampaně. Jakmile pozici obsadíte, kampaň sama skončí.">
+  <Hero eyebrow="GrasonJobs" background="invert" align="center"
+        lead="Hledáte stálého kolegu? Vystavíte inzerát, my ho zveřejníme v aplikaci i na webu a vhodné kandidáty oslovíme cílenými notifikacemi.">
     <Heading slot="title" as="h1" size="display" color="on-dark" align="center">Nábor stálých lidí <span class="accent">na míru</span></Heading>
     <Fragment slot="actions">
       <Button href="/kontakt">Chci inzerovat pozici</Button>
@@ -84,28 +100,61 @@ const leadProofs = [
     </ul>
   </Section>
 
+  <!-- CENÍK -->
   <Section id="cenik" background="default" space="lg">
     <div class="head head--center">
       <Text size="label" color="accent" align="center">Ceník</Text>
-      <Heading as="h2" size="h2" align="center">Nábor <span class="accent">na míru</span></Heading>
+      <Heading as="h2" size="h2" align="center">Vyberte <span class="accent">balíček inzerce</span></Heading>
     </div>
-    <div class="single-price">
-      <article class="price">
-        <span class="price__tag">GrasonJobs</span>
-        <Heading as="h3" size="h3">Cena podle kampaně</Heading>
-        <Text color="muted" size="small">Inzerce stálých úvazků s automatickou propagací. Cena podle rozsahu a délky kampaně.</Text>
-        <ul class="checklist">
-          <li><Icon name="lucide:check" size="sm" class="hl-check" />Inzerce stálých úvazků (HPP, DPČ)</li>
-          <li><Icon name="lucide:check" size="sm" class="hl-check" />Automatická propagace inzerátů</li>
-          <li><Icon name="lucide:check" size="sm" class="hl-check" />Platíte jen za běžící kampaň</li>
-          <li><Icon name="lucide:check" size="sm" class="hl-check" />Cenová nabídka na míru</li>
-        </ul>
-        <div class="price__cta"><Button href="/kontakt">Chci nabídku</Button></div>
-      </article>
+
+    <div class="jtable-scroll">
+      <table class="jtable">
+        <thead>
+          <tr>
+            <td class="jtable__corner"></td>
+            {jobsTiers.map((t) => (
+              <th class="jtier" scope="col">
+                <span class="jtier__name">{t.name}</span>
+                {t.note && <span class="jtier__note">{t.note}</span>}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {jobsFeatures.map((f) => (
+            <tr>
+              <th class="jfeat" scope="row">{f.label}</th>
+              {f.vals.map((v) => (
+                <td class="jcell">
+                  {v === true ? <Icon name="lucide:check" size="sm" class="jyes" />
+                    : v === false ? <span class="jdash">–</span>
+                    : <span>{v}</span>}
+                </td>
+              ))}
+            </tr>
+          ))}
+          <tr class="jprice">
+            <th class="jfeat">Cena bez DPH</th>
+            {jobsTiers.map((t) => <td class="jcell jprice__val">{t.price}</td>)}
+          </tr>
+        </tbody>
+      </table>
     </div>
+
+    <div class="addons">
+      <h3 class="addons__title">Příplatky</h3>
+      <ul class="addons__list">
+        {jobsAddons.map((a) => (
+          <li><span>{a.label}</span><strong>{a.price}</strong></li>
+        ))}
+      </ul>
+    </div>
+    <Text size="small" color="muted" align="center" class="jtable__note">Všechny ceny jsou bez DPH.</Text>
+
+    <div class="sec-cta"><Button href="/kontakt">Chci inzerovat pozici</Button></div>
   </Section>
 
-  <Faq items={jobsFaqs} title="Časté dotazy ke GrasonJobs" background="default" />
+  <Faq items={jobsFaqs} title="Časté dotazy ke GrasonJobs" background="alt" />
   </main>
 
   <Footer {...grasonFooter} />
@@ -126,21 +175,47 @@ const leadProofs = [
   .head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-7); }
   .head--center { text-align: center; }
   .head > * + * { margin-top: var(--space-3); }
-  .hl-check { color: var(--color-secondary-azure); flex-shrink: 0; }
+  .sec-cta { display: flex; justify-content: center; margin-top: var(--space-7); }
+
   .steps { list-style: none; display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
   .step { position: relative; padding: var(--space-6); background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); box-shadow: var(--shadow-sm); }
   .step > * + * { margin-top: var(--space-3); }
-  .step__num { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: var(--radius-full); background: var(--color-secondary-azure); color: var(--color-text-on-azure); font-size: var(--font-size-lead); font-weight: var(--font-weight-bold); }
+  .step__num { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: var(--radius-full); background: var(--color-secondary); color: #fff; font-size: var(--font-size-lead); font-weight: var(--font-weight-bold); }
   .cards { list-style: none; display: grid; gap: var(--space-5); grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
   .mini { padding: var(--space-6); border-radius: var(--radius-md); }
   .cards--light .mini { background: var(--color-bg); border: 1px solid var(--color-border); box-shadow: var(--shadow-sm); }
   .mini > * + * { margin-top: var(--space-3); }
   .mini__icon { display: inline-flex; color: var(--color-secondary-azure); }
+
+  /* Ceník tabulka */
+  .jtable-scroll { overflow-x: auto; }
+  .jtable { width: 100%; border-collapse: collapse; min-width: 780px; }
+  .jtable th, .jtable td { padding: var(--space-4); text-align: center; }
+  .jtable__corner { background: transparent; border: 0; }
+  .jtier { vertical-align: top; background: var(--color-secondary); color: #fff; border-bottom: 2px solid var(--color-secondary); }
+  .jtier:first-of-type { border-top-left-radius: var(--radius-md); }
+  .jtier:last-of-type { border-top-right-radius: var(--radius-md); }
+  .jtier__name { display: block; font-size: var(--font-size-h3); font-weight: var(--font-weight-bold); }
+  .jtier__note { display: block; font-size: var(--font-size-caption); font-weight: var(--font-weight-regular); opacity: 0.85; margin-top: 2px; }
+  .jfeat { text-align: left; font-weight: var(--font-weight-medium); color: var(--color-text); font-size: var(--font-size-small); }
+  .jtable tbody tr { border-bottom: 1px solid var(--color-border); }
+  .jcell { font-size: var(--font-size-small); color: var(--color-text); }
+  .jyes { color: var(--color-secondary); }
+  .jdash { color: var(--color-neutral-300); }
+  .jprice { background: var(--color-bg-alt); }
+  .jprice__val { font-weight: var(--font-weight-bold); color: var(--color-secondary); white-space: nowrap; }
+  .jprice .jfeat { font-weight: var(--font-weight-bold); }
+
+  /* Příplatky */
+  .addons { max-width: 480px; margin: var(--space-8) auto 0; border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-6); box-shadow: var(--shadow-sm); }
+  .addons__title { font-size: var(--font-size-lead); font-weight: var(--font-weight-bold); color: var(--color-secondary); margin-bottom: var(--space-4); }
+  .addons__list { list-style: none; display: flex; flex-direction: column; }
+  .addons__list li { display: flex; justify-content: space-between; gap: var(--space-4); padding: var(--space-3) 0; border-bottom: 1px solid var(--color-border); }
+  .addons__list li:last-child { border-bottom: 0; }
+  .addons__list strong { color: var(--color-secondary); white-space: nowrap; }
+  .jtable__note { margin-top: var(--space-5); }
+
   .checklist { list-style: none; display: grid; gap: var(--space-2); }
   .checklist li { display: flex; align-items: flex-start; gap: var(--space-2); color: var(--color-text); }
-  .single-price { max-width: 480px; margin-inline: auto; }
-  .price { position: relative; background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-7); box-shadow: var(--shadow-sm); display: flex; flex-direction: column; gap: var(--space-3); }
-  .price__tag { font-size: var(--font-size-caption); font-weight: var(--font-weight-semibold); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide); color: var(--color-text-accent); }
-  .price .checklist { margin-top: var(--space-2); }
-  .price__cta { margin-top: var(--space-4); }
+  .hl-check { color: var(--color-secondary-azure); flex-shrink: 0; }
 </style>

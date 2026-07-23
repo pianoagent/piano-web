@@ -1,6 +1,6 @@
 ---
 /**
- * Pro brigádníky — worker-facing stránka.
+ * Pro brigádníky, worker-facing stránka.
  * Obsah z grason-web-develop/pages/index.vue + page_hp_* (cs.json).
  * Sdílené komponenty @piano/ui.
  */
@@ -34,18 +34,18 @@ const jobs = [
 const perks = [
   { icon: 'lucide:wallet', title: 'Mzdu si určujete vy', text: 'Při přihlašování uvidíte, jakou částku podnik preferuje. Je ale jen na vás, za kolik chcete pracovat.' },
   { icon: 'lucide:calendar-heart', title: 'Buďte pány svého času', text: 'Sami si naplánujete, kdy a jak často budete pracovat. Záleží jen na vás, kolik směn si vezmete.' },
-  { icon: 'lucide:banknote', title: 'Výplata ihned po směně', text: 'Žádné čekání na výplatní termín — peníze máte hned, jak odpracujete.' },
+  { icon: 'lucide:banknote', title: 'Výplata ihned po směně', text: 'Žádné čekání na výplatní termín, peníze máte hned, jak odpracujete.' },
 ];
 
 const testimonials = [
   { initials: 'MD', quote: 'Grason je skvělá aplikace, můžu se přihlásit, kdy chci, kam chci, peníze mám hned a mám jistotu, že vždy nějakou směnu najdu.', author: 'Maryna Dragula', role: 'Servírka' },
-  { initials: 'MŽ', quote: 'Grason bych doporučil, je to cesta ke svobodě. Člověk nedělá pořád to samé — poznává různé technologie a jiné kuchaře. Super věc pro lidi, co gastronomie opravdu zajímá.', author: 'Martin Železník', role: 'Kuchař' },
-  { initials: 'RH', quote: 'Skvělá aplikace, která lidem pomáhá najít brigádu nebo práci — a je vyplácená ihned po směně. Určíš si, kdy chceš pracovat, kolik hodin a za jakou hodinovku.', author: 'Richard Hodási', role: 'Číšník' },
+  { initials: 'MŽ', quote: 'Grason bych doporučil, je to cesta ke svobodě. Člověk nedělá pořád to samé, poznává různé technologie a jiné kuchaře. Super věc pro lidi, co gastronomie opravdu zajímá.', author: 'Martin Železník', role: 'Kuchař' },
+  { initials: 'RH', quote: 'Skvělá aplikace, která lidem pomáhá najít brigádu nebo práci, a je vyplácená ihned po směně. Určíš si, kdy chceš pracovat, kolik hodin a za jakou hodinovku.', author: 'Richard Hodási', role: 'Číšník' },
 ];
 ---
 
-<Base title="Pro brigádníky — Grason"
-      description="Vaše řešení pro flexibilní práci. Pracujte ještě dnes — směny v čase a místě, kdy a kde zrovna můžete. Výplata ihned po směně.">
+<Base title="Pro brigádníky, Grason"
+      description="Vaše řešení pro flexibilní práci. Pracujte ještě dnes, směny v čase a místě, kdy a kde zrovna můžete. Výplata ihned po směně.">
   <Header brand="Grason" logoSrc="/logos/grason_logo.svg" logoHeight="28px" homeHref="/" nav={grasonNav} cta={grasonCta} login={grasonLogin} />
 
   <main>
@@ -55,10 +55,10 @@ const testimonials = [
         lead="Pracujte ještě dnes. Směny v čase a místě, kdy a kde zrovna můžete. Sami si určíte, co, pro koho a za kolik budete dělat.">
     <Heading slot="title" as="h1" size="display" color="on-dark">Vaše řešení pro <span class="accent">flexibilní práci</span></Heading>
     <Fragment slot="actions">
-      <Button href="#stahnout">Stáhnout aplikaci</Button>
+      <Button href="https://www.grason.cz/stahnout">Stáhnout aplikaci</Button>
     </Fragment>
     <figure slot="media" class="hero-figure">
-      <img src="/images/hp-hero.webp" alt="Grason — aplikace s nabídkami směn pro brigádníky" width="720" height="560" loading="eager" />
+      <img src="/images/hp-hero.webp" alt="Grason, aplikace s nabídkami směn pro brigádníky" width="720" height="560" loading="eager" />
     </figure>
   </Hero>
 
@@ -140,8 +140,7 @@ const testimonials = [
         Stáhněte si appku a přihlaste se na první směnu ještě dnes. iOS i Android, zdarma.
       </Text>
       <div class="store">
-        <Button href="https://apps.apple.com/" variant="secondary" onDark>App Store</Button>
-        <Button href="https://play.google.com/" variant="secondary" onDark>Google Play</Button>
+        <Button href="https://www.grason.cz/stahnout">Stáhnout aplikaci</Button>
       </div>
     </div>
   </Section>
