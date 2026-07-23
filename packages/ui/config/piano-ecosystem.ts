@@ -1,9 +1,9 @@
 /**
- * Piano ekosystém — SDÍLENÁ data napříč všemi weby.
+ * Piano ekosystém - SDÍLENÁ data napříč všemi weby.
  * Každý web zobrazí v menu položku „Piano" se stejným ekosystémem a logicky
  * VYNECHÁ produkt, na kterém uživatel zrovna je (currentId).
  *
- * Odkazy vedou na weby produktů (externí). URL k potvrzení — uprav níže.
+ * Odkazy vedou na weby produktů (externí). URL k potvrzení - uprav níže.
  */
 import type { MegaPanel, NavLink, NavItem } from './nav';
 
@@ -23,12 +23,12 @@ interface PianoProduct {
 
 /** Zdroj pravdy pro celé portfolio. */
 export const PIANO_PRODUCTS: PianoProduct[] = [
-  { id: 'hugo',     label: 'Hugo',           href: 'https://piano.cz', path: '/hugo',     description: 'Jednoduchá pokladna pro malé provozy. Spustíš sami za pár minut.', icon: '/brand/hugo.svg', badge: 'Novinka', group: 'novinky' },
   { id: 'pilot',    label: 'Piano Pilot',    href: 'https://piano.cz', path: '/pilot',    description: 'Celý provoz v mobilní appce. Data, sklad, AI doporučení.', icon: '/brand/piano.svg',  badge: 'Nový', group: 'novinky' },
   { id: 'terminal', label: 'Piano Terminál', href: 'https://piano.cz', path: '/terminal', description: 'Terminál, který platbou začíná. Data i platby dodavatelům.', icon: '/brand/piano.svg', group: 'novinky' },
 
   { id: 'septim',   label: 'Septim',         href: 'https://www.septim.cz',         description: 'Pokladní a provozní systém',     icon: '/brand/septim.svg',        group: 'pokladna' },
   { id: 'harsys',   label: 'ABX Harsys',     href: 'https://www.abxharsys.cz',      description: 'Pokladní systém',                icon: '/brand/abx.svg', group: 'pokladna' },
+  { id: 'posexperts', label: 'POS experts',  href: 'https://posexperts.cz/',        description: 'Pokladní systémy a řešení',      icon: '/brand/posexperts.svg',     group: 'pokladna' },
   { id: 'savarin',  label: 'Savarin',        href: 'https://cominn.cz',             description: 'Pokladní systém',                icon: '/brand/savarin.svg',        group: 'pokladna' },
   { id: 'autset',   label: 'Autset',         href: 'https://autset.com',            description: 'Automatické naskladňování',      icon: '/brand/autset.svg',         group: 'pokladna' },
   { id: 'pecosta',  label: 'Pecosta',        href: 'https://pecosta.cz',            description: 'Aukční nákupy',          icon: '/brand/pecosta.svg',           group: 'pokladna' },
@@ -73,7 +73,7 @@ export function buildPianoMega(currentId?: string, onPiano = false): MegaPanel {
 }
 
 /**
- * Hotová položka menu „Piano" pro hlavičku — stejná na všech webech.
+ * Hotová položka menu „Piano" pro hlavičku - stejná na všech webech.
  * Stačí přidat do nav daného webu: `pianoNavItem('septim')` (vynechá Septim).
  */
 export function pianoNavItem(currentId?: string): NavItem {

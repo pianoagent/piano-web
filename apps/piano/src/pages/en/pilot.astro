@@ -1,6 +1,6 @@
 ---
 /**
- * Pilot — English product page piano.cz/en/pilot.
+ * Pilot - English product page piano.cz/en/pilot.
  * Zrcadlí CS stránku (pilot.astro) se stejným layoutem/CSS, přeložený obsah.
  */
 import Base from '../../layouts/Base.astro';
@@ -9,8 +9,24 @@ import Hero from '@piano/ui/components/Hero.astro';
 import Heading from '@piano/ui/components/Heading.astro';
 import Text from '@piano/ui/components/Text.astro';
 import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
 import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
+
+// Pilot pricing - feature comparison. `free` = included in the Free plan.
+const planFeatures = [
+  { label: 'POS connection', free: true },
+  { label: 'Orders and revenue overview', free: true },
+  { label: 'Average spend', free: true },
+  { label: 'Bills overview', free: true },
+  { label: 'Payment type breakdown', free: true },
+  { label: 'Stock levels', free: true },
+  { label: 'Sales by outlet', free: true },
+  { label: 'AI Chat', free: false },
+  { label: 'Piano Brain connection', free: false },
+  { label: 'Costs', free: false },
+  { label: 'Document scanning', free: false },
+];
 
 const steps = [
   { title: 'Connect your system', text: 'Set up in 5 minutes with no complicated installation (Septim, POS Expert, Harsys), or run without a POS in the LITE version.' },
@@ -47,7 +63,7 @@ const features = [
     <img slot="media" src="/images/pilot-app.webp" alt="Piano Pilot, costs and revenue in a mobile app" width="694" height="574" />
   </Hero>
 
-  <!-- Jak to funguje — tři číslované kroky + pilulky -->
+  <!-- Jak to funguje - tři číslované kroky + pilulky -->
   <Section background="default" space="lg">
     <div class="head-center">
       <Text size="label" color="accent">How it works</Text>
@@ -89,32 +105,37 @@ const features = [
   <USPGrid eyebrow="Key features" title="Everything you need for smart decisions"
            items={features} background="default" />
 
-  <!-- Dvě verze produktu -->
+  <!-- Pricing -->
   <Section background="warm" space="lg">
-    <Heading as="h2" size="h2" align="center">Two product versions</Heading>
+    <Heading as="h2" size="h2" align="center">Pricing</Heading>
     <Text size="lead" color="muted" align="center" class="pilot-sub">
       Choose the plan that suits you. Start for free and upgrade when you need more.
     </Text>
     <div class="plans">
-      <article class="plan plan--pro">
-        <Text size="label" color="on-dark">With a connected Piano POS</Text>
-        <Heading as="h3" size="h3" color="on-dark">Pilot Pro</Heading>
-        <ul class="plan__list">
-          <li>Revenue and sales in real time</li>
-          <li>Inventory connected to the POS</li>
-          <li>Premium AI modules: chat over your data, receipt scanning, trends</li>
-        </ul>
-        <Button href="#poptavka" full>I want Pilot Pro</Button>
-      </article>
       <article class="plan">
-        <Text size="label" color="accent">Works on its own, without our POS</Text>
-        <Heading as="h3" size="h3">Pilot Lite</Heading>
+        <Heading as="h3" size="h3">Free</Heading>
+        <Text size="small" color="muted">A great start</Text>
+        <p class="plan__price"><strong>0 CZK</strong> <span>forever</span></p>
         <ul class="plan__list">
-          <li>Market data and competitor overview</li>
-          <li>Trends and price comparison</li>
-          <li>Receipt scanning</li>
+          {planFeatures.map((f) => (
+            <li class={f.free ? '' : 'is-off'}>
+              <Icon name={f.free ? 'lucide:check' : 'lucide:x'} size="sm" />{f.label}
+            </li>
+          ))}
         </ul>
-        <Button href="#poptavka" variant="secondary" full>I want Pilot Lite</Button>
+        <Button href="#poptavka" full>Start for free</Button>
+      </article>
+      <article class="plan plan--featured">
+        <span class="plan__badge">Premium</span>
+        <Heading as="h3" size="h3">Premium</Heading>
+        <Text size="small" color="muted">Everything you need to grow</Text>
+        <p class="plan__price"><strong>990 CZK</strong> <span>/ month. Cancel anytime</span></p>
+        <ul class="plan__list">
+          {planFeatures.map((f) => (
+            <li><Icon name="lucide:check" size="sm" />{f.label}</li>
+          ))}
+        </ul>
+        <Button href="#poptavka" full>Try free for 30 days</Button>
       </article>
     </div>
   </Section>
@@ -162,14 +183,18 @@ const features = [
 
   /* Verze */
   .pilot-sub { margin-top: var(--space-3); }
-  .plans { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-5); margin-top: var(--space-7); }
-  .plan { display: flex; flex-direction: column; gap: var(--space-3); padding: var(--space-6); background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); }
-  .plan--pro { background: var(--color-primary-bg); border-color: transparent; }
-  .plan--pro .plan__list li { color: var(--color-text-on-dark-muted); }
-  .plan--pro .plan__list li::before { color: var(--color-text-on-dark); }
-  .plan__list { list-style: none; display: flex; flex-direction: column; gap: var(--space-2); margin: var(--space-2) 0 var(--space-4); }
-  .plan__list li { position: relative; padding-left: var(--space-5); color: var(--color-text-muted); }
-  .plan__list li::before { content: "✓"; position: absolute; left: 0; color: var(--color-text-accent); font-weight: 700; }
+  .plans { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-5); margin-top: var(--space-7); align-items: start; max-width: 900px; margin-inline: auto; }
+  .plan { position: relative; display: flex; flex-direction: column; gap: var(--space-2); padding: var(--space-7) var(--space-6); background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); }
+  .plan--featured { border-color: var(--color-primary); border-width: 2px; box-shadow: var(--shadow-md); }
+  .plan__badge { position: absolute; top: 0; left: var(--space-6); transform: translateY(-50%); background: var(--color-primary-bg); color: var(--color-text-on-dark); font-size: var(--font-size-caption); font-weight: var(--font-weight-bold); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide); padding: 4px 14px; border-radius: var(--radius-full); }
+  .plan__price { margin: var(--space-3) 0 var(--space-2); line-height: 1.2; }
+  .plan__price strong { font-family: var(--font-serif); font-size: var(--font-size-h2); font-weight: var(--font-weight-bold); color: var(--color-text); }
+  .plan__price span { color: var(--color-text-muted); font-size: var(--font-size-small); }
+  .plan__list { list-style: none; display: flex; flex-direction: column; gap: var(--space-3); margin: var(--space-4) 0 var(--space-6); }
+  .plan__list li { display: flex; align-items: center; gap: var(--space-3); color: var(--color-text); font-size: var(--font-size-small); }
+  .plan__list li :global(svg) { flex-shrink: 0; color: var(--color-success); }
+  .plan__list li.is-off { color: var(--color-text-muted); }
+  .plan__list li.is-off :global(svg) { color: var(--color-neutral-400); }
   .plan :global(.btn) { margin-top: auto; }
 
   /* Reference přes fotku */
