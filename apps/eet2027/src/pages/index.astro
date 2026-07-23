@@ -282,7 +282,12 @@ const faqSchema = {
         <div class="checker__statusbar"><span class="tile__status" data-r-status></span></div>
         <p class="checker__desc" data-r-desc></p>
         <ul class="tile__feats" data-r-feats></ul>
-        <a href="#reseni" class="checker__more">Co s tím? Ukázat řešení <Icon name="lucide:arrow-right" size="xs" /></a>
+        <p class="checker__op"><Icon name="lucide:sparkles" size="sm" /> EET není jen povinnost, je to příležitost.</p>
+        <div class="checker__actions">
+          <Button href="#budoucnost" full>Chci restauraci budoucnosti</Button>
+          <Button href="#reseni" variant="secondary" full>Chci od POS víc funkcí</Button>
+        </div>
+        <button type="button" class="checker__reset" data-checker-reset>Zvolit jiný systém</button>
       </div>
     </div>
   </Hero>
@@ -578,8 +583,10 @@ const faqSchema = {
   .checker__result .tile__status { font-size: var(--font-size-lead); font-weight: var(--font-weight-bold); padding: var(--space-2) var(--space-5); }
   .checker__desc { font-size: var(--font-size-small); color: var(--color-text-muted); line-height: var(--line-height-body); margin-bottom: var(--space-4); }
   .checker__result .tile__feats { margin-bottom: var(--space-5); }
-  .checker__more { display: inline-flex; align-items: center; gap: var(--space-1); font-weight: var(--font-weight-semibold); font-size: var(--font-size-small); color: var(--color-text-accent); text-decoration: none; }
-  .checker__more:hover { text-decoration: underline; }
+  .checker__op { display: flex; align-items: center; gap: var(--space-2); font-size: var(--font-size-small); font-weight: var(--font-weight-semibold); color: var(--color-text-accent); background: color-mix(in srgb, var(--color-primary) 8%, #fff); border-radius: var(--radius-md); padding: var(--space-3) var(--space-4); margin-bottom: var(--space-4); }
+  .checker__actions { display: flex; flex-direction: column; gap: var(--space-3); }
+  .checker__reset { display: block; margin: var(--space-4) auto 0; background: none; border: none; cursor: pointer; font-family: var(--font-sans); font-size: var(--font-size-small); color: var(--color-text-muted); text-decoration: underline; }
+  .checker__reset:hover { color: var(--color-text); }
 
   /* BLUE OCEAN - hospoda dnes vs zitra */
   .vs { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-5); max-width: 900px; margin: 0 auto; align-items: start; }
@@ -759,6 +766,8 @@ const faqSchema = {
     q: '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>',
   };
 
+  const resetBtn = document.querySelector('[data-checker-reset]');
+
   function render(key) {
     const s = situations[key];
     if (!s) return;
@@ -768,14 +777,21 @@ const faqSchema = {
     feats.innerHTML = s.feats.map((f) =>
       '<li class="tile__feat tile__feat--' + f.state + '"><span class="tile__fico">' + icons[f.state] + '</span>' + f.text + '</li>'
     ).join('');
+    if (form) form.hidden = true;
     if (resultBox) resultBox.hidden = false;
   }
 
   if (form && select) {
-    select.addEventListener('change', () => render(select.value));
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       render(select.value);
+    });
+  }
+
+  if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+      if (resultBox) resultBox.hidden = true;
+      if (form) form.hidden = false;
     });
   }
 
