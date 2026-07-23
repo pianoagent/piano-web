@@ -1,6 +1,6 @@
 ---
 /**
- * GrasonPlan — dedikovaná produktová stránka (plánování směn vlastního týmu).
+ * GrasonPlan, dedikovaná produktová stránka (plánování směn vlastního týmu).
  * Obsah + vizuály dle mirroru grasonplan.cz (podklady-migrace/grasonplan-mirror).
  * Brand GrasonPlanu: žlutá + tmavě modrá + bílá (page-scoped akcenty).
  */
@@ -13,9 +13,8 @@ import Heading from '@piano/ui/components/Heading.astro';
 import Text from '@piano/ui/components/Text.astro';
 import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
-import LeadForm from '@piano/ui/components/LeadForm.astro';
 import Faq from '@piano/ui/components/Faq.astro';
-import { grasonNav, grasonCta, grasonFooter, grasonLogin } from '../config/nav';
+import { grasonNav, grasonCta, grasonFooter, grasonLogin, grasonPlanRegister } from '../config/nav';
 import { planFaqs } from '../config/faq';
 
 const PHONE = '739 877 799';
@@ -53,7 +52,7 @@ const leadProofs = [
 ];
 ---
 
-<Base title="GrasonPlan — plánování směn vlastního týmu | Grason"
+<Base title="GrasonPlan, plánování směn vlastního týmu | Grason"
       description="GrasonPlan je moderní nástroj na řízení personálu: rozvrh na PC i v mobilu, úkoly, reporty pro účetní a docházka jako doplňkový modul. První měsíc zdarma.">
   <Header brand="Grason" logoSrc="/logos/grason_logo.svg" logoHeight="28px" homeHref="/" nav={grasonNav} cta={grasonCta} login={grasonLogin} />
 
@@ -63,11 +62,11 @@ const leadProofs = [
         lead="Vše na jednom místě: naplánujete směny, rozdělíte i zkontrolujete úkoly, schválíte docházku a report pro účetní vygenerujete na dvě kliknutí. Dejte sbohem zmatkům ve WhatsAppech, Messengerech a přečmáraných tabulích.">
     <Heading slot="title" as="h1" size="display" color="on-dark">Změňte způsob, jak <span class="accent">řídíte svůj tým</span></Heading>
     <Fragment slot="actions">
-      <Button href="#poptavka">Vyzkoušet zdarma</Button>
+      <Button href={grasonPlanRegister}>Vyzkoušet zdarma</Button>
       <Button href="#cenik" variant="secondary" onDark>Ukázat cenu</Button>
     </Fragment>
     <figure slot="media" class="hero-figure">
-      <img class="shot" src="/images/plan-kalendar.png" alt="GrasonPlan — týdenní plán směn v kalendáři" width="1200" height="675" loading="eager" />
+      <img class="shot" src="/images/plan-kalendar.png" alt="GrasonPlan, týdenní plán směn v kalendáři" width="1200" height="675" loading="eager" />
     </figure>
   </Hero>
 
@@ -89,7 +88,7 @@ const leadProofs = [
         <Text size="lead" color="muted" balance>
           Kdo a kdy pracuje vidíte na počítači i v mobilní aplikaci. Dejte sbohem zmatkům ve WhatsAppech, Messengerech a přečmáraných tabulích.
         </Text>
-        <div class="split__cta"><Button href="#poptavka">Vyzkoušet zdarma</Button></div>
+        <div class="split__cta"><Button href={grasonPlanRegister}>Vyzkoušet zdarma</Button></div>
       </div>
     </div>
   </Section>
@@ -103,7 +102,7 @@ const leadProofs = [
         <Text size="lead" color="muted" balance>
           Lidé si sami navolí, kdy nemohou pracovat. Chytré notifikace navíc připomenou směnu i najdou náhradníka, když někdo onemocní.
         </Text>
-        <div class="split__cta"><Button href="#poptavka">Vyzkoušet zdarma</Button></div>
+        <div class="split__cta"><Button href={grasonPlanRegister}>Vyzkoušet zdarma</Button></div>
       </div>
     </div>
   </Section>
@@ -130,7 +129,7 @@ const leadProofs = [
   <!-- ÚKOLNÍK (screenshot) -->
   <Section background="alt" space="lg">
     <div class="split split--reverse">
-      <figure class="split__media"><img class="shot" src="/images/plan-ukoly.png" alt="GrasonPlan — přehled úkolů a checklistů" loading="lazy" /></figure>
+      <figure class="split__media"><img class="shot" src="/images/plan-ukoly.png" alt="GrasonPlan, přehled úkolů a checklistů" loading="lazy" /></figure>
       <div class="split__text">
         <Text size="label" color="accent">Úkolník</Text>
         <Heading as="h2" size="h2">Úkoly a checklisty, <span class="accent">i když nejste v podniku</span></Heading>
@@ -160,7 +159,7 @@ const leadProofs = [
       ))}
     </ul>
     <div class="feats__cta">
-      <Button href="#poptavka">Vyzkoušet zdarma</Button>
+      <Button href={grasonPlanRegister}>Vyzkoušet zdarma</Button>
       <p class="feats__note">První měsíc ZDARMA! Máte otázky? Volejte <a href={`tel:+420${PHONE.replace(/\s/g, '')}`}>{PHONE}</a></p>
     </div>
   </Section>
@@ -188,17 +187,12 @@ const leadProofs = [
           <li><Icon name="lucide:check" size="sm" class="hl-check" />Notifikace, šablony, hlídání kolizí</li>
         </ul>
         <p class="price__note">+ Docházkový modul (digitální píchačky): 490 Kč/měs bez DPH, 1. měsíc zdarma.</p>
-        <div class="price__cta"><Button href="#poptavka">Vyzkoušet zdarma</Button></div>
+        <div class="price__cta"><Button href={grasonPlanRegister}>Vyzkoušet zdarma</Button></div>
       </article>
     </div>
   </Section>
 
-  <Faq items={planFaqs} title="Časté dotazy — GrasonPlan" background="default" />
-
-  <LeadForm id="poptavka" variant="full" background="default"
-            title="Vyzkoušejte GrasonPlan zdarma"
-            lead="Nechte nám kontakt — nastavíme GrasonPlan pro váš tým a první měsíc je zdarma."
-            proofs={leadProofs} successUrl="/dekujeme" />
+  <Faq items={planFaqs} title="Časté dotazy ke GrasonPlanu" background="default" />
   </main>
 
   <Footer {...grasonFooter} />

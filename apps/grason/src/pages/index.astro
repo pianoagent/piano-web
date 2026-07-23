@@ -1,12 +1,12 @@
 ---
 /**
- * Grason — homepage.
+ * Grason, homepage.
  * Obsah z grason-context.md, blok #page-grason (piano-web-2026.html),
  * texty z grason-web-develop/i18n-config/locales/cs.json a bannery
  * z grason-bannery.tsv.
  * Vše ze SDÍLENÝCH komponent @piano/ui; téma řeší src/styles/theme.css.
  * Sekce bez vlastní komponenty (Stats, Pilíře, Steps, Reference, Logo wall,
- * FAQ, App split) jsou složené z primitivů — komponenty se NEFORKUJÍ.
+ * FAQ, App split) jsou složené z primitivů, komponenty se NEFORKUJÍ.
  */
 import Base from '../layouts/Base.astro';
 import Header from '@piano/ui/components/Header.astro';
@@ -18,7 +18,6 @@ import Text from '@piano/ui/components/Text.astro';
 import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import LogoWall from '@piano/ui/components/LogoWall.astro';
-import LeadForm from '@piano/ui/components/LeadForm.astro';
 import Faq from '@piano/ui/components/Faq.astro';
 import { grasonNav, grasonCta, grasonFooter, grasonLogin } from '../config/nav';
 import { flexiFaqs, planFaqs, jobsFaqs } from '../config/faq';
@@ -39,7 +38,7 @@ const products = [
     img: '/images/for-companies-choose-candidates.webp',
     tag: 'GrasonFlexi',
     title: 'Brigádníci na směnu',
-    text: 'Vypíšete směnu, ověření brigádníci se přihlásí a vy vyberete. Zaměstnavatelem zůstáváte vy — Grason vám lidi jen zprostředkuje a připraví podklady.',
+    text: 'Vypíšete směnu, ověření brigádníci se přihlásí a vy vyberete. Zaměstnavatelem zůstáváte vy, Grason vám lidi jen zprostředkuje a připraví podklady.',
     points: ['3 357+ ověřených pracovníků', 'Obsazení směny během minut', 'Podpis DPP i přes appku (za příplatek)', 'Gastro, sklady i maloobchod'],
     href: '/grasonflexi',
     tone: 'flexi',
@@ -61,7 +60,7 @@ const products = [
     tag: 'GrasonJobs',
     badge: 'Novinka',
     title: 'Inzerce a nábor stálých míst',
-    text: 'Hledáte stálého kolegu na HPP nebo DPČ? Vystavíte inzerát a Grason ho automaticky propaguje tisícům lidí v gastru — dokud pozici neobsadíte.',
+    text: 'Hledáte stálého kolegu na HPP nebo DPČ? Vystavíte inzerát a Grason ho automaticky propaguje tisícům lidí v gastru, dokud pozici neobsadíte.',
     points: ['Inzerce stálých úvazků', 'Automatická propagace inzerátů', 'Oslovíte tisíce lidí v gastru', 'Obsazeno = konec kampaně'],
     href: '/grasonjobs',
     tone: 'jobs',
@@ -70,7 +69,6 @@ const products = [
 ];
 
 const testimonials = [
-  { initials: 'MS', quote: 'Ke Grasonu nás dovedla zhoršující se situace na trhu práce a jejich inovativní přístup. Velkou výhodou je praktická aplikace a možnost operativního plánování směn 24/7.', author: 'Martin Savkulič', role: 'Manažer restaurace Pizza Nuova' },
   { initials: 'DS', quote: 'Pracovníci z Grasonu u nás vykrývají nejen nárazové směny, ale stávají se i pravidelnou součástí týmu. Oceňujeme jejich spolehlivost a rychlost.', author: 'Denisa Srnková', role: 'HR Business Partner, DámeMarket' },
   { initials: 'JK', quote: 'Velkou výhodu vidím v úspoře času, protože Grason za mě řeší byrokratické papírování.', author: 'Josef Kubíček', role: 'Manažer, Likér' },
 ];
@@ -84,7 +82,7 @@ const leadProofs = [
   { icon: 'lucide:users', title: '3 357+ brigádníků', text: 'Ověření pracovníci připraveni nastoupit.' },
   { icon: 'lucide:map-pin', title: '82+ měst v ČR', text: 'Gastro, sklady i maloobchod po celé republice.' },
   { icon: 'lucide:gift', title: '1. měsíc zdarma', text: 'GrasonPlan vyzkoušíte bez rizika.' },
-  { icon: 'lucide:phone', title: 'Lidská podpora', text: PHONE + ' — voláte rovnou nám.' },
+  { icon: 'lucide:phone', title: 'Lidská podpora', text: PHONE + ', voláte rovnou nám.' },
 ];
 ---
 
@@ -94,17 +92,17 @@ const leadProofs = [
 
   <main>
 
-  <!-- HERO — split: text vlevo, appka vpravo -->
+  <!-- HERO, split: text vlevo, appka vpravo -->
   <Hero eyebrow="Odborník na personál" background="gradient"
         lead="Grason je nejrychlejší způsob, jak nárazově či dlouhodobě zaplnit volná místa, naplánovat směny, ohlídat zaměstnance a vyřešit papírování s tím spojené."
         usp={[{ text: '3 357+ brigádníků', icon: 'lucide:users' }, { text: '82+ měst v ČR', icon: 'lucide:map-pin' }, { text: '220 000+ naplánovaných směn', icon: 'lucide:calendar-days' }]}>
     <Heading slot="title" as="h1" size="display" color="on-dark">Obsaďte volné pozice a naplánujte směny na pár kliknutí</Heading>
     <Fragment slot="actions">
-      <Button href="#poptavka">Konzultace zdarma</Button>
+      <Button href="/kontakt">Konzultace zdarma</Button>
       <Button href="#funkce" variant="secondary" onDark>Naše produkty</Button>
     </Fragment>
     <figure slot="media" class="hero-figure">
-      <img src="/images/hp-hero.webp" alt="Grason — mobilní aplikace s nabídkami volných směn" width="720" height="560" loading="eager" />
+      <img src="/images/hp-hero.webp" alt="Grason, mobilní aplikace s nabídkami volných směn" width="720" height="560" loading="eager" />
     </figure>
   </Hero>
 
@@ -175,16 +173,16 @@ const leadProofs = [
       <Text size="label" color="on-dark-muted" align="center">Začít s Grasonem</Text>
       <Heading as="h2" size="h2" align="center" color="on-dark">Personál bez starostí?</Heading>
       <Text size="lead" color="on-dark-muted" align="center" balance>
-        Ať řešíte brigádníky, plánování vlastního týmu, nebo nábor stálých lidí — poradíme, které z našich řešení vám sedne. Konzultace je zdarma a nezávazná.
+        Ať řešíte brigádníky, plánování vlastního týmu, nebo nábor stálých lidí, poradíme, které z našich řešení vám sedne. Konzultace je zdarma a nezávazná.
       </Text>
       <div class="cta-actions">
-        <Button href="#poptavka">Konzultace zdarma</Button>
+        <Button href="/kontakt">Konzultace zdarma</Button>
         <Button href={PHONE_HREF} variant="secondary" onDark>{PHONE}</Button>
       </div>
     </div>
   </Section>
 
-  <!-- FAQ — seskupené po produktech -->
+  <!-- FAQ, seskupené po produktech -->
   <Faq title="Často kladené dotazy" background="default"
        groups={[
          { title: 'GrasonFlexi · brigádníci', items: flexiFaqs },
@@ -192,19 +190,13 @@ const leadProofs = [
          { title: 'GrasonJobs · nábor', items: jobsFaqs },
        ]} />
 
-  <!-- POPTÁVKA -->
-  <LeadForm id="poptavka" variant="full" background="alt"
-            title="Nezávazná konzultace zdarma"
-            lead="Nechte nám kontakt — projdeme váš provoz a doporučíme, které řešení se vám hodí: GrasonFlexi (brigádníci), GrasonPlan (plánování) nebo GrasonJobs (nábor)."
-            proofs={leadProofs} successUrl="/dekujeme" />
-
   </main>
 
   <Footer {...grasonFooter} />
 </Base>
 
 <style>
-  /* Hero obrázek (appka) — transparentní ilustrace, jemný stín */
+  /* Hero obrázek (appka), transparentní ilustrace, jemný stín */
   .hero-figure { margin: 0; width: 100%; line-height: 0; }
   .hero-figure img { width: 100%; height: auto; display: block; filter: drop-shadow(0 24px 48px rgba(7, 7, 7, 0.22)); }
 
@@ -213,7 +205,7 @@ const leadProofs = [
   .head--center { text-align: center; }
   .head > * + * { margin-top: var(--space-3); }
 
-  /* Logo wall — marquee */
+  /* Logo wall, marquee */
   .logos__label { margin-bottom: var(--space-5); }
   .logos { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
   .logos__track { display: flex; align-items: center; gap: var(--space-8); width: max-content; animation: logos-scroll 48s linear infinite; }

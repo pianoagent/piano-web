@@ -13,7 +13,6 @@ import Heading from '@piano/ui/components/Heading.astro';
 import Text from '@piano/ui/components/Text.astro';
 import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
-import LeadForm from '@piano/ui/components/LeadForm.astro';
 import Faq from '@piano/ui/components/Faq.astro';
 import { grasonNav, grasonCta, grasonFooter, grasonLogin } from '../config/nav';
 import { jobsFaqs } from '../config/faq';
@@ -49,7 +48,7 @@ const leadProofs = [
         lead="Hledáte stálého kolegu na HPP nebo DPČ? Vystavíte inzerát a Grason ho automaticky propaguje tisícům lidí v gastru přes cílené kampaně. Jakmile pozici obsadíte, kampaň sama skončí.">
     <Heading slot="title" as="h1" size="display" color="on-dark" align="center">Nábor stálých lidí <span class="accent">na míru</span></Heading>
     <Fragment slot="actions">
-      <Button href="#poptavka">Chci inzerovat pozici</Button>
+      <Button href="/kontakt">Chci inzerovat pozici</Button>
       <Button href="#jak" variant="secondary" onDark>Jak to funguje</Button>
     </Fragment>
   </Hero>
@@ -101,17 +100,12 @@ const leadProofs = [
           <li><Icon name="lucide:check" size="sm" class="hl-check" />Platíte jen za běžící kampaň</li>
           <li><Icon name="lucide:check" size="sm" class="hl-check" />Cenová nabídka na míru</li>
         </ul>
-        <div class="price__cta"><Button href="#poptavka">Chci nabídku</Button></div>
+        <div class="price__cta"><Button href="/kontakt">Chci nabídku</Button></div>
       </article>
     </div>
   </Section>
 
   <Faq items={jobsFaqs} title="Časté dotazy ke GrasonJobs" background="default" />
-
-  <LeadForm id="poptavka" variant="full" background="alt"
-            title="Chci inzerovat pozici"
-            lead="Nechte nám kontakt, pomůžeme vystavit inzerát a rozjedeme nábor přes GrasonJobs."
-            proofs={leadProofs} successUrl="/dekujeme" />
   </main>
 
   <Footer {...grasonFooter} />

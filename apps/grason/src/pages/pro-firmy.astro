@@ -1,6 +1,6 @@
 ---
 /**
- * Pro firmy — rozcestník tří produktů + společný ceník.
+ * Pro firmy, rozcestník tří produktů + společný ceník.
  * Detaily žijí na dedikovaných stránkách: /grasonflexi, /grasonplan, /grasonjobs.
  */
 import Base from '../layouts/Base.astro';
@@ -12,7 +12,6 @@ import Heading from '@piano/ui/components/Heading.astro';
 import Text from '@piano/ui/components/Text.astro';
 import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
-import LeadForm from '@piano/ui/components/LeadForm.astro';
 import { grasonNav, grasonCta, grasonFooter, grasonLogin } from '../config/nav';
 
 const products = [
@@ -20,7 +19,7 @@ const products = [
     img: '/images/for-companies-choose-candidates.webp',
     tag: 'GrasonFlexi',
     title: 'Brigádníci na směnu',
-    text: 'Vypíšete směnu, ověření brigádníci se přihlásí a vy vyberete. Zaměstnavatelem zůstáváte vy — Grason lidi zprostředkuje a připraví podklady.',
+    text: 'Vypíšete směnu, ověření brigádníci se přihlásí a vy vyberete. Zaměstnavatelem zůstáváte vy, Grason lidi zprostředkuje a připraví podklady.',
     points: ['3 357+ ověřených pracovníků', 'Obsazení směny během minut', 'Podpis DPP i přes appku (příplatek)'],
     href: '/grasonflexi',
   },
@@ -37,14 +36,13 @@ const products = [
     tag: 'GrasonJobs',
     badge: 'Novinka',
     title: 'Inzerce a nábor stálých míst',
-    text: 'Vystavíte inzerát na stálou pozici a Grason ho automaticky propaguje tisícům lidí v gastru — dokud ji neobsadíte.',
+    text: 'Vystavíte inzerát na stálou pozici a Grason ho automaticky propaguje tisícům lidí v gastru, dokud ji neobsadíte.',
     points: ['Inzerce stálých úvazků', 'Automatická propagace', 'Obsazeno = konec kampaně'],
     href: '/grasonjobs',
   },
 ];
 
 const testimonials = [
-  { initials: 'MS', quote: 'Ke Grasonu nás dovedla zhoršující se situace na trhu práce a jejich inovativní přístup. Velkou výhodou je praktická aplikace a možnost operativního plánování směn 24/7.', author: 'Martin Savkulič', role: 'Manažer restaurace Pizza Nuova' },
   { initials: 'DS', quote: 'Pracovníci z Grasonu u nás vykrývají nejen nárazové směny, ale stávají se i pravidelnou součástí týmu. Spolupráce funguje na výbornou.', author: 'Denisa Srnková', role: 'HR Business Partner, DámeMarket' },
   { initials: 'JK', quote: 'Velkou výhodu vidím v úspoře času, protože Grason za mě řeší byrokratické papírování.', author: 'Josef Kubíček', role: 'Manažer, Likér' },
 ];
@@ -57,20 +55,20 @@ const leadProofs = [
 ];
 ---
 
-<Base title="Pro firmy — Grason"
+<Base title="Pro firmy, Grason"
       description="Tři řešení pro celý personál: GrasonFlexi (brigádníci na směnu), GrasonPlan (plánování vlastního týmu, docházka, mzdové podklady) a GrasonJobs (inzerce a nábor stálých zaměstnanců).">
   <Header brand="Grason" logoSrc="/logos/grason_logo.svg" logoHeight="28px" homeHref="/" nav={grasonNav} cta={grasonCta} login={grasonLogin} />
 
   <main>
   <Hero eyebrow="Pro firmy" background="gradient"
-        lead="Tři samostatná řešení pro celý váš personál — brigádníci na směnu, plánování vlastního týmu i nábor stálých lidí. Vyberete si, co zrovna potřebujete.">
+        lead="Tři samostatná řešení pro celý váš personál, brigádníci na směnu, plánování vlastního týmu i nábor stálých lidí. Vyberete si, co zrovna potřebujete.">
     <Heading slot="title" as="h1" size="display" color="on-dark">Chybí vám lidi? <span class="accent">S námi je máte</span> zítra na směně</Heading>
     <Fragment slot="actions">
-      <Button href="#poptavka">Konzultace zdarma</Button>
+      <Button href="/kontakt">Konzultace zdarma</Button>
       <Button href="#cenik" variant="secondary" onDark>Ukázat ceník</Button>
     </Fragment>
     <figure slot="media" class="hero-figure">
-      <img src="/images/for-companies-hero.webp" alt="Grason pro firmy — výběr kandidátů na směnu" width="720" height="560" loading="eager" />
+      <img src="/images/for-companies-hero.webp" alt="Grason pro firmy, výběr kandidátů na směnu" width="720" height="560" loading="eager" />
     </figure>
   </Hero>
 
@@ -80,7 +78,7 @@ const leadProofs = [
       <Text size="label" color="accent" align="center">Tři produkty, jeden personalista</Text>
       <Heading as="h2" size="h2" align="center">Vyberte si <span class="accent">řešení pro váš provoz</span></Heading>
       <Text size="lead" color="muted" align="center" balance>
-        Grason není jedna appka. Jsou to tři samostatné nástroje — každý má vlastní stránku s detaily.
+        Grason není jedna appka. Jsou to tři samostatné nástroje, každý má vlastní stránku s detaily.
       </Text>
     </div>
     <div class="pillars">
@@ -174,10 +172,6 @@ const leadProofs = [
     </div>
   </Section>
 
-  <LeadForm id="poptavka" variant="full" background="alt"
-            title="Chcete vědět více?"
-            lead="Nevíte, které řešení se vám hodí? Nechte nám kontakt — projdeme váš provoz a naše kolegyně Anna doporučí GrasonFlexi, GrasonPlan, nebo GrasonJobs."
-            proofs={leadProofs} successUrl="/dekujeme" />
   </main>
 
   <Footer {...grasonFooter} />

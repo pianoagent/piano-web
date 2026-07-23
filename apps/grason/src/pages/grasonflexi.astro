@@ -1,6 +1,6 @@
 ---
 /**
- * GrasonFlexi — dedikovaná produktová stránka (brigádníci na směnu).
+ * GrasonFlexi, dedikovaná produktová stránka (brigádníci na směnu).
  * Obsah z for-companies.vue / page_for-companies_* (cs.json) + grason-context.md.
  */
 import Base from '../layouts/Base.astro';
@@ -12,26 +12,24 @@ import Heading from '@piano/ui/components/Heading.astro';
 import Text from '@piano/ui/components/Text.astro';
 import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
-import LeadForm from '@piano/ui/components/LeadForm.astro';
 import Faq from '@piano/ui/components/Faq.astro';
-import { grasonNav, grasonCta, grasonFooter, grasonLogin } from '../config/nav';
+import { grasonNav, grasonCta, grasonFooter, grasonLogin, grasonFlexiRegister } from '../config/nav';
 import { flexiFaqs } from '../config/faq';
 
 const rows = [
   { img: '/images/for-companies-choose-candidates.webp', title: 'Vybírejte si podle zkušeností a hodnocení', text: 'Vždycky víte, kdo k vám přijde pracovat. Pracovníky vybíráte podle jejich profilů, zkušeností a hodnocení od jiných firem.' },
-  { img: '/images/for-companies-choose-favourite-workers.webp', title: 'Vytvořte si tým oblíbených a spolupracujte dlouhodobě', text: 'Vaši oblíbení pracovníci přehledně na jednom místě. Dejte jim o směně vědět dřív než ostatním a zvěte je opakovaně — bez stálého zaškolování nových lidí.' },
+  { img: '/images/for-companies-choose-favourite-workers.webp', title: 'Vytvořte si tým oblíbených a spolupracujte dlouhodobě', text: 'Vaši oblíbení pracovníci přehledně na jednom místě. Dejte jim o směně vědět dřív než ostatním a zvěte je opakovaně, bez stálého zaškolování nových lidí.' },
   { img: '/images/for-companies-feedback.webp', title: 'Zpětná vazba po každé směně', text: 'Dejte vědět, jak jste byli spokojeni. Napište pracovníkům hodnocení a získejte zpětnou vazbu i vy.' },
 ];
 
 const steps = [
   { title: 'Vypíšete směnu', text: 'V appce nebo webovém rozhraní zadáte kdy, kde a koho potřebujete. Trvá to 2 minuty.' },
   { title: 'Brigádníci se hlásí', text: 'Ověření pracovníci z vašeho okolí dostanou notifikaci a zájemci se přihlásí.' },
-  { title: 'Potvrdíte výběr', text: 'Vyberete vhodného kandidáta. Zaměstnavatelem jste vy — DPP můžete podepsat i přes appku (za příplatek).' },
+  { title: 'Potvrdíte výběr', text: 'Vyberete vhodného kandidáta. Zaměstnavatelem jste vy, DPP můžete podepsat i přes appku (za příplatek).' },
   { title: 'Odpracováno a ohodnoceno', text: 'Pracovník dorazí na směnu, vy mu připravíte výplatu z podkladů a po směně ho ohodnotíte.' },
 ];
 
 const testimonials = [
-  { initials: 'MS', quote: 'Ke Grasonu nás dovedla zhoršující se situace na trhu práce. Velkou výhodou je praktická aplikace a operativní plánování směn 24/7. Odpadá nám i starost s prvotním výběrem kandidátů.', author: 'Martin Savkulič', role: 'Manažer restaurace Pizza Nuova' },
   { initials: 'MP', quote: 'Pracovníci nalezení přes Grason byli sice dražší, ale mnohem motivovanější a ochotní makat než lidé z jiných kanálů.', author: 'Ing. Michal Prádl', role: 'Vedoucí skladu DATART Jirny' },
   { initials: 'JK', quote: 'Velkou výhodu vidím v úspoře času, protože Grason za mě řeší byrokratické papírování.', author: 'Josef Kubíček', role: 'Manažer, Likér' },
 ];
@@ -43,17 +41,17 @@ const leadProofs = [
   { icon: 'lucide:badge-check', title: 'Podpis přes appku', text: 'DPP podepíšete i online (příplatek).' },
 ];
 
-// Ceník GrasonFlexi — přepínač délky předplatného (3/6/12 měsíců)
+// Ceník GrasonFlexi, přepínač délky předplatného (3/6/12 měsíců)
 const pricePeriods = [
   { id: '3', label: '3 měsíců' },
   { id: '6', label: '6 měsíců' },
   { id: '12', label: '12 měsíců' },
 ];
 const priceTiers = [
-  { name: 'Trial', fixed: '14 dní zdarma', cta: 'Vyzkoušet zdarma', href: 'https://www.grason.cz' },
-  { name: 'Lite', price: { '3': '3 330 Kč', '6': '2 490 Kč', '12': '1 990 Kč' }, unit: '/měsíc', cta: 'Vybrat tarif', href: '#poptavka' },
-  { name: 'Standard', featured: true, badge: 'Nejoblíbenější', price: { '3': '8 990 Kč', '6': '7 490 Kč', '12': '4 990 Kč' }, unit: '/měsíc', cta: 'Vybrat tarif', href: '#poptavka' },
-  { name: 'Enterprise', fixed: 'Na vyžádání', cta: 'Zanechat kontakt', href: '#poptavka' },
+  { name: 'Trial', fixed: '14 dní zdarma', cta: 'Vyzkoušet zdarma', href: grasonFlexiRegister },
+  { name: 'Lite', price: { '3': '3 330 Kč', '6': '2 490 Kč', '12': '1 990 Kč' }, unit: '/měsíc', cta: 'Vybrat tarif', href: grasonFlexiRegister },
+  { name: 'Standard', featured: true, badge: 'Nejoblíbenější', price: { '3': '8 990 Kč', '6': '7 490 Kč', '12': '4 990 Kč' }, unit: '/měsíc', cta: 'Vybrat tarif', href: grasonFlexiRegister },
+  { name: 'Enterprise', fixed: 'Na vyžádání', cta: 'Zanechat kontakt', href: '/kontakt' },
 ];
 const priceFeatures = [
   { label: 'Počet obsazených směn', vals: ['Neomezeně', '30', 'Neomezeně', 'Neomezeně'] },
@@ -67,20 +65,20 @@ const priceFeatures = [
 ];
 ---
 
-<Base title="GrasonFlexi — brigádníci na směnu | Grason"
+<Base title="GrasonFlexi, brigádníci na směnu | Grason"
       description="GrasonFlexi je nejrychlejší cesta k brigádníkům: vypíšete směnu, ověření pracovníci se přihlásí a vy vyberete. Zaměstnavatelem zůstáváte vy, Grason lidi zprostředkuje.">
   <Header brand="Grason" logoSrc="/logos/grason_logo.svg" logoHeight="28px" homeHref="/" nav={grasonNav} cta={grasonCta} login={grasonLogin} />
 
   <main class="pa-flexi">
   <Hero eyebrow="GrasonFlexi" background="gradient"
-        lead="Vypíšete směnu, ověření brigádníci se přihlásí a vy vyberete. Zaměstnavatelem zůstáváte vy — Grason lidi zprostředkuje a připraví podklady.">
+        lead="Vypíšete směnu, ověření brigádníci se přihlásí a vy vyberete. Zaměstnavatelem zůstáváte vy, Grason lidi zprostředkuje a připraví podklady.">
     <Heading slot="title" as="h1" size="display" color="on-dark">Brigádníci <span class="accent">na jedno kliknutí</span></Heading>
     <Fragment slot="actions">
-      <Button href="https://www.grason.cz">Zaregistrovat firmu zdarma</Button>
-      <Button href="#poptavka" variant="secondary" onDark>Konzultace zdarma</Button>
+      <Button href={grasonFlexiRegister}>Zaregistrovat firmu zdarma</Button>
+      <Button href="/kontakt" variant="secondary" onDark>Konzultace zdarma</Button>
     </Fragment>
     <figure slot="media" class="hero-figure">
-      <img src="/images/for-companies-hero.webp" alt="GrasonFlexi — výběr brigádníků na směnu" width="720" height="560" loading="eager" />
+      <img src="/images/for-companies-hero.webp" alt="GrasonFlexi, výběr brigádníků na směnu" width="720" height="560" loading="eager" />
     </figure>
   </Hero>
 
@@ -202,12 +200,7 @@ const priceFeatures = [
     </div>
   </Section>
 
-  <Faq items={flexiFaqs} title="Časté dotazy — GrasonFlexi" background="default" />
-
-  <LeadForm id="poptavka" variant="full" background="alt"
-            title="Chci brigádníky"
-            lead="Nechte nám kontakt — ukážeme GrasonFlexi ve vašem provozu a pomůžeme s rozjezdem."
-            proofs={leadProofs} successUrl="/dekujeme" />
+  <Faq items={flexiFaqs} title="Časté dotazy ke GrasonFlexi" background="default" />
   </main>
 
   <Footer {...grasonFooter} />
@@ -246,12 +239,12 @@ const priceFeatures = [
   .step__num { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: var(--radius-full); background: var(--color-secondary-azure); color: var(--color-text-on-azure); font-size: var(--font-size-lead); font-weight: var(--font-weight-bold); }
   .checklist { list-style: none; display: grid; gap: var(--space-2); }
   .checklist li { display: flex; align-items: flex-start; gap: var(--space-2); color: var(--color-text); }
-  /* Ceník — přepínač délky předplatného */
+  /* Ceník, přepínač délky předplatného */
   .ptoggle { display: flex; width: max-content; max-width: 100%; margin: 0 auto var(--space-7); gap: 4px; padding: 4px; background: var(--color-neutral-100); border-radius: var(--radius-full); }
   .ptoggle__btn { border: none; background: transparent; padding: var(--space-2) var(--space-5); border-radius: var(--radius-full); font-family: var(--font-sans); font-size: var(--font-size-small); font-weight: var(--font-weight-semibold); color: var(--color-text-muted); cursor: pointer; transition: var(--transition); white-space: nowrap; }
   .ptoggle__btn.is-active { background: var(--color-bg); color: var(--color-text); box-shadow: var(--shadow-sm); }
 
-  /* Ceník — srovnávací tabulka */
+  /* Ceník, srovnávací tabulka */
   .ptable-scroll { overflow-x: auto; }
   .ptable { width: 100%; border-collapse: collapse; min-width: 820px; }
   .ptable th, .ptable td { padding: var(--space-4); text-align: center; }
