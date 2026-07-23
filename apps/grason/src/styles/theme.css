@@ -1,17 +1,17 @@
-/* TÉMA — Grason
+/* TÉMA - Grason
    =========================================================
    Reálné brandové tokeny Grason (modrá identita + tyrkysový accent,
    doplňky žlutá + růžová). Písmo Neue Plak; velké nadpisy Neue Plak
    Extended Black.
    Zdroj barev: grason-web-develop/assets/scss/core/variables.scss
    Zdroj fontů: grason-web-develop/assets/scss/core/fonts.scss
-   Komponenty se NEMĚNÍ — pouze hodnoty zde. Base struktura (typo škála,
+   Komponenty se NEMĚNÍ - pouze hodnoty zde. Base struktura (typo škála,
    spacing) zůstává z @piano/ui; Grason přebarvuje + zaobluje (pilulky).
 */
 @import "@piano/ui/styles/base.css";
 
 /* =========================================================
-   FONT — Neue Plak
+   FONT - Neue Plak
    - 400 (Regular) + 600 (SemiBold) = tělo i nadpisy h2/h3
    - 900 = Neue Plak Extended Black, registrovaná POD STEJNOU rodinou
      "Neue Plak" pod váhou 900 → nadpisy display/h1 (font-weight:900)
@@ -26,7 +26,7 @@
   src: url("/fonts/neue-plak-600.woff2") format("woff2");
 }
 @font-face {
-  /* Neue Plak Extended Black — výrazné display nadpisy (váha 900) */
+  /* Neue Plak Extended Black - výrazné display nadpisy (váha 900) */
   font-family: "Neue Plak"; font-style: normal; font-weight: 900; font-display: swap;
   src: url("/fonts/neue-plak-extended-900.woff2") format("woff2");
 }
@@ -36,7 +36,7 @@
   --font-sans:  "Neue Plak", "Segoe UI", system-ui, -apple-system, sans-serif;
   --font-serif: "Neue Plak", "Segoe UI", system-ui, sans-serif;
 
-  /* Neue Plak má 400 / 600 / 900 — bez 500/700.
+  /* Neue Plak má 400 / 600 / 900 - bez 500/700.
      medium/semibold → 600, bold → 900 (Extended Black, např. velká čísla). */
   --font-weight-medium:   600;
   --font-weight-semibold: 600;
@@ -49,18 +49,18 @@
   --text-h2:      600 var(--font-size-h2)/var(--line-height-heading) var(--font-sans);
   --text-h3:      600 var(--font-size-h3)/var(--line-height-snug) var(--font-sans);
 
-  /* ----- Primary — modrá (brandová identita, CTA) ----- */
+  /* ----- Primary - modrá (brandová identita, CTA) ----- */
   --color-primary:          #343160;
   --color-primary-hover:    #2A2850;
   --color-primary-active:   #20203C;
   --color-primary-bg:       #343160;  /* tmavé modré pozadí sekcí */
   --color-primary-bg-hover: #2A2850;
 
-  /* ----- Secondary — modrá (čísla, zvýraznění) + akcentní role ----- */
+  /* ----- Secondary - modrá (čísla, zvýraznění) + akcentní role ----- */
   --color-secondary:            #343160;  /* deep brand modrá */
-  --color-secondary-terracotta: #F96797;  /* růžová — doplněk (badge / highlight) */
-  --color-secondary-gold:       #FAD531;  /* žlutá — doplněk (eyebrow / proof na tmavém) */
-  --color-secondary-azure:      #3CC1C8;  /* tyrkys — accent */
+  --color-secondary-terracotta: #F96797;  /* růžová - doplněk (badge / highlight) */
+  --color-secondary-gold:       #FAD531;  /* žlutá - doplněk (eyebrow / proof na tmavém) */
+  --color-secondary-azure:      #3CC1C8;  /* tyrkys - accent */
 
   /* ----- Dekorativní gradienty (citace, tým) + text na akcentech ----- */
   --testimonial-grad-1: linear-gradient(150deg, #3CC1C8, #343160);
@@ -80,7 +80,7 @@
   --color-neutral-300: #C3C2D0;
   --color-neutral-400: #B8BBC7;
   --color-neutral-500: #838895;
-  --color-neutral-900: #201D3D; /* tmavě modrá (ne černá — černá není barva Grasonu) */
+  --color-neutral-900: #343160; /* brandová modrá (bodycopy z originálu; ne černá) */
 
   /* ----- Status ----- */
   --color-success:       #2FA39A;
@@ -91,9 +91,9 @@
   --color-error-hover:   #7A0000;
 
   /* ----- Text ----- */
-  --color-text:               #1E1C33; /* tmavá modročerná (nadpisy i body) */
+  --color-text:               #343160; /* brandová modrá (bodycopy z originálu) */
   --color-text-muted:         #838895;
-  --color-text-accent:        #2A9CA2; /* ztmavený tyrkys — čitelný na bílé (eyebrow / odkazy) */
+  --color-text-accent:        #2A9CA2; /* ztmavený tyrkys - čitelný na bílé (eyebrow / odkazy) */
   --color-text-on-dark:       #FFFFFF;
   --color-text-on-dark-muted: rgba(255, 255, 255, 0.74);
 
@@ -103,7 +103,7 @@
   --color-bg-invert: #343160;
   --color-bg-hover:  color-mix(in srgb, var(--color-neutral-900) 4%, #FFFFFF);
 
-  /* Signature gradient (hero) — modrá → tyrkys */
+  /* Signature gradient (hero) - modrá → tyrkys */
   --color-bg-gradient: linear-gradient(118deg, #343160 0%, #3C396F 42%, #3CC1C8 100%);
 
   /* ----- Okraje ----- */
@@ -111,7 +111,7 @@
   --color-border-strong:  #C3C2D0;
   --color-border-on-dark: rgba(255, 255, 255, 0.26);
 
-  /* ----- Radius — Grason zaobluje (friendly app vibe) ----- */
+  /* ----- Radius - Grason zaobluje (friendly app vibe) ----- */
   --radius-sm:   8px;
   --radius-md:   12px;
   --radius-lg:   16px;
@@ -120,23 +120,23 @@
   /* ----- Chamfer vypnut (Grason nemá seříznutý roh) ----- */
   --chamfer-depth: 0px;
 
-  /* ----- Tlačítka — plné pilulky ----- */
+  /* ----- Tlačítka - plné pilulky ----- */
   --btn-radius: var(--radius-full);
   --btn-clip:   none;
 
-  /* ----- Formulářová pole — také pilulky ----- */
+  /* ----- Formulářová pole - také pilulky ----- */
   --field-radius: var(--radius-full);
 
-  /* ----- Stíny — měkké, modře tónované ----- */
+  /* ----- Stíny - měkké, modře tónované ----- */
   --shadow-sm: 0 2px 8px rgba(52, 49, 96, 0.08);
   --shadow-md: 0 8px 24px rgba(52, 49, 96, 0.10);
   --shadow-lg: 0 16px 48px rgba(52, 49, 96, 0.14);
 
-  /* ----- Focus ring — tyrkys ----- */
+  /* ----- Focus ring - tyrkys ----- */
   --shadow-focus: 0 0 0 3px rgba(60, 193, 200, 0.45);
 }
 
-/* Akcentní slovo v nadpisu — <span class="accent"> uvnitř <Heading>.
+/* Akcentní slovo v nadpisu - <span class="accent"> uvnitř <Heading>.
    (Grason nemá serif font; accent řešíme barvou v rámci stejné rodiny.) */
 .accent { color: var(--color-secondary-azure); }
 
