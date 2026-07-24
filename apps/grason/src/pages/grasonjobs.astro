@@ -14,8 +14,16 @@ import Text from '@piano/ui/components/Text.astro';
 import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import Faq from '@piano/ui/components/Faq.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
 import { grasonNav, grasonCta, grasonFooter, grasonLogin } from '../config/nav';
 import { jobsFaqs } from '../config/faq';
+
+const leadProofs = [
+  { icon: 'lucide:megaphone', title: 'Inzerát v appce i na webu', text: 'Zveřejníme na 30 dní.' },
+  { icon: 'lucide:bell', title: 'Cílené oslovení', text: 'Notifikace vhodným kandidátům z gastra.' },
+  { icon: 'lucide:pen-line', title: 'Pomůžeme s textem', text: 'Textaci inzerátu za vás zpracujeme.' },
+  { icon: 'lucide:phone', title: 'Lidská podpora', text: '+420 739 877 799' },
+];
 
 const steps = [
   { title: 'Vystavíte inzerát', text: 'Zadáte pozici, podnik, lokalitu a text inzerátu. S textací vám rádi pomůžeme (copywriting jako příplatek).' },
@@ -64,7 +72,7 @@ const jobsAddons = [
         lead="Hledáte stálého kolegu? Vystavíte inzerát, my ho zveřejníme v aplikaci i na webu, oslovíme vhodné kandidáty notifikacemi a u vyšších balíčků podpoříme i placenou reklamou na sociálních sítích.">
     <Heading slot="title" as="h1" size="display" color="on-dark" align="center">Nábor stálých lidí <span class="accent">na míru</span></Heading>
     <Fragment slot="actions">
-      <Button href="/kontakt">Chci inzerovat pozici</Button>
+      <Button href="#poptavka">Chci inzerovat pozici</Button>
       <Button href="#jak" variant="secondary" onDark>Jak to funguje</Button>
     </Fragment>
   </Hero>
@@ -151,10 +159,15 @@ const jobsAddons = [
     </div>
     <Text size="small" color="muted" align="center" class="jtable__note">Všechny ceny jsou bez DPH.</Text>
 
-    <div class="sec-cta"><Button href="/kontakt">Chci inzerovat pozici</Button></div>
+    <div class="sec-cta"><Button href="#poptavka">Chci inzerovat pozici</Button></div>
   </Section>
 
   <Faq items={jobsFaqs} title="Časté dotazy ke GrasonJobs" background="alt" />
+
+  <LeadForm id="poptavka" variant="full" background="default"
+            title="Chci inzerovat pozici"
+            lead="Nechte nám kontakt, pomůžeme vystavit inzerát a rozjedeme nábor přes GrasonJobs."
+            proofs={leadProofs} successUrl="/dekujeme" />
   </main>
 
   <Footer {...grasonFooter} />
