@@ -15,8 +15,14 @@ export const grasonNav: NavItem[] = [
       { label: 'GrasonJobs', href: '/grasonjobs', description: 'Inzerce a nábor stálých zaměstnanců', icon: 'lucide:megaphone' },
     ],
   },
-  { label: 'Pro brigádníky', href: '/pro-brigadniky' },
-  { label: 'Nabídky zaměstnání', href: 'https://jobs.grason.cz/', external: true },
+  {
+    label: 'Pro brigádníky',
+    href: '/pro-brigadniky',
+    children: [
+      { label: 'Flexibilní práce', href: '/pro-brigadniky', description: 'Pracujte na směny, kdy a kde chcete', icon: 'lucide:smartphone' },
+      { label: 'Nabídky zaměstnání', href: 'https://jobs.grason.cz/', description: 'Stálé pozice v gastru', icon: 'lucide:briefcase', external: true },
+    ],
+  },
   { label: 'O nás', href: '/o-nas' },
   { label: 'Kontakt', href: '/kontakt' },
   pianoNavItem('grason'),
