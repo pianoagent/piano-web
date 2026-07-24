@@ -18,7 +18,7 @@ interface Props {
   background?: 'default' | 'alt' | 'warm' | 'invert' | 'primary' | 'gradient' | 'cyan' | 'yellow' | 'pink';
   space?: 'sm' | 'md' | 'lg';
   container?: 'default' | 'narrow' | 'wide' | 'full' | false;
-  decor?: boolean;   // dekorativní "blob" tvary v rozích (brandový styl)
+  decor?: boolean | 'top' | 'bottom' | 'both';   // dekorativní kruh na hranici sekce (brandový styl)
   as?: string;
   id?: string;
   class?: string;
@@ -37,11 +37,14 @@ const {
 } = Astro.props;
 
 const Tag = as;
+const decorTop = decor === true || decor === 'both' || decor === 'top';
+const decorBottom = decor === true || decor === 'both' || decor === 'bottom';
 const classes = [
   'section',
   `section--bg-${background}`,
   `section--space-${space}`,
-  decor && 'section--decor',
+  decorTop && 'section--decor-top',
+  decorBottom && 'section--decor-bottom',
   className,
 ]
   .filter(Boolean)
@@ -73,14 +76,26 @@ const classes = [
   .section--bg-yellow { background: var(--color-bg-yellow, var(--color-bg-alt)); color: var(--color-text); }
   .section--bg-pink   { background: var(--color-bg-pink, var(--color-bg-alt)); color: var(--color-text); }
 
-  /* Dekorativní "blob" tvary (brandový styl) */
-  .section--decor { overflow: hidden; }
-  .section--decor::before,
-  .section--decor::after {
-    content: ""; position: absolute; border-radius: 50%; z-index: 0; pointer-events: none;
-    background: var(--section-blob, rgba(255, 255, 255, 0.20));
+  /* Dekorativní kruh na hranici sekce (brandový styl Grason).
+     Dvě sousední dekorované sekce sdílejí JEDNU kružnici na společné hranici:
+     horní sekce kreslí spodní půlkruh (::after), dolní sekce horní půlkruh
+     (::before). Stejná geometrie => oba cípy na sebe plynule navazují v jeden
+     kruh. Tint je poloprůhledná tmavá => v každé sekci ztmaví její barvu. */
+  .section--decor-top,
+  .section--decor-bottom {
+    overflow: hidden;
+    --blob-d: clamp(420px, 62vw, 640px);
+    --blob-x: -9vw;
+    --blob-tint: rgba(0, 0, 0, 0.06);
   }
-  .section--decor::before { width: 42vw; max-width: 520px; aspect-ratio: 1; top: -14vw; left: -8vw; }
-  .section--decor::after { width: 52vw; max-width: 640px; aspect-ratio: 1; bottom: -22vw; right: -10vw; background: var(--section-blob-2, rgba(255, 255, 255, 0.12)); }
-  .section--decor > :global(*) { position: relative; z-index: 1; }
+  .section--decor-top::before,
+  .section--decor-bottom::after {
+    content: ""; position: absolute; z-index: 0; pointer-events: none;
+    left: var(--blob-x); width: var(--blob-d); aspect-ratio: 1; border-radius: 50%;
+    background: var(--blob-tint);
+  }
+  .section--decor-top::before   { top:    calc(var(--blob-d) / -2); }
+  .section--decor-bottom::after  { bottom: calc(var(--blob-d) / -2); }
+  .section--decor-top > :global(*),
+  .section--decor-bottom > :global(*) { position: relative; z-index: 1; }
 </style>

@@ -63,7 +63,7 @@ const testimonials = [
   </Hero>
 
   <!-- JAK TO FUNGUJE -->
-  <Section background="cyan" decor space="lg">
+  <Section background="cyan" decor="bottom" space="lg">
     <div class="head head--center">
       <Text size="label" color="default" align="center">Jak to funguje</Text>
       <Heading as="h2" size="h2" align="center">Od stažení appky <span class="accent">k první výplatě</span></Heading>
@@ -80,7 +80,7 @@ const testimonials = [
   </Section>
 
   <!-- OBORY -->
-  <Section background="yellow" decor space="lg">
+  <Section background="yellow" decor="top" space="lg">
     <div class="head head--center">
       <Text size="label" color="default" align="center">Obory</Text>
       <Heading as="h2" size="h2" align="center">Vyberte si z řady <span class="accent">firem a oborů</span></Heading>
@@ -109,7 +109,7 @@ const testimonials = [
   </Section>
 
   <!-- REFERENCE -->
-  <Section background="pink" decor space="lg">
+  <Section background="pink" decor="bottom" space="lg">
     <div class="head head--center">
       <Text size="label" color="default" align="center">Co říkají grasoni</Text>
       <Heading as="h2" size="h2" align="center">Práce, <span class="accent">jak ji chcete žít</span></Heading>
@@ -132,7 +132,7 @@ const testimonials = [
   </Section>
 
   <!-- STÁHNOUT -->
-  <Section id="stahnout" background="primary" space="lg">
+  <Section id="stahnout" background="primary" decor="top" space="lg">
     <div class="head head--center">
       <Text size="label" color="on-dark-muted" align="center">Mobilní aplikace</Text>
       <Heading as="h2" size="h2" align="center" color="on-dark">Mějte Grason <span class="accent">stále po ruce</span></Heading>
@@ -154,6 +154,9 @@ const testimonials = [
   /* Brandové barevné sekce: akcentní slovo navy na světlém, bílé na tmavém hero */
   .pb .accent { color: var(--color-secondary); }
   .pb :global(.heading--on-dark) .accent { color: #fff; }
+
+  /* Na tmavé navy sekci "Stáhnout" musí být dekorační kruh světlý (tmavý by zanikl) */
+  .pb :global(.section--bg-primary) { --blob-tint: rgba(255, 255, 255, 0.06); }
 
   .hero-figure { margin: 0; width: 100%; line-height: 0; }
   .hero-figure img { width: 100%; height: auto; display: block; filter: drop-shadow(0 24px 48px rgba(7, 7, 7, 0.22)); }
