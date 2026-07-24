@@ -20,5 +20,5 @@ export const planFaqs: FaqItem[] = [
 export const jobsFaqs: FaqItem[] = [
   { q: 'Jak funguje nábor přes GrasonJobs?', a: 'Vystavíte inzerát na stálou pozici, my ho zveřejníme v mobilní aplikaci i na webu (na 30 dní) a vhodné kandidáty oslovíme cílenými notifikacemi. Zájemci se přihlásí na pohovor přímo v aplikaci.' },
   { q: 'Pomůžete mi s textem inzerátu?', a: 'Ano, textaci inzerátu za vás rádi zpracujeme jako příplatkovou službu (copywriting).' },
-  { q: 'Kolik GrasonJobs stojí?', a: 'Vybíráte z balíčků Basic (1 490 Kč), Standard (2 990 Kč), Premium (5 990 Kč) a Gold (17 990 Kč), vše bez DPH. K tomu volitelné příplatky (HotJob, copywriting).' },
+  { q: 'Kolik GrasonJobs stojí?', a: 'Vybíráte z balíčků Basic (1 490 Kč), Standard (2 990 Kč), Premium (5 990 Kč) a Gold (17 990 Kč), vše bez DPH. K tomu volitelné příplatky (extra zvýraznění inzerátu, copywriting).' },
 ];

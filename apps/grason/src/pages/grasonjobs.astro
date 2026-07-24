@@ -54,9 +54,9 @@ const jobsFeatures = [
   { label: 'Landing page pro inzerát', vals: [false, false, false, true] },
 ];
 const jobsAddons = [
-  { label: 'HotJob 3 dny', price: '490 Kč' },
-  { label: 'HotJob 7 dní', price: '690 Kč' },
-  { label: 'HotJob 14 dní', price: '990 Kč' },
+  { label: 'Extra zvýraznění na 3 dny', price: '490 Kč' },
+  { label: 'Extra zvýraznění na 7 dní', price: '790 Kč' },
+  { label: 'Extra zvýraznění na 14 dní', price: '990 Kč' },
   { label: 'Copywriting', price: '490 Kč' },
 ];
 ---
@@ -147,7 +147,7 @@ const jobsAddons = [
     </div>
 
     <div class="addons">
-      <h3 class="addons__title">Příplatky</h3>
+      <h3 class="addons__title">Extra zvýraznění inzerátu</h3>
       <ul class="addons__list">
         {jobsAddons.map((a) => (
           <li><span>{a.label}</span><strong>{a.price}</strong></li>
