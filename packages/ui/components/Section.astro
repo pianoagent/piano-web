@@ -1,6 +1,6 @@
 ---
 /**
- * Section — Piano layout primitiv (sekce stránky)
+ * Section, Piano layout primitiv (sekce stránky)
  *
  *   background: "default" | "alt" | "invert" | "primary"   (default "default")
  *   space:      "sm" | "md" | "lg"                          vertikální padding (default "md")
@@ -15,9 +15,10 @@
 import Container from './Container.astro';
 
 interface Props {
-  background?: 'default' | 'alt' | 'warm' | 'invert' | 'primary' | 'gradient';
+  background?: 'default' | 'alt' | 'warm' | 'invert' | 'primary' | 'gradient' | 'cyan' | 'yellow' | 'pink';
   space?: 'sm' | 'md' | 'lg';
   container?: 'default' | 'narrow' | 'wide' | 'full' | false;
+  decor?: boolean;   // dekorativní "blob" tvary v rozích (brandový styl)
   as?: string;
   id?: string;
   class?: string;
@@ -28,6 +29,7 @@ const {
   background = 'default',
   space = 'md',
   container = 'default',
+  decor = false,
   as = 'section',
   id,
   class: className,
@@ -39,6 +41,7 @@ const classes = [
   'section',
   `section--bg-${background}`,
   `section--space-${space}`,
+  decor && 'section--decor',
   className,
 ]
   .filter(Boolean)
@@ -64,4 +67,20 @@ const classes = [
   .section--bg-invert  { background: var(--color-neutral-900); color: var(--color-text-on-dark); }
   .section--bg-primary { background: var(--color-primary-bg); color: var(--color-text-on-dark); }
   .section--bg-gradient { background: var(--color-bg-gradient, var(--color-primary-bg)); color: var(--color-text-on-dark); }
+
+  /* Brandové celoplošné barvy (themeable per web) */
+  .section--bg-cyan   { background: var(--color-bg-cyan, var(--color-bg-alt)); color: var(--color-text); }
+  .section--bg-yellow { background: var(--color-bg-yellow, var(--color-bg-alt)); color: var(--color-text); }
+  .section--bg-pink   { background: var(--color-bg-pink, var(--color-bg-alt)); color: var(--color-text); }
+
+  /* Dekorativní "blob" tvary (brandový styl) */
+  .section--decor { overflow: hidden; }
+  .section--decor::before,
+  .section--decor::after {
+    content: ""; position: absolute; border-radius: 50%; z-index: 0; pointer-events: none;
+    background: var(--section-blob, rgba(255, 255, 255, 0.20));
+  }
+  .section--decor::before { width: 42vw; max-width: 520px; aspect-ratio: 1; top: -14vw; left: -8vw; }
+  .section--decor::after { width: 52vw; max-width: 640px; aspect-ratio: 1; bottom: -22vw; right: -10vw; background: var(--section-blob-2, rgba(255, 255, 255, 0.12)); }
+  .section--decor > :global(*) { position: relative; z-index: 1; }
 </style>

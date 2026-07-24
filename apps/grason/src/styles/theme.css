@@ -101,6 +101,10 @@
   --color-bg:        #FFFFFF;
   --color-bg-alt:    #F6F7FA;
   --color-bg-invert: #343160;
+  /* Brandové celoplošné barvy sekcí (Grason styl) */
+  --color-bg-cyan:   #A3DEE1;
+  --color-bg-yellow: #FBDD5B;
+  --color-bg-pink:   #F96797;
   --color-bg-hover:  color-mix(in srgb, var(--color-neutral-900) 4%, #FFFFFF);
 
   /* Signature gradient (hero) - modrá → tyrkys */

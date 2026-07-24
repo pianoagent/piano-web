@@ -48,7 +48,7 @@ const testimonials = [
       description="Vaše řešení pro flexibilní práci. Pracujte ještě dnes, směny v čase a místě, kdy a kde zrovna můžete. Výplata ihned po směně.">
   <Header brand="Grason" logoSrc="/logos/grason_logo.svg" logoHeight="28px" homeHref="/" nav={grasonNav} cta={grasonCta} login={grasonLogin} />
 
-  <main>
+  <main class="pb">
 
   <!-- HERO -->
   <Hero eyebrow="Pro brigádníky" background="gradient"
@@ -63,9 +63,9 @@ const testimonials = [
   </Hero>
 
   <!-- JAK TO FUNGUJE -->
-  <Section background="default" space="lg">
+  <Section background="cyan" decor space="lg">
     <div class="head head--center">
-      <Text size="label" color="accent" align="center">Jak to funguje</Text>
+      <Text size="label" color="default" align="center">Jak to funguje</Text>
       <Heading as="h2" size="h2" align="center">Od stažení appky <span class="accent">k první výplatě</span></Heading>
     </div>
     <ol class="steps">
@@ -80,9 +80,9 @@ const testimonials = [
   </Section>
 
   <!-- OBORY -->
-  <Section background="alt" space="lg">
+  <Section background="yellow" decor space="lg">
     <div class="head head--center">
-      <Text size="label" color="accent" align="center">Obory</Text>
+      <Text size="label" color="default" align="center">Obory</Text>
       <Heading as="h2" size="h2" align="center">Vyberte si z řady <span class="accent">firem a oborů</span></Heading>
       <Text size="lead" color="muted" align="center" balance>
         Číšník, kuchař nebo třeba kurýr. Sami si svobodně zvolíte, co a pro koho budete dělat.
@@ -109,9 +109,9 @@ const testimonials = [
   </Section>
 
   <!-- REFERENCE -->
-  <Section background="alt" space="lg">
+  <Section background="pink" decor space="lg">
     <div class="head head--center">
-      <Text size="label" color="accent" align="center">Co říkají grasoni</Text>
+      <Text size="label" color="default" align="center">Co říkají grasoni</Text>
       <Heading as="h2" size="h2" align="center">Práce, <span class="accent">jak ji chcete žít</span></Heading>
     </div>
     <div class="quotes">
@@ -151,6 +151,10 @@ const testimonials = [
 </Base>
 
 <style>
+  /* Brandové barevné sekce: akcentní slovo navy na světlém, bílé na tmavém hero */
+  .pb .accent { color: var(--color-secondary); }
+  .pb :global(.heading--on-dark) .accent { color: #fff; }
+
   .hero-figure { margin: 0; width: 100%; line-height: 0; }
   .hero-figure img { width: 100%; height: auto; display: block; filter: drop-shadow(0 24px 48px rgba(7, 7, 7, 0.22)); }
 
