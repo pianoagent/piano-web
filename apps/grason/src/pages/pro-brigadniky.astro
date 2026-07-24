@@ -13,7 +13,9 @@ import Heading from '@piano/ui/components/Heading.astro';
 import Text from '@piano/ui/components/Text.astro';
 import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
+import Faq from '@piano/ui/components/Faq.astro';
 import { grasonNav, grasonCta, grasonFooter, grasonLogin } from '../config/nav';
+import { brigadniciFaqs } from '../config/faq';
 
 const steps = [
   { title: 'Zaregistrujete se', text: 'Stačí vám 3 minuty, mobil a naše aplikace.' },
@@ -107,6 +109,11 @@ const testimonials = [
       ))}
     </ul>
   </Section>
+
+  <!-- FAQ -->
+  <Faq items={brigadniciFaqs} background="alt"
+       title="Časté dotazy brigádníků"
+       lead="Vše, co potřebujete vědět, než se přihlásíte na první směnu." />
 
   <!-- REFERENCE -->
   <Section background="pink" decor="bottom" space="lg">
