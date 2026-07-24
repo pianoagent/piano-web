@@ -98,4 +98,10 @@ const classes = [
   .section--decor-bottom::after  { bottom: calc(var(--blob-d) / -2); }
   .section--decor-top > :global(*),
   .section--decor-bottom > :global(*) { position: relative; z-index: 1; }
+
+  /* Na tmavých sekcích (invert/primary) musí být kruh světlý, jinak zanikne. */
+  .section--bg-invert.section--decor-top,
+  .section--bg-invert.section--decor-bottom,
+  .section--bg-primary.section--decor-top,
+  .section--bg-primary.section--decor-bottom { --blob-tint: rgba(255, 255, 255, 0.06); }
 </style>

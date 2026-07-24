@@ -1,6 +1,6 @@
 ---
 /**
- * O nás — z grason-web-develop/pages/about.vue + page_about_* (cs.json).
+ * O nás, z grason-web-develop/pages/about.vue + page_about_* (cs.json).
  * Sdílené komponenty @piano/ui.
  */
 import Base from '../layouts/Base.astro';
@@ -26,8 +26,8 @@ const team = [
 ];
 ---
 
-<Base title="O nás — Grason"
-      description="Tvoříme svět, kde lidé mohou pracovat, kdykoliv a kdekoliv chtějí. Měníme práci k lepšímu — pro pracovníky i podniky.">
+<Base title="O nás | Grason"
+      description="Tvoříme svět, kde lidé mohou pracovat, kdykoliv a kdekoliv chtějí. Měníme práci k lepšímu, pro pracovníky i podniky.">
   <Header brand="Grason" logoSrc="/logos/grason_logo.svg" logoHeight="28px" homeHref="/" nav={grasonNav} cta={grasonCta} login={grasonLogin} />
 
   <main>
@@ -39,17 +39,17 @@ const team = [
   </Hero>
 
   <!-- POSLÁNÍ -->
-  <Section background="default" space="lg">
+  <Section background="cyan" decor="bottom" space="lg">
     <div class="mission">
       <div class="mission__item">
         <Heading as="h2" size="h2">Přizpůsobte práci svému životu, <span class="accent">ne svůj život práci</span></Heading>
-        <Text size="lead" color="muted" balance>
+        <Text size="lead" color="default" balance>
           Každý si zaslouží práci, která mu umožní mít čas na rodinu, koníčky, studium nebo péči o blízké. My v Grasonu vám pomůžeme být pány svého času.
         </Text>
       </div>
       <div class="mission__item">
         <Heading as="h2" size="h2">Všechno je to <span class="accent">o vás</span></Heading>
-        <Text size="lead" color="muted" balance>
+        <Text size="lead" color="default" balance>
           A o tom, abyste pracovali tak, jak chcete žít. Naším posláním je pomoci vám být pánem svého pracovního času.
         </Text>
       </div>
@@ -57,12 +57,12 @@ const team = [
   </Section>
 
   <!-- HODNOTY -->
-  <Section background="invert" space="lg">
+  <Section background="invert" decor="top" space="lg">
     <div class="head head--center">
       <Text size="label" color="accent" align="center">Naše hodnoty</Text>
       <Heading as="h2" size="h2" align="center" color="on-dark">Podporujeme komunitu a společně <span class="accent">měníme pracovní trh</span></Heading>
       <Text size="lead" color="on-dark-muted" align="center" balance>
-        Slušnost a poctivost jsou pro nás samozřejmé. Dlouhé seznamy toho, co musíte a nesmíte, u nás nenajdete — sázíme na pár základních hodnot a přirozenou poctivost.
+        Slušnost a poctivost jsou pro nás samozřejmé. Dlouhé seznamy toho, co musíte a nesmíte, u nás nenajdete, sázíme na pár základních hodnot a přirozenou poctivost.
       </Text>
     </div>
     <ul class="values">
@@ -90,11 +90,11 @@ const team = [
   </Section>
 
   <!-- CTA -->
-  <Section background="alt" space="lg">
+  <Section background="yellow" space="lg">
     <div class="head head--center">
       <Heading as="h2" size="h2" align="center">Pojďme měnit práci k lepšímu spolu</Heading>
-      <Text size="lead" color="muted" align="center" balance>
-        Ať už sháníte lidi do provozu, nebo hledáte flexibilní práci — Grason je tu pro vás.
+      <Text size="lead" color="default" align="center" balance>
+        Ať už sháníte lidi do provozu, nebo hledáte flexibilní práci, Grason je tu pro vás.
       </Text>
       <div class="cta-actions">
         <Button href="/pro-firmy">Pro firmy</Button>

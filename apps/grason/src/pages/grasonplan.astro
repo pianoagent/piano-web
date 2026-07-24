@@ -145,10 +145,10 @@ const leadProofs = [
     </div>
   </Section>
 
-  <!-- JEŠTĚ VÍCE FUNKCÍ (žluté dlaždice) -->
-  <Section background="default" space="lg">
+  <!-- JEŠTĚ VÍCE FUNKCÍ (žluté dlaždice na navy) -->
+  <Section background="invert" decor="bottom" space="lg">
     <div class="head head--center">
-      <Heading as="h2" size="h2" align="center">Šetřete svůj čas <span class="accent">s ještě více funkcemi</span></Heading>
+      <Heading as="h2" size="h2" align="center" color="on-dark">Šetřete svůj čas <span class="accent">s ještě více funkcemi</span></Heading>
     </div>
     <ul class="feats">
       {moreFeatures.map((f) => (
@@ -165,11 +165,11 @@ const leadProofs = [
   </Section>
 
   <!-- CENÍK -->
-  <Section id="cenik" background="alt" space="lg">
+  <Section id="cenik" background="yellow" decor="top" space="lg">
     <div class="head head--center">
-      <Text size="label" color="accent" align="center">Ceník</Text>
+      <Text size="label" color="default" align="center">Ceník</Text>
       <Heading as="h2" size="h2" align="center">Jednoduchá cena, <span class="accent">první měsíc zdarma</span></Heading>
-      <Text size="lead" color="muted" align="center" balance>
+      <Text size="lead" color="default" align="center" balance>
         Vyzkoušejte GrasonPlan první měsíc zcela zdarma a přesvědčte se, jak vám ulehčí práci s řízením personálu.
       </Text>
     </div>
@@ -261,6 +261,10 @@ const leadProofs = [
   .feats__cta { text-align: center; margin-top: var(--space-8); }
   .feats__note { margin-top: var(--space-3); font-size: var(--font-size-small); color: var(--color-text-muted); }
   .feats__note a { color: var(--color-text); font-weight: var(--font-weight-semibold); }
+  /* Sekce "ještě více funkcí" na navy: bílé popisky, žluté dlaždice vyniknou */
+  .plan :global(.section--bg-invert) .feat__label { color: #fff; }
+  .plan :global(.section--bg-invert) .feats__note { color: var(--color-text-on-dark-muted); }
+  .plan :global(.section--bg-invert) .feats__note a { color: #fff; }
 
   /* Ceník */
   .single-price { max-width: 480px; margin-inline: auto; }

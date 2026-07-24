@@ -144,5 +144,11 @@
    (Grason nemá serif font; accent řešíme barvou v rámci stejné rodiny.) */
 .accent { color: var(--color-secondary-azure); }
 
+/* Na brandových barevných sekcích (cyan/žlutá/růžová) je akcentní slovo navy,
+   ať je vždy čitelné (tyrkys na cyan/žluté má malý kontrast). */
+.section--bg-cyan .accent,
+.section--bg-yellow .accent,
+.section--bg-pink .accent { color: var(--color-secondary); }
+
 /* Kotvy (#cenik apod.) nesmí zajet pod sticky header */
 :where([id]) { scroll-margin-top: 120px; }
