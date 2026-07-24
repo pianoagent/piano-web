@@ -32,11 +32,9 @@ const steps = [
   { title: 'Vyberete a domluvíte nástup', text: 'Z přihlášených si vyberete a domluvíte nástup.' },
 ];
 
-const points = [
-  { icon: 'lucide:megaphone', title: 'Inzerát v appce i na webu', text: 'Vaši pozici zveřejníme v mobilní aplikaci i na webu, na 30 dní.' },
-  { icon: 'lucide:bell', title: 'Cílené oslovení notifikacemi', text: 'Vhodné kandidáty upozorníme cílenými notifikacemi přímo v aplikaci.' },
-  { icon: 'lucide:check-check', title: 'Přihlášení přes aplikaci', text: 'Kandidáti se přihlásí na pohovor nebo zkoušku přímo v appce.' },
-  { icon: 'lucide:trending-up', title: 'Placená propagace navíc', text: 'U balíčků Standard a výš přidáme placenou reklamu na sociálních sítích.' },
+const benefits = [
+  { title: 'Inzerujete tam, kde to dává smysl', text: 'Přímo v gastro komunitě, ne na obecných portálech. Vaše nabídka se neztratí mezi inzeráty na účetní nebo skladníky. Oslovujete lidi, kteří chtějí pracovat právě v gastropodniku.' },
+  { title: 'Vybíráte podle zkušeností a hodnocení', text: 'U každého zájemce vidíte praxi i doporučení od jiných podniků. Snadno si ověříte, koho si pouštíte do kuchyně nebo na plac.' },
 ];
 
 // Ceník GrasonJobs (dle podkladu)
@@ -95,14 +93,13 @@ const jobsAddons = [
 
   <Section background="alt" space="lg">
     <div class="head head--center">
-      <Heading as="h2" size="h2" align="center">Proč <span class="accent">GrasonJobs</span></Heading>
+      <Heading as="h2" size="h2" align="center">Proč inzerovat <span class="accent">u nás?</span></Heading>
     </div>
-    <ul class="cards cards--light">
-      {points.map((p) => (
-        <li class="mini">
-          <span class="mini__icon"><Icon name={p.icon} size="md" /></span>
-          <Heading as="h3" size="h3">{p.title}</Heading>
-          <Text size="small" color="muted">{p.text}</Text>
+    <ul class="benefits">
+      {benefits.map((b) => (
+        <li class="benefit">
+          <Heading as="h3" size="h3">{b.title}</Heading>
+          <Text color="muted">{b.text}</Text>
         </li>
       ))}
     </ul>
@@ -162,6 +159,22 @@ const jobsAddons = [
     <div class="sec-cta"><Button href="#poptavka">Chci inzerovat pozici</Button></div>
   </Section>
 
+  <!-- INZERTNÍ PORTÁL -->
+  <Section background="invert" space="lg">
+    <div class="portal">
+      <Text size="label" color="accent" align="center">jobs.grason.cz</Text>
+      <Heading as="h2" size="h2" align="center" color="on-dark">Inzertní portál <span class="accent">pro gastronomii</span></Heading>
+      <Text size="lead" color="on-dark-muted" align="center" balance>
+        Cílí na naše Grasony z aplikace Flexi i na širokou gastro veřejnost. Zvolíte si z několika možností inzerátů i zvýraznění a vyberete si nového kolegu do týmu.
+      </Text>
+      <Text color="on-dark-muted" align="center">Máte otázky? Napište na info@grason.cz nebo volejte 739 877 799.</Text>
+      <div class="portal__cta">
+        <Button href="#poptavka">Inzerujte ještě dnes</Button>
+        <Button href="https://jobs.grason.cz/" variant="secondary" onDark>Prohlédnout portál</Button>
+      </div>
+    </div>
+  </Section>
+
   <Faq items={jobsFaqs} title="Časté dotazy ke GrasonJobs" background="alt" />
 
   <LeadForm id="poptavka" variant="full" background="default"
@@ -199,6 +212,17 @@ const jobsAddons = [
   .cards--light .mini { background: var(--color-bg); border: 1px solid var(--color-border); box-shadow: var(--shadow-sm); }
   .mini > * + * { margin-top: var(--space-3); }
   .mini__icon { display: inline-flex; color: var(--color-secondary-azure); }
+
+  /* Proč inzerovat - benefit karty */
+  .benefits { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-6); max-width: 960px; margin-inline: auto; }
+  .benefit { background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-7); box-shadow: var(--shadow-sm); }
+  .benefit > * + * { margin-top: var(--space-3); }
+  @media (max-width: 760px) { .benefits { grid-template-columns: 1fr; } }
+
+  /* Inzertní portál */
+  .portal { max-width: 720px; margin-inline: auto; text-align: center; }
+  .portal > * + * { margin-top: var(--space-4); }
+  .portal__cta { display: flex; gap: var(--space-3); justify-content: center; flex-wrap: wrap; margin-top: var(--space-6); }
 
   /* Ceník tabulka */
   .jtable-scroll { overflow-x: auto; }
