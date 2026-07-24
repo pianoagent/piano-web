@@ -33,8 +33,8 @@ const steps = [
 ];
 
 const benefits = [
-  { title: 'Inzerujete tam, kde to dává smysl', text: 'Přímo v gastro komunitě, ne na obecných portálech. Vaše nabídka se neztratí mezi inzeráty na účetní nebo skladníky. Oslovujete lidi, kteří chtějí pracovat právě v gastropodniku.' },
-  { title: 'Vybíráte podle zkušeností a hodnocení', text: 'U každého zájemce vidíte praxi i doporučení od jiných podniků. Snadno si ověříte, koho si pouštíte do kuchyně nebo na plac.' },
+  { icon: 'lucide:target', title: 'Inzerujete tam, kde to dává smysl', text: 'Přímo v gastro komunitě, ne na obecných portálech. Vaše nabídka se neztratí mezi inzeráty na účetní nebo skladníky. Oslovujete lidi, kteří chtějí pracovat právě v gastropodniku.' },
+  { icon: 'lucide:star', title: 'Vybíráte podle zkušeností a hodnocení', text: 'U každého zájemce vidíte praxi i doporučení od jiných podniků. Snadno si ověříte, koho si pouštíte do kuchyně nebo na plac.' },
 ];
 
 // Ceník GrasonJobs (dle podkladu)
@@ -66,13 +66,17 @@ const jobsAddons = [
   <Header brand="Grason" logoSrc="/logos/grason_logo.svg" logoHeight="28px" homeHref="/" nav={grasonNav} cta={grasonCta} login={grasonLogin} />
 
   <main class="pa-jobs">
-  <Hero eyebrow="GrasonJobs" background="invert" align="center"
-        lead="Hledáte stálého kolegu? Vystavíte inzerát, my ho zveřejníme v aplikaci i na webu, oslovíme vhodné kandidáty notifikacemi a u vyšších balíčků podpoříme i placenou reklamou na sociálních sítích.">
-    <Heading slot="title" as="h1" size="display" color="on-dark" align="center">Nábor stálých lidí <span class="accent">na míru</span></Heading>
+  <Hero eyebrow="GrasonJobs" background="invert"
+        lead="Hledáte stálého kolegu? Vystavíte inzerát, my ho zveřejníme v aplikaci i na webu, oslovíme vhodné kandidáty notifikacemi a u vyšších balíčků podpoříme i placenou reklamou na sociálních sítích."
+        usp={[{ text: 'Inzerát v appce i na webu', icon: 'lucide:megaphone' }, { text: 'Cílené oslovení kandidátů', icon: 'lucide:bell' }, { text: 'Placená propagace na sítích', icon: 'lucide:trending-up' }]}>
+    <Heading slot="title" as="h1" size="display" color="on-dark">Nábor stálých lidí <span class="accent">na míru</span></Heading>
     <Fragment slot="actions">
       <Button href="#poptavka">Chci inzerovat pozici</Button>
       <Button href="#jak" variant="secondary" onDark>Jak to funguje</Button>
     </Fragment>
+    <figure slot="media" class="hero-figure">
+      <img src="/images/for-companies-choose-favourite-workers.webp" alt="GrasonJobs, výběr kandidátů podle zkušeností a hodnocení" width="720" height="480" loading="eager" />
+    </figure>
   </Hero>
 
   <Section id="jak" background="default" space="lg">
@@ -98,6 +102,7 @@ const jobsAddons = [
     <ul class="benefits">
       {benefits.map((b) => (
         <li class="benefit">
+          <span class="benefit__icon"><Icon name={b.icon} size="md" /></span>
           <Heading as="h3" size="h3">{b.title}</Heading>
           <Text color="muted">{b.text}</Text>
         </li>
@@ -203,6 +208,10 @@ const jobsAddons = [
   .head > * + * { margin-top: var(--space-3); }
   .sec-cta { display: flex; justify-content: center; margin-top: var(--space-7); }
 
+  /* Hero obrázek (karty kandidátů) na navy pozadí */
+  .hero-figure { margin: 0; width: 100%; line-height: 0; }
+  .hero-figure img { width: 100%; height: auto; display: block; border-radius: var(--radius-lg); filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.35)); }
+
   .steps { list-style: none; display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
   .step { position: relative; padding: var(--space-6); background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); box-shadow: var(--shadow-sm); }
   .step > * + * { margin-top: var(--space-3); }
@@ -217,6 +226,7 @@ const jobsAddons = [
   .benefits { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-6); max-width: 960px; margin-inline: auto; }
   .benefit { background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-7); box-shadow: var(--shadow-sm); }
   .benefit > * + * { margin-top: var(--space-3); }
+  .benefit__icon { display: inline-flex; width: 56px; height: 56px; align-items: center; justify-content: center; border-radius: var(--radius-full); background: color-mix(in srgb, var(--color-secondary) 12%, #fff); color: var(--color-secondary); }
   @media (max-width: 760px) { .benefits { grid-template-columns: 1fr; } }
 
   /* Inzertní portál */
