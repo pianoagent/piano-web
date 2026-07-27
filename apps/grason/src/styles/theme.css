@@ -150,5 +150,7 @@
 .section--bg-yellow .accent,
 .section--bg-pink .accent { color: var(--color-secondary); }
 
-/* Kotvy (#cenik apod.) nesmí zajet pod sticky header */
-:where([id]) { scroll-margin-top: 120px; }
+/* Kotvy (#cenik apod.) nesmí zajet pod sticky header. Hodnota ~ výška sticky
+   hlavičky, aby cílová sekce dosedla přesně pod ni a neodhalila sekci nad ní
+   (dřív 120px odhalovalo u barevných sekcí kus předchozí sekce). */
+:where([id]) { scroll-margin-top: 72px; }
