@@ -1,6 +1,6 @@
 ---
 /**
- * Blog — detail článku (piano.cz/blog/<slug>).
+ * Blog - detail článku (piano.cz/blog/<slug>).
  */
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
@@ -76,6 +76,7 @@ const articleSchema = {
   .prose :global(ul), .prose :global(ol) { margin: 0 0 var(--space-4) var(--space-5); display: flex; flex-direction: column; gap: var(--space-2); }
   .prose :global(li) { list-style: disc; }
   .prose :global(a) { color: var(--color-text-accent); }
+  .prose :global(img) { display: block; width: 100%; height: auto; border-radius: var(--radius-md); margin: var(--space-6) 0; }
   .prose :global(h2:first-child), .prose :global(p:first-child) { margin-top: 0; }
   .cta { margin-top: var(--space-8); }
 </style>
