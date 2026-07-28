@@ -4,7 +4,7 @@ seoTitle: "EET 2.0 od 2027: co znamená pro podnikatele | Piano"
 description: "EET 2.0 se vrací od ledna 2027: evidují se jen platby na místě, méně papírování, žádné nové pokladny, spropitné bez daně a režim EET OFF. Co to znamená pro vás."
 pubDate: 2026-07-27
 image: "/images/blog/eet-je-zpatky-co-to-znamena.webp"
-categories: ["Legislativa a povinnosti", "Platby a hosté"]
+categories: ["EET", "Legislativa a povinnosti", "Platby a hosté"]
 ---
 
 Elektronická evidence tržeb se po několika letech vrací do českých obchodů, restaurací i provozoven služeb. Sněmovna 15. července 2026 schválila zákon, který zavádí takzvanou EET 2.0. Nová verze má být oproti té z let 2016 až 2020 jednodušší a méně nákladná.

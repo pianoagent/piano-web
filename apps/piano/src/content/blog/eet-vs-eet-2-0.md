@@ -3,7 +3,7 @@ title: "EET vs. EET 2.0"
 description: "EET 2.0 startuje v lednu 2027. Žádné povinné účtenky, méně dat, jeden režim. Přehled všech klíčových změn oproti původní EET."
 pubDate: 2026-06-01
 image: "/images/blog/eet-vs-eet-2-0.webp"
-categories: ["Legislativa a povinnosti"]
+categories: ["EET", "Legislativa a povinnosti"]
 ---
 
 ## **Co se mění a co zůstává?**

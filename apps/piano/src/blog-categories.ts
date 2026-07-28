@@ -1,5 +1,5 @@
 /**
- * Kategorie blogu piano.cz — jeden zdroj pravdy (název ↔ slug ↔ SEO copy).
+ * Kategorie blogu piano.cz: jeden zdroj pravdy (název ↔ slug ↔ SEO copy).
  *
  * URL strategie (SEO):
  *   - Článek zůstává na ploché, stabilní URL /blog/<slug> (nevnořuje se pod kategorii).
@@ -9,7 +9,7 @@
  *     ne přes cestu v URL.
  *
  * `name` musí přesně odpovídat hodnotám v `categories:` frontmatteru článků.
- * SEO texty vycházejí z KWA (SEO-podklad-weby-Piano) — pozor na nekanibalizaci
+ * SEO texty vycházejí z KWA (SEO-podklad-weby-Piano): pozor na nekanibalizaci
  * se Septimem (POS/sklady/inventura/kalkulace patří septim.cz, ne sem).
  */
 export interface BlogCategory {
@@ -25,15 +25,22 @@ export const BLOG_CATEGORIES: BlogCategory[] = [
     name: 'Podnikání v gastru',
     slug: 'podnikani-v-gastru',
     title: 'Podnikání v gastru: čísla, marže a řízení restaurace',
-    description: 'Jak řídit restauraci jako byznys — tržby, marže, cenotvorba, náklady a rozhodování podle dat. Praktické návody z provozu pro majitele.',
+    description: 'Jak řídit restauraci jako byznys: tržby, marže, cenotvorba, náklady a rozhodování podle dat. Praktické návody z provozu pro majitele.',
     intro: 'Jak řídit restauraci jako byznys: přehled tržeb, marže, cenotvorba, náklady a rozhodování podle dat. Praktické rady pro majitele a provozní, kteří chtějí mít podnik pod kontrolou.',
+  },
+  {
+    name: 'EET',
+    slug: 'eet',
+    title: 'EET 2.0 od roku 2027: evidence tržeb pro gastro srozumitelně',
+    description: 'Vše o EET a EET 2.0 od roku 2027: koho se týká, co se eviduje, spropitné bez daně, režim EET OFF a jak se připravit. Srozumitelně pro restaurace a gastro.',
+    intro: 'Návrat evidence tržeb v podobě EET 2.0 od roku 2027 na jednom místě. Koho se evidence týká, co a jak se eviduje, co je nového u spropitného a režimu EET OFF a jak se na změny připravit bez stresu. Legislativu překládáme do řeči provozu.',
   },
   {
     name: 'Legislativa a povinnosti',
     slug: 'legislativa-a-povinnosti',
-    title: 'Legislativa a povinnosti v gastru: EET 2.0, DPH, hygiena',
-    description: 'Srozumitelně o povinnostech v gastronomii — EET a EET 2.0 od roku 2027, DPH, hygiena a zákoník práce. Co se mění a co musíte řešit.',
-    intro: 'Co je EET, co přináší EET 2.0 od roku 2027, jak na DPH, hygienu a zákoník práce v gastru. Legislativu překládáme do srozumitelné řeči provozu, ať víte, co a odkdy vás čeká.',
+    title: 'Legislativa a povinnosti v gastru: DPH, hygiena, zákoník práce',
+    description: 'Srozumitelně o povinnostech v gastronomii: DPH, hygiena, zákoník práce a další pravidla provozu. Co se v gastru mění a co musíte řešit.',
+    intro: 'Povinnosti v gastronomii srozumitelně: DPH, hygiena, zákoník práce a další pravidla, která musíte v provozu hlídat. Téma evidence tržeb a EET 2.0 od roku 2027 najdete v samostatné rubrice EET.',
   },
   {
     name: 'Platby a hosté',

@@ -2,12 +2,12 @@
 title: "Spropitné v EET 2.0: malá změna, velké pasti"
 description: "Osvobození dýšek od daně zní jako jednoduchá dobrá zpráva. Pak přijdou provozovny, couvert a kontrola, a z jednoduchého pravidla je najednou věc, na které se dá pohořet."
 pubDate: 2026-06-01
-categories: ["Legislativa a povinnosti", "Platby a hosté"]
+categories: ["EET", "Legislativa a povinnosti", "Platby a hosté"]
 ---
 
-**Lukáš Urban** — CEO, Septim Systems a.s. · 1. června 2026
+**Lukáš Urban**, CEO, Septim Systems a.s. · 1. června 2026
 
-*Osvobození dýšek od daně zní jako jednoduchá dobrá zpráva. Pak přijdou provozovny, couvert a kontrola — a z jednoduchého pravidla je najednou věc, na které se dá pohořet.*
+*Osvobození dýšek od daně zní jako jednoduchá dobrá zpráva. Pak přijdou provozovny, couvert a kontrola, a z jednoduchého pravidla je najednou věc, na které se dá pohořet.*
 
 Od roku 2027 se v gastronomii mění daňový režim spropitného. Ministerstvo financí ho prezentuje jednoduše: dýško bude bez daně. A je to dobrá zpráva, pro číšníky, barmany i majitele. Jenže právě u jednoduše znějících pravidel rozhoduje detail. A těch detailů je u spropitného překvapivě hodně.
 
@@ -132,4 +132,4 @@ Návrh nechává řadu praktických věcí na výkladu. Než přijde finální z
 
 Tyhle otázky nejsou akademické. Týkají se každodenní praxe, zvlášť rozdělování dýšek mezi celý personál, které dnes funguje v drtivé většině provozů.
 
-*Poznámka: článek vychází z návrhu zákona o evidenci tržeb a doprovodných změn (2026), z tiskové zprávy Ministerstva financí z 18. 2. 2026 a z výkladu k důvodové zprávě. Jde o návrh v legislativním procesu — finální znění, čísla i výklad (zejména obvyklost u jednotlivých profesí, rozdíl „zaměstnavatel vs. provozovna" a režim room service) se mohou změnit a je vhodné je ověřit v pokynech GFŘ. Text je informativní, nenahrazuje individuální daňové poradenství.*
+*Poznámka: článek vychází z návrhu zákona o evidenci tržeb a doprovodných změn (2026), z tiskové zprávy Ministerstva financí z 18. 2. 2026 a z výkladu k důvodové zprávě. Jde o návrh v legislativním procesu, finální znění, čísla i výklad (zejména obvyklost u jednotlivých profesí, rozdíl „zaměstnavatel vs. provozovna" a režim room service) se mohou změnit a je vhodné je ověřit v pokynech GFŘ. Text je informativní, nenahrazuje individuální daňové poradenství.*

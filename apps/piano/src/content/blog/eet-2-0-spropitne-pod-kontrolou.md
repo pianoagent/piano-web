@@ -4,7 +4,7 @@ seoTitle: "Spropitné a EET 2.0: pravidla, limity a osvobození | Piano"
 description: "Spropitné v EET 2.0 od roku 2027: osvobození od daní, 7% limit za celé IČO, kdo na úlevu dosáhne a proč se limit hlídá v mzdové účtárně."
 pubDate: 2026-07-15
 image: "/images/blog/eet-2-0-spropitne-pod-kontrolou.webp"
-categories: ["Legislativa a povinnosti", "Platby a hosté"]
+categories: ["EET", "Legislativa a povinnosti", "Platby a hosté"]
 ---
 
 **Lukáš Urban, Head of Sales ve společnosti Piano Group**
