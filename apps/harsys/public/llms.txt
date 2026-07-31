@@ -12,4 +12,4 @@
 - [Savarin](https://savarin-web.pages.dev): Software pro gastro a ubytování
 
 ## Více
-- [Piano — celý ekosystém](https://piano.cz): všechny nástroje pro pohostinství pod jednou střechou
+- [Piano - celý ekosystém](https://piano.cz): všechny nástroje pro pohostinství pod jednou střechou

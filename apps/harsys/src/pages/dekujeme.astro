@@ -1,8 +1,8 @@
 ---
 /**
- * Děkovací stránka — cíl přesměrování po odeslání formuláře (analytika: /dekujeme).
+ * Děkovací stránka - cíl přesměrování po odeslání formuláře (analytika: /dekujeme).
  * Krom poděkování krátce uvádí, že Harsys je součástí Piana + CTA na Piano.
- * noindex — nemá se objevit ve vyhledávání.
+ * noindex - nemá se objevit ve vyhledávání.
  */
 import Base from '../layouts/Base.astro';
 import Header from '@piano/ui/components/Header.astro';
@@ -12,12 +12,12 @@ import Heading from '@piano/ui/components/Heading.astro';
 import Text from '@piano/ui/components/Text.astro';
 import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
-import { harsysNav, harsysCta } from '../config/nav';
+import { harsysNav, harsysCta, harsysFooter } from '../config/nav';
 
 const PIANO_URL = 'https://piano.cz';
 ---
 
-<Base title="Děkujeme — ABX HARSYS" noindex>
+<Base title="Děkujeme - ABX HARSYS" noindex>
   <Header brand="ABX HARSYS" logoSrc="/logos/abx_logo.svg" logoHeight="26px" homeHref="/" nav={harsysNav} cta={harsysCta} />
 
   <main>
@@ -28,7 +28,7 @@ const PIANO_URL = 'https://piano.cz';
       <Text size="h3" align="center" class="ty__hello">Děkujeme!</Text>
       <Heading as="h1" size="h1" align="center">Formulář byl úspěšně odeslán</Heading>
       <Text size="lead" color="muted" align="center" balance>
-        Ozveme se vám co nejdříve — nejpozději následující pracovní den. Děkujeme za váš zájem o Harsys.
+        Ozveme se vám co nejdříve - nejpozději následující pracovní den. Děkujeme za váš zájem o Harsys.
       </Text>
     </div>
   </Section>
@@ -38,12 +38,12 @@ const PIANO_URL = 'https://piano.cz';
       <Text size="label" color="on-dark" align="center" class="piano__eyebrow">Harsys je součástí Piana</Text>
       <Heading as="h2" size="h2" align="center" color="on-dark">Jeden partner pro celý váš provoz</Heading>
       <Text size="lead" color="on-dark-muted" align="center" balance class="piano__lead">
-        Harsys funguje dál úplně stejně jako dřív — nově ale máte přístup ke všem klíčovým
+        Harsys funguje dál úplně stejně jako dřív - nově ale máte přístup ke všem klíčovým
         nástrojům pro váš provoz pod jednou střechou.
       </Text>
       <Text color="on-dark-muted" align="center" balance class="piano__body">
         Piano vzniklo z jednoduchého přesvědčení: majitel restaurace, kavárny nebo hotelu si
-        zaslouží jednoho partnera — ne několik dodavatelů, několik smluv a data, která spolu
+        zaslouží jednoho partnera - ne několik dodavatelů, několik smluv a data, která spolu
         nekomunikují. Méně práce, lepší přehled, vyšší zisk.
       </Text>
       <div class="piano__cta">
@@ -54,7 +54,7 @@ const PIANO_URL = 'https://piano.cz';
 
   </main>
 
-  <Footer legal={[{ label: 'Ochrana osobních údajů', href: '/ochrana-udaju' }]} logoSrc="/logos/abx_by_piano.svg" logoAlt="ABX HARSYS by Piano" parentNote={{ text: 'Harsys je součástí skupiny Piano', href: 'https://piano.cz' }} />
+  <Footer {...harsysFooter} />
 </Base>
 
 <style>

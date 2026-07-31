@@ -1,5 +1,5 @@
 /**
- * Data programu Harsys — varianty + porovnání funkcí.
+ * Data programu Harsys - varianty + porovnání funkcí.
  * Zdroj: podklady starých webů/Harsys/obsah/{index,cenik,srovnani-variant}.md.
  * Jediný zdroj pravdy pro ceník i srovnání variant (ať se hodnoty nerozejdou).
  */
@@ -68,9 +68,9 @@ export const compare: CompareGroup[] = [
       { label: 'Stolová mapa, dělení a přesun účtů', cells: [true, true, true, true] },
       { label: 'Happy Hours (časové ceny)', cells: [false, true, true, true] },
       { label: 'Markování čtečkou čárových kódů', cells: [false, false, true, true] },
-      { label: 'Qerko — rychlé placení mobilem', cells: [true, true, true, true] },
+      { label: 'Qerko - rychlé placení mobilem', cells: [true, true, true, true] },
       { label: 'Propojení s platebními terminály', cells: [true, true, true, true] },
-      { label: 'Kitchen monitor — elektronická bonovačka', cells: ['příplatek', 'příplatek', 'příplatek', 'příplatek'] },
+      { label: 'Kitchen monitor - elektronická bonovačka', cells: ['příplatek', 'příplatek', 'příplatek', 'příplatek'] },
     ],
   },
   {
@@ -80,7 +80,7 @@ export const compare: CompareGroup[] = [
       { label: 'Rozšířené přehledy prodeje', cells: [false, false, true, true] },
       { label: 'Vyhodnocení číšníků (provize z tržby)', cells: [false, false, false, true] },
       { label: 'Online monitor provozu', cells: [true, true, true, true] },
-      { label: 'ABX Viewer — sledování z mobilu', cells: ['příplatek', 'příplatek', 'příplatek', 'příplatek'] },
+      { label: 'ABX Viewer - sledování z mobilu', cells: ['příplatek', 'příplatek', 'příplatek', 'příplatek'] },
       { label: 'SMS report o denní tržbě', cells: [true, true, true, true] },
       { label: 'E-mail reporty o tržbách', cells: [false, false, true, true] },
     ],

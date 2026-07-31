@@ -1,6 +1,6 @@
 ---
 /**
- * ABX HARSYS — Srovnání variant. Nejobsáhlejší stránka.
+ * ABX HARSYS - Srovnání variant. Nejobsáhlejší stránka.
  * Obsah z obsah/srovnani-variant-pokladni-system-pro-restaurace-harsys.md,
  * matice z src/config/program.ts. Komponenty z @piano/ui.
  */
@@ -14,7 +14,7 @@ import Text from '@piano/ui/components/Text.astro';
 import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
-import { harsysNav, harsysCta } from '../config/nav';
+import { harsysNav, harsysCta, harsysFooter } from '../config/nav';
 import { variants, compare } from '../config/program';
 
 const intro = [
@@ -31,13 +31,13 @@ const leadProofs = [
 ---
 
 <Base title="Rozdíly a porovnání variant programu | ABX HARSYS"
-      description="Harsys nabízí 4 varianty programu — Lite, Gold, Gold+NET a Premium. Porovnejte si jejich funkce a ceny a vyberte tu pravou pro váš provoz.">
+      description="Harsys nabízí 4 varianty programu - Lite, Gold, Gold+NET a Premium. Porovnejte si jejich funkce a ceny a vyberte tu pravou pro váš provoz.">
   <Header brand="ABX HARSYS" logoSrc="/logos/abx_logo.svg" logoHeight="26px" homeHref="/" nav={harsysNav} cta={harsysCta} />
 
   <main>
 
   <Hero eyebrow="Srovnání variant" background="gradient"
-        lead="Harsys existuje ve 4 variantách, které se liší výbavou — funkcemi a moduly dostupnými dle varianty. Program lze dále rozšiřovat o příplatkové moduly (ceny na vyžádání).">
+        lead="Harsys existuje ve 4 variantách, které se liší výbavou - funkcemi a moduly dostupnými dle varianty. Program lze dále rozšiřovat o příplatkové moduly (ceny na vyžádání).">
     <Heading slot="title" as="h1" size="display" color="on-dark">Rozdíly a porovnání <span class="accent">variant</span></Heading>
   </Hero>
 
@@ -103,7 +103,7 @@ const leadProofs = [
 
   </main>
 
-  <Footer legal={[{ label: 'Ochrana osobních údajů', href: '/ochrana-udaju' }]} logoSrc="/logos/abx_by_piano.svg" logoAlt="ABX HARSYS by Piano" parentNote={{ text: 'Harsys je součástí skupiny Piano', href: 'https://piano.cz' }} />
+  <Footer {...harsysFooter} />
 </Base>
 
 <style>

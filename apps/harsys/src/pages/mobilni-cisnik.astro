@@ -1,6 +1,6 @@
 ---
 /**
- * ABX HARSYS — Mobilní číšník (AMC).
+ * ABX HARSYS - Mobilní číšník (AMC).
  * Obsah z obsah/mobilni-cisnik-software-pro-restaurace-amc.md. Komponenty z @piano/ui.
  */
 import Base from '../layouts/Base.astro';
@@ -14,13 +14,13 @@ import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
-import { harsysNav, harsysCta } from '../config/nav';
+import { harsysNav, harsysCta, harsysFooter } from '../config/nav';
 
 const benefits = [
   { icon: 'lucide:timer', title: 'Šetří čas i peníze', text: 'Vyšší obrátkovost zejména ve špičkách. Ušetřený čas věnuje personál lepší péči o hosty.' },
   { icon: 'lucide:credit-card', title: 'Platby kartou (NFC)', text: 'Zařízení Sunmi V3 s podporou NFC umožňuje přijímat platby kartou přímo u stolu.' },
   { icon: 'lucide:hourglass', title: 'Hosté čekají méně', text: 'Přijetí objednávky i její zaplacení probíhá svižněji, zejména při platbě NFC.' },
-  { icon: 'lucide:graduation-cap', title: 'Snadné zaškolení', text: 'Intuitivní ovládání navržené s ohledem na ergonomii — obsluha ho zvládne během pár minut.' },
+  { icon: 'lucide:graduation-cap', title: 'Snadné zaškolení', text: 'Intuitivní ovládání navržené s ohledem na ergonomii - obsluha ho zvládne během pár minut.' },
 ];
 
 const features = [
@@ -52,12 +52,12 @@ const leadProofs = [
 ---
 
 <Base title="Mobilní číšník pro restaurace (AMC) | ABX HARSYS"
-      description="Mobilní číšník rozšiřuje pokladnu Harsys — objednávky i platby kartou (NFC) přímo od stolu. Na telefonu, tabletu nebo terminálu Sunmi V3 s tiskárnou.">
+      description="Mobilní číšník rozšiřuje pokladnu Harsys - objednávky i platby kartou (NFC) přímo od stolu. Na telefonu, tabletu nebo terminálu Sunmi V3 s tiskárnou.">
   <Header brand="ABX HARSYS" logoSrc="/logos/abx_logo.svg" logoHeight="26px" homeHref="/" nav={harsysNav} cta={harsysCta} />
 
   <main>
   <Hero eyebrow="Mobilní číšník (AMC)" background="gradient"
-        lead="Mobilní aplikace rozšiřující velkou pokladnu. Provozujete ji na terminálu s tiskárnou, na běžném telefonu nebo tabletu s Androidem — objednávka i platba probíhá přímo u stolu.">
+        lead="Mobilní aplikace rozšiřující velkou pokladnu. Provozujete ji na terminálu s tiskárnou, na běžném telefonu nebo tabletu s Androidem - objednávka i platba probíhá přímo u stolu.">
     <Heading slot="title" as="h1" size="display" color="on-dark">Mobilní číšník <span class="accent">usnadní práci</span></Heading>
     <Fragment slot="actions">
       <Button href="#poptavka">Chci vědět víc</Button>
@@ -92,7 +92,7 @@ const leadProofs = [
             proofs={leadProofs} successUrl="/dekujeme" />
 
   </main>
-  <Footer legal={[{ label: 'Ochrana osobních údajů', href: '/ochrana-udaju' }]} />
+  <Footer {...harsysFooter} />
 </Base>
 
 <style>

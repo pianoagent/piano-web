@@ -1,6 +1,6 @@
 ---
 /**
- * ABX HARSYS — Rozšíření a doplňkové moduly.
+ * ABX HARSYS - Rozšíření a doplňkové moduly.
  * Obsah z obsah/rozsireni-pokladni-system-pro-restaurace-harsys.md. Komponenty z @piano/ui.
  */
 import Base from '../layouts/Base.astro';
@@ -13,7 +13,7 @@ import Text from '@piano/ui/components/Text.astro';
 import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
-import { harsysNav, harsysCta } from '../config/nav';
+import { harsysNav, harsysCta, harsysFooter } from '../config/nav';
 
 const modules = [
   {
@@ -23,7 +23,7 @@ const modules = [
   },
   {
     img: '/images/mod-viewer.webp', title: 'ABX Viewer', href: null,
-    text: 'Mobilní aplikace pro náhled do pokladního systému — „restaurace v mobilu". Uvidíte, co se v podniku děje, i jaké zboží dochází.',
+    text: 'Mobilní aplikace pro náhled do pokladního systému - „restaurace v mobilu". Uvidíte, co se v podniku děje, i jaké zboží dochází.',
     points: ['Android i iOS, neomezený počet telefonů', 'Data dostupná i offline', 'Bez měsíčních poplatků'],
   },
   {
@@ -32,7 +32,7 @@ const modules = [
     points: ['Objednávku vytvoříte mnohem rychleji', 'Android, neomezený počet zařízení', 'Bez měsíčních poplatků a provizí'],
   },
   {
-    img: '/images/ebony-monitor.webp', title: 'eBony — kitchen monitor', href: '/ebony-kitchen-monitor',
+    img: '/images/ebony-monitor.webp', title: 'eBony - kitchen monitor', href: '/ebony-kitchen-monitor',
     text: 'Elektronické bony na obrazovce v kuchyni doplní nebo nahradí papírové objednávky. Dokonalý přehled o tom, co se vydává.',
     points: ['Objednávky ihned po namarkování', 'Změna pořadí, časy vyřízení', 'Režimy restaurace i fastfood'],
   },
@@ -43,7 +43,7 @@ const modules = [
   },
   {
     img: '/images/int-autset.webp', title: 'Automatické naskladňování (AUTSET)', href: '/integrace',
-    text: 'Dodací listy a faktury od dodavatelů se automaticky přenesou do Harsysu — naskladníte je na pár kliků.',
+    text: 'Dodací listy a faktury od dodavatelů se automaticky přenesou do Harsysu - naskladníte je na pár kliků.',
     points: ['Konec přepisování dokladů', 'Makro, Bidfood, Fany a další', 'Minimalizace chyb'],
   },
 ];
@@ -52,7 +52,7 @@ const licenses = [
   'Systém lze rozšířit o další pokladní místa i sklady.',
   'Počet kancelářských míst není omezen.',
   'Přistupovat můžete z domova i odjinud přes internet.',
-  'Data zůstávají v bezpečí na vašem serveru — s nikým je nesdílíte.',
+  'Data zůstávají v bezpečí na vašem serveru - s nikým je nesdílíte.',
 ];
 
 const leadProofs = [
@@ -109,7 +109,7 @@ const leadProofs = [
             proofs={leadProofs} successUrl="/dekujeme" />
 
   </main>
-  <Footer legal={[{ label: 'Ochrana osobních údajů', href: '/ochrana-udaju' }]} />
+  <Footer {...harsysFooter} />
 </Base>
 
 <style>

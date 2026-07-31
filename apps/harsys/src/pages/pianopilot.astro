@@ -1,6 +1,6 @@
 ---
 /**
- * ABX HARSYS — Napojení Piano Pilot na Harsys (návod).
+ * ABX HARSYS - Napojení Piano Pilot na Harsys (návod).
  * Obsah z obsah/pianopilot.md. Komponenty z @piano/ui.
  */
 import Base from '../layouts/Base.astro';
@@ -13,15 +13,15 @@ import Text from '@piano/ui/components/Text.astro';
 import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
-import { harsysNav, harsysCta } from '../config/nav';
+import { harsysNav, harsysCta, harsysFooter } from '../config/nav';
 
 const steps = [
   { t: 'Dokončit registraci', d: 'Jakmile vám dorazí registrační e-mail, klikněte na tlačítko [Dokončit registraci].' },
-  { t: 'Vyplnit formulář', d: 'V prohlížeči se otevře formulář — pečlivě jej vyplňte.' },
+  { t: 'Vyplnit formulář', d: 'V prohlížeči se otevře formulář - pečlivě jej vyplňte.' },
   { t: 'Přihlásit se do Piana', d: 'Přejděte na app.piano.cz a přihlaste se údaji z předchozího kroku.' },
-  { t: 'Spárovat s pokladnou', d: 'V menu klikněte na [Integrace] a vpravo na [Spárovat s pokladnou]. Buďte připraveni spustit pokladnu — na celou akci máte max. 10 minut.' },
+  { t: 'Spárovat s pokladnou', d: 'V menu klikněte na [Integrace] a vpravo na [Spárovat s pokladnou]. Buďte připraveni spustit pokladnu - na celou akci máte max. 10 minut.' },
   { t: 'Registrovat provozovnu v Harsysu', d: 'V Harsysu jděte do Nástroje → Nastavení systému → záložka Harsys → Cloud a klikněte na [Registrovat novou provozovnu]. Vyplňte e-mail (stejný jako u registrace do Piana), PIN z kroku 4, ID provozovny a název. Potvrďte [OK].' },
-  { t: 'Restart služby — hotovo', d: 'Pokud vše proběhlo správně, vyplní se „Client ID" a „Secret". Dejte [Restart služby] a je hotovo.' },
+  { t: 'Restart služby - hotovo', d: 'Pokud vše proběhlo správně, vyplní se „Client ID" a „Secret". Dejte [Restart služby] a je hotovo.' },
 ];
 
 const leadProofs = [
@@ -32,12 +32,12 @@ const leadProofs = [
 ---
 
 <Base title="Napojení Piano Pilot na Harsys | ABX HARSYS"
-      description="Návod, jak propojit pokladnu Harsys s platformou Piano (Piano Pilot) — od dokončení registrace přes spárování s pokladnou až po restart služby.">
+      description="Návod, jak propojit pokladnu Harsys s platformou Piano (Piano Pilot) - od dokončení registrace přes spárování s pokladnou až po restart služby.">
   <Header brand="ABX HARSYS" logoSrc="/logos/abx_logo.svg" logoHeight="26px" homeHref="/" nav={harsysNav} cta={harsysCta} />
 
   <main>
   <Hero eyebrow="PianoPilot" background="gradient"
-        lead="Propojte pokladnu Harsys s platformou Piano. Průvodce vás provede od dokončení registrace až po spárování a spuštění — zvládnete to během pár minut.">
+        lead="Propojte pokladnu Harsys s platformou Piano. Průvodce vás provede od dokončení registrace až po spárování a spuštění - zvládnete to během pár minut.">
     <Heading slot="title" as="h1" size="display" color="on-dark">Napojení <span class="accent">Piano Pilot</span> na Harsys</Heading>
   </Hero>
 
@@ -61,7 +61,7 @@ const leadProofs = [
             proofs={leadProofs} successUrl="/dekujeme" />
 
   </main>
-  <Footer legal={[{ label: 'Ochrana osobních údajů', href: '/ochrana-udaju' }]} />
+  <Footer {...harsysFooter} />
 </Base>
 
 <style>

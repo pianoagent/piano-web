@@ -1,6 +1,6 @@
 ---
 /**
- * ABX HARSYS — Integrace / napojení na další systémy.
+ * ABX HARSYS - Integrace / napojení na další systémy.
  * Obsah z obsah/integrace-napojeni-pokladna-harsys-na-jine-systemy.md. Komponenty z @piano/ui.
  */
 import Base from '../layouts/Base.astro';
@@ -13,25 +13,25 @@ import Text from '@piano/ui/components/Text.astro';
 import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
-import { harsysNav, harsysCta } from '../config/nav';
+import { harsysNav, harsysCta, harsysFooter } from '../config/nav';
 
 const integrations = [
   {
     img: '/images/platebni-terminal.webp', tag: 'Platby', title: 'Platební terminály',
-    text: 'Terminál propojený s pokladnou — částka se přenese automaticky, bez chyb z ručního zadávání. Spolupracujeme s Global Payments, Teya, ČSOB a EVO (Moneta).',
+    text: 'Terminál propojený s pokladnou - částka se přenese automaticky, bez chyb z ručního zadávání. Spolupracujeme s Global Payments, Teya, ČSOB a EVO (Moneta).',
     points: ['Uzávěrky terminálu z kasy', 'NFC platby i z mobilního číšníka', 'Napojení zdarma při zprostředkování'],
     href: '/platebni-terminal',
   },
   {
     img: '/images/int-qerko.webp', tag: 'Platby', title: 'Platby Qerko',
     text: 'Qerko umožňuje rozdělení a platbu účtu zákazníkem přímo u stolu, bez asistence obsluhy. Host jednoduše sám zaplatí a odejde.',
-    points: ['Rychlejší uvolnění stolu', 'Vyšší spropitné než v hotovosti', 'Účtenka mailem — méně papíru'],
+    points: ['Rychlejší uvolnění stolu', 'Vyšší spropitné než v hotovosti', 'Účtenka mailem - méně papíru'],
     href: null,
   },
   {
     img: '/images/mod-rozvoz2.webp', tag: 'Prodej online', title: 'E-shop kestolu.cz',
-    text: 'E-shop vyvinutý speciálně pro Harsys — ideální pro pizzerie a rozvozové či take-away podniky. Ceník i obrázky nastavíte přímo v Harsysu.',
-    points: ['Objednávky padají přímo do pokladny', 'Objednávky od stolu přes QR kód', 'Bez webařů — vše měníte sami'],
+    text: 'E-shop vyvinutý speciálně pro Harsys - ideální pro pizzerie a rozvozové či take-away podniky. Ceník i obrázky nastavíte přímo v Harsysu.',
+    points: ['Objednávky padají přímo do pokladny', 'Objednávky od stolu přes QR kód', 'Bez webařů - vše měníte sami'],
     href: null,
   },
   {
@@ -61,7 +61,7 @@ const leadProofs = [
 
   <main>
   <Hero eyebrow="Integrace" background="gradient"
-        lead="Harsys se umí napojit na další zařízení a systémy dalších poskytovatelů — online platební systémy, e-shopy, hotelové programy, automatické naskladňování a další.">
+        lead="Harsys se umí napojit na další zařízení a systémy dalších poskytovatelů - online platební systémy, e-shopy, hotelové programy, automatické naskladňování a další.">
     <Heading slot="title" as="h1" size="display" color="on-dark">Napojení na <span class="accent">další systémy</span></Heading>
   </Hero>
 
@@ -90,7 +90,7 @@ const leadProofs = [
             proofs={leadProofs} successUrl="/dekujeme" />
 
   </main>
-  <Footer legal={[{ label: 'Ochrana osobních údajů', href: '/ochrana-udaju' }]} />
+  <Footer {...harsysFooter} />
 </Base>
 
 <style>
