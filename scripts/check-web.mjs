@@ -72,7 +72,9 @@ function attr(tag, name) {
  * Fallback: literální <title> a <meta name="description"> (statické HTML v dist).
  */
 function pageMeta(txt) {
-  const open = txt.match(/<(Base|Layout|BaseHead)\b[\s\S]*?>/);
+  /* Obalova komponenta stranky je prvni tag na zacatku radku bez odsazeni:
+     <Base>, ale i wrappery jako <SegmentPage>, <IntegracePage>, <LegalPage>. */
+  const open = txt.match(/^<[A-Z][A-Za-z0-9]*\b[\s\S]*?>/m);
   if (open) {
     const tag = open[0];
     const title = attr(tag, 'title');
@@ -97,7 +99,9 @@ function auditReport(files) {
     if (!title && !dynamic) warn.push(`${f}: chybí title`);
     if (title) {
       const len = title.length;
-      if (len < TITLE_MIN || len > TITLE_MAX) warn.push(`${f}: délka title ${len} zn. (cíl ${TITLE_MIN}–${TITLE_MAX}): „${title}"`);
+      /* U servisnich stranek je kratky title v poradku (Kontakt, Děkujeme…) */
+      const utility = /\/(kontakt|dekujeme|cookies|ochrana-udaju|ochrana-osobnich-udaju|obchodni-podminky|kariera)\b/.test(f);
+      if (len > TITLE_MAX || (len < TITLE_MIN && !utility)) warn.push(`${f}: délka title ${len} zn. (cíl ${TITLE_MIN}–${TITLE_MAX}): „${title}"`);
       /* CLAUDE.md: meta title ve tvaru „Text | Název webu" */
       if (site && !title.endsWith(`| ${site}`)) warn.push(`${f}: title není ve tvaru „Text | ${site}": „${title}"`);
     }
