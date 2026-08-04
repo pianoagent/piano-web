@@ -1,11 +1,11 @@
 ---
 /**
- * Header — Piano (sticky navigace + mobilní drawer)
+ * Header: Piano (sticky navigace + mobilní drawer)
  *
  *   transparent: boolean → overlay přes hero (světlý text), po scrollu zpevní na bílou
  *
  * Navigace se čte z src/config/nav.ts (obsah oddělen od vzhledu).
- * Logo je prozatím textový wordmark + piano-mark ikona — výměna za reálné SVG
+ * Logo je prozatím textový wordmark + piano-mark ikona, výměna za reálné SVG
  * je triviální (nahradit obsah .header__logo).
  */
 import Icon from './Icon.astro';
@@ -318,7 +318,7 @@ const classes = ['header', transparent && 'header--transparent'].filter(Boolean)
     transition: var(--transition);
     z-index: 300;
   }
-  /* Neviditelný „most" přes mezeru pod lištou — udrží hover při přejezdu kurzoru */
+  /* Neviditelný „most" přes mezeru pod lištou: udrží hover při přejezdu kurzoru */
   .header__mega::before {
     content: "";
     position: absolute;

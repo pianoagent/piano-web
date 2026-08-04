@@ -1,6 +1,6 @@
-/* Piano UI — BASE tokeny (struktura, sdílené napříč všemi weby)
+/* Piano UI: BASE tokeny (struktura, sdílené napříč všemi weby)
    =========================================================
-   Tady NEJSOU barvy ani fonty — ty definuje téma konkrétního webu
+   Tady NEJSOU barvy ani fonty: ty definuje téma konkrétního webu
    (apps/<web>/src/styles/theme.css). Base drží jen strukturu:
    typografickou škálu, spacing, radius, chamfer, stíny, pohyb, layout.
    Komponenty čtou pouze CSS proměnné → web se přebarví výměnou tématu.
@@ -8,7 +8,7 @@
 
 :root {
   /* =========================================================
-     TYPOGRAFIE — škála (font-family řeší téma přes --font-sans/serif)
+     TYPOGRAFIE: škála (font-family řeší téma přes --font-sans/serif)
      ========================================================= */
   --font-weight-regular:  400;
   --font-weight-medium:   500;
@@ -47,7 +47,7 @@
   --text-label:   var(--font-weight-semibold) var(--font-size-label)/var(--line-height-tight) var(--font-sans);
 
   /* =========================================================
-     LAYOUT — sdílená šířka obsahu
+     LAYOUT: sdílená šířka obsahu
      ========================================================= */
   --container-max:        1200px;
   --container-max-narrow: 760px;
@@ -77,14 +77,14 @@
   --radius-lg:   4px;
   --radius-full: 9999px;
 
-  /* Tlačítka — tvar (téma může přepsat; výchozí = Piano ostrý roh + chamfer) */
+  /* Tlačítka: tvar (téma může přepsat; výchozí = Piano ostrý roh + chamfer) */
   --btn-radius: 0;
   --btn-clip:   var(--chamfer-clip-sm);
 
   /* =========================================================
-     CHAMFER — signature seříznutý roh, vždy 18,85°
+     CHAMFER: signature seříznutý roh, vždy 18,85°
      ========================================================= */
-  --chamfer-cot:   2.9296;   /* 1 / tan(18,85°) — NEMĚNIT, drží úhel */
+  --chamfer-cot:   2.9296;   /* 1 / tan(18,85°), NEMĚNIT, drží úhel */
   --chamfer-depth: 10px;
   --chamfer-clip:    polygon(calc(var(--chamfer-depth) * var(--chamfer-cot)) 0, 100% 0, 100% 100%, 0 100%, 0 var(--chamfer-depth));
   --chamfer-clip-sm: var(--chamfer-clip);
@@ -112,7 +112,7 @@
    ========================================================= */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* Responzivní média — nikdy nepřetečou rodiče (hlavní příčina mobilního scrollu do stran).
+/* Responzivní média: nikdy nepřetečou rodiče (hlavní příčina mobilního scrollu do stran).
    Konkrétnější pravidla v komponentách (pevná výška, object-fit) mají přednost. */
 img, svg, video, canvas, iframe, picture { max-width: 100%; }
 img, video { height: auto; }
@@ -135,6 +135,6 @@ body {
   color: var(--color-text);
   background: var(--color-bg);
   position: relative;
-  overflow-x: clip;   /* pojistka i na body — html clip sám na mobilu (iOS) občas nestačí */
+  overflow-x: clip;   /* pojistka i na body, html clip sám na mobilu (iOS) občas nestačí */
   max-width: 100%;
 }

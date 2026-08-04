@@ -1,12 +1,12 @@
 ---
 /**
- * Testimonials — SDÍLENÉ reference v kartách s avatary.
+ * Testimonials: SDÍLENÉ reference v kartách s avatary.
  * Položky přes prop `items`. Barvy avatarů (gradienty) se přebírají z tématu:
  * v theme.css daného webu lze definovat --testimonial-grad-1/2/3;
  * bez nich se použije gradient z --color-primary → --color-secondary.
  *
- *   items       — [{ initials, headline, quote, author, role, michelin?, photo? }]
- *   title, lead, eyebrow, background — hlavička sekce
+ *   items: [{ initials, headline, quote, author, role, michelin?, photo? }]
+ *   title, lead, eyebrow, background, hlavička sekce
  */
 import Section from './Section.astro';
 import Heading from './Heading.astro';
@@ -32,7 +32,7 @@ const { items, title = 'Důvěřují nám ti nejlepší', lead, eyebrow = 'Refer
             <span class="quote__role">{t.role}{t.michelin && <span class="quote__michelin"> · Michelin ★</span>}</span>
           </div>
           {t.photo
-            ? <span class="quote__avatar quote__avatar--photo"><img src={t.photo} alt={t.author} loading="lazy" /></span>
+            ? <span class="quote__avatar quote__avatar--photo"><img src={t.photo} alt={t.author} width="84" height="84" loading="lazy" decoding="async" /></span>
             : <span class="quote__avatar" aria-hidden="true">{t.initials}</span>}
         </div>
         <span class="quote__mark"><Icon name="lucide:quote" size="md" /></span>

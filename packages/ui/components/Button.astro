@@ -1,6 +1,6 @@
 ---
 /**
- * Button — Piano primitivní komponenta
+ * Button: Piano primitivní komponenta
  *
  * Varianty:
  *   variant: "primary" | "secondary" | "ghost"
@@ -93,7 +93,7 @@ const classes = ['btn', `btn--${variant}`, `btn--${size}`, full && 'btn--full', 
     width: 100%;
   }
 
-  /* Primary — karmínová CTA se signature zkosením */
+  /* Primary: karmínová CTA se signature zkosením */
   .btn--primary {
     background: var(--btn-bg, var(--color-primary));
     color: var(--color-text-on-dark);
@@ -109,7 +109,7 @@ const classes = ['btn', `btn--${variant}`, `btn--${size}`, full && 'btn--full', 
     border-color: var(--btn-bg-active, var(--color-primary-active));
   }
 
-  /* Secondary — obyčejný obdélník s rámečkem (normální rohy) */
+  /* Secondary: obyčejný obdélník s rámečkem (normální rohy) */
   .btn--secondary {
     background: transparent;
     color: var(--color-text);
@@ -123,7 +123,7 @@ const classes = ['btn', `btn--${variant}`, `btn--${size}`, full && 'btn--full', 
     background: var(--color-neutral-50);
   }
 
-  /* Ghost — jen text */
+  /* Ghost: jen text */
   .btn--ghost {
     background: transparent;
     color: var(--color-text-accent);
@@ -135,7 +135,7 @@ const classes = ['btn', `btn--${variant}`, `btn--${size}`, full && 'btn--full', 
     color: var(--color-primary-hover);
   }
 
-  /* Na tmavém pozadí — světlý text / rámeček */
+  /* Na tmavém pozadí: světlý text / rámeček */
   .btn--on-dark.btn--secondary {
     color: var(--color-text-on-dark);
     border-color: rgba(255, 255, 255, 0.55);

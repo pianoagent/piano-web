@@ -1,5 +1,5 @@
 /**
- * Navigace — datová definice (obsah oddělen od vzhledu).
+ * Navigace: datová definice (obsah oddělen od vzhledu).
  * Header i Footer čtou odtud. Úprava menu = editace tohoto souboru.
  *
  * Pozn.: URL jsou prozatímní (struktura sjednoceného piano.cz). Až vznikne
@@ -17,7 +17,7 @@ export interface NavLink {
   external?: boolean; // odkaz mimo aktuální web → otevřít v nové kartě (target=_blank)
 }
 
-/** Mega menu panel — featured sloupec + sloupce odkazů + footer */
+/** Mega menu panel: featured sloupec + sloupce odkazů + footer */
 export interface MegaPanel {
   featured?: { label?: string; items: NavLink[] };
   columns: { label?: string; links: NavLink[] }[];
@@ -41,10 +41,10 @@ export const products: NavLink[] = [
 ];
 
 // „Produkty" na piano.cz = celý Piano ekosystém (stejný panel jako na ostatních
-// webech, jen label „Produkty"). Nic se nevynechává — piano.cz je rozcestník.
+// webech, jen label „Produkty"). Nic se nevynechává: piano.cz je rozcestník.
 const produktyMega: MegaPanel = buildPianoMega(undefined, true);
 
-/** Mega menu — Řešení (podle problému) */
+/** Mega menu: Řešení (podle problému) */
 const reseniMega: MegaPanel = {
   columns: [
     {
@@ -70,7 +70,7 @@ export const mainNav: NavItem[] = [
 // Hlavní CTA vždy míří na poptávkový formulář dole na aktuální stránce.
 export const headerCta: NavLink = { label: 'Domluvit demo', href: '#poptavka' };
 
-/** Sekundární odkazy (firma) — používá Footer */
+/** Sekundární odkazy (firma): používá Footer */
 export const companyNav: NavLink[] = [
   { label: 'O nás', href: '/o-nas' },
   { label: 'Blog', href: '/blog' },
@@ -78,13 +78,13 @@ export const companyNav: NavLink[] = [
   { label: 'Kontakt', href: '#kontakt' },
 ];
 
-/** Právní odkazy — spodní lišta footeru */
+/** Právní odkazy: spodní lišta footeru */
 export const legalNav: NavLink[] = [
   { label: 'Obchodní podmínky', href: '/obchodni-podminky' },
   { label: 'Zásady ochrany osobních údajů', href: '/gdpr' },
 ];
 
-/** Sociální sítě — `icon` je název ikony pro <Icon> (sada Lucide) */
+/** Sociální sítě`icon` je název ikony pro <Icon> (sada Lucide) */
 export const socialLinks: { label: string; href: string; icon: string }[] = [
   { label: 'Facebook', href: 'https://www.facebook.com/pianogroupcz/', icon: 'lucide:facebook' },
   { label: 'Instagram', href: 'https://www.instagram.com/pianogroupcz/', icon: 'lucide:instagram' },
@@ -92,7 +92,7 @@ export const socialLinks: { label: string; href: string; icon: string }[] = [
   { label: 'YouTube', href: 'https://www.youtube.com/@pianogroupcz', icon: 'lucide:youtube' },
 ];
 
-/** Kontaktní údaje — Piano Solutions (sídlo dle obchodního rejstříku) */
+/** Kontaktní údaje: Piano Solutions (sídlo dle obchodního rejstříku) */
 export const contact = {
   company: 'Piano Solutions s.r.o.',
   email: 'info@piano.cz',

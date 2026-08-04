@@ -1,13 +1,13 @@
 ---
 /**
- * LeadForm — Piano sekční blok (poptávkový formulář → CRM)
+ * LeadForm: Piano sekční blok (poptávkový formulář → CRM)
  *
  * Dvě varianty pro A/B testování (lze je v sekci jednoduše prohodit):
  *   variant="full"     → jméno, e-mail, telefon, název podniku, město (+ souhlas)
  *   variant="callback" → jen telefon ("zavolejte mi")
  *
  * Layout: formulář je úzký, vedle něj sloupec s „proofs" (důvody důvěry).
- * Telefon je bez předvolby — přijme i SK a jiná zahraniční čísla.
+ * Telefon je bez předvolby, přijme i SK a jiná zahraniční čísla.
  *
  * Props:
  *   variant?:     "full" | "callback"     (default "full")
@@ -20,7 +20,7 @@
  *   space?:       "sm" | "md" | "lg"
  *   id?:          string
  *
- * Odesílá se přes fetch (progressive enhancement) — skryté pole `form_variant`
+ * Odesílá se přes fetch (progressive enhancement), skryté pole `form_variant`
  * rozliší zdroj v CRM, honeypot `website` filtruje boty.
  */
 import Section from './Section.astro';
@@ -202,7 +202,7 @@ const submitText = submitLabel ?? (isCallback ? L.submitCallback : L.submitFull)
 </Section>
 
 <style>
-  /* Layout — proofs vlevo, úzký formulář vpravo */
+  /* Layout: proofs vlevo, úzký formulář vpravo */
   .leadform__layout {
     display: grid;
     grid-template-columns: 1fr minmax(0, 420px);
@@ -212,7 +212,7 @@ const submitText = submitLabel ?? (isCallback ? L.submitCallback : L.submitFull)
   .leadform__layout--callback {
     grid-template-columns: 1fr minmax(0, 360px);
   }
-  /* Stacked — jen formulář (bez postranního sloupce), na střed */
+  /* Stacked: jen formulář (bez postranního sloupce), na střed */
   .leadform__layout--stacked {
     grid-template-columns: minmax(0, 560px);
     justify-content: center;
@@ -252,7 +252,7 @@ const submitText = submitLabel ?? (isCallback ? L.submitCallback : L.submitFull)
     overflow: hidden;
   }
 
-  /* Souhlas — vlastní checkbox (ostré rohy) */
+  /* Souhlas: vlastní checkbox (ostré rohy) */
   .leadform__consent {
     display: flex;
     align-items: flex-start;
@@ -306,7 +306,7 @@ const submitText = submitLabel ?? (isCallback ? L.submitCallback : L.submitFull)
   .leadform__status--ok { color: var(--color-success); }
   .leadform__status--err { color: var(--color-error); }
 
-  /* Responsive — sloupce pod sebe */
+  /* Responsive: sloupce pod sebe */
   @media (max-width: 880px) {
     .leadform__layout,
     .leadform__layout--callback { grid-template-columns: 1fr; gap: var(--space-6); }
