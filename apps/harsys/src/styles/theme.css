@@ -123,3 +123,12 @@
 /* Akcentní slovo v nadpisu - <span class="accent"> uvnitř <Heading>.
    Harsys = červený accent (brandový motiv „X"). */
 .accent { color: var(--color-secondary-terracotta); }
+
+/* Hero obrázek (split layout): fotografie z provozů a sídla ABX. */
+.hero-pic {
+  margin: 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+.hero-pic img { display: block; width: 100%; height: auto; }

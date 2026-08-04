@@ -154,3 +154,8 @@
    hlavičky, aby cílová sekce dosedla přesně pod ni a neodhalila sekci nad ní
    (dřív 120px odhalovalo u barevných sekcí kus předchozí sekce). */
 :where([id]) { scroll-margin-top: 72px; }
+
+/* Hero obrázek (split layout): Grason používá ilustrace, ne fotografie,
+   proto bez rámečku a stínu, ať zůstane průhlednost. */
+.hero-pic { margin: 0; }
+.hero-pic img { display: block; width: 100%; height: auto; }
