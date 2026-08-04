@@ -55,6 +55,27 @@ const skupiny = [
   },
 ];
 
+/* Fotografie hardwaru z původního webu Savarinu. Rozměry jsou zdrojové,
+   obrázky se nezvětšují, aby zůstaly ostré. */
+const hardware = [
+  { img: 'hw-gladius.webp', w: 480, h: 480, caption: 'PC POS ET-700 Gladius',
+    alt: 'PC POS ET-700 Gladius s dotykovou obrazovkou a integrovaným UPS' },
+  { img: 'hw-elo-monitor.webp', w: 545, h: 434, caption: 'Dotykový monitor ELO TouchScreen',
+    alt: 'Dotykový monitor ELO TouchScreen pro pokladnu Savarin' },
+  { img: 'hw-mobilni-cisnik.webp', w: 373, h: 664, caption: 'Mobilní číšník na Androidu',
+    alt: 'Mobilní číšník Savarin na telefonu s Androidem' },
+  { img: 'hw-klavesnice-pcu.webp', w: 550, h: 412, caption: 'Programovatelná klávesnice PCU',
+    alt: 'Programovatelná tlačítková klávesnice PCU se čtečkou magnetických karet' },
+  { img: 'hw-klavesnice-tipro.webp', w: 550, h: 412, caption: 'Klávesnice Tipro',
+    alt: 'Programovatelná klávesnice Tipro se 128 klávesami' },
+  { img: 'hw-tiskarna-termalni.webp', w: 300, h: 279, caption: 'Termální tiskárna EPSON',
+    alt: 'Termální pokladní tiskárna EPSON s řezačkou' },
+  { img: 'hw-tiskarna-jehlickova.webp', w: 500, h: 397, caption: 'Jehličková tiskárna EPSON TM-U220',
+    alt: 'Jehličková pokladní tiskárna EPSON TM-U220 s dvoubarevným tiskem' },
+  { img: 'uctenka-jehlickova.webp', w: 250, h: 550, caption: 'Účtenka z jehličkové tiskárny',
+    alt: 'Vzor účtenky vytištěné na jehličkové tiskárně' },
+];
+
 const schema = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -86,6 +107,9 @@ const schema = {
       <Button href="#poptavka">Nezávazná poptávka</Button>
       <Button href="/technicke-predpoklady" variant="secondary" onDark>Technické předpoklady</Button>
     </Fragment>
+    <figure slot="media" class="hero-pic">
+      <img src="/images/hw-gladius.webp" alt="PC POS ET-700 Gladius s dotykovou obrazovkou" width="480" height="480" loading="eager" decoding="async" />
+    </figure>
   </Hero>
 
   <Section background="default" space="lg">
@@ -100,6 +124,21 @@ const schema = {
             ))}
           </ul>
         </article>
+      ))}
+    </div>
+  </Section>
+
+  <Section background="alt" space="lg">
+    <Heading as="h2" size="h2">Jak technika vypadá</Heading>
+    <Text size="lead" color="muted">Fotografie hardwaru, který k pokladně Savarin dodáváme.</Text>
+    <div class="shots">
+      {hardware.map((h) => (
+        <figure class="shot">
+          <span class="shot__img">
+            <img src={`/images/${h.img}`} alt={h.alt} width={h.w} height={h.h} loading="lazy" decoding="async" />
+          </span>
+          <figcaption>{h.caption}</figcaption>
+        </figure>
       ))}
     </div>
   </Section>
