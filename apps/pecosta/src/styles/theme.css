@@ -1,8 +1,8 @@
-/* TÉMA — Pecosta
+/* TÉMA: Pecosta
    =========================================================
-   Brandové tokeny Pecosty. Komponenty se NEMĚNÍ — pouze hodnoty zde.
+   Brandové tokeny Pecosty. Komponenty se NEMĚNÍ: pouze hodnoty zde.
    Zdroj: logo (logos/pecosta_logo.svg) + pecosta-context.md.
-   Identita: geometrický modrý wordmark. Rohy sjednoceny na JEDEN jazyk —
+   Identita: geometrický modrý wordmark. Rohy sjednoceny na JEDEN jazyk
    lehké zaoblení (žádný chamfer, žádné pilulky) napříč tlačítky, štítky,
    poli i kartami. Akcent „úspora" = svěží zelená.
    Base struktura (typo škála, spacing, geometrie) zůstává z @piano/ui.
@@ -11,7 +11,7 @@
 @import "@piano/ui/styles/base.css";
 
 /* =========================================================
-   FONT — Poppins (400 / 600 / 700), latin + latin-ext (CZ/SK diakritika)
+   FONT: Poppins (400 / 600 / 700), latin + latin-ext (CZ/SK diakritika)
    ========================================================= */
 @font-face {
   font-family: "Poppins"; font-style: normal; font-weight: 400; font-display: swap;
@@ -53,21 +53,21 @@
   --font-weight-medium:   700;
   --font-weight-semibold: 600;
 
-  /* ----- Primary — logo blue (signature) -----
+  /* ----- Primary: logo blue (signature) -----
      #1265A7 vs bílá = 6.10:1 → WCAG AA ✓ pro tlačítka i běžný text */
   --color-primary:          #1265A7;
   --color-primary-hover:    #0F5895;
   --color-primary-active:   #0E4F86;
-  --color-primary-bg:       #0A2A44;  /* hluboká námořní modř — tmavé sekce */
+  --color-primary-bg:       #0A2A44;  /* hluboká námořní modř, tmavé sekce */
   --color-primary-bg-hover: #07203A;
 
-  /* ----- Secondary — deep navy (decor headings, velká čísla) ----- */
+  /* ----- Secondary: deep navy (decor headings, velká čísla) ----- */
   --color-secondary:            #0D3D63;
   --color-secondary-terracotta: #0E4F86;
   --color-secondary-gold:       #E8910C;
   --color-secondary-azure:      #2E8BD0;
 
-  /* ----- Testimonials — gradienty avatarů ----- */
+  /* ----- Testimonials: gradienty avatarů ----- */
   --testimonial-grad-1: linear-gradient(150deg, #2E8BD0, #1265A7);
   --testimonial-grad-2: linear-gradient(150deg, #1265A7, #0D3D63);
   --testimonial-grad-3: linear-gradient(150deg, #15A06B, #0E7A52);
@@ -93,7 +93,7 @@
   /* ----- Text ----- */
   --color-text:               #16324A; /* tmavá chladná modro-šedá */
   --color-text-muted:         #5A6A7D;
-  --color-text-accent:        #0F5895; /* eyebrow / odkazy — 7.37:1 ✓ */
+  --color-text-accent:        #0F5895; /* eyebrow / odkazy, 7.37:1 ✓ */
   --color-text-on-dark:       #FFFFFF;
   --color-text-on-dark-muted: rgba(255, 255, 255, 0.74);
 
@@ -103,7 +103,7 @@
   --color-bg-invert: #0A2A44;
   --color-bg-hover:  color-mix(in srgb, var(--color-neutral-900) 4%, #FFFFFF);
 
-  /* Signature gradient (hero) — hluboká navy → logo blue → svěží azur */
+  /* Signature gradient (hero): hluboká navy → logo blue → svěží azur */
   --color-bg-gradient: linear-gradient(118deg, #07203A 0%, #0A2A44 30%, #1265A7 78%, #2E8BD0 100%);
 
   /* ----- Okraje ----- */
@@ -111,27 +111,27 @@
   --color-border-strong:  #BCC9D9;
   --color-border-on-dark: rgba(255, 255, 255, 0.22);
 
-  /* ----- Radius — JEDEN jednotný jazyk: lehké zaoblení (žádný chamfer, žádné pilulky) ----- */
+  /* ----- Radius: JEDEN jednotný jazyk: lehké zaoblení (žádný chamfer, žádné pilulky) ----- */
   --radius-sm:   6px;
   --radius-md:   8px;
   --radius-lg:   12px;
   --radius-full: 999px;  /* zůstává jen pro skutečné kruhy (avatary, tečky) */
 
-  /* ----- Chamfer VYPNUT — sjednoceno na lehký radius ----- */
+  /* ----- Chamfer VYPNUT: sjednoceno na lehký radius ----- */
   --chamfer-depth: 0px;
 
-  /* ----- Tlačítka — lehký radius, bez chamferu a bez pilulky ----- */
+  /* ----- Tlačítka: lehký radius, bez chamferu a bez pilulky ----- */
   --btn-radius: var(--radius-md);
   --btn-clip:   none;
 
-  /* ----- Formulářová pole — stejný lehký radius ----- */
+  /* ----- Formulářová pole: stejný lehký radius ----- */
   --field-radius: var(--radius-md);
 
-  /* ----- Stíny — měkké, navy-tónované ----- */
+  /* ----- Stíny: měkké, navy-tónované ----- */
   --shadow-sm: 0 2px 8px rgba(10, 42, 68, 0.07);
   --shadow-md: 0 8px 24px rgba(10, 42, 68, 0.10);
   --shadow-lg: 0 16px 48px rgba(10, 42, 68, 0.14);
 
-  /* ----- Focus ring — logo blue ----- */
+  /* ----- Focus ring: logo blue ----- */
   --shadow-focus: 0 0 0 3px rgba(18, 101, 167, 0.38);
 }

@@ -1,7 +1,7 @@
-/* TÉMA — Qerko
+/* TÉMA: Qerko
    =========================================================
    Reálné brandové tokeny Qerko (signature zelená, písmo Poppins).
-   Zdroj: qerko-context.md + qerko_logo.svg (#00B579). Komponenty se NEMĚNÍ —
+   Zdroj: qerko-context.md + qerko_logo.svg (#00B579). Komponenty se NEMĚNÍ
    pouze hodnoty zde. Base struktura (typo škála, spacing) zůstává z @piano/ui;
    Qerko je friendly/rounded → pilulková tlačítka, štědrý radius, chamfer 0.
    POZN. kontrast: brandová zelená #00B579 má s bílým textem jen 2,66:1, proto
@@ -11,7 +11,7 @@
 @import "@piano/ui/styles/base.css";
 
 /* =========================================================
-   FONT — Poppins (jediná rodina; 400 / 600 / 700)
+   FONT: Poppins (jediná rodina; 400 / 600 / 700)
    latin + latin-ext (diakritika CZ/SK)
    ========================================================= */
 @font-face {
@@ -54,7 +54,7 @@
   --font-weight-medium:   700;
   --font-weight-semibold: 600;
 
-  /* ----- Primary — zelená (signature). Ztmaveno kvůli kontrastu s bílým textem
+  /* ----- Primary: zelená (signature). Ztmaveno kvůli kontrastu s bílým textem
      (#008556 = 4,68:1, WCAG AA). Brandová #00B579 viz --color-secondary. ----- */
   --color-primary:          #008556;
   --color-primary-hover:    #00704A;
@@ -62,13 +62,13 @@
   --color-primary-bg:       #06352A;  /* tmavě zelené pozadí sekcí */
   --color-primary-bg-hover: #052A21;
 
-  /* ----- Secondary — brandová Qerko zelená (velký dekorativní text) ----- */
+  /* ----- Secondary: brandová Qerko zelená (velký dekorativní text) ----- */
   --color-secondary:            #00B579;
   --color-secondary-terracotta: #00704A;
   --color-secondary-gold:       #E8910C;
   --color-secondary-azure:      #00B579;
 
-  /* ----- Testimonials — gradienty avatarů ----- */
+  /* ----- Testimonials: gradienty avatarů ----- */
   --testimonial-grad-1: linear-gradient(150deg, #15C285, #008556);
   --testimonial-grad-2: linear-gradient(150deg, #00A36B, #06754E);
   --testimonial-grad-3: linear-gradient(150deg, #06754E, #06352A);
@@ -94,7 +94,7 @@
   /* ----- Text ----- */
   --color-text:               #1A241F; /* tmavá chladně-zelená (nadpisy i body) */
   --color-text-muted:         #5E6E66;
-  --color-text-accent:        #00794F; /* green-700 — eyebrow / odkazy (5,4:1) */
+  --color-text-accent:        #00794F; /* green-700, eyebrow / odkazy (5,4:1) */
   --color-text-on-dark:       #FFFFFF;
   --color-text-on-dark-muted: rgba(255, 255, 255, 0.74);
 
@@ -104,7 +104,7 @@
   --color-bg-invert: #06352A;
   --color-bg-hover:  color-mix(in srgb, var(--color-neutral-900) 4%, #FFFFFF);
 
-  /* Signature gradient (hero) — hloubka: tmavá zelená vlevo → brandová vpravo */
+  /* Signature gradient (hero): hloubka: tmavá zelená vlevo → brandová vpravo */
   --color-bg-gradient: linear-gradient(115deg, #06352A 0%, #06754E 42%, #00A36B 78%, #15C285 100%);
 
   /* ----- Okraje ----- */
@@ -112,7 +112,7 @@
   --color-border-strong:  #C2D2C9;
   --color-border-on-dark: rgba(255, 255, 255, 0.24);
 
-  /* ----- Radius — Qerko zaobluje štědře (friendly/rounded) ----- */
+  /* ----- Radius: Qerko zaobluje štědře (friendly/rounded) ----- */
   --radius-sm:   8px;
   --radius-md:   12px;
   --radius-lg:   16px;
@@ -121,18 +121,18 @@
   /* ----- Chamfer vypnut (Qerko nemá seříznutý roh) ----- */
   --chamfer-depth: 0px;
 
-  /* ----- Tlačítka — plné pilulky (radius-pill 999px), bez chamferu ----- */
+  /* ----- Tlačítka: plné pilulky (radius-pill 999px), bez chamferu ----- */
   --btn-radius: var(--radius-full);
   --btn-clip:   none;
 
-  /* ----- Formulářová pole — také pilulky ----- */
+  /* ----- Formulářová pole: také pilulky ----- */
   --field-radius: var(--radius-full);
 
-  /* ----- Stíny — měkké, zeleně-tónované ----- */
+  /* ----- Stíny: měkké, zeleně-tónované ----- */
   --shadow-sm: 0 2px 8px rgba(0, 83, 54, 0.08);
   --shadow-md: 0 8px 24px rgba(0, 83, 54, 0.10);
   --shadow-lg: 0 16px 48px rgba(0, 83, 54, 0.14);
 
-  /* ----- Focus ring — zelená ----- */
+  /* ----- Focus ring: zelená ----- */
   --shadow-focus: 0 0 0 3px rgba(0, 181, 121, 0.40);
 }

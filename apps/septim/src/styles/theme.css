@@ -1,14 +1,14 @@
-/* TÉMA — Septim
+/* TÉMA: Septim
    =========================================================
    Reálné brandové tokeny Septim (duotón indigo + cyan, písmo Poppins).
-   Zdroj: septim-tokens.md. Komponenty se NEMĚNÍ — pouze hodnoty zde.
+   Zdroj: septim-tokens.md. Komponenty se NEMĚNÍ: pouze hodnoty zde.
    Base struktura (typo škála, spacing, chamfer) zůstává z @piano/ui;
    Septim přebarvuje + zaobluje (radius) a ruší signature chamfer (depth 0).
 */
 @import "@piano/ui/styles/base.css";
 
 /* =========================================================
-   FONT — Poppins (jediná rodina; 400 / 600 / 700)
+   FONT: Poppins (jediná rodina; 400 / 600 / 700)
    latin + latin-ext (diakritika CZ/SK)
    ========================================================= */
 @font-face {
@@ -51,7 +51,7 @@
   --font-weight-medium:   700;
   --font-weight-semibold: 600;
 
-  /* ----- Primary — cyan ztmavená na WCAG AA (≥4,5:1 s bílým textem) -----
+  /* ----- Primary: cyan ztmavená na WCAG AA (≥4,5:1 s bílým textem) -----
      Signature jasná cyan #00ADEE zůstává jako dekorativní --color-secondary-azure. */
   --color-primary:          #0073A6;  /* 5,25:1 vůči bílé */
   --color-primary-hover:    #005F8A;
@@ -59,13 +59,13 @@
   --color-primary-bg:       #06038D;  /* tmavé indigo pozadí sekcí */
   --color-primary-bg-hover: #040259;
 
-  /* ----- Secondary — indigo (deep brand) ----- */
+  /* ----- Secondary: indigo (deep brand) ----- */
   --color-secondary:            #06038D;
   --color-secondary-terracotta: #0073A6;
   --color-secondary-gold:       #E8910C;
   --color-secondary-azure:      #00ADEE;
 
-  /* ----- Testimonials — gradienty avatarů (sdílená komponenta @piano/ui) ----- */
+  /* ----- Testimonials: gradienty avatarů (sdílená komponenta @piano/ui) ----- */
   --testimonial-grad-1: linear-gradient(150deg, #16B5F0, #00ADEE);
   --testimonial-grad-2: linear-gradient(150deg, #2FC4F4, #0E86D9);
   --testimonial-grad-3: linear-gradient(150deg, #0C2A9E, #06038D);
@@ -91,7 +91,7 @@
   /* ----- Text ----- */
   --color-text:               #20262F; /* tmavá chladná (nadpisy i body) */
   --color-text-muted:         #6B7689;
-  --color-text-accent:        #0073A6; /* cyan ztmavená — eyebrow / odkazy, AA 5,25:1 na bílé */
+  --color-text-accent:        #0073A6; /* cyan ztmavená, eyebrow / odkazy, AA 5,25:1 na bílé */
   --color-text-on-dark:       #FFFFFF;
   --color-text-on-dark-muted: rgba(255, 255, 255, 0.72);
 
@@ -101,7 +101,7 @@
   --color-bg-invert: #06038D;
   --color-bg-hover:  color-mix(in srgb, var(--color-neutral-900) 4%, #FFFFFF);
 
-  /* Signature gradient (hero) — hloubka: tmavé indigo vlevo → cyan vpravo */
+  /* Signature gradient (hero): hloubka: tmavé indigo vlevo → cyan vpravo */
   --color-bg-gradient: linear-gradient(115deg, #06038D 0%, #0C2A9E 36%, #0E86D9 78%, #16B5F0 100%);
 
   /* ----- Okraje ----- */
@@ -109,7 +109,7 @@
   --color-border-strong:  #C4CCD9;
   --color-border-on-dark: rgba(255, 255, 255, 0.24);
 
-  /* ----- Radius — Septim zaobluje štědře ----- */
+  /* ----- Radius: Septim zaobluje štědře ----- */
   --radius-sm:   8px;
   --radius-md:   12px;
   --radius-lg:   16px;
@@ -118,28 +118,28 @@
   /* ----- Chamfer vypnut (Septim nemá seříznutý roh) ----- */
   --chamfer-depth: 0px;
 
-  /* ----- Tlačítka — plné pilulky (radius-pill 999px), bez chamferu ----- */
+  /* ----- Tlačítka: plné pilulky (radius-pill 999px), bez chamferu ----- */
   --btn-radius: var(--radius-full);
   --btn-clip:   none;
 
-  /* CTA tlačítko — signature cyan; nezávislé na ztmavené --color-primary (ta zůstává pro text/odkazy kvůli WCAG) */
+  /* CTA tlačítko: signature cyan; nezávislé na ztmavené --color-primary (ta zůstává pro text/odkazy kvůli WCAG) */
   --btn-bg:        #00ADEE;
   --btn-bg-hover:  #008FCC;
   --btn-bg-active: #0073A6;
 
-  /* ----- Formulářová pole — také pilulky ----- */
+  /* ----- Formulářová pole: také pilulky ----- */
   --field-radius: var(--radius-full);
 
-  /* ----- Stíny — měkké, indigo-tónované ----- */
+  /* ----- Stíny: měkké, indigo-tónované ----- */
   --shadow-sm: 0 2px 8px rgba(6, 3, 141, 0.08);
   --shadow-md: 0 8px 24px rgba(6, 3, 141, 0.10);
   --shadow-lg: 0 16px 48px rgba(6, 3, 141, 0.14);
 
-  /* ----- Focus ring — cyan ----- */
+  /* ----- Focus ring: cyan ----- */
   --shadow-focus: 0 0 0 3px rgba(0, 173, 238, 0.40);
 }
 
-/* Hero obrázek (split layout) — sdílená utilita pro stránky webu */
+/* Hero obrázek (split layout): sdílená utilita pro stránky webu */
 .hero-pic {
   margin: 0;
   border-radius: var(--radius-lg);

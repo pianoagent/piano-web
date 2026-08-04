@@ -1,4 +1,4 @@
-/* TÉMA — Savarin
+/* TÉMA: Savarin
    =========================================================
    Reálné brandové tokeny Savarinu (restaurační a hotelový systém,
    ComInn s.r.o.). Identita: modrošedá #587E92 + tmavá navy #222F40,
@@ -6,13 +6,13 @@
    (podklady starých webů/Savarin/css/style.css).
    Font: Figtree (humanistický sans v duchu původního Trebuchetu),
    tlačítka jemně zaoblená (8px, bez chamferu).
-   Komponenty se NEMĚNÍ — pouze hodnoty zde. Base struktura
+   Komponenty se NEMĚNÍ: pouze hodnoty zde. Base struktura
    (typo škála, spacing) zůstává z @piano/ui.
 */
 @import "@piano/ui/styles/base.css";
 
 /* =========================================================
-   FONT — Figtree (self-hosted, latin + latin-ext pro češtinu)
+   FONT: Figtree (self-hosted, latin + latin-ext pro češtinu)
    Váhy 400 (Regular) / 600 (SemiBold) / 700 (Bold).
    ========================================================= */
 @font-face {
@@ -62,21 +62,21 @@
   --text-h2:      600 var(--font-size-h2)/var(--line-height-heading) var(--font-sans);
   --text-h3:      600 var(--font-size-h3)/var(--line-height-snug) var(--font-sans);
 
-  /* ----- Primary — modrošedá (brandová identita, CTA, odkazy) -----
+  /* ----- Primary: modrošedá (brandová identita, CTA, odkazy) -----
      Ztmaveno z brandové #587E92 na #4E7286 kvůli WCAG AA: bílý text na
      tlačítku má kontrast 5.15:1 (≥4.5). Světlou brandovou #587E92 dál
      drží --color-secondary pro dekorativní velký text. */
   --color-primary:          #4E7286;
   --color-primary-hover:    #456578;
   --color-primary-active:   #3F6276;
-  --color-primary-bg:       #222F40;  /* tmavá navy — pozadí sekcí */
+  --color-primary-bg:       #222F40;  /* tmavá navy, pozadí sekcí */
   --color-primary-bg-hover: #2C3B4F;
 
-  /* ----- Secondary — modrošedá (čísla, zvýraznění) + akcentní role ----- */
-  --color-secondary:            #587E92;  /* modrošedá — stats, jména v referencích */
-  --color-secondary-terracotta: #EE1625;  /* červená — badge / highlight */
-  --color-secondary-gold:       #A7BDC8;  /* světlá modrošedá — eyebrow na tmavém */
-  --color-secondary-azure:      #587E92;  /* modrošedá — checky/akcenty v sekcích */
+  /* ----- Secondary: modrošedá (čísla, zvýraznění) + akcentní role ----- */
+  --color-secondary:            #587E92;  /* modrošedá, stats, jména v referencích */
+  --color-secondary-terracotta: #EE1625;  /* červená, badge / highlight */
+  --color-secondary-gold:       #A7BDC8;  /* světlá modrošedá, eyebrow na tmavém */
+  --color-secondary-azure:      #587E92;  /* modrošedá, checky/akcenty v sekcích */
 
   /* ----- Neutral (chladná modrošedá škála z brandu) ----- */
   --color-neutral-0:   #FFFFFF;
@@ -99,7 +99,7 @@
   /* ----- Text ----- */
   --color-text:               #222F40; /* tmavá navy (nadpisy i body) */
   --color-text-muted:         #5E6B78;
-  --color-text-accent:        #4A6B7D; /* ztmavená modrošedá — eyebrow / odkazy */
+  --color-text-accent:        #4A6B7D; /* ztmavená modrošedá, eyebrow / odkazy */
   --color-text-on-dark:       #FFFFFF;
   --color-text-on-dark-muted: rgba(255, 255, 255, 0.74);
 
@@ -109,7 +109,7 @@
   --color-bg-invert: #222F40;
   --color-bg-hover:  color-mix(in srgb, var(--color-neutral-900) 5%, #FFFFFF);
 
-  /* Signature gradient (hero) — tmavá navy → modrošedá */
+  /* Signature gradient (hero): tmavá navy → modrošedá */
   --color-bg-gradient: linear-gradient(118deg, #222F40 0%, #2E4255 45%, #587E92 100%);
 
   /* ----- Okraje ----- */
@@ -117,7 +117,7 @@
   --color-border-strong:  #A7BDC8;
   --color-border-on-dark: rgba(255, 255, 255, 0.22);
 
-  /* ----- Radius — Savarin jemně zaobluje (střízlivě korporátní) ----- */
+  /* ----- Radius: Savarin jemně zaobluje (střízlivě korporátní) ----- */
   --radius-sm:   6px;
   --radius-md:   8px;
   --radius-lg:   12px;
@@ -126,22 +126,22 @@
   /* ----- Chamfer vypnut (Savarin nemá seříznutý roh) ----- */
   --chamfer-depth: 0px;
 
-  /* ----- Tlačítka — jemně zaoblená, bez chamferu ----- */
+  /* ----- Tlačítka: jemně zaoblená, bez chamferu ----- */
   --btn-radius: 8px;
   --btn-clip:   none;
 
-  /* ----- Formulářová pole — také jemně zaoblená ----- */
+  /* ----- Formulářová pole: také jemně zaoblená ----- */
   --field-radius: 8px;
 
-  /* ----- Stíny — měkké, navy tónované ----- */
+  /* ----- Stíny: měkké, navy tónované ----- */
   --shadow-sm: 0 2px 8px rgba(34, 47, 64, 0.07);
   --shadow-md: 0 8px 24px rgba(34, 47, 64, 0.10);
   --shadow-lg: 0 16px 48px rgba(34, 47, 64, 0.14);
 
-  /* ----- Focus ring — modrošedá ----- */
+  /* ----- Focus ring: modrošedá ----- */
   --shadow-focus: 0 0 0 3px rgba(88, 126, 146, 0.40);
 }
 
-/* Akcentní slovo v nadpisu — <span class="accent"> uvnitř <Heading>.
+/* Akcentní slovo v nadpisu: <span class="accent"> uvnitř <Heading>.
    Savarin = červený akcent (#EE1625), v rámci stejné rodiny fontu. */
 .accent { color: var(--color-secondary-terracotta); }
