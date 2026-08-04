@@ -1,5 +1,5 @@
 ---
-/** Septim — Produkt (edice): Septim.Hotel. Obsah: septim-obsah/produkty/septim-hotel-*. SEO meta nově. */
+/** Septim: Produkt (edice): Septim.Hotel. Obsah: septim-obsah/produkty/septim-hotel-*. SEO meta nově. */
 import Base from '../../layouts/Base.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
@@ -26,7 +26,7 @@ const areas = [
   { icon: 'lucide:presentation', title: 'Konference a bankety', text: 'Evidence konzumace na eventech, MTZ sklad, markování na více středisek.' },
 ];
 const faqs = [
-  { q: 'Jak se Septim propojí s hotelovým systémem?', a: 'Septim.Hotel se jednoduše integruje na hotelový PMS Protel — útrata hosta z restaurace, baru i pokojové služby se automaticky účtuje na pokoj.' },
+  { q: 'Jak se Septim propojí s hotelovým systémem?', a: 'Septim.Hotel se jednoduše integruje na hotelový PMS Protel, útrata hosta z restaurace, baru i pokojové služby se automaticky účtuje na pokoj.' },
   { q: 'Pro jaké hotely se hodí?', a: 'Od jednotlivých hotelů po sítě. Septim používají české hotelové špičky a díky modulům škáluje dle velikosti provozu.' },
 ];
 ---
@@ -34,14 +34,14 @@ const faqs = [
       description="Septim.Hotel propojuje celý hotel: restauraci, bar, pokojovou službu i konference. Veškerá útrata hosta na jednom účtu a jednoduchá integrace na hotelový PMS Protel.">
   <SiteHeader />
   <main>
-    <Hero eyebrow="Produkt — edice" background="alt"
-          lead="Hotelový POS, který propojuje celý hotel — včetně jednoduché integrace na hotelový PMS. Ovládejte restauraci, bar, pokoje i konference z jednoho místa.">
+    <Hero eyebrow="Produkt: edice" background="alt"
+          lead="Hotelový POS, který propojuje celý hotel, včetně jednoduché integrace na hotelový PMS. Ovládejte restauraci, bar, pokoje i konference z jednoho místa.">
       <Heading slot="title" as="h1" size="display">Septim<em>.Hotel</em></Heading>
       <Fragment slot="actions">
         <Button href="#poptavka">Chci Septim</Button>
         <Button href="/reseni/hotely" variant="secondary">Řešení pro hotely</Button>
       </Fragment>
-      <figure slot="media" class="hero-pic"><img src="/images/produkt-septim-hotel.webp" alt="Septim.Hotel — hotelový POS" width="1300" height="1000" loading="eager" /></figure>
+      <figure slot="media" class="hero-pic"><img src="/images/produkt-septim-hotel.webp" alt="Septim.Hotel: hotelový POS" width="1300" height="1000" loading="eager" /></figure>
     </Hero>
 
     <USPGrid title="Hotelový POS, který propojuje celý hotel" items={highlights} background="default" space="md" minItemWidth="240px" />
@@ -51,7 +51,7 @@ const faqs = [
     <Faq items={faqs} title="Často kladené dotazy k Septim.Hotel" background="default" />
     <LeadForm id="poptavka" variant="full" background="alt"
               title="Mám zájem o Septim.Hotel"
-              lead="Kontaktujte nás — ukážeme propojení celého hotelu z jednoho místa." />
+              lead="Kontaktujte nás, ukážeme propojení celého hotelu z jednoho místa." />
   </main>
   <SiteFooter />
 </Base>

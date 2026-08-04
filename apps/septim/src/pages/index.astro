@@ -1,10 +1,10 @@
 ---
 /**
- * Septim — homepage.
+ * Septim: homepage.
  * Obsah z septim-context.md + blok #page-septim (piano-web-2026.html).
  * Vše ze SDÍLENÝCH komponent @piano/ui; téma řeší src/styles/theme.css.
  * Sekce bez vlastní komponenty (Stats, Steps, Tabulka, Integrace, Reference,
- * Logo wall, FAQ) jsou složené z primitivů (Section/Heading/Text/Button) —
+ * Logo wall, FAQ) jsou složené z primitivů (Section/Heading/Text/Button)
  * komponenty se NEFORKUJÍ.
  */
 import Base from '../layouts/Base.astro';
@@ -22,14 +22,14 @@ import LogoWall from '../components/LogoWall.astro';
 
 const heroSlides = [
   { eyebrow: 'Pokladní a provozní systém', title: 'Pravá ruka<br>každého manažera',
-    lead: 'Septim není jen pokladna. Řídí celý váš provoz — od naskladnění surovin přes výdej jídel až po finanční přehledy. Věří mu michelinské restaurace i kavárny za rohem.',
-    image: '/images/hero-septim.webp', imageAlt: 'My Septim — přehledy na tabletu, mobilu i pokladně' },
+    lead: 'Septim není jen pokladna. Řídí celý váš provoz, od naskladnění surovin přes výdej jídel až po finanční přehledy. Věří mu michelinské restaurace i kavárny za rohem.',
+    image: '/images/hero-septim.webp', imageAlt: 'My Septim: přehledy na tabletu, mobilu i pokladně' },
   { eyebrow: 'Novinka', title: 'Septim.Air<br>rovnou v cloudu',
-    lead: 'Nejrychlejší způsob, jak začít se Septimem. Cloudová pokladna pro kavárny, bistra a bary — bez serveru, od 1 990 Kč měsíčně.',
-    image: '/images/produkt-septim-air.webp', imageAlt: 'Septim.Air — cloudová pokladna' },
+    lead: 'Nejrychlejší způsob, jak začít se Septimem. Cloudová pokladna pro kavárny, bistra a bary, bez serveru, od 1 990 Kč měsíčně.',
+    image: '/images/produkt-septim-air.webp', imageAlt: 'Septim.Air: cloudová pokladna' },
   { eyebrow: 'Pro hotely', title: 'Septim.Hotel<br>celý hotel v jednom',
-    lead: 'Propojení s hotelovým systémem Protel — veškerá útrata hosta na jeden účet, room service i konference z jednoho místa.',
-    image: '/images/produkt-septim-hotel.webp', imageAlt: 'Septim.Hotel — hotelový POS' },
+    lead: 'Propojení s hotelovým systémem Protel: veškerá útrata hosta na jeden účet, room service i konference z jednoho místa.',
+    image: '/images/produkt-septim-hotel.webp', imageAlt: 'Septim.Hotel: hotelový POS' },
 ];
 
 const stats = [
@@ -42,8 +42,8 @@ const stats = [
 const steps = [
   { img: '/icons/sklady-naskladnovani.svg', title: 'Naskladnění a sklady', text: 'Sledování stavu surovin, dodacích listů a zásob v reálném čase. Automatické napojení na Autset.' },
   { img: '/icons/platebni-reseni.svg', title: 'Prodej a pokladna', text: 'Intuitivní dotykové rozhraní, mobilní číšník Septim.Go, integrované platby přes Qerko.' },
-  { img: '/icons/financni-prehledy.svg', title: 'Přehledy a reporty', text: 'Tržby, výkon personálu, marže produktů — vše v MySeptim appce kdekoliv a kdykoliv.' },
-  { img: '/icons/napojeni-systemu.svg', title: 'Integrace ekosystému', text: 'Foodora, Wolt, Qerko, Protel, Autset, GrasonPlan — vše komunikuje se Septimem.' },
+  { img: '/icons/financni-prehledy.svg', title: 'Přehledy a reporty', text: 'Tržby, výkon personálu, marže produktů: vše v MySeptim appce kdekoliv a kdykoliv.' },
+  { img: '/icons/napojeni-systemu.svg', title: 'Integrace ekosystému', text: 'Foodora, Wolt, Qerko, Protel, Autset, GrasonPlan: vše komunikuje se Septimem.' },
 ];
 
 const variants = [
@@ -56,11 +56,11 @@ const variants = [
 const features = [
   { image: '/icons/vice-pokladen.svg', title: 'Pokladna', text: 'Intuitivní dotykové rozhraní pro obsluhu. Mobilní číšník Septim.Go pro orderpad.', href: '/funkce/pokladna' },
   { image: '/icons/sklady-inventura.svg', title: 'Skladové hospodářství', text: 'Hlídání stavu surovin, dodacích listů a zásob v reálném čase.', href: '/funkce/skladove-hospodarstvi' },
-  { image: '/icons/revenue-reporting.svg', title: 'Manažerské přehledy', text: 'Tržby, marže, výkon personálu — v appce MySeptim odkudkoliv.', href: '/funkce/reporty-prehledy' },
+  { image: '/icons/revenue-reporting.svg', title: 'Manažerské přehledy', text: 'Tržby, marže, výkon personálu: v appce MySeptim odkudkoliv.', href: '/funkce/reporty-prehledy' },
   { image: '/icons/osobni-pristup.svg', title: 'Věrnostní systém (CRM)', text: 'Loajalitní programy pro zákazníky přímo v systému.', href: '/funkce/vernostni-system' },
   { image: '/icons/partnerstvi.svg', title: 'Rozvoz jídla', text: 'Přímá integrace s Foodora a Wolt. Objednávky z rozvozu v systému automaticky.', href: '/integrace/foodora-wolt' },
   { image: '/icons/vzdaleny-servis.svg', title: 'MySeptim App', text: 'iOS + Android. Klíčová data provozu vždy po ruce, kdekoliv se nacházíte.', href: '/produkty/myseptim' },
-  { image: '/icons/protel-septim.svg', title: 'Room Service', text: 'Propojení s Protelem — host objedná z pokoje, kuchyně to vidí automaticky.', href: '/produkty/septim-hotel' },
+  { image: '/icons/protel-septim.svg', title: 'Room Service', text: 'Propojení s Protelem: host objedná z pokoje, kuchyně to vidí automaticky.', href: '/produkty/septim-hotel' },
   { image: '/icons/podpora-24-7.svg', title: 'Podpora 24/7', text: 'Česká podpora v reálném čase. Konzultanti s praxí z gastro provozu.', href: '/sluzby-servis' },
 ];
 
@@ -78,11 +78,11 @@ const refLogos = [
 ];
 
 const faqs = [
-  { q: 'Pro jak velký provoz se Septim hodí?', a: 'Od malého bistra po michelinské restaurace a velké řetězce. Septim škáluje s vámi — využívají ho největší gastro provozy v ČR.' },
-  { q: 'Je k dispozici česká podpora?', a: 'Ano, česká podpora 24/7. Skuteční lidé, kteří vašemu provozu rozumí — i o víkendech a svátcích.' },
-  { q: 'Umí Septim skladové hospodářství?', a: 'Ano — kompletní skladovou evidenci, receptury, odpisy i inventury. Propojí se s nákupy přes Pecostu a automatickým naskladněním.' },
+  { q: 'Pro jak velký provoz se Septim hodí?', a: 'Od malého bistra po michelinské restaurace a velké řetězce. Septim škáluje s vámi, využívají ho největší gastro provozy v ČR.' },
+  { q: 'Je k dispozici česká podpora?', a: 'Ano, česká podpora 24/7. Skuteční lidé, kteří vašemu provozu rozumí i o víkendech a svátcích.' },
+  { q: 'Umí Septim skladové hospodářství?', a: 'Ano, kompletní skladovou evidenci, receptury, odpisy i inventury. Propojí se s nákupy přes Pecostu a automatickým naskladněním.' },
   { q: 'Jaké manažerské funkce nabízí?', a: 'Reporty tržeb v reálném čase, výkon zaměstnanců, sledování marží a vzdálený přístup k provozu odkudkoliv.' },
-  { q: 'Propojí se Septim s ostatními nástroji Piano?', a: 'Ano — s Qerkem (platby), Grasonem (personál), Pecostou (nákupy), Piano Terminálem i Pilotem. Jedno přihlášení, jedno vyúčtování.' },
+  { q: 'Propojí se Septim s ostatními nástroji Piano?', a: 'Ano, s Qerkem (platby), Grasonem (personál), Pecostou (nákupy), Piano Terminálem i Pilotem. Jedno přihlášení, jedno vyúčtování.' },
   { q: 'Jak probíhá přechod ze stávajícího systému?', a: 'Převedeme data, nastavíme systém a zaškolíme obsluhu. Onboarding je zdarma a zvládneme ho za vás.' },
 ];
 
@@ -110,7 +110,7 @@ const leadProofs = [
     </Fragment>
   </Hero>
 
-  <!-- LOGA KLIENTŮ — hned pod hero -->
+  <!-- LOGA KLIENTŮ: hned pod hero -->
   <LogoWall id="zakaznici" background="default" label="Důvěřují nám michelinské restaurace, hotely i kavárny za rohem" />
 
   <!-- JAK TO FUNGUJE -->
@@ -119,7 +119,7 @@ const leadProofs = [
       <Text size="label" color="accent" align="center">Jak to funguje</Text>
       <Heading as="h2" size="h2" align="center">Provoz pod kontrolou. <em>Od skladu po výkaz.</em></Heading>
       <Text size="lead" color="muted" align="center" balance>
-        Septim propojuje každou část vašeho provozu. Naskladníte, vydáte, prodáte, vyúčtujete — a na konci dne víte přesně, kde jste.
+        Septim propojuje každou část vašeho provozu. Naskladníte, vydáte, prodáte, vyúčtujete a na konci dne víte přesně, kde jste.
       </Text>
     </div>
     <ol class="steps">
@@ -154,9 +154,9 @@ const leadProofs = [
               <td><strong>{v.name}</strong></td>
               <td>{v.who}</td>
               <td>{v.install}</td>
-              <td class={v.net ? 'yes' : 'no'}>{v.net ? '✓ ANO' : '—'}</td>
-              <td class={v.loyalty ? 'yes' : 'no'}>{v.loyalty ? '✓ ANO' : '—'}</td>
-              <td class={v.reports ? 'yes' : 'no'}>{v.reports ? '✓ ANO' : '—'}</td>
+              <td class={v.net ? 'yes' : 'no'}>{v.net ? '✓ ANO' : ' – '}</td>
+              <td class={v.loyalty ? 'yes' : 'no'}>{v.loyalty ? '✓ ANO' : ' – '}</td>
+              <td class={v.reports ? 'yes' : 'no'}>{v.reports ? '✓ ANO' : ' – '}</td>
             </tr>
           ))}
         </tbody>
@@ -166,7 +166,7 @@ const leadProofs = [
 
   <!-- FUNKCE -->
   <USPGrid id="funkce" eyebrow="Funkce" title="Vše, co váš provoz potřebuje"
-           lead="Septim není jen pokladna — je to operační centrum vašeho podniku."
+           lead="Septim není jen pokladna, je to operační centrum vašeho podniku."
            items={features} minItemWidth="260px" background="default" space="lg" />
 
 
@@ -176,7 +176,7 @@ const leadProofs = [
       <Text size="label" color="accent" align="center">Reference</Text>
       <Heading as="h2" size="h2" align="center">Důvěřují nám ti <em>nejlepší</em></Heading>
       <Text size="lead" color="muted" align="center" balance>
-        Od michelinských restaurací po kavárny za rohem — Septim řídí provoz těch nejnáročnějších.
+        Od michelinských restaurací po kavárny za rohem. Septim řídí provoz těch nejnáročnějších.
       </Text>
     </div>
     <div class="quotes">
@@ -234,7 +234,7 @@ const leadProofs = [
   <!-- POPTÁVKA -->
   <LeadForm id="poptavka" variant="full" background="alt"
             title="Domluvte si konzultaci zdarma"
-            lead="Nechte nám kontakt — ozveme se a ukážeme Septim přímo ve vašem provozu."
+            lead="Nechte nám kontakt, ozveme se a ukážeme Septim přímo ve vašem provozu."
             proofs={leadProofs} />
 
   </main>
@@ -347,7 +347,7 @@ const leadProofs = [
   .quote__text { font-size: var(--font-size-body); color: var(--color-text-muted); line-height: var(--line-height-body); }
   .quotes__cta { display: flex; justify-content: center; margin-top: var(--space-8); }
 
-  /* Logo wall — marquee */
+  /* Logo wall: marquee */
   .logos__label { margin-bottom: var(--space-5); }
   .logos { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
   .logos__track { display: flex; align-items: center; gap: var(--space-8); width: max-content; animation: logos-scroll 48s linear infinite; }

@@ -25,8 +25,8 @@ i odrážky:
 
 ## Pole
 
-- `title` — nadpis novinky (povinné)
-- `date` — datum ve formátu `RRRR-MM-DD` (povinné, řadí se podle něj)
-- `draft: true` — volitelné; skryje novinku (rozepsaná, nezveřejní se)
+- `title`, nadpis novinky (povinné)
+- `date`, datum ve formátu `RRRR-MM-DD` (povinné, řadí se podle něj)
+- `draft: true`, volitelné; skryje novinku (rozepsaná, nezveřejní se)
 
-Nic dalšího není potřeba — žádný kód se needituje.
+Nic dalšího není potřeba, žádný kód se needituje.

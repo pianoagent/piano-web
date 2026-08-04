@@ -1,5 +1,5 @@
 ---
-/** Septim — Služby: Konzultace a školení. Obsah: septim-obsah/sluzby-servis/konzultace-skoleni.md. SEO meta nově. */
+/** Septim: Služby: Konzultace a školení. Obsah: septim-obsah/sluzby-servis/konzultace-skoleni.md. SEO meta nově. */
 import Base from '../../layouts/Base.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
@@ -38,11 +38,11 @@ const skoleni = [
     audience: 'Pro majitele, provozní a manažery restaurací',
     intro: 'Školení je určeno k osvojení kompletní problematiky provozní a prodejní části systému Septim.',
     topics: [
-      'Zákazníci — evidence, zákaznická konta, personální stravování, přednabité karty, bonusy, slevy, firemní konta',
-      'Prodej — receptury, podreceptury, prodejní ceny, Happy Hours, podpora prodeje',
-      'Uživatelé — definice uživatelských práv, skupiny uživatelů',
+      'Zákazníci: evidence, zákaznická konta, personální stravování, přednabité karty, bonusy, slevy, firemní konta',
+      'Prodej: receptury, podreceptury, prodejní ceny, Happy Hours, podpora prodeje',
+      'Uživatelé: definice uživatelských práv, skupiny uživatelů',
       'Konfigurace pokladny a volby obecně',
-      'Tipy pro používání Septimu — vybrané FAQ',
+      'Tipy pro používání Septimu: vybrané FAQ',
       'Zajímavé vlastnosti a jejich praktické využití',
       'Sdílení receptur mezi více provozovnami',
     ],
@@ -73,7 +73,7 @@ const faqs = [
   <SiteHeader />
   <main>
     <Hero eyebrow="Služby a servis" background="alt"
-          lead="Provozní systém Septim má mnoho možností, jak pomoci vašemu provozu — efektivita kuchyně, skladové hospodářství i finanční řízení. Využijte Septim na maximum díky konzultacím a školením.">
+          lead="Provozní systém Septim má mnoho možností, jak pomoci vašemu provozu, efektivita kuchyně, skladové hospodářství i finanční řízení. Využijte Septim na maximum díky konzultacím a školením.">
       <Heading slot="title" as="h1" size="display">Konzultace a <em>školení</em></Heading>
       <Fragment slot="actions">
         <Button href="#poptavka">Mám zájem o školení</Button>
@@ -84,7 +84,7 @@ const faqs = [
     <Section background="default" space="lg">
       <div class="prose">
         <Heading as="h2" size="h2">Školení k systému Septim</Heading>
-        <Text color="muted">Školení jsou vhodná před začátkem používání systému i pro stávající zákazníky. Děláme je fyzicky i online jako webináře — termíny volíme podle aktuálního zájmu. Napište nám a dáme vám vědět ohledně následujícího termínu. V případě zájmu připravíme školení na míru.</Text>
+        <Text color="muted">Školení jsou vhodná před začátkem používání systému i pro stávající zákazníky. Děláme je fyzicky i online jako webináře, termíny volíme podle aktuálního zájmu. Napište nám a dáme vám vědět ohledně následujícího termínu. V případě zájmu připravíme školení na míru.</Text>
       </div>
       <div class="courses">
         {skoleni.map((s) => (
@@ -105,7 +105,7 @@ const faqs = [
     <Faq items={faqs} title="Často kladené otázky ke školením a konzultacím" background="default" />
     <LeadForm id="poptavka" variant="callback" background="alt"
               title="Mám zájem o školení nebo konzultaci"
-              lead="Nechte nám telefon — dáme vám vědět termín nejbližšího školení, nebo připravíme školení na míru." />
+              lead="Nechte nám telefon, dáme vám vědět termín nejbližšího školení, nebo připravíme školení na míru." />
   </main>
   <SiteFooter />
 </Base>

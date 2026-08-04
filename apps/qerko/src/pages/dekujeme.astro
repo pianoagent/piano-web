@@ -1,8 +1,8 @@
 ---
 /**
- * Děkovací stránka — cíl přesměrování po odeslání formuláře (analytika: /dekujeme).
+ * Děkovací stránka: cíl přesměrování po odeslání formuláře (analytika: /dekujeme).
  * Krom poděkování krátce uvádí, že Septim je součástí Piana + CTA na Piano.
- * noindex — nemá se objevit ve vyhledávání.
+ * noindex: nemá se objevit ve vyhledávání.
  */
 import Base from '../layouts/Base.astro';
 import SiteHeader from '../components/SiteHeader.astro';
@@ -16,7 +16,7 @@ import Icon from '@piano/ui/components/Icon.astro';
 const PIANO_URL = 'https://piano.cz';
 ---
 
-<Base title="Děkujeme — Qerko" noindex>
+<Base title="Děkujeme | Qerko" noindex>
   <SiteHeader />
 
   <main>
@@ -37,12 +37,12 @@ const PIANO_URL = 'https://piano.cz';
       <Text size="label" color="on-dark" align="center" class="piano__eyebrow">Qerko je součástí Piana</Text>
       <Heading as="h2" size="h2" align="center" color="on-dark">Jeden partner pro celý váš provoz</Heading>
       <Text size="lead" color="on-dark-muted" align="center" balance class="piano__lead">
-        Qerko funguje dál úplně stejně jako dřív — nově ale máte přístup ke všem klíčovým
+        Qerko funguje dál úplně stejně jako dřív, nově ale máte přístup ke všem klíčovým
         nástrojům pro váš provoz pod jednou střechou.
       </Text>
       <Text color="on-dark-muted" align="center" balance class="piano__body">
         Piano vzniklo z jednoduchého přesvědčení: majitel restaurace, kavárny nebo hotelu si
-        zaslouží jednoho partnera — ne několik dodavatelů, několik smluv a data, která spolu
+        zaslouží jednoho partnera: ne několik dodavatelů, několik smluv a data, která spolu
         nekomunikují. Méně práce, lepší přehled, vyšší zisk.
       </Text>
       <div class="piano__cta">

@@ -1,6 +1,6 @@
 ---
 /**
- * Savarin — Sklady a kalkulace (HRMTZ + HRKALKUL).
+ * Savarin: Sklady a kalkulace (HRMTZ + HRKALKUL).
  * Obsah z legacy stránky sklady-a-kalkulace (+ popis-programu).
  * Sdílené komponenty @piano/ui.
  */
@@ -22,12 +22,12 @@ const funkce = [
   { icon: 'lucide:tags', title: 'Cenové skupiny', text: 'Skladové karty v průměrované nákupní ceně, u odbytových středisek i v prodejních. Zboží může mít až 35 prodejních cen.' },
   { icon: 'lucide:clipboard-check', title: 'Inventury', text: 'Položkové inventury a vyčíslení celkových rozdílů (položkově i korunově), včetně předávání mezi směnami na střediscích.' },
   { icon: 'lucide:book-open', title: 'Deník tržeb', text: 'Evidence přijatých tržeb na střediscích a tisk přehledů. S připojenou Pokladnou se tržby doplňují automaticky při uzávěrce.' },
-  { icon: 'lucide:building', title: 'Deníky středisek', text: 'Korunová bilance střediska a uzávěrky — sumarizace pohybů na skladu a prodeje, dopočet konečného účetního stavu, manko/přebytek.' },
+  { icon: 'lucide:building', title: 'Deníky středisek', text: 'Korunová bilance střediska a uzávěrky: sumarizace pohybů na skladu a prodeje, dopočet konečného účetního stavu, manko/přebytek.' },
   { icon: 'lucide:chef-hat', title: 'Kalkulace jídel', text: 'Státní normy teplé kuchyně jsou součástí programu. Tvorba vlastních receptur, skládání hotových jídel, tisk ceníků a hromadné přepočty cen.' },
 ];
 ---
 
-<Base title="Sklady a kalkulace Savarin — HRMTZ a HRKALKUL"
+<Base title="Sklady a kalkulace Savarin: HRMTZ a HRKALKUL"
       description="Modul HRMTZ a HRKALKUL: skladové hospodářství, evidence tržeb, inventury, deníky středisek, kalkulace jídel a komunikace s pokladnami. Jádro restauračního systému Savarin.">
   <Header brand="Savarin" logoSrc="/logos/savarin_logo.svg" logoHeight="36px" homeHref="/" nav={savarinNav} cta={savarinCta} />
 
@@ -35,7 +35,7 @@ const funkce = [
 
   <Hero eyebrow="Modul · Sklady a kalkulace" background="gradient"
         lead="HRMTZ a HRKALKUL řeší evidenci skladového hospodářství, evidenci tržeb na střediscích, práci s recepturami jídel a komunikaci s pokladnami. Je to jádro celého systému.">
-    <Heading slot="title" as="h1" size="display" color="on-dark">Sklady a kalkulace — <span class="accent">jádro systému</span></Heading>
+    <Heading slot="title" as="h1" size="display" color="on-dark">Sklady a kalkulace: <span class="accent">jádro systému</span></Heading>
     <Fragment slot="actions">
       <Button href="#poptavka">Nezávazná poptávka</Button>
       <Button href="#funkce" variant="secondary" onDark>Co modul umí</Button>
@@ -53,7 +53,7 @@ const funkce = [
       <div class="band__text">
         <Heading as="h2" size="h2">Podklady pro <span class="accent">účetnictví</span></Heading>
         <Text size="lead" color="muted" balance>
-          Systém poskytuje informace pro zaúčtování v systémech podvojného účetnictví — pro externí systémy generuje
+          Systém poskytuje informace pro zaúčtování v systémech podvojného účetnictví, pro externí systémy generuje
           účetní věty ve formě textového nebo databázového souboru. K usnadnění práce s hotovostí je připravena
           pokladna, která zakládá, eviduje a tiskne příjmové i výdajové doklady a hlídá zůstatek.
         </Text>
@@ -63,7 +63,7 @@ const funkce = [
 
   <LeadForm id="poptavka" variant="full" message background="default"
             title="Chcete sklady a kalkulace na míru?"
-            lead="Napište nám o počtu středisek a způsobu provozu — připravíme konfiguraci a cenovou nabídku. Rádi zašleme i demoverzi."
+            lead="Napište nám o počtu středisek a způsobu provozu, připravíme konfiguraci a cenovou nabídku. Rádi zašleme i demoverzi."
             successUrl="/dekujeme" />
 
   </main>

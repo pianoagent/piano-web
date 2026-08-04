@@ -1,6 +1,6 @@
 ---
 /**
- * Savarin — Demoverze. Krátká hero výzva + formulář žádosti;
+ * Savarin: Demoverze. Krátká hero výzva + formulář žádosti;
  * vedle formuláře je přehled toho, co demoverze obsahuje (místo generických USP).
  * Sdílené komponenty @piano/ui.
  */
@@ -13,10 +13,10 @@ import Heading from '@piano/ui/components/Heading.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import { savarinNav, savarinCta } from '../config/nav';
 
-// Přehled obsahu demoverze — zobrazí se vedle formuláře (proofs LeadFormu).
+// Přehled obsahu demoverze: zobrazí se vedle formuláře (proofs LeadFormu).
 const obsah = [
   { icon: 'lucide:monitor', title: 'Registrační pokladna', text: 'Demoverze pokladny Savarin. Po spuštění je na klávese F1 dostupný manuál.' },
-  { icon: 'lucide:calculator', title: 'Sklady a kalkulace', text: 'Obsahuje programy HRMTZ a HRKALKUL — skladová evidence a kalkulace jídel.' },
+  { icon: 'lucide:calculator', title: 'Sklady a kalkulace', text: 'Obsahuje programy HRMTZ a HRKALKUL: skladová evidence a kalkulace jídel.' },
   { icon: 'lucide:bed-double', title: 'Recepce', text: 'Demoverze modulu Recepce. Po spuštění je na klávese F1 dostupný manuál.' },
 ];
 
@@ -31,7 +31,7 @@ const schema = {
 };
 ---
 
-<Base title="Demoverze Savarin zdarma — pokladna, sklady, recepce"
+<Base title="Demoverze Savarin zdarma: pokladna, sklady, recepce"
       description="Vyžádejte si bezplatnou demoverzi Savarin (pokladna, sklady a kalkulace, recepce). Vyplňte údaje a demoverzi vám zašleme e-mailem."
       schema={schema}>
   <Header brand="Savarin" logoSrc="/logos/savarin_logo.svg" logoHeight="36px" homeHref="/" nav={savarinNav} cta={savarinCta} />
@@ -41,13 +41,13 @@ const schema = {
   <Breadcrumb items={[{ label: 'Domů', href: '/' }, { label: 'Demoverze' }]} />
 
   <Hero eyebrow="Demoverze zdarma" align="center" background="gradient" space="sm"
-        lead="Vyzkoušejte Savarin nezávazně — pokladnu, sklady a kalkulace i recepci.">
+        lead="Vyzkoušejte Savarin nezávazně, pokladnu, sklady a kalkulace i recepci.">
     <Heading slot="title" as="h1" size="h1" align="center" color="on-dark">Demoverze Savarin</Heading>
   </Hero>
 
   <LeadForm id="poptavka" variant="full" background="alt"
             title="Co demoverze obsahuje"
-            lead="Ke každé demoverzi přikládáme stručný manuál — zašleme ji elektronicky nebo na CD-ROM."
+            lead="Ke každé demoverzi přikládáme stručný manuál, zašleme ji elektronicky nebo na CD-ROM."
             proofs={obsah}
             message="Poznámka" messagePlaceholder="Poznámka, info o provozovně, požadavky…"
             submitLabel="Odeslat žádost"

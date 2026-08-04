@@ -1,5 +1,5 @@
 ---
-/** Grason — Nejčastější dotazy — pracovníci. Ze starého webu (faq-grason, cs.json). Slug zachován kvůli SEO. */
+/** Grason: Nejčastější dotazy: pracovníci. Ze starého webu (faq-grason, cs.json). Slug zachován kvůli SEO. */
 import Base from '../layouts/Base.astro';
 import Header from '@piano/ui/components/Header.astro';
 import Footer from '@piano/ui/components/Footer.astro';
@@ -23,12 +23,12 @@ const items = [
   { q: 'Co mám udělat, když mi nabídnou práci mimo Grason?', a: 'Pokud i Vy máte zájem o dlouhodobou spolupráci, je potřeba, aby nás podnik kontaktoval. My s ním vše vyřešíme. V opačném případě hrozí podniku pokuta a vám blokace v aplikaci. Nicméně budeme raději, když si budete nadále domlouvat směny přes aplikaci – pokud by nastal jakýkoliv problém, pomůžeme vám ho vyřešit, a každá nová pracovní zkušenost zlepšuje váš profil a tím zvyšujete své šance na získání další práce.' },
 ];
 ---
-<Base title="Nejčastější dotazy — pracovníci | Grason"
+<Base title="Nejčastější dotazy: pracovníci | Grason"
       description="Odpovědi na nejčastější dotazy brigádníků: profil, přihlašování na směny, potvrzení, výplata a hodnocení.">
   <Header brand="Grason" logoSrc="/logos/grason_logo.svg" logoHeight="28px" homeHref="/" nav={grasonNav} cta={grasonCta} login={grasonLogin} />
   <main>
-    <Hero eyebrow="Podpora" background="alt" space="md" lead="Profil, přihlašování na směny, výplata i hodnocení — vše, co jako pracovník potřebujete vědět.">
-      <Heading slot="title" as="h1" size="h1">Nejčastější dotazy — pracovníci</Heading>
+    <Hero eyebrow="Podpora" background="alt" space="md" lead="Profil, přihlašování na směny, výplata i hodnocení, vše, co jako pracovník potřebujete vědět.">
+      <Heading slot="title" as="h1" size="h1">Nejčastější dotazy: pracovníci</Heading>
     </Hero>
     <Faq items={items} title="" background="default" />
   </main>

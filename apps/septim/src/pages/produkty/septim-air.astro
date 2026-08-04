@@ -1,5 +1,5 @@
 ---
-/** Septim — Produkt (edice): Septim.Air. Obsah: septim-obsah/produkty/septim-air-*. SEO meta nově. */
+/** Septim: Produkt (edice): Septim.Air. Obsah: septim-obsah/produkty/septim-air-*. SEO meta nově. */
 import Base from '../../layouts/Base.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
@@ -16,7 +16,7 @@ import LogoWall from '../../components/LogoWall.astro';
 import Faq from '@piano/ui/components/Faq.astro';
 
 const benefits = [
-  { icon: 'lucide:cloud', title: 'Bez serveru', text: 'Cloudové řešení — rychlá instalace, žádný server, data bezpečně v cloudu.' },
+  { icon: 'lucide:cloud', title: 'Bez serveru', text: 'Cloudové řešení: rychlá instalace, žádný server, data bezpečně v cloudu.' },
   { icon: 'lucide:gift', title: 'Instalace zdarma', text: 'Základní instalace a 3 hodiny online školení jsou zcela zdarma.' },
   { icon: 'lucide:smartphone', title: 'Mobilní číšník zdarma', text: 'Aplikace mobilní číšník v ceně; platíte jen pronájem terminálu (249 Kč/měs).' },
   { icon: 'lucide:headset', title: 'Podpora 24/7', text: 'Servisní a technická podpora i náhradní díly po celý rok.' },
@@ -26,7 +26,7 @@ const planItems = [
   'Zálohování v cloudu', 'Servisní a technická podpora 24/7', 'Legislativní aktualizace',
 ];
 const faqs = [
-  { q: 'Platím něco za instalaci?', a: 'Ne. Za základní implementaci neplatíte nic — instalace i úvodní 3 hodiny online školení jsou zcela zdarma.' },
+  { q: 'Platím něco za instalaci?', a: 'Ne. Za základní implementaci neplatíte nic, instalace i úvodní 3 hodiny online školení jsou zcela zdarma.' },
   { q: 'Co všechno je v ceně 1 990 Kč/měsíc?', a: 'Licence Septim.Air, all-in-one pokladna s integrovanou tiskárnou, data i zálohy v cloudu, podpora 24/7 a legislativní aktualizace. Navíc aplikace mobilní číšník zdarma.' },
 ];
 ---
@@ -34,14 +34,14 @@ const faqs = [
       description="Cloudové řešení Septim.Air: bez serveru a bez jednorázových nákladů na software i hardware. All-in-one pokladna, podpora 24/7 a mobilní číšník zdarma. Od 1 990 Kč/měsíc.">
   <SiteHeader />
   <main>
-    <Hero eyebrow="Produkt — edice" background="alt"
+    <Hero eyebrow="Produkt: edice" background="alt"
           lead="Septim.Air je nejlevnější a nejrychlejší způsob, jak začít se Septimem. Cloudové řešení pro bistra, kavárny a bary, kde jednorázově neplatíte software ani hardware.">
       <Heading slot="title" as="h1" size="display">Septim<em>.Air</em></Heading>
       <Fragment slot="actions">
         <Button href="#poptavka">Chci Septim.Air</Button>
         <Button href="/reseni/kavarny-bistra-bary" variant="secondary">Pro kavárny a bary</Button>
       </Fragment>
-      <figure slot="media" class="hero-pic"><img src="/images/produkt-septim-air.webp" alt="Septim.Air — cloudová pokladna" width="1300" height="1000" loading="eager" /></figure>
+      <figure slot="media" class="hero-pic"><img src="/images/produkt-septim-air.webp" alt="Septim.Air: cloudová pokladna" width="1300" height="1000" loading="eager" /></figure>
     </Hero>
 
     <USPGrid eyebrow="Proč Air" title="Cloud, který jde rovnou používat" items={benefits} background="default" space="lg" minItemWidth="240px" />
@@ -65,7 +65,7 @@ const faqs = [
     <Faq items={faqs} title="Často kladené dotazy k Septim.Air" background="alt" />
     <LeadForm id="poptavka" variant="full" background="default"
               title="Chci Septim.Air"
-              lead="Nechte nám kontakt — ozveme se a Air vám rozjedeme." />
+              lead="Nechte nám kontakt, ozveme se a Air vám rozjedeme." />
   </main>
   <SiteFooter />
 </Base>

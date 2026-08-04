@@ -1,6 +1,6 @@
 ---
 /**
- * Protel — produkt „Housekeeping“. Obsah vytěžen z produkty/housekeeping.html
+ * Protel: produkt „Housekeeping“. Obsah vytěžen z produkty/housekeeping.html
  * starého protelsystems.cz (jazykově uhlazeno, fakta zachována).
  * Vše ze sdílených komponent @piano/ui.
  */
@@ -22,13 +22,13 @@ const features = [
     id: "aplikace-pro-housekeeping", icon: "lucide:smartphone", title: "Aplikace pro housekeeping",
     paras: [
       "Personál housekeepingu vidí stav uklizenosti jednotlivých pokojů přímo na svém mobilním zařízení: zda byl pokoj uklizen, zda je připraven pro nové hosty, nebo zda vyžaduje další úkony.",
-      "Do aplikace lze zaznamenávat i poznámky ke stavu pokoje — speciální požadavky hostů nebo potřebu výměny povlečení či ručníků. Tým tak efektivně komunikuje a pokoje jsou vždy v perfektním stavu.",
+      "Do aplikace lze zaznamenávat i poznámky ke stavu pokoje, speciální požadavky hostů nebo potřebu výměny povlečení či ručníků. Tým tak efektivně komunikuje a pokoje jsou vždy v perfektním stavu.",
     ],
   },
   {
     id: "reporting", icon: "lucide:line-chart", title: "Reporting",
     paras: [
-      "Zaměstnanci snadno sdílejí informace o splněných úkolech mezi sebou i směrem k vedení. Systém umí automaticky generovat plány úklidu podle počtu pokojů, počtu zaměstnanců a času potřebného na úklid — pracovní síly tak využíváte optimálně.",
+      "Zaměstnanci snadno sdílejí informace o splněných úkolech mezi sebou i směrem k vedení. Systém umí automaticky generovat plány úklidu podle počtu pokojů, počtu zaměstnanců a času potřebného na úklid, pracovní síly tak využíváte optimálně.",
     ],
   },
   {
@@ -40,14 +40,14 @@ const features = [
   {
     id: "ztraty-a-nalezy", icon: "lucide:search", title: "Ztráty a nálezy",
     paras: [
-      "Nalezené předměty se okamžitě zaznamenávají do systému — včetně jména hosta, čísla pokoje, popisu položky a místa nálezu. Ztracené věci se tak rychle vracejí majitelům, což přispívá k pozitivní zkušenosti hostů.",
+      "Nalezené předměty se okamžitě zaznamenávají do systému, včetně jména hosta, čísla pokoje, popisu položky a místa nálezu. Ztracené věci se tak rychle vracejí majitelům, což přispívá k pozitivní zkušenosti hostů.",
     ],
   },
   {
     id: "traces", icon: "lucide:list-checks", title: "Traces",
     paras: [
-      "Traces jsou úlohy a připomínky navázané na rezervaci, hosta či pokoj — nebo zcela samostatné. Slouží jako univerzální nástroj pro předávání úkolů mezi pracovníky a odděleními hotelu.",
-      "U každé stopy je na první pohled vidět, pro který den a čas platí, kdo a kdy ji zadal, pro které oddělení a zda už byla dokončena. Úloha se zobrazí příslušnému uživateli v definovaný čas — jednorázově, denně, nebo s nastavenou frekvencí.",
+      "Traces jsou úlohy a připomínky navázané na rezervaci, hosta či pokoj, nebo zcela samostatné. Slouží jako univerzální nástroj pro předávání úkolů mezi pracovníky a odděleními hotelu.",
+      "U každé stopy je na první pohled vidět, pro který den a čas platí, kdo a kdy ji zadal, pro které oddělení a zda už byla dokončena. Úloha se zobrazí příslušnému uživateli v definovaný čas, jednorázově, denně, nebo s nastavenou frekvencí.",
     ],
   },
   {
@@ -60,7 +60,7 @@ const features = [
 ];
 
 const related = [
-  { icon: "lucide:layout-dashboard", title: "Hotelový systém", text: "Správa pokojů, rezervací, hostů a statistik — snadné používání a pokročilé funkce pro kompletní přehled o provozu.", href: "/produkty/hotelovy-system-protel" },
+  { icon: "lucide:layout-dashboard", title: "Hotelový systém", text: "Správa pokojů, rezervací, hostů a statistik: snadné používání a pokročilé funkce pro kompletní přehled o provozu.", href: "/produkty/hotelovy-system-protel" },
   { icon: "lucide:smartphone", title: "Online check-in/out", text: "Host vyřídí check-in i check-out přes mobil, bez fronty na recepci.", href: "/produkty/online-check-in-out" },
   { icon: "lucide:book-open", title: "Digitální hotelová kniha", text: "Hotelová kniha elektronicky, vždy aktuální a po ruce.", href: "/produkty/digitalni-hotelova-kniha" },
   { icon: "lucide:mail", title: "Automatický mailing", text: "Personalizované e-maily hostům bez zásahu recepčního.", href: "/produkty/automaticky-mailing" },
@@ -75,7 +75,7 @@ const related = [
     <Breadcrumb items={[{ label: 'Úvod', href: '/' }, { label: 'Produkty', href: '/produkty' }, { label: "Housekeeping" }]} />
 
     <Hero eyebrow="Produkty" background="gradient"
-          lead="Digitální řešení pro housekeeping přináší efektivitu a transparentnost do úklidu a údržby hotelových pokojů. Snadné sledování a přidělování úkolů, kontrola stavu pokojů a komunikace mezi zaměstnanci — i housekeeping ve vašem hotelu může být kompletně digitální!">
+          lead="Digitální řešení pro housekeeping přináší efektivitu a transparentnost do úklidu a údržby hotelových pokojů. Snadné sledování a přidělování úkolů, kontrola stavu pokojů a komunikace mezi zaměstnanci i housekeeping ve vašem hotelu může být kompletně digitální!">
       <Heading slot="title" as="h1" size="display" color="on-dark">Digitální <em>housekeeping</em></Heading>
       <Fragment slot="actions">
         <Button href="#poptavka">Vyzkoušet Protel zdarma</Button>
@@ -106,7 +106,7 @@ const related = [
       <figure class="quoteband">
         <span class="quoteband__mark"><Icon name="lucide:quote" size="lg" /></span>
         <blockquote>
-          <Heading as="p" size="h3" color="on-dark" align="center">Housekeeping v Protelu znamená efektivní správu úklidu a údržby pokojů — plánování, sledování stavu i reportování závad. Výsledkem je plynulý a efektivní provoz vašeho hotelu.</Heading>
+          <Heading as="p" size="h3" color="on-dark" align="center">Housekeeping v Protelu znamená efektivní správu úklidu a údržby pokojů, plánování, sledování stavu i reportování závad. Výsledkem je plynulý a efektivní provoz vašeho hotelu.</Heading>
         </blockquote>
       </figure>
     </Section>
@@ -116,7 +116,7 @@ const related = [
 
     <LeadForm id="poptavka" variant="full" background="default"
               title="Vyzkoušejte Protel zdarma"
-              lead="Co byste u vás v hotelu rádi zlepšili? Nechte nám kontakt — ozveme se a ukážeme Protel přímo ve vašem hotelu." />
+              lead="Co byste u vás v hotelu rádi zlepšili? Nechte nám kontakt, ozveme se a ukážeme Protel přímo ve vašem hotelu." />
   </main>
 
   <SiteFooter />

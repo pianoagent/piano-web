@@ -1,5 +1,5 @@
 ---
-/** Pecosta — Reference. Obsah: pecosta-context.md + autset-context.md + #page-pecosta. */
+/** Pecosta: Reference. Obsah: pecosta-context.md + autset-context.md + #page-pecosta. */
 import Base from '../layouts/Base.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
@@ -18,17 +18,17 @@ const testimonials = [
   { initials: 'CPI', headline: 'Šetříme miliony ročně', quote: 'Díky automatickému naskladňování v každém z našich hotelů každý den ušetříme svým lidem minimálně hodinu práce. 80 % nákupů realizujeme přes Pecostu a šetříme několik milionů ročně.', author: 'Maroš Šivec', role: 'Executive F&B Director, CPI Hotels' },
   { initials: 'PH', headline: 'Úspora času je nedocenitelná', quote: 'Úspora času je nedocenitelná. Pecosta nám pomáhá mít náklady pod kontrolou a soustředit se na to, co nás baví.', author: 'Michaela Bakrlíková', role: 'Finanční ředitelka, Pytloun Hotels' },
   { initials: 'HP', headline: 'Zlomili jsme tříletý trend', quote: 'Zlomili jsme tříletý trend růstu nákladů. Výsledky překonaly naše očekávání.', author: 'Tomáš Šico', role: 'HP Tronic' },
-  { initials: 'KO', headline: 'Přesnější podklady', quote: 'Způsob zpracování naskladnění a dodacích listů přes Autset pomáhá i skladové účetní — podklady jsou přesnější a nemusí je kontrolovat položkově.', author: 'Kolkovna', role: 'Síť restaurací' },
+  { initials: 'KO', headline: 'Přesnější podklady', quote: 'Způsob zpracování naskladnění a dodacích listů přes Autset pomáhá i skladové účetní, podklady jsou přesnější a nemusí je kontrolovat položkově.', author: 'Kolkovna', role: 'Síť restaurací' },
 ];
 
 const clients = [
   { name: 'CPI Hotels', note: '24 hotelů v ČR, 80 % 4* a 5*. 80 % nákupů přes portál Pecosta.' },
-  { name: 'Pytloun Hotels', note: 'Hotelová skupina — náklady pod kontrolou a úspora času.' },
-  { name: 'Grandhotel Pupp', note: 'Karlovy Vary — ikonický hotel mezi klienty Pecosty.' },
+  { name: 'Pytloun Hotels', note: 'Hotelová skupina: náklady pod kontrolou a úspora času.' },
+  { name: 'Grandhotel Pupp', note: 'Karlovy Vary: ikonický hotel mezi klienty Pecosty.' },
   { name: 'Kavárna Slávia', note: 'Pražská kavárna s tradicí.' },
-  { name: 'Kolkovna', note: 'Síť restaurací — naskladnění přes Autset.' },
+  { name: 'Kolkovna', note: 'Síť restaurací: naskladnění přes Autset.' },
   { name: 'Počernický pivovar', note: 'Pivovar a jeho restaurace.' },
-  { name: 'Perfect Canteen', note: 'by Filip Sajler — moderní gastro koncept.' },
+  { name: 'Perfect Canteen', note: 'by Filip Sajler: moderní gastro koncept.' },
   { name: 'Bistro V Zahradě', note: 'Úspora 60 tisíc Kč ročně na energiích.' },
 ];
 ---
@@ -37,7 +37,7 @@ const clients = [
   <SiteHeader />
   <main>
     <Hero eyebrow="Reference" background="alt"
-          lead="Hotelové skupiny, michelinské restaurace i instituce. Podívejte se, komu Pecosta drží náklady pod kontrolou — a kolik díky tomu šetří.">
+          lead="Hotelové skupiny, michelinské restaurace i instituce. Podívejte se, komu Pecosta drží náklady pod kontrolou a kolik díky tomu šetří.">
       <Heading slot="title" as="h1" size="display">Spoří s námi <em>ti nejlepší</em></Heading>
       <Fragment slot="actions">
         <Button href="#poptavka">Chci analýzu zdarma</Button>
@@ -87,7 +87,7 @@ const clients = [
     <LogoWall label="Naši klienti" background="alt" />
     <LeadForm id="poptavka" variant="full" background="default"
               title="Chcete být další referencí?"
-              lead="Začněte analýzou zdarma — připravíme cenové porovnání a kalkulaci úspor pro váš provoz."
+              lead="Začněte analýzou zdarma, připravíme cenové porovnání a kalkulaci úspor pro váš provoz."
               submitLabel="Chci analýzu zdarma" proofs={pecostaLeadProofs} />
   </main>
   <SiteFooter />

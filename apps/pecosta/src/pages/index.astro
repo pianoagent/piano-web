@@ -1,10 +1,10 @@
 ---
 /**
- * Pecosta — homepage (první verze).
+ * Pecosta: homepage (první verze).
  * Obsah z pecosta-context.md + blok #page-pecosta (piano-web-2026.html).
  * Vše ze SDÍLENÝCH komponent @piano/ui; téma řeší src/styles/theme.css.
  * Sekce bez vlastní komponenty (Stats, Steps, Integrace, Reference, Logo wall,
- * FAQ) jsou složené z primitivů (Section/Heading/Text/Button/Icon) —
+ * FAQ) jsou složené z primitivů (Section/Heading/Text/Button/Icon)
  * komponenty se NEFORKUJÍ.
  */
 import Base from '../layouts/Base.astro';
@@ -31,7 +31,7 @@ const stats = [
 
 const steps = [
   { icon: 'lucide:calculator', title: 'Analýza zdarma', text: 'Připravíme cenové porovnání a kalkulaci úspor bez závazků. Vidíte reálná čísla ještě před podpisem.' },
-  { icon: 'lucide:plug', title: 'Napojení dodavatelů', text: 'Napojíme vaše stávající dodavatele na náš nákupní portál. Nemusíte je měnit — soutěží o vaši přízeň.' },
+  { icon: 'lucide:plug', title: 'Napojení dodavatelů', text: 'Napojíme vaše stávající dodavatele na náš nákupní portál. Nemusíte je měnit, soutěží o vaši přízeň.' },
   { icon: 'lucide:shopping-cart', title: 'Nakupujete z jednoho místa', text: 'Nakupujete od všech svých dodavatelů z jednoho portálu za ceny z aukcí.' },
   { icon: 'lucide:package-check', title: 'Automatické naskladnění', text: 'Dodací listy jdou automaticky do vašeho skladového systému přes Autset.' },
 ];
@@ -39,7 +39,7 @@ const steps = [
 const features = [
   { icon: 'lucide:gavel', title: 'Aukční nákupy surovin', text: 'E-aukce od ověřených dodavatelů. Ceny srovnané u stovek dodavatelů najednou.' },
   { icon: 'lucide:zap', title: 'Energie pro gastro', text: 'Úspora až 25 % na elektřině a plynu. Energie sdružíme a vyjednáme lepší ceny.' },
-  { icon: 'lucide:package', title: 'Autset — automatické naskladnění', text: 'Dodací listy od 400+ dodavatelů se automaticky přenesou do vašeho skladového systému.' },
+  { icon: 'lucide:package', title: 'Autset: automatické naskladnění', text: 'Dodací listy od 400+ dodavatelů se automaticky přenesou do vašeho skladového systému.' },
   { icon: 'lucide:bar-chart-3', title: 'Přehled nákladů', text: 'Jeden portál pro všechny nákupy. Vidíte, kde utrácíte a kde šetříte.' },
   { icon: 'lucide:shield-check', title: 'Ověření dodavatelé', text: 'Nakupujete od prověřených partnerů. Kvalita se nemění, cena jde dolů.' },
   { icon: 'lucide:badge-percent', title: 'Analýza zdarma', text: 'Víte, kolik ušetříte, ještě před zahájením spolupráce. Bez závazků.' },
@@ -59,10 +59,10 @@ const testimonials = [
 
 
 const faqs = [
-  { q: 'Jak funguje aukční nákup?', a: 'Pecosta pravidelně sdružuje poptávky stovek provozů a vyjednává hromadné ceny — dostanete ceny, na které byste jako jednotlivec nedosáhli. Dodavatelé soutěží, vy vyděláváte.' },
+  { q: 'Jak funguje aukční nákup?', a: 'Pecosta pravidelně sdružuje poptávky stovek provozů a vyjednává hromadné ceny, dostanete ceny, na které byste jako jednotlivec nedosáhli. Dodavatelé soutěží, vy vyděláváte.' },
   { q: 'Kolik reálně ušetřím?', a: 'V průměru až 16 % na surovinách a 25 % na energiích. Konkrétní číslo pro váš provoz spočítáme v bezplatné analýze.' },
   { q: 'Musím měnit dodavatele?', a: 'Není třeba. Nákupy řešíte z jednoho místa a Pecosta vám nabízí nejlepší ceny od ověřených dodavatelů. S největší pravděpodobností zde najdete i 90 % těch svých. Nakupovat však můžete i nadále od svých lokálních dodavatelů a na nákupní portál je dodatečně zařadit.' },
-  { q: 'Co je automatické naskladnění?', a: 'Dodací listy se naskladní automaticky (přes Autset), bez ručního přepisování — ušetříte hodiny administrativy každý měsíc.' },
+  { q: 'Co je automatické naskladnění?', a: 'Dodací listy se naskladní automaticky (přes Autset), bez ručního přepisování, ušetříte hodiny administrativy každý měsíc.' },
   { q: 'Hodí se Pecosta i pro menší provoz?', a: 'Ano. Automatické naskladňování šetří čas menší kavárně stejně jako hotelovým sítím. Aukční nákupy pak doporučujeme hlavně provozům, jejichž objem nákupů přesahuje 5 mil. Kč ročně. Čím víc nakupujete, tím víc ušetříte.' },
 ];
 
@@ -86,11 +86,11 @@ const faqs = [
     <figure slot="media" class="hero-figure">
       <video src="/videos/hero-pecosta.mp4" poster="/images/hero-pecosta.webp"
              autoplay loop muted playsinline width="1280" height="720"
-             aria-label="Pecosta — chytrý nákup surovin a energií"></video>
+             aria-label="Pecosta: chytrý nákup surovin a energií"></video>
     </figure>
   </Hero>
 
-  <!-- LOGA KLIENTŮ — hned pod hero -->
+  <!-- LOGA KLIENTŮ: hned pod hero -->
   <LogoWall id="zakaznici" background="default" label="Naši klienti" logos={klientiGastro} ext="webp" logoHeight="44px" />
 
   <!-- JAK TO FUNGUJE -->
@@ -117,7 +117,7 @@ const faqs = [
   <!-- FUNKCE (USPGrid neforwarduje id → kotva na wrapperu) -->
   <div id="funkce">
     <USPGrid eyebrow="Co Pecosta umí" title="Nakupujte chytřeji. Nakupujte za míň."
-             lead="Aukční nákupy surovin, výhodnější energie a automatické naskladnění — vše z jednoho místa."
+             lead="Aukční nákupy surovin, výhodnější energie a automatické naskladnění: vše z jednoho místa."
              items={features} minItemWidth="280px" background="alt" space="lg" />
   </div>
 
@@ -144,7 +144,7 @@ const faqs = [
       <Text size="label" color="accent" align="center">Reference</Text>
       <Heading as="h2" size="h2" align="center">Spoří s námi <em>ti nejlepší</em></Heading>
       <Text size="lead" color="muted" align="center" balance>
-        Od hotelových skupin po michelinské restaurace — Pecosta drží náklady pod kontrolou.
+        Od hotelových skupin po michelinské restaurace. Pecosta drží náklady pod kontrolou.
       </Text>
     </div>
     <div class="quotes">
@@ -202,7 +202,7 @@ const faqs = [
   <!-- POPTÁVKA -->
   <LeadForm id="poptavka" variant="full" background="alt"
             title="Zjistěte, kolik ušetříte"
-            lead="Nechte nám kontakt — připravíme cenové porovnání a kalkulaci úspor. Zdarma a bez závazků."
+            lead="Nechte nám kontakt, připravíme cenové porovnání a kalkulaci úspor. Zdarma a bez závazků."
             submitLabel="Chci analýzu zdarma"
             proofs={pecostaLeadProofs} />
 
@@ -297,7 +297,7 @@ const faqs = [
   .quote__text { font-size: var(--font-size-body); color: var(--color-text-muted); line-height: var(--line-height-body); }
   .quotes__cta { display: flex; justify-content: center; margin-top: var(--space-8); }
 
-  /* Logo wall — marquee */
+  /* Logo wall: marquee */
   .logos__label { margin-bottom: var(--space-5); }
   .logos { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
   .logos__track { display: flex; align-items: center; gap: var(--space-8); width: max-content; animation: logos-scroll 48s linear infinite; }

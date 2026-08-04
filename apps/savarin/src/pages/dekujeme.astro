@@ -1,8 +1,8 @@
 ---
 /**
- * Děkovací stránka — cíl přesměrování po odeslání formuláře (analytika: /dekujeme).
+ * Děkovací stránka: cíl přesměrování po odeslání formuláře (analytika: /dekujeme).
  * Krom poděkování krátce uvádí, že Savarin je součástí rodiny Piano + CTA na Piano.
- * noindex — nemá se objevit ve vyhledávání.
+ * noindex: nemá se objevit ve vyhledávání.
  */
 import Base from '../layouts/Base.astro';
 import Header from '@piano/ui/components/Header.astro';
@@ -17,7 +17,7 @@ import { savarinNav, savarinCta } from '../config/nav';
 const PIANO_URL = 'https://piano.cz';
 ---
 
-<Base title="Děkujeme — Savarin" noindex>
+<Base title="Děkujeme | Savarin" noindex>
   <Header brand="Savarin" logoSrc="/logos/savarin_logo.svg" logoHeight="36px" homeHref="/" nav={savarinNav} cta={savarinCta} />
 
   <main>
@@ -38,12 +38,12 @@ const PIANO_URL = 'https://piano.cz';
       <Text size="label" color="on-dark" align="center" class="piano__eyebrow">Savarin je součástí rodiny Piano</Text>
       <Heading as="h2" size="h2" align="center" color="on-dark">Jeden partner pro celý váš provoz</Heading>
       <Text size="lead" color="on-dark-muted" align="center" balance class="piano__lead">
-        Savarin funguje dál úplně stejně jako dřív — nově ale máte přístup ke všem klíčovým
+        Savarin funguje dál úplně stejně jako dřív, nově ale máte přístup ke všem klíčovým
         nástrojům pro váš provoz pod jednou střechou.
       </Text>
       <Text color="on-dark-muted" align="center" balance class="piano__body">
         Piano vzniklo z jednoduchého přesvědčení: majitel restaurace, kavárny nebo hotelu si
-        zaslouží jednoho partnera — ne několik dodavatelů, několik smluv a data, která spolu
+        zaslouží jednoho partnera: ne několik dodavatelů, několik smluv a data, která spolu
         nekomunikují. Méně práce, lepší přehled, vyšší zisk.
       </Text>
       <div class="piano__cta">

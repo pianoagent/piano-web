@@ -1,5 +1,5 @@
 ---
-/** Septim — Funkce: Nastavení. Obsah: septim-obsah/produkty/nastaveni.md. Nové URL dle IA (/funkce/). SEO meta nově. */
+/** Septim: Funkce: Nastavení. Obsah: septim-obsah/produkty/nastaveni.md. Nové URL dle IA (/funkce/). SEO meta nově. */
 import Base from '../../layouts/Base.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
@@ -16,9 +16,9 @@ import LogoWall from '../../components/LogoWall.astro';
 import Faq from '@piano/ui/components/Faq.astro';
 
 const oblasti = [
-  'Nastavení pokladny — oprávnění používání, storna apod.',
-  'Nastavení pokladny — rozložení stolů a nabídky',
-  'Nastavení CRM modulu — věrnostní systém',
+  'Nastavení pokladny: oprávnění používání, storna apod.',
+  'Nastavení pokladny: rozložení stolů a nabídky',
+  'Nastavení CRM modulu: věrnostní systém',
   'Nastavení finančních a provozních přehledů',
   'Nastavení vzdáleného přístupu do sekce Manažer',
   'Nastavení skladového hospodářství, receptur, inventur a závěrek',
@@ -27,11 +27,11 @@ const oblasti = [
 ];
 const benefits = [
   { icon: 'lucide:sliders-horizontal', title: 'Maximální přizpůsobení', text: 'Míra přizpůsobení, o které většina jiných systémů ani neuvažovala.' },
-  { icon: 'lucide:user-check', title: 'Kompetence pod kontrolou', text: 'Personální omezení podle reálných kompetencí — kdo co může dělat a kdo co reálně udělal.' },
+  { icon: 'lucide:user-check', title: 'Kompetence pod kontrolou', text: 'Personální omezení podle reálných kompetencí: kdo co může dělat a kdo co reálně udělal.' },
   { icon: 'lucide:users', title: 'Nejste na to sami', text: 'Podle vašich potřeb vám s nastavením pomohou naši konzultanti.' },
 ];
 const faqs = [
-  { q: 'Jaký je hlavní přínos modulu Nastavení?', a: 'Hlavní přínos je kontrola provozu — v tom, co kdo v budoucnu bude moci udělat, a zpětná kontrola, co kdo udělal. Efektivita restaurace tím zásadně roste.' },
+  { q: 'Jaký je hlavní přínos modulu Nastavení?', a: 'Hlavní přínos je kontrola provozu, v tom, co kdo v budoucnu bude moci udělat, a zpětná kontrola, co kdo udělal. Efektivita restaurace tím zásadně roste.' },
   { q: 'Jak začít s nastavením Septimu pro můj provoz?', a: 'Ideálním prvním krokem je kontaktovat naše zkušené konzultanty, kteří budou společně s vámi hledat ideální nastavení pokladního a provozního systému Septim pro váš provoz.' },
 ];
 ---
@@ -40,7 +40,7 @@ const faqs = [
   <SiteHeader />
   <main>
     <Hero eyebrow="Funkce systému Septim" background="alt"
-          lead="Nastavení v systému Septim vám umožní precizní ovládání systému — a tím i vaší restaurace. Míra přizpůsobení, o které většina jiných systémů ani neuvažovala.">
+          lead="Nastavení v systému Septim vám umožní precizní ovládání systému a tím i vaší restaurace. Míra přizpůsobení, o které většina jiných systémů ani neuvažovala.">
       <Heading slot="title" as="h1" size="display"><em>Nastavení</em></Heading>
       <Fragment slot="actions">
         <Button href="#poptavka">Chci Septim</Button>
@@ -64,7 +64,7 @@ const faqs = [
     <Faq items={faqs} title="Často kladené otázky k modulu Nastavení" background="default" />
     <LeadForm id="poptavka" variant="callback" background="alt"
               title="Najdeme ideální nastavení pro váš provoz"
-              lead="Nechte nám telefon — naši konzultanti s vámi proberou možnosti nastavení Septimu." />
+              lead="Nechte nám telefon, naši konzultanti s vámi proberou možnosti nastavení Septimu." />
   </main>
   <SiteFooter />
 </Base>

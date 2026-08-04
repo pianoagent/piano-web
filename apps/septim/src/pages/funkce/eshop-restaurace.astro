@@ -1,5 +1,5 @@
 ---
-/** Septim — Funkce: E-shop restaurace. Obsah: septim-obsah/produkty/eshop-restaurace.md. SEO meta nově. */
+/** Septim: Funkce: E-shop restaurace. Obsah: septim-obsah/produkty/eshop-restaurace.md. SEO meta nově. */
 import Base from '../../layouts/Base.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
@@ -17,11 +17,11 @@ import Faq from '@piano/ui/components/Faq.astro';
 const benefits = [
   { icon: 'lucide:link', title: 'Napojení na pokladnu', text: 'Nabídka se načítá přímo z pokladního systému Septim; zaplacené objednávky jdou rovnou do kuchyně.' },
   { icon: 'lucide:wallet', title: 'Bez provizí', text: 'Neplatíte vlastní e-shopové řešení ani provize zprostředkovatelům online prodeje.' },
-  { icon: 'lucide:check-check', title: 'Bez ručního přepisování', text: 'Do systému se dostanou jen potvrzené a zaplacené objednávky — nic se nekontroluje ručně.' },
+  { icon: 'lucide:check-check', title: 'Bez ručního přepisování', text: 'Do systému se dostanou jen potvrzené a zaplacené objednávky, nic se nekontroluje ručně.' },
   { icon: 'lucide:clock', title: 'Objednání na čas', text: 'Nastavení typu objednávky až na konkrétní hodinu usnadní provoz.' },
 ];
 const faqs = [
-  { q: 'V čem je hlavní přínos e-shopu?', a: 'Nejsnadnější cesta online přímo k zákazníkovi — bez prostředníků a bez placení provize.' },
+  { q: 'V čem je hlavní přínos e-shopu?', a: 'Nejsnadnější cesta online přímo k zákazníkovi: bez prostředníků a bez placení provize.' },
   { q: 'Jak e-shop spustíme?', a: 'Prvním krokem je definování požadavků a nastavení modulu E-shop. S tím vám rádi pomohou naši konzultanti.' },
 ];
 ---
@@ -44,7 +44,7 @@ const faqs = [
         <Heading as="h2" size="h2">Jak e-shop funguje</Heading>
         <Text size="lead" color="muted">
           Modul načte položky označené pro internetový prodej. Zákazník na vaší doméně (např. eshop.restaurace.cz)
-          objedná, po zaplacení přes platební bránu jde objednávka přímo do pokladního systému — jako každá jiná.
+          objedná, po zaplacení přes platební bránu jde objednávka přímo do pokladního systému, jako každá jiná.
         </Text>
         <Text color="muted">
           Odpadá ruční kontrola a přepisování. Do systému se dostanou jen potvrzené a zaplacené objednávky,
@@ -59,7 +59,7 @@ const faqs = [
     <Faq items={faqs} title="Často kladené otázky k e-shopu" background="default" />
     <LeadForm id="poptavka" variant="callback" background="alt"
               title="Spustíme vám e-shop"
-              lead="Nechte nám telefon — pomůžeme nastavit modul E-shop pro váš provoz." />
+              lead="Nechte nám telefon, pomůžeme nastavit modul E-shop pro váš provoz." />
   </main>
   <SiteFooter />
 </Base>

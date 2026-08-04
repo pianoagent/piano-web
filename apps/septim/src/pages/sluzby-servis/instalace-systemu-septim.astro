@@ -1,5 +1,5 @@
 ---
-/** Septim — Služby: Instalace systému Septim. Obsah: septim-obsah/sluzby-servis/instalace-systemu-septim.md. SEO meta nově. */
+/** Septim: Služby: Instalace systému Septim. Obsah: septim-obsah/sluzby-servis/instalace-systemu-septim.md. SEO meta nově. */
 import Base from '../../layouts/Base.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
@@ -36,7 +36,7 @@ const faqs = [
   <SiteHeader />
   <main>
     <Hero eyebrow="Služby a servis" background="alt"
-          lead="Rozhodli jste se pro systém Septim? Podívejte se, jaký průběh instalace vás čeká. Celým procesem od výběru vhodného řešení až po spuštění vás provede náš zkušený konzultant — žádný ajťák!">
+          lead="Rozhodli jste se pro systém Septim? Podívejte se, jaký průběh instalace vás čeká. Celým procesem od výběru vhodného řešení až po spuštění vás provede náš zkušený konzultant, žádný ajťák!">
       <Heading slot="title" as="h1" size="display">Instalace <em>systému Septim</em></Heading>
       <Fragment slot="actions">
         <Button href="#poptavka">Chci konzultaci</Button>
@@ -47,7 +47,7 @@ const faqs = [
     <Section background="default" space="lg">
       <div class="prose">
         <Heading as="h2" size="h2">Start systému je příležitost pro celý provoz</Heading>
-        <Text color="muted">Spuštění Septimu vidíme jako klíčový krok pro restauraci. Zdaleka nejde jen o zapnutí pokladny — je to příležitost nastavit efektivní řízení restaurace:</Text>
+        <Text color="muted">Spuštění Septimu vidíme jako klíčový krok pro restauraci. Zdaleka nejde jen o zapnutí pokladny, je to příležitost nastavit efektivní řízení restaurace:</Text>
       </div>
       <ul class="checklist">
         {startBody.map((f) => (<li><Icon name="lucide:check" size="sm" class="checklist__icon" />{f}</li>))}
@@ -59,7 +59,7 @@ const faqs = [
     <Faq items={faqs} title="Často kladené otázky k instalaci" background="alt" />
     <LeadForm id="poptavka" variant="callback" background="default"
               title="Proberte s našimi konzultanty, jak na to"
-              lead="Nechte nám telefon — navrhneme vhodné řešení pro váš provoz." />
+              lead="Nechte nám telefon, navrhneme vhodné řešení pro váš provoz." />
   </main>
   <SiteFooter />
 </Base>

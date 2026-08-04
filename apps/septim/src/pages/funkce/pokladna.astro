@@ -1,5 +1,5 @@
 ---
-/** Septim — Funkce: Pokladna. Obsah: septim-obsah/produkty/pokladna.md. SEO meta nově. */
+/** Septim: Funkce: Pokladna. Obsah: septim-obsah/produkty/pokladna.md. SEO meta nově. */
 import Base from '../../layouts/Base.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
@@ -22,13 +22,13 @@ const features = [
   'Dělení, přesun a spojení účtů', 'Grafické rozmístění stolů', 'Vlastní design celé aplikace',
 ];
 const benefits = [
-  { icon: 'lucide:zap', title: 'Rychlá obsluha', text: 'Zrychluje komunikaci mezi placem a kuchyní — vyšší obrátka a spokojenost hostů.' },
+  { icon: 'lucide:zap', title: 'Rychlá obsluha', text: 'Zrychluje komunikaci mezi placem a kuchyní: vyšší obrátka a spokojenost hostů.' },
   { icon: 'lucide:hand', title: 'Jednoduché ovládání', text: 'Intuitivní rozhraní, obsluha pracuje téměř ihned po krátkém zaškolení.' },
-  { icon: 'lucide:boxes', title: 'Napojení na sklad', text: 'Markování ihned odečítá zboží ze skladu — bez ručního přepisování.' },
-  { icon: 'lucide:lock', title: 'Bezpečnost a práva', text: 'Transakce lze limitovat dle oprávnění obsluhy — manažerská i bezpečnostní kontrola.' },
+  { icon: 'lucide:boxes', title: 'Napojení na sklad', text: 'Markování ihned odečítá zboží ze skladu: bez ručního přepisování.' },
+  { icon: 'lucide:lock', title: 'Bezpečnost a práva', text: 'Transakce lze limitovat dle oprávnění obsluhy: manažerská i bezpečnostní kontrola.' },
 ];
 const faqs = [
-  { q: 'Jde pokladnu přizpůsobit našemu provozu?', a: 'Ano. Ovládání, vzhled i funkce se nastaví na míru druhu a velikosti provozu — jiné u restaurace, jídelny, fast foodu i bistra. Individuální nastavení proběhne při instalaci.' },
+  { q: 'Jde pokladnu přizpůsobit našemu provozu?', a: 'Ano. Ovládání, vzhled i funkce se nastaví na míru druhu a velikosti provozu, jiné u restaurace, jídelny, fast foodu i bistra. Individuální nastavení proběhne při instalaci.' },
   { q: 'Zvládne ji obsluha rychle?', a: 'Ano. Pokladna je navržená pro maximálně rychlé a intuitivní ovládání; obsluha ji používá téměř ihned po krátkém zaškolení.' },
 ];
 ---
@@ -37,7 +37,7 @@ const faqs = [
   <SiteHeader />
   <main>
     <Hero eyebrow="Funkce systému Septim" background="alt"
-          lead="Pokladna je základ provozního systému Septim. Obsluha v ní zvládne vše kolem hosta — a klíčové je, jak je jednoduchá a jak chytře navazuje na zbytek Septimu.">
+          lead="Pokladna je základ provozního systému Septim. Obsluha v ní zvládne vše kolem hosta a klíčové je, jak je jednoduchá a jak chytře navazuje na zbytek Septimu.">
       <Heading slot="title" as="h1" size="display"><em>Pokladna</em></Heading>
       <Fragment slot="actions">
         <Button href="#poptavka">Chci Septim</Button>
@@ -54,7 +54,7 @@ const faqs = [
           ihned odtěžuje zboží ze skladu. Rozhraní je rychlé, intuitivní a nastavitelné na míru provozu.
         </Text>
         <Text color="muted">
-          Pokladní transakce lze limitovat podle oprávnění obsluhy — což je z manažerského i bezpečnostního
+          Pokladní transakce lze limitovat podle oprávnění obsluhy, což je z manažerského i bezpečnostního
           hlediska zásadní.
         </Text>
       </div>
@@ -76,7 +76,7 @@ const faqs = [
     <Faq items={faqs} title="Často kladené otázky k pokladně" background="default" />
     <LeadForm id="poptavka" variant="callback" background="alt"
               title="Ukážeme vám pokladnu v praxi"
-              lead="Nechte nám telefon — předvedeme pokladnu přímo na vašem typu provozu." />
+              lead="Nechte nám telefon, předvedeme pokladnu přímo na vašem typu provozu." />
   </main>
   <SiteFooter />
 </Base>

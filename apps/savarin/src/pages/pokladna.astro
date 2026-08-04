@@ -1,6 +1,6 @@
 ---
 /**
- * Savarin — Pokladna. Obsah z legacy stránky pokladna.
+ * Savarin: Pokladna. Obsah z legacy stránky pokladna.
  * Mobilní pokladna, komponenty a technické předpoklady mají vlastní URL
  * (viz /mobilni-pokladna, /pokladni-komponenty, /technicke-predpoklady).
  * Sdílené komponenty @piano/ui.
@@ -20,7 +20,7 @@ import { savarinNav, savarinCta } from '../config/nav';
 
 const verze = [
   { icon: 'lucide:utensils', title: 'Restaurační', text: 'Účtování na stoly a vedení otevřených účtů. Číšník otevírá a uzavírá účty hostů v průběhu celé návštěvy.' },
-  { icon: 'lucide:bed-double', title: 'Hotelová', text: 'Spolupracuje s modulem Recepce — pozná, zda host bydlí na pokoji, má založený účet a „právo účtu“ pro připisování útraty.' },
+  { icon: 'lucide:bed-double', title: 'Hotelová', text: 'Spolupracuje s modulem Recepce: pozná, zda host bydlí na pokoji, má založený účet a „právo účtu“ pro připisování útraty.' },
   { icon: 'lucide:shopping-bag', title: 'Samoobslužná', text: 'Pro jídelny, stravovací linky, bufety a maloobchod. Po objednávce systém ihned vystaví účtenku, bez nutnosti otevírat účet.' },
 ];
 
@@ -28,13 +28,13 @@ const funkce = [
   'Ovládání přes dotykový display, PC nebo POS terminál',
   'Programovatelná restaurační klávesnice pro rychlé markování',
   'Otevřené účty, storna, převody položek mezi účty',
-  'Kuchyňská tiskárna — objednávky rovnou na výdej',
+  'Kuchyňská tiskárna: objednávky rovnou na výdej',
   'Denní uzávěrky a odpis prodaného zboží ze skladu',
   'Certifikováno pro provoz s fiskálním modulem na Slovensku',
 ];
 
 const souvisejici = [
-  { href: '/mobilni-pokladna', icon: 'lucide:smartphone', title: 'Mobilní pokladna', text: 'Mobilní číšník — objednávky a úhrady přímo u stolu.' },
+  { href: '/mobilni-pokladna', icon: 'lucide:smartphone', title: 'Mobilní pokladna', text: 'Mobilní číšník: objednávky a úhrady přímo u stolu.' },
   { href: '/pokladni-komponenty', icon: 'lucide:keyboard', title: 'Pokladní komponenty', text: 'POS, dotykové monitory, tiskárny a klávesnice.' },
   { href: '/technicke-predpoklady', icon: 'lucide:cpu', title: 'Technické předpoklady', text: 'Jaký počítač, tiskárnu a síť pokladna potřebuje.' },
 ];
@@ -63,7 +63,7 @@ const schema = {
 };
 ---
 
-<Base title="Pokladna Savarin — pokladní systém pro PC i POS"
+<Base title="Pokladna Savarin: pokladní systém pro PC i POS"
       description="Pokladní systém Savarin pro restaurace, hotelové restaurace i samoobslužný provoz. Dotykové ovládání, otevřené účty, denní uzávěrky a odpis zboží ze skladu."
       schema={schema}>
   <Header brand="Savarin" logoSrc="/logos/savarin_logo.svg" logoHeight="36px" homeHref="/" nav={savarinNav} cta={savarinCta} />
@@ -136,7 +136,7 @@ const schema = {
   <!-- POPTÁVKA -->
   <LeadForm id="poptavka" variant="full" message background="alt"
             title="Chcete vědět víc o pokladně?"
-            lead="Napište nám o svém provozu — doporučíme vhodnou verzi a komponenty a připravíme cenovou nabídku. Rádi zašleme i demoverzi."
+            lead="Napište nám o svém provozu, doporučíme vhodnou verzi a komponenty a připravíme cenovou nabídku. Rádi zašleme i demoverzi."
             successUrl="/dekujeme" />
 
   </main>

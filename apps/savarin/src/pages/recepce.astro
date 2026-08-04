@@ -1,6 +1,6 @@
 ---
 /**
- * Savarin — Recepce. Obsah z legacy stránky recepce (+ popis-programu).
+ * Savarin: Recepce. Obsah z legacy stránky recepce (+ popis-programu).
  * Sdílené komponenty @piano/ui.
  */
 import Base from '../layouts/Base.astro';
@@ -26,14 +26,14 @@ const funkce = [
 ];
 ---
 
-<Base title="Recepce Savarin — hotelový rezervační systém"
+<Base title="Recepce Savarin: hotelový rezervační systém"
       description="Modul Recepce Savarin: rezervace pokojů a služeb, ubytování hostů i skupin, účty, směnárna, statistické výkazy a vazba na sklady (HRMTZ).">
   <Header brand="Savarin" logoSrc="/logos/savarin_logo.svg" logoHeight="36px" homeHref="/" nav={savarinNav} cta={savarinCta} />
 
   <main>
 
   <Hero eyebrow="Modul · Recepce" background="gradient"
-        lead="SW modul RECEPCE zabezpečuje komplexní práci recepce ubytovacího zařízení — od rezervací přes ubytování hostů a skupin až po vystavení účtu a uvolnění pokoje.">
+        lead="SW modul RECEPCE zabezpečuje komplexní práci recepce ubytovacího zařízení, od rezervací přes ubytování hostů a skupin až po vystavení účtu a uvolnění pokoje.">
     <Heading slot="title" as="h1" size="display" color="on-dark">Celá recepce <span class="accent">pod kontrolou</span></Heading>
     <Fragment slot="actions">
       <Button href="#poptavka">Nezávazná poptávka</Button>
@@ -42,7 +42,7 @@ const funkce = [
   </Hero>
 
   <USPGrid id="funkce" eyebrow="Funkce modulu" title="Od rezervace po uvolnění pokoje"
-           lead="Většina úkonů — rezervace, ubytování, zvýšení účtu, placení — se provádí v přehledných grafických „štaflích“."
+           lead="Většina úkonů: rezervace, ubytování, zvýšení účtu, placení, se provádí v přehledných grafických „štaflích“."
            items={funkce} minItemWidth="300px" background="default" space="lg" />
 
   <!-- VAZBY -->
@@ -59,7 +59,7 @@ const funkce = [
           <li><Icon name="lucide:check" size="sm" class="hl-check" />Podklady pro zaúčtování, předávání služeb a hotovosti</li>
           <li><Icon name="lucide:check" size="sm" class="hl-check" />Modul fakturace vázaný na hotelové účty</li>
           <li><Icon name="lucide:check" size="sm" class="hl-check" />Manažerský modul s dalšími statistikami a ekonomikou</li>
-          <li><Icon name="lucide:check" size="sm" class="hl-check" />Modul SledujTU — zaúčtování telefonních hovorů hostům</li>
+          <li><Icon name="lucide:check" size="sm" class="hl-check" />Modul SledujTU: zaúčtování telefonních hovorů hostům</li>
         </ul>
         <div class="split__cta">
           <Button href="/sklady-a-kalkulace" variant="secondary">Sklady a kalkulace</Button>

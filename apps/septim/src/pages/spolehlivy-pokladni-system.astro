@@ -1,5 +1,5 @@
 ---
-/** Septim — SEO landing: Spolehlivý pokladní systém. Obsah: septim-obsah/spolehlivy-pokladni-system.md. Starý slug zachován kvůli SEO. */
+/** Septim: SEO landing: Spolehlivý pokladní systém. Obsah: septim-obsah/spolehlivy-pokladni-system.md. Starý slug zachován kvůli SEO. */
 import Base from '../layouts/Base.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
@@ -17,17 +17,17 @@ import Faq from '@piano/ui/components/Faq.astro';
 
 const segmenty = [
   { icon: 'lucide:coffee', title: 'Kavárny a bistra', text: 'Jednoduchý start a nízké vstupní náklady s edicí Septim.Air.', href: '/reseni/kavarny-bistra-bary' },
-  { icon: 'lucide:utensils-crossed', title: 'Velké restaurace', text: 'Septim.4 na míru — od pokladny po finanční řízení provozu.', href: '/reseni/restaurace' },
+  { icon: 'lucide:utensils-crossed', title: 'Velké restaurace', text: 'Septim.4 na míru: od pokladny po finanční řízení provozu.', href: '/reseni/restaurace' },
   { icon: 'lucide:network', title: 'Jídelny a řetězce', text: 'Centrální správa, sdílené receptury a přehledy napříč pobočkami.', href: '/reseni/jidelny' },
 ];
 const mozek = [
-  { icon: 'lucide:bar-chart-3', title: 'Reporty pro manažery', text: 'Přehled o tržbách, nákladech i personálu — podklad pro rozhodování.', href: '/funkce/reporty-prehledy' },
+  { icon: 'lucide:bar-chart-3', title: 'Reporty pro manažery', text: 'Přehled o tržbách, nákladech i personálu: podklad pro rozhodování.', href: '/funkce/reporty-prehledy' },
   { icon: 'lucide:award', title: 'Věrnostní program', text: 'Akce, kupóny a body, které vracejí hosty zpět k vám.', href: '/funkce/vernostni-system' },
   { icon: 'lucide:chef-hat', title: 'Receptury', text: 'Přesné receptury a surovinová náročnost pod kontrolou.' },
 ];
 const sklad = [
   { icon: 'lucide:boxes', title: 'Evidence skladových zásob', text: 'Aktuální stav zásob v každém okamžiku.' },
-  { icon: 'lucide:file-input', title: 'Automatizovaný import dodacích listů', text: 'Dodací listy se do systému zapíší samy — bez ručního přepisování.' },
+  { icon: 'lucide:file-input', title: 'Automatizovaný import dodacích listů', text: 'Dodací listy se do systému zapíší samy, bez ručního přepisování.' },
   { icon: 'lucide:clipboard-check', title: 'Inventury a odpisy', text: 'Vyhodnocování inventur a odpisy ze skladu pro maximální nákladovou efektivitu.' },
 ];
 const kroky = [
@@ -45,7 +45,7 @@ const faqs = [
 ];
 ---
 <Base title="Spolehlivý pokladní systém pro restaurace – Septim"
-      description="Pokladní systém, na který se můžete spolehnout. Vždycky. Septim není jen pokladna — vydělává vašemu podniku peníze a dává přehled o tom, co se u vás děje. Česká podpora 24/7.">
+      description="Pokladní systém, na který se můžete spolehnout. Vždycky. Septim není jen pokladna, vydělává vašemu podniku peníze a dává přehled o tom, co se u vás děje. Česká podpora 24/7.">
   <SiteHeader />
   <main>
     <Hero eyebrow="Pokladní a provozní systém" background="alt"
@@ -60,15 +60,15 @@ const faqs = [
 
     <USPGrid eyebrow="Pro koho" title="Septim je ideální pro malé, střední i ty největší" lead="Ať už provozujete jakýkoliv typ provozu, máme řešení přímo pro vás." items={segmenty} background="default" space="lg" minItemWidth="260px" />
     <LogoWall label="Septim používá více než 2 000 provozů" background="alt" />
-    <USPGrid eyebrow="Víc než pokladna" title="Ostatní vám prodají jen pokladnu. Septim je mozek celého provozu!" lead="Jiní vám prodají opravdu čistě jen pokladnu. Septim dodá mozek celému vašemu provozu — a bude vám vydělávat." items={mozek} background="default" space="lg" minItemWidth="260px" />
-    <USPGrid eyebrow="Skladové hospodářství" title="Skvěle propracované skladové hospodářství" lead="Evidence dodacích listů, receptur, odpisy ze skladu i vyhodnocování inventur — vše směřuje k cíli být nákladově co nejefektivnější." items={sklad} background="alt" space="lg" minItemWidth="260px" />
+    <USPGrid eyebrow="Víc než pokladna" title="Ostatní vám prodají jen pokladnu. Septim je mozek celého provozu!" lead="Jiní vám prodají opravdu čistě jen pokladnu. Septim dodá mozek celému vašemu provozu a bude vám vydělávat." items={mozek} background="default" space="lg" minItemWidth="260px" />
+    <USPGrid eyebrow="Skladové hospodářství" title="Skvěle propracované skladové hospodářství" lead="Evidence dodacích listů, receptur, odpisy ze skladu i vyhodnocování inventur: vše směřuje k cíli být nákladově co nejefektivnější." items={sklad} background="alt" space="lg" minItemWidth="260px" />
     <USPGrid eyebrow="Jak to probíhá" title="Jak to u Septimu probíhá?" items={kroky} background="default" space="lg" minItemWidth="220px" />
     <StatsBand />
     <Testimonials title="Co o nás říkají klienti?" background="default" />
     <Faq items={faqs} title="Nejčastější dotazy" background="alt" />
     <LeadForm id="poptavka" variant="full" background="default"
               title="Pojďte do toho s námi!"
-              lead="Nechte nám kontakt — připravíme vám nabídku zdarma pro provoz vaší velikosti." />
+              lead="Nechte nám kontakt, připravíme vám nabídku zdarma pro provoz vaší velikosti." />
   </main>
   <SiteFooter />
 </Base>

@@ -1,6 +1,6 @@
 ---
 /**
- * Protel — produkt „Webové rezervace“. Obsah vytěžen z produkty/webove-rezervace.html
+ * Protel: produkt „Webové rezervace“. Obsah vytěžen z produkty/webove-rezervace.html
  * starého protelsystems.cz (jazykově uhlazeno, fakta zachována).
  * Vše ze sdílených komponent @piano/ui.
  */
@@ -21,7 +21,7 @@ const features = [
   {
     id: "aktualizace-dostupnosti-pokoju", icon: "lucide:calendar-sync", title: "Aktualizace dostupnosti pokojů",
     paras: [
-      "Hosté si přes formulář na vašem webu rezervují pobyt kdykoli a odkudkoli — jednoduše si vyberou termín a typ pokoje podle svých preferencí.",
+      "Hosté si přes formulář na vašem webu rezervují pobyt kdykoli a odkudkoli, jednoduše si vyberou termín a typ pokoje podle svých preferencí.",
       "Online aktualizace dostupnosti zabraňuje přebookování a zajišťuje správné plánování kapacity. Nepřijdete o příležitost prodat volné pokoje a maximalizujete příjmy.",
     ],
   },
@@ -36,33 +36,33 @@ const features = [
     id: "garance", icon: "lucide:shield-check", title: "Garance",
     paras: [
       "Pro dokončení rezervace můžete vyžadovat platbu přes napojenou platební bránu, nebo zadání platebních údajů jako záruky. Údaje se do hotelového systému přenášejí v bezpečné formě chráněné proti zneužití.",
-      "Rezervace je potvrzena a chráněna proti nečekaným zrušením — jistota pro vás i vaše hosty.",
+      "Rezervace je potvrzena a chráněna proti nečekaným zrušením, jistota pro vás i vaše hosty.",
     ],
   },
   {
     id: "evidence-rezervace", icon: "lucide:clipboard-list", title: "Evidence rezervace",
     paras: [
-      "Veškeré rezervace i jejich změny se okamžitě zaznamenávají do hotelového systému Protel. Recepce má vždy aktuální přehled o dostupnosti pokojů a stavu rezervací — provoz je efektivnější.",
+      "Veškeré rezervace i jejich změny se okamžitě zaznamenávají do hotelového systému Protel. Recepce má vždy aktuální přehled o dostupnosti pokojů a stavu rezervací, provoz je efektivnější.",
     ],
   },
   {
     id: "potvrzeni-rezervace", icon: "lucide:mail-check", title: "Potvrzení rezervace",
     paras: [
       "Po dokončení rezervace se hostovi automaticky odešle potvrzení s termínem pobytu, typem pokoje a dalšími podrobnostmi. Host má jistotu, že je vše zajištěno.",
-      "Přes potvrzení host svou rezervaci také snadno spravuje — zkontroluje detaily, provede změny nebo rezervaci zruší.",
+      "Přes potvrzení host svou rezervaci také snadno spravuje, zkontroluje detaily, provede změny nebo rezervaci zruší.",
     ],
   },
   {
     id: "pobytove-balicky", icon: "lucide:gift", title: "Pobytové balíčky",
     paras: [
-      "Hosté vybírají z balíčků kombinujících ubytování s doplňkovými službami a zážitky — wellness procedurami, kulturními aktivitami nebo romantickou večeří.",
+      "Hosté vybírají z balíčků kombinujících ubytování s doplňkovými službami a zážitky, wellness procedurami, kulturními aktivitami nebo romantickou večeří.",
       "Pro hotel jsou balíčky ve webových rezervacích efektivní cestou, jak zvýšit obsazenost, optimalizovat tržby a nabídnout hostům osobnější zážitek.",
     ],
   },
 ];
 
 const related = [
-  { icon: "lucide:layout-dashboard", title: "Hotelový systém", text: "Správa pokojů, rezervací, hostů a statistik — snadné používání a pokročilé funkce pro kompletní přehled o provozu.", href: "/produkty/hotelovy-system-protel" },
+  { icon: "lucide:layout-dashboard", title: "Hotelový systém", text: "Správa pokojů, rezervací, hostů a statistik: snadné používání a pokročilé funkce pro kompletní přehled o provozu.", href: "/produkty/hotelovy-system-protel" },
   { icon: "lucide:credit-card", title: "Platební řešení hotelu", text: "Plně integrované platby přímo v Protelu. Méně chyb a nižší riziko vracení transakcí.", href: "/produkty/platebni-reseni-hotelu" },
   { icon: "lucide:mail", title: "Automatický mailing", text: "Personalizované e-maily hostům bez zásahu recepčního.", href: "/produkty/automaticky-mailing" },
   { icon: "lucide:smartphone", title: "Online check-in/out", text: "Host vyřídí check-in i check-out přes mobil, bez fronty na recepci.", href: "/produkty/online-check-in-out" },
@@ -70,14 +70,14 @@ const related = [
 ---
 
 <Base title="Webové rezervace | Protel"
-      description="Online rezervační formulář na vašich stránkách umožní hostům kdykoli si rezervovat pobyt přímo u vás — s aktuální dostupností, dynamickými cenami a garancí platby.">
+      description="Online rezervační formulář na vašich stránkách umožní hostům kdykoli si rezervovat pobyt přímo u vás, s aktuální dostupností, dynamickými cenami a garancí platby.">
   <SiteHeader />
 
   <main>
     <Breadcrumb items={[{ label: 'Úvod', href: '/' }, { label: 'Produkty', href: '/produkty' }, { label: "Webové rezervace" }]} />
 
     <Hero eyebrow="Produkty" background="gradient"
-          lead="Online webový formulář na vašich stránkách umožní hostům, aby si u vás kdykoli rezervovali svůj pobyt — s aktuální dostupností pokojů a cenami přímo z hotelového systému.">
+          lead="Online webový formulář na vašich stránkách umožní hostům, aby si u vás kdykoli rezervovali svůj pobyt, s aktuální dostupností pokojů a cenami přímo z hotelového systému.">
       <Heading slot="title" as="h1" size="display" color="on-dark">Webové <em>rezervace</em></Heading>
       <Fragment slot="actions">
         <Button href="#poptavka">Vyzkoušet Protel zdarma</Button>
@@ -118,7 +118,7 @@ const related = [
 
     <LeadForm id="poptavka" variant="full" background="default"
               title="Vyzkoušejte Protel zdarma"
-              lead="Co byste u vás v hotelu rádi zlepšili? Nechte nám kontakt — ozveme se a ukážeme Protel přímo ve vašem hotelu." />
+              lead="Co byste u vás v hotelu rádi zlepšili? Nechte nám kontakt, ozveme se a ukážeme Protel přímo ve vašem hotelu." />
   </main>
 
   <SiteFooter />

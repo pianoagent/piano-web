@@ -1,5 +1,5 @@
 ---
-/** Septim — Služby: Helpdesk a Hotline. Obsah: septim-obsah/sluzby-servis/helpdesk-hotline.md. SEO meta nově. */
+/** Septim: Služby: Helpdesk a Hotline. Obsah: septim-obsah/sluzby-servis/helpdesk-hotline.md. SEO meta nově. */
 import Base from '../../layouts/Base.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
@@ -15,7 +15,7 @@ import LogoWall from '../../components/LogoWall.astro';
 import Faq from '@piano/ui/components/Faq.astro';
 
 const jistoty = [
-  { icon: 'lucide:headset', title: 'Podpora 24/7', text: 'Vzdálená i osobní pomoc — v pracovní době i mimo ni.' },
+  { icon: 'lucide:headset', title: 'Podpora 24/7', text: 'Vzdálená i osobní pomoc: v pracovní době i mimo ni.' },
   { icon: 'lucide:package-check', title: 'Náhradní díly', text: 'Dostupné náhradní díly a technická podpora pro hardware.' },
   { icon: 'lucide:lightbulb', title: 'Poradenství', text: 'Rady k používání softwaru Septim a jeho nastavení.' },
 ];
@@ -27,10 +27,10 @@ const pokryti = [
 const faqs = [
   { q: 'Kde najdu svůj servisní kód?', a: 'Servisní kód byste měli mít nalepený na pokladně a na manažerském počítači. Hledejte nálepku „Septim“.' },
   { q: 'Pro koho je Helpdesk a Hotline určen?', a: 'Helpdesk a Hotline systému Septim je určen pro zákazníky Septimu s aktuálně platnou servisní smlouvou.' },
-  { q: 'Zaplatil jsem faktury — je můj servisní kód platný?', a: 'V případě zaplacení zaslaných faktur je servisní kód platný. Pro ověření můžete zavolat na naše obchodní oddělení na tel. +420 257 011 100.' },
+  { q: 'Zaplatil jsem faktury: je můj servisní kód platný?', a: 'V případě zaplacení zaslaných faktur je servisní kód platný. Pro ověření můžete zavolat na naše obchodní oddělení na tel. +420 257 011 100.' },
   { q: 'Nemohu najít servisní číslo nebo potřebuji urychlit aktivaci. Co mám dělat?', a: 'Kontaktujte naše obchodní oddělení ihned po zaplacení obdržených faktur pro urychlení aktivace servisních služeb. Stejně postupujte, pokud nemůžete najít vaše servisní číslo. Volejte +420 257 011 100.' },
   { q: 'V jakých termínech se podpora věnuje mým požadavkům?', a: 'Naše oddělení podpory se telefonickým i mailovým požadavkům věnuje v termínech dle vaší servisní smlouvy. Podrobný popis naleznete ve své servisní smlouvě a obecný popis na stránce Podmínky servisní smlouvy.' },
-  { q: 'Řešíte problémy na dálku, nebo na místě?', a: 'Pokud je to možné, řešíme požadavky na dálku — je to rychlejší a levnější. V případě, že je potřeba fyzická přítomnost pro zajištění provozu systému, vyjíždí náš technik k vám.' },
+  { q: 'Řešíte problémy na dálku, nebo na místě?', a: 'Pokud je to možné, řešíme požadavky na dálku, je to rychlejší a levnější. V případě, že je potřeba fyzická přítomnost pro zajištění provozu systému, vyjíždí náš technik k vám.' },
 ];
 ---
 <Base title="Helpdesk a Hotline Septim – NON-STOP pomoc pro váš provoz"
@@ -38,7 +38,7 @@ const faqs = [
   <SiteHeader />
   <main>
     <Hero eyebrow="Služby a servis" background="alt"
-          lead="Septim má propracovaný systém pomoci pro své zákazníky. Zajišťujeme pomoc a poradenství v pracovní době — a mimo ni garantujeme NON-STOP pomoc s provozním softwarem i hardwarem.">
+          lead="Septim má propracovaný systém pomoci pro své zákazníky. Zajišťujeme pomoc a poradenství v pracovní době a mimo ni garantujeme NON-STOP pomoc s provozním softwarem i hardwarem.">
       <Heading slot="title" as="h1" size="display">Helpdesk a <em>Hotline</em></Heading>
       <Fragment slot="actions">
         <Button href="tel:+420257011101">Volat Helpdesk</Button>
@@ -75,7 +75,7 @@ const faqs = [
     <Faq items={faqs} title="Často kladené otázky k Helpdesku a Hotline" background="default" />
     <LeadForm id="poptavka" variant="callback" background="alt"
               title="Potřebujete zajistit služby Septimu?"
-              lead="Nechte nám telefon — spojí se s vámi naše obchodní oddělení." />
+              lead="Nechte nám telefon, spojí se s vámi naše obchodní oddělení." />
   </main>
   <SiteFooter />
 </Base>

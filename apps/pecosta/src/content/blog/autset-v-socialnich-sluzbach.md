@@ -15,7 +15,7 @@ categories: ["Případové studie"]
 
 Zapomeňte na hodiny zdlouhavého porovnávání nabídek dodavatelů nebo strach, jestli všechno odpovídá zákonným požadavkům. **Aukční nákupy přes PECOSTA** fungují jako nákupní portál, kde si jednoduše vyberete z 5 nejvýhodnějších nabídek od vašich dodavatelů. A to vše bez stresu a zbytečných komplikací.
 
-Pravidelné porovnávání cen v aukci, nastavování kvalitativních požadavků a kontrola a nastavování zákonných podmínek, to vše probíhá na pozadí systému v PECOSTĚ. Vy se o nic z toho již nestaráte.
+Pravidelné porovnávání cen v aukci, nastavování kvalitativních požadavků a kontrola a nastavování zákonných podmínek: to vše probíhá na pozadí systému v PECOSTĚ. Vy se o nic z toho již nestaráte.
 
 Aukční nákupy jsou prověřené nejen více než 200 organizacemi Moravskoslezského kraje, ale také dlouholetou praxí největších hotelových sítí ČR, jako CPI Hotels nebo PYTLOUN Hotels, a stovek restaurací napříč republikou.
 

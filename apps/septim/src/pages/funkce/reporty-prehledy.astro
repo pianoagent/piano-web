@@ -1,5 +1,5 @@
 ---
-/** Septim — Funkce: Reporty a přehledy. Obsah: septim-obsah/produkty/reporty-prehledy.md. SEO meta nově. */
+/** Septim: Funkce: Reporty a přehledy. Obsah: septim-obsah/produkty/reporty-prehledy.md. SEO meta nově. */
 import Base from '../../layouts/Base.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
@@ -20,12 +20,12 @@ const features = [
   'Ziskovost produktů a receptur', 'Vyhodnocení kategorií produktů', 'Vyhodnocení uživatelů systému',
 ];
 const benefits = [
-  { icon: 'lucide:line-chart', title: 'Řízení podle čísel', text: 'Surovin, personálu i financí — na základě konkrétních, aktuálních dat.' },
+  { icon: 'lucide:line-chart', title: 'Řízení podle čísel', text: 'Surovin, personálu i financí: na základě konkrétních, aktuálních dat.' },
   { icon: 'lucide:smartphone', title: 'Data v mobilu', text: 'Konkrétní datové sady kdykoliv v aplikaci MySeptim.' },
-  { icon: 'lucide:badge-check', title: 'Pravdivá čísla', text: 'Vychází z perfektně fungujícího skladového hospodářství — výstupy mají vypovídací hodnotu.' },
+  { icon: 'lucide:badge-check', title: 'Pravdivá čísla', text: 'Vychází z perfektně fungujícího skladového hospodářství, výstupy mají vypovídací hodnotu.' },
 ];
 const faqs = [
-  { q: 'K čemu jsou reporty nejvíc?', a: 'Hlavní výhodou je řízení surovin, personálu a financí na základě konkrétních aktuálních dat — nástroj pro řízení ziskovosti restaurace.' },
+  { q: 'K čemu jsou reporty nejvíc?', a: 'Hlavní výhodou je řízení surovin, personálu a financí na základě konkrétních aktuálních dat, nástroj pro řízení ziskovosti restaurace.' },
   { q: 'Jak nastavit ty správné přehledy?', a: 'Která čísla sledovat a jak je nastavit prakticky poradí naši konzultanti. Domluvte si schůzku a začněte řídit provoz podle dat.' },
 ];
 ---
@@ -46,7 +46,7 @@ const faqs = [
     <Section background="default" space="lg">
       <div class="prose">
         <Heading as="h2" size="h2">Co reporty zobrazí</Heading>
-        <Text size="lead" color="muted">Modul Reporty a přehledy umí ukázat v podstatě veškerá data z vašeho provozu — přehledně:</Text>
+        <Text size="lead" color="muted">Modul Reporty a přehledy umí ukázat v podstatě veškerá data z vašeho provozu, přehledně:</Text>
       </div>
       <ul class="checklist">
         {features.map((f) => (<li><Icon name="lucide:check" size="sm" class="checklist__icon" />{f}</li>))}
@@ -59,7 +59,7 @@ const faqs = [
     <Faq items={faqs} title="Často kladené otázky k reportům" background="default" />
     <LeadForm id="poptavka" variant="callback" background="alt"
               title="Začněte řídit provoz podle čísel"
-              lead="Nechte nám telefon — poradíme, která čísla sledovat a jak je nastavit." />
+              lead="Nechte nám telefon, poradíme, která čísla sledovat a jak je nastavit." />
   </main>
   <SiteFooter />
 </Base>

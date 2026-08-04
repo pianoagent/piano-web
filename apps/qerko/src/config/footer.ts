@@ -7,7 +7,7 @@ export const qerkoFooter = {
   brand: 'Qerko',
   logoSrc: '/logos/qerko_by_piano.svg',  // "by Piano" lockup; v patičce bíle (filtr), výška 42px
   logoAlt: 'Qerko by Piano',
-  tagline: 'QR platby od stolu, digitální menu a objednávání. Vyšší dýška, rychlejší obsluha a lepší Google recenze — pomocník na place pro moderní restaurace.',
+  tagline: 'QR platby od stolu, digitální menu a objednávání. Vyšší dýška, rychlejší obsluha a lepší Google recenze, pomocník na place pro moderní restaurace.',
   parentNote: { text: 'Qerko je součástí skupiny Piano', href: 'https://piano.cz' },
   columns: [
     {

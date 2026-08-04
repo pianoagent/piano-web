@@ -1,10 +1,10 @@
 ---
 /**
- * Savarin — homepage.
+ * Savarin: homepage.
  * Obsah z legacy webu (podklady starých webů/Savarin, stránky home / popis-programu
  * / pokladna / recepce / sklady-a-kalkulace / sluzby-servis).
  * Vše ze SDÍLENÝCH komponent @piano/ui; téma řeší src/styles/theme.css.
- * Hero vizuál je placeholder (CSS účtenka/POS) — reálné obrázky doplníme později.
+ * Hero vizuál je placeholder (CSS účtenka/POS), reálné obrázky doplníme později.
  */
 import Base from '../layouts/Base.astro';
 import Header from '@piano/ui/components/Header.astro';
@@ -28,17 +28,17 @@ const stats = [
 ];
 
 const moduly = [
-  { icon: 'lucide:monitor', title: 'Pokladna', text: 'Pokladní systém pro PC i POS — restaurační, hotelová a samoobslužná verze. Účtování na stoly, otevřené účty, dotykové ovládání.' },
-  { icon: 'lucide:smartphone', title: 'Mobilní pokladna', text: 'Mobilní číšník — objednávky, storna a úhrady přímo u stolu. Funguje i v off-line režimu mimo dosah sítě.' },
+  { icon: 'lucide:monitor', title: 'Pokladna', text: 'Pokladní systém pro PC i POS: restaurační, hotelová a samoobslužná verze. Účtování na stoly, otevřené účty, dotykové ovládání.' },
+  { icon: 'lucide:smartphone', title: 'Mobilní pokladna', text: 'Mobilní číšník: objednávky, storna a úhrady přímo u stolu. Funguje i v off-line režimu mimo dosah sítě.' },
   { icon: 'lucide:bed-double', title: 'Recepce', text: 'Komplexní agenda recepce: rezervace, ubytování hostů i skupin, účty, směnárna a statistické výkazy.' },
-  { icon: 'lucide:calculator', title: 'Sklady a kalkulace', text: 'HRMTZ a HRKALKUL — skladové hospodářství, evidence tržeb, receptury jídel a komunikace s pokladnami.' },
+  { icon: 'lucide:calculator', title: 'Sklady a kalkulace', text: 'HRMTZ a HRKALKUL: skladové hospodářství, evidence tržeb, receptury jídel a komunikace s pokladnami.' },
   { icon: 'lucide:keyboard', title: 'Pokladní komponenty', text: 'POS terminály, dotykové monitory, termální i jehličkové tiskárny a programovatelné klávesnice.' },
-  { icon: 'lucide:headset', title: 'Služby a servis', text: 'Nepřetržitý servis do 24 hodin, školení, nové verze i poradenství — na základě servisní smlouvy.' },
+  { icon: 'lucide:headset', title: 'Služby a servis', text: 'Nepřetržitý servis do 24 hodin, školení, nové verze i poradenství, na základě servisní smlouvy.' },
 ];
 
 const vyhody = [
   { icon: 'lucide:blocks', title: 'Modulární systém', text: 'Nasaďte jen to, co potřebujete, a rozšiřujte postupně po jednotlivých subsystémech.' },
-  { icon: 'lucide:network', title: 'Provoz v síti', text: 'Automatické datové přenosy mezi moduly — pokladna, sklad i recepce spolu komunikují.' },
+  { icon: 'lucide:network', title: 'Provoz v síti', text: 'Automatické datové přenosy mezi moduly, pokladna, sklad i recepce spolu komunikují.' },
   { icon: 'lucide:badge-check', title: 'Certifikace pro SK', text: 'Provoz PC/POS s fiskálním modulem na Slovensku; připraveno i na povinné pokladní systémy v ČR.' },
   { icon: 'lucide:shield-check', title: 'Bezpečnost', text: 'Přístup chráněný heslem a oprávněními pro jednotlivé uživatele.' },
 ];
@@ -57,7 +57,7 @@ const leadProofs = [
 
   <main>
 
-  <!-- HERO — split: text vlevo, POS účtenka vpravo (placeholder) -->
+  <!-- HERO: split: text vlevo, POS účtenka vpravo (placeholder) -->
   <Hero eyebrow="Restaurační a hotelový systém" background="gradient"
         lead="Savarin je modulární systém pro stravovací a ubytovací provozy: pokladna, recepce, sklady a kalkulace na jednom místě."
         usp={[{ text: 'Na trhu od 1990', icon: 'lucide:calendar-check' }, { text: 'Podpora 24/7', icon: 'lucide:headset' }, { text: 'Až 99 středisek', icon: 'lucide:network' }]}>
@@ -79,7 +79,7 @@ const leadProofs = [
             <span class="pos__t">6</span>
           </div>
           <div class="receipt">
-            <div class="receipt__head">Stůl 4 — účet</div>
+            <div class="receipt__head">Stůl 4: účet</div>
             <ul class="receipt__lines">
               <li><span>2× Svíčková</span><span>318</span></li>
               <li><span>3× Pivo 0,5</span><span>165</span></li>
@@ -98,7 +98,7 @@ const leadProofs = [
 
   <!-- MODULY -->
   <USPGrid id="moduly" eyebrow="Moduly systému" title="Jeden systém, který pokryje celý provoz"
-           lead="Restaurace, hotelová restaurace i samoobslužný provoz — moduly Savarinu spolu komunikují a sdílí data."
+           lead="Restaurace, hotelová restaurace i samoobslužný provoz, moduly Savarinu spolu komunikují a sdílí data."
            items={moduly} minItemWidth="300px" background="default" space="lg" />
 
   <!-- JAK TO ZAPADÁ DOHROMADY (modulární systém) -->
@@ -106,7 +106,7 @@ const leadProofs = [
     <div class="split">
       <div class="split__text">
         <Text size="label" color="accent">Modulární architektura</Text>
-        <Heading as="h2" size="h2">Nasaďte jen to, co potřebujete — a <span class="accent">rozšiřujte postupně</span></Heading>
+        <Heading as="h2" size="h2">Nasaďte jen to, co potřebujete a <span class="accent">rozšiřujte postupně</span></Heading>
         <Text size="lead" color="muted" balance>
           Základem je modul <strong>HRMTZ a HRKALKUL</strong> (sklady a kalkulace), na který navazuje pokladna i recepce.
           Systém běží na samostatném PC, ale v síti získáte maximální komfort a automatické datové přenosy mezi moduly.
@@ -115,7 +115,7 @@ const leadProofs = [
           <li><Icon name="lucide:check" size="sm" class="hl-check" />Hotelová pokladna připíše útratu hosta na účet v Recepci</li>
           <li><Icon name="lucide:check" size="sm" class="hl-check" />Pokladna automaticky odepisuje zboží ze skladových karet</li>
           <li><Icon name="lucide:check" size="sm" class="hl-check" />Podklady pro podvojné účetnictví (textový i databázový export)</li>
-          <li><Icon name="lucide:check" size="sm" class="hl-check" />Modul SledujTU — zaúčtování telefonních hovorů hostům</li>
+          <li><Icon name="lucide:check" size="sm" class="hl-check" />Modul SledujTU: zaúčtování telefonních hovorů hostům</li>
         </ul>
         <div class="split__cta"><Button href="/sklady-a-kalkulace" variant="secondary">Více o jádru systému</Button></div>
       </div>
@@ -160,7 +160,7 @@ const leadProofs = [
         <span class="teaser__icon"><Icon name="lucide:hand-coins" size="md" /></span>
         <Heading as="h3" size="h3" color="on-dark">Financování a pronájem</Heading>
         <Text color="on-dark-muted">
-          Kromě přímého a splátkového prodeje si software můžete i pronajmout — s možností pozdějšího odkupu a multilicenčními slevami.
+          Kromě přímého a splátkového prodeje si software můžete i pronajmout, s možností pozdějšího odkupu a multilicenčními slevami.
         </Text>
         <a class="teaser__link" href="/cenik">Ceník a pronájem →</a>
       </article>
@@ -179,7 +179,7 @@ const leadProofs = [
 </Base>
 
 <style>
-  /* Hero placeholder — POS / účtenka */
+  /* Hero placeholder: POS / účtenka */
   .hero-mock { width: 100%; display: flex; justify-content: center; }
   .pos {
     width: 100%; max-width: 420px; background: var(--color-bg);

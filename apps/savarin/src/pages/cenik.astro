@@ -1,6 +1,6 @@
 ---
 /**
- * Savarin — Ceník, pronájem a slevy. Obsah z legacy stránky
+ * Savarin: Ceník, pronájem a slevy. Obsah z legacy stránky
  * formy-prodeje-multilicencni-slevy. Sdílené komponenty @piano/ui.
  */
 import Base from '../layouts/Base.astro';
@@ -41,7 +41,7 @@ const schema = {
 };
 ---
 
-<Base title="Ceník, pronájem a slevy — Savarin"
+<Base title="Ceník, pronájem a slevy | Savarin"
       description="Formy prodeje systému Savarin: přímý a splátkový prodej, pronájem softwaru (4 % z ceny měsíčně) s možností odkupu a multilicenční slevy. Cenová nabídka na vyžádání."
       schema={schema}>
   <Header brand="Savarin" logoSrc="/logos/savarin_logo.svg" logoHeight="36px" homeHref="/" nav={savarinNav} cta={savarinCta} />
@@ -78,7 +78,7 @@ const schema = {
 
     <div class="tables">
       <div class="tbl">
-        <h3 class="tbl__title">Odkup pronajatého SW — sleva dle doby pronájmu</h3>
+        <h3 class="tbl__title">Odkup pronajatého SW: sleva dle doby pronájmu</h3>
         <table>
           <tbody>
             {odkup.map(([a, b]) => (<tr><td>{a}</td><td>{b}</td></tr>))}
@@ -87,7 +87,7 @@ const schema = {
         <p class="tbl__note">Vždy poměrným způsobem dle trvání nájmu.</p>
       </div>
       <div class="tbl">
-        <h3 class="tbl__title">Multilicenční slevy — více instalací</h3>
+        <h3 class="tbl__title">Multilicenční slevy: více instalací</h3>
         <table>
           <tbody>
             {multilicence.map(([a, b]) => (<tr><td>{a}</td><td>{b}</td></tr>))}

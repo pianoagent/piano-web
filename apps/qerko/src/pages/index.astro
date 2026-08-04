@@ -1,11 +1,11 @@
 ---
 /**
- * Qerko — homepage (první verze).
+ * Qerko: homepage (první verze).
  * Obsah vytěžen ze starých stránek qerko.com (index, qr-platba, objednavani,
  * vernostni-program, hodnoceni, q-point, rezervace) + qerko-context.md.
  * Vše ze SDÍLENÝCH komponent @piano/ui; téma řeší src/styles/theme.css.
  * Sekce bez vlastní komponenty (Stats, Steps, Feature rows, Awards, Reference,
- * FAQ) jsou složené z primitivů (Section/Heading/Text/Button/Icon) —
+ * FAQ) jsou složené z primitivů (Section/Heading/Text/Button/Icon)
  * komponenty se NEFORKUJÍ.
  */
 import Base from '../layouts/Base.astro';
@@ -29,9 +29,9 @@ const stats = [
 ];
 
 const steps = [
-  { icon: 'lucide:qr-code', title: 'Host naskenuje QR', text: 'Na stole je QR kód nebo NFC. Host ho naskenuje telefonem — žádná aplikace navíc není potřeba.' },
+  { icon: 'lucide:qr-code', title: 'Host naskenuje QR', text: 'Na stole je QR kód nebo NFC. Host ho naskenuje telefonem, žádná aplikace navíc není potřeba.' },
   { icon: 'lucide:utensils', title: 'Vidí menu a objednává', text: 'Digitální menu se načte z vaší pokladny. Host si může rovnou objednat další jídlo i pití.' },
-  { icon: 'lucide:smartphone', title: 'Zaplatí z mobilu', text: 'Rozdělí účet, přidá spropitné a zaplatí kartou, Apple Pay nebo stravenkou — kdykoliv chce.' },
+  { icon: 'lucide:smartphone', title: 'Zaplatí z mobilu', text: 'Rozdělí účet, přidá spropitné a zaplatí kartou, Apple Pay nebo stravenkou, kdykoliv chce.' },
   { icon: 'lucide:monitor-check', title: 'Obsluha vše vidí v POS', text: 'Platba i objednávka se okamžitě propíší do pokladny. Číšník má čas na nově příchozí.' },
   { icon: 'lucide:receipt', title: 'Účtenka e-mailem', text: 'Host dostane digitální účtenku automaticky. Žádné čekání, žádný papír navíc.' },
   { icon: 'lucide:star', title: 'Qerko požádá o recenzi', text: 'Po platbě se Qerko zeptá na hodnocení a vybídne k recenzi na Googlu i follow na Instagramu.' },
@@ -46,18 +46,18 @@ const features = [
   { icon: 'lucide:star', title: 'Hodnocení a Google recenze', text: 'Qerko automaticky sbírá recenze od spokojených hostů. Buďte číslo 1 ve městě.' },
 ];
 
-// Detailní bloky produktu — kotvy odpovídají navigaci a patičce
+// Detailní bloky produktu: kotvy odpovídají navigaci a patičce
 const blocks = [
   {
     id: 'qr-platba', bg: 'default', icon: 'lucide:qr-code', eyebrow: 'Qerko platba',
     title: 'Zaplatí sami. Vy markujete dál.',
-    text: '„Zaplatím!" je fráze, která běžně stojí obsluhu i hosty desítky minut. S Qerkem si hosté sami rozpočítají účet a zaplatí z mobilu — platba se propíše do pokladny a obsluha o všem ví.',
+    text: '„Zaplatím!" je fráze, která běžně stojí obsluhu i hosty desítky minut. S Qerkem si hosté sami rozpočítají účet a zaplatí z mobilu, platba se propíše do pokladny a obsluha o všem ví.',
     bullets: ['Bezkontaktní platba bez PIN', 'Visa, Mastercard, Apple Pay, stravenky', 'Rozdělení účtu mezi hosty'],
   },
   {
     id: 'objednavani', bg: 'alt', icon: 'lucide:utensils', eyebrow: 'Digitální menu a objednávka',
     title: 'Co takhle kávu nebo dezert?',
-    text: 'Na tuhle otázku je někdy zoufale málo času. Vaše menu si automaticky stáhneme z pokladny, ukážeme ho hostům a doporučíme položky na míru. Objednávky z telefonu jdou přímo do POS a kuchyně — tržby rostou až o 10 %.',
+    text: 'Na tuhle otázku je někdy zoufale málo času. Vaše menu si automaticky stáhneme z pokladny, ukážeme ho hostům a doporučíme položky na míru. Objednávky z telefonu jdou přímo do POS a kuchyně, tržby rostou až o 10 %.',
     bullets: ['Menu s fotkami, vždy aktuální', 'Objednávky rovnou do POS a kuchyně', 'Předobjednávky i takeaway'],
   },
   {
@@ -69,19 +69,19 @@ const blocks = [
   {
     id: 'vernost', bg: 'alt', icon: 'lucide:heart-handshake', eyebrow: 'Věrnostní program',
     title: 'Aby se k vám hosté vraceli',
-    text: 'Pomocí chytrých nástrojů přivedeme vaše hosty zpět a přimějeme je chodit častěji. Po platbě jim pošlete poděkování, voucher nebo pozvánku na nové menu — bez práce navíc.',
+    text: 'Pomocí chytrých nástrojů přivedeme vaše hosty zpět a přimějeme je chodit častěji. Po platbě jim pošlete poděkování, voucher nebo pozvánku na nové menu, bez práce navíc.',
     bullets: ['Personalizované zprávy po platbě', 'Vouchery a chytré nabídky', 'Hosté jako followeři podniku'],
   },
   {
     id: 'hodnoceni', bg: 'default', icon: 'lucide:star', eyebrow: 'Hodnocení a reputace',
     title: 'Staňte se podnikem číslo jedna',
-    text: 'Bylo vše v pořádku? Ve šrumci špičky někdy nezbyde čas se zeptat. Qerko se zákazníka zeptá hned po platbě — a vy na hodnocení reagujete poděkováním nebo omluvou. Spokojené hosty pak vybídneme k recenzi na Google Maps a follow na Instagramu.',
+    text: 'Bylo vše v pořádku? Ve šrumci špičky někdy nezbyde čas se zeptat. Qerko se zákazníka zeptá hned po platbě a vy na hodnocení reagujete poděkováním nebo omluvou. Spokojené hosty pak vybídneme k recenzi na Google Maps a follow na Instagramu.',
     bullets: ['Soukromá zpětná vazba hned po platbě', 'Automatické Google recenze', 'Více sledujících na Instagramu'],
   },
   {
     id: 'qpoint', bg: 'alt', icon: 'lucide:tablet-smartphone', eyebrow: 'Qpoint',
     title: 'Rozvoz i e-shop v jednom tabletu',
-    text: 'Qpoint agreguje objednávky z rozvozu a vlastního online shopu přehledně na jednom tabletu. Žádné přepínání mezi platformami — vše na jednom místě.',
+    text: 'Qpoint agreguje objednávky z rozvozu a vlastního online shopu přehledně na jednom tabletu. Žádné přepínání mezi platformami, vše na jednom místě.',
     bullets: ['Objednávky z rozvozu i e-shopu', 'Vše přehledně na jednom tabletu', 'Vlastní online shop podniku'],
   },
 ];
@@ -90,13 +90,13 @@ const awards = [
   { title: 'Vítěz Startup Awards', note: 'Cena veřejnosti' },
   { title: '2× Křišťálová Lupa', note: 'E-commerce inspirace' },
   { title: 'Licence ČNB', note: 'Evropská platební instituce' },
-  { title: 'Banka roku — 2. místo', note: 'Kategorie Fintech' },
+  { title: 'Banka roku: 2. místo', note: 'Kategorie Fintech' },
   { title: 'Top 10 App Store', note: 'Jídlo a pití' },
   { title: '1,5 mil.+ uživatelů', note: 've 3 evropských zemích' },
 ];
 
 const testimonials = [
-  { initials: 'TH', headline: 'Super funkční Qerko', quote: 'Byl jsem několikrát a pokaždé skvělá návštěva. Super funkční Qerko — to se mi tam líbilo nejvíc.', author: 'Tomáš Hofmann', role: '199 recenzí · Google Maps' },
+  { initials: 'TH', headline: 'Super funkční Qerko', quote: 'Byl jsem několikrát a pokaždé skvělá návštěva. Super funkční Qerko, to se mi tam líbilo nejvíc.', author: 'Tomáš Hofmann', role: '199 recenzí · Google Maps' },
   { initials: 'NL', headline: 'Platba přes Qerko je plus', quote: 'Moc milá obsluha, skvělé jídlo, fajn polední nabídky. Další plus je platba přes Qerko.', author: 'Nikola Lešková', role: '19 recenzí · Google Maps' },
   { initials: 'JK', headline: 'Bonusové body za podporu', quote: 'Dobré pivo, dobré jídlo, bonusové body za podporu Qerka a velmi milí číšníci.', author: 'Jiří Kučera', role: '110 recenzí · Google Maps' },
 ];
@@ -104,7 +104,7 @@ const testimonials = [
 const faqs = [
   { q: 'Kolik Qerko stojí?', a: 'Žádný měsíční paušál. Platíte jen transakční poplatek 2,90 Kč + 1,35 % z částky a jednorázový starter pack podle počtu stolů (od 2 890 Kč). Platby, objednávání, věrnostní program i rezervace jsou v ceně.' },
   { q: 'Musíme měnit pokladnu?', a: 'Ne. Qerko je napojené na 30+ POS systémů včetně Septimu. Menu i platby se propisují do vaší stávající pokladny.' },
-  { q: 'Co když host nechce platit přes telefon?', a: 'Qerko nic nenahrazuje násilím — funguje vedle běžné obsluhy. Host zaplatí přes Qerko, jen když chce. Obsluha má díky tomu víc času na ostatní stoly.' },
+  { q: 'Co když host nechce platit přes telefon?', a: 'Qerko nic nenahrazuje násilím: funguje vedle běžné obsluhy. Host zaplatí přes Qerko, jen když chce. Obsluha má díky tomu víc času na ostatní stoly.' },
   { q: 'Jaké platební metody hosté využijí?', a: 'Visa, Mastercard, Apple Pay, uložené karty, stravenky (Edenred, Sodexo, Benefit Plus, Naše Stravenka, UP) i Bitcoin.' },
   { q: 'Jak dlouho trvá instalace?', a: 'Profesionální instalace zabere do 3 hodin (4 900 Kč), nebo si Qerko nasadíte sami zdarma. Stačí vytisknout QR kódy na stoly a napojit pokladnu.' },
 ];
@@ -135,7 +135,7 @@ const leadProofs = [
     <figure slot="media" class="hero-figure">
       <video src="https://cdn.prod.website-files.com/677d1d0f99a9ef91f1f05c2b%2F67c70aec4aa0c237bae76eca_new_zvla%CC%81st_na_kasu-transcode.mp4"
              autoplay loop muted playsinline preload="metadata"
-             aria-label="Qerko — platba z mobilu přímo od stolu"></video>
+             aria-label="Qerko: platba z mobilu přímo od stolu"></video>
     </figure>
   </Hero>
 
@@ -147,7 +147,7 @@ const leadProofs = [
   <Section id="jak-to-funguje" background="default" space="lg">
     <div class="head head--center">
       <Text size="label" color="accent" align="center">Jak to funguje</Text>
-      <Heading as="h2" size="h2" align="center">Od QR kódu po <em>recenzi</em> — bez práce navíc</Heading>
+      <Heading as="h2" size="h2" align="center">Od QR kódu po <em>recenzi</em>, bez práce navíc</Heading>
       <Text size="lead" color="muted" align="center" balance>
         Kde zrovna není číšník, tam pomůže Qerko. Šest kroků, které otočí víc stolů a zvednou dýška.
       </Text>
@@ -167,7 +167,7 @@ const leadProofs = [
   <!-- FUNKCE -->
   <div id="funkce">
     <USPGrid eyebrow="Co Qerko umí" title="Všechny nástroje pro pohostinství pod jednou střechou"
-             lead="Platba, objednávání, věrnost i reputace — v jednom řešení napojeném na vaši pokladnu."
+             lead="Platba, objednávání, věrnost i reputace: v jednom řešení napojeném na vaši pokladnu."
              items={features} minItemWidth="280px" background="alt" space="lg" />
   </div>
 
@@ -269,7 +269,7 @@ const leadProofs = [
   <!-- POPTÁVKA -->
   <LeadForm id="poptavka" variant="full" background="default"
             title="Chci vyzkoušet Qerko"
-            lead="Nechte nám kontakt — ukážeme vám, jak Qerko otočí víc stolů a zvedne dýška ve vašem podniku."
+            lead="Nechte nám kontakt, ukážeme vám, jak Qerko otočí víc stolů a zvedne dýška ve vašem podniku."
             submitLabel="Chci Qerko"
             proofs={leadProofs} />
 
@@ -279,7 +279,7 @@ const leadProofs = [
 </Base>
 
 <style>
-  /* Hero video — oříznuto do čtverce (vyšší a větší v split layoutu) */
+  /* Hero video: oříznuto do čtverce (vyšší a větší v split layoutu) */
   .hero-figure {
     position: relative; margin: 0; width: 100%;
     aspect-ratio: 1 / 1;

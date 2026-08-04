@@ -1,5 +1,5 @@
 ---
-/** Pecosta — Jak to funguje (proces). Obsah: pecosta-context.md + #page-pecosta. */
+/** Pecosta: Jak to funguje (proces). Obsah: pecosta-context.md + #page-pecosta. */
 import Base from '../layouts/Base.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
@@ -15,13 +15,13 @@ import Faq from '@piano/ui/components/Faq.astro';
 import { pecostaLeadProofs } from '../config/leadProofs';
 
 const steps = [
-  { icon: 'lucide:calculator', title: 'Analýza zdarma', text: 'Připravíme cenové porovnání a kalkulaci úspor bez závazků. Vidíte reálná čísla ještě před podpisem — výsledek máte do 48 hodin.' },
-  { icon: 'lucide:plug', title: 'Napojení dodavatelů', text: 'Napojíme vaše stávající dodavatele na náš nákupní portál. Nemusíte je měnit — naopak soutěží o vaši přízeň v e-aukcích.' },
+  { icon: 'lucide:calculator', title: 'Analýza zdarma', text: 'Připravíme cenové porovnání a kalkulaci úspor bez závazků. Vidíte reálná čísla ještě před podpisem, výsledek máte do 48 hodin.' },
+  { icon: 'lucide:plug', title: 'Napojení dodavatelů', text: 'Napojíme vaše stávající dodavatele na náš nákupní portál. Nemusíte je měnit, naopak soutěží o vaši přízeň v e-aukcích.' },
   { icon: 'lucide:shopping-cart', title: 'Nakupujete z jednoho místa', text: 'Nakupujete od všech svých dodavatelů z jednoho portálu za ceny z aukcí. Přehled o nákladech bez papírování.' },
-  { icon: 'lucide:package-check', title: 'Automatické naskladnění', text: 'Dodací listy jdou automaticky do vašeho skladového systému přes Autset — bez ručního přepisování.' },
+  { icon: 'lucide:package-check', title: 'Automatické naskladnění', text: 'Dodací listy jdou automaticky do vašeho skladového systému přes Autset, bez ručního přepisování.' },
 ];
 const faqs = [
-  { q: 'Začíná spolupráce závazkem?', a: 'Ne. Začínáme bezplatnou analýzou — připravíme cenové porovnání a kalkulaci úspor. Teprve pak se rozhodnete, zda do toho jdete.' },
+  { q: 'Začíná spolupráce závazkem?', a: 'Ne. Začínáme bezplatnou analýzou, připravíme cenové porovnání a kalkulaci úspor. Teprve pak se rozhodnete, zda do toho jdete.' },
   { q: 'Jak rychle uvidím výsledky analýzy?', a: 'Výsledek kalkulace úspor máte zpravidla do 48 hodin od předání podkladů.' },
   { q: 'Musím kvůli tomu měnit dodavatele nebo systém?', a: 'Ne. Napojíme vaše stávající dodavatele i skladový systém. Provoz funguje dál jako dosud, jen levněji a s méně administrativou.' },
 ];
@@ -44,7 +44,7 @@ const faqs = [
         <Text size="label" color="accent" align="center">Postup</Text>
         <Heading as="h2" size="h2" align="center">Čtyři kroky k <em>nižším nákladům</em></Heading>
         <Text size="lead" color="muted" align="center" balance>
-          Od první kalkulace po naskladnění, které proběhne samo — bez rizika a bez práce navíc.
+          Od první kalkulace po naskladnění, které proběhne samo, bez rizika a bez práce navíc.
         </Text>
       </div>
       <ol class="steps">
@@ -63,7 +63,7 @@ const faqs = [
     <Faq items={faqs} title="Časté otázky k postupu" background="default" />
     <LeadForm id="poptavka" variant="full" background="alt"
               title="Začněte analýzou zdarma"
-              lead="Nechte nám kontakt — připravíme cenové porovnání a kalkulaci úspor do 48 hodin."
+              lead="Nechte nám kontakt, připravíme cenové porovnání a kalkulaci úspor do 48 hodin."
               submitLabel="Chci analýzu zdarma" proofs={pecostaLeadProofs} />
   </main>
   <SiteFooter />

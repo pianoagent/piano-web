@@ -1,5 +1,5 @@
 ---
-/** Septim — Produkt (edice): MySeptim. Obsah: septim-obsah/produkty/myseptim.md. SEO meta nově. */
+/** Septim: Produkt (edice): MySeptim. Obsah: septim-obsah/produkty/myseptim.md. SEO meta nově. */
 import Base from '../../layouts/Base.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
@@ -15,11 +15,11 @@ import Faq from '@piano/ui/components/Faq.astro';
 
 const benefits = [
   { icon: 'lucide:line-chart', title: 'Klíčové ukazatele', text: 'Rychlý a přehledný přístup k nejdůležitějším provozním číslům.' },
-  { icon: 'lucide:refresh-cw', title: 'Data v reálném čase', text: 'Přímé propojení s databází Septim — aktuální čísla, ne včerejší.' },
+  { icon: 'lucide:refresh-cw', title: 'Data v reálném čase', text: 'Přímé propojení s databází Septim, aktuální čísla, ne včerejší.' },
   { icon: 'lucide:map-pin', title: 'Odkudkoliv', text: 'Tržby, personál i sklady máte po ruce, kdekoliv jste.' },
 ];
 const faqs = [
-  { q: 'Jak MySeptim získám?', a: 'Pokud jste náš zákazník, stáhněte si aplikaci z App Store nebo Google Play a spojte se s námi přes formulář — zařídíme přístup.' },
+  { q: 'Jak MySeptim získám?', a: 'Pokud jste náš zákazník, stáhněte si aplikaci z App Store nebo Google Play a spojte se s námi přes formulář, zařídíme přístup.' },
   { q: 'Na jakých zařízeních běží?', a: 'MySeptim je k dispozici pro iOS (App Store) i Android (Google Play).' },
 ];
 ---
@@ -27,14 +27,14 @@ const faqs = [
       description="MySeptim je mobilní aplikace pro majitele a manažery provozů se systémem Septim. Tržby, personál a sklady v reálném čase, odkudkoli. Pro iOS i Android.">
   <SiteHeader />
   <main>
-    <Hero eyebrow="Produkt — aplikace" background="alt"
-          lead="MySeptim je aplikace pro majitele, manažery a provozní zařízení se Septimem. Rychlý a přehledný přístup k nejdůležitějším provozním ukazatelům — kdykoli a odkudkoli.">
+    <Hero eyebrow="Produkt: aplikace" background="alt"
+          lead="MySeptim je aplikace pro majitele, manažery a provozní zařízení se Septimem. Rychlý a přehledný přístup k nejdůležitějším provozním ukazatelům, kdykoli a odkudkoli.">
       <Heading slot="title" as="h1" size="display">My<em>Septim</em></Heading>
       <Fragment slot="actions">
         <Button href="#poptavka">Chci přístup</Button>
         <Button href="/produkty/septim-4" variant="secondary">O systému Septim</Button>
       </Fragment>
-      <figure slot="media" class="hero-pic"><img src="/images/produkt-myseptim.webp" alt="MySeptim — provoz v mobilu" width="1300" height="1000" loading="eager" /></figure>
+      <figure slot="media" class="hero-pic"><img src="/images/produkt-myseptim.webp" alt="MySeptim: provoz v mobilu" width="1300" height="1000" loading="eager" /></figure>
     </Hero>
 
     <USPGrid eyebrow="Proč MySeptim" title="Celý provoz v kapse" items={benefits} background="default" space="lg" minItemWidth="240px" />
@@ -42,7 +42,7 @@ const faqs = [
     <Faq items={faqs} title="Často kladené dotazy k MySeptim" background="alt" />
     <LeadForm id="poptavka" variant="callback" background="default"
               title="Chci získat přístup do MySeptim"
-              lead="Nechte nám telefon — spojíme váš účet a pošleme přístup do aplikace." />
+              lead="Nechte nám telefon, spojíme váš účet a pošleme přístup do aplikace." />
   </main>
   <SiteFooter />
 </Base>

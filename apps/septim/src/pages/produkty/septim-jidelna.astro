@@ -1,5 +1,5 @@
 ---
-/** Septim — Produkt (edice): Septim.Jídelna. Obsah: septim-obsah/produkty/septim-jidelna-*. SEO meta nově. */
+/** Septim: Produkt (edice): Septim.Jídelna. Obsah: septim-obsah/produkty/septim-jidelna-*. SEO meta nově. */
 import Base from '../../layouts/Base.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
@@ -24,28 +24,28 @@ const features = [
 ];
 const faqs = [
   { q: 'Je Septim připravený přímo pro jídelny?', a: 'Ano. Septim se jako jeden z prvních v ČR přizpůsobil náročným požadavkům závodních jídelen a téměř 20 let ladí řešení na míru tomuto odvětví.' },
-  { q: 'Zvládne síť jídelen?', a: 'Ano. Septim škáluje od jedné jídelny po řetězce — sdílené receptury, sklady i centrální finanční řízení.' },
+  { q: 'Zvládne síť jídelen?', a: 'Ano. Septim škáluje od jedné jídelny po řetězce, sdílené receptury, sklady i centrální finanční řízení.' },
 ];
 ---
 <Base title="Septim.Jídelna – systém pro jídelny a závodní stravování"
       description="Septim.Jídelna: pokladní a provozní systém pro kantýny a závodní stravování. Objednávání jídel online i přes terminál, anketa pro strávníky, sklady, inventury a manažerské statistiky.">
   <SiteHeader />
   <main>
-    <Hero eyebrow="Produkt — edice" background="alt"
+    <Hero eyebrow="Produkt: edice" background="alt"
           lead="Software pro jídelny od Septimu je řešení pokladního a provozního systému pro závodní stravování. Septim se jako jeden z prvních v ČR přizpůsobil náročným požadavkům jídelen.">
       <Heading slot="title" as="h1" size="display">Septim<em>.Jídelna</em></Heading>
       <Fragment slot="actions">
         <Button href="#poptavka">Chci Septim</Button>
         <Button href="/reseni/jidelny" variant="secondary">Řešení pro jídelny</Button>
       </Fragment>
-      <figure slot="media" class="hero-pic"><img src="/images/produkt-septim-jidelna.webp" alt="Septim.Jídelna — systém pro jídelny" width="1300" height="1000" loading="eager" /></figure>
+      <figure slot="media" class="hero-pic"><img src="/images/produkt-septim-jidelna.webp" alt="Septim.Jídelna: systém pro jídelny" width="1300" height="1000" loading="eager" /></figure>
     </Hero>
 
     <Section background="default" space="lg">
       <div class="prose">
         <Heading as="h2" size="h2">Co je Septim.Jídelna?</Heading>
         <Text size="lead" color="muted">
-          Speciální verze provozního systému Septim pro závodní jídelny — laděná na míru tomuto odvětví už
+          Speciální verze provozního systému Septim pro závodní jídelny, laděná na míru tomuto odvětví už
           téměř 20 let, s objednáváním jídel, anketou pro strávníky a promyšleným skladovým hospodářstvím.
         </Text>
       </div>
@@ -57,7 +57,7 @@ const faqs = [
     <Faq items={faqs} title="Často kladené dotazy k Septim.Jídelna" background="default" />
     <LeadForm id="poptavka" variant="full" background="alt"
               title="Mám zájem o systém pro jídelnu"
-              lead="Kontaktujte nás — navrhneme řešení pro vaše závodní stravování." />
+              lead="Kontaktujte nás, navrhneme řešení pro vaše závodní stravování." />
   </main>
   <SiteFooter />
 </Base>

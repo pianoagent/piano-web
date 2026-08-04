@@ -1,5 +1,5 @@
 /**
- * Sdílené „proofs" (body důvěry) vedle LeadFormu — jednotná data Pecosty.
+ * Sdílené „proofs" (body důvěry) vedle LeadFormu: jednotná data Pecosty.
  * Bez tohoto by LeadForm použil výchozí (Septimí) hodnoty z @piano/ui.
  */
 export const pecostaLeadProofs = [

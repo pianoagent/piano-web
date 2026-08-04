@@ -1,5 +1,5 @@
 ---
-/** Pecosta — Služba: Burzovní obchody. Obsah: pecosta-context.md. */
+/** Pecosta: Služba: Burzovní obchody. Obsah: pecosta-context.md. */
 import Base from '../../layouts/Base.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
@@ -22,23 +22,23 @@ const features = [
   'Transparentní burzovní mechanismus', 'Bez nutnosti vlastní expertízy na burzu',
 ];
 const benefits = [
-  { icon: 'lucide:landmark', title: 'Komoditní burza Praha', text: 'Obchodujeme na regulované burze — transparentní ceny a jasná pravidla, v souladu s veřejnou správou.' },
+  { icon: 'lucide:landmark', title: 'Komoditní burza Praha', text: 'Obchodujeme na regulované burze, transparentní ceny a jasná pravidla, v souladu s veřejnou správou.' },
   { icon: 'lucide:building-2', title: 'Pro veřejný sektor', text: 'Školní jídelny, menzy, domovy seniorů, města i obce. Řešení respektuje pravidla veřejných nákupů.' },
   { icon: 'lucide:users', title: 'Síla objemu', text: 'Stojíte na straně stovek subjektů. Objem otevírá ceny, na které jednotlivec nedosáhne.' },
-  { icon: 'lucide:timer', title: 'Správné načasování', text: 'Nakupujeme ve vhodný okamžik podle vývoje trhu — ne když zrovna dojde smlouva.' },
+  { icon: 'lucide:timer', title: 'Správné načasování', text: 'Nakupujeme ve vhodný okamžik podle vývoje trhu, ne když zrovna dojde smlouva.' },
 ];
 const faqs = [
-  { q: 'Pro koho jsou burzovní obchody?', a: 'Pro subjekty veřejné správy — školy, školky, domovy seniorů (DPS), města, obce a kraje. Zajišťujeme nákup energií podle pravidel veřejného sektoru.' },
-  { q: 'Potřebuji vlastní znalost burzy?', a: 'Ne. Celý nákup řeší Pecosta za vás — vy jen čerpáte výslednou cenu a přehled.' },
+  { q: 'Pro koho jsou burzovní obchody?', a: 'Pro subjekty veřejné správy: školy, školky, domovy seniorů (DPS), města, obce a kraje. Zajišťujeme nákup energií podle pravidel veřejného sektoru.' },
+  { q: 'Potřebuji vlastní znalost burzy?', a: 'Ne. Celý nákup řeší Pecosta za vás, vy jen čerpáte výslednou cenu a přehled.' },
   { q: 'Liší se to od Energií pro gastro?', a: 'Ano. Burzovní obchody jsou určeny veřejné správě. Běžné gastro podniky (restaurace, kavárny, hotely) řeší energie službou Energie pro gastro.' },
 ];
 ---
 <Base title="Burzovní obchody – nákup energií pro veřejnou správu | Pecosta"
-      description="Burzovní obchody Pecosta: nákup energií přes Komoditní burzu Praha pro gastro provozy ve veřejné správě — školy, školky, domovy seniorů, města a obce.">
+      description="Burzovní obchody Pecosta: nákup energií přes Komoditní burzu Praha pro gastro provozy ve veřejné správě, školy, školky, domovy seniorů, města a obce.">
   <SiteHeader />
   <main>
     <Hero eyebrow="Služba Pecosta · veřejná správa" background="alt"
-          lead="Řešení pro gastro provozy ve veřejné správě — školní jídelny, menzy, domovy seniorů. Energie nakupujeme přes Komoditní burzu Praha (KBP), kde díky objemu a načasování získáte ceny, na které sami nedosáhnete.">
+          lead="Řešení pro gastro provozy ve veřejné správě, školní jídelny, menzy, domovy seniorů. Energie nakupujeme přes Komoditní burzu Praha (KBP), kde díky objemu a načasování získáte ceny, na které sami nedosáhnete.">
       <Heading slot="title" as="h1" size="display"><em>Burzovní</em> obchody</Heading>
       <Fragment slot="actions">
         <Button href="#poptavka">Chci analýzu zdarma</Button>
@@ -52,11 +52,11 @@ const faqs = [
         <Text size="lead" color="muted">
           Školy, školky, domovy seniorů, města, obce i kraje nakupují energie podle pravidel
           veřejné správy. Pecosta pro ně obchoduje na Komoditní burze Praha, kde rozhoduje objem
-          a načasování — s transparentními cenami a jasnými pravidly.
+          a načasování: s transparentními cenami a jasnými pravidly.
         </Text>
         <Text color="muted">
           Nepotřebujete žádnou vlastní expertízu na burzu. Nákup, načasování i administrativu
-          řešíme za vás. Pozn.: burzovní obchod je určen veřejné správě — běžným gastro podnikům
+          řešíme za vás. Pozn.: burzovní obchod je určen veřejné správě, běžným gastro podnikům
           (restaurace, kavárny, hotely) slouží služba <a href="/sluzby/energie">Energie pro gastro</a>.
         </Text>
       </div>
@@ -77,7 +77,7 @@ const faqs = [
     <Faq items={faqs} title="Časté otázky k burzovním obchodům" background="default" />
     <LeadForm id="poptavka" variant="full" background="default"
               title="Zjistěte, kolik ušetříte na energiích"
-              lead="Nechte nám kontakt — připravíme kalkulaci podle vaší spotřeby. Zdarma a bez závazků."
+              lead="Nechte nám kontakt, připravíme kalkulaci podle vaší spotřeby. Zdarma a bez závazků."
               submitLabel="Chci analýzu zdarma" proofs={pecostaLeadProofs} />
   </main>
   <SiteFooter />

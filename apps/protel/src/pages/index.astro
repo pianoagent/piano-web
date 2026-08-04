@@ -1,10 +1,10 @@
 ---
 /**
- * Protel — homepage.
+ * Protel: homepage.
  * Obsah vytěžen ze starého webu protelsystems.cz (podklady starých webů/protel)
  * + protel-context.md. Vše ze SDÍLENÝCH komponent @piano/ui; téma řeší
  * src/styles/theme.css. Sekce bez vlastní komponenty (Stats, Pillars, Produkty,
- * Reference, FAQ) jsou složené z primitivů — komponenty se NEFORKUJÍ.
+ * Reference, FAQ) jsou složené z primitivů, komponenty se NEFORKUJÍ.
  */
 import Base from '../layouts/Base.astro';
 import SiteHeader from '../components/SiteHeader.astro';
@@ -30,37 +30,37 @@ const pillars = [
   { icon: 'lucide:smartphone', title: 'Digitální recepce', text: 'Hotel zcela bez fyzické recepce. Host vyřídí check-in i check-out přes mobil, bez asistence recepčního.' },
   { icon: 'lucide:refresh-cw', title: 'Automatizace rezervací', text: 'Žádné ruční zadávání. Aktuální dostupnost na všech prodejních kanálech, bez chyb a bez ztracených pokojů.' },
   { icon: 'lucide:piggy-bank', title: 'Úspory v hotelu', text: 'Úspora energií, papíru a času. Efektivnější procesy napříč celým provozem.' },
-  { icon: 'lucide:line-chart', title: 'Čísla pod kontrolou', text: 'Obsazenost, hosté, výnosy, plnění rozpočtu i výhled — vše přehledně na jednom místě.' },
+  { icon: 'lucide:line-chart', title: 'Čísla pod kontrolou', text: 'Obsazenost, hosté, výnosy, plnění rozpočtu i výhled: vše přehledně na jednom místě.' },
 ];
 
 const produkty = [
-  { icon: 'lucide:layout-dashboard', title: 'Protel — hotelový systém (PMS)', text: 'Správa pokojů, rezervací, hostů a statistik. Snadné používání a zároveň pokročilé funkce pro kompletní přehled o provozu.' },
+  { icon: 'lucide:layout-dashboard', title: 'Protel: hotelový systém (PMS)', text: 'Správa pokojů, rezervací, hostů a statistik. Snadné používání a zároveň pokročilé funkce pro kompletní přehled o provozu.' },
   { icon: 'lucide:credit-card', title: 'Platební řešení hotelu', text: 'Vlastní integrované platby přímo v Protelu. Minimalizace chybovosti a nižší riziko vracení transakcí.' },
-  { icon: 'lucide:concierge-bell', title: 'Room Service', text: 'Rarita na trhu — host načte QR kód v pokoji a objednávka jde přímo do Septimu v kuchyni či baru. Plně automatizované.' },
+  { icon: 'lucide:concierge-bell', title: 'Room Service', text: 'Rarita na trhu: host načte QR kód v pokoji a objednávka jde přímo do Septimu v kuchyni či baru. Plně automatizované.' },
   { icon: 'lucide:presentation', title: 'Konference', text: 'Rezervace konferenčních místností, sledování dostupnosti, správa stravování, fakturace pronájmu a účastníků.' },
   { icon: 'lucide:bed-double', title: 'Housekeeping', text: 'Digitální správa úklidu a stavu pokojů. Pokojská i recepce vidí aktuální stav v reálném čase.' },
-  { icon: 'lucide:soup', title: 'MealPlan', text: 'Správa stravovacích plánů hostů — od snídaní po plnou penzi, přehledně a bez chyb.' },
+  { icon: 'lucide:soup', title: 'MealPlan', text: 'Správa stravovacích plánů hostů: od snídaní po plnou penzi, přehledně a bez chyb.' },
 ];
 
 const recepce = [
   { icon: 'lucide:smartphone', title: 'Online check-in/out', text: 'Host vše vyřídí přes mobil, bez fronty na recepci.' },
   { icon: 'lucide:monitor-smartphone', title: 'Kiosek', text: 'Samoobslužný check-in terminál přímo v hotelu.' },
-  { icon: 'lucide:file-signature', title: 'Digitální registrační karta', text: 'Konec papírování — registrace hosta digitálně.' },
+  { icon: 'lucide:file-signature', title: 'Digitální registrační karta', text: 'Konec papírování: registrace hosta digitálně.' },
   { icon: 'lucide:book-open', title: 'Digitální hotelová kniha', text: 'Hotelová kniha vedená elektronicky a vždy po ruce.' },
   { icon: 'lucide:scan-line', title: 'Čtečka dokladů', text: 'Rychlé načtení dat z dokladů i platebních karet.' },
 ];
 
 const doplnky = [
-  'Webové rezervace — přímé rezervace přes web hotelu',
-  'Automatický mailing — personalizované e-maily hostům',
-  'Hotelové řetězce — centrální správa více provozů',
-  'MealPlan — správa stravovacích plánů',
-  'Čtečka dokladů — načtení dokladů a karet',
+  'Webové rezervace: přímé rezervace přes web hotelu',
+  'Automatický mailing: personalizované e-maily hostům',
+  'Hotelové řetězce: centrální správa více provozů',
+  'MealPlan: správa stravovacích plánů',
+  'Čtečka dokladů: načtení dokladů a karet',
 ];
 
 const integrace = [
-  'Septim — POS systém pro Room Service a restauraci',
-  'Channel manager & CRS — distribuce na prodejní kanály',
+  'Septim: POS systém pro Room Service a restauraci',
+  'Channel manager & CRS: distribuce na prodejní kanály',
   'Business intelligence & revenue management',
   'Uzamykací a televizní systémy',
   'Účetní programy',
@@ -73,13 +73,13 @@ const segmenty = [
   { icon: 'lucide:waves', title: 'Lázně a resorty', text: 'Provoz s wellness, stravováním i delšími pobyty.' },
   { icon: 'lucide:utensils-crossed', title: 'Hotely s restaurací', text: 'Propojení Protel PMS + Septim POS a Room Service.' },
   { icon: 'lucide:badge-check', title: 'Best Western', text: 'Certifikovaný partner pro hotely Best Western.' },
-  { icon: 'lucide:graduation-cap', title: 'Školy hotelnictví', text: 'Protel pro školy — studenti na moderní technologie.' },
+  { icon: 'lucide:graduation-cap', title: 'Školy hotelnictví', text: 'Protel pro školy, studenti na moderní technologie.' },
 ];
 
 const testimonials = [
   { initials: 'MB', headline: 'Spolehlivost a efektivita', quote: 'Protel je pro CPI Hotels vynikající volba. Jeho intuitivní rozhraní, spolehlivost a efektivita nám umožňují snadno řídit rezervace, spravovat hosty a sledovat statistiky.', author: 'Michaela Bieliková', role: 'CPI Hotels' },
   { initials: 'IM', headline: 'Profesionální support', quote: 'Ďakujem firme Protel za profesionálny support a inštaláciu!', author: 'Ivona Meissner', role: 'BWH Group' },
-  { initials: 'ŠCH', headline: 'Připraveni na praxi', quote: 'Díky Protelu jsou naši studenti připraveni na moderní technologie v hotelnictví.', author: 'Štěpán Chalupa', role: 'UCP — škola hotelnictví' },
+  { initials: 'ŠCH', headline: 'Připraveni na praxi', quote: 'Díky Protelu jsou naši studenti připraveni na moderní technologie v hotelnictví.', author: 'Štěpán Chalupa', role: 'UCP: škola hotelnictví' },
 ];
 
 const refNames = [
@@ -89,10 +89,10 @@ const refNames = [
 
 const faqs = [
   { q: 'Pro jaké hotely se Protel hodí?', a: 'Od nezávislých hotelů a penzionů po hotelové řetězce, lázně a resorty. Protel je globální standard se silnou lokální podporou v CZ i SK.' },
-  { q: 'Je k dispozici česká podpora?', a: 'Ano — plnohodnotná česká a slovenská podpora. Hotline help@protelsystems.cz a telefonická linka pro provozní situace.' },
-  { q: 'Umí Protel fungovat bez fyzické recepce?', a: 'Ano. Díky online check-in/out, kiosku a digitální registrační kartě vyřídí host vše přes mobil — hotel může fungovat s digitální recepcí.' },
+  { q: 'Je k dispozici česká podpora?', a: 'Ano, plnohodnotná česká a slovenská podpora. Hotline help@protelsystems.cz a telefonická linka pro provozní situace.' },
+  { q: 'Umí Protel fungovat bez fyzické recepce?', a: 'Ano. Díky online check-in/out, kiosku a digitální registrační kartě vyřídí host vše přes mobil, hotel může fungovat s digitální recepcí.' },
   { q: 'Jak funguje Room Service přes Protel?', a: 'Host načte QR kód v pokoji, objednávka jde automaticky do systému Septim v kuchyni nebo baru. Plně automatizované, bez ručního přepisování.' },
-  { q: 'Lze Protel propojit s restaurací?', a: 'Ano — napojením na POS systém Septim. Hotely jako Grandhotel Pupp využívají Protel PMS i Septim POS současně.' },
+  { q: 'Lze Protel propojit s restaurací?', a: 'Ano, napojením na POS systém Septim. Hotely jako Grandhotel Pupp využívají Protel PMS i Septim POS současně.' },
   { q: 'Zvládne Protel více hotelů najednou?', a: 'Ano. Funkce pro hotelové řetězce umožňují centrální správu více provozů z jednoho místa.' },
 ];
 
@@ -120,7 +120,7 @@ const leadProofs = [
       <Button href="#produkty" variant="secondary" onDark>Prohlédnout produkty</Button>
     </Fragment>
     <figure slot="media" class="hero-graphic">
-      <svg viewBox="0 0 560 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Protel — přehled rezervací">
+      <svg viewBox="0 0 560 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Protel: přehled rezervací">
         <defs>
           <filter id="cardShadow" x="-20%" y="-20%" width="140%" height="140%">
             <feDropShadow dx="0" dy="18" stdDeviation="28" flood-color="#06038D" flood-opacity="0.28"/>
@@ -222,17 +222,17 @@ const leadProofs = [
 
   <!-- PRODUKTY -->
   <USPGrid id="produkty" eyebrow="Produkty" title="Vše pro řízení hotelu"
-           lead="Od rezervací a plateb po Room Service a konference — Protel pokrývá celý hotelový provoz."
+           lead="Od rezervací a plateb po Room Service a konference. Protel pokrývá celý hotelový provoz."
            items={produkty} minItemWidth="280px" background="alt" space="lg" />
 
   <!-- PMS DETAIL -->
   <Section id="pms" background="default" space="lg">
     <div class="split">
       <div class="split__text">
-        <Text size="label" color="accent">Protel — hotelový systém (PMS)</Text>
+        <Text size="label" color="accent">Protel: hotelový systém (PMS)</Text>
         <Heading as="h2" size="h2">Celý hotel <em>na jedné obrazovce</em></Heading>
         <Text size="lead" color="muted">
-          Správa pokojů, rezervací a hostů, statistiky a reporty. Snadné ovládání pro recepci i pokročilé funkce pro management — abyste měli kompletní přehled o provozu.
+          Správa pokojů, rezervací a hostů, statistiky a reporty. Snadné ovládání pro recepci i pokročilé funkce pro management, abyste měli kompletní přehled o provozu.
         </Text>
         <ul class="ticks">
           <li><Icon name="lucide:check" size="sm" /> Přehledná správa rezervací a dostupnosti</li>
@@ -252,7 +252,7 @@ const leadProofs = [
 
   <!-- DIGITÁLNÍ RECEPCE -->
   <USPGrid id="recepce" eyebrow="Digitální recepce" title="Hotel i bez fyzické recepce"
-           lead="Host vyřídí recepční úkony přes mobil — bez vaší fyzické asistence."
+           lead="Host vyřídí recepční úkony přes mobil: bez vaší fyzické asistence."
            items={recepce} minItemWidth="240px" background="alt" space="lg" />
 
   <!-- DOPLŇKY -->
@@ -273,7 +273,7 @@ const leadProofs = [
     <div class="head head--center">
       <Text size="label" color="accent" align="center">Napojení</Text>
       <Heading as="h2" size="h2" align="center" color="on-dark">Protel mluví s vaším <em>technologickým zázemím</em></Heading>
-      <Text size="lead" color="on-dark-muted" align="center">Channel managery, platby, zámky, TV systémy i POS Septim — vše propojené.</Text>
+      <Text size="lead" color="on-dark-muted" align="center">Channel managery, platby, zámky, TV systémy i POS Septim: vše propojené.</Text>
     </div>
     <ul class="chips">
       {integrace.map((i) => (
@@ -284,7 +284,7 @@ const leadProofs = [
 
   <!-- ŘEŠENÍ / SEGMENTY -->
   <USPGrid id="reseni" eyebrow="Řešení" title="Pro každý typ hotelu"
-           lead="Protel se přizpůsobí provozu — od malého penzionu po hotelový řetězec."
+           lead="Protel se přizpůsobí provozu: od malého penzionu po hotelový řetězec."
            items={segmenty} minItemWidth="260px" background="default" space="lg" />
 
   <!-- REFERENCE -->
@@ -293,7 +293,7 @@ const leadProofs = [
       <Text size="label" color="accent" align="center">Naši zákazníci</Text>
       <Heading as="h2" size="h2" align="center">Co o nás <em>říkají</em></Heading>
       <Text size="lead" color="muted" align="center" balance>
-        Protel řídí provoz hotelových špiček — Grandhotel Pupp, Clarion Hotel Prague Old Town i hotely Best Western.
+        Protel řídí provoz hotelových špiček: Grandhotel Pupp, Clarion Hotel Prague Old Town i hotely Best Western.
       </Text>
     </div>
     <div class="quotes">
@@ -320,7 +320,7 @@ const leadProofs = [
       <Text size="label" color="accent" align="center">O Protelu</Text>
       <Heading as="h2" size="h2" align="center">Hotelový manažer s <em>mezinárodním zázemím</em></Heading>
       <Text size="lead" color="muted" align="center" balance>
-        Protel je globálně respektovaný PMS s plnohodnotnou lokální podporou v Česku a na Slovensku. Víme, že konkurenční výhody hotelu dodají jen ty správné technologické nástroje — a my je máme.
+        Protel je globálně respektovaný PMS s plnohodnotnou lokální podporou v Česku a na Slovensku. Víme, že konkurenční výhody hotelu dodají jen ty správné technologické nástroje a my je máme.
       </Text>
     </div>
   </Section>
@@ -359,7 +359,7 @@ const leadProofs = [
   <!-- POPTÁVKA -->
   <LeadForm id="poptavka" variant="full" background="alt"
             title="Vyzkoušejte Protel zdarma"
-            lead="Nechte nám kontakt — ozveme se a ukážeme Protel přímo ve vašem hotelu."
+            lead="Nechte nám kontakt, ozveme se a ukážeme Protel přímo ve vašem hotelu."
             proofs={leadProofs} />
 
   </main>

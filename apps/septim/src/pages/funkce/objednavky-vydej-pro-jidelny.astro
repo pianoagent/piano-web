@@ -1,5 +1,5 @@
 ---
-/** Septim — Funkce: Objednávky a výdej pro jídelny. Obsah: septim-obsah/produkty/objednavky-vydej-pro-jidelny.md. Nové URL dle IA (/funkce/). SEO meta nově. */
+/** Septim: Funkce: Objednávky a výdej pro jídelny. Obsah: septim-obsah/produkty/objednavky-vydej-pro-jidelny.md. Nové URL dle IA (/funkce/). SEO meta nově. */
 import Base from '../../layouts/Base.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
@@ -16,7 +16,7 @@ import Faq from '@piano/ui/components/Faq.astro';
 
 const funkce = [
   { icon: 'lucide:laptop', title: 'Objednávky odkudkoli', text: 'Objednávkový kiosek přímo v jídelně, nebo pohodlnější webové objednávky z vlastního počítače.' },
-  { icon: 'lucide:repeat', title: 'Burza jídel', text: 'Nestihli jste zrušit objednávku? Přesuňte jídlo do Burzy — poslouží kolegům, kteří si naopak nestihli objednat.' },
+  { icon: 'lucide:repeat', title: 'Burza jídel', text: 'Nestihli jste zrušit objednávku? Přesuňte jídlo do Burzy, poslouží kolegům, kteří si naopak nestihli objednat.' },
   { icon: 'lucide:door-open', title: 'Výdejní terminál', text: 'Bezproblémový výdej objednaného jídla správnému strávníkovi.' },
   { icon: 'lucide:credit-card', title: 'Identifikace kartou', text: 'Strávník se kartou identifikuje, objednává na své jméno a odebírá objednané jídlo.' },
 ];
@@ -29,8 +29,8 @@ const faqs = [
       description="Modul Objednávky a výdej pro jídelny: zaměstnanci objednávají jídla předem z kiosku i webu, Burza jídel řeší zrušené objednávky a výdejní terminál hlídá výdej. Přesný počet porcí bez přebytků.">
   <SiteHeader />
   <main>
-    <Hero eyebrow="Funkce systému Septim — jídelny" background="alt"
-          lead="V závodním stravování je klíčové objednávání jídel předem — osobně v podniku, nebo na dálku z vlastního počítače. Přesně to řeší modul Objednávky a výdej pro jídelny.">
+    <Hero eyebrow="Funkce systému Septim: jídelny" background="alt"
+          lead="V závodním stravování je klíčové objednávání jídel předem, osobně v podniku, nebo na dálku z vlastního počítače. Přesně to řeší modul Objednávky a výdej pro jídelny.">
       <Heading slot="title" as="h1" size="display">Objednávky a výdej <em>pro jídelny</em></Heading>
       <Fragment slot="actions">
         <Button href="#poptavka">Chci Septim pro jídelnu</Button>
@@ -42,7 +42,7 @@ const faqs = [
       <div class="prose">
         <Heading as="h2" size="h2">Jak fungují objednávky a výdej v závodní kuchyni?</Heading>
         <Text color="muted">Pro závodní stravování je systém rozšířen o objednávky jídel na předem dohodnuté období. Ve výrobních podnicích může strávník objednat přímo v jídelně na objednávkovém kiosku; pokud mají všichni ve firmě přístup k počítači, poslouží pohodlnější webové objednávky. Ve stanoveném limitu lze objednávku samozřejmě změnit nebo zrušit.</Text>
-        <Text color="muted">Výhodou je strávníkova jistota, že mu bude vydáno zvolené jídlo — a provozovatel zase získá přesný počet objednaných porcí.</Text>
+        <Text color="muted">Výhodou je strávníkova jistota, že mu bude vydáno zvolené jídlo a provozovatel zase získá přesný počet objednaných porcí.</Text>
       </div>
     </Section>
 
@@ -52,7 +52,7 @@ const faqs = [
     <Faq items={faqs} title="Často kladené otázky k modulu Objednávky a výdej" background="default" />
     <LeadForm id="poptavka" variant="callback" background="alt"
               title="Naplánujte stravování bez přebytků"
-              lead="Nechte nám telefon — projdeme vaše potřeby a připravíme návrh řešení pro vaši jídelnu." />
+              lead="Nechte nám telefon, projdeme vaše potřeby a připravíme návrh řešení pro vaši jídelnu." />
   </main>
   <SiteFooter />
 </Base>

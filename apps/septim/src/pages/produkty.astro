@@ -1,5 +1,5 @@
 ---
-/** Septim — Produkty (rozcestník edic, funkcí a integrací). Cíl odkazu „Produkty" v hlavním menu. */
+/** Septim: Produkty (rozcestník edic, funkcí a integrací). Cíl odkazu „Produkty" v hlavním menu. */
 import Base from '../layouts/Base.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
@@ -13,8 +13,8 @@ const edice = [
   { icon: 'lucide:cloud', title: 'Septim.Air', text: 'Lehká edice pro kavárny, bistra a bary.', href: '/produkty/septim-air' },
   { icon: 'lucide:soup', title: 'Septim.Jídelna', text: 'Závodní stravování, kredity a výdej jídel.', href: '/produkty/septim-jidelna' },
   { icon: 'lucide:bed-double', title: 'Septim.Hotel', text: 'POS systém propojený s hotelovým provozem.', href: '/produkty/septim-hotel' },
-  { icon: 'lucide:smartphone', title: 'Septim.Go', text: 'Mobilní číšník — objednávky přímo u stolu.', href: '/produkty/septim-go' },
-  { icon: 'lucide:line-chart', title: 'MySeptim', text: 'Váš provoz v mobilu — tržby a přehledy odkudkoli.', href: '/produkty/myseptim' },
+  { icon: 'lucide:smartphone', title: 'Septim.Go', text: 'Mobilní číšník: objednávky přímo u stolu.', href: '/produkty/septim-go' },
+  { icon: 'lucide:line-chart', title: 'MySeptim', text: 'Váš provoz v mobilu: tržby a přehledy odkudkoli.', href: '/produkty/myseptim' },
 ];
 const funkce = [
   { icon: 'lucide:monitor', title: 'Pokladna', text: 'Rychlé markování a spolehlivý provoz na place.', href: '/funkce/pokladna' },
@@ -24,7 +24,7 @@ const funkce = [
   { icon: 'lucide:award', title: 'Věrnostní systém', text: 'CRM, věrnostní programy a personalizované nabídky.', href: '/funkce/vernostni-system' },
   { icon: 'lucide:shopping-cart', title: 'E-shop pro restaurace', text: 'Online objednávky propojené s pokladnou.', href: '/funkce/eshop-restaurace' },
   { icon: 'lucide:settings', title: 'Nastavení', text: 'Systém přizpůsobený vašemu provozu.', href: '/funkce/nastaveni' },
-  { icon: 'lucide:hard-drive', title: 'Hardware do restaurace', text: 'Pokladny, tiskárny, displeje — se zárukou 36 měsíců.', href: '/funkce/hardware-do-restaurace' },
+  { icon: 'lucide:hard-drive', title: 'Hardware do restaurace', text: 'Pokladny, tiskárny, displeje: se zárukou 36 měsíců.', href: '/funkce/hardware-do-restaurace' },
 ];
 const integrace = [
   { icon: 'lucide:bike', title: 'Foodora & Wolt', text: 'Objednávky z rozvozových platforem přímo v systému.', href: '/integrace/foodora-wolt' },
@@ -41,7 +41,7 @@ const integrace = [
   <SiteHeader />
   <main>
     <Hero eyebrow="Produkty" background="alt"
-          lead="Jeden systém, který roste s vámi — vyberte edici podle typu provozu a rozšiřte ji o funkce a integrace, které potřebujete.">
+          lead="Jeden systém, který roste s vámi, vyberte edici podle typu provozu a rozšiřte ji o funkce a integrace, které potřebujete.">
       <Heading slot="title" as="h1" size="display">Produkty <em>Septim</em></Heading>
     </Hero>
 
@@ -51,7 +51,7 @@ const integrace = [
 
     <LeadForm id="poptavka" variant="callback" background="alt"
               title="Nevíte, kterou edici zvolit?"
-              lead="Nechte nám telefon — poradíme s výběrem podle vašeho provozu." />
+              lead="Nechte nám telefon, poradíme s výběrem podle vašeho provozu." />
   </main>
   <SiteFooter />
 </Base>

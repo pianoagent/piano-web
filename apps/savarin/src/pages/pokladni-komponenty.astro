@@ -1,6 +1,6 @@
 ---
 /**
- * Savarin — Pokladní komponenty. Obsah z legacy stránky pokladni-komponenty.
+ * Savarin: Pokladní komponenty. Obsah z legacy stránky pokladni-komponenty.
  * Sdílené komponenty @piano/ui.
  */
 import Base from '../layouts/Base.astro';
@@ -20,14 +20,14 @@ const skupiny = [
   {
     icon: 'lucide:monitor', title: 'PC POS a monitory',
     items: [
-      'PC POS ET-700 Gladius — kompletní POS s dotykovou obrazovkou a integrovaným UPS (základna 24,5 × 26,5 cm)',
-      'Dotykový monitor ELO — TouchScreen (37 × 33 × 27 cm)',
+      'PC POS ET-700 Gladius: kompletní POS s dotykovou obrazovkou a integrovaným UPS (základna 24,5 × 26,5 cm)',
+      'Dotykový monitor ELO TouchScreen (37 × 33 × 27 cm)',
     ],
   },
   {
     icon: 'lucide:smartphone', title: 'Mobilní zařízení',
     items: [
-      'Mobilní číšník Android — telefon, phablet nebo tablet (min. Android 5.1)',
+      'Mobilní číšník Android: telefon, phablet nebo tablet (min. Android 5.1)',
       'Doporučená baterie nad 3000 mAh, zadní ochranný kryt, záložní baterie',
       'Komunikace přes WiFi',
     ],
@@ -35,15 +35,15 @@ const skupiny = [
   {
     icon: 'lucide:printer', title: 'Tiskárny',
     items: [
-      'Termální EPSON TM-T20 — kotouč 80 mm, rychlý (200 mm/s) a tichý tisk, grafické logo, řezačka',
-      'Jehličková EPSON TM-U220 — kotouč 76 mm, dvoubarevný tisk, tisk loga, řezačka',
+      'Termální EPSON TM-T20: kotouč 80 mm, rychlý (200 mm/s) a tichý tisk, grafické logo, řezačka',
+      'Jehličková EPSON TM-U220: kotouč 76 mm, dvoubarevný tisk, tisk loga, řezačka',
     ],
   },
   {
     icon: 'lucide:keyboard', title: 'Klávesnice',
     items: [
-      'PCU — programovatelná tlačítková klávesnice, 111 kláves (cca 85 pro sortiment), čtečka magnetických karet',
-      'Tipro — 128 kláves (cca 85 pro sortiment), připojení klasické klávesnice',
+      'PCU: programovatelná tlačítková klávesnice, 111 kláves (cca 85 pro sortiment), čtečka magnetických karet',
+      'Tipro: 128 kláves (cca 85 pro sortiment), připojení klasické klávesnice',
     ],
   },
   {
@@ -70,7 +70,7 @@ const schema = {
 };
 ---
 
-<Base title="Pokladní komponenty Savarin — POS, tiskárny, klávesnice"
+<Base title="Pokladní komponenty Savarin: POS, tiskárny, klávesnice"
       description="Pokladní komponenty pro systém Savarin: POS terminály a dotykové monitory, mobilní zařízení Android, termální i jehličkové tiskárny, programovatelné klávesnice a účtenky."
       schema={schema}>
   <Header brand="Savarin" logoSrc="/logos/savarin_logo.svg" logoHeight="36px" homeHref="/" nav={savarinNav} cta={savarinCta} />
@@ -80,7 +80,7 @@ const schema = {
   <Breadcrumb items={[{ label: 'Domů', href: '/' }, { label: 'Pokladna', href: '/pokladna' }, { label: 'Pokladní komponenty' }]} />
 
   <Hero eyebrow="Modul · Pokladní komponenty" background="gradient"
-        lead="Dodáváme a servisujeme kompletní pokladní techniku — od POS terminálů a dotykových monitorů po tiskárny a programovatelné klávesnice.">
+        lead="Dodáváme a servisujeme kompletní pokladní techniku, od POS terminálů a dotykových monitorů po tiskárny a programovatelné klávesnice.">
     <Heading slot="title" as="h1" size="display" color="on-dark">Hardware <span class="accent">prověřený v provozu</span></Heading>
     <Fragment slot="actions">
       <Button href="#poptavka">Nezávazná poptávka</Button>
@@ -106,7 +106,7 @@ const schema = {
 
   <LeadForm id="poptavka" variant="full" message background="alt"
             title="Potřebujete poradit s technikou?"
-            lead="Napište nám o svém provozu — doporučíme vhodné komponenty k pokladně a připravíme cenovou nabídku."
+            lead="Napište nám o svém provozu, doporučíme vhodné komponenty k pokladně a připravíme cenovou nabídku."
             successUrl="/dekujeme" />
 
   </main>

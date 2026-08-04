@@ -1,7 +1,7 @@
 ---
 /**
- * Grason — Kariéra. Ze starého webu (careers_markup, cs.json).
- * POZOR: inzerát převzat ze starého webu — před publikací ověřit aktuálnost.
+ * Grason: Kariéra. Ze starého webu (careers_markup, cs.json).
+ * POZOR: inzerát převzat ze starého webu, před publikací ověřit aktuálnost.
  */
 import Base from '../layouts/Base.astro';
 import Header from '@piano/ui/components/Header.astro';
@@ -14,7 +14,7 @@ import Button from '@piano/ui/components/Button.astro';
 import { grasonNav, grasonCta, grasonFooter, grasonLogin } from '../config/nav';
 ---
 <Base title="Volná místa | Grason"
-      description="Přidejte se ke Grasonu — budujeme nejmodernější nástroj pro řízení lidí v gastronomii.">
+      description="Přidejte se ke Grasonu, budujeme nejmodernější nástroj pro řízení lidí v gastronomii.">
   <Header brand="Grason" logoSrc="/logos/grason_logo.svg" logoHeight="28px" homeHref="/" nav={grasonNav} cta={grasonCta} login={grasonLogin} />
   <main>
     <Hero eyebrow="Kariéra" background="alt" space="md"
@@ -28,7 +28,7 @@ import { grasonNav, grasonCta, grasonFooter, grasonLogin } from '../config/nav';
         <Text color="muted">Pro obchodní oddělení potřebujeme člověka, který si umí normálně pokecat a vysvětlit, proč Grason podniku pomůže.</Text>
         <Button href="https://jobs.grason.cz/2726-obchodnik-pojd-prodavat-nejlepsi-platformu-na-brigadniky-do-gastra-a-planovac-smen-v-grason" target="_blank" rel="noopener">Detail pozice</Button>
       </article>
-      <Text size="small" color="muted">Nenašli jste svou pozici? Napište nám na <a href="mailto:info@grason.cz">info@grason.cz</a> — šikovným lidem se ozveme vždy.</Text>
+      <Text size="small" color="muted">Nenašli jste svou pozici? Napište nám na <a href="mailto:info@grason.cz">info@grason.cz</a>, šikovným lidem se ozveme vždy.</Text>
     </Section>
   </main>
   <Footer {...grasonFooter} />

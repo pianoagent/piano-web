@@ -1,5 +1,5 @@
 ---
-/** Pecosta — Služba: Energie pro gastro. Obsah: pecosta-context.md + #page-pecosta. */
+/** Pecosta: Služba: Energie pro gastro. Obsah: pecosta-context.md + #page-pecosta. */
 import Base from '../../layouts/Base.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
@@ -24,10 +24,10 @@ const benefits = [
   { icon: 'lucide:zap', title: 'Úspora až 25 %', text: 'Na elektřině a plynu díky sdružení poptávky za celé portfolio provozů.' },
   { icon: 'lucide:file-check-2', title: 'Podmínky pod kontrolou', text: 'Zkontrolujeme podmínky ve smlouvě, aby vás nepřekvapily skryté poplatky.' },
   { icon: 'lucide:shield', title: 'Stabilní náklady', text: 'Méně překvapení na fakturách. Energie máte pod kontrolou jako každou jinou položku.' },
-  { icon: 'lucide:hand-coins', title: 'Bez vstupních nákladů', text: 'Začínáme analýzou zdarma — uvidíte potenciál úspory ještě před rozhodnutím.' },
+  { icon: 'lucide:hand-coins', title: 'Bez vstupních nákladů', text: 'Začínáme analýzou zdarma, uvidíte potenciál úspory ještě před rozhodnutím.' },
 ];
 const faqs = [
-  { q: 'Jak Pecosta nakupuje energie?', a: 'Energie sdružíme do velkého balíku a poptáváme u dodavatelů. Díky tomu získáváme pro gastro podniky — velký hotel i malou kavárnu — ceny, na které by sami nedosáhli.' },
+  { q: 'Jak Pecosta nakupuje energie?', a: 'Energie sdružíme do velkého balíku a poptáváme u dodavatelů. Díky tomu získáváme pro gastro podniky, velký hotel i malou kavárnu, ceny, na které by sami nedosáhli.' },
   { q: 'Kolik ušetřím na energiích?', a: 'V průměru až 25 %. Konkrétní úsporu spočítáme podle vaší spotřeby v bezplatné analýze.' },
   { q: 'Týká se to elektřiny i plynu?', a: 'Ano, řešíme elektřinu i plyn pro gastro provozy a hotely.' },
 ];
@@ -55,13 +55,13 @@ const energyStats = [
       <div class="prose">
         <Heading as="h2" size="h2">Energie jako každá jiná nákupní položka</Heading>
         <Text size="lead" color="muted">
-          Restaurace a hotely platí za energie statisíce ročně — a přitom je často nakupují
+          Restaurace a hotely platí za energie statisíce ročně a přitom je často nakupují
           bez strategie. Pecosta energie sdruží do velkého balíku a poptá u dodavatelů, kde
           rozhoduje objem. Ke smlouvě navíc zkontrolujeme podmínky, aby v ní nebyly skryté poplatky.
         </Text>
         <Text color="muted">
           Bistro V Zahradě díky tomu ušetřilo desítky tisíc korun ročně. Vy získáte stabilnější
-          náklady a méně překvapení na fakturách — bez starostí o dodavatele.
+          náklady a méně překvapení na fakturách: bez starostí o dodavatele.
         </Text>
       </div>
     </Section>
@@ -81,7 +81,7 @@ const energyStats = [
     <Faq items={faqs} title="Časté otázky k energiím" background="default" />
     <LeadForm id="poptavka" variant="full" background="alt"
               title="Spočítáme vaši úsporu na energiích"
-              lead="Nechte nám kontakt — připravíme kalkulaci úspory podle vaší spotřeby. Zdarma a bez závazků."
+              lead="Nechte nám kontakt, připravíme kalkulaci úspory podle vaší spotřeby. Zdarma a bez závazků."
               submitLabel="Chci analýzu zdarma" proofs={pecostaLeadProofs} />
   </main>
   <SiteFooter />

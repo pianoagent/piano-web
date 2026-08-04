@@ -1,5 +1,5 @@
 ---
-/** Septim — Řešení (rozcestník segmentů). Cíl odkazu „Řešení" v hlavním menu. */
+/** Septim: Řešení (rozcestník segmentů). Cíl odkazu „Řešení" v hlavním menu. */
 import Base from '../layouts/Base.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
@@ -15,7 +15,7 @@ const segmenty = [
   { icon: 'lucide:soup', title: 'Jídelny', text: 'Závodní stravování, kredity, ankety a výdej.', href: '/reseni/jidelny' },
   { icon: 'lucide:bed-double', title: 'Hotely', text: 'Gastro provoz propojený s hotelovým systémem.', href: '/reseni/hotely' },
   { icon: 'lucide:concierge-bell', title: 'Catering', text: 'Akce, bankety a výjezdový prodej pod kontrolou.', href: '/reseni/catering' },
-  { icon: 'lucide:truck', title: 'Street food', text: 'Mobilní prodej — rychlé markování kdekoli.', href: '/reseni/street-food' },
+  { icon: 'lucide:truck', title: 'Street food', text: 'Mobilní prodej: rychlé markování kdekoli.', href: '/reseni/street-food' },
   { icon: 'lucide:waves', title: 'Lázně a resorty', text: 'Více provozů a středisek v jednom systému.', href: '/reseni/lazne-resorty' },
 ];
 ---
@@ -24,7 +24,7 @@ const segmenty = [
   <SiteHeader />
   <main>
     <Hero eyebrow="Řešení" background="alt"
-          lead="Každý provoz je jiný. Vyberte si řešení podle toho, co provozujete — Septim se přizpůsobí.">
+          lead="Každý provoz je jiný. Vyberte si řešení podle toho, co provozujete. Septim se přizpůsobí.">
       <Heading slot="title" as="h1" size="display">Řešení <em>pro váš provoz</em></Heading>
     </Hero>
 
@@ -32,7 +32,7 @@ const segmenty = [
 
     <LeadForm id="poptavka" variant="callback" background="alt"
               title="Nenašli jste svůj typ provozu?"
-              lead="Nechte nám telefon — probereme, jak Septim nasadit u vás." />
+              lead="Nechte nám telefon, probereme, jak Septim nasadit u vás." />
   </main>
   <SiteFooter />
 </Base>
