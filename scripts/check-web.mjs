@@ -64,7 +64,10 @@ function attr(tag, name) {
   const re = new RegExp(`\\b${name}\\s*=\\s*(?:"([^"]*)"|'([^']*)'|\\{\\s*['"\`]([^'"\`]*)['"\`]\\s*\\})`, 'i');
   const m = tag.match(re);
   if (!m) return null;
-  return (m[1] ?? m[2] ?? m[3] ?? '').replace(/\s+/g, ' ').trim();
+  const v = (m[1] ?? m[2] ?? m[3] ?? '').replace(/\s+/g, ' ').trim();
+  /* Sablonovy literal (`${post.data.title} | Pecosta`) se sklada az za behu,
+     jeho delku nema smysl merit. */
+  return v.includes('${') ? null : v;
 }
 
 /**
@@ -79,11 +82,16 @@ function pageMeta(txt) {
     const tag = open[0];
     const title = attr(tag, 'title');
     const description = attr(tag, 'description');
-    if (title || description) return { title, description, dynamic: !title && /title=\{/.test(tag) };
+    /* Prop je pritomny, ale hodnota se sklada za behu (sablonovy literal
+       nebo vyraz) -> delku ani tvar nelze staticky posoudit, nehlasit. */
+    const dyn = (name) => new RegExp(`\\b${name}\\s*=\\s*\\{`).test(tag) || new RegExp(`\\b${name}\\s*=\\s*"[^"]*\\$\\{`).test(tag);
+    if (title || description || dyn('title')) {
+      return { title, description, dynTitle: !title && dyn('title'), dynDesc: !description && dyn('description') };
+    }
   }
   const title = (txt.match(/<title[^>]*>([\s\S]*?)<\/title>/i) || [])[1];
   const description = (txt.match(/name=["']description["']\s+content=["']([\s\S]*?)["']/i) || [])[1];
-  return { title: title?.replace(/\s+/g, ' ').trim() || null, description: description?.trim() || null, dynamic: false };
+  return { title: title?.replace(/\s+/g, ' ').trim() || null, description: description?.trim() || null, dynTitle: false, dynDesc: false };
 }
 
 /* ---------- PORADNÍ: SEO/copy heuristiky ---------- */
@@ -93,10 +101,10 @@ function auditReport(files) {
 
   for (const f of pages) {
     const t = read(f); if (t == null) continue;
-    const { title, description, dynamic } = pageMeta(t);
+    const { title, description, dynTitle, dynDesc } = pageMeta(t);
     const site = siteNameFor(f);
 
-    if (!title && !dynamic) warn.push(`${f}: chybí title`);
+    if (!title && !dynTitle) warn.push(`${f}: chybí title`);
     if (title) {
       const len = title.length;
       /* U servisnich stranek je kratky title v poradku (Kontakt, Děkujeme…) */
@@ -106,8 +114,9 @@ function auditReport(files) {
       if (site && !title.endsWith(`| ${site}`)) warn.push(`${f}: title není ve tvaru „Text | ${site}": „${title}"`);
     }
 
-    if (!description) warn.push(`${f}: chybí meta description`);
-    else {
+    if (!description) {
+      if (!dynDesc) warn.push(`${f}: chybí meta description`);
+    } else {
       const l = description.length;
       if (l < DESC_MIN || l > DESC_MAX) warn.push(`${f}: meta description ${l} zn. (cíl ${DESC_MIN}–${DESC_MAX})`);
     }
