@@ -15,7 +15,7 @@ import Text from '@piano/ui/components/Text.astro';
 import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import USPGrid from '@piano/ui/components/USPGrid.astro';
-import LeadForm from '@piano/ui/components/LeadForm.astro';
+import Field from '@piano/ui/components/Field.astro';
 
 // Situace stavajiciho systemu (vyhodnoceni na strane prohlizece, bez jmenovane konkurence).
 const situations = {
@@ -55,106 +55,24 @@ const situations = {
   },
 };
 
-const products = [
-  {
-    id: 'hugo',
-    tag: 'Mikro a malý provoz',
-    name: 'Hugo',
-    sub: 'Pokladna přímo v telefonu',
-    feats: [
-      'Připraveno na EET 2.0',
-      'Karta přes telefon (Tap to Pay), bez čtečky',
-      'Rychlý self-onboarding, spuštění během chvíle',
-      'Prodej u stolu i pultový, spropitné',
-      'Platba kartou i napojení terminálu',
-    ],
-    priceMain: '0 Kč',
-    priceNote: 'za aplikaci, když platby berete přes Hugo',
-    cta: 'Chci Hugo',
-  },
-  {
-    id: 'septimair',
-    tag: 'Střední provoz',
-    name: 'Septim Air',
-    sub: 'All-in-one pokladna pro kamenné provozy',
-    feats: [
-      'Připraveno na EET 2.0, legislativní aktualizace v ceně',
-      'Skladové hospodářství, receptury a inventura',
-      'Mobilní číšník a dělení účtů',
-      'Práce i bez internetu (offline)',
-      'Stravenky, faktura i více plateb na účtu',
-    ],
-    priceMain: 'od 1 990 Kč',
-    priceNote: 'měsíčně, bez jednorázových nákladů',
-    cta: 'Chci Septim Air',
-  },
+// Co odberatel ziska (duvody pro prihlaseni)
+const odberBody = [
+  { icon: 'lucide:bell', text: 'Zprávy o schválení, termínech a technických detailech' },
+  { icon: 'lucide:list-checks', text: 'Praktický checklist přípravy, ať na nic nezapomenete' },
+  { icon: 'lucide:sparkles', text: 'Tipy, jak z povinnosti udělat náskok pro váš provoz' },
+  { icon: 'lucide:mail-x', text: 'Žádný spam, odhlásíte se jedním kliknutím' },
 ];
 
-// Leadgen: co klientovi na soucasne pokladne chybi (multi-vyber) -> nabidka reseni.
-// tier = nejnizsi nase edice, ktera funkci resi (air / enterprise); zdroj: mapa_funkci.
-const gaps = [
-  { label: 'Karta přes telefon (Tap to Pay)', tier: 'hugo' },
-  { label: 'Rychlý start bez instalace', tier: 'hugo' },
-  { label: 'Skladové hospodářství', tier: 'air' },
-  { label: 'Receptury a inventura', tier: 'air' },
-  { label: 'Mobilní číšník', tier: 'air' },
-  { label: 'Práce bez internetu (offline)', tier: 'air' },
-  { label: 'Stravenky a faktura', tier: 'air' },
-  { label: 'Věrnostní program (CRM)', tier: 'enterprise' },
-  { label: 'Rozvoz (Wolt, Foodora, Bolt)', tier: 'enterprise' },
-  { label: 'Více poboček z jednoho místa', tier: 'enterprise' },
-  { label: 'Pokročilé reporty', tier: 'enterprise' },
+// Typy podniku pro prihlaseni k odberu (kvalifikace kontaktu)
+const podniky = [
+  'Restaurace',
+  'Kavárna nebo bistro',
+  'Bar nebo vinárna',
+  'Hotel nebo penzion',
+  'Jídelna nebo kantýna',
+  'Stánek nebo food truck',
+  'Něco jiného',
 ];
-
-// Srovnani funkci nasich urovni (zdroj: mapa_funkci_handover, current.json -> brief).
-// Hodnoty: ANO / NE / WIP (Pripravujeme) / PARTNER (Pres partnera) / ANO* (s poznamkou).
-const srovnaniCols = [
-  { name: 'Hugo', sub: 'Mikro a malý provoz' },
-  { name: 'Septim Air', sub: 'Střední provoz' },
-  { name: 'Septim Enterprise', sub: 'Velký provoz a sítě' },
-];
-const srovnani = [
-  { theme: 'Legislativa a základ', rows: [
-    { f: 'EET 2.0 ready', v: ['ANO', 'ANO', 'ANO'] },
-    { f: 'Elektronická účtenka', v: ['ANO', 'ANO', 'ANO'] },
-    { f: 'Uzávěrky a reporty tržeb', v: ['ANO', 'ANO', 'ANO'] },
-  ]},
-  { theme: 'Prodej a platby', rows: [
-    { f: 'Pultový prodej i práce se stoly', v: ['ANO', 'ANO', 'ANO'] },
-    { f: 'Platba kartou', v: ['ANO', 'ANO', 'ANO'] },
-    { f: 'Karta přes telefon (Tap to Pay)', v: ['ANO', 'NE', 'NE'] },
-    { f: 'Stravenky a faktura', v: ['NE', 'ANO', 'ANO'] },
-    { f: 'Modifikátory a varianty', v: ['NE', 'ANO', 'ANO'] },
-  ]},
-  { theme: 'Provoz a obsluha', rows: [
-    { f: 'Mobilní číšník', v: ['NE', 'ANO', 'ANO'] },
-    { f: 'Dělení a přesouvání účtů', v: ['NE', 'ANO', 'ANO'] },
-    { f: 'Práce bez internetu (offline)', v: ['NE', 'ANO', 'ANO'] },
-    { f: 'Grafická mapa stolů', v: ['NE', 'NE', 'ANO'] },
-  ]},
-  { theme: 'Sklad a menu', rows: [
-    { f: 'Skladové hospodářství', v: ['NE', 'ANO', 'ANO'] },
-    { f: 'Receptury a odpisy', v: ['NE', 'ANO', 'ANO'] },
-    { f: 'Inventura', v: ['NE', 'ANO', 'ANO'] },
-    { f: 'Více skladů a převody', v: ['NE', 'ANO', 'ANO'] },
-  ]},
-  { theme: 'Hosté, rozvoz a rozšíření', rows: [
-    { f: 'Věrnostní program (CRM)', v: ['NE', 'WIP', 'ANO'] },
-    { f: 'Rezervace', v: ['NE', 'WIP', 'PARTNER'] },
-    { f: 'Delivery (Wolt, Foodora, Bolt)', v: ['NE', 'WIP', 'ANO*'] },
-    { f: 'Kuchyňský displej (KDS)', v: ['NE', 'WIP', 'PARTNER'] },
-    { f: 'Více poboček z jednoho místa', v: ['NE', 'WIP', 'ANO'] },
-    { f: 'Pokročilé reporty', v: ['NE', 'NE', 'ANO'] },
-  ]},
-];
-
-const markMeta = {
-  'ANO':     { cls: 'ok', ico: 'lucide:check', t: 'Ano' },
-  'ANO*':    { cls: 'ok', ico: 'lucide:check', t: 'Ano, s poznámkou', star: true },
-  'NE':      { cls: 'no', ico: 'lucide:minus', t: 'Ne' },
-  'WIP':     { cls: 'wip', ico: 'lucide:clock', t: 'Připravujeme' },
-  'PARTNER': { cls: 'partner', ico: 'lucide:handshake', t: 'Přes partnera' },
-};
 
 // Blue ocean: hospoda dnes vs hospoda pripravena na budoucnost (obecne benefity, neutralni)
 const dnes = [
@@ -223,12 +141,6 @@ const faqs = [
   { q: 'Co se změní u spropitného?', a: 'Dobrovolné spropitné bude osvobozeno od daně i odvodů až do výše 7 % měsíčních tržeb. Detailní pravidla pro evidenci se zatím upřesňují.' },
 ];
 
-const leadProofs = [
-  { icon: 'lucide:file-check-2', title: 'Checklist zdarma', text: 'Přehled kroků přípravy na EET 2.0 pošleme na e-mail.' },
-  { icon: 'lucide:search-check', title: 'Ověření vaší pokladny', text: 'Zjistíme, zda je systém na EET připravený.' },
-  { icon: 'lucide:calendar-check', title: 'Stihnete deadline', text: 'Připraveno před 1. 1. 2027.' },
-  { icon: 'lucide:shield-check', title: 'Bez stresu a pokut', text: 'Provedeme vás přechodem krok za krokem.' },
-];
 
 const faqSchema = {
   '@context': 'https://schema.org',
@@ -288,7 +200,7 @@ const faqSchema = {
         <p class="checker__op"><Icon name="lucide:sparkles" size="sm" /> EET není jen povinnost, je to příležitost.</p>
         <div class="checker__actions">
           <Button href="#budoucnost" full>Chci restauraci budoucnosti</Button>
-          <Button href="#reseni" variant="secondary" full>Chci od POS víc funkcí</Button>
+          <Button href="#odber" variant="secondary" full>Chci od POS víc funkcí</Button>
         </div>
         <button type="button" class="checker__reset" data-checker-reset>Zvolit jiný systém</button>
       </div>
@@ -323,7 +235,7 @@ const faqSchema = {
       </div>
     </div>
     <div class="vs__cta">
-      <Button href="#reseni">Takovou hospodu chci</Button>
+      <Button href="#odber">Takovou hospodu chci</Button>
       <p class="vs__note">Technologie za vás počítá, plánuje a hlídá. EET 2.0 je jen první krok.</p>
     </div>
   </Section>
@@ -414,136 +326,64 @@ const faqSchema = {
     </div>
   </Section>
 
-  <!-- RESENI: co vam chybi + nase pokladny -->
-  <Section background="primary" space="lg">
-    <div class="head-center" id="reseni">
-      <Text size="label" color="on-dark-muted" align="center">Vaše řešení</Text>
-      <Heading as="h2" size="h2" align="center" color="on-dark">Co vám chybí a <em>čím to vyřešit</em></Heading>
-      <Text size="lead" color="on-dark-muted" align="center" balance>
-        Zaškrtněte, co na dnešní pokladně postrádáte. Ukážeme vám pokladnu, která to zvládne, i s výhledem do budoucna.
-      </Text>
-    </div>
-
-    <!-- Co vam chybi + nase reseni -->
-    <div id="chybi" class="gaps">
-      <p class="gaps__q">Co vám na současné pokladně chybí? Zaškrtněte, co potřebujete.</p>
-      <div class="gaps__chips" role="group" aria-label="Co vám na pokladně chybí">
-        {gaps.map((g) => (
-          <button type="button" class="chip chip--light chip--check" data-gap={g.label} data-tier={g.tier} aria-pressed="false">{g.label}</button>
-        ))}
-      </div>
-      <div class="gaps__result" data-gaps-result hidden>
-        <p class="gaps__lead" data-gaps-lead></p>
-        <ul class="gaps__list" data-gaps-list></ul>
-      </div>
-    </div>
-
-    <!-- Nabidka: nase pokladny -->
-    <div class="tiles tiles--two">
-      {products.map((p) => (
-        <article class="tile tile--product" data-product={p.id}>
-          <span class="tile__rec" data-rec hidden><Icon name="lucide:sparkles" size="xs" /> Doporučeno pro vás</span>
-          <span class="tile__tag">{p.tag}</span>
-          <h3 class="tile__name">{p.name}</h3>
-          <p class="tile__sub">{p.sub}</p>
-
-          <div class="tile__statusbar">
-            <span class="tile__status tile__status--ok"><Icon name="lucide:badge-check" size="sm" /> Připraveno na EET 2027</span>
-          </div>
-
-          <hr class="tile__hr" />
-
-          <ul class="tile__feats">
-            {p.feats.map((f) => (
-              <li class="tile__feat tile__feat--ok"><span class="tile__fico"><Icon name="lucide:check" size="sm" /></span>{f}</li>
-            ))}
-          </ul>
-
-          <div class="tile__price">
-            <span class="tile__price-main">{p.priceMain}</span>
-            <span class="tile__price-note">{p.priceNote}</span>
-          </div>
-
-          <div class="tile__foot">
-            <Button href="#konzultace" full>{p.cta}</Button>
-          </div>
-        </article>
-      ))}
-    </div>
-
-    <div class="offer-cta">
-      <Button href="#konzultace">To mě zajímá</Button>
-    </div>
-
-    <p class="tiles__note">Zhodnocení stávajícího systému je obecné a platí i pro řešení jiných dodavatelů. Přesnou připravenost vždy ověřte u svého dodavatele.</p>
-  </Section>
-
-  <!-- SROVNANI FUNKCI (nase urovne) -->
-  <Section id="srovnani" background="default" space="lg">
+  <!-- ODBER: prihlaseni k informacim o EET -->
+  <Section id="odber" background="primary" space="lg">
     <div class="head-center">
-      <Text size="label" color="accent" align="center">Srovnání funkcí</Text>
-      <Heading as="h2" size="h2" align="center">Co pokladna umí, <em>od malého provozu po síť</em></Heading>
-      <Text size="lead" color="muted" align="center" balance>
-        Vyberte úroveň podle velikosti provozu. S rostoucím provozem přibývají sklady, provozní funkce i rozvoz.
+      <Text size="label" color="on-dark-muted" align="center">Novinky o EET</Text>
+      <Heading as="h2" size="h2" align="center" color="on-dark">Držte se v obraze, <em>ať vás nic nezaskočí</em></Heading>
+      <Text size="lead" color="on-dark-muted" align="center" balance>
+        Přihlaste se k odběru. Pošleme vám všechny důležité informace k EET 2.0: co se mění, termíny, technické detaily i praktické tipy, jak se připravit včas.
       </Text>
     </div>
 
-    <div class="cmpx-wrap">
-      <table class="cmpx">
-        <thead>
-          <tr>
-            <th class="cmpx__rowhead"><span class="cmpx__hh">Funkce</span></th>
-            {srovnaniCols.map((c) => (
-              <th class="cmpx__col">
-                <span class="cmpx__cname">{c.name}</span>
-                <span class="cmpx__csub">{c.sub}</span>
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {srovnani.map((grp) => (
-            <>
-              <tr class="cmpx__grp"><td colspan={srovnaniCols.length + 1}>{grp.theme}</td></tr>
-              {grp.rows.map((r) => (
-                <tr>
-                  <th scope="row" class="cmpx__rowhead">{r.f}</th>
-                  {r.v.map((val) => {
-                    const m = markMeta[val];
-                    return (
-                      <td class="cmpx__cell">
-                        <span class:list={['cmpx__mark', `cmpx__mark--${m.cls}`]} title={m.t}>
-                          <Icon name={m.ico} size="sm" />
-                          {m.star && <span class="cmpx__star" aria-hidden="true">*</span>}
-                          <span class="sr-only">{m.t}</span>
-                        </span>
-                      </td>
-                    );
-                  })}
-                </tr>
-              ))}
-            </>
-          ))}
-        </tbody>
-      </table>
-    </div>
+    <div class="sub">
+      <ul class="sub__proofs">
+        {odberBody.map((b) => (
+          <li class="sub__proof"><span class="sub__pico"><Icon name={b.icon} size="sm" /></span>{b.text}</li>
+        ))}
+      </ul>
 
-    <div class="cmpx__legend">
-      <span><span class="cmpx__mark cmpx__mark--ok"><Icon name="lucide:check" size="sm" /></span> Ano</span>
-      <span><span class="cmpx__mark cmpx__mark--no"><Icon name="lucide:minus" size="sm" /></span> Ne</span>
-      <span><span class="cmpx__mark cmpx__mark--wip"><Icon name="lucide:clock" size="sm" /></span> Připravujeme</span>
-      <span><span class="cmpx__mark cmpx__mark--partner"><Icon name="lucide:handshake" size="sm" /></span> Přes partnera</span>
+      <form class="sub__form" action="/api/lead" method="POST" data-subscribe novalidate>
+        <input type="hidden" name="form_variant" value="odber-eet" />
+        <input type="hidden" name="page" data-page />
+        <div class="sub__hp" aria-hidden="true">
+          <label>Web<input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
+        </div>
+
+        <Field label="Váš e-mail" name="email" type="email" placeholder="info@podnik.cz" autocomplete="email" required />
+
+        <div class="sub__field">
+          <label class="sub__label" for="typ-podniku">Typ podniku</label>
+          <div class="sub__control">
+            <select id="typ-podniku" class="sub__select" name="typ_podniku">
+              <option value="">Vyberte, co provozujete</option>
+              {podniky.map((t) => <option value={t}>{t}</option>)}
+            </select>
+          </div>
+        </div>
+
+        <label class="sub__check">
+          <input type="checkbox" name="chci_vic_z_pos" value="ano" />
+          <span class="sub__box" aria-hidden="true"></span>
+          <span class="sub__check-text">Chtěl bych od svého pokladního systému víc. Ozvěte se mi.</span>
+        </label>
+
+        <label class="sub__check">
+          <input type="checkbox" name="consent" required />
+          <span class="sub__box" aria-hidden="true"></span>
+          <span class="sub__check-text">
+            Souhlasím se zpracováním údajů dle <a href="/ochrana-udaju">zásad ochrany údajů</a>.
+          </span>
+        </label>
+
+        <Button type="submit" full data-sub-submit>Chci novinky o EET</Button>
+        <p class="sub__hint">Žádný spam. Odhlásit se můžete kdykoli jedním kliknutím.</p>
+
+        <p class="sub__status sub__status--ok" data-sub-ok hidden>Děkujeme, jste v obraze. Potvrzení jsme poslali na e-mail.</p>
+        <p class="sub__status sub__status--err" data-sub-err hidden>Něco se nepovedlo. Zkuste to prosím znovu.</p>
+      </form>
     </div>
-    <p class="cmpx__note">* Delivery u Septim Enterprise: na integraci Bolt se pracuje. Přesný rozsah funkcí rádi projdeme na konzultaci.</p>
   </Section>
-
-  <!-- KONZULTACE -->
-  <LeadForm id="konzultace" variant="full" background="alt"
-            action="/api/lead"
-            title="Získejte checklist přípravy na EET zdarma"
-            lead="Nechte nám kontakt. Pošleme vám checklist přípravy na EET 2.0, ověříme připravenost vaší pokladny a nezávazně poradíme, jak z povinnosti udělat náskok."
-            submitLabel="Chci checklist a konzultaci"
-            proofs={leadProofs} />
 
   </main>
 
@@ -584,6 +424,11 @@ const faqSchema = {
   .checker__result .checker__eyebrow { margin-bottom: var(--space-4); }
   .checker__statusbar { margin-bottom: var(--space-4); }
   .checker__result .tile__status { font-size: var(--font-size-lead); font-weight: var(--font-weight-bold); padding: var(--space-2) var(--space-5); }
+  .checker__result .tile__status { display: inline-flex; align-items: center; gap: var(--space-2); border-radius: var(--radius-full); }
+  .tile__status--ok { color: var(--color-success); background: color-mix(in srgb, var(--color-success) 12%, #fff); }
+  .tile__status--warn { color: var(--color-warning); background: color-mix(in srgb, var(--color-warning) 14%, #fff); }
+  .tile__status--bad { color: var(--color-error); background: color-mix(in srgb, var(--color-error) 12%, #fff); }
+  .checker__result .tile__feats { list-style: none; display: flex; flex-direction: column; gap: var(--space-3); }
   .checker__desc { font-size: var(--font-size-small); color: var(--color-text-muted); line-height: var(--line-height-body); margin-bottom: var(--space-4); }
   .checker__result .tile__feats { margin-bottom: var(--space-5); }
   .checker__op { display: flex; align-items: center; gap: var(--space-2); font-size: var(--font-size-small); font-weight: var(--font-weight-semibold); color: var(--color-text-accent); background: color-mix(in srgb, var(--color-primary) 8%, #fff); border-radius: var(--radius-md); padding: var(--space-3) var(--space-4); margin-bottom: var(--space-4); }
@@ -610,122 +455,31 @@ const faqSchema = {
   .vs__note { margin-top: var(--space-3); font-size: var(--font-size-small); color: var(--color-text-muted); }
   @media (max-width: 760px) { .vs { grid-template-columns: 1fr; max-width: 460px; } }
 
-  /* GAPS (leadgen: co vam chybi) */
-  .gaps { max-width: 860px; margin: 0 auto var(--space-7); text-align: center; }
-  .gaps__q { font-size: var(--font-size-body); font-weight: var(--font-weight-semibold); color: var(--color-text-on-dark); margin-bottom: var(--space-5); }
-  .gaps__chips { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-3); }
-  .chip--light { color: var(--color-text-on-dark); background: rgba(255, 255, 255, 0.08); border-color: var(--color-border-on-dark); }
-  .gaps__chips .chip--light:hover { color: var(--color-text-on-dark); border-color: #fff; background: rgba(255, 255, 255, 0.18); }
-  .gaps__chips .chip--light.is-active:hover { color: var(--color-primary-bg); background: #fff; }
-  .chip--check { display: inline-flex; align-items: center; justify-content: flex-start; text-align: left; width: 100%; }
-  .chip--check::before { content: ""; flex-shrink: 0; width: 16px; height: 16px; border: 1.5px solid currentColor; border-radius: 4px; margin-right: var(--space-3); opacity: 0.65; }
-  /* Aktivni zaskrtnute pole: bila pilulka + tmavy text (vysoka specificita, aby prebila obecny .chip.is-active) */
-  .gaps__chips .chip--check.is-active { background: #fff; border-color: #fff; color: var(--color-primary-bg); }
-  .gaps__chips .chip--check.is-active::before { border-color: var(--color-primary); opacity: 1; background: var(--color-primary) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center / 11px 11px no-repeat; }
-  .gaps__result { margin-top: var(--space-6); text-align: left; background: rgba(255, 255, 255, 0.08); border: 1px solid var(--color-border-on-dark); border-radius: var(--radius-md); padding: var(--space-5) var(--space-6); }
-  .gaps__lead { font-size: var(--font-size-body); font-weight: var(--font-weight-semibold); color: var(--color-text-on-dark); }
-  @media (max-width: 700px) { .gaps__chips { grid-template-columns: 1fr 1fr; } }
-  @media (max-width: 460px) { .gaps__chips { grid-template-columns: 1fr; } }
-
-  /* TILES (3 sloupce vysledku) */
-  .tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-5); align-items: stretch; }
-  .tile { position: relative; display: flex; flex-direction: column; background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-6); box-shadow: var(--shadow-sm); }
-  .tile--product { border-color: var(--color-border-strong); }
-  .tile--product.is-recommended { border: 2px solid var(--color-secondary-gold); box-shadow: var(--shadow-lg); }
-  .tile__rec { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); display: inline-flex; align-items: center; gap: var(--space-1); white-space: nowrap; font-size: var(--font-size-caption); font-weight: var(--font-weight-semibold); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide); color: var(--color-primary-bg); background: var(--color-secondary-gold); padding: 4px var(--space-3); border-radius: var(--radius-full); box-shadow: var(--shadow-sm); }
-  .tile__tag { align-self: flex-start; font-size: var(--font-size-caption); font-weight: var(--font-weight-semibold); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide); color: var(--color-text-on-dark); background: var(--color-primary); padding: 4px var(--space-3); border-radius: var(--radius-full); margin-bottom: var(--space-4); }
-  .tile__tag--muted { color: var(--color-text-muted); background: var(--color-neutral-100); }
-  .tile__name { font-family: var(--font-sans); font-size: var(--font-size-h3); font-weight: var(--font-weight-bold); color: var(--color-text); }
-  .tile__sub { margin-top: var(--space-1); font-size: var(--font-size-small); color: var(--color-text-muted); }
-  .chips { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-4); }
-  .chip { font: var(--text-small); font-family: var(--font-sans); font-weight: var(--font-weight-medium); color: var(--color-text); background: var(--color-bg); border: 1px solid var(--color-border-strong); border-radius: var(--radius-full); padding: 6px var(--space-4); cursor: pointer; transition: var(--transition); }
-  .chips .chip:hover { border-color: var(--color-primary); color: var(--color-primary); }
-  .chip:focus-visible { outline: none; box-shadow: var(--shadow-focus); }
-  .chip.is-active { background: var(--color-primary); border-color: var(--color-primary); color: var(--color-text-on-dark); }
-  .tile__statusbar { margin-top: var(--space-4); min-height: 28px; }
-  .tile__status { display: inline-flex; align-items: center; gap: var(--space-2); font-size: var(--font-size-small); font-weight: var(--font-weight-semibold); padding: 5px var(--space-3); border-radius: var(--radius-full); }
-  .tile__status--ok { color: var(--color-success); background: color-mix(in srgb, var(--color-success) 12%, #fff); }
-  .tile__status--warn { color: var(--color-warning); background: color-mix(in srgb, var(--color-warning) 14%, #fff); }
-  .tile__status--bad { color: var(--color-error); background: color-mix(in srgb, var(--color-error) 12%, #fff); }
-  .tile__hr { border: none; border-top: 1px solid var(--color-border); margin: var(--space-5) 0; }
-  .tile__desc { font-size: var(--font-size-small); color: var(--color-text-muted); line-height: var(--line-height-body); }
-  .tile__feats { list-style: none; display: flex; flex-direction: column; gap: var(--space-3); margin-top: var(--space-4); }
-  .tile__price { margin-top: var(--space-5); padding: var(--space-4) var(--space-5); background: var(--color-bg-alt); border-radius: var(--radius-md); }
-  .tile__price-main { display: block; font-size: var(--font-size-h3); font-weight: var(--font-weight-bold); color: var(--color-secondary); }
-  .tile__price-note { display: block; margin-top: 2px; font-size: var(--font-size-caption); color: var(--color-text-muted); }
-  .tile__foot { margin-top: auto; padding-top: var(--space-6); }
-  .tile__link { display: inline-flex; align-items: center; gap: var(--space-1); color: var(--color-text-accent); font-weight: var(--font-weight-medium); font-size: var(--font-size-small); text-decoration: none; }
-  .tile__link:hover { text-decoration: underline; }
-  .tiles__note { margin-top: var(--space-6); font-size: var(--font-size-caption); color: var(--color-text-on-dark-muted); text-align: center; max-width: 760px; margin-inline: auto; }
-  .tiles--two { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 760px; margin-inline: auto; }
-  @media (max-width: 900px) { .tiles { grid-template-columns: 1fr; max-width: 460px; margin-inline: auto; } }
-
-  /* Vas system - samostatny blok se zvyraznenym stavem */
-  .yoursys { max-width: 620px; margin: 0 auto; }
-  .yoursys__cta { text-align: center; margin-top: var(--space-6); margin-bottom: var(--space-8); }
-  /* Zvyraznene tlacitko na tmavem pozadi (bila plna pilulka + zlaty prstenec) */
-  .yoursys__cta :global(.btn-attention) { background: #fff; color: var(--color-primary-bg); border-color: #fff; box-shadow: 0 0 0 4px rgba(232, 163, 61, 0.35), var(--shadow-md); }
-  .yoursys__cta :global(.btn-attention:hover) { background: var(--color-neutral-100); border-color: var(--color-neutral-100); }
-  .tile--result .tile__statusbar { min-height: 0; }
-  .tile--result .tile__status { font-size: var(--font-size-lead); font-weight: var(--font-weight-bold); padding: var(--space-2) var(--space-5); }
-  .offer-cta { text-align: center; margin-top: var(--space-7); }
-
-  /* SROVNANI FUNKCI (tabulka nasich urovni) */
-  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
-  .cmpx-wrap { overflow-x: auto; border: 1px solid var(--color-border); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); }
-  .cmpx { width: 100%; border-collapse: collapse; min-width: 640px; background: var(--color-bg); }
-  .cmpx th, .cmpx td { padding: var(--space-3) var(--space-4); text-align: center; border-bottom: 1px solid var(--color-border); }
-  .cmpx thead th { background: var(--color-bg-alt); vertical-align: bottom; }
-  .cmpx__rowhead { text-align: left; font-weight: var(--font-weight-medium); color: var(--color-text); font-size: var(--font-size-small); }
-  .cmpx__hh { font-size: var(--font-size-caption); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide); color: var(--color-text-muted); font-weight: var(--font-weight-semibold); }
-  .cmpx__col { min-width: 116px; }
-  .cmpx__cname { display: block; font-family: var(--font-sans); font-weight: var(--font-weight-bold); color: var(--color-secondary); }
-  .cmpx__csub { display: block; font-size: var(--font-size-caption); color: var(--color-text-muted); font-weight: var(--font-weight-regular); }
-  .cmpx__grp td { background: var(--color-neutral-50); text-align: left; font-size: var(--font-size-caption); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide); font-weight: var(--font-weight-semibold); color: var(--color-text-muted); }
-  .cmpx tbody tr:last-child th, .cmpx tbody tr:last-child td { border-bottom: none; }
-  .cmpx__mark { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: var(--radius-full); position: relative; }
-  .cmpx__mark--ok { color: var(--color-success); background: color-mix(in srgb, var(--color-success) 12%, #fff); }
-  .cmpx__mark--no { color: var(--color-neutral-400); }
-  .cmpx__mark--wip { color: var(--color-warning); background: color-mix(in srgb, var(--color-warning) 14%, #fff); }
-  .cmpx__mark--partner { color: var(--color-primary); background: color-mix(in srgb, var(--color-primary) 12%, #fff); }
-  .cmpx__star { position: absolute; top: -2px; right: 0; font-size: 11px; font-weight: var(--font-weight-bold); color: var(--color-warning); }
-  .cmpx__legend { display: flex; flex-wrap: wrap; gap: var(--space-4); justify-content: center; margin-top: var(--space-5); font-size: var(--font-size-small); color: var(--color-text-muted); }
-  .cmpx__legend > span { display: inline-flex; align-items: center; gap: var(--space-2); }
-  .cmpx__legend .cmpx__mark { width: 22px; height: 22px; }
-  .cmpx__note { margin-top: var(--space-3); font-size: var(--font-size-caption); color: var(--color-text-muted); text-align: center; max-width: 760px; margin-inline: auto; }
-
-  /* Harmonogram */
-  .tl { position: relative; max-width: 620px; margin: 0 auto; display: flex; flex-direction: column; gap: var(--space-4); padding-left: var(--space-1); }
-  .tl__line { position: absolute; left: 8px; top: 10px; bottom: 10px; width: 2px; background: var(--color-border); }
-  .tl__item { position: relative; display: grid; grid-template-columns: auto 1fr; column-gap: var(--space-4); align-items: start; }
-  .tl__dot { width: 18px; height: 18px; border-radius: var(--radius-full); background: var(--color-bg); border: 2px solid var(--color-border); margin-top: 2px; position: relative; z-index: 1; }
-  .tl__item--done .tl__dot { background: var(--color-primary); border-color: var(--color-primary); }
-  .tl__item--current .tl__dot { border-color: var(--color-primary); box-shadow: 0 0 0 4px var(--color-bg-alt), 0 0 0 6px var(--color-primary); }
-  .tl__item--current .tl__dot::after { content: ''; position: absolute; inset: 3px; border-radius: var(--radius-full); background: var(--color-primary); }
-  .tl__card { padding: var(--space-4) var(--space-5); background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); }
-  .tl__item--current .tl__card { border-color: var(--color-primary); box-shadow: 0 8px 24px rgba(26,79,139,.12); }
-  .tl__item--future .tl__card { background: transparent; border-style: dashed; }
-  .tl__date { font-size: var(--font-size-caption); font-weight: var(--font-weight-semibold); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide); color: var(--color-text-accent); }
-  .tl__item--future .tl__date { color: var(--color-text-muted); }
-  .tl__title { margin: var(--space-1) 0 0; font-size: var(--font-size-body); font-weight: var(--font-weight-semibold); line-height: var(--line-height-tight); }
-  .tl__badge { display: inline-block; margin-top: var(--space-2); font-size: var(--font-size-caption); font-weight: var(--font-weight-medium); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide); color: #fff; background: var(--color-primary); padding: 1px var(--space-2); border-radius: var(--radius-sm); }
-
-  /* Koho se to tyka */
-  .who { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-5); }
-  .who__card { background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-6) var(--space-5); }
-  .who__card > * + * { margin-top: var(--space-3); }
-  .who__ico { display: inline-flex; color: var(--color-text-accent); }
-  .note { display: flex; align-items: center; justify-content: center; gap: var(--space-2); margin-top: var(--space-6); font-size: var(--font-size-small); color: var(--color-text-muted); text-align: center; }
-  .note__ico { display: inline-flex; color: var(--color-text-accent); flex-shrink: 0; }
-  @media (max-width: 880px) { .who { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  @media (max-width: 520px) { .who { grid-template-columns: 1fr; } }
-
-  /* Kroky */
-  .steps { list-style: none; display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
-  .step { position: relative; padding: var(--space-6); background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); box-shadow: var(--shadow-sm); }
-  .step > * + * { margin-top: var(--space-3); }
-  .step__num { position: absolute; top: var(--space-4); right: var(--space-5); font-size: var(--font-size-h2); font-weight: var(--font-weight-bold); color: var(--color-neutral-200); line-height: 1; }
-  .step__ico { display: inline-flex; color: var(--color-text-accent); }
+  /* ODBER (prihlaseni k novinkam) */
+  .sub { display: grid; grid-template-columns: 1fr minmax(0, 420px); gap: var(--space-8); align-items: start; max-width: 940px; margin: 0 auto; }
+  .sub__proofs { list-style: none; display: grid; gap: var(--space-4); }
+  .sub__proof { display: flex; align-items: flex-start; gap: var(--space-3); font-size: var(--font-size-body); color: var(--color-text-on-dark); }
+  .sub__pico { display: inline-flex; flex-shrink: 0; margin-top: 2px; color: var(--color-secondary-gold); }
+  .sub__form { background: var(--color-bg); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); padding: var(--space-6); display: flex; flex-direction: column; gap: var(--space-4); }
+  .sub__hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  .sub__field { display: flex; flex-direction: column; gap: var(--space-2); }
+  .sub__label { font-size: var(--font-size-small); font-weight: var(--font-weight-medium); color: var(--color-text); }
+  .sub__control { position: relative; display: flex; align-items: center; }
+  .sub__control::after { content: ""; position: absolute; right: var(--space-4); width: 8px; height: 8px; border-right: 2px solid var(--color-text-muted); border-bottom: 2px solid var(--color-text-muted); transform: rotate(45deg) translateY(-2px); pointer-events: none; }
+  .sub__select { width: 100%; appearance: none; -webkit-appearance: none; font-family: var(--font-sans); font-size: 15px; color: var(--color-text); background: var(--color-bg); border: 1.5px solid var(--color-border); border-radius: var(--field-radius); padding: var(--space-3) var(--space-7) var(--space-3) var(--space-4); cursor: pointer; }
+  .sub__select:focus-visible { outline: none; border-color: var(--color-primary); box-shadow: var(--shadow-focus); }
+  .sub__check { display: flex; align-items: flex-start; gap: var(--space-3); cursor: pointer; }
+  .sub__check input { position: absolute; opacity: 0; width: 0; height: 0; }
+  .sub__box { flex-shrink: 0; width: 20px; height: 20px; margin-top: 1px; background: var(--color-bg); border: 1.5px solid var(--color-border-strong); border-radius: 5px; transition: var(--transition); }
+  .sub__check input:checked ~ .sub__box { border-color: var(--color-primary); background: var(--color-primary) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center / 13px 13px no-repeat; }
+  .sub__check input:focus-visible ~ .sub__box { box-shadow: var(--shadow-focus); }
+  .sub__check-text { font-size: var(--font-size-small); color: var(--color-text-muted); line-height: var(--line-height-body); }
+  .sub__check-text a { color: var(--color-text-accent); }
+  .sub__hint { font-size: var(--font-size-caption); color: var(--color-text-muted); text-align: center; }
+  .sub__status { font-size: var(--font-size-small); font-weight: var(--font-weight-medium); }
+  .sub__status--ok { color: var(--color-success); }
+  .sub__status--err { color: var(--color-error); }
+  @media (max-width: 880px) { .sub { grid-template-columns: 1fr; gap: var(--space-6); } }
 
   /* FAQ */
   .faq { margin-top: var(--space-6); display: flex; flex-direction: column; gap: var(--space-3); }
@@ -746,13 +500,6 @@ const faqSchema = {
   .tile__feat--no .tile__fico { color: var(--color-error); }
   .tile__feat--q .tile__fico { color: var(--color-text-muted); }
 
-  .gaps__list { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
-  .gaps__list li { display: flex; align-items: center; justify-content: space-between; gap: 16px; font-size: 14px; color: var(--color-text-on-dark); padding-bottom: 8px; border-bottom: 1px solid var(--color-border-on-dark); }
-  .gaps__list li:last-child { border-bottom: none; padding-bottom: 0; }
-  .gaps__edition { flex-shrink: 0; font-size: 12px; font-weight: 600; padding: 3px 12px; border-radius: 999px; white-space: nowrap; }
-  .gaps__edition--hugo { color: var(--color-primary-bg); background: color-mix(in srgb, var(--color-secondary-azure) 35%, #fff); }
-  .gaps__edition--air { color: var(--color-primary-bg); background: #fff; }
-  .gaps__edition--enterprise { color: var(--color-primary-bg); background: var(--color-secondary-gold); }
 </style>
 
 <script define:vars={{ situations }}>
@@ -799,74 +546,51 @@ const faqSchema = {
     });
   }
 
-  // Leadgen: co vam chybi -> nabidka reseni + zapis do poptavky
-  const gapChips = Array.from(document.querySelectorAll('[data-gap]'));
-  const gRes = document.querySelector('[data-gaps-result]');
-  const gLead = document.querySelector('[data-gaps-lead]');
-  const gList = document.querySelector('[data-gaps-list]');
-  const productCards = Array.from(document.querySelectorAll('[data-product]'));
-  const leadFormEl = document.querySelector('#konzultace [data-leadform]');
+  // Odber novinek: odeslani pres fetch (progressive enhancement)
+  const subForm = document.querySelector('[data-subscribe]');
+  if (subForm) {
+    const subBtn = subForm.querySelector('[data-sub-submit]');
+    const subOk = subForm.querySelector('[data-sub-ok]');
+    const subErr = subForm.querySelector('[data-sub-err]');
 
-  function highlight(productId) {
-    productCards.forEach((card) => {
-      const on = productId && card.dataset.product === productId;
-      card.classList.toggle('is-recommended', !!on);
-      const badge = card.querySelector('[data-rec]');
-      if (badge) badge.hidden = !on;
+    subForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (subOk) subOk.hidden = true;
+      if (subErr) subErr.hidden = true;
+      if (!subForm.checkValidity()) { subForm.reportValidity(); return; }
+
+      const pageField = subForm.querySelector('input[name="page"]');
+      if (pageField) pageField.value = window.location.href;
+
+      // pokud uz probehla kontrola, priloz zvolenou situaci
+      if (select && !subForm.querySelector('input[name="stav_pokladny"]')) {
+        const h = document.createElement('input');
+        h.type = 'hidden';
+        h.name = 'stav_pokladny';
+        h.value = select.value;
+        subForm.appendChild(h);
+      }
+
+      const hp = subForm.querySelector('input[name="website"]');
+      if (hp && hp.value) { subForm.reset(); if (subOk) subOk.hidden = false; return; }
+
+      const original = subBtn ? subBtn.textContent : '';
+      if (subBtn) { subBtn.disabled = true; subBtn.textContent = 'Odesílám…'; }
+
+      try {
+        const res = await fetch(subForm.action, {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body: new FormData(subForm),
+        });
+        if (!res.ok) throw new Error(String(res.status));
+        subForm.reset();
+        window.location.assign('/dekujeme');
+      } catch {
+        if (subErr) subErr.hidden = false;
+      } finally {
+        if (subBtn) { subBtn.disabled = false; subBtn.textContent = original; }
+      }
     });
   }
-
-  function syncLead(labels) {
-    if (!leadFormEl) return;
-    let hidden = leadFormEl.querySelector('input[name="chybejici_funkce"]');
-    if (!hidden) {
-      hidden = document.createElement('input');
-      hidden.type = 'hidden';
-      hidden.name = 'chybejici_funkce';
-      leadFormEl.appendChild(hidden);
-    }
-    hidden.value = labels.join(', ');
-  }
-
-  const editionName = { hugo: 'Hugo', air: 'Septim Air', enterprise: 'Septim Enterprise' };
-
-  function updateGaps() {
-    const sel = gapChips.filter((c) => c.classList.contains('is-active'));
-    if (sel.length === 0) {
-      gRes.hidden = true;
-      highlight(null);
-      syncLead([]);
-      return;
-    }
-    const labels = sel.map((c) => c.dataset.gap);
-    const tiers = sel.map((c) => c.dataset.tier);
-    const hasAir = tiers.includes('air');
-    const hasEnt = tiers.includes('enterprise');
-    const hasSeptim = hasAir || hasEnt;
-    const recProduct = hasSeptim ? 'septimair' : 'hugo';
-
-    if (!hasSeptim) {
-      gLead.textContent = 'Vaše řešení: Hugo. Pokryje všechny vybrané funkce (' + sel.length + ').';
-    } else if (hasEnt) {
-      gLead.textContent = 'Vaše řešení: Septim. Základ pokryje Septim Air, pokročilejší funkce Septim Enterprise.';
-    } else {
-      gLead.textContent = 'Vaše řešení: Septim Air. Pokryje všechny vybrané funkce (' + sel.length + ').';
-    }
-
-    gList.innerHTML = sel.map((c) => {
-      const t = c.dataset.tier;
-      return '<li>' + c.dataset.gap + '<span class="gaps__edition gaps__edition--' + t + '">' + editionName[t] + '</span></li>';
-    }).join('');
-
-    gRes.hidden = false;
-    highlight(recProduct);
-    syncLead(labels);
-  }
-
-  gapChips.forEach((c) => c.addEventListener('click', () => {
-    const on = c.getAttribute('aria-pressed') === 'true';
-    c.setAttribute('aria-pressed', String(!on));
-    c.classList.toggle('is-active', !on);
-    updateGaps();
-  }));
 </script>
