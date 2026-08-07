@@ -15,6 +15,7 @@
  *   lead?:        string
  *   proofs?:      Proof[]  → body důvěry vedle formuláře (icon? / title / text?)
  *   action?:      string  → endpoint pro odeslání; default "/api/lead.php" (PHP hosting → e-mail)
+ *   consentHref?: string  → odkaz na zásady ochrany údajů; default "/gdpr"
  *   submitLabel?: string
  *   background?:  "default" | "alt" | "invert" | "primary"   (default "alt")
  *   space?:       "sm" | "md" | "lg"
@@ -38,6 +39,7 @@ interface Props {
   lead?: string;
   proofs?: Proof[];
   action?: string;
+  consentHref?: string;  // odkaz v souhlasu se zpracováním údajů; default "/gdpr"
   successUrl?: string;   // přesměrování po úspěšném odeslání (analytika); default "/dekujeme"
   submitLabel?: string;
   message?: boolean | string;  // přidá pole „Zpráva" (textarea); string = vlastní popisek
@@ -92,6 +94,7 @@ const {
   lead,
   proofs,
   action = '/api/lead.php',
+  consentHref,
   successUrl,
   submitLabel,
   message = false,
@@ -106,6 +109,7 @@ const {
 const isStacked = layout === 'stacked';
 
 const L = LEAD_I18N[locale];
+const consentHrefResolved = consentHref ?? L.consentHref;
 const successUrlResolved = successUrl ?? L.successUrl;
 const proofsList: Proof[] = proofs ?? L.proofs;
 const showMessage = Boolean(message);
@@ -180,7 +184,7 @@ const submitText = submitLabel ?? (isCallback ? L.submitCallback : L.submitFull)
               <input type="checkbox" name="consent" required />
               <span class="leadform__check" aria-hidden="true"></span>
               <span class="leadform__consent-text">
-                {L.consentPre}<a href={L.consentHref}>{L.consentLink}</a>{L.consentPost}
+                {L.consentPre}<a href={consentHrefResolved}>{L.consentLink}</a>{L.consentPost}
               </span>
             </label>
           </>
