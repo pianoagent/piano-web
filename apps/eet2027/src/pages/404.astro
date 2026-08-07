@@ -1,0 +1,43 @@
+---
+/**
+ * 404 - stranka nenalezena.
+ * Staticky build vygeneruje dist/404.html; Apache ji serviruje pres ErrorDocument
+ * (viz public/.htaccess).
+ */
+import Base from '../layouts/Base.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+---
+
+<Base title="Stránka nenalezena"
+      description="Tuto stránku se nepodařilo najít. Vraťte se na úvod a zjistěte, co pro vás znamená EET od roku 2027."
+      noindex={true}>
+  <SiteHeader />
+  <main>
+    <Section background="default" space="lg" container="narrow">
+      <div class="nf">
+        <span class="nf__ico"><Icon name="lucide:file-question" size="lg" /></span>
+        <Heading as="h1" size="h2" align="center">Tuhle stránku jsme nenašli</Heading>
+        <Text size="lead" color="muted" align="center">
+          Odkaz je nejspíš zastaralý nebo obsahuje překlep. Na úvodní stránce najdete vše k návratu
+          elektronické evidence tržeb od roku 2027 i kontrolu připravenosti vaší pokladny.
+        </Text>
+        <div class="nf__actions">
+          <Button href="/">Zpět na úvod</Button>
+        </div>
+      </div>
+    </Section>
+  </main>
+  <SiteFooter />
+</Base>
+
+<style>
+  .nf { text-align: center; display: flex; flex-direction: column; align-items: center; gap: var(--space-4); }
+  .nf__ico { display: inline-flex; color: var(--color-text-accent); }
+  .nf__actions { margin-top: var(--space-4); }
+</style>

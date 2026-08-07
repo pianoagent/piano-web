@@ -1,0 +1,51 @@
+name: Deploy eet2027.cz
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'apps/eet2027/**'
+      - 'packages/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/deploy-eet2027.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-eet2027
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build eet2027.cz
+        run: npm run build:eet2027
+
+      - name: Deploy to FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.EET2027_FTP_SERVER }}
+          username: ${{ secrets.EET2027_FTP_USERNAME }}
+          password: ${{ secrets.EET2027_FTP_PASSWORD }}
+          protocol: ${{ vars.EET2027_FTP_PROTOCOL || 'ftp' }}
+          local-dir: apps/eet2027/dist/
+          server-dir: ${{ vars.EET2027_FTP_SERVER_DIR || './' }}
+          # Cloudflare artefakty (worker/headers/routes) na tomhle hostingu nedávají smysl
+          exclude: |
+            _worker.js/**
+            _routes.json
+            _headers
+            **/.DS_Store
