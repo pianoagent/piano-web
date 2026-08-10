@@ -44,6 +44,8 @@ $lead = [
     'phone' => $value('phone'),
     'company' => $value('company'),
     'city' => $value('city'),
+    'typ_podniku' => $value('typ_podniku'),
+    'chci_vic_z_pos' => $value('chci_vic_z_pos'),
     'page' => $page,
 ];
 
@@ -60,6 +62,8 @@ $lines = array_filter([
     $lead['phone'] !== '' ? sprintf('Telefon: %s', $lead['phone']) : null,
     $lead['company'] !== '' ? sprintf('Název podniku: %s', $lead['company']) : null,
     $lead['city'] !== '' ? sprintf('Město: %s', $lead['city']) : null,
+    $lead['typ_podniku'] !== '' ? sprintf('Typ podniku: %s', $lead['typ_podniku']) : null,
+    $lead['chci_vic_z_pos'] !== '' ? 'Zájem: chtěl by od pokladního systému víc' : null,
     $lead['page'] !== '' ? sprintf('URL: %s', $lead['page']) : null,
 ], static fn ($line): bool => $line !== null);
 $body = implode("\r\n", $lines);

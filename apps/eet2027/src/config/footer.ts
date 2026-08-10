@@ -16,6 +16,7 @@ export const eetFooter = {
         { label: 'Koho se týká', href: '/#koho' },
         { label: 'Jak se připravit', href: '/#priprava' },
         { label: 'Časté dotazy', href: '/#faq' },
+        { label: 'Odběr novinek', href: '/#odber' },
       ],
     },
   ],
@@ -23,7 +24,7 @@ export const eetFooter = {
     heading: 'Kontakt',
     items: [
       { label: 'E-mail', value: 'info@eet2027.cz', href: 'mailto:info@eet2027.cz' },
-      { value: 'Nezávazná konzultace zdarma' },
+      { value: 'Novinky o EET 2.0 zdarma' },
     ],
   },
   social: [],

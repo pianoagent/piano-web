@@ -11,4 +11,4 @@ export const eetNav: NavItem[] = [
   { label: 'Časté dotazy', href: '/#faq' },
 ];
 
-export const eetCta: NavLink = { label: 'Chci vědět o EET', href: '/#konzultace' };
+export const eetCta: NavLink = { label: 'Chci vědět o EET', href: '/#odber' };
