@@ -9,6 +9,8 @@
 */
 @import "@piano/ui/styles/base.css";
 
+@import "./tokens.css";              /* tokeny ze styleguidu (nové názvy) */
+@import "@piano/ui/styles/bridge.css"; /* mapování na názvy v komponentách */
 /* =========================================================
    FONT - Ubuntu Sans (variabilní, wght 100–800)
    Dva komplementární subsety: latin (UbuntuSans) + latin-ext
@@ -44,7 +46,6 @@
   --text-h3:      600 var(--font-size-h3)/var(--line-height-snug) var(--font-sans);
 
   /* ----- Primary - modrá (brand, CTA, nadpisy) ----- */
-  --color-primary:          #004a96;
   --color-primary-hover:    #005cad;
   --color-primary-active:   #003a78;
   --color-primary-bg:       #004a96;
@@ -67,32 +68,20 @@
   --color-neutral-900: #1C1C1C;
 
   /* ----- Status ----- */
-  --color-success:       #17b471;
   --color-success-hover: #139a60;
-  --color-warning:       #fdc00f;
   --color-info:          #1f55a3;
-  --color-error:         #e30613;
   --color-error-hover:   #c20510;
 
   /* ----- Text ----- */
-  --color-text:               #393939;
-  --color-text-muted:         #5e6470;
   --color-text-accent:        #004a96; /* eyebrow / odkazy / ikony na světlém */
-  --color-text-on-dark:       #FFFFFF;
-  --color-text-on-dark-muted: rgba(255, 255, 255, 0.78);
 
   /* ----- Povrchy ----- */
-  --color-bg:        #FFFFFF;
-  --color-bg-alt:    #EDF0F5;
-  --color-bg-invert: #004a96;
   --color-bg-hover:  color-mix(in srgb, var(--color-primary) 6%, #FFFFFF);
 
   /* Signature gradient (hero) - modrá → světlejší modrá */
   --color-bg-gradient: linear-gradient(118deg, #0f559c 0%, #2060a3 100%);
 
   /* ----- Okraje ----- */
-  --color-border:         #DBE1E8;
-  --color-border-strong:  #C2CAD6;
   --color-border-on-dark: rgba(255, 255, 255, 0.24);
 
   /* ----- Radius - Harsys mírně zaobluje (profesionální, ne pilulky) ----- */

@@ -10,6 +10,8 @@
 */
 @import "@piano/ui/styles/base.css";
 
+@import "./tokens.css";              /* tokeny ze styleguidu (nové názvy) */
+@import "@piano/ui/styles/bridge.css"; /* mapování na názvy v komponentách */
 /* =========================================================
    FONT: Poppins (jediná rodina; 400 / 600 / 700)
    latin + latin-ext (diakritika CZ/SK)
@@ -56,7 +58,6 @@
 
   /* ----- Primary: zelená (signature). Ztmaveno kvůli kontrastu s bílým textem
      (#008556 = 4,68:1, WCAG AA). Brandová #00B579 viz --color-secondary. ----- */
-  --color-primary:          #008556;
   --color-primary-hover:    #00704A;
   --color-primary-active:   #006644;
   --color-primary-bg:       #06352A;  /* tmavě zelené pozadí sekcí */
@@ -84,32 +85,20 @@
   --color-neutral-900: #121815;
 
   /* ----- Status ----- */
-  --color-success:       #008556;
   --color-success-hover: #006644;
-  --color-warning:       #E8910C;
   --color-info:          #00B579;
-  --color-error:         #DC3B47;
   --color-error-hover:   #B82E39;
 
   /* ----- Text ----- */
-  --color-text:               #1A241F; /* tmavá chladně-zelená (nadpisy i body) */
-  --color-text-muted:         #5E6E66;
   --color-text-accent:        #00794F; /* green-700, eyebrow / odkazy (5,4:1) */
-  --color-text-on-dark:       #FFFFFF;
-  --color-text-on-dark-muted: rgba(255, 255, 255, 0.74);
 
   /* ----- Povrchy ----- */
-  --color-bg:        #FFFFFF;
-  --color-bg-alt:    #F5F9F7;
-  --color-bg-invert: #06352A;
   --color-bg-hover:  color-mix(in srgb, var(--color-neutral-900) 4%, #FFFFFF);
 
   /* Signature gradient (hero): hloubka: tmavá zelená vlevo → brandová vpravo */
   --color-bg-gradient: linear-gradient(115deg, #06352A 0%, #06754E 42%, #00A36B 78%, #15C285 100%);
 
   /* ----- Okraje ----- */
-  --color-border:         #DCE7E1;
-  --color-border-strong:  #C2D2C9;
   --color-border-on-dark: rgba(255, 255, 255, 0.24);
 
   /* ----- Radius: Qerko zaobluje štědře (friendly/rounded) ----- */
@@ -135,4 +124,11 @@
 
   /* ----- Focus ring: zelená ----- */
   --shadow-focus: 0 0 0 3px rgba(0, 181, 121, 0.40);
+}
+
+/* Kontrast tlačítek: brandová #00B579 má s bílým labelem 2.66:1,
+   což je pod WCAG AA (4,5:1). Pro text a tlačítka se proto drží ztmavená
+   #008556 (4.68:1). Brandová barva zůstává pro dekoraci bez textu. */
+:root {
+  --accent-aa: #008556;
 }

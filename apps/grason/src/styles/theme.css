@@ -10,6 +10,8 @@
 */
 @import "@piano/ui/styles/base.css";
 
+@import "./tokens.css";              /* tokeny ze styleguidu (nové názvy) */
+@import "@piano/ui/styles/bridge.css"; /* mapování na názvy v komponentách */
 /* =========================================================
    FONT - Neue Plak
    - 400 (Regular) + 600 (SemiBold) = tělo i nadpisy h2/h3
@@ -50,7 +52,6 @@
   --text-h3:      600 var(--font-size-h3)/var(--line-height-snug) var(--font-sans);
 
   /* ----- Primary - růžová (hlavní CTA dle originálu grason.cz) ----- */
-  --color-primary:          #F24D83;
   --color-primary-hover:    #D63A70;
   --color-primary-active:   #C13366;
   --color-primary-bg:       #343160;  /* tmavé modré pozadí sekcí (brand modrá) */
@@ -83,24 +84,16 @@
   --color-neutral-900: #343160; /* brandová modrá (bodycopy z originálu; ne černá) */
 
   /* ----- Status ----- */
-  --color-success:       #2FA39A;
   --color-success-hover: #23827B;
-  --color-warning:       #FAD531;
   --color-info:          #3CC1C8;
   --color-error:         #990000;
   --color-error-hover:   #7A0000;
 
   /* ----- Text ----- */
-  --color-text:               #343160; /* brandová modrá (bodycopy z originálu) */
-  --color-text-muted:         #838895;
   --color-text-accent:        #2A9CA2; /* ztmavený tyrkys - čitelný na bílé (eyebrow / odkazy) */
-  --color-text-on-dark:       #FFFFFF;
-  --color-text-on-dark-muted: rgba(255, 255, 255, 0.74);
 
   /* ----- Povrchy ----- */
-  --color-bg:        #FFFFFF;
   --color-bg-alt:    #F6F7FA;
-  --color-bg-invert: #343160;
   /* Brandové celoplošné barvy sekcí (Grason styl) */
   --color-bg-cyan:   #A3DEE1;
   --color-bg-yellow: #FBDD5B;
@@ -111,8 +104,6 @@
   --color-bg-gradient: linear-gradient(118deg, #343160 0%, #3C396F 42%, #3CC1C8 100%);
 
   /* ----- Okraje ----- */
-  --color-border:         #EEEFF2;
-  --color-border-strong:  #C3C2D0;
   --color-border-on-dark: rgba(255, 255, 255, 0.26);
 
   /* ----- Radius - Grason zaobluje (friendly app vibe) ----- */
@@ -159,3 +150,20 @@
    proto bez rámečku a stínu, ať zůstane průhlednost. */
 .hero-pic { margin: 0; }
 .hero-pic img { display: block; width: 100%; height: auto; }
+
+/* Kontrast tlačítek: brandová #f86494 má s bílým labelem 2.90:1,
+   což je pod WCAG AA (4,5:1). Pro text a tlačítka se proto drží ztmavená
+   #F24D83 (3.41:1). Brandová barva zůstává pro dekoraci bez textu. */
+:root {
+  --accent-aa: #F24D83;
+}
+
+/* Vědomé odchylky od styleguidu
+   =========================================================
+   --color-bg-alt: Styleguide ma bg-alt = mint #7cd4d8, ale to je barva PASU, ne tlumeneho
+     stridani sekci. Na webu je 14 sekci s background="alt"; mint na vsech by
+     porusil vlastni pravidlo styleguidu, ze se dva stejne pasy nesmi dotknout.
+     Mint/yellow/pink pasy se nasadi adresne v kompozicni vrstve, viz --band-*.
+   --color-error: Styleguide ma error = #e6467c, coz je zaroven accent-hover Grasonu. Chybova
+     hlaska ve stejne barve jako CTA se necte jako chyba, proto zustava cervena.
+   ========================================================= */

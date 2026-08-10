@@ -1,0 +1,95 @@
+/* ============================================================
+   SAVARIN: web theme tokens (styleguide 1.0)
+   Sdílená struktura celého ekosystému Piano; mění se jen theme.
+   Načtěte PO stylesheetech design systému Savarin.
+   ============================================================ */
+:root {
+  /* ---------- Color roles ---------- */
+  --bg:            #f4f1ea;
+  --bg-alt:        #FFFFFF;
+  --bg-invert:     #291769;
+  --surface:       #FFFFFF;
+
+  --ink:           #141118;
+  --ink-2:         #5C5766;
+  --ink-invert:    #FFFFFF;
+  --ink-invert-2:  rgba(255, 255, 255, 0.72);
+
+  --accent:        #291769;
+  --accent-hover:  #33208a;
+  --on-accent:     #FFFFFF;
+
+  --convert:       #d32118;
+  --convert-hover: #b81c14;
+
+  --line:          #e5e0d4;
+  --line-strong:   #cfc8b8;
+
+  --success:       #1f7a3d;
+  --warning:       #8a5a00;
+  --error:         #d32118;
+
+  /* ---------- Type ---------- */
+  --font-display:  "Asap", system-ui, sans-serif;
+  --font-text:     "Public Sans", system-ui, sans-serif;
+
+  /* scale: ratio 1.25, base 17px (shared ecosystem-wide) */
+  --fs-display:    clamp(40px, 5.6vw, 66px);
+  --fs-h1:         clamp(34px, 4.2vw, 53px);
+  --fs-h2:         clamp(30px, 3.2vw, 42px);
+  --fs-h3:         clamp(24px, 2vw, 27px);
+  --fs-lead:       clamp(19px, 1.5vw, 21px);
+  --fs-body:       17px;
+  --fs-small:      14px;
+  --fs-caption:    12px;
+  --fs-label:      13px;
+
+  --lh-display:    0.98;
+  --lh-h1:         1.02;
+  --lh-h2:         1.06;
+  --lh-h3:         1.15;
+  --lh-lead:       1.5;
+  --lh-body:       1.65;
+
+  --ls-display:    -0.02em;
+  --ls-body:       0em;
+  --ls-label:      0.08em;
+
+  /* ---------- Spacing (4px base, shared) ---------- */
+  --s-1: 4px;  --s-2: 8px;  --s-3: 12px; --s-4: 16px; --s-5: 24px;
+  --s-6: 32px; --s-7: 48px; --s-8: 64px; --s-9: 96px; --s-10: 128px;
+
+  /* ---------- Layout ---------- */
+  --container:     1200px;
+  --columns:       12;
+  --gutter:        48px;
+  --page-pad:      48px;
+  --page-pad-mobile: 20px;
+  --section-gap:   80px;
+  --header-h:      72px;
+
+  --bp-sm: 480px; --bp-md: 768px; --bp-lg: 1024px; --bp-xl: 1280px;
+
+  /* ---------- Controls ---------- */
+  --control-h:     48px;
+  --control-h-sm:  38px;
+  --control-h-lg:  58px;
+  --card-pad:      32px;
+
+  /* ---------- Scroll reveal ---------- */
+  --dur-reveal:    220ms;
+  --reveal-shift:  14px;
+  --reveal-stagger:70ms;
+  --reveal-threshold: 0.15;
+  --ease-reveal:   cubic-bezier(.2, .6, .2, 1);
+
+  /* ---------- Motion ---------- */
+  --ease:          cubic-bezier(.2, .6, .2, 1);
+  --dur-micro:     140ms;
+  --dur-standard:  220ms;
+  --dur-page:      360ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --dur-micro: 0ms; --dur-standard: 0ms; --dur-page: 0ms; --dur-reveal: 0ms; --reveal-shift: 0px; --reveal-stagger: 0ms; }
+}

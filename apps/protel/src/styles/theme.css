@@ -11,6 +11,8 @@
 */
 @import "@piano/ui/styles/base.css";
 
+@import "./tokens.css";              /* tokeny ze styleguidu (nové názvy) */
+@import "@piano/ui/styles/bridge.css"; /* mapování na názvy v komponentách */
 /* =========================================================
    FONT: Poppins (jediná rodina; 400 / 600 / 700)
    latin + latin-ext (diakritika CZ/SK). Poppins byl i ve fallback stacku
@@ -56,7 +58,6 @@
   --font-weight-semibold: 600;
 
   /* ----- Primary: magenta (brand accent, ztmavená na AA kontrast) ----- */
-  --color-primary:          #D6006F;  /* 5,14:1 s bílým textem */
   --color-primary-hover:    #BD0066;
   --color-primary-active:   #A30058;
   --color-primary-bg:       #06038D;  /* tmavé indigo pozadí sekcí (Piano group) */
@@ -84,32 +85,20 @@
   --color-neutral-900: #14121B;
 
   /* ----- Status ----- */
-  --color-success:       #1F9D6B;
   --color-success-hover: #16774F;
-  --color-warning:       #E8910C;
   --color-info:          #06038D;
-  --color-error:         #DC3B47;
   --color-error-hover:   #B82E39;
 
   /* ----- Text ----- */
-  --color-text:               #20202F; /* tmavá chladná (nadpisy i body) */
-  --color-text-muted:         #6E6889;
   --color-text-accent:        #BD0066; /* magenta-600, eyebrow / odkazy (AA na bílé) */
-  --color-text-on-dark:       #FFFFFF;
-  --color-text-on-dark-muted: rgba(255, 255, 255, 0.72);
 
   /* ----- Povrchy ----- */
-  --color-bg:        #FFFFFF;
-  --color-bg-alt:    #F7F6FB;
-  --color-bg-invert: #06038D;
   --color-bg-hover:  color-mix(in srgb, var(--color-neutral-900) 4%, #FFFFFF);
 
   /* Signature gradient (hero): hloubka: tmavé indigo vlevo → magenta vpravo */
   --color-bg-gradient: linear-gradient(115deg, #06038D 0%, #2B0C8E 40%, #8A0A82 78%, #D6006F 100%);
 
   /* ----- Okraje ----- */
-  --color-border:         #E1DEEC;
-  --color-border-strong:  #C7C2D9;
   --color-border-on-dark: rgba(255, 255, 255, 0.24);
 
   /* ----- Radius: Protel zaobluje štědře ----- */
@@ -147,3 +136,10 @@
   box-shadow: var(--shadow-lg);
 }
 .hero-pic img { display: block; width: 100%; height: auto; }
+
+/* Kontrast tlačítek: brandová #FF0096 má s bílým labelem 3.69:1,
+   což je pod WCAG AA (4,5:1). Pro text a tlačítka se proto drží ztmavená
+   #D6006F (5.14:1). Brandová barva zůstává pro dekoraci bez textu. */
+:root {
+  --accent-aa: #D6006F;
+}

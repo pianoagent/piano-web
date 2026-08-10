@@ -7,6 +7,8 @@
 */
 @import "@piano/ui/styles/base.css";
 
+@import "./tokens.css";              /* tokeny ze styleguidu (nové názvy) */
+@import "@piano/ui/styles/bridge.css"; /* mapování na názvy v komponentách */
 /* =========================================================
    FONT: Poppins (jediná rodina; 400 / 600 / 700)
    latin + latin-ext (diakritika CZ/SK)
@@ -53,7 +55,6 @@
 
   /* ----- Primary: cyan ztmavená na WCAG AA (≥4,5:1 s bílým textem) -----
      Signature jasná cyan #00ADEE zůstává jako dekorativní --color-secondary-azure. */
-  --color-primary:          #0073A6;  /* 5,25:1 vůči bílé */
   --color-primary-hover:    #005F8A;
   --color-primary-active:   #004E73;
   --color-primary-bg:       #06038D;  /* tmavé indigo pozadí sekcí */
@@ -81,32 +82,20 @@
   --color-neutral-900: #11151B;
 
   /* ----- Status ----- */
-  --color-success:       #1F9D6B;
   --color-success-hover: #16774F;
-  --color-warning:       #E8910C;
   --color-info:          #00ADEE;
-  --color-error:         #DC3B47;
   --color-error-hover:   #B82E39;
 
   /* ----- Text ----- */
-  --color-text:               #20262F; /* tmavá chladná (nadpisy i body) */
-  --color-text-muted:         #6B7689;
   --color-text-accent:        #0073A6; /* cyan ztmavená, eyebrow / odkazy, AA 5,25:1 na bílé */
-  --color-text-on-dark:       #FFFFFF;
-  --color-text-on-dark-muted: rgba(255, 255, 255, 0.72);
 
   /* ----- Povrchy ----- */
-  --color-bg:        #FFFFFF;
-  --color-bg-alt:    #F6F8FB;
-  --color-bg-invert: #06038D;
   --color-bg-hover:  color-mix(in srgb, var(--color-neutral-900) 4%, #FFFFFF);
 
   /* Signature gradient (hero): hloubka: tmavé indigo vlevo → cyan vpravo */
   --color-bg-gradient: linear-gradient(115deg, #06038D 0%, #0C2A9E 36%, #0E86D9 78%, #16B5F0 100%);
 
   /* ----- Okraje ----- */
-  --color-border:         #DDE3EC;
-  --color-border-strong:  #C4CCD9;
   --color-border-on-dark: rgba(255, 255, 255, 0.24);
 
   /* ----- Radius: Septim zaobluje štědře ----- */
@@ -148,3 +137,10 @@
   aspect-ratio: 4 / 3;
 }
 .hero-pic img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+/* Kontrast tlačítek: brandová #00ADEE má s bílým labelem 2.56:1,
+   což je pod WCAG AA (4,5:1). Pro text a tlačítka se proto drží ztmavená
+   #0073A6 (5.25:1). Brandová barva zůstává pro dekoraci bez textu. */
+:root {
+  --accent-aa: #0073A6;
+}

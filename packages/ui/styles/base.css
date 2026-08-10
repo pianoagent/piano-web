@@ -36,10 +36,13 @@
   --letter-spacing-normal: 0;
   --letter-spacing-wide:   0.08em;
 
-  --text-display: var(--font-weight-medium) var(--font-size-display)/var(--line-height-display) var(--font-sans);
-  --text-h1:      var(--font-weight-medium) var(--font-size-h1)/1.1 var(--font-sans);
-  --text-h2:      var(--font-weight-medium) var(--font-size-h2)/var(--line-height-heading) var(--font-sans);
-  --text-h3:      var(--font-weight-medium) var(--font-size-h3)/var(--line-height-snug) var(--font-sans);
+  /* Nadpisy sázejí --font-display, kde ho téma definuje (styleguide odděluje
+     display a text font, u Piana Borna vs PP Eiko). Bez něj padá na --font-sans,
+     takže weby s jedinou rodinou se nemění. */
+  --text-display: var(--font-weight-medium) var(--font-size-display)/var(--line-height-display) var(--font-display, var(--font-sans));
+  --text-h1:      var(--font-weight-medium) var(--font-size-h1)/var(--line-height-h1, 1.1) var(--font-display, var(--font-sans));
+  --text-h2:      var(--font-weight-medium) var(--font-size-h2)/var(--line-height-heading) var(--font-display, var(--font-sans));
+  --text-h3:      var(--font-weight-medium) var(--font-size-h3)/var(--line-height-snug) var(--font-display, var(--font-sans));
   --text-lead:    var(--font-weight-regular) var(--font-size-lead)/var(--line-height-lead) var(--font-sans);
   --text-body:    var(--font-weight-regular) var(--font-size-body)/var(--line-height-body) var(--font-sans);
   --text-small:   var(--font-weight-regular) var(--font-size-small)/1.5 var(--font-sans);

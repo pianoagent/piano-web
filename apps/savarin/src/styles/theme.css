@@ -11,6 +11,8 @@
 */
 @import "@piano/ui/styles/base.css";
 
+@import "./tokens.css";              /* tokeny ze styleguidu (nové názvy) */
+@import "@piano/ui/styles/bridge.css"; /* mapování na názvy v komponentách */
 /* =========================================================
    FONT: Figtree (self-hosted, latin + latin-ext pro češtinu)
    Váhy 400 (Regular) / 600 (SemiBold) / 700 (Bold).
@@ -66,7 +68,6 @@
      Ztmaveno z brandové #587E92 na #4E7286 kvůli WCAG AA: bílý text na
      tlačítku má kontrast 5.15:1 (≥4.5). Světlou brandovou #587E92 dál
      drží --color-secondary pro dekorativní velký text. */
-  --color-primary:          #4E7286;
   --color-primary-hover:    #456578;
   --color-primary-active:   #3F6276;
   --color-primary-bg:       #222F40;  /* tmavá navy, pozadí sekcí */
@@ -89,32 +90,20 @@
   --color-neutral-900: #222F40;
 
   /* ----- Status ----- */
-  --color-success:       #2E7D5B;
   --color-success-hover: #246349;
-  --color-warning:       #C9821A;
   --color-info:          #587E92;
-  --color-error:         #EE1625;
   --color-error-hover:   #C9111C;
 
   /* ----- Text ----- */
-  --color-text:               #222F40; /* tmavá navy (nadpisy i body) */
-  --color-text-muted:         #5E6B78;
   --color-text-accent:        #4A6B7D; /* ztmavená modrošedá, eyebrow / odkazy */
-  --color-text-on-dark:       #FFFFFF;
-  --color-text-on-dark-muted: rgba(255, 255, 255, 0.74);
 
   /* ----- Povrchy ----- */
-  --color-bg:        #FFFFFF;
-  --color-bg-alt:    #F1F3F4;
-  --color-bg-invert: #222F40;
   --color-bg-hover:  color-mix(in srgb, var(--color-neutral-900) 5%, #FFFFFF);
 
   /* Signature gradient (hero): tmavá navy → modrošedá */
   --color-bg-gradient: linear-gradient(118deg, #222F40 0%, #2E4255 45%, #587E92 100%);
 
   /* ----- Okraje ----- */
-  --color-border:         #E7E7E7;
-  --color-border-strong:  #A7BDC8;
   --color-border-on-dark: rgba(255, 255, 255, 0.22);
 
   /* ----- Radius: Savarin jemně zaobluje (střízlivě korporátní) ----- */
