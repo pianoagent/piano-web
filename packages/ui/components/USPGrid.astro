@@ -56,9 +56,12 @@ const gridVar = columns ? `--usp-cols: ${columns};` : `--usp-min: ${minItemWidth
 const gridMode = columns ? 'usp__grid--fixed' : 'usp__grid--auto';
 ---
 
-<Section background={background} space={space}>
+{/* reveal={false}: obsah si animuje USPGrid sám, hlavičku a karty zvlášť.
+    Kdyby animoval i kontejner sekce, karty by se hýbaly dvakrát (posun
+    kontejneru plus vlastní posun) a nájezd by byl přehnaný. */}
+<Section background={background} space={space} reveal={false}>
   {hasHeader && (
-    <div class:list={['usp__header', `usp__header--${align}`]}>
+    <div class:list={['usp__header', 'reveal', `usp__header--${align}`]}>
       {eyebrow && <p class="usp__eyebrow">{eyebrow}</p>}
       {hasTitle ? <slot name="title" /> : title && (
         <Heading as="h2" size="h2" align={align} color={onDark ? 'on-dark' : 'default'}>{title}</Heading>

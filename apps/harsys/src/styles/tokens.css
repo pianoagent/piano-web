@@ -77,11 +77,11 @@
   --card-pad:      32px;
 
   /* ---------- Scroll reveal ---------- */
-  --dur-reveal:    200ms;
-  --reveal-shift:  14px;
-  --reveal-stagger:60ms;
+  --dur-reveal:    500ms;
+  --reveal-shift:  16px;
+  --reveal-stagger:70ms;
   --reveal-threshold: 0.15;
-  --ease-reveal:   cubic-bezier(.16, 1, .3, 1);
+  --ease-reveal:   cubic-bezier(0.22, 1, 0.36, 1);
 
   /* ---------- Motion ---------- */
   --ease:          cubic-bezier(0.4, 0, 0.2, 1);

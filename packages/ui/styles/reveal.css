@@ -1,15 +1,17 @@
 /* ============================================================
    Scroll reveal: sdílená implementace pro celý ekosystém Piano
-   Hodnoty se berou z theme tokenů (<produkt>-web-tokens.css):
+   Hodnoty se berou z theme tokenů (apps/<web>/src/styles/tokens.css):
      --dur-reveal · --reveal-shift · --reveal-stagger · --ease-reveal
    Tenhle soubor je pro všech deset webů stejný. Nekopírujte hodnoty sem.
    ============================================================ */
 
-/* Fallback, kdyby se načetl dřív než theme tokeny */
+/* Fallback, kdyby se načetl dřív než theme tokeny.
+   Křivka je decelerující (rychlý rozjezd, tichý doběh), což je pro nájezd
+   obsahu správné. Symetrická `ease` působí, že prvek dojede a stopne. */
 :root {
-  --dur-reveal:     220ms;
-  --reveal-shift:   12px;
-  --reveal-stagger: 60ms;
+  --dur-reveal:     520ms;
+  --reveal-shift:   20px;
+  --reveal-stagger: 80ms;
   --ease-reveal:    cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -18,16 +20,23 @@
    Bez JS zůstane obsah viditelný: pro čtenáře i pro vyhledávače. */
 .js .reveal {
   opacity: 0;
-  transform: translateY(var(--reveal-shift));
+  /* translate3d drží animaci na kompozitoru. Samotné translateY může
+     v některých případech spadnout na dražší cestu. */
+  transform: translate3d(0, var(--reveal-shift), 0);
+  transition-property: opacity, transform;
+  transition-duration: var(--dur-reveal);
+  transition-timing-function: var(--ease-reveal);
+
+  /* will-change JEN dokud je prvek skrytý. Kdyby zůstalo natrvalo, drží si
+     každý odkrytý blok vlastní kompozitní vrstvu, ta se nikdy neuvolní a při
+     větším počtu bloků na stránce z toho jsou zahozené framy. */
   will-change: opacity, transform;
-  transition:
-    opacity   var(--dur-reveal) var(--ease-reveal),
-    transform var(--dur-reveal) var(--ease-reveal);
 }
 
 .js .reveal.is-visible {
   opacity: 1;
   transform: none;
+  will-change: auto;
 }
 
 /* Stagger v řadě. Prvky uvnitř [data-reveal-group] nastupují po sobě.
@@ -49,5 +58,6 @@
     transform: none;
     transition: none;
     transition-delay: 0ms;
+    will-change: auto;
   }
 }

@@ -47,17 +47,23 @@ const classes = [
   `section--space-${space}`,
   decorTop && 'section--decor-top',
   decorBottom && 'section--decor-bottom',
-  /* Scroll reveal. Sekce, které jsou při načtení už ve viewportu (hero),
-     odkryje reveal.js bez animace, takže se nic nebliká. */
-  reveal && 'reveal',
   className,
 ]
   .filter(Boolean)
   .join(' ');
 ---
 
+{/* Scroll reveal jde na OBSAH, ne na sekci.
+    Kdyby byl na sekci, animovala by se i celá barevná plocha pásu: tmavý nebo
+    barevný blok by nabíhal z bílé, což se nečte jako „obsah přišel", ale jako
+    blafnutí. Navíc je to plocha přes celé okno, takže se každý frame přepočítá
+    obří vrstva a animace seká. Takhle pás zůstane plný a hýbe se jen obsah.
+    Sekce, které jsou při načtení už nad spouštěcí linkou (hero), odkryje
+    reveal.js bez animace. */}
 <Tag class={classes} id={id} {...rest}>
-  {container === false ? <slot /> : <Container size={container}><slot /></Container>}
+  {container === false
+    ? (reveal ? <div class="reveal"><slot /></div> : <slot />)
+    : <Container size={container} class={reveal ? 'reveal' : undefined}><slot /></Container>}
 </Tag>
 
 <style>

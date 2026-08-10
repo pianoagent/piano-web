@@ -77,11 +77,11 @@
   --card-pad:      32px;
 
   /* ---------- Scroll reveal ---------- */
-  --dur-reveal:    200ms;
-  --reveal-shift:  0px;    /* jen fade: posun rozbíjí kruhové masky */
-  --reveal-stagger:60ms;
+  --dur-reveal:    520ms;
+  --reveal-shift:  16px;    /* jen fade: posun rozbíjí kruhové masky */
+  --reveal-stagger:80ms;
   --reveal-threshold: 0.15;
-  --ease-reveal:   ease;
+  --ease-reveal:   cubic-bezier(0.22, 1, 0.36, 1);
 
   /* ---------- Motion ---------- */
   --ease:          cubic-bezier(0.4, 0, 0.2, 1);
