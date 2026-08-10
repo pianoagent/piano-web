@@ -6,52 +6,86 @@
    lehké zaoblení (žádný chamfer, žádné pilulky) napříč tlačítky, štítky,
    poli i kartami. Akcent „úspora" = svěží zelená.
    Base struktura (typo škála, spacing, geometrie) zůstává z @piano/ui.
-   Font: Poppins (geometrická bezserifka, ladí s logem).
+   Font: Cabin na nadpisy, Open Sans na text (dle BRAND.md).
 */
 @import "@piano/ui/styles/base.css";
 
 @import "./tokens.css";              /* tokeny ze styleguidu (nové názvy) */
 @import "@piano/ui/styles/bridge.css"; /* mapování na názvy v komponentách */
+
 /* =========================================================
-   FONT: Poppins (400 / 600 / 700), latin + latin-ext (CZ/SK diakritika)
+   FONT: Cabin na nadpisy + Open Sans na text (dle BRAND.md; styleguide chybne uvadi Lato)
+   Self-hosted woff2, latin + latin-ext (diakritika CZ/SK).
+   Zdroj rezu: brand/fonty/subbrandy/
    ========================================================= */
 @font-face {
-  font-family: "Poppins"; font-style: normal; font-weight: 400; font-display: swap;
-  src: url("/fonts/poppins-400.woff2") format("woff2");
+  font-family: "Cabin"; font-style: normal; font-weight: 400; font-display: swap;
+  src: url("/fonts/cabin-400.woff2") format("woff2");
   unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
 }
 @font-face {
-  font-family: "Poppins"; font-style: normal; font-weight: 400; font-display: swap;
-  src: url("/fonts/poppins-ext-400.woff2") format("woff2");
+  font-family: "Cabin"; font-style: normal; font-weight: 400; font-display: swap;
+  src: url("/fonts/cabin-ext-400.woff2") format("woff2");
   unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
 }
 @font-face {
-  font-family: "Poppins"; font-style: normal; font-weight: 600; font-display: swap;
-  src: url("/fonts/poppins-600.woff2") format("woff2");
+  font-family: "Cabin"; font-style: normal; font-weight: 600; font-display: swap;
+  src: url("/fonts/cabin-600.woff2") format("woff2");
   unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
 }
 @font-face {
-  font-family: "Poppins"; font-style: normal; font-weight: 600; font-display: swap;
-  src: url("/fonts/poppins-ext-600.woff2") format("woff2");
+  font-family: "Cabin"; font-style: normal; font-weight: 600; font-display: swap;
+  src: url("/fonts/cabin-ext-600.woff2") format("woff2");
   unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
 }
 @font-face {
-  font-family: "Poppins"; font-style: normal; font-weight: 700; font-display: swap;
-  src: url("/fonts/poppins-700.woff2") format("woff2");
+  font-family: "Cabin"; font-style: normal; font-weight: 700; font-display: swap;
+  src: url("/fonts/cabin-700.woff2") format("woff2");
   unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
 }
 @font-face {
-  font-family: "Poppins"; font-style: normal; font-weight: 700; font-display: swap;
-  src: url("/fonts/poppins-ext-700.woff2") format("woff2");
+  font-family: "Cabin"; font-style: normal; font-weight: 700; font-display: swap;
+  src: url("/fonts/cabin-ext-700.woff2") format("woff2");
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+@font-face {
+  font-family: "Open Sans"; font-style: normal; font-weight: 400; font-display: swap;
+  src: url("/fonts/opensans-400.woff2") format("woff2");
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: "Open Sans"; font-style: normal; font-weight: 400; font-display: swap;
+  src: url("/fonts/opensans-ext-400.woff2") format("woff2");
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+@font-face {
+  font-family: "Open Sans"; font-style: normal; font-weight: 600; font-display: swap;
+  src: url("/fonts/opensans-600.woff2") format("woff2");
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: "Open Sans"; font-style: normal; font-weight: 600; font-display: swap;
+  src: url("/fonts/opensans-ext-600.woff2") format("woff2");
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+@font-face {
+  font-family: "Open Sans"; font-style: normal; font-weight: 700; font-display: swap;
+  src: url("/fonts/opensans-700.woff2") format("woff2");
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: "Open Sans"; font-style: normal; font-weight: 700; font-display: swap;
+  src: url("/fonts/opensans-ext-700.woff2") format("woff2");
   unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
 }
 
 :root {
   /* ----- Písmo ----- */
-  --font-sans:  "Poppins", "Segoe UI", system-ui, -apple-system, sans-serif;
-  --font-serif: "Poppins", "Segoe UI", system-ui, sans-serif; /* akcent <em> ve stejné rodině */
+  --font-sans:  "Open Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-display: "Cabin", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-serif: "Cabin", "Segoe UI", system-ui, -apple-system, sans-serif; /* akcent <em> ve stejné rodině */
 
-  /* Nadpisy: Poppins 700; Medium cut nedodán → 600 */
+  /* Nadpisy: Cabin 700; medium cut se nepoužívá, semibold 600 */
   --font-weight-medium:   700;
   --font-weight-semibold: 600;
 
