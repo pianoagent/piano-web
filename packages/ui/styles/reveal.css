@@ -39,6 +39,36 @@
   will-change: auto;
 }
 
+/* ============================================================
+   SMĚR NÁJEZDU podle kompozice
+   Převzato z živého grason.cz (components/global/AppSection.vue):
+   text zarovnaný vlevo přijede zleva, centrovaný blok spadne shora.
+   Směr tedy kopíruje layout, místo aby všechno jednotně stoupalo zdola,
+   což je plošší.
+
+   Vodorovný posun jen od tabletu výš. Na úzké obrazovce nemá smysl a mohl
+   by tlačit obsah do strany, proto tam zůstává svislý (stejně to řeší
+   originál přes breakpoint lg).
+   ============================================================ */
+@media (min-width: 768px) {
+  .js .reveal--from-left  { transform: translate3d(calc(-1 * var(--reveal-shift)), 0, 0); }
+  .js .reveal--from-right { transform: translate3d(var(--reveal-shift), 0, 0); }
+}
+.js .reveal--from-top { transform: translate3d(0, calc(-1 * var(--reveal-shift)), 0); }
+
+.js .reveal--from-left.is-visible,
+.js .reveal--from-right.is-visible,
+.js .reveal--from-top.is-visible { transform: none; }
+
+/* ============================================================
+   REŽIE UVNITŘ SEKCE podle role prvku
+   Také z grason.cz: nadpis přijde první, perex po něm, CTA nakonec.
+   Není to vlna po mřížce, ale pořadí čtení. Prodlevy jsou tokeny,
+   aby si je produkt mohl zkrátit nebo vypnout.
+   ============================================================ */
+.js .reveal--d1 { transition-delay: var(--reveal-delay-1, 120ms); }
+.js .reveal--d2 { transition-delay: var(--reveal-delay-2, 240ms); }
+
 /* Stagger v řadě. Prvky uvnitř [data-reveal-group] nastupují po sobě.
    Krok je --reveal-stagger; produkty bez staggeru ho mají 0ms a nic se neděje. */
 [data-reveal-group] > .reveal:nth-child(1) { transition-delay: calc(var(--reveal-stagger) * 0); }

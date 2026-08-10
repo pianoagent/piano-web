@@ -20,6 +20,7 @@ interface Props {
   container?: 'default' | 'narrow' | 'wide' | 'full' | false;
   decor?: boolean | 'top' | 'bottom' | 'both';   // dekorativní kruh na hranici sekce (brandový styl)
   reveal?: boolean;   // scroll reveal při nájezdu do viewportu (default true)
+  revealFrom?: 'bottom' | 'left' | 'right' | 'top';  // směr nájezdu (default "bottom")
   as?: string;
   id?: string;
   class?: string;
@@ -32,6 +33,7 @@ const {
   container = 'default',
   decor = false,
   reveal = true,
+  revealFrom = 'bottom',
   as = 'section',
   id,
   class: className,
@@ -51,6 +53,11 @@ const classes = [
 ]
   .filter(Boolean)
   .join(' ');
+
+/* Směr nájezdu podle kompozice: zdola je výchozí, ostatní přidají variantu. */
+const revealClass = ['reveal', revealFrom !== 'bottom' && `reveal--from-${revealFrom}`]
+  .filter(Boolean)
+  .join(' ');
 ---
 
 {/* Scroll reveal jde na OBSAH, ne na sekci.
@@ -62,8 +69,8 @@ const classes = [
     reveal.js bez animace. */}
 <Tag class={classes} id={id} {...rest}>
   {container === false
-    ? (reveal ? <div class="reveal"><slot /></div> : <slot />)
-    : <Container size={container} class={reveal ? 'reveal' : undefined}><slot /></Container>}
+    ? (reveal ? <div class={revealClass}><slot /></div> : <slot />)
+    : <Container size={container} class={reveal ? revealClass : undefined}><slot /></Container>}
 </Tag>
 
 <style>

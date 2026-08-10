@@ -78,8 +78,10 @@
 
   /* ---------- Scroll reveal ---------- */
   --dur-reveal:    520ms;
-  --reveal-shift:  18px;
+  --reveal-shift:  30px;
   --reveal-stagger:80ms;
+  --reveal-delay-1: 290ms;   /* perex za nadpisem */
+  --reveal-delay-2: 570ms;   /* CTA za perexem */
   --reveal-threshold: 0.15;
   --ease-reveal:   cubic-bezier(0.22, 1, 0.36, 1);
 

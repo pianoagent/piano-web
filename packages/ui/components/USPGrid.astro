@@ -54,20 +54,29 @@ const hasHeader = eyebrow || title || lead || hasTitle;
 // styl by media query přebít nešel → způsoboval vodorovné přetečení na mobilu).
 const gridVar = columns ? `--usp-cols: ${columns};` : `--usp-min: ${minItemWidth};`;
 const gridMode = columns ? 'usp__grid--fixed' : 'usp__grid--auto';
+
+/* Centrovaná hlavička spadne shora, levá přijede zleva. Karty v mřížce
+   nastupují vždy zdola, tam vlna zdola čte lépe než vodorovný posun. */
+const headFrom = align === 'center' ? 'reveal--from-top' : 'reveal--from-left';
 ---
 
 {/* reveal={false}: obsah si animuje USPGrid sám, hlavičku a karty zvlášť.
     Kdyby animoval i kontejner sekce, karty by se hýbaly dvakrát (posun
     kontejneru plus vlastní posun) a nájezd by byl přehnaný. */}
 <Section background={background} space={space} reveal={false}>
+  {/* Režie podle role, ne podle pozice: nadpis přijde první, perex po něm.
+      Směr kopíruje zarovnání, centrovaná hlavička spadne shora, levá přijede
+      zleva. Obojí převzato z živého grason.cz. */}
   {hasHeader && (
-    <div class:list={['usp__header', 'reveal', `usp__header--${align}`]}>
-      {eyebrow && <p class="usp__eyebrow">{eyebrow}</p>}
+    <div class:list={['usp__header', `usp__header--${align}`]}>
+      {eyebrow && <p class:list={['usp__eyebrow', 'reveal', headFrom]}>{eyebrow}</p>}
       {hasTitle ? <slot name="title" /> : title && (
-        <Heading as="h2" size="h2" align={align} color={onDark ? 'on-dark' : 'default'}>{title}</Heading>
+        <Heading as="h2" size="h2" align={align} color={onDark ? 'on-dark' : 'default'}
+                 class={`reveal ${headFrom}`}>{title}</Heading>
       )}
       {lead && (
-        <Text size="lead" align={align} color={onDark ? 'on-dark-muted' : 'muted'} class="usp__lead">{lead}</Text>
+        <Text size="lead" align={align} color={onDark ? 'on-dark-muted' : 'muted'}
+              class:list={['usp__lead', 'reveal', 'reveal--d1', headFrom]}>{lead}</Text>
       )}
     </div>
   )}

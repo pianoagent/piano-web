@@ -60,9 +60,12 @@ const innerClasses = [
   .join(' ');
 ---
 
-<Section background={background} space={space}>
+{/* Hero je nad ohybem, reveal.js ho odkryje bez animace. Reveal na sekci
+    proto vypinam a smer resim na sloupcich: pri split layoutu text zleva,
+    medium zprava, stejne jako sekce left a right na zivem grason.cz. */}
+<Section background={background} space={space} reveal={false}>
   <div class={innerClasses} data-hero-carousel={isCarousel ? '' : undefined}>
-    <div class="hero__text">
+    <div class:list={['hero__text', hasMedia && 'reveal', hasMedia && 'reveal--from-left']}>
       {useSlides ? (
         <div class="hero__rot">
           {slides.map((s, i) => (
@@ -114,7 +117,7 @@ const innerClasses = [
     </div>
 
     {hasMedia && (
-      <div class="hero__media">
+      <div class:list={['hero__media', 'reveal', 'reveal--from-right', 'reveal--d1']}>
         {useSlides ? (
           <div class="hero__rot hero__media-rot">
             {slides.map((s, i) => s.image && (
