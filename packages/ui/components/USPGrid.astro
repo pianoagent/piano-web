@@ -69,11 +69,14 @@ const gridMode = columns ? 'usp__grid--fixed' : 'usp__grid--auto';
     </div>
   )}
 
-  <div class:list={['usp__grid', gridMode, onDark && 'usp__grid--on-dark']} style={gridVar}>
+  {/* data-reveal-group + .reveal na kartách zapne stagger ze styleguidu:
+      karty nastupují po sobě s krokem --reveal-stagger. Bez toho jde celá
+      mřížka najednou a pohyb se v ní ztratí. */}
+  <div class:list={['usp__grid', gridMode, onDark && 'usp__grid--on-dark']} style={gridVar} data-reveal-group>
     {items.map((item) => {
       const Tag = item.href ? 'a' : 'article';
       return (
-        <Tag class:list={['usp__card', item.href && 'usp__card--link']} href={item.href}>
+        <Tag class:list={['usp__card', 'reveal', item.href && 'usp__card--link']} href={item.href}>
           {item.image ? (
             <span class="usp__icon usp__icon--img"><img src={item.image} alt={item.imageAlt ?? ''} loading="lazy" width="72" height="72" /></span>
           ) : item.icon && (

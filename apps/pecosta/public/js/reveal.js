@@ -23,10 +23,21 @@
 
   root.classList.add('js');
 
-  /* Spousteci linka: prvek se odkryje, jakmile jeho horni hrana vystoupa
-     nad 95 % vysky viewportu, tedy hned jak se zacne objevovat zdola. */
+  /* Spousteci linka. Bere se z tokenu --reveal-threshold (default 0,15):
+     prvek se odkryje, az jeho horni hrana vystoupa nad (1 - threshold)
+     vysky viewportu, tedy az je znatelne v pohledu.
+
+     POZOR na hodnotu blizko 1: pri 0,95 vysky okna se prvek odkryva ve
+     spodnich 5 % obrazovky, animace probehne mimo misto, kam se uzivatel
+     kouka, a je fakticky neviditelna. */
+  var threshold = parseFloat(
+    getComputedStyle(root).getPropertyValue('--reveal-threshold')
+  );
+  if (!(threshold > 0 && threshold < 1)) threshold = 0.15;
+  var linePct = 1 - threshold;
+
   function crossed(el) {
-    return el.getBoundingClientRect().top < window.innerHeight * 0.95;
+    return el.getBoundingClientRect().top < window.innerHeight * linePct;
   }
 
   function arm() {
@@ -54,7 +65,7 @@
           entries[k].target.classList.add('is-visible');
           io.unobserve(entries[k].target);
         }
-      }, { threshold: 0, rootMargin: '0px 0px -5% 0px' });
+      }, { threshold: 0, rootMargin: '0px 0px -' + Math.round(threshold * 100) + '% 0px' });
       for (var j = 0; j < pending.length; j++) io.observe(pending[j]);
     }
 
