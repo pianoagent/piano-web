@@ -95,13 +95,26 @@ const kroky = [
   { icon: 'lucide:graduation-cap', title: 'Zaškolte obsluhu', text: 'Projděte si nové rozhraní a postupy, ať jste 1. ledna 2027 v klidu.' },
 ];
 
+// FAQ dle analyzy klicovych slov (data/2026-06-24-aks-skupina-sluzeb-piano.xlsx, list "eet").
+// Poradi = velikost klastru hledanosti: termin (2060) > pokladna (1020) > definice (1040)
+// > zruseni a EET OFF (490) > koho se tyka (210). Otazky drzi formulace, ktere lide hledaji.
 const faqs = [
-  { q: 'Kdy začne EET 2.0 platit a musím to řešit už teď?', a: 'Od 1. ledna 2027. Do té doby je potřeba mít funkční pokladní systém připravený na nová pravidla, včetně instalace, nastavení a zaškolení obsluhy. Příprava se vyplatí s předstihem, protože ke konci roku 2026 bývají kapacity dodavatelů plné.' },
-  { q: 'Koho se EET 2.0 týká?', a: 'Prakticky každé restaurace, kavárny, baru nebo hotelu. Evidovat se budou všechny platby přijaté při osobním kontaktu se zákazníkem: hotovost, karta, QR kód i stravenky. Výjimku mají pouze OSVČ v prvním pásmu paušálního režimu s příjmy do 1 milionu Kč ročně.' },
-  { q: 'Musím si pořizovat nový pokladní systém?', a: 'Záleží na tom, co dnes používáte. Moderní systémy zvládnou EET 2.0 softwarovým updatem. Zastaralý nebo nevhodný systém ale může přechod prodražit a času na výměnu ubývá.' },
-  { q: 'Co mi hrozí, když nebudu evidovat?', a: 'Pokuta až 500 000 Kč. Finanční správa navíc bude porovnávat tržby podnikatelů ve stejném oboru a regionu, takže odchylky automaticky přitáhnou pozornost kontrolorů.' },
-  { q: 'Je EET 2.0 složitější než to první?', a: 'Ne, naopak. Funguje pouze v online režimu bez výjimek a variant, účtenku vydáváte jen na vyžádání i digitálně a stát po vás chce méně dat než dřív. S vhodným systémem většinu změn nepoznáte.' },
-  { q: 'Co se změní u spropitného?', a: 'Dobrovolné spropitné bude osvobozeno od daně i odvodů až do výše 7 % měsíčních tržeb. Detailní pravidla pro evidenci se zatím upřesňují.' },
+  { q: 'Co je EET 2.0 a jak funguje?',
+    a: 'EET 2.0 je nová podoba elektronické evidence tržeb, která v Česku začíná platit od 1. ledna 2027. Pokladní systém odešle údaje o platbě online Finanční správě a ta obratem vrátí potvrzení. Funguje pouze v online režimu, bez dřívějších výjimek a variant, a stát po vás chce méně údajů než u prvního EET.' },
+  { q: 'Odkdy EET 2.0 platí a co je potřeba stihnout v roce 2026?',
+    a: 'Běžný provoz EET 2.0 startuje 1. ledna 2027. Do konce roku 2026 musíte mít pokladní systém připravený na nová pravidla, nainstalovaný, nastavený a obsluhu zaškolenou. Na podzim 2026 bývají kapacity dodavatelů plné, takže se vyplatí přípravu neodkládat.' },
+  { q: 'Potřebuji na EET novou pokladnu? Kolik stojí a existuje EET pokladna zdarma?',
+    a: 'Záleží na tom, co dnes používáte. Moderní pokladní systémy zvládnou EET 2.0 běžnou aktualizací a nové vybavení kupovat nemusíte. Starší nebo nevhodný systém může znamenat upgrade za příplatek, nebo výměnu. Levné pokladny i aplikace zdarma existují, vždy si ale ověřte, že skutečně umí online evidenci a elektronickou účtenku.' },
+  { q: 'Koho se EET 2.0 týká? Platí i pro OSVČ, živnostníky a e-shopy?',
+    a: 'Týká se prakticky každého, kdo přijímá platby při osobním kontaktu se zákazníkem, tedy hotovost, kartu, QR kód i stravenky. Platí pro firmy, OSVČ, živnostníky i řemeslníky bez ohledu na obor. Platby na dálku, například v e-shopu, se neevidují. Výjimku mají také OSVČ v prvním pásmu paušálního režimu s příjmy do 1 milionu Kč ročně.' },
+  { q: 'EET bylo zrušené. Proč se vrací a dá se evidenci vyhnout?',
+    a: 'První EET stát zrušil na konci roku 2022 kvůli administrativní zátěži. Vrací se od roku 2027 v jednodušší podobě: jen online, s menším rozsahem údajů a účtenkou na vyžádání. Vyhnout se dá jen výjimkami, například režimem EET OFF pro OSVČ v prvním pásmu paušální daně, kde místo evidence platíte vyšší paušál.' },
+  { q: 'Musím tisknout účtenky a vyvěsit informační ceduli?',
+    a: 'Povinný tisk účtenek končí. Účtenku vydáte jen tehdy, když si ji zákazník vyžádá, a klidně digitálně, takže pokladnu bez tiskárny lze používat. Rozsah dalších povinností, včetně informačního oznámení v provozovně, se dolaďuje v prováděcích pravidlech.' },
+  { q: 'Co mi hrozí, když nebudu tržby evidovat?',
+    a: 'Pokuta až 500 000 Kč. Finanční správa navíc bude porovnávat tržby podnikatelů ve stejném oboru a regionu, takže výrazné odchylky samy přitáhnou pozornost kontrolorů.' },
+  { q: 'Co se u EET 2.0 mění u spropitného a DPH na nealko?',
+    a: 'Dobrovolné spropitné bude osvobozeno od daně i odvodů až do výše 7 % měsíčních tržeb. Zároveň klesá DPH u nealkoholických nápojů z 21 % na 12 %. Detailní pravidla pro evidenci spropitného v pokladně se zatím upřesňují.' },
 ];
 
 
