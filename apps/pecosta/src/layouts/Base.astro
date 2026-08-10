@@ -3,6 +3,9 @@
  * Base: layout webu Pecosta.
  * Načte téma Pecosta + sdílenou SEO hlavičku. Definuje Organization schema.
  */
+/* reveal.css MUSI byt pred tematem: ma v :root fallback hodnoty
+   (--reveal-shift a spol.), ktere by jinak prebily tokeny produktu. */
+import '../styles/reveal.css';
 import '../styles/theme.css';
 import BaseHead from '@piano/ui/layouts/BaseHead.astro';
 
@@ -52,6 +55,8 @@ const schemas = [organizationSchema, ...(schema ? [schema] : [])];
 <!doctype html>
 <html lang="cs">
   <head>
+    <!-- Scroll reveal: bez defer, trida .js musi byt na <html> driv nez obsah -->
+    <script is:inline src="/js/reveal.js"></script>
     <BaseHead
       title={title}
       description={description}

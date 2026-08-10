@@ -19,6 +19,7 @@ interface Props {
   space?: 'sm' | 'md' | 'lg';
   container?: 'default' | 'narrow' | 'wide' | 'full' | false;
   decor?: boolean | 'top' | 'bottom' | 'both';   // dekorativní kruh na hranici sekce (brandový styl)
+  reveal?: boolean;   // scroll reveal při nájezdu do viewportu (default true)
   as?: string;
   id?: string;
   class?: string;
@@ -30,6 +31,7 @@ const {
   space = 'md',
   container = 'default',
   decor = false,
+  reveal = true,
   as = 'section',
   id,
   class: className,
@@ -45,6 +47,9 @@ const classes = [
   `section--space-${space}`,
   decorTop && 'section--decor-top',
   decorBottom && 'section--decor-bottom',
+  /* Scroll reveal. Sekce, které jsou při načtení už ve viewportu (hero),
+     odkryje reveal.js bez animace, takže se nic nebliká. */
+  reveal && 'reveal',
   className,
 ]
   .filter(Boolean)

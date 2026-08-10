@@ -1,0 +1,53 @@
+/* ============================================================
+   Scroll reveal: sdílená implementace pro celý ekosystém Piano
+   Hodnoty se berou z theme tokenů (<produkt>-web-tokens.css):
+     --dur-reveal · --reveal-shift · --reveal-stagger · --ease-reveal
+   Tenhle soubor je pro všech deset webů stejný. Nekopírujte hodnoty sem.
+   ============================================================ */
+
+/* Fallback, kdyby se načetl dřív než theme tokeny */
+:root {
+  --dur-reveal:     220ms;
+  --reveal-shift:   12px;
+  --reveal-stagger: 60ms;
+  --ease-reveal:    cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* DŮLEŽITÉ: skrývá se JEN když běží JS.
+   Třídu .js přidává reveal.js do <html> hned na začátku.
+   Bez JS zůstane obsah viditelný: pro čtenáře i pro vyhledávače. */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(var(--reveal-shift));
+  will-change: opacity, transform;
+  transition:
+    opacity   var(--dur-reveal) var(--ease-reveal),
+    transform var(--dur-reveal) var(--ease-reveal);
+}
+
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Stagger v řadě. Prvky uvnitř [data-reveal-group] nastupují po sobě.
+   Krok je --reveal-stagger; produkty bez staggeru ho mají 0ms a nic se neděje. */
+[data-reveal-group] > .reveal:nth-child(1) { transition-delay: calc(var(--reveal-stagger) * 0); }
+[data-reveal-group] > .reveal:nth-child(2) { transition-delay: calc(var(--reveal-stagger) * 1); }
+[data-reveal-group] > .reveal:nth-child(3) { transition-delay: calc(var(--reveal-stagger) * 2); }
+[data-reveal-group] > .reveal:nth-child(4) { transition-delay: calc(var(--reveal-stagger) * 3); }
+[data-reveal-group] > .reveal:nth-child(5) { transition-delay: calc(var(--reveal-stagger) * 4); }
+[data-reveal-group] > .reveal:nth-child(6) { transition-delay: calc(var(--reveal-stagger) * 5); }
+/* Sedmý a další prvek už prodlevu nedostává, čekání by bylo delší než pozornost. */
+[data-reveal-group] > .reveal:nth-child(n+7) { transition-delay: calc(var(--reveal-stagger) * 6); }
+
+/* Povinné. Vypíná posun i stagger, obsah se zobrazí okamžitě. */
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal,
+  .js .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    transition-delay: 0ms;
+  }
+}
