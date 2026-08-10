@@ -26,15 +26,14 @@ const odberBody = [
   { icon: 'lucide:mail-x', text: 'Žádný spam, odhlásíte se jedním kliknutím' },
 ];
 
-// Typy podniku pro prihlaseni k odberu (kvalifikace kontaktu)
+// Typ provozu pro kvalifikaci kontaktu. Vychazi ze ZAVAZNE segmentace skupiny
+// (contexty/znalostni-baze.md, cast 15 -> segmenty sales playbooku A az E).
+// Vybrane 4 nejrelevantnejsi pro EET kampan; hodnota nese pismeno segmentu pro CRM.
 const podniky = [
-  'Restaurace',
-  'Kavárna nebo bistro',
-  'Bar nebo vinárna',
-  'Hotel nebo penzion',
-  'Jídelna nebo kantýna',
-  'Stánek nebo food truck',
-  'Něco jiného',
+  { value: 'B: Tradiční restaurace, puby, pivnice', label: 'Restaurace, hospoda nebo pivnice' },
+  { value: 'A: Kavárny, bistra, bary', label: 'Kavárna, bistro nebo bar' },
+  { value: 'C: Hotely a resorty', label: 'Hotel, penzion nebo resort' },
+  { value: 'D: Fastfoody, foodcourty, řetězce', label: 'Stánek, fastfood nebo řetězec' },
 ];
 
 // Blue ocean: hospoda dnes vs hospoda pripravena na budoucnost (obecne benefity, neutralni)
@@ -158,6 +157,16 @@ const faqSchema = {
         </div>
 
         <Field label="Váš e-mail" name="email" type="email" placeholder="info@podnik.cz" autocomplete="email" required />
+
+        <div class="sub__field">
+          <label class="sub__label" for="typ-provozu-hero">Co provozujete</label>
+          <div class="sub__control">
+            <select id="typ-provozu-hero" class="sub__select" name="typ_podniku">
+              <option value="">Vyberte typ provozu</option>
+              {podniky.map((t) => <option value={t.value}>{t.label}</option>)}
+            </select>
+          </div>
+        </div>
 
         <label class="sub__check">
           <input type="checkbox" name="consent" required />
@@ -322,11 +331,11 @@ const faqSchema = {
         <Field label="Váš e-mail" name="email" type="email" placeholder="info@podnik.cz" autocomplete="email" required />
 
         <div class="sub__field">
-          <label class="sub__label" for="typ-podniku">Typ podniku</label>
+          <label class="sub__label" for="typ-podniku">Co provozujete</label>
           <div class="sub__control">
             <select id="typ-podniku" class="sub__select" name="typ_podniku">
-              <option value="">Vyberte, co provozujete</option>
-              {podniky.map((t) => <option value={t}>{t}</option>)}
+              <option value="">Vyberte typ provozu</option>
+              {podniky.map((t) => <option value={t.value}>{t.label}</option>)}
             </select>
           </div>
         </div>
