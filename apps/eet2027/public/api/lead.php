@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /**
- * POST /api/lead.php — příjem přihlášení k odběru na eet2027.cz.
+ * POST /api/lead.php: příjem přihlášení k odběru na eet2027.cz.
  *
  * Kontakt se zapisuje VÝHRADNĚ do Ecomailu (seznam Piano B2B) se štítkem "eet2027.cz".
  * Žádný e-mail se neposílá: odběratel newsletteru není poptávka a nemá padat do Odoo.
@@ -53,7 +53,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
 
 $value = static fn (string $key): string => trim((string) ($_POST[$key] ?? ''));
 
-// Honeypot — boti vyplní skryté pole "website" → tváříme se úspěšně, nic neposíláme
+// Honeypot: boti vyplní skryté pole "website" → tváříme se úspěšně, nic neposíláme
 if ($value('website') !== '') {
     json(['ok' => true]);
 }
