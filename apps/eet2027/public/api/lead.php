@@ -35,7 +35,7 @@ function json(array $body, int $status = 200): never
  */
 if (($_SERVER['REQUEST_METHOD'] ?? '') === 'GET' && isset($_GET['diag'])) {
     $key = ecomail_api_key();
-    json([
+    $out = [
         'ok' => true,
         'klic_na_serveru' => $key !== '',
         'delka_klice' => strlen($key),
@@ -44,7 +44,27 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') === 'GET' && isset($_GET['diag'])) {
         'allow_url_fopen' => (bool) ini_get('allow_url_fopen'),
         'php' => PHP_VERSION,
         'list_id' => ECOMAIL_LIST_ID,
-    ]);
+    ];
+
+    // Živý test zápisu: ?diag=1&test=email@domena.cz
+    $testEmail = (string) ($_GET['test'] ?? '');
+    if ($key !== '' && filter_var($testEmail, FILTER_VALIDATE_EMAIL)) {
+        $testLead = [
+            'variant' => 'diag',
+            'email' => $testEmail,
+            'name' => '',
+            'phone' => '',
+            'company' => '',
+            'typ_podniku' => '',
+            'chci_vic_z_pos' => '',
+            'page' => '',
+        ];
+        $testDetail = null;
+        $out['test_status'] = ecomail_subscribe($testLead, $key, $testDetail);
+        $out['test_odpoved'] = (string) $testDetail;
+    }
+
+    json($out);
 }
 
 if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
