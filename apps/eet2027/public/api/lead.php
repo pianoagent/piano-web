@@ -28,6 +28,25 @@ function json(array $body, int $status = 200): never
     exit;
 }
 
+/**
+ * Diagnostika: GET /api/lead.php?diag=1
+ * Neprozrazuje klíč, jen říká, jestli je na serveru k dispozici a co PHP umí.
+ * Slouží k dohledání příčiny, když zápis do Ecomailu neprojde.
+ */
+if (($_SERVER['REQUEST_METHOD'] ?? '') === 'GET' && isset($_GET['diag'])) {
+    $key = ecomail_api_key();
+    json([
+        'ok' => true,
+        'klic_na_serveru' => $key !== '',
+        'delka_klice' => strlen($key),
+        'config_soubor' => is_file(__DIR__ . '/ecomail-config.php'),
+        'curl' => function_exists('curl_init'),
+        'allow_url_fopen' => (bool) ini_get('allow_url_fopen'),
+        'php' => PHP_VERSION,
+        'list_id' => ECOMAIL_LIST_ID,
+    ]);
+}
+
 if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
     json(['ok' => false, 'error' => 'method_not_allowed'], 405);
 }
@@ -76,11 +95,11 @@ function ecomail_api_key(): string
 }
 
 /**
- * Zapíše kontakt do Ecomailu. Vrací true při úspěchu.
+ * Zapíše kontakt do Ecomailu. Vrací HTTP status odpovědi (0 = spojení selhalo).
  * update_existing = stávajícímu kontaktu jen přidá štítek, nevytvoří duplicitu.
  * resubscribe = false, odhlášené nepřihlašujeme zpět.
  */
-function ecomail_subscribe(array $lead, string $apiKey): bool
+function ecomail_subscribe(array $lead, string $apiKey, ?string &$detail = null): int
 {
     $tags = [ECOMAIL_TAG];
     if ($lead['typ_podniku'] !== '') {
@@ -119,11 +138,12 @@ function ecomail_subscribe(array $lead, string $apiKey): bool
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_TIMEOUT => 10,
         ]);
-        curl_exec($ch);
+        $body = curl_exec($ch);
         $status = (int) curl_getinfo($ch, CURLINFO_RESPONSE_CODE);
+        $detail = $status === 0 ? ('curl: ' . curl_error($ch)) : substr((string) $body, 0, 300);
         curl_close($ch);
 
-        return $status >= 200 && $status < 300;
+        return $status;
     }
 
     // Fallback bez cURL
@@ -135,18 +155,17 @@ function ecomail_subscribe(array $lead, string $apiKey): bool
         'ignore_errors' => true,
     ]]);
     $response = @file_get_contents($url, false, $context);
+    $detail = $response === false ? 'file_get_contents selhalo' : substr((string) $response, 0, 300);
     if ($response === false) {
-        return false;
+        return 0;
     }
     foreach ($http_response_header ?? [] as $header) {
         if (preg_match('~^HTTP/\S+\s+(\d{3})~', $header, $m)) {
-            $code = (int) $m[1];
-
-            return $code >= 200 && $code < 300;
+            return (int) $m[1];
         }
     }
 
-    return false;
+    return 0;
 }
 
 $apiKey = ecomail_api_key();
@@ -156,9 +175,12 @@ if ($apiKey === '') {
     json(['ok' => false, 'error' => 'ecomail_unavailable'], 503);
 }
 
-if (!ecomail_subscribe($lead, $apiKey)) {
-    error_log('eet2027: zápis do Ecomailu selhal pro ' . $lead['email']);
-    json(['ok' => false, 'error' => 'ecomail_failed'], 502);
+$detail = null;
+$status = ecomail_subscribe($lead, $apiKey, $detail);
+
+if ($status < 200 || $status >= 300) {
+    error_log(sprintf('eet2027: Ecomail odmítl %s, status %d, odpověď: %s', $lead['email'], $status, (string) $detail));
+    json(['ok' => false, 'error' => 'ecomail_failed', 'status' => $status, 'detail' => (string) $detail], 502);
 }
 
 json(['ok' => true]);
