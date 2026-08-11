@@ -34,6 +34,17 @@ jobs:
       - name: Build eet2027.cz
         run: npm run build:eet2027
 
+      - name: Vygenerovat Ecomail config (API klíč ze secrets)
+        env:
+          ECOMAIL_API_KEY: ${{ secrets.ECOMAIL_API_KEY }}
+        run: |
+          if [ -z "$ECOMAIL_API_KEY" ]; then
+            echo "::warning::ECOMAIL_API_KEY není nastavený, formulář spadne na záložní e-mail."
+            exit 0
+          fi
+          mkdir -p apps/eet2027/dist/api
+          printf '<?php\nconst ECOMAIL_API_KEY = %s;\n' "'$ECOMAIL_API_KEY'" > apps/eet2027/dist/api/ecomail-config.php
+
       - name: Deploy to FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
