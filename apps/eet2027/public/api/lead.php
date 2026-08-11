@@ -5,23 +5,20 @@ declare(strict_types=1);
 /**
  * POST /api/lead.php — příjem přihlášení k odběru na eet2027.cz.
  *
- * Primárně zapisuje kontakt do Ecomailu (seznam Piano B2B) se štítkem "eet2027.cz".
- * E-mail slouží jen jako záloha: odešle se, když zápis do Ecomailu selže,
- * aby se žádný kontakt neztratil.
+ * Kontakt se zapisuje VÝHRADNĚ do Ecomailu (seznam Piano B2B) se štítkem "eet2027.cz".
+ * Žádný e-mail se neposílá: odběratel newsletteru není poptávka a nemá padat do Odoo.
+ * Zájem o víc funkcí z pokladny nese štítek "eet2027: chce od POS víc", takže si ho
+ * obchod umí v Ecomailu vysegmentovat sám.
+ *
+ * Když zápis selže, vrátíme chybu a formulář nabídne opakování. Nic se nezahazuje mlčky,
+ * důvod selhání jde do error logu hostingu.
  *
  * API klíč se NEDÁVÁ do gitu. Bere se z prostředí (ECOMAIL_API_KEY), nebo ze
  * souboru ecomail-config.php, který vygeneruje deploy workflow z GitHub secrets.
- *
- * Doručitelnost záložního mailu: SPF eet2027.cz je "v=spf1 a mx include:_spf.webglobe.cz -all",
- * takže odeslání z tohoto hostingu pod envelope senderem web@eet2027.cz projde.
  */
 
 const ECOMAIL_LIST_ID = 8;          // Piano B2B
 const ECOMAIL_TAG = 'eet2027.cz';   // štítek pro kontakty z tohoto webu
-
-const LEAD_TO = 'poptavky@piano.cz';
-const LEAD_FROM = 'web@eet2027.cz';
-const LEAD_FROM_NAME = 'EET 2027 web';
 
 function json(array $body, int $status = 200): never
 {
@@ -42,7 +39,7 @@ if ($value('website') !== '') {
     json(['ok' => true]);
 }
 
-// URL stránky bez CR/LF (ochrana proti injection do těla mailu)
+// URL stránky bez CR/LF (ochrana proti injection)
 $page = str_replace(["\r", "\n"], '', $value('page'));
 
 $lead = [
@@ -152,44 +149,16 @@ function ecomail_subscribe(array $lead, string $apiKey): bool
     return false;
 }
 
-/** Záložní notifikace e-mailem, když zápis do Ecomailu selže. */
-function notify_by_mail(array $lead): bool
-{
-    $lines = array_filter([
-        sprintf('Přihlášení k odběru z webu eet2027.cz (formulář: %s)', $lead['variant']),
-        'POZOR: zápis do Ecomailu se nepovedl, kontakt doplňte ručně.',
-        '',
-        sprintf('Email: %s', $lead['email']),
-        $lead['name'] !== '' ? sprintf('Jméno: %s', $lead['name']) : null,
-        $lead['phone'] !== '' ? sprintf('Telefon: %s', $lead['phone']) : null,
-        $lead['company'] !== '' ? sprintf('Název podniku: %s', $lead['company']) : null,
-        $lead['typ_podniku'] !== '' ? sprintf('Typ provozu: %s', $lead['typ_podniku']) : null,
-        $lead['chci_vic_z_pos'] !== '' ? 'Zájem: chtěl by od pokladního systému víc' : null,
-        $lead['page'] !== '' ? sprintf('URL: %s', $lead['page']) : null,
-    ], static fn ($line): bool => $line !== null);
-
-    $subject = 'Odběr EET 2027: ruční doplnění do Ecomailu';
-    $headers = [
-        sprintf('From: %s <%s>', LEAD_FROM_NAME, LEAD_FROM),
-        'Content-Type: text/plain; charset=UTF-8',
-        'Reply-To: ' . $lead['email'],
-    ];
-
-    return mail(
-        LEAD_TO,
-        sprintf('=?UTF-8?B?%s?=', base64_encode($subject)),
-        implode("\r\n", $lines),
-        implode("\r\n", $headers),
-        '-f' . LEAD_FROM
-    );
-}
-
 $apiKey = ecomail_api_key();
-$subscribed = $apiKey !== '' && ecomail_subscribe($lead, $apiKey);
 
-if (!$subscribed) {
-    notify_by_mail($lead);
+if ($apiKey === '') {
+    error_log('eet2027: chybí ECOMAIL_API_KEY, kontakt nebyl zapsán: ' . $lead['email']);
+    json(['ok' => false, 'error' => 'ecomail_unavailable'], 503);
 }
 
-// Uživateli hlásíme úspěch v obou případech, kontakt máme zachycený.
+if (!ecomail_subscribe($lead, $apiKey)) {
+    error_log('eet2027: zápis do Ecomailu selhal pro ' . $lead['email']);
+    json(['ok' => false, 'error' => 'ecomail_failed'], 502);
+}
+
 json(['ok' => true]);
