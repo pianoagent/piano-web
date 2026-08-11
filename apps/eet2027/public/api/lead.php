@@ -121,12 +121,15 @@ function ecomail_api_key(): string
  */
 function ecomail_subscribe(array $lead, string $apiKey, ?string &$detail = null): int
 {
+    // Ecomail u štítků nebere čárky (dělí si podle nich seznam), tak je odstraníme.
+    $tag = static fn (string $t): string => trim(str_replace([',', ';'], ' ', mb_substr($t, 0, 60)));
+
     $tags = [ECOMAIL_TAG];
     if ($lead['typ_podniku'] !== '') {
-        $tags[] = $lead['typ_podniku'];
+        $tags[] = $tag('eet2027 segment ' . $lead['typ_podniku']);
     }
     if ($lead['chci_vic_z_pos'] !== '') {
-        $tags[] = 'eet2027: chce od POS víc';
+        $tags[] = 'eet2027 chce od POS vic';
     }
 
     $subscriber = ['email' => $lead['email'], 'tags' => $tags];

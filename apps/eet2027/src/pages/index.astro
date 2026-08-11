@@ -29,11 +29,13 @@ const odberBody = [
 // Typ provozu pro kvalifikaci kontaktu. Vychazi ze ZAVAZNE segmentace skupiny
 // (contexty/znalostni-baze.md, cast 15 -> segmenty sales playbooku A az E).
 // Vybrane 4 nejrelevantnejsi pro EET kampan; hodnota nese pismeno segmentu pro CRM.
+// Hodnota jde do Ecomailu jako štítek, proto bez čárek (ty Ecomail u štítků nebere).
+// Písmeno = segment sales playbooku, ať to obchod pozná na první pohled.
 const podniky = [
-  { value: 'B: Tradiční restaurace, puby, pivnice', label: 'Restaurace, hospoda nebo pivnice' },
-  { value: 'A: Kavárny, bistra, bary', label: 'Kavárna, bistro nebo bar' },
-  { value: 'C: Hotely a resorty', label: 'Hotel, penzion nebo resort' },
-  { value: 'D: Fastfoody, foodcourty, řetězce', label: 'Stánek, fastfood nebo řetězec' },
+  { value: 'B restaurace-hospoda', label: 'Restaurace, hospoda nebo pivnice' },
+  { value: 'A kavarna-bistro-bar', label: 'Kavárna, bistro nebo bar' },
+  { value: 'C hotel-penzion', label: 'Hotel, penzion nebo resort' },
+  { value: 'D stanek-fastfood-retezec', label: 'Stánek, fastfood nebo řetězec' },
 ];
 
 // Blue ocean: hospoda dnes vs hospoda pripravena na budoucnost (obecne benefity, neutralni)
@@ -167,6 +169,12 @@ const faqSchema = {
             </select>
           </div>
         </div>
+
+        <label class="sub__check">
+          <input type="checkbox" name="chci_vic_z_pos" value="ano" />
+          <span class="sub__box" aria-hidden="true"></span>
+          <span class="sub__check-text">Chtěl bych od svého pokladního systému víc. Ozvěte se mi.</span>
+        </label>
 
         <label class="sub__check">
           <input type="checkbox" name="consent" required />
