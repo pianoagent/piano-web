@@ -34,6 +34,9 @@
 }
 
 :root {
+  /* Statistiky: Grason má čísla ve velikosti h1 a na mobilu volnější mřížku */
+  --stats-num-size: var(--font-size-h1);
+  --stats-gap-mobile: var(--space-6);
   /* ----- Písmo ----- */
   --font-sans:  "Neue Plak", "Segoe UI", system-ui, -apple-system, sans-serif;
   --font-serif: "Neue Plak", "Segoe UI", system-ui, sans-serif;

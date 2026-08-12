@@ -26,12 +26,6 @@ import { flexiFaqs, planFaqs, jobsFaqs } from '../config/faq';
 const PHONE = '+420 739 877 799';
 const PHONE_HREF = 'tel:+420739877799';
 
-const stats = [
-  { num: '3 357+', lbl: 'brigádníků v databázi' },
-  { num: '82+', lbl: 'měst v ČR' },
-  { num: '220 000+', lbl: 'naplánovaných směn' },
-  { num: '0 Kč', lbl: 'za první měsíc' },
-];
 
 // Tři samostatné produkty Grasonu (ne jedna appka)
 const products = [
@@ -198,13 +192,6 @@ const leadProofs = [
   .logos__track img { height: 34px; width: auto; opacity: 0.62; filter: grayscale(1); flex-shrink: 0; }
   @keyframes logos-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
   @media (prefers-reduced-motion: reduce) { .logos__track { animation: none; flex-wrap: wrap; justify-content: center; } }
-
-  /* Stats band */
-  .stats { list-style: none; display: grid; gap: var(--space-5); grid-template-columns: repeat(4, 1fr); text-align: center; }
-  .stats__item { display: flex; flex-direction: column; gap: var(--space-1); }
-  .stats__num { font-size: var(--font-size-h1); font-weight: var(--font-weight-bold); line-height: 1; color: var(--color-secondary); }
-  .stats__lbl { font-size: var(--font-size-small); color: var(--color-text-muted); }
-  @media (max-width: 720px) { .stats { grid-template-columns: repeat(2, 1fr); gap: var(--space-6); } }
 
   /* Pilíře */
   .pillars { display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }

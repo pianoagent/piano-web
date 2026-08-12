@@ -34,12 +34,6 @@ const heroSlides = [
     image: '/images/produkt-septim-hotel.webp', imageAlt: 'Septim.Hotel: hotelový POS' },
 ];
 
-const stats = [
-  { num: '30 let', lbl: 'na trhu' },
-  { num: '6 000+', lbl: 'provozů v ČR' },
-  { num: '24/7', lbl: 'česká podpora' },
-  { num: 'CZ / EN / SK', lbl: 'jazykové mutace' },
-];
 
 const steps = [
   { img: '/icons/sklady-naskladnovani.svg', title: 'Naskladnění a sklady', text: 'Sledování stavu surovin, dodacích listů a zásob v reálném čase. Automatické napojení na Autset.' },
@@ -246,16 +240,6 @@ const leadProofs = [
   .head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-7); }
   .head--center { text-align: center; }
   .head > * + * { margin-top: var(--space-3); }
-
-  /* Stats band */
-  .stats {
-    list-style: none; display: grid; gap: var(--space-5);
-    grid-template-columns: repeat(4, 1fr); text-align: center;
-  }
-  .stats__item { display: flex; flex-direction: column; gap: var(--space-1); }
-  .stats__num { font-size: var(--font-size-h2); font-weight: var(--font-weight-bold); line-height: 1; color: var(--color-secondary); }
-  .stats__lbl { font-size: var(--font-size-small); color: var(--color-text-muted); }
-  @media (max-width: 720px) { .stats { grid-template-columns: repeat(2, 1fr); } }
 
   /* Steps */
   .steps {

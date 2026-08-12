@@ -34,6 +34,9 @@
 }
 
 :root {
+  /* Statistiky: Harsys má čísla ve velikosti h1 a na mobilu volnější mřížku */
+  --stats-num-size: var(--font-size-h1);
+  --stats-gap-mobile: var(--space-6);
   /* ----- Písmo ----- */
   --font-sans:  "Ubuntu Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
   --font-serif: "Ubuntu Sans", "Segoe UI", system-ui, sans-serif;
