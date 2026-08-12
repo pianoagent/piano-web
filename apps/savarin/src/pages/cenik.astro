@@ -15,6 +15,7 @@ import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import { savarinNav, savarinCta } from '../config/nav';
+import { savarinLeadProofs } from '../config/leadProofs';
 
 const odkup = [
   ['V prvním roce', '1–20 %'],
@@ -98,7 +99,7 @@ const schema = {
     </div>
   </Section>
 
-  <LeadForm id="poptavka" variant="full" message
+  <LeadForm proofs={savarinLeadProofs} id="poptavka" variant="full" message
             messagePlaceholder="Počet pokladen (příp. mobilních číšníků), požadavek na vedení skladové evidence, počet pokojů…"
             background="alt"
             title="Cenová nabídka na míru"

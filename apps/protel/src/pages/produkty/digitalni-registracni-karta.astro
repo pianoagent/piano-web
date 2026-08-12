@@ -16,6 +16,7 @@ import Icon from '@piano/ui/components/Icon.astro';
 import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
 import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
+import { protelLeadProofs } from '../../config/leadProofs';
 
 const features = [
   {
@@ -107,17 +108,17 @@ const related = [
       <figure class="quoteband">
         <span class="quoteband__mark"><Icon name="lucide:quote" size="lg" /></span>
         <blockquote>
-          <Heading as="p" size="h3" color="on-dark" align="center">Digitální registrační karta usnadňuje hostům registraci a zkracuje čekání u recepce. Host může kdykoli nahlédnout na svůj účet a vy mu jednoduše nabídnete další služby. Zefektivněte své hotelové podnikání!</Heading>
+          <Heading as="p" size="h3" color="on-dark" align="center">Digitální registrační karta usnadňuje hostům registraci a zkracuje čekání u recepce. Host může kdykoli nahlédnout na svůj účet a Vy mu jednoduše nabídnete další služby. Zefektivněte své hotelové podnikání!</Heading>
         </blockquote>
       </figure>
     </Section>
 
-    <USPGrid eyebrow="Dále by vás mohlo zajímat" title="Související produkty"
+    <USPGrid eyebrow="Dále by Vás mohlo zajímat" title="Související produkty"
              items={related} minItemWidth="260px" background="alt" space="lg" />
 
-    <LeadForm id="poptavka" variant="full" background="default"
+    <LeadForm proofs={protelLeadProofs} id="poptavka" variant="full" background="default"
               title="Vyzkoušejte Protel zdarma"
-              lead="Co byste u vás v hotelu rádi zlepšili? Nechte nám kontakt, ozveme se a ukážeme Protel přímo ve vašem hotelu." />
+              lead="Co byste u Vás v hotelu rádi zlepšili? Nechte nám kontakt, ozveme se a ukážeme Protel přímo ve Vašem hotelu." />
   </main>
 
   <SiteFooter />

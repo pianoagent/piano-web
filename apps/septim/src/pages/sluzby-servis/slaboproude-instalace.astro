@@ -9,6 +9,7 @@ import Button from '@piano/ui/components/Button.astro';
 import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import StatsBand from '../../components/StatsBand.astro';
+import { septimLeadProofs } from '../../config/leadProofs';
 
 const oblasti = [
   { icon: 'lucide:cctv', title: 'Kamery', text: 'Pracujeme se všemi dostupnými technologiemi, analogové HD, běžný PAL i IP kamery. Naším hlavním cílem je maximalizace efektu kamerového systému.' },
@@ -35,7 +36,7 @@ const oblasti = [
 
     <USPGrid eyebrow="Co instalujeme" title="Slaboproudé instalace v restauraci i hotelu" items={oblasti} background="default" space="lg" minItemWidth="260px" />
     <StatsBand />
-    <LeadForm id="poptavka" variant="callback" background="default"
+    <LeadForm proofs={septimLeadProofs} id="poptavka" variant="callback" background="default"
               title="Poptat slaboproudou instalaci"
               lead="Nechte nám telefon, probereme rozsah instalace pro váš provoz." />
   </main>

@@ -16,6 +16,7 @@ import Icon from '@piano/ui/components/Icon.astro';
 import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
 import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
+import { protelLeadProofs } from '../../config/leadProofs';
 
 const features = [
   {
@@ -43,7 +44,7 @@ const features = [
     id: "zustante-ve-spojeni", icon: "lucide:heart-handshake", title: "Zůstaňte ve spojení",
     paras: [
       "S hosty zůstanete v kontaktu i po odjezdu: automatická narozeninová přání posilují osobní vztah, pravidelné newslettery informují o novinkách, slevách, událostech v hotelu i zajímavých místech v okolí.",
-      "Udržujete zájem hostů o váš hotel a motivujete je k opětovné návštěvě.",
+      "Udržujete zájem hostů o Váš hotel a motivujete je k opětovné návštěvě.",
     ],
   },
   {
@@ -112,17 +113,17 @@ const related = [
       <figure class="quoteband">
         <span class="quoteband__mark"><Icon name="lucide:quote" size="lg" /></span>
         <blockquote>
-          <Heading as="p" size="h3" color="on-dark" align="center">Automatický mailing je plně automatizovaný díky integraci s hotelovým systémem. Filtry umožňují personalizovanou komunikaci s hosty a vám dávají možnost prodat více služeb.</Heading>
+          <Heading as="p" size="h3" color="on-dark" align="center">Automatický mailing je plně automatizovaný díky integraci s hotelovým systémem. Filtry umožňují personalizovanou komunikaci s hosty a Vám dávají možnost prodat více služeb.</Heading>
         </blockquote>
       </figure>
     </Section>
 
-    <USPGrid eyebrow="Dále by vás mohlo zajímat" title="Související produkty"
+    <USPGrid eyebrow="Dále by Vás mohlo zajímat" title="Související produkty"
              items={related} minItemWidth="260px" background="alt" space="lg" />
 
-    <LeadForm id="poptavka" variant="full" background="default"
+    <LeadForm proofs={protelLeadProofs} id="poptavka" variant="full" background="default"
               title="Vyzkoušejte Protel zdarma"
-              lead="Co byste u vás v hotelu rádi zlepšili? Nechte nám kontakt, ozveme se a ukážeme Protel přímo ve vašem hotelu." />
+              lead="Co byste u Vás v hotelu rádi zlepšili? Nechte nám kontakt, ozveme se a ukážeme Protel přímo ve Vašem hotelu." />
   </main>
 
   <SiteFooter />

@@ -13,6 +13,7 @@ import LeadForm from '@piano/ui/components/LeadForm.astro';
 import StatsBand from '../../components/StatsBand.astro';
 import LogoWall from '../../components/LogoWall.astro';
 import Faq from '@piano/ui/components/Faq.astro';
+import { septimLeadProofs } from '../../config/leadProofs';
 
 const benefits = [
   { icon: 'lucide:link', title: 'Napojení na pokladnu', text: 'Nabídka se načítá přímo z pokladního systému Septim; zaplacené objednávky jdou rovnou do kuchyně.' },
@@ -57,7 +58,7 @@ const faqs = [
     <LogoWall label="Respektované provozy, které využívají Septim" background="default" />
     <StatsBand />
     <Faq items={faqs} title="Často kladené otázky k e-shopu" background="default" />
-    <LeadForm id="poptavka" variant="callback" background="alt"
+    <LeadForm proofs={septimLeadProofs} id="poptavka" variant="callback" background="alt"
               title="Spustíme vám e-shop"
               lead="Nechte nám telefon, pomůžeme nastavit modul E-shop pro váš provoz." />
   </main>

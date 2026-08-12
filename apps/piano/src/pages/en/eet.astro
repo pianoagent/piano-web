@@ -1,6 +1,6 @@
 ---
 /**
- * EET 2.0 — English page piano.cz/en/eet
+ * EET 2.0: English page piano.cz/en/eet
  * Mirrors the CS page (eet.astro) with the same layout/CSS, translated content.
  * The blog collection stays in Czech (not translated).
  */
@@ -15,6 +15,7 @@ import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import { locPath } from '../../i18n';
+import { pianoLeadProofsEn } from '../../config/leadProofs';
 
 const novinky = [
   { icon: 'lucide:hand-coins', title: 'Tax relief on tips', text: 'Voluntary tips of up to 7% of revenue will now be exempt from taxes and levies.' },
@@ -22,7 +23,7 @@ const novinky = [
   { icon: 'lucide:receipt', title: 'Modernized sales', text: 'No more mandatory receipt printing and simpler record-keeping without needless paperwork.' },
 ];
 
-// EET vs. EET 2.0 — 5 key differences (per source)
+// EET vs. EET 2.0: 5 key differences (per source)
 const compare = [
   { icon: 'lucide:receipt', cat: 'Receipt', old: 'Mandatory printing', neu: 'Only on request' },
   { icon: 'lucide:credit-card', cat: 'What is recorded', old: 'Cash and cards', neu: 'In-person payments only' },
@@ -31,7 +32,7 @@ const compare = [
   { icon: 'lucide:search', cat: 'Inspections', old: 'Blanket inspections', neu: 'Targeted analytics' },
 ];
 
-// EET 2.0 timeline — legislative milestones
+// EET 2.0 timeline: legislative milestones
 const timeline = [
   { date: 'February 2026', title: 'Start of the comment procedure', state: 'done' },
   { date: 'April 2026', title: 'Resolution of comments', state: 'done' },
@@ -176,7 +177,7 @@ const faqSchema = {
     </div>
   </Section>
 
-  <LeadForm id="poptavka" variant="callback" locale="en"
+  <LeadForm proofs={pianoLeadProofsEn} id="poptavka" variant="callback" locale="en"
             title="Is the regulation making your head spin?"
             lead="Leave us your contact details and we will solve it together, a free, no-obligation consultation." />
 
@@ -203,7 +204,7 @@ const faqSchema = {
   .cmp__col--new .cmp__cat { color: rgba(255,255,255,.65); }
   .cmp__val { font-weight: var(--font-weight-semibold); font-size: var(--font-size-body); }
 
-  /* Timeline — vertical list */
+  /* Timeline: vertical list */
   .tl { position: relative; max-width: 620px; margin: 0 auto; display: flex; flex-direction: column; gap: var(--space-4); padding-left: var(--space-1); }
   .tl__line { position: absolute; left: 8px; top: 10px; bottom: 10px; width: 2px; background: var(--color-border); }
   .tl__item { position: relative; display: grid; grid-template-columns: auto 1fr; column-gap: var(--space-4); align-items: start; }

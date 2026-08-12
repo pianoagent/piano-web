@@ -16,6 +16,7 @@ import Icon from '@piano/ui/components/Icon.astro';
 import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
 import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
+import { protelLeadProofs } from '../../config/leadProofs';
 
 const features = [
   {
@@ -40,7 +41,7 @@ const features = [
   {
     id: "predautorizace-a-top-ups", icon: "lucide:trending-up", title: "Předautorizace a top-ups",
     paras: [
-      "Když host překročí předautorizovanou částku, systém vás okamžitě upozorní. Předautorizaci lze automaticky navýšit, takže minimalizujete riziko odmítnuté platby i nekomfortní situace pro hosta. Předautorizovanou částku lze využít i k platbě za služby během pobytu.",
+      "Když host překročí předautorizovanou částku, systém Vás okamžitě upozorní. Předautorizaci lze automaticky navýšit, takže minimalizujete riziko odmítnuté platby i nekomfortní situace pro hosta. Předautorizovanou částku lze využít i k platbě za služby během pobytu.",
       "Po odjezdu hosta systém nevyužitou část předautorizace automaticky uvolní, prostředky nejsou zbytečně blokovány a nikoho nemusíte zdržovat ručním uvolňováním.",
     ],
   },
@@ -113,12 +114,12 @@ const related = [
       </figure>
     </Section>
 
-    <USPGrid eyebrow="Dále by vás mohlo zajímat" title="Související produkty"
+    <USPGrid eyebrow="Dále by Vás mohlo zajímat" title="Související produkty"
              items={related} minItemWidth="260px" background="alt" space="lg" />
 
-    <LeadForm id="poptavka" variant="full" background="default"
+    <LeadForm proofs={protelLeadProofs} id="poptavka" variant="full" background="default"
               title="Vyzkoušejte Protel zdarma"
-              lead="Co byste u vás v hotelu rádi zlepšili? Nechte nám kontakt, ozveme se a ukážeme Protel přímo ve vašem hotelu." />
+              lead="Co byste u Vás v hotelu rádi zlepšili? Nechte nám kontakt, ozveme se a ukážeme Protel přímo ve Vašem hotelu." />
   </main>
 
   <SiteFooter />

@@ -15,6 +15,7 @@ import Icon from '@piano/ui/components/Icon.astro';
 import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
 import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
+import { protelLeadProofs } from '../config/leadProofs';
 
 const related = [
   { icon: "lucide:credit-card", title: "Platební řešení hotelu", text: "Plně integrované platby přímo v Protelu.", href: "/produkty/platebni-reseni-hotelu" },
@@ -32,7 +33,7 @@ const related = [
     <Breadcrumb items={[{ label: 'Úvod', href: '/' }, { label: 'Řešení', href: '/#reseni' }, { label: "Inteligentní platby" }]} />
 
     <Hero eyebrow="Řešení" background="gradient"
-          lead="Je většina vašich rezervací hrazená předem? A vy tyto platby stahujete přímo na terminálu tak, že do něj přepíšete číslo karty a částku k úhradě? Trápí vás, že je tento proces zdlouhavý a vzniká při něm mnoho chyb?">
+          lead="Je většina Vašich rezervací hrazená předem? A Vy tyto platby stahujete přímo na terminálu tak, že do něj přepíšete číslo karty a částku k úhradě? Trápí Vás, že je tento proces zdlouhavý a vzniká při něm mnoho chyb?">
       <Heading slot="title" as="h1" size="display" color="on-dark">Inteligentní <em>platby</em></Heading>
       <Fragment slot="actions">
         <Button href="#poptavka">Vyzkoušet Protel zdarma</Button>
@@ -47,7 +48,7 @@ const related = [
       <div class="solution">
         <Text size="label" color="accent">Protel má řešení</Text>
         <Heading as="h2" size="h2">Automatizace plateb na terminál bez lidského zdroje!</Heading>
-        <Text size="lead" color="muted">Hotelový systém Protel je nejefektivnější odpovědí na vaše potřeby. S touto integrací získáte přímé propojení na platební terminál hotelu a PayLink, což umožní automatické zpracování plateb bez ručního zadávání údajů. Eliminuje se riziko chyb a celý proces platby se urychlí, zvýší se efektivita provozu i spokojenost hostů.</Text>
+        <Text size="lead" color="muted">Hotelový systém Protel je nejefektivnější odpovědí na Vaše potřeby. S touto integrací získáte přímé propojení na platební terminál hotelu a PayLink, což umožní automatické zpracování plateb bez ručního zadávání údajů. Eliminuje se riziko chyb a celý proces platby se urychlí, zvýší se efektivita provozu i spokojenost hostů.</Text>
       </div>
     </Section>
 
@@ -63,9 +64,9 @@ const related = [
     <USPGrid eyebrow="Související" title="Související s inteligentními platbami"
              items={related} minItemWidth="260px" background="alt" space="lg" />
 
-    <LeadForm id="poptavka" variant="full" background="default"
+    <LeadForm proofs={protelLeadProofs} id="poptavka" variant="full" background="default"
               title="Vyzkoušejte Protel zdarma"
-              lead="Co byste u vás v hotelu rádi zlepšili? Nechte nám kontakt, ozveme se a ukážeme Protel přímo ve vašem hotelu." />
+              lead="Co byste u Vás v hotelu rádi zlepšili? Nechte nám kontakt, ozveme se a ukážeme Protel přímo ve Vašem hotelu." />
   </main>
 
   <SiteFooter />

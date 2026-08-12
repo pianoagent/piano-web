@@ -11,6 +11,7 @@ import Button from '@piano/ui/components/Button.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import StatsBand from '../components/StatsBand.astro';
 import LogoWall from '../components/LogoWall.astro';
+import { septimLeadProofs } from '../config/leadProofs';
 
 const timeline = [
   { year: '2025', title: 'Součástí skupiny Piano', text: 'Septim se stává hrdým členem ekosystému Piano Solutions.' },
@@ -71,7 +72,7 @@ const timeline = [
       </div>
     </Section>
 
-    <LeadForm id="poptavka" variant="full" background="alt"
+    <LeadForm proofs={septimLeadProofs} id="poptavka" variant="full" background="alt"
               title="Chcete Septim do svého provozu?"
               lead="Nechte nám kontakt, rádi se vám ozveme." />
   </main>

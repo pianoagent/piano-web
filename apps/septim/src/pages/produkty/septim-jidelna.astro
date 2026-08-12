@@ -13,6 +13,7 @@ import LeadForm from '@piano/ui/components/LeadForm.astro';
 import StatsBand from '../../components/StatsBand.astro';
 import LogoWall from '../../components/LogoWall.astro';
 import Faq from '@piano/ui/components/Faq.astro';
+import { septimLeadProofs } from '../../config/leadProofs';
 
 const features = [
   { icon: 'lucide:utensils', title: 'Pro největší stravovací řetězce', text: 'Systém závodního stravování, který používají největší provozy v ČR.' },
@@ -55,7 +56,7 @@ const faqs = [
     <LogoWall label="Důvěřují nám největší provozy" background="default" />
     <StatsBand />
     <Faq items={faqs} title="Často kladené dotazy k Septim.Jídelna" background="default" />
-    <LeadForm id="poptavka" variant="full" background="alt"
+    <LeadForm proofs={septimLeadProofs} id="poptavka" variant="full" background="alt"
               title="Mám zájem o systém pro jídelnu"
               lead="Kontaktujte nás, navrhneme řešení pro vaše závodní stravování." />
   </main>

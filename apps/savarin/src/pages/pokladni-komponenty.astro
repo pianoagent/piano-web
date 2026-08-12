@@ -15,6 +15,7 @@ import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import { savarinNav, savarinCta } from '../config/nav';
+import { savarinLeadProofs } from '../config/leadProofs';
 
 const skupiny = [
   {
@@ -143,7 +144,7 @@ const schema = {
     </div>
   </Section>
 
-  <LeadForm id="poptavka" variant="full" message background="alt"
+  <LeadForm proofs={savarinLeadProofs} id="poptavka" variant="full" message background="alt"
             title="Potřebujete poradit s technikou?"
             lead="Napište nám o svém provozu, doporučíme vhodné komponenty k pokladně a připravíme cenovou nabídku."
             successUrl="/dekujeme" />

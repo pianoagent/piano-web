@@ -10,6 +10,7 @@ import Heading from '@piano/ui/components/Heading.astro';
 import Text from '@piano/ui/components/Text.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
+import { protelLeadProofs } from '../config/leadProofs';
 
 const contacts = [
   { icon: 'lucide:briefcase', label: 'Obchod', value: 'sales@protelsystems.cz', href: 'mailto:sales@protelsystems.cz' },
@@ -29,7 +30,7 @@ const contacts = [
         <Text size="label" color="accent" align="center">Kontakt</Text>
         <Heading as="h1" size="h1" align="center">Pojďme to <em>probrat</em></Heading>
         <Text size="lead" color="muted" align="center" balance>
-          Co byste u vás v hotelu rádi zlepšili? Ozvěte se nám, připravíme řešení na míru.
+          Co byste u Vás v hotelu rádi zlepšili? Ozvěte se nám, připravíme řešení na míru.
         </Text>
       </div>
       <ul class="cards">
@@ -43,9 +44,9 @@ const contacts = [
       </ul>
     </Section>
 
-    <LeadForm id="poptavka" variant="full" background="default"
+    <LeadForm proofs={protelLeadProofs} id="poptavka" variant="full" background="default"
               title="Napište nám"
-              lead="Nechte nám kontakt, ozveme se a ukážeme Protel přímo ve vašem hotelu." />
+              lead="Nechte nám kontakt, ozveme se a ukážeme Protel přímo ve Vašem hotelu." />
   </main>
 
   <SiteFooter />

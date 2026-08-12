@@ -13,6 +13,7 @@ import Text from '@piano/ui/components/Text.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import { savarinNav, savarinCta } from '../config/nav';
+import { savarinLeadProofs } from '../config/leadProofs';
 ---
 
 <Base title="Kontakt, ComInn s.r.o. | Savarin"
@@ -67,7 +68,7 @@ import { savarinNav, savarinCta } from '../config/nav';
     </div>
   </Section>
 
-  <LeadForm id="poptavka" variant="full" message background="alt"
+  <LeadForm proofs={savarinLeadProofs} id="poptavka" variant="full" message background="alt"
             title="Napište nám"
             lead="Pomocí formuláře nás můžete kontaktovat. Stručně popište svůj provoz a my se vám co nejdříve ozveme."
             successUrl="/dekujeme" />

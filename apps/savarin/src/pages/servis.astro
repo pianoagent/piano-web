@@ -15,6 +15,7 @@ import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import { savarinNav, savarinCta } from '../config/nav';
+import { savarinLeadProofs } from '../config/leadProofs';
 
 const schema = {
   '@context': 'https://schema.org',
@@ -107,7 +108,7 @@ const schema = {
     </div>
   </Section>
 
-  <LeadForm id="poptavka" variant="full" message background="alt"
+  <LeadForm proofs={savarinLeadProofs} id="poptavka" variant="full" message background="alt"
             title="Potřebujete servis nebo smlouvu?"
             lead="Napište nám, domluvíme servisní smlouvu nebo vyřešíme konkrétní požadavek. Smluvním zákazníkům garantujeme zásah do 24 hodin."
             successUrl="/dekujeme" />

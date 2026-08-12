@@ -15,6 +15,7 @@ import Card from '@piano/ui/components/Card.astro';
 import Badge from '@piano/ui/components/Badge.astro';
 import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
+import { protelLeadProofs } from '../config/leadProofs';
 
 const linky = [
   {
@@ -70,7 +71,7 @@ const linky = [
       <div class="head head--center">
         <Heading as="h2" size="h2" align="center">Vzdálená podpora <em>TeamViewer</em></Heading>
         <Text size="lead" color="muted" align="center" balance>
-          Stáhněte si nástroj pro vzdálenou podporu, náš technik se s vámi spojí přímo na vašem počítači.
+          Stáhněte si nástroj pro vzdálenou podporu, náš technik se s Vámi spojí přímo na Vašem počítači.
         </Text>
       </div>
       <div class="actions">
@@ -93,7 +94,7 @@ const linky = [
       </div>
     </Section>
 
-    <LeadForm id="poptavka" variant="full" background="alt"
+    <LeadForm proofs={protelLeadProofs} id="poptavka" variant="full" background="alt"
               title="Napište přímo naší podpoře"
               lead="Popište nám, s čím si nevíte rady, ozveme se co nejdříve. Nezapomeňte uvést svůj servisní kód." />
   </main>

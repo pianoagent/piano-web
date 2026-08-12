@@ -17,6 +17,7 @@ import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
 import USPGrid from '@piano/ui/components/USPGrid.astro';
 import Testimonials from '@piano/ui/components/Testimonials.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
+import { protelLeadProofs } from '../config/leadProofs';
 
 const zaklady = [
   { icon: 'lucide:layout-dashboard', title: 'Protel PMS', text: 'Komplexní řešení pro vedení hotelu a platební řešení, které každý den využívá více než 14 000 zákazníků po celém světě.', href: '/produkty/hotelovy-system-protel' },
@@ -25,14 +26,14 @@ const zaklady = [
 
 const prvky = [
   { icon: 'lucide:share-2', title: 'Napojení na OTA a channel managery', text: 'Rezervace z Booking.com, Expedia.com a všech respektovaných channel managerů se zapisují do Protelu automaticky a v reálném čase. Vždy aktuální obsazenost, méně chyb, nižší náklady na lidské zdroje.' },
-  { icon: 'lucide:trending-up', title: 'Vydělávejte chytře', text: 'Omezte lidské zdroje a soustřeďte se na zcela automatizovaný provoz, který budou hosté milovat a budou se k vám vracet.' },
+  { icon: 'lucide:trending-up', title: 'Vydělávejte chytře', text: 'Omezte lidské zdroje a soustřeďte se na zcela automatizovaný provoz, který budou hosté milovat a budou se k Vám vracet.' },
   { icon: 'lucide:piggy-bank', title: 'Neskutečná úspora', text: 'Šetřete peníze i čas. Protel se automaticky postará o veškerý provoz spojený s vedením hotelové agendy.' },
-  { icon: 'lucide:mouse-pointer-click', title: 'Snadné užívání', text: 'Přehlednost a srozumitelnost na obou stranách hotelového byznysu, pro vás i vaše hosty.' },
+  { icon: 'lucide:mouse-pointer-click', title: 'Snadné užívání', text: 'Přehlednost a srozumitelnost na obou stranách hotelového byznysu, pro Vás i Vaše hosty.' },
   { icon: 'lucide:log-in', title: 'Online check-in', text: 'Ušetří hotelu ohromné množství času i peněz. Lidský zdroj na straně recepce už není potřeba.' },
   { icon: 'lucide:key-round', title: 'Chytré odemykání', text: 'Žádné klíče, karty ani zbytečně drahý personál. Vše elektronicky, jednoduše a levně.' },
   { icon: 'lucide:book-open', title: 'Digitální hotelová kniha', text: 'Žádné stahování aplikace a ohromná úspora papíru. Hosté mají všechny informace na dosah ruky a služby si rezervují přes chytrý telefon.' },
-  { icon: 'lucide:sparkles', title: 'Zvyšte další prodeje', text: 'Vytvářejte příjmy pomocí personalizovaných nabídek a služeb pro hotelové hosty. Opečovaní hosté budou vaše nadstavbové služby milovat.' },
-  { icon: 'lucide:brush-cleaning', title: 'Optimalizace úklidu', text: 'S možností „Zrušit úklid pokoje“ vás hosté jednoduše informují, že další den úklid nepotřebují. Šetříte náklady i zdroje.' },
+  { icon: 'lucide:sparkles', title: 'Zvyšte další prodeje', text: 'Vytvářejte příjmy pomocí personalizovaných nabídek a služeb pro hotelové hosty. Opečovaní hosté budou Vaše nadstavbové služby milovat.' },
+  { icon: 'lucide:brush-cleaning', title: 'Optimalizace úklidu', text: 'S možností „Zrušit úklid pokoje“ Vás hosté jednoduše informují, že další den úklid nepotřebují. Šetříte náklady i zdroje.' },
   { icon: 'lucide:star', title: 'Hodnocení napřímo a online check-out', text: 'Feedback od hostů ještě před koncem pobytu, hodnocení ovlivníte dřív, než host odjede. Bez podpůrných nástrojů třetích stran držíte svůj byznys pevně ve svých rukách.' },
 ];
 
@@ -88,9 +89,9 @@ const reference = [
 
     <Testimonials items={reference} eyebrow="Reference" title="Co říkají zákazníci" background="alt" />
 
-    <LeadForm id="poptavka" variant="full" background="default"
+    <LeadForm proofs={protelLeadProofs} id="poptavka" variant="full" background="default"
               title="Chci svůj fantastický hotel"
-              lead="Nechte nám kontakt, ukážeme vám, jak koncept Protel + Straiv funguje přímo ve vašem hotelu." />
+              lead="Nechte nám kontakt, ukážeme Vám, jak koncept Protel + Straiv funguje přímo ve Vašem hotelu." />
   </main>
 
   <SiteFooter />

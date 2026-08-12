@@ -16,12 +16,13 @@ import Icon from '@piano/ui/components/Icon.astro';
 import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
 import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
+import { protelLeadProofs } from '../../config/leadProofs';
 
 const features = [
   {
     id: "aktualizace-dostupnosti-pokoju", icon: "lucide:calendar-sync", title: "Aktualizace dostupnosti pokojů",
     paras: [
-      "Hosté si přes formulář na vašem webu rezervují pobyt kdykoli a odkudkoli, jednoduše si vyberou termín a typ pokoje podle svých preferencí.",
+      "Hosté si přes formulář na Vašem webu rezervují pobyt kdykoli a odkudkoli, jednoduše si vyberou termín a typ pokoje podle svých preferencí.",
       "Online aktualizace dostupnosti zabraňuje přebookování a zajišťuje správné plánování kapacity. Nepřijdete o příležitost prodat volné pokoje a maximalizujete příjmy.",
     ],
   },
@@ -36,7 +37,7 @@ const features = [
     id: "garance", icon: "lucide:shield-check", title: "Garance",
     paras: [
       "Pro dokončení rezervace můžete vyžadovat platbu přes napojenou platební bránu, nebo zadání platebních údajů jako záruky. Údaje se do hotelového systému přenášejí v bezpečné formě chráněné proti zneužití.",
-      "Rezervace je potvrzena a chráněna proti nečekaným zrušením, jistota pro vás i vaše hosty.",
+      "Rezervace je potvrzena a chráněna proti nečekaným zrušením, jistota pro Vás i Vaše hosty.",
     ],
   },
   {
@@ -70,14 +71,14 @@ const related = [
 ---
 
 <Base title="Webové rezervace hotelu | Protel"
-      description="Rezervační formulář na vašich stránkách umožní hostům rezervovat pobyt přímo u vás, s aktuální dostupností, dynamickými cenami a garancí platby.">
+      description="Rezervační formulář na Vašich stránkách umožní hostům rezervovat pobyt přímo u Vás, s aktuální dostupností, dynamickými cenami a garancí platby.">
   <SiteHeader />
 
   <main>
     <Breadcrumb items={[{ label: 'Úvod', href: '/' }, { label: 'Produkty', href: '/produkty' }, { label: "Webové rezervace" }]} />
 
     <Hero eyebrow="Produkty" background="gradient"
-          lead="Online webový formulář na vašich stránkách umožní hostům, aby si u vás kdykoli rezervovali svůj pobyt, s aktuální dostupností pokojů a cenami přímo z hotelového systému.">
+          lead="Online webový formulář na Vašich stránkách umožní hostům, aby si u Vás kdykoli rezervovali svůj pobyt, s aktuální dostupností pokojů a cenami přímo z hotelového systému.">
       <Heading slot="title" as="h1" size="display" color="on-dark">Webové <em>rezervace</em></Heading>
       <Fragment slot="actions">
         <Button href="#poptavka">Vyzkoušet Protel zdarma</Button>
@@ -111,17 +112,17 @@ const related = [
       <figure class="quoteband">
         <span class="quoteband__mark"><Icon name="lucide:quote" size="lg" /></span>
         <blockquote>
-          <Heading as="p" size="h3" color="on-dark" align="center">Webová rezervace je klíčovou součástí každého moderního hotelového provozu. Protel je garancí dokončení úspěšné rezervace a bezpečnou ochranou pro váš hotel i hosta.</Heading>
+          <Heading as="p" size="h3" color="on-dark" align="center">Webová rezervace je klíčovou součástí každého moderního hotelového provozu. Protel je garancí dokončení úspěšné rezervace a bezpečnou ochranou pro Váš hotel i hosta.</Heading>
         </blockquote>
       </figure>
     </Section>
 
-    <USPGrid eyebrow="Dále by vás mohlo zajímat" title="Související produkty"
+    <USPGrid eyebrow="Dále by Vás mohlo zajímat" title="Související produkty"
              items={related} minItemWidth="260px" background="alt" space="lg" />
 
-    <LeadForm id="poptavka" variant="full" background="default"
+    <LeadForm proofs={protelLeadProofs} id="poptavka" variant="full" background="default"
               title="Vyzkoušejte Protel zdarma"
-              lead="Co byste u vás v hotelu rádi zlepšili? Nechte nám kontakt, ozveme se a ukážeme Protel přímo ve vašem hotelu." />
+              lead="Co byste u Vás v hotelu rádi zlepšili? Nechte nám kontakt, ozveme se a ukážeme Protel přímo ve Vašem hotelu." />
   </main>
 
   <SiteFooter />

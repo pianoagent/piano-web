@@ -15,6 +15,7 @@ import Icon from '@piano/ui/components/Icon.astro';
 import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
 import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
+import { protelLeadProofs } from '../config/leadProofs';
 
 const related = [
   { icon: "lucide:network", title: "Hotelové řetězce", text: "Řešení navržené přímo pro dva a více hotelů.", href: "/produkty/hotelove-retezce" },
@@ -32,7 +33,7 @@ const related = [
     <Breadcrumb items={[{ label: 'Úvod', href: '/' }, { label: 'Řešení', href: '/#reseni' }, { label: "Řízení více hotelů" }]} />
 
     <Hero eyebrow="Řešení" background="gradient"
-          lead="Řídíte více hotelů najednou? Pak jistě víte, že sjednocená konfigurace systému, sdílené profily hostů i reporting napříč několika hotely vám usnadní práci a umožní efektivně pracovat s hostem. Nehledejte složitá řešení, MultiProperty řešení totiž Protel umí!">
+          lead="Řídíte více hotelů najednou? Pak jistě víte, že sjednocená konfigurace systému, sdílené profily hostů i reporting napříč několika hotely Vám usnadní práci a umožní efektivně pracovat s hostem. Nehledejte složitá řešení, MultiProperty řešení totiž Protel umí!">
       <Heading slot="title" as="h1" size="display" color="on-dark">Řízení <em>více hotelů</em></Heading>
       <Fragment slot="actions">
         <Button href="#poptavka">Vyzkoušet Protel zdarma</Button>
@@ -63,9 +64,9 @@ const related = [
     <USPGrid eyebrow="Související" title="Související s řízením více hotelů"
              items={related} minItemWidth="260px" background="alt" space="lg" />
 
-    <LeadForm id="poptavka" variant="full" background="default"
+    <LeadForm proofs={protelLeadProofs} id="poptavka" variant="full" background="default"
               title="Vyzkoušejte Protel zdarma"
-              lead="Co byste u vás v hotelu rádi zlepšili? Nechte nám kontakt, ozveme se a ukážeme Protel přímo ve vašem hotelu." />
+              lead="Co byste u Vás v hotelu rádi zlepšili? Nechte nám kontakt, ozveme se a ukážeme Protel přímo ve Vašem hotelu." />
   </main>
 
   <SiteFooter />

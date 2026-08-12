@@ -1,6 +1,6 @@
 ---
 /**
- * Řešení — Nákupy a sklady (piano.cz/reseni/nakupy).
+ * Řešení: Nákupy a sklady (piano.cz/reseni/nakupy).
  * Obsah dle stávajícího webu piano.cz/nakupy-a-sklady.
  */
 import Base from '../../layouts/Base.astro';
@@ -9,6 +9,7 @@ import Heading from '@piano/ui/components/Heading.astro';
 import Button from '@piano/ui/components/Button.astro';
 import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
+import { pianoLeadProofs } from '../../config/leadProofs';
 
 const benefits = [
   { icon: 'lucide:shopping-cart', title: 'Levnější nákupy z jednoho místa', text: 'Každý dodavatel má jiné objednávkové procesy, cena roste a porovnání je skoro nemožné. Objednávejte stejně kvalitní zboží od různých dodavatelů na jednom místě, kdykoliv a za bezkonkurenční ceny.' },
@@ -34,7 +35,7 @@ const benefits = [
   <USPGrid eyebrow="Jak to řešíme" title="Nákupy a sklady pod kontrolou"
            items={benefits} columns={3} background="default" minItemWidth="280px" />
 
-  <LeadForm id="poptavka" variant="full"
+  <LeadForm proofs={pianoLeadProofs} id="poptavka" variant="full"
             title="Vyřešte nákupy a naskladňování ještě dnes"
             lead="Kontaktujte nás pro konzultaci zdarma, navrhneme řešení šité na míru vašemu provozu." />
 </Base>

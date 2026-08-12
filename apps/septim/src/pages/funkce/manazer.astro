@@ -13,6 +13,7 @@ import LeadForm from '@piano/ui/components/LeadForm.astro';
 import StatsBand from '../../components/StatsBand.astro';
 import LogoWall from '../../components/LogoWall.astro';
 import Faq from '@piano/ui/components/Faq.astro';
+import { septimLeadProofs } from '../../config/leadProofs';
 
 const features = [
   { icon: 'lucide:database', title: 'Databanka receptur', text: 'Synchronizace receptur, ingrediencí a skladových položek mezi více provozovnami.' },
@@ -53,7 +54,7 @@ const faqs = [
     <LogoWall label="Respektované provozy, které využívají Septim" background="default" />
     <StatsBand />
     <Faq items={faqs} title="Často kladené otázky k manažeru" background="default" />
-    <LeadForm id="poptavka" variant="callback" background="alt"
+    <LeadForm proofs={septimLeadProofs} id="poptavka" variant="callback" background="alt"
               title="Proberte řízení provozu s konzultanty"
               lead="Nechte nám telefon, poradíme správnou konfiguraci pro váš provoz." />
   </main>

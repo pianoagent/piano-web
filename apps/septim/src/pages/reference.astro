@@ -12,6 +12,7 @@ import LeadForm from '@piano/ui/components/LeadForm.astro';
 import StatsBand from '../components/StatsBand.astro';
 import LogoWall from '../components/LogoWall.astro';
 import Testimonials from '../components/Testimonials.astro';
+import { septimLeadProofs } from '../config/leadProofs';
 ---
 <Base title="Naši zákazníci a reference | Septim"
       description="Ambiente, FIELD, Kolkovna, Grandhotel Pupp a další. Podívejte se, které špičkové restaurace a hotely spoléhají na Septim.">
@@ -44,7 +45,7 @@ import Testimonials from '../components/Testimonials.astro';
       </div>
     </Section>
 
-    <LeadForm id="poptavka" variant="full" background="alt"
+    <LeadForm proofs={septimLeadProofs} id="poptavka" variant="full" background="alt"
               title="Přidejte se k nejlepším"
               lead="Nechte nám kontakt, ukážeme vám Septim přímo na vašem typu provozu." />
   </main>

@@ -9,6 +9,7 @@ import Heading from '@piano/ui/components/Heading.astro';
 import Text from '@piano/ui/components/Text.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
+import { septimLeadProofs } from '../config/leadProofs';
 
 const offices = [
   { title: 'Centrála Praha', icon: 'lucide:building-2', lines: ['Thámova 166/18, Karlín', '186 00 Praha 8'],
@@ -69,7 +70,7 @@ const support = [
       </Text>
     </Section>
 
-    <LeadForm id="poptavka" variant="full" background="default"
+    <LeadForm proofs={septimLeadProofs} id="poptavka" variant="full" background="default"
               title="Napište nám"
               lead="Nechte nám kontakt a krátkou zprávu, ozveme se co nejdříve." />
   </main>

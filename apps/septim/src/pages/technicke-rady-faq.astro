@@ -11,6 +11,7 @@ import Button from '@piano/ui/components/Button.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import StatsBand from '../components/StatsBand.astro';
 import Faq from '@piano/ui/components/Faq.astro';
+import { septimLeadProofs } from '../config/leadProofs';
 
 const predNakupem = [
   { q: 'Čím se Septim liší od běžné pokladny?', a: 'Septim není zdaleka jen pokladna. Jeho největší přínos je ve finančním, skladovém a lidském řízení celého provozu. Proto je to provozní systém, nikoliv jen pokladní a to jako jeden z mála na trhu. Systém Septim ve své nejaktuálnější verzi 4.1 je nejnovější a nejrespektovanější provozní software pro restaurace v ČR. Michelinské restaurace, přední sítě top restaurací i známí šéfkuchaři, většina používá ve svých restauracích právě Septim.' },
@@ -89,7 +90,7 @@ const obecne = [
     <Faq items={obecne} title="Obecné dotazy" background="default" />
 
     <StatsBand />
-    <LeadForm id="poptavka" variant="callback" background="default"
+    <LeadForm proofs={septimLeadProofs} id="poptavka" variant="callback" background="default"
               title="Nenašli jste odpověď?"
               lead="Nechte nám telefon, proberte to s našimi konzultanty nebo podporou." />
   </main>

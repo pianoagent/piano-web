@@ -13,6 +13,7 @@ import LeadForm from '@piano/ui/components/LeadForm.astro';
 import StatsBand from '../../components/StatsBand.astro';
 import LogoWall from '../../components/LogoWall.astro';
 import Faq from '@piano/ui/components/Faq.astro';
+import { septimLeadProofs } from '../../config/leadProofs';
 
 const funkce = [
   { icon: 'lucide:laptop', title: 'Objednávky odkudkoli', text: 'Objednávkový kiosek přímo v jídelně, nebo pohodlnější webové objednávky z vlastního počítače.' },
@@ -53,7 +54,7 @@ const faqs = [
     <LogoWall label="Respektované provozy, které využívají Septim Objednávky a výdej" background="default" />
     <StatsBand />
     <Faq items={faqs} title="Často kladené otázky k modulu Objednávky a výdej" background="default" />
-    <LeadForm id="poptavka" variant="callback" background="alt"
+    <LeadForm proofs={septimLeadProofs} id="poptavka" variant="callback" background="alt"
               title="Naplánujte stravování bez přebytků"
               lead="Nechte nám telefon, projdeme vaše potřeby a připravíme návrh řešení pro vaši jídelnu." />
   </main>

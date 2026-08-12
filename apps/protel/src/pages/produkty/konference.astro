@@ -16,6 +16,7 @@ import Icon from '@piano/ui/components/Icon.astro';
 import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
 import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
+import { protelLeadProofs } from '../../config/leadProofs';
 
 const features = [
   {
@@ -55,7 +56,7 @@ const related = [
     <Breadcrumb items={[{ label: 'Úvod', href: '/' }, { label: 'Produkty', href: '/produkty' }, { label: "Konference" }]} />
 
     <Hero eyebrow="Produkty" background="gradient"
-          lead="Konferenční modul, který je automatickou součástí hotelového systému Protel, nabízí rezervace konferenčních místností, sledování dostupnosti a vybavení, správu stravování a občerstvení, fakturaci za pronájem, správu účastníků, generování reportů a další úkony spojené s pořádáním událostí ve vašem hotelu.">
+          lead="Konferenční modul, který je automatickou součástí hotelového systému Protel, nabízí rezervace konferenčních místností, sledování dostupnosti a vybavení, správu stravování a občerstvení, fakturaci za pronájem, správu účastníků, generování reportů a další úkony spojené s pořádáním událostí ve Vašem hotelu.">
       <Heading slot="title" as="h1" size="display" color="on-dark">Konference <em>bez starostí</em></Heading>
       <Fragment slot="actions">
         <Button href="#poptavka">Vyzkoušet Protel zdarma</Button>
@@ -89,17 +90,17 @@ const related = [
       <figure class="quoteband">
         <span class="quoteband__mark"><Icon name="lucide:quote" size="lg" /></span>
         <blockquote>
-          <Heading as="p" size="h3" color="on-dark" align="center">Efektivní organizace a propojení konferenčních akcí s banketními rezervacemi a ubytováním zlepšuje servis hostům a vašemu hotelu přináší ohromnou úsporu času a financí!</Heading>
+          <Heading as="p" size="h3" color="on-dark" align="center">Efektivní organizace a propojení konferenčních akcí s banketními rezervacemi a ubytováním zlepšuje servis hostům a Vašemu hotelu přináší ohromnou úsporu času a financí!</Heading>
         </blockquote>
       </figure>
     </Section>
 
-    <USPGrid eyebrow="Dále by vás mohlo zajímat" title="Související produkty"
+    <USPGrid eyebrow="Dále by Vás mohlo zajímat" title="Související produkty"
              items={related} minItemWidth="260px" background="alt" space="lg" />
 
-    <LeadForm id="poptavka" variant="full" background="default"
+    <LeadForm proofs={protelLeadProofs} id="poptavka" variant="full" background="default"
               title="Vyzkoušejte Protel zdarma"
-              lead="Co byste u vás v hotelu rádi zlepšili? Nechte nám kontakt, ozveme se a ukážeme Protel přímo ve vašem hotelu." />
+              lead="Co byste u Vás v hotelu rádi zlepšili? Nechte nám kontakt, ozveme se a ukážeme Protel přímo ve Vašem hotelu." />
   </main>
 
   <SiteFooter />

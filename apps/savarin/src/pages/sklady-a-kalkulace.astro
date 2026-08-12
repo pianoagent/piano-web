@@ -16,6 +16,7 @@ import Icon from '@piano/ui/components/Icon.astro';
 import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import { savarinNav, savarinCta } from '../config/nav';
+import { savarinLeadProofs } from '../config/leadProofs';
 
 const funkce = [
   { icon: 'lucide:warehouse', title: 'Skladová evidence', text: 'Pohyby zboží na hlavním skladu i na odbytových a výrobních střediscích (kuchyně, výčep, vinárna). Příjmy, převody i spotřeba zápisem dokladu.' },
@@ -64,7 +65,7 @@ const funkce = [
     </div>
   </Section>
 
-  <LeadForm id="poptavka" variant="full" message background="default"
+  <LeadForm proofs={savarinLeadProofs} id="poptavka" variant="full" message background="default"
             title="Chcete sklady a kalkulace na míru?"
             lead="Napište nám o počtu středisek a způsobu provozu, připravíme konfiguraci a cenovou nabídku. Rádi zašleme i demoverzi."
             successUrl="/dekujeme" />

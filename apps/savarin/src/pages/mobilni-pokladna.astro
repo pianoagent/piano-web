@@ -16,6 +16,7 @@ import Icon from '@piano/ui/components/Icon.astro';
 import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import { savarinNav, savarinCta } from '../config/nav';
+import { savarinLeadProofs } from '../config/leadProofs';
 
 const funkce = [
   { icon: 'lucide:clipboard-list', title: 'Objednávka u stolu', text: 'Příjem objednávky na konkrétní stůl nebo židli; v dosahu sítě vidíte aktuální obsah účtu hosta. Vyhledání položky přes PLU, název nebo rastry.' },
@@ -83,7 +84,7 @@ const schema = {
     </ul>
   </Section>
 
-  <LeadForm id="poptavka" variant="full" message background="alt"
+  <LeadForm proofs={savarinLeadProofs} id="poptavka" variant="full" message background="alt"
             title="Zajímá vás mobilní pokladna?"
             lead="Napište nám o svém provozu, doporučíme vhodná zařízení a připravíme cenovou nabídku. Rádi zašleme i demoverzi."
             successUrl="/dekujeme" />

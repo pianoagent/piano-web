@@ -60,11 +60,13 @@ const LEAD_I18N = {
     statusErr: 'Něco se nepovedlo. Zkuste to prosím znovu, nebo nám zavolejte.',
     consentHref: '/gdpr', successUrl: '/dekujeme',
     phEmail: 'info@podnik.cz', phCompany: 'Restaurace U Lva', phCity: 'Praha',
+    /* ZÁMĚRNĚ BEZ ČÍSEL. Dřív tu byla skupinová čísla Piana („6 000+ provozů",
+       „30 let na trhu") a každý web, který proofs nepředal, je tvrdil za sebe.
+       U Grasonu (5 let na trhu) a Qerka (od 2017) to byla přímo nepravda.
+       Vlastní čísla si každý web dodává z apps/<web>/src/config/leadProofs.ts. */
     proofs: [
-      { icon: 'lucide:headset', title: 'Podpora 24/7', text: 'Česká podpora každý den v roce.' },
-      { icon: 'lucide:store', title: '6 000+ provozů', text: 'Důvěřují nám restaurace i hotely v celé ČR.' },
-      { icon: 'lucide:calendar-check', title: '30 let na trhu', text: 'Zkušenosti s gastro a hotelovým provozem.' },
       { icon: 'lucide:gift', title: 'Konzultace zdarma', text: 'Nezávazně a bez rizika.' },
+      { icon: 'lucide:headset', title: 'Česká podpora', text: 'Mluvíme jazykem provozu, ne IT.' },
     ] as Proof[],
   },
   en: {
@@ -77,11 +79,10 @@ const LEAD_I18N = {
     statusErr: 'Something went wrong. Please try again, or give us a call.',
     consentHref: '/gdpr', successUrl: '/en/dekujeme',
     phEmail: 'info@business.com', phCompany: 'The Lion Restaurant', phCity: 'Prague',
+    /* Také bez čísel, ze stejného důvodu jako česká varianta výše. */
     proofs: [
-      { icon: 'lucide:headset', title: '24/7 support', text: 'Support every day of the year.' },
-      { icon: 'lucide:store', title: '6,000+ venues', text: 'Trusted by restaurants and hotels across Czechia.' },
-      { icon: 'lucide:calendar-check', title: '30 years on the market', text: 'Deep experience in hospitality operations.' },
       { icon: 'lucide:gift', title: 'Free consultation', text: 'No commitment, no risk.' },
+      { icon: 'lucide:headset', title: 'Local support', text: 'We speak operations, not IT.' },
     ] as Proof[],
   },
 } as const;

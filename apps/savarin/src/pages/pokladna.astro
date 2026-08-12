@@ -17,6 +17,7 @@ import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import { savarinNav, savarinCta } from '../config/nav';
+import { savarinLeadProofs } from '../config/leadProofs';
 
 const verze = [
   { icon: 'lucide:utensils', title: 'Restaurační', text: 'Účtování na stoly a vedení otevřených účtů. Číšník otevírá a uzavírá účty hostů v průběhu celé návštěvy.' },
@@ -137,7 +138,7 @@ const schema = {
   </Section>
 
   <!-- POPTÁVKA -->
-  <LeadForm id="poptavka" variant="full" message background="alt"
+  <LeadForm proofs={savarinLeadProofs} id="poptavka" variant="full" message background="alt"
             title="Chcete vědět víc o pokladně?"
             lead="Napište nám o svém provozu, doporučíme vhodnou verzi a komponenty a připravíme cenovou nabídku. Rádi zašleme i demoverzi."
             successUrl="/dekujeme" />

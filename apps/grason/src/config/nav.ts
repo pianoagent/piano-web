@@ -49,7 +49,7 @@ export const grasonFooter = {
   brand: 'Grason',
   logoSrc: '/logos/grason_by_piano.svg',
   logoAlt: 'Grason by Piano',
-  tagline: 'Odborník na personál, brigádníci na směnu (GrasonFlexi), plánování vlastního týmu (GrasonPlan) i nábor stálých lidí (GrasonJobs).',
+  tagline: 'Personalista vašeho provozu: brigádníci na směnu (GrasonFlexi), plánování vlastního týmu (GrasonPlan) i nábor stálých lidí (GrasonJobs).',
   parentNote: { text: 'Grason je součástí skupiny Piano', href: 'https://piano.cz' },
   columns: [
     {

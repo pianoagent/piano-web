@@ -13,6 +13,7 @@ import Badge from '@piano/ui/components/Badge.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import StatsBand from '../../components/StatsBand.astro';
 import Faq from '@piano/ui/components/Faq.astro';
+import { septimLeadProofs } from '../../config/leadProofs';
 
 const skoleni = [
   {
@@ -106,7 +107,7 @@ const faqs = [
 
     <StatsBand />
     <Faq items={faqs} title="Často kladené otázky ke školením a konzultacím" background="default" />
-    <LeadForm id="poptavka" variant="callback" background="alt"
+    <LeadForm proofs={septimLeadProofs} id="poptavka" variant="callback" background="alt"
               title="Mám zájem o školení nebo konzultaci"
               lead="Nechte nám telefon, dáme vám vědět termín nejbližšího školení, nebo připravíme školení na míru." />
   </main>

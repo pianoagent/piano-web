@@ -15,12 +15,13 @@ import Icon from '@piano/ui/components/Icon.astro';
 import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
 import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
+import { protelLeadProofs } from '../config/leadProofs';
 
 const related = [
   { icon: "lucide:mail", title: "Automatický mailing", text: "Účty a komunikace e-mailem, bez papíru.", href: "/produkty/automaticky-mailing" },
   { icon: "lucide:file-signature", title: "Digitální registrační karta", text: "Podpis na tabletu místo papírování.", href: "/produkty/digitalni-registracni-karta" },
   { icon: "lucide:bed-double", title: "Housekeeping", text: "Úklid a výměna ručníků jen na přání hosta.", href: "/produkty/housekeeping" },
-  { icon: "lucide:line-chart", title: "Reporting", text: "Aktuální reporty kdykoli ve vašem telefonu.", href: "/produkty/hotelovy-system-protel#reporting" },
+  { icon: "lucide:line-chart", title: "Reporting", text: "Aktuální reporty kdykoli ve Vašem telefonu.", href: "/produkty/hotelovy-system-protel#reporting" },
 ];
 ---
 
@@ -47,7 +48,7 @@ const related = [
       <div class="solution">
         <Text size="label" color="accent">Protel má řešení</Text>
         <Heading as="h2" size="h2">Stačí udělat pár změn a úspory uvidíte velice rychle!</Heading>
-        <Text size="lead" color="muted">Napojte řídicí jednotku vašeho hotelu na hotelový systém Protel a v pokojích se bude topit nebo klimatizovat, jen když je to potřeba. Hostům můžete dát možnost objednat si úklid nebo výměnu ručníků, jen když to opravdu potřebují. Účty hostům rovnou zašlete e-mailem, registrační kartu necháte podepsat na tabletu a vždy aktuální reporty si zobrazíte ve svém telefonu.</Text>
+        <Text size="lead" color="muted">Napojte řídicí jednotku Vašeho hotelu na hotelový systém Protel a v pokojích se bude topit nebo klimatizovat, jen když je to potřeba. Hostům můžete dát možnost objednat si úklid nebo výměnu ručníků, jen když to opravdu potřebují. Účty hostům rovnou zašlete e-mailem, registrační kartu necháte podepsat na tabletu a vždy aktuální reporty si zobrazíte ve svém telefonu.</Text>
       </div>
     </Section>
 
@@ -63,9 +64,9 @@ const related = [
     <USPGrid eyebrow="Související" title="Související s úsporami"
              items={related} minItemWidth="260px" background="alt" space="lg" />
 
-    <LeadForm id="poptavka" variant="full" background="default"
+    <LeadForm proofs={protelLeadProofs} id="poptavka" variant="full" background="default"
               title="Vyzkoušejte Protel zdarma"
-              lead="Co byste u vás v hotelu rádi zlepšili? Nechte nám kontakt, ozveme se a ukážeme Protel přímo ve vašem hotelu." />
+              lead="Co byste u Vás v hotelu rádi zlepšili? Nechte nám kontakt, ozveme se a ukážeme Protel přímo ve Vašem hotelu." />
   </main>
 
   <SiteFooter />

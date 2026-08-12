@@ -15,6 +15,7 @@ import Icon from '@piano/ui/components/Icon.astro';
 import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import { savarinNav, savarinCta } from '../config/nav';
+import { savarinLeadProofs } from '../config/leadProofs';
 
 const funkce = [
   { icon: 'lucide:calendar-check', title: 'Rezervace', text: 'Pro jednotlivce i skupiny, s tiskem potvrzení a evidencí záloh. Podpora přebukování, waitingu i oprav přijatých rezervací.' },
@@ -77,7 +78,7 @@ const funkce = [
     </div>
   </Section>
 
-  <LeadForm id="poptavka" variant="full" message background="default"
+  <LeadForm proofs={savarinLeadProofs} id="poptavka" variant="full" message background="default"
             title="Zajímá vás Recepce Savarin?"
             lead="Popište nám svůj provoz (počet pokojů, střediska, směnárna) a připravíme cenovou nabídku. Rádi zašleme i demoverzi."
             successUrl="/dekujeme" />

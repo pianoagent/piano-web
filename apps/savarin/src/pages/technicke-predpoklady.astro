@@ -15,6 +15,7 @@ import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import { savarinNav, savarinCta } from '../config/nav';
+import { savarinLeadProofs } from '../config/leadProofs';
 
 const bloky = [
   { icon: 'lucide:cpu', title: 'Počítač / POS', items: ['Procesor kompatibilní s Windows 10/11 (od Pentium 1.6 GHz)', 'Paměť min. 4 GB RAM', 'Pevný disk min. 30 GB volného místa, doporučujeme SSD'] },
@@ -67,7 +68,7 @@ const schema = {
     </div>
   </Section>
 
-  <LeadForm id="poptavka" variant="full" background="alt"
+  <LeadForm proofs={savarinLeadProofs} id="poptavka" variant="full" background="alt"
             title="Nejste si jistí konfigurací?"
             lead="Popište nám své vybavení a provoz, doporučíme techniku a připravíme cenovou nabídku. U POS rádi zkonzultujeme konkrétní typ."
             successUrl="/dekujeme" />

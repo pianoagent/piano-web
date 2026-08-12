@@ -10,6 +10,7 @@ import Text from '@piano/ui/components/Text.astro';
 import Button from '@piano/ui/components/Button.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import StatsBand from '../../components/StatsBand.astro';
+import { septimLeadProofs } from '../../config/leadProofs';
 ---
 <Base title="Vývoj pokladního systému na míru | Septim"
       description="Potřebuje vaše restaurace nestandardní řešení? Septim nabízí vývoj funkcí na míru přesně podle potřeb vašeho provozu.">
@@ -33,7 +34,7 @@ import StatsBand from '../../components/StatsBand.astro';
     </Section>
 
     <StatsBand />
-    <LeadForm id="poptavka" variant="callback" background="default"
+    <LeadForm proofs={septimLeadProofs} id="poptavka" variant="callback" background="default"
               title="Proberte s našimi konzultanty, jak na to"
               lead="Nechte nám telefon, probereme, zda je pro váš provoz vhodná úprava systému na míru." />
   </main>

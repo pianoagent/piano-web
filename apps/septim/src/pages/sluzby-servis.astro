@@ -11,6 +11,7 @@ import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
+import { septimLeadProofs } from '../config/leadProofs';
 
 const services = [
   { icon: 'lucide:headset', title: 'Helpdesk a Hotline', text: 'Pomoc v pracovní době i NON-STOP hotline mimo ni, na dálku i výjezdem technika.', href: '/sluzby-servis/helpdesk-hotline' },
@@ -64,7 +65,7 @@ const services = [
       </div>
     </Section>
 
-    <LeadForm id="poptavka" variant="callback" background="default"
+    <LeadForm proofs={septimLeadProofs} id="poptavka" variant="callback" background="default"
               title="Potřebujete pomoc nebo konzultaci?"
               lead="Nechte nám telefon, ozve se vám naše podpora." />
   </main>

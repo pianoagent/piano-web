@@ -9,6 +9,7 @@ import Heading from '@piano/ui/components/Heading.astro';
 import Text from '@piano/ui/components/Text.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
+import { qerkoLeadProofs } from '../config/leadProofs';
 
 const support = [
   { title: 'Mám zájem o Qerko', icon: 'lucide:shopping-bag', phone: '+420 277 277 945', tel: 'tel:+420277277945', mail: 'info@qerko.com' },
@@ -41,7 +42,7 @@ const support = [
       </Text>
     </Section>
 
-    <LeadForm id="poptavka" variant="full" background="alt"
+    <LeadForm proofs={qerkoLeadProofs} id="poptavka" variant="full" background="alt"
               title="Napište nám"
               lead="Nechte nám kontakt a krátkou zprávu, ozveme se co nejdříve." />
   </main>

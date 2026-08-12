@@ -14,6 +14,7 @@ import LeadForm from '@piano/ui/components/LeadForm.astro';
 import StatsBand from '../../components/StatsBand.astro';
 import LogoWall from '../../components/LogoWall.astro';
 import Faq from '@piano/ui/components/Faq.astro';
+import { septimLeadProofs } from '../../config/leadProofs';
 
 const oblasti = [
   'Nastavení pokladny: oprávnění používání, storna apod.',
@@ -65,7 +66,7 @@ const faqs = [
     <LogoWall label="Restaurace, které používají Septim Nastavení" background="default" />
     <StatsBand />
     <Faq items={faqs} title="Často kladené otázky k modulu Nastavení" background="default" />
-    <LeadForm id="poptavka" variant="callback" background="alt"
+    <LeadForm proofs={septimLeadProofs} id="poptavka" variant="callback" background="alt"
               title="Najdeme ideální nastavení pro váš provoz"
               lead="Nechte nám telefon, naši konzultanti s vámi proberou možnosti nastavení Septimu." />
   </main>

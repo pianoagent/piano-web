@@ -10,6 +10,7 @@ import Text from '@piano/ui/components/Text.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import { grasonNav, grasonCta, grasonFooter, grasonLogin } from '../config/nav';
+import { grasonLeadProofs } from '../config/leadProofs';
 
 const contacts = [
   { icon: 'lucide:phone', label: 'Zavolejte', value: '+420 739 877 799', href: 'tel:+420739877799' },
@@ -44,7 +45,7 @@ const contacts = [
       </div>
     </Section>
 
-    <LeadForm id="poptavka" variant="full" background="alt"
+    <LeadForm proofs={grasonLeadProofs} id="poptavka" variant="full" background="alt"
               title="Napište nám"
               lead="Nechte nám kontakt a krátkou zprávu, ozveme se co nejdříve." />
   </main>

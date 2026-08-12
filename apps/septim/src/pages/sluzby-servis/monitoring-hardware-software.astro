@@ -11,6 +11,7 @@ import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import StatsBand from '../../components/StatsBand.astro';
+import { septimLeadProofs } from '../../config/leadProofs';
 
 const sledujeme = [
   'Dostatek volného místa na disku',
@@ -58,7 +59,7 @@ const sledujeme = [
     </Section>
 
     <StatsBand background="default" />
-    <LeadForm id="poptavka" variant="callback" background="alt"
+    <LeadForm proofs={septimLeadProofs} id="poptavka" variant="callback" background="alt"
               title="Mám zájem o monitorovací službu"
               lead="Nechte nám telefon, probereme s vámi rozsah monitoringu pro váš provoz." />
   </main>

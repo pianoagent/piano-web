@@ -1,6 +1,6 @@
 ---
 /**
- * Piano — English homepage (piano.cz/en/).
+ * Piano: English homepage (piano.cz/en/).
  * Zrcadlí CS homepage (index.astro) se stejným layoutem/CSS, přeložený obsah.
  * Interní produktové odkazy vedou přes locPath (upgradují se, jak přibývají EN stránky).
  */
@@ -15,6 +15,7 @@ import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import LogoWall from '@piano/ui/components/LogoWall.astro';
 import { locPath } from '../../i18n';
+import { pianoLeadProofsEn } from '../../config/leadProofs';
 
 const L = 'en' as const;
 
@@ -25,13 +26,13 @@ const stats = [
   { num: '10+', lbl: 'connected tools' },
 ];
 
-// New from Piano — flagship in-house products
+// New from Piano: flagship in-house products
 const novinky = [
   { logo: '/brand/pilot_logo.svg', alt: 'Piano Pilot', image: '/images/hero-pilot.webp', text: 'Your entire operation in one mobile app. Sales, inventory and AI recommendations in real time.', href: '/pilot' },
   { logo: '/brand/terminal_logo.svg', alt: 'Piano Terminal', image: '/images/hero-terminal.webp', text: 'A payment Terminal where the card payment is just the beginning. Guest data and payments to suppliers.', href: '/terminal' },
 ];
 
-// Hero — rotating message (title + lead + image change; CTA and USP stay)
+// Hero: rotating message (title + lead + image change; CTA and USP stay)
 const heroSlides = [
   {
     eyebrow: 'Technology for restaurants and hotels',
@@ -70,7 +71,7 @@ const categories = [
   { img: '/images/cat-platby.webp', title: 'Payments & guest communication', headline: 'Guests who keep coming back', text: 'Fast payments, reservations, loyalty program and customer communication.', items: ['Customer communication', 'Reservation system', 'Loyalty program'] },
 ];
 
-// Ecosystem — Piano-hosted products go inside (locPath), others to production domains
+// Ecosystem: Piano-hosted products go inside (locPath), others to production domains
 const ecosystem = [
   { name: 'Piano Pilot', logo: '/brand/pilot_logo.svg', h: 28, desc: 'Your whole operation in a mobile app with data and AI.', href: '/pilot', badge: 'New' },
   { name: 'Piano Terminal', logo: '/brand/terminal_logo.svg', h: 28, desc: 'A terminal where the payment is just the start, guest data and supplier payments.', href: '/terminal', badge: 'New' },
@@ -130,7 +131,7 @@ const faqSchema = {
     </Fragment>
   </Hero>
 
-  <!-- NEW FROM PIANO — in-house product spotlight -->
+  <!-- NEW FROM PIANO: in-house product spotlight -->
   <Section background="primary" space="lg">
     <div class="novinky__head">
       <Heading as="h2" size="h2" color="on-dark" align="center">New from Piano</Heading>
@@ -157,7 +158,7 @@ const faqSchema = {
   <USPGrid eyebrow="Sound familiar?" title="What is holding your operation back"
            items={pains} columns={4} background="default" minItemWidth="220px" />
 
-  <!-- TOOL CATEGORIES — sticky scroll -->
+  <!-- TOOL CATEGORIES: sticky scroll -->
   <section class="solscroll" data-solscroll>
     <div class="solscroll__pin" style={`height: ${(categories.length + 1) * 100}vh;`}>
       <div class="solscroll__inner">
@@ -252,14 +253,14 @@ const faqSchema = {
   </Section>
 
   <!-- LEADFORM -->
-  <LeadForm id="poptavka" variant="full" locale="en"
+  <LeadForm proofs={pianoLeadProofsEn} id="poptavka" variant="full" locale="en"
             title="Contact us for a free consultation"
             lead="Get in touch and we will put together an offer tailored to your operation." />
 
 </Base>
 
 <style>
-  /* New from Piano — spotlight */
+  /* New from Piano: spotlight */
   .novinky__head { max-width: 720px; margin: 0 auto var(--space-7); text-align: center; }
   .novinky__head :global(h2) { margin-top: var(--space-2); }
   .novinky__sub { margin-top: var(--space-3); }
@@ -290,7 +291,7 @@ const faqSchema = {
   .stat__num { font-family: var(--font-sans); font-weight: var(--font-weight-semibold); font-size: clamp(28px, 4vw, 44px); color: var(--color-text-accent); letter-spacing: var(--letter-spacing-tight); }
   .stat__lbl { font-size: var(--font-size-small); color: var(--color-text-muted); }
 
-  /* Categories — sticky scroll: ALL text left, large photo right */
+  /* Categories: sticky scroll: ALL text left, large photo right */
   .solscroll { background: var(--color-bg-alt); }
   .solscroll__pin { position: relative; }
   .solscroll__inner { position: sticky; top: 0; height: 100vh; display: flex; align-items: center; overflow: hidden; }

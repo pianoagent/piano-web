@@ -16,6 +16,7 @@ import Icon from '@piano/ui/components/Icon.astro';
 import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
 import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
+import { protelLeadProofs } from '../../config/leadProofs';
 
 const features = [
   {
@@ -68,14 +69,14 @@ const related = [
 ---
 
 <Base title="Digitální housekeeping | Protel"
-      description="Digitální řešení pro housekeeping: přidělování úkolů, kontrola stavu pokojů a komunikace mezi zaměstnanci. Úklid ve vašem hotelu bez papírů.">
+      description="Digitální řešení pro housekeeping: přidělování úkolů, kontrola stavu pokojů a komunikace mezi zaměstnanci. Úklid ve Vašem hotelu bez papírů.">
   <SiteHeader />
 
   <main>
     <Breadcrumb items={[{ label: 'Úvod', href: '/' }, { label: 'Produkty', href: '/produkty' }, { label: "Housekeeping" }]} />
 
     <Hero eyebrow="Produkty" background="gradient"
-          lead="Digitální řešení pro housekeeping přináší efektivitu a transparentnost do úklidu a údržby hotelových pokojů. Snadné sledování a přidělování úkolů, kontrola stavu pokojů a komunikace mezi zaměstnanci i housekeeping ve vašem hotelu může být kompletně digitální!">
+          lead="Digitální řešení pro housekeeping přináší efektivitu a transparentnost do úklidu a údržby hotelových pokojů. Snadné sledování a přidělování úkolů, kontrola stavu pokojů a komunikace mezi zaměstnanci i housekeeping ve Vašem hotelu může být kompletně digitální!">
       <Heading slot="title" as="h1" size="display" color="on-dark">Digitální <em>housekeeping</em></Heading>
       <Fragment slot="actions">
         <Button href="#poptavka">Vyzkoušet Protel zdarma</Button>
@@ -109,17 +110,17 @@ const related = [
       <figure class="quoteband">
         <span class="quoteband__mark"><Icon name="lucide:quote" size="lg" /></span>
         <blockquote>
-          <Heading as="p" size="h3" color="on-dark" align="center">Housekeeping v Protelu znamená efektivní správu úklidu a údržby pokojů, plánování, sledování stavu i reportování závad. Výsledkem je plynulý a efektivní provoz vašeho hotelu.</Heading>
+          <Heading as="p" size="h3" color="on-dark" align="center">Housekeeping v Protelu znamená efektivní správu úklidu a údržby pokojů, plánování, sledování stavu i reportování závad. Výsledkem je plynulý a efektivní provoz Vašeho hotelu.</Heading>
         </blockquote>
       </figure>
     </Section>
 
-    <USPGrid eyebrow="Dále by vás mohlo zajímat" title="Související produkty"
+    <USPGrid eyebrow="Dále by Vás mohlo zajímat" title="Související produkty"
              items={related} minItemWidth="260px" background="alt" space="lg" />
 
-    <LeadForm id="poptavka" variant="full" background="default"
+    <LeadForm proofs={protelLeadProofs} id="poptavka" variant="full" background="default"
               title="Vyzkoušejte Protel zdarma"
-              lead="Co byste u vás v hotelu rádi zlepšili? Nechte nám kontakt, ozveme se a ukážeme Protel přímo ve vašem hotelu." />
+              lead="Co byste u Vás v hotelu rádi zlepšili? Nechte nám kontakt, ozveme se a ukážeme Protel přímo ve Vašem hotelu." />
   </main>
 
   <SiteFooter />

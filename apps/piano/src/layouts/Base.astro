@@ -1,6 +1,6 @@
 ---
 /**
- * Base — layout webu piano.cz.
+ * Base: layout webu piano.cz.
  * Globálně: téma, SEO hlavička, Header + <main> + Footer.
  * Stránky dodávají JEN vnitřní obsah (do <slot/>). Hlavička/patička se tak
  * nastavují na jednom místě.
@@ -25,7 +25,7 @@ interface Props {
   headerTransparent?: boolean; // overlay header přes hero (per stránka)
   contactBand?: boolean;       // globální pruh „Spojte se s námi" nad patičkou (default true)
   locale?: Locale;             // jazyk stránky (default dle URL: /en/ → en, jinak cs)
-  preloadImage?: string;       // LCP obrázek k přednačtení (preload + fetchpriority) — např. hero
+  preloadImage?: string;       // LCP obrázek k přednačtení (preload + fetchpriority): např. hero
 }
 
 const SITE_NAME = 'Piano';
@@ -99,7 +99,7 @@ const schemas = [organizationSchema, ...(schema ? [schema] : [])];
 <!doctype html>
 <html lang={locale}>
   <head>
-    <!-- Google Search Console — ověření přes HTML tag (DNS na hostingu blokované) -->
+    <!-- Google Search Console: ověření přes HTML tag (DNS na hostingu blokované) -->
     <meta name="google-site-verification" content="KgZuNpYxxMSjYosWLt0mC_2B8zkvHz-DUCYw_HbbtKw" />
     {preloadImage && <link rel="preload" as="image" href={preloadImage} fetchpriority="high" />}
     <!-- Google Tag Manager -->

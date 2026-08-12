@@ -10,6 +10,7 @@ import Text from '@piano/ui/components/Text.astro';
 import Button from '@piano/ui/components/Button.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import StatsBand from '../../components/StatsBand.astro';
+import { septimLeadProofs } from '../../config/leadProofs';
 ---
 <Base title="Záruční a pozáruční servis | Septim"
       description="Záruční i pozáruční servis systému Septim. Postaráme se o rychlé řešení závad hardwaru i softwaru, aby váš provoz nestál.">
@@ -50,7 +51,7 @@ import StatsBand from '../../components/StatsBand.astro';
     </Section>
 
     <StatsBand />
-    <LeadForm id="poptavka" variant="callback" background="default"
+    <LeadForm proofs={septimLeadProofs} id="poptavka" variant="callback" background="default"
               title="Potřebujete záruční nebo pozáruční servis?"
               lead="Nechte nám telefon, poradíme s reklamací i opravou hardwaru a softwaru." />
   </main>

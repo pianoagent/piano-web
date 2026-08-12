@@ -15,9 +15,10 @@ import Icon from '@piano/ui/components/Icon.astro';
 import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
 import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
+import { protelLeadProofs } from '../config/leadProofs';
 
 const related = [
-  { icon: "lucide:globe", title: "Webové rezervace", text: "Booking engine přímo na vašem webu.", href: "/produkty/webove-rezervace" },
+  { icon: "lucide:globe", title: "Webové rezervace", text: "Booking engine přímo na Vašem webu.", href: "/produkty/webove-rezervace" },
   { icon: "lucide:calendar-check", title: "Individuální rezervace", text: "Rezervace krok za krokem, bez chyb.", href: "/produkty/hotelovy-system-protel#individualni-rezervace" },
   { icon: "lucide:users", title: "Skupinové rezervace", text: "Až sto pokojů v jedné rezervaci.", href: "/produkty/hotelovy-system-protel#skupinove-rezervace" },
   { icon: "lucide:tags", title: "Cenotvorba", text: "Aktuální prodejní ceny na všech kanálech.", href: "/produkty/hotelovy-system-protel#cenotvorba" },
@@ -32,7 +33,7 @@ const related = [
     <Breadcrumb items={[{ label: 'Úvod', href: '/' }, { label: 'Řešení', href: '/#reseni' }, { label: "Automatizace rezervací" }]} />
 
     <Hero eyebrow="Řešení" background="gradient"
-          lead="Trápí vás, že do hotelového systému zadáváte všechny rezervace ručně? Stojí vás to mnoho času a občas uděláte chybu? Přicházíte o možnost prodat pokoj, protože nemáte na prodejních kanálech aktualizovanou dostupnost pokojů?">
+          lead="Trápí Vás, že do hotelového systému zadáváte všechny rezervace ručně? Stojí Vás to mnoho času a občas uděláte chybu? Přicházíte o možnost prodat pokoj, protože nemáte na prodejních kanálech aktualizovanou dostupnost pokojů?">
       <Heading slot="title" as="h1" size="display" color="on-dark">Automatizace <em>rezervací</em></Heading>
       <Fragment slot="actions">
         <Button href="#poptavka">Vyzkoušet Protel zdarma</Button>
@@ -63,9 +64,9 @@ const related = [
     <USPGrid eyebrow="Související" title="Související s automatizací rezervací"
              items={related} minItemWidth="260px" background="alt" space="lg" />
 
-    <LeadForm id="poptavka" variant="full" background="default"
+    <LeadForm proofs={protelLeadProofs} id="poptavka" variant="full" background="default"
               title="Vyzkoušejte Protel zdarma"
-              lead="Co byste u vás v hotelu rádi zlepšili? Nechte nám kontakt, ozveme se a ukážeme Protel přímo ve vašem hotelu." />
+              lead="Co byste u Vás v hotelu rádi zlepšili? Nechte nám kontakt, ozveme se a ukážeme Protel přímo ve Vašem hotelu." />
   </main>
 
   <SiteFooter />

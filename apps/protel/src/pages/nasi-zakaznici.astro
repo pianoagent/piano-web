@@ -18,6 +18,7 @@ import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
 import Testimonials from '@piano/ui/components/Testimonials.astro';
 import LogoWall from '@piano/ui/components/LogoWall.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
+import { protelLeadProofs } from '../config/leadProofs';
 
 const caseStudies = [
   { badge: 'Case study · 3 minuty čtení', title: 'Hotel SAVOY Prague', text: 'Jak Protel pomohl luxusnímu hotelu SAVOY zvýšit obsazenost a tržby o 37 % ve specifické lokalitě.', icon: 'lucide:trending-up' },
@@ -93,9 +94,9 @@ const zakaznici = [
       </ul>
     </Section>
 
-    <LeadForm id="poptavka" variant="full" background="default"
+    <LeadForm proofs={protelLeadProofs} id="poptavka" variant="full" background="default"
               title="Přidejte se k nejlepším"
-              lead="Co byste u vás v hotelu rádi zlepšili? Pojďme to probrat, ozveme se a ukážeme Protel přímo ve vašem hotelu." />
+              lead="Co byste u Vás v hotelu rádi zlepšili? Pojďme to probrat, ozveme se a ukážeme Protel přímo ve Vašem hotelu." />
   </main>
 
   <SiteFooter />
