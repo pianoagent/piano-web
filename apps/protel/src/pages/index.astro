@@ -18,6 +18,7 @@ import Icon from '@piano/ui/components/Icon.astro';
 import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import LogoWall from '@piano/ui/components/LogoWall.astro';
+import Testimonials from '@piano/ui/components/Testimonials.astro';
 
 const stats = [
   { num: 'Globální', lbl: 'standard PMS' },
@@ -247,31 +248,13 @@ const leadProofs = [
            items={segmenty} minItemWidth="260px" background="default" space="lg" />
 
   <!-- REFERENCE -->
-  <Section id="reference" background="alt" space="lg">
-    <div class="head head--center">
-      <Text size="label" color="accent" align="center">Naši zákazníci</Text>
-      <Heading as="h2" size="h2" align="center">Co o nás <em>říkají</em></Heading>
-      <Text size="lead" color="muted" align="center" balance>
-        Protel řídí provoz hotelových špiček: Grandhotel Pupp, Clarion Hotel Prague Old Town i hotely Best Western.
-      </Text>
-    </div>
-    <div class="quotes">
-      {testimonials.map((t, i) => (
-        <figure class={`quote quote--${i}`}>
-          <div class="quote__head">
-            <div class="quote__id">
-              <strong class="quote__name">{t.author}</strong>
-              <span class="quote__role">{t.role}</span>
-            </div>
-            <span class="quote__avatar" aria-hidden="true">{t.initials}</span>
-          </div>
-          <span class="quote__mark"><Icon name="lucide:quote" size="md" /></span>
-          <p class="quote__headline">{t.headline}</p>
-          <blockquote class="quote__text">{t.quote}</blockquote>
-        </figure>
-      ))}
-    </div>
-  </Section>
+  <Testimonials
+    id="reference"
+    background="alt"
+    eyebrow="Naši zákazníci"
+    titleHtml="Co o nás <em>říkají</em>"
+    lead="Protel řídí provoz hotelových špiček: Grandhotel Pupp, Clarion Hotel Prague Old Town i hotely Best Western."
+    items={testimonials} />
 
   <!-- O NÁS -->
   <Section id="o-nas" background="default" space="lg">
@@ -399,24 +382,6 @@ const leadProofs = [
   .chip__dot { width: 8px; height: 8px; border-radius: 50%; background: var(--color-primary); flex-shrink: 0; }
 
   /* Reference */
-  .quotes { display: grid; gap: var(--space-8) var(--space-6); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-  .quote { margin: 0; display: flex; flex-direction: column; }
-  .quote__head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); margin-bottom: var(--space-5); }
-  .quote__id { display: flex; flex-direction: column; gap: 2px; }
-  .quote__name { font-size: var(--font-size-h3); font-weight: var(--font-weight-bold); color: var(--color-secondary); line-height: 1.1; }
-  .quote__role { font-size: var(--font-size-small); color: var(--color-text-muted); }
-  .quote__avatar {
-    flex-shrink: 0; width: 84px; height: 84px; border-radius: 50%;
-    display: inline-flex; align-items: center; justify-content: center;
-    font-size: var(--font-size-h3); font-weight: var(--font-weight-bold);
-    color: #fff; letter-spacing: 0.02em; box-shadow: var(--shadow-md);
-  }
-  .quote--0 .quote__avatar { background: var(--testimonial-grad-1); }
-  .quote--1 .quote__avatar { background: var(--testimonial-grad-2); }
-  .quote--2 .quote__avatar { background: var(--testimonial-grad-3); }
-  .quote__mark { color: var(--color-primary); display: block; margin-bottom: var(--space-2); }
-  .quote__headline { font-weight: var(--font-weight-bold); color: var(--color-secondary); margin-bottom: var(--space-2); }
-  .quote__text { font-size: var(--font-size-body); color: var(--color-text-muted); line-height: var(--line-height-body); }
 
   /* CTA */
   .cta-actions { display: flex; gap: var(--space-3); justify-content: center; flex-wrap: wrap; margin-top: var(--space-5); }

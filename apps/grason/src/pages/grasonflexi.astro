@@ -5,6 +5,7 @@
  */
 import Base from '../layouts/Base.astro';
 import Header from '@piano/ui/components/Header.astro';
+import Testimonials from '@piano/ui/components/Testimonials.astro';
 import Footer from '@piano/ui/components/Footer.astro';
 import Section from '@piano/ui/components/Section.astro';
 import Hero from '@piano/ui/components/Hero.astro';
@@ -178,28 +179,12 @@ const priceFeatures = [
     </Text>
   </Section>
 
-  <Section background="pink" space="lg">
-    <div class="head head--center">
-      <Text size="label" color="default" align="center">Reference</Text>
-      <Heading as="h2" size="h2" align="center">Co říkají <span class="accent">naši klienti</span></Heading>
-    </div>
-    <div class="quotes">
-      {testimonials.map((t, i) => (
-        <figure class={`quote quote--${i % 3}`}>
-          <div class="quote__head">
-            <div class="quote__id">
-              <strong class="quote__name">{t.author}</strong>
-              <span class="quote__role">{t.role}</span>
-            </div>
-            <span class="quote__avatar" aria-hidden="true">{t.initials}</span>
-          </div>
-          <span class="quote__mark"><Icon name="lucide:quote" size="md" /></span>
-          <blockquote class="quote__text">{t.quote}</blockquote>
-        </figure>
-      ))}
-    </div>
-  </Section>
-
+  <Testimonials
+    eyebrow="Reference"
+    eyebrowColor="default"
+    background="pink"
+    items={testimonials}
+    titleHtml={'Co říkají <span class="accent">naši klienti</span>'} />
   <Faq items={flexiFaqs} title="Časté dotazy ke GrasonFlexi" background="default" />
   </main>
 
@@ -266,18 +251,6 @@ const priceFeatures = [
   .pcell-yes { color: var(--color-secondary-azure); }
   .pcell-no { color: var(--color-neutral-300); }
   .ptable__note { margin-top: var(--space-5); }
-  .quotes { display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-  .quote { margin: 0; display: flex; flex-direction: column; background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-6); box-shadow: var(--shadow-sm); }
-  .quote__head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); margin-bottom: var(--space-4); }
-  .quote__id { display: flex; flex-direction: column; gap: 2px; }
-  .quote__name { font-size: var(--font-size-lead); font-weight: var(--font-weight-bold); color: var(--color-secondary); line-height: 1.15; }
-  .quote__role { font-size: var(--font-size-small); color: var(--color-text-muted); }
-  .quote__avatar { flex-shrink: 0; width: 56px; height: 56px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: var(--font-size-body); font-weight: var(--font-weight-bold); color: #fff; }
-  .quote--0 .quote__avatar { background: var(--testimonial-grad-1); }
-  .quote--1 .quote__avatar { background: var(--testimonial-grad-2); }
-  .quote--2 .quote__avatar { background: var(--testimonial-grad-3); }
-  .quote__mark { color: var(--color-secondary-azure); display: block; margin-bottom: var(--space-2); }
-  .quote__text { font-size: var(--font-size-body); color: var(--color-text); line-height: var(--line-height-body); }
 </style>
 
 <script>

@@ -9,6 +9,7 @@
  */
 import Base from '../layouts/Base.astro';
 import Header from '@piano/ui/components/Header.astro';
+import Testimonials from '@piano/ui/components/Testimonials.astro';
 import Footer from '@piano/ui/components/Footer.astro';
 import Section from '@piano/ui/components/Section.astro';
 import Hero from '@piano/ui/components/Hero.astro';
@@ -64,9 +65,9 @@ const stats = [
 ];
 
 const reference = [
-  { img: '/images/ref/jan-poloch.webp', name: 'Ing. Jan Poloch', role: 'Startronic Gastro Ostrava, 27+ provozoven', quote: 'Pokladní systém pro restaurace Harsys mi pomáhá úplně se vším. Mám ho rád! Je přehledný a spolehlivý.' },
-  { img: '/images/ref/long-story-short.webp', name: 'Petr Heneš', role: 'Long story short, Olomouc', quote: 'S firmou ABX spolupracujeme již celých 6 let. V celém našem podniku vždy maximálně využíváme všechny vychytávky, které jejich pokladní systém nabízí.' },
-  { img: '/images/ref/hana-ztratilova.webp', name: 'Hana Ztratilová', role: 'Restaurace Na Špici, Radošov', quote: 'Harsys používáme od roku 2009 a opravdu nám vyhovuje. Nabízí spoustu užitečných funkcí a oceňujeme i podporu, která je vždy připravena pomoci.' },
+  { photo: '/images/ref/jan-poloch.webp', author: 'Ing. Jan Poloch', role: 'Startronic Gastro Ostrava, 27+ provozoven', quote: 'Pokladní systém pro restaurace Harsys mi pomáhá úplně se vším. Mám ho rád! Je přehledný a spolehlivý.' },
+  { photo: '/images/ref/long-story-short.webp', author: 'Petr Heneš', role: 'Long story short, Olomouc', quote: 'S firmou ABX spolupracujeme již celých 6 let. V celém našem podniku vždy maximálně využíváme všechny vychytávky, které jejich pokladní systém nabízí.' },
+  { photo: '/images/ref/hana-ztratilova.webp', author: 'Hana Ztratilová', role: 'Restaurace Na Špici, Radošov', quote: 'Harsys používáme od roku 2009 a opravdu nám vyhovuje. Nabízí spoustu užitečných funkcí a oceňujeme i podporu, která je vždy připravena pomoci.' },
 ];
 
 const faqs = [
@@ -220,31 +221,12 @@ const leadProofs = [
   </Section>
 
   <!-- REFERENCE -->
-  <Section background="default" space="lg">
-    <div class="head head--center">
-      <Text size="label" color="accent" align="center">Reference</Text>
-      <Heading as="h2" size="h2" align="center">Spokojené uživatele najdete <span class="accent">po celé ČR</span></Heading>
-    </div>
-    <div class="quotes">
-      {reference.map((t) => (
-        <figure class="quote">
-          <span class="quote__mark"><Icon name="lucide:quote" size="md" /></span>
-          <blockquote class="quote__text">{t.quote}</blockquote>
-          <figcaption class="quote__foot">
-            <img class="quote__photo" src={t.img} alt={t.name} loading="lazy" />
-            <span class="quote__id">
-              <strong class="quote__name">{t.name}</strong>
-              <span class="quote__role">{t.role}</span>
-            </span>
-          </figcaption>
-        </figure>
-      ))}
-    </div>
-    <div class="variants__cta">
-      <Button href="/reference" variant="secondary">Všechny reference</Button>
-    </div>
-  </Section>
-
+  <Testimonials
+    background="default"
+    items={reference}
+    eyebrow="Reference"
+    titleHtml={'Spokojené uživatele najdete <span class="accent">po celé ČR</span>'}
+    attribution="bottom" />
   <!-- FAQ -->
   <Section id="faq" background="alt" space="lg">
     <div class="head head--center">
@@ -349,15 +331,6 @@ const leadProofs = [
   }
 
   /* Reference */
-  .quotes { display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-  .quote { margin: 0; display: flex; flex-direction: column; background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-6); box-shadow: var(--shadow-sm); }
-  .quote__mark { color: var(--color-secondary-terracotta); display: block; margin-bottom: var(--space-3); }
-  .quote__text { font-size: var(--font-size-body); color: var(--color-text); line-height: var(--line-height-body); flex: 1; }
-  .quote__foot { display: flex; align-items: center; gap: var(--space-3); margin-top: var(--space-5); }
-  .quote__photo { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
-  .quote__id { display: flex; flex-direction: column; gap: 2px; }
-  .quote__name { font-size: var(--font-size-body); font-weight: var(--font-weight-bold); color: var(--color-primary); line-height: 1.15; }
-  .quote__role { font-size: var(--font-size-small); color: var(--color-text-muted); }
 
   /* FAQ */
   .faq { max-width: 800px; margin-inline: auto; display: flex; flex-direction: column; gap: var(--space-3); }
