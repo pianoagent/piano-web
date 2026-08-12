@@ -1,4 +1,4 @@
-/* TÉMA — piano.cz
+/* TÉMA: piano.cz
    =========================================================
    Barvy a fonty webu piano.cz. Importuje sdílené base tokeny.
    Nový web = kopie tohoto souboru s jinými hodnotami.
@@ -25,6 +25,9 @@
   /* Fonty */
   --font-sans:  "Borna", "Host Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-serif: "PP Eiko", Georgia, "Times New Roman", serif;
+
+  /* Chipy kategorií má Piano jako pilulky, ostatní weby zaoblený čtverec */
+  --chip-radius: var(--radius-full);
 
   /* Primary (brand) */
   --color-primary:          #B8093B;

@@ -5,6 +5,7 @@
  */
 import Base from '../layouts/Base.astro';
 import Header from '@piano/ui/components/Header.astro';
+import Faq from '@piano/ui/components/Faq.astro';
 import Footer from '@piano/ui/components/Footer.astro';
 import Section from '@piano/ui/components/Section.astro';
 import Hero from '@piano/ui/components/Hero.astro';
@@ -118,18 +119,10 @@ const leadProofs = [
            items={fair} columns={4} minItemWidth="230px" background="default" space="lg" />
 
   <!-- FAQ -->
-  <Section background="alt" space="lg">
-    <div class="head head--center"><Heading as="h2" size="h2" align="center">Časté otázky k ceníku</Heading></div>
-    <div class="faq">
-      {faqs.map((f) => (
-        <details class="faq__item">
-          <summary>{f.q}<Icon name="lucide:chevron-down" size="sm" class="faq__chev" /></summary>
-          <div class="faq__a"><Text color="muted">{f.a}</Text></div>
-        </details>
-      ))}
-    </div>
-  </Section>
-
+  <Faq
+    background="alt"
+    items={faqs}
+    title="Časté otázky k ceníku" />
   <LeadForm id="poptavka" variant="callback" background="primary"
             title="Chcete poradit s výběrem varianty?"
             lead="Zanechte číslo a my se vám ozveme. Připravíme cenovou nabídku na míru včetně nabídky splátek."
@@ -173,12 +166,4 @@ const leadProofs = [
   .opt { background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-7); display: flex; flex-direction: column; gap: var(--space-3); box-shadow: var(--shadow-sm); }
   .opt__icon { display: inline-flex; align-items: center; justify-content: center; width: 56px; height: 56px; border-radius: var(--radius-md); background: color-mix(in srgb, var(--color-primary) 8%, #fff); color: var(--color-primary); }
   @media (max-width: 720px) { .two { grid-template-columns: 1fr; } }
-
-  .faq { max-width: 800px; margin-inline: auto; display: flex; flex-direction: column; gap: var(--space-3); }
-  .faq__item { border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-bg); padding: 0 var(--space-5); }
-  .faq__item summary { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); padding: var(--space-4) 0; cursor: pointer; font-weight: var(--font-weight-semibold); list-style: none; }
-  .faq__item summary::-webkit-details-marker { display: none; }
-  .faq__chev { transition: transform var(--duration-base) var(--easing); color: var(--color-text-muted); }
-  .faq__item[open] .faq__chev { transform: rotate(180deg); }
-  .faq__a { padding-bottom: var(--space-5); }
 </style>

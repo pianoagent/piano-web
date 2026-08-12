@@ -7,7 +7,8 @@
  *   groups: [{ title, items: [{ q, a }] }]     (seskupené, např. per produkt)
  *   title: nadpis sekce (default „Často kladené dotazy")
  *   lead: volitelný perex pod nadpisem
- *   background'default' | 'alt'
+ *   background: 'default' | 'alt'
+ *   id: ukotvení sekce (Harsys má v navigaci odkaz #faq)
  */
 import Section from './Section.astro';
 import Heading from './Heading.astro';
@@ -16,13 +17,13 @@ import Icon from './Icon.astro';
 
 interface Item { q: string; a: string; }
 interface Group { title: string; items: Item[]; }
-interface Props { items?: Item[]; groups?: Group[]; title?: string; lead?: string; background?: 'default' | 'alt'; }
-const { items = [], groups, title = 'Často kladené dotazy', lead, background = 'default' } = Astro.props;
+interface Props { items?: Item[]; groups?: Group[]; title?: string; lead?: string; background?: 'default' | 'alt'; id?: string; }
+const { items = [], groups, title = 'Často kladené dotazy', lead, background = 'default', id } = Astro.props;
 
 const resolvedGroups: Group[] = groups && groups.length > 0 ? groups : [{ title: '', items }];
 ---
 
-<Section background={background} space="lg">
+<Section background={background} space="lg" id={id}>
   <div class="head head--center">
     <Heading as="h2" size="h2" align="center">{title}</Heading>
     {lead && <Text size="lead" color="muted" align="center">{lead}</Text>}
