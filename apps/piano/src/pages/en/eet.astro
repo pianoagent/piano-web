@@ -7,6 +7,7 @@
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Section from '@piano/ui/components/Section.astro';
+import Faq from '@piano/ui/components/Faq.astro';
 import Hero from '@piano/ui/components/Hero.astro';
 import Heading from '@piano/ui/components/Heading.astro';
 import Text from '@piano/ui/components/Text.astro';
@@ -165,18 +166,10 @@ const faqSchema = {
   )}
 
   <!-- FAQ -->
-  <Section background="default" space="lg" container="narrow">
-    <Heading as="h2" size="h2" align="center">Frequently asked questions</Heading>
-    <div class="faq">
-      {faqs.map((f) => (
-        <details class="faq__item">
-          <summary class="faq__q">{f.q}</summary>
-          <div class="faq__a"><Text color="muted">{f.a}</Text></div>
-        </details>
-      ))}
-    </div>
-  </Section>
-
+  <Faq
+    background="default"
+    items={faqs}
+    title="Frequently asked questions" />
   <LeadForm proofs={pianoLeadProofsEn} id="poptavka" variant="callback" locale="en"
             title="Is the regulation making your head spin?"
             lead="Leave us your contact details and we will solve it together, a free, no-obligation consultation." />
@@ -236,27 +229,4 @@ const faqSchema = {
   .eetblog__desc { font-size: var(--font-size-small); color: var(--color-text-muted); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
   .eetblog__more { display: inline-flex; align-items: center; gap: var(--space-1); margin-top: auto; padding-top: var(--space-2); color: var(--color-text-accent); font-weight: var(--font-weight-medium); font-size: var(--font-size-small); }
   @media (max-width: 860px) { .eetblog { grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; } }
-
-  .faq { margin-top: var(--space-6); display: flex; flex-direction: column; gap: var(--space-3); }
-  .faq__item {
-    background: var(--color-bg);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-    padding: var(--space-4) var(--space-5);
-  }
-  .faq__q {
-    cursor: pointer;
-    font-family: var(--font-sans);
-    font-weight: var(--font-weight-semibold);
-    color: var(--color-text);
-    list-style: none;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: var(--space-4);
-  }
-  .faq__q::-webkit-details-marker { display: none; }
-  .faq__q::after { content: "+"; color: var(--color-text-accent); font-size: 1.4em; line-height: 1; flex-shrink: 0; }
-  .faq__item[open] .faq__q::after { content: "−"; }
-  .faq__a { margin-top: var(--space-3); }
 </style>

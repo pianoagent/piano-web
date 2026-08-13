@@ -8,6 +8,7 @@
  */
 import Base from '../layouts/Base.astro';
 import Section from '@piano/ui/components/Section.astro';
+import Faq from '@piano/ui/components/Faq.astro';
 import Hero from '@piano/ui/components/Hero.astro';
 import Heading from '@piano/ui/components/Heading.astro';
 import Text from '@piano/ui/components/Text.astro';
@@ -238,18 +239,10 @@ const faqSchema = {
            items={benefits} columns={3} background="default" />
 
   <!-- FAQ -->
-  <Section background="alt" space="lg" container="narrow">
-    <Heading as="h2" size="h2" align="center">Často kladené dotazy</Heading>
-    <div class="faq">
-      {faqs.map((f) => (
-        <details class="faq__item">
-          <summary class="faq__q">{f.q}</summary>
-          <div class="faq__a"><Text color="muted">{f.a}</Text></div>
-        </details>
-      ))}
-    </div>
-  </Section>
-
+  <Faq
+    background="alt"
+    items={faqs}
+    title="Často kladené dotazy" />
   <!-- LEADFORM -->
   <LeadForm proofs={pianoLeadProofs} id="poptavka" variant="full"
             title="Kontaktujte nás pro konzultaci zdarma"
@@ -369,15 +362,6 @@ const faqSchema = {
   .quote__by { display: flex; flex-direction: column; gap: 2px; }
   .quote__author { font-weight: var(--font-weight-semibold); color: var(--color-text-on-dark); }
   .quote__role { font-size: var(--font-size-small); color: var(--color-text-on-dark-muted); }
-
-  /* FAQ */
-  .faq { margin-top: var(--space-6); display: flex; flex-direction: column; gap: var(--space-3); }
-  .faq__item { background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-4) var(--space-5); }
-  .faq__q { cursor: pointer; font-family: var(--font-sans); font-weight: var(--font-weight-semibold); color: var(--color-text); list-style: none; display: flex; justify-content: space-between; align-items: center; gap: var(--space-4); }
-  .faq__q::-webkit-details-marker { display: none; }
-  .faq__q::after { content: "+"; color: var(--color-text-accent); font-size: 1.4em; line-height: 1; flex-shrink: 0; }
-  .faq__item[open] .faq__q::after { content: "−"; }
-  .faq__a { margin-top: var(--space-3); }
 
   @media (max-width: 720px) {
     .stats { grid-template-columns: repeat(2, 1fr); gap: var(--space-6) var(--space-4); }
