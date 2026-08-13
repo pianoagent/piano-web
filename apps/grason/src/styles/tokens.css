@@ -60,7 +60,10 @@
   --s-6: 32px; --s-7: 48px; --s-8: 64px; --s-9: 96px; --s-10: 128px;
 
   /* ---------- Layout ---------- */
-  --container:     1180px;
+  /* Sjednoceno na 1200px 13. 8. 2026 (bylo 1180px). Kontejner nedrží
+     délku řádku, tu drží stropy bloků (hero text 720, FAQ 760, cover 620),
+     takže rozšíření nezhoršuje čitelnost, jen dá mřížkám víc místa. */
+  --container:    1200px;
   --columns:       12;
   --gutter:        40px;
   --page-pad:      40px;
