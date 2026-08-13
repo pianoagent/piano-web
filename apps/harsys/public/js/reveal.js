@@ -23,7 +23,7 @@
 
   root.classList.add('js');
 
-  /* Spousteci linka. Bere se z tokenu --reveal-threshold (default 0,15):
+  /* Spousteci linka. Bere se z tokenu --reveal-threshold (default 0,2, jako grason.cz):
      prvek se odkryje, az jeho horni hrana vystoupa nad (1 - threshold)
      vysky viewportu, tedy az je znatelne v pohledu.
 
@@ -33,10 +33,15 @@
   var threshold = parseFloat(
     getComputedStyle(root).getPropertyValue('--reveal-threshold')
   );
-  if (!(threshold > 0 && threshold < 1)) threshold = 0.15;
+  if (!(threshold > 0 && threshold < 1)) threshold = 0.2;
   var linePct = 1 - threshold;
 
   function crossed(el) {
+    /* Pojistka: kdyz okno nema vysku (skryta zalozka, nulovy viewport, ramecek
+       o nulove velikosti), byla by spousteci linka na nule a nic by se nikdy
+       neodkrylo. Obsah nesmi zustat neviditelny, tak ho v takovem pripade
+       pustime rovnou. */
+    if (!window.innerHeight) return true;
     return el.getBoundingClientRect().top < window.innerHeight * linePct;
   }
 

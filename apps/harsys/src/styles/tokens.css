@@ -76,14 +76,24 @@
   --control-h-lg:  58px;
   --card-pad:      32px;
 
-  /* ---------- Scroll reveal ---------- */
+  /* ---------- Scroll reveal ----------
+     Přesné hodnoty z živého grason.cz (AppSection.vue + core/variables.scss),
+     kde $transition-duration-1 = .15s a $transition-duration-2 = .25s:
+       trvání   $transition-duration-2 * 2      = 500ms
+       křivka   ease-out (ne easeOutQuint, ta dojede opticky za třetinu času)
+       posun    30px
+       perex    .3s, tlačítko .6s
+       seznamy  první položka .15s * 3, krok .15s
+       spoušť   top prvku < 80 % výšky okna
+     Záměrně stejné na všech webech, aby náběh působil jako jeden ekosystém. */
   --dur-reveal:    500ms;
   --reveal-shift:  30px;
-  --reveal-stagger:70ms;
-  --reveal-delay-1: 280ms;   /* perex za nadpisem */
-  --reveal-delay-2: 550ms;   /* CTA za perexem */
-  --reveal-threshold: 0.15;
-  --ease-reveal:   cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-reveal:   ease-out;
+  --reveal-threshold: 0.2;
+  --reveal-delay-1: 300ms;   /* perex za nadpisem */
+  --reveal-delay-2: 600ms;   /* CTA za perexem */
+  --reveal-stagger-base: 450ms;  /* první položka v řadě */
+  --reveal-stagger: 150ms;       /* krok mezi položkami */
 
   /* ---------- Motion ---------- */
   --ease:          cubic-bezier(0.4, 0, 0.2, 1);
@@ -93,5 +103,5 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  :root { --dur-micro: 0ms; --dur-standard: 0ms; --dur-page: 0ms; --dur-reveal: 0ms; --reveal-shift: 0px; --reveal-stagger: 0ms; }
+  :root { --dur-micro: 0ms; --dur-standard: 0ms; --dur-page: 0ms; --dur-reveal: 0ms; --reveal-shift: 0px; --reveal-stagger: 0ms; --reveal-stagger-base: 0ms; }
 }

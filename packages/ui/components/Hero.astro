@@ -58,6 +58,12 @@ const innerClasses = [
 ]
   .filter(Boolean)
   .join(' ');
+
+/* Režie náběhu jako na živém grason.cz: nadpis, po 300ms perex, po 600ms CTA.
+   Směr kopíruje kompozici, stejně jako tam sekce left a center: text zarovnaný
+   vlevo přijede zleva, centrovaný blok spadne shora. */
+const from = !hasMedia && align === 'center' ? 'reveal--from-top' : 'reveal--from-left';
+const rv = (delay?: 'd1' | 'd2') => ['reveal', from, delay && `reveal--${delay}`].filter(Boolean).join(' ');
 ---
 
 {/* Hero je nad ohybem, reveal.js ho odkryje bez animace. Reveal na sekci
@@ -65,9 +71,9 @@ const innerClasses = [
     medium zprava, stejne jako sekce left a right na zivem grason.cz. */}
 <Section background={background} space={space} reveal={false}>
   <div class={innerClasses} data-hero-carousel={isCarousel ? '' : undefined}>
-    <div class:list={['hero__text', hasMedia && 'reveal', hasMedia && 'reveal--from-left']}>
+    <div class="hero__text">
       {useSlides ? (
-        <div class="hero__rot">
+        <div class:list={['hero__rot', rv()]}>
           {slides.map((s, i) => (
             <div class={`hero__slide${i === 0 ? ' is-active' : ''}`} data-hero-slide={i} role="tabpanel" id={`hero-panel-${i}`} aria-labelledby={`hero-tab-${i}`}>
               {s.eyebrow && <p class="hero__eyebrow">{s.eyebrow}</p>}
@@ -80,24 +86,28 @@ const innerClasses = [
         </div>
       ) : (
         <>
-          {eyebrow && <p class="hero__eyebrow">{eyebrow}</p>}
-          {hasTitle ? (
-            <slot name="title" />
-          ) : (
-            title && <Heading as="h1" size="display" color={onDark ? 'on-dark' : 'default'}>{title}</Heading>
-          )}
+          {/* Návěs a nadpis přijedou spolu jako jeden blok, proto obal.
+              Nadpis chodí ze stránky slotem, přidat mu třídu odsud nejde. */}
+          <div class:list={['hero__head', rv()]}>
+            {eyebrow && <p class="hero__eyebrow">{eyebrow}</p>}
+            {hasTitle ? (
+              <slot name="title" />
+            ) : (
+              title && <Heading as="h1" size="display" color={onDark ? 'on-dark' : 'default'}>{title}</Heading>
+            )}
+          </div>
           {lead && (
-            <Text size="lead" align={align} color={onDark ? 'on-dark-muted' : 'muted'} class="hero__lead">{lead}</Text>
+            <Text size="lead" align={align} color={onDark ? 'on-dark-muted' : 'muted'} class={`hero__lead ${rv('d1')}`}>{lead}</Text>
           )}
         </>
       )}
 
       {hasActions && (
-        <div class="hero__actions"><slot name="actions" /></div>
+        <div class:list={['hero__actions', rv('d2')]}><slot name="actions" /></div>
       )}
 
       {uspItems.length > 0 && (
-        <ul class="hero__usp">
+        <ul class:list={['hero__usp', rv('d2')]}>
           {uspItems.map((u) => (
             <li class="hero__usp-item">
               <span class="hero__usp-check"><Icon name={u.icon} size="sm" /></span>
