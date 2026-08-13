@@ -86,7 +86,10 @@ function pageMeta(txt) {
        nebo vyraz) -> delku ani tvar nelze staticky posoudit, nehlasit. */
     const dyn = (name) => new RegExp(`\\b${name}\\s*=\\s*\\{`).test(tag) || new RegExp(`\\b${name}\\s*=\\s*"[^"]*\\$\\{`).test(tag);
     if (title || description || dyn('title')) {
-      return { title, description, dynTitle: !title && dyn('title'), dynDesc: !description && dyn('description') };
+      /* Stranka s noindex se nedostane do vysledku hledani, takze delka title
+         ani description u ni nic neresi. Napr. /styleguide, interni katalog. */
+      const noindex = /\bnoindex\b/.test(tag);
+      return { title, description, noindex, dynTitle: !title && dyn('title'), dynDesc: !description && dyn('description') };
     }
   }
   const title = (txt.match(/<title[^>]*>([\s\S]*?)<\/title>/i) || [])[1];
@@ -101,14 +104,18 @@ function auditReport(files) {
 
   for (const f of pages) {
     const t = read(f); if (t == null) continue;
-    const { title, description, dynTitle, dynDesc } = pageMeta(t);
+    const { title, description, noindex, dynTitle, dynDesc } = pageMeta(t);
     const site = siteNameFor(f);
+
+    /* Meta kontroly maji smysl jen u indexovanych stranek. H1 a obrazky se
+       kontroluji dal, ty jsou o pristupnosti, ne o vyhledavani. */
+    if (!noindex) {
 
     if (!title && !dynTitle) warn.push(`${f}: chybí title`);
     if (title) {
       const len = title.length;
       /* U servisnich stranek je kratky title v poradku (Kontakt, Děkujeme…) */
-      const utility = /\/(kontakt|dekujeme|cookies|ochrana-udaju|ochrana-osobnich-udaju|obchodni-podminky|kariera)\b/.test(f);
+      const utility = /\/(kontakt|dekujeme|cookies|ochrana-udaju|ochrana-osobnich-udaju|obchodni-podminky|kariera|styleguide)\b/.test(f);
       if (len > TITLE_MAX || (len < TITLE_MIN && !utility)) warn.push(`${f}: délka title ${len} zn. (cíl ${TITLE_MIN}–${TITLE_MAX}): „${title}"`);
       /* CLAUDE.md: meta title ve tvaru „Text | Název webu" */
       if (site && !title.endsWith(`| ${site}`)) warn.push(`${f}: title není ve tvaru „Text | ${site}": „${title}"`);
@@ -119,6 +126,8 @@ function auditReport(files) {
     } else {
       const l = description.length;
       if (l < DESC_MIN || l > DESC_MAX) warn.push(`${f}: meta description ${l} zn. (cíl ${DESC_MIN}–${DESC_MAX})`);
+    }
+
     }
 
     const h1 = (t.match(/<h1[\s>]/gi) || []).length;

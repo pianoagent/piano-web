@@ -6,7 +6,8 @@ import icon from 'astro-icon';
 export default defineConfig({
   site: 'https://eet2027.cz',
   integrations: [
-    sitemap(),
+    // /styleguide je interni katalog komponent, do sitemapy nepatri
+    sitemap({ filter: (page) => !page.includes('/styleguide') }),
     icon({ iconDir: 'src/icons' }),
   ],
 });
