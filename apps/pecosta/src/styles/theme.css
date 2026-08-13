@@ -80,6 +80,10 @@
 }
 
 :root {
+  /* Odstín závoje nad fotkou v hero variantě cover. Pecosta modrá, aby fotka
+     provozu čtla jako součást značky, ne jako stocková ilustrace. Bez tohoto
+     tokenu je závoj neutrálně černý. */
+  --hero-cover-tint: rgba(13, 61, 99, 0.42);
   /* ----- Písmo ----- */
   --font-sans:  "Open Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
   --font-display: "Cabin", "Segoe UI", system-ui, -apple-system, sans-serif;

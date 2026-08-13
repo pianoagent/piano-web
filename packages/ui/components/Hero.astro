@@ -38,9 +38,16 @@ interface Props {
   usp?: (string | { text: string; icon?: string })[];   // klíčové body → proužek uvnitř hero; ikonu lze určit per bod
   slides?: HeroSlide[];  // rotující eyebrow+nadpis+lead+obrázek; actions a usp zůstávají fixní
   carouselLabel?: string;  // aria-label přepínače (teček) carouselu; default česky
+  /* Kompozice hero:
+       "split" (default) médium jako blok vedle textu, dosavadní chování
+       "cover"           médium na plnou šířku a výšku jako pozadí, text přes něj
+     Cover počítá s průhlednou hlavičkou (<Header transparent />) a sám si drží
+     odsazení o její výšku, ať text nekončí pod logem. */
+  variant?: 'split' | 'cover';
 }
 
-const { eyebrow, title, lead, align = 'left', background = 'default', space = 'lg', usp = [], slides = [], carouselLabel = 'Přepnout sdělení' } = Astro.props;
+const { eyebrow, title, lead, align = 'left', background = 'default', space = 'lg', usp = [], slides = [], carouselLabel = 'Přepnout sdělení', variant = 'split' } = Astro.props;
+const isCover = variant === 'cover';
 const uspItems = usp.map((u) => (typeof u === 'string' ? { text: u, icon: 'lucide:check' } : { text: u.text, icon: u.icon ?? 'lucide:check' }));
 
 const useSlides = slides.length > 0;
@@ -50,11 +57,15 @@ const hasActions = Astro.slots.has('actions');
 const hasMedia = useSlides ? slides.some((s) => s.image) : Astro.slots.has('media');
 const onDark = background === 'invert' || background === 'primary' || background === 'gradient';
 
+/* U coveru je text vždycky na tmavém podkladu (fotka plus závoj), takže se
+   chová jako on-dark bez ohledu na prop background. */
+const textOnDark = onDark || isCover;
+
 const innerClasses = [
   'hero__inner',
-  hasMedia ? 'hero__inner--split' : 'hero__inner--single',
-  !hasMedia && `hero__inner--align-${align}`,
-  onDark && 'hero__inner--on-dark',
+  isCover ? 'hero__inner--cover' : (hasMedia ? 'hero__inner--split' : 'hero__inner--single'),
+  (isCover || !hasMedia) && `hero__inner--align-${isCover ? 'left' : align}`,
+  textOnDark && 'hero__inner--on-dark',
 ]
   .filter(Boolean)
   .join(' ');
@@ -69,7 +80,14 @@ const rv = (delay?: 'd1' | 'd2') => ['reveal', from, delay && `reveal--${delay}`
 {/* Hero je nad ohybem, reveal.js ho odkryje bez animace. Reveal na sekci
     proto vypinam a smer resim na sloupcich: pri split layoutu text zleva,
     medium zprava, stejne jako sekce left a right na zivem grason.cz. */}
-<Section background={background} space={space} reveal={false}>
+<Section background={background} space={space} reveal={false} class={isCover ? 'section--hero-cover' : undefined}>
+  {/* Cover: médium jde na pozadí celé sekce, ne do sloupce vedle textu.
+      Absolutní pozicování se zavěsí na .section (Container nemá position),
+      takže pozadí jde přes celou šířku okna, i když text drží kontejner.
+      aria-hidden proto, že fotka je tady dekorace, sdělení nese text. */}
+  {isCover && hasMedia && (
+    <div class="hero__bg" aria-hidden="true"><slot name="media" /></div>
+  )}
   <div class={innerClasses} data-hero-carousel={isCarousel ? '' : undefined}>
     <div class="hero__text">
       {useSlides ? (
@@ -126,7 +144,7 @@ const rv = (delay?: 'd1' | 'd2') => ['reveal', from, delay && `reveal--${delay}`
       )}
     </div>
 
-    {hasMedia && (
+    {hasMedia && !isCover && (
       <div class:list={['hero__media', 'reveal', 'reveal--from-right', 'reveal--d1']}>
         {useSlides ? (
           <div class="hero__rot hero__media-rot">
@@ -197,6 +215,61 @@ const rv = (delay?: 'd1' | 'd2') => ['reveal', from, delay && `reveal--${delay}`
   }
 
   /* Single: sloupec, volitelně vycentrovaný */
+  /* ===========================================================
+     VARIANTA COVER: médium na plnou šířku a výšku, text přes něj.
+     Počítá s <Header transparent />, proto si sama drží odsazení o výšku
+     hlavičky, ať nadpis nekončí pod logem.
+     =========================================================== */
+  .section--hero-cover {
+    padding-top: calc(var(--header-h, 80px) + clamp(24px, 5vw, 64px));
+    padding-bottom: clamp(48px, 8vw, 104px);
+    /* Fotka jde až k hranám sekce, případný dekorativní kruh by ji přeřízl. */
+    overflow: hidden;
+  }
+  .hero__bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+  .hero__bg :global(img),
+  .hero__bg :global(video) { width: 100%; height: 100%; object-fit: cover; display: block; }
+  /* Média se do coveru posílají stejným slotem jako do splitu, kde bývají
+     zabalená ve <figure class="hero-figure"> se zaoblením a stínem. Na pozadí
+     by to dělalo rámeček uvnitř sekce, proto se to tady vypíná. */
+  .hero__bg :global(figure) { margin: 0; width: 100%; height: 100%; border-radius: 0; box-shadow: none; overflow: hidden; }
+
+  /* Závoj. Černý gradient drží kontrast textu za všech okolností, brandový
+     odstín se přidává tokenem --hero-cover-tint (rgba). Bez tokenu je závoj
+     neutrální, takže nová značka nemá jak vyrobit nečitelné hero. */
+  .hero__bg::after {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background:
+      linear-gradient(90deg,
+        rgba(0, 0, 0, 0.80) 0%,
+        rgba(0, 0, 0, 0.66) 50%,
+        rgba(0, 0, 0, 0.46) 78%,
+        rgba(0, 0, 0, 0.28) 100%),
+      linear-gradient(0deg, var(--hero-cover-tint, transparent), var(--hero-cover-tint, transparent));
+  }
+
+  .hero__inner--cover {
+    position: relative; z-index: 1;
+    display: flex; align-items: center;
+    min-height: min(66vh, 640px);
+  }
+  .hero__inner--cover .hero__text { max-width: 620px; }
+  /* Perex nad fotkou musí být plnou bílou. Tlumená bílá (72 % krytí) vycházela
+     nad světlým místem fotky na 3,1:1, což je pod AA pro běžný text (4,5:1).
+     Plnou bílou a se zesíleným závojem je to 6,3:1. */
+  .hero__inner--cover .hero__lead { color: var(--color-text-on-dark); }
+  /* Na úzké obrazovce je fotka za textem přes celou šířku, samotný vodorovný
+     gradient by nestačil. Přidává se svislý, aby text zůstal čitelný i tam,
+     kde je pod ním světlé místo fotky. */
+  @media (max-width: 900px) {
+    .hero__bg::after {
+      background:
+        linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.72) 100%),
+        linear-gradient(0deg, var(--hero-cover-tint, transparent), var(--hero-cover-tint, transparent));
+    }
+    .hero__inner--cover { min-height: min(72vh, 560px); }
+  }
+
   .hero__inner--single .hero__text { max-width: 720px; }
   .hero__inner--align-center {
     align-items: center;

@@ -66,12 +66,12 @@ const faqs = [
 
 <Base title="Nákupčí pro váš podnik | Pecosta"
       description="Pecosta vám díky aukčním nákupům ušetří až 16 % na surovinách i energiích a Autset zvládne zboží automaticky naskladnit.">
-  <SiteHeader />
+  <SiteHeader transparent />
 
   <main>
 
   <!-- HERO -->
-  <Hero eyebrow="Jednoduše chytrý nákup" background="gradient"
+  <Hero eyebrow="Jednoduše chytrý nákup" background="invert" variant="cover"
         lead="Poskytujeme nástroje, se kterými ušetříte až 16 % nákladů na suroviny, 25 % na energie a až 30 hodin práce spojené s naskladňováním zboží."
         usp={[{ text: '-16 % na surovinách', icon: 'lucide:badge-percent' }, { text: '-25 % na energiích', icon: 'lucide:zap' }, { text: '-30 hodin měsíčně', icon: 'lucide:clock' }]}>
     <Heading slot="title" as="h1" size="display" color="on-dark">Šetříme náklady vašemu provozu</Heading>
@@ -79,11 +79,8 @@ const faqs = [
       <Button href="#poptavka">Chci aukční nákupy</Button>
       <Button href="#poptavka" variant="secondary" onDark>Kolik ušetřím?</Button>
     </Fragment>
-    <figure slot="media" class="hero-figure">
-      <video src="/videos/hero-pecosta.mp4" poster="/images/hero-pecosta.webp"
-             autoplay loop muted playsinline width="1280" height="720"
-             aria-label="Pecosta: chytrý nákup surovin a energií"></video>
-    </figure>
+    <video slot="media" src="/videos/hero-pecosta.mp4" poster="/images/hero-pecosta.webp"
+           autoplay loop muted playsinline width="1280" height="720"></video>
   </Hero>
 
   <!-- LOGA KLIENTŮ: hned pod hero -->

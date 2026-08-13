@@ -404,7 +404,7 @@ const OBSAH = [
     <Spec id="hero" name="Hero" count={150}
       what="Úvodní blok stránky. Nese návěs, nadpis, perex, CTA, proužek USP a volitelně médium."
       when="Právě jednou na začátku každé stránky. H1 stránky patří sem."
-      note="Tady je ta komponenta, kterou chceme odgenerizovat. Dnes má čtyři reálně používané varianty a všechny jsou v jednom souboru. Rozpad použití v repozitáři: split s médiem 100x, single left 40x, single center 6x, carousel 4x."
+      note="Tady je ta komponenta, kterou chceme odgenerizovat. Dnes má čtyři reálně používané varianty a všechny jsou v jednom souboru. Rozpad použití v repozitáři: split s médiem 100x, single left 40x, single center 6x, carousel 4x. Pátá varianta cover je nová a je zatím nasazená jen na homepage Pecosty. Cover počítá s průhlednou hlavičkou, stránka tedy musí předat <Header transparent /> nebo <SiteHeader transparent />, jinak lišta zůstane v toku a hero začne pod ní. Odsazení o výšku hlavičky si drží sekce sama. Brandový odstín závoje řídí token --hero-cover-tint v theme.css, bez něj je závoj neutrálně černý."
       props={[
         { prop: 'eyebrow', type: 'string', note: 'návěs nad nadpisem' },
         { prop: 'title', type: 'string', note: 'alternativa ke slotu title' },
@@ -415,6 +415,7 @@ const OBSAH = [
         { prop: 'usp', type: 'string[] | { text, icon? }[]', def: '[]', note: 'proužek bodů pod CTA' },
         { prop: 'slides', type: 'HeroSlide[]', def: '[]', note: '2 a více = carousel' },
         { prop: 'carouselLabel', type: 'string', def: "'Přepnout sdělení'" },
+        { prop: 'variant', type: "'split' | 'cover'", def: "'split'", note: 'cover = médium na plnou šířku jako pozadí' },
       ]}
       slots={[
         { slot: 'title', note: 'nadpis, když potřebuješ akcent nebo vynucené zalomení' },
@@ -445,6 +446,14 @@ const OBSAH = [
         <Hero eyebrow="Návěs" background="warm" align="center" lead="Centrovaná varianta. Používá se na servisních a rozcestníkových stránkách.">
           <Heading slot="title" as="p" size="display" align="center">Centrovaný nadpis</Heading>
           <Fragment slot="actions"><Button href="#">CTA</Button></Fragment>
+        </Hero>
+      </Demo>
+      <Demo label="varianta 5: cover, médium na plnou šířku jako pozadí (nová)" bleed code='variant="cover"'>
+        <Hero variant="cover" background="invert" eyebrow="Návěs"
+              lead="Perex přes fotku. Závoj drží kontrast: černý gradient je základ, brandový odstín se přidává tokenem --hero-cover-tint.">
+          <Heading slot="title" as="p" size="display" color="on-dark">Vizuálnější hero přes celou šířku</Heading>
+          <Fragment slot="actions"><Button href="#">Hlavní CTA</Button></Fragment>
+          <div slot="media" class="gal__phcover">slot media na pozadí</div>
         </Hero>
       </Demo>
       <Demo label="varianta 4: carousel, rotující sdělení (4x)" bleed code="slides={[...]}">
@@ -676,9 +685,9 @@ const OBSAH = [
       <h2 class="gal__h2">Otevřené otázky pro grafika</h2>
       <ol class="gal__ol">
         <li>
-          <strong>Hero je generické a je jen jedno.</strong> Čtyři varianty (split, single left,
-          single center, carousel) žijou v jednom souboru a liší se jen tím, co se do nich pošle.
-          Chceme přidat další variantu, ne tuhle přepsat.
+          <strong>Cover je zatím jen na Pecostě.</strong> Nová varianta hero s médiem na plnou
+          šířku běží na homepage Pecosty. Na které další weby ji nasadit a s jakou fotkou?
+          Dosavadní čtyři varianty zůstávají bez dotčení.
         </li>
         <li>
           <strong>HeroCarousel nikdo nepoužívá.</strong> Duplicitní definice carouselu.
@@ -745,6 +754,14 @@ const OBSAH = [
   .gal__fields { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
   .gal__widths { display: grid; gap: 8px; }
   .gal__widths span { display: block; background: var(--color-bg-alt); border: 1px solid var(--color-border); padding: 6px 10px; font-size: var(--font-size-caption); font-family: ui-monospace, monospace; }
+
+  /* Zástupná plocha pro cover: vyplní celé pozadí sekce. */
+  .gal__phcover {
+    width: 100%; height: 100%; min-height: 420px;
+    display: grid; place-items: center;
+    background: repeating-linear-gradient(45deg, #7a7a7a 0 18px, #676767 18px 36px);
+    color: #fff; font-size: var(--font-size-caption); font-family: ui-monospace, monospace;
+  }
 
   /* Zástupná plocha místo obrázku, ať je vidět, kde je slot media a jaký má poměr. */
   .gal__ph {

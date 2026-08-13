@@ -513,6 +513,16 @@ const classes = ['header', transparent && 'header--transparent'].filter(Boolean)
   }
 
   /* ---- Transparent varianta (overlay přes hero) ---- */
+  /* Průhledná hlavička musí ležet PŘES hero, ne nad ním. Sticky sice drží
+     u horní hrany, ale zabírá místo v toku, takže hero začínalo pod ní a za
+     průhlednou lištou svítilo bílé pozadí stránky. Bílé odkazy pak byly na
+     bílém neviditelné. Fixed ji z toku vyndá.
+     Odsazení o výšku hlavičky si drží první sekce, u hero varianty cover je to
+     padding-top: calc(var(--header-h) + …). */
+  .header--transparent {
+    position: fixed;
+    inset-inline: 0;
+  }
   .header--transparent:not(.is-scrolled) {
     background: transparent;
     border-bottom-color: transparent;
