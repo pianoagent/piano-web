@@ -36,13 +36,36 @@
   if (!(threshold > 0 && threshold < 1)) threshold = 0.2;
   var linePct = 1 - threshold;
 
+  /* Nad kolik nasobku okna uz skupinu nespoustime jako celek. Vysoka skupina by
+     si odkryla i polozky hluboko pod ohybem, uzivatel by jejich nabeh nikdy
+     nevidel. Takova skupina se proto vraci k chovani polozka po polozce. */
+  var GROUP_MAX_VH = 1.5;
+
+  /* Co ma rozhodnout, ze je cas: polozka sama, nebo cela skupina.
+
+     Prodlevy v CSS (prvni polozka 450ms, krok 150ms) pocitaji s tim, ze se
+     polozky objevi v jeden okamzik, tedy v jednom radku. Jakmile se mrizka
+     zalomi, dostane druhy radek pozdejsi spoust A zaroven vyssi prodlevu, coz
+     se scita: posledni karta pak dosedala skoro 1,3s po prvni.
+
+     Grason to ma spravne, `is-animated` sedi na sekci a prodlevy se pocitaji
+     od jednoho okamziku. Tady tedy za polozku ve skupine rozhoduje skupina.
+     Vyska se meri az tady, ne pri startu, aby se to samo srovnalo po dotazeni
+     obrazku, ktere layout jeste posunou. */
+  function trigger(el) {
+    if (!el.closest) return el;
+    var g = el.closest('[data-reveal-group]');
+    if (!g) return el;
+    return g.getBoundingClientRect().height <= window.innerHeight * GROUP_MAX_VH ? g : el;
+  }
+
   function crossed(el) {
     /* Pojistka: kdyz okno nema vysku (skryta zalozka, nulovy viewport, ramecek
        o nulove velikosti), byla by spousteci linka na nule a nic by se nikdy
        neodkrylo. Obsah nesmi zustat neviditelny, tak ho v takovem pripade
        pustime rovnou. */
     if (!window.innerHeight) return true;
-    return el.getBoundingClientRect().top < window.innerHeight * linePct;
+    return trigger(el).getBoundingClientRect().top < window.innerHeight * linePct;
   }
 
   function arm() {
