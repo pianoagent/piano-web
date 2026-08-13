@@ -57,6 +57,14 @@
   --container-max-wide:   1360px;
   --container-pad:        24px;
 
+  /* Výška hlavičky, když leží jako overlay přes hero (varianta cover).
+     Vzdušnější než hlavička na bílém pozadí: logo a navigace nemají být
+     nalepené na horní hraně obrázku. Po odscrollování se lišta zpevní na
+     bílou a stáhne se na svou přirozenou výšku.
+     Jedna hodnota pro hlavičku i pro odsazení hero obsahu, ať se nerozjedou.
+     Na mobilu se stahuje, tam by 120px z malé obrazovky ukrojilo moc. */
+  --header-h-overlay:     clamp(88px, 9vw, 120px);
+
   /* =========================================================
      SPACING (4px base scale)
      ========================================================= */

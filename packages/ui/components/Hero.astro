@@ -228,10 +228,11 @@ const rv = (delay?: 'd1' | 'd2') => ['reveal', from, delay && `reveal--${delay}`
   /* ===========================================================
      VARIANTA COVER: médium na plnou šířku a výšku, text přes něj.
      Počítá s <Header transparent />, proto si sama drží odsazení o výšku
-     hlavičky, ať nadpis nekončí pod logem.
+     hlavičky, ať nadpis nekončí pod logem. Bere ji ze stejného tokenu
+     --header-h-overlay jako sama hlavička, ať se ty dvě hodnoty nerozjedou.
      =========================================================== */
   .section--hero-cover {
-    padding-top: calc(var(--header-h, 80px) + clamp(24px, 5vw, 64px));
+    padding-top: calc(var(--header-h-overlay, 120px) + clamp(24px, 5vw, 64px));
     padding-bottom: clamp(48px, 8vw, 104px);
     /* Fotka jde až k hranám sekce, případný dekorativní kruh by ji přeřízl. */
     overflow: hidden;

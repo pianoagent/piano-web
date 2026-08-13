@@ -518,11 +518,19 @@ const classes = ['header', transparent && 'header--transparent'].filter(Boolean)
      průhlednou lištou svítilo bílé pozadí stránky. Bílé odkazy pak byly na
      bílém neviditelné. Fixed ji z toku vyndá.
      Odsazení o výšku hlavičky si drží první sekce, u hero varianty cover je to
-     padding-top: calc(var(--header-h) + …). */
+     padding-top: calc(var(--header-h-overlay) + …). */
   .header--transparent {
     position: fixed;
     inset-inline: 0;
   }
+  /* Vzdušnější lišta nad obrázkem: nalepené logo u horní hrany hero fotky
+     vypadalo těsně. Po scrollu se lišta zpevní na bílou a min-height jde na 0,
+     takže se stáhne na svou přirozenou výšku a nezabírá zbytečně obsah. */
+  .header--transparent .header__inner {
+    min-height: var(--header-h-overlay, 120px);
+    transition: min-height var(--duration-base) var(--easing);
+  }
+  .header--transparent.is-scrolled .header__inner { min-height: 0; }
   .header--transparent:not(.is-scrolled) {
     background: transparent;
     border-bottom-color: transparent;
