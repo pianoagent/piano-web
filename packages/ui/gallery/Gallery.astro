@@ -27,6 +27,7 @@ import Field from '../components/Field.astro';
 import Breadcrumb from '../components/Breadcrumb.astro';
 import Hero from '../components/Hero.astro';
 import USPGrid from '../components/USPGrid.astro';
+import Split from '../components/Split.astro';
 import StatsBand from '../components/StatsBand.astro';
 import Testimonials from '../components/Testimonials.astro';
 import Faq from '../components/Faq.astro';
@@ -84,6 +85,7 @@ const OBSAH = [
   { id: 'breadcrumb', label: 'Breadcrumb' },
   { id: 'hero', label: 'Hero' },
   { id: 'uspgrid', label: 'USPGrid' },
+  { id: 'split', label: 'Split' },
   { id: 'statsband', label: 'StatsBand' },
   { id: 'testimonials', label: 'Testimonials' },
   { id: 'faq', label: 'Faq' },
@@ -104,7 +106,7 @@ const OBSAH = [
       <p class="gal__kicker">Katalog komponent</p>
       <h1 class="gal__h1">{brand}</h1>
       <p class="gal__lead">
-        Všech 22 sdílených komponent z <code>packages/ui</code>, jejich varianty a props.
+        Všech 23 sdílených komponent z <code>packages/ui</code>, jejich varianty a props.
         Renderuje se skutečnými komponentami v tokenech značky {brand}, takže co je tady,
         to je na webu. Stejná stránka existuje na každém webu skupiny, takže se dá porovnat,
         jak stejná komponenta vypadá v jiné značce.
@@ -490,6 +492,51 @@ const OBSAH = [
       </Demo>
     </Spec>
 
+    <Spec id="split" name="Split" count={0}
+      what="Sekce text a médium vedle sebe, v obou pořadích. Na mobilu je médium vždy nahoře."
+      when="Na vysvětlení jedné věci, kde k textu patří obrázek. Několik takových sekcí za sebou se střídavým reverse je nejběžnější tělo produktové stránky."
+      note="Komponenta je nová. Devět stránek si tuhle sekci dosud dělalo samo (Harsys 4x, Savarin 3x, Grason, Protel), shodně přes třídy split, split__text a split--reverse, takže je lze nahradit beze změny vzhledu. To ještě není provedené."
+      props={[
+        { prop: 'eyebrow', type: 'string' },
+        { prop: 'title', type: 'string', note: 'nebo titleHtml pro akcent, nebo slot title' },
+        { prop: 'titleHtml', type: 'string' },
+        { prop: 'lead', type: 'string' },
+        { prop: 'bullets', type: 'string[]', def: '[]', note: 'odrážky s fajfkou' },
+        { prop: 'reverse', type: 'boolean', def: 'false', note: 'médium vlevo, text vpravo' },
+        { prop: 'ratio', type: "'equal' | 'text' | 'media'", def: "'equal'", note: 'který sloupec je širší' },
+        { prop: 'image', type: 'string', note: 'nebo si médium pošli slotem media' },
+        { prop: 'imageAlt', type: 'string', def: "''" },
+        { prop: 'background', type: "'default' | 'alt' | 'invert' | 'primary'", def: "'default'" },
+        { prop: 'space', type: "'sm' | 'md' | 'lg'", def: "'md'" },
+      ]}
+      slots={[
+        { slot: 'media', note: 'obrázek, video, cokoli' },
+        { slot: 'actions', note: 'CTA tlačítka' },
+        { slot: 'title', note: 'vlastní nadpis' },
+      ]}>
+      <Demo label="text | médium (default)" bleed code="<Split>">
+        <Split eyebrow="Návěs sekce" title="Nadpis vlevo, obrázek vpravo"
+               lead="Perex sekce na dva až tři řádky, který vysvětlí jednu věc."
+               bullets={['První odrážka', 'Druhá odrážka', 'Třetí odrážka']}>
+          <div slot="media" class="gal__phsplit">slot media</div>
+          <Fragment slot="actions"><Button href="#">CTA</Button></Fragment>
+        </Split>
+      </Demo>
+      <Demo label="médium | text" bleed code="reverse">
+        <Split reverse background="alt" eyebrow="Návěs sekce" title="Obrázek vlevo, text vpravo"
+               lead="Střídání pořadí drží dlouhou stránku v rytmu. Na mobilu je médium vždycky nahoře, i tady.">
+          <div slot="media" class="gal__phsplit">slot media</div>
+        </Split>
+      </Demo>
+      <Demo label="širší text a tmavý pás" bleed code='ratio="text" background="invert"'>
+        <Split ratio="text" background="invert" eyebrow="Návěs sekce" title="Poměr sloupců na míru"
+               lead="ratio přepne, který sloupec je širší: equal, text, media.">
+          <div slot="media" class="gal__phsplit">slot media</div>
+          <Fragment slot="actions"><Button href="#" variant="secondary" onDark>CTA</Button></Fragment>
+        </Split>
+      </Demo>
+    </Spec>
+
     <Spec id="statsband" name="StatsBand" count={39}
       what="Úzký pás s velkými čísly a popisky. Čísla se nasouvají po jednom."
       when="Za hero nebo před poptávkou, jako doklad velikosti. Čísla musí být z bázových, ne vymyšlená."
@@ -754,6 +801,14 @@ const OBSAH = [
   .gal__fields { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
   .gal__widths { display: grid; gap: 8px; }
   .gal__widths span { display: block; background: var(--color-bg-alt); border: 1px solid var(--color-border); padding: 6px 10px; font-size: var(--font-size-caption); font-family: ui-monospace, monospace; }
+
+  /* Zástupná plocha pro médium ve Splitu. */
+  .gal__phsplit {
+    aspect-ratio: 4 / 3; display: grid; place-items: center;
+    background: repeating-linear-gradient(45deg, #cfcfcf 0 18px, #c2c2c2 18px 36px);
+    border-radius: var(--radius-lg);
+    color: #444; font-size: var(--font-size-caption); font-family: ui-monospace, monospace;
+  }
 
   /* Zástupná plocha pro cover: vyplní celé pozadí sekce. */
   .gal__phcover {

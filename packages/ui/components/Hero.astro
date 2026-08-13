@@ -250,7 +250,14 @@ const rv = (delay?: 'd1' | 'd2') => ['reveal', from, delay && `reveal--${delay}`
 
   .hero__inner--cover {
     position: relative; z-index: 1;
-    display: flex; align-items: center;
+    /* POZOR na osy. .hero__inner má flex-direction: column, takže align-items
+       míří VODOROVNĚ. Původní align-items: center proto text nesrovnal svisle,
+       ale odsadil ho o polovinu zbylé šířky doprava (u Pecosty o 135px), což
+       vypadalo jako náhodné šoupnutí. Svisle centruje justify-content,
+       vodorovně drží text u levé hrany align-items: flex-start, stejně jako
+       ostatní varianty hero. */
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: flex-start;
     min-height: min(66vh, 640px);
   }
   .hero__inner--cover .hero__text { max-width: 620px; }
