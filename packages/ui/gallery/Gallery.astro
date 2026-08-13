@@ -29,6 +29,7 @@ import Hero from '../components/Hero.astro';
 import USPGrid from '../components/USPGrid.astro';
 import Split from '../components/Split.astro';
 import PricingTiers from '../components/PricingTiers.astro';
+import PricingTable from '../components/PricingTable.astro';
 import StatsBand from '../components/StatsBand.astro';
 import Testimonials from '../components/Testimonials.astro';
 import Faq from '../components/Faq.astro';
@@ -88,6 +89,7 @@ const OBSAH = [
   { id: 'uspgrid', label: 'USPGrid' },
   { id: 'split', label: 'Split' },
   { id: 'pricingtiers', label: 'PricingTiers' },
+  { id: 'pricingtable', label: 'PricingTable' },
   { id: 'statsband', label: 'StatsBand' },
   { id: 'testimonials', label: 'Testimonials' },
   { id: 'faq', label: 'Faq' },
@@ -109,7 +111,7 @@ const OBSAH = [
       <p class="gal__kicker">Katalog komponent</p>
       <h1 class="gal__h1">{brand}</h1>
       <p class="gal__lead">
-        Všech 25 sdílených komponent z <code>packages/ui</code>, jejich varianty a props.
+        Všech 26 sdílených komponent z <code>packages/ui</code>, jejich varianty a props.
         Renderuje se skutečnými komponentami v tokenech značky {brand}, takže co je tady,
         to je na webu. Stejná stránka existuje na každém webu skupiny, takže se dá porovnat,
         jak stejná komponenta vypadá v jiné značce.
@@ -565,6 +567,41 @@ const OBSAH = [
             { name: 'Základ', price: '1 990 Kč', unit: '/měsíc', note: 'za pokladnu, sleva při roční platbě', feats: ['První funkce', 'Druhá funkce', 'Třetí funkce'] },
             { name: 'Standard', price: '2 990 Kč', unit: '/měsíc', note: 'za pokladnu, druhá a další se slevou', feats: ['Vše ze Základu', 'Čtvrtá funkce', 'Pátá funkce', 'Šestá funkce'], highlight: true },
             { name: 'Plus', price: '3 990 Kč', unit: '/měsíc', note: 'za pokladnu, pro provozy s více kasami', feats: ['Vše ze Standardu', 'Sedmá funkce', 'Osmá funkce'] },
+          ]}
+          footnote="Ceny jsou uvedeny bez DPH." />
+      </Demo>
+    </Spec>
+
+    <Spec id="pricingtable" name="PricingTable" count={2}
+      what="Srovnávací tabulka ceníku: varianty ve sloupcích, funkce v řádcích, jeden sloupec zvýrazněný."
+      when="Když se varianty porovnávají funkce po funkci. Když jde jen o balíčky s cenou a výčtem, stačí PricingTiers."
+      note="Vzniklo sloučením dvou ručních tabulek Grasonu: .ptable na /grasonflexi (s přepínačem délky předplatného) a .jtable na /grasonjobs (bez něj, s cenou ve spodním řádku). Septim /index má tabulku obrácenou (varianta na řádku, vlastnost ve sloupci) a bez cen, což je jiná struktura a tahle komponenta ji nepokrývá."
+      props={[
+        { prop: 'tiers', type: '{ name, note?, badge?, featured?, price?, fixed?, unit?, cta?, href? }[]', req: true },
+        { prop: 'features', type: '{ label, vals: (true | false | string)[] }[]', req: true, note: 'vals musí mít stejný počet položek jako tiers' },
+        { prop: 'periods', type: '{ id, label }[]', def: '[]', note: 'dvě a více zapne přepínač období' },
+        { prop: 'priceRow', type: 'string', note: 'ceny do spodního řádku s tímto popiskem místo do hlavičky' },
+        { prop: 'ariaLabel', type: 'string', def: "'Délka předplatného'" },
+        { prop: 'eyebrow', type: 'string' },
+        { prop: 'title', type: 'string', note: 'nebo titleHtml' },
+        { prop: 'lead', type: 'string' },
+        { prop: 'footnote', type: 'string' },
+        { prop: 'background', type: "'default' | 'alt'", def: "'default'" },
+      ]}
+      slots={[{ slot: 'default', note: 'obsah pod tabulkou: příplatky, poznámky, vlastní CTA' }]}>
+      <Demo label="s přepínačem období a zvýrazněným sloupcem" bleed>
+        <PricingTable
+          eyebrow="Ceník" title="Srovnání variant"
+          periods={[{ id: '6', label: '6 měsíců' }, { id: '12', label: '12 měsíců' }]}
+          tiers={[
+            { name: 'Start', fixed: '14 dní zdarma', cta: { label: 'Vyzkoušet', href: '#' } },
+            { name: 'Standard', badge: 'Nejoblíbenější', featured: true, price: { '6': '2 490 Kč', '12': '1 990 Kč' }, unit: '/měsíc', cta: { label: 'Vybrat', href: '#' } },
+            { name: 'Plus', price: { '6': '4 990 Kč', '12': '3 990 Kč' }, unit: '/měsíc', cta: { label: 'Vybrat', href: '#' } },
+          ]}
+          features={[
+            { label: 'Počet uživatelů', vals: ['1', '5', 'Neomezeně'] },
+            { label: 'Zákaznická linka', vals: [true, true, true] },
+            { label: 'Dedikovaný manažer', vals: [false, false, true] },
           ]}
           footnote="Ceny jsou uvedeny bez DPH." />
       </Demo>

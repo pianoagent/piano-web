@@ -6,6 +6,7 @@
  */
 import Base from '../layouts/Base.astro';
 import Header from '@piano/ui/components/Header.astro';
+import PricingTable from '@piano/ui/components/PricingTable.astro';
 import Footer from '@piano/ui/components/Footer.astro';
 import Section from '@piano/ui/components/Section.astro';
 import Hero from '@piano/ui/components/Hero.astro';
@@ -111,46 +112,12 @@ const jobsAddons = [
   </Section>
 
   <!-- CENÍK -->
-  <Section id="cenik" background="default" space="lg">
-    <div class="head head--center">
-      <Text size="label" color="accent" align="center">Ceník</Text>
-      <Heading as="h2" size="h2" align="center">Vyberte <span class="accent">balíček inzerce</span></Heading>
-    </div>
-
-    <div class="jtable-scroll">
-      <table class="jtable">
-        <thead>
-          <tr>
-            <td class="jtable__corner"></td>
-            {jobsTiers.map((t) => (
-              <th class="jtier" scope="col">
-                <span class="jtier__name">{t.name}</span>
-                {t.note && <span class="jtier__note">{t.note}</span>}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {jobsFeatures.map((f) => (
-            <tr>
-              <th class="jfeat" scope="row">{f.label}</th>
-              {f.vals.map((v) => (
-                <td class="jcell">
-                  {v === true ? <Icon name="lucide:check" size="sm" class="jyes" />
-                    : v === false ? <span class="jdash">–</span>
-                    : <span>{v}</span>}
-                </td>
-              ))}
-            </tr>
-          ))}
-          <tr class="jprice">
-            <th class="jfeat">Cena bez DPH</th>
-            {jobsTiers.map((t) => <td class="jcell jprice__val">{t.price}</td>)}
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
+  <PricingTable id="cenik" background="default" space="lg"
+    eyebrow="Ceník"
+    titleHtml={'Vyberte <span class="accent">balíček inzerce</span>'}
+    tiers={jobsTiers}
+    features={jobsFeatures}
+    priceRow="Cena bez DPH">
     <div class="addons">
       <h3 class="addons__title">Extra zvýraznění inzerátu</h3>
       <ul class="addons__list">
@@ -162,7 +129,7 @@ const jobsAddons = [
     <Text size="small" color="muted" align="center" class="jtable__note">Všechny ceny jsou bez DPH.</Text>
 
     <div class="sec-cta"><Button href="#poptavka">Chci inzerovat pozici</Button></div>
-  </Section>
+  </PricingTable>
 
   <!-- INZERTNÍ PORTÁL -->
   <Section background="invert" space="lg">
@@ -235,15 +202,9 @@ const jobsAddons = [
   .portal__cta { display: flex; gap: var(--space-3); justify-content: center; flex-wrap: wrap; margin-top: var(--space-6); }
 
   /* Ceník tabulka */
-  .jtable-scroll { overflow-x: auto; }
-  .jtable { width: 100%; border-collapse: collapse; min-width: 780px; }
   .jtable th, .jtable td { padding: var(--space-4); text-align: left; }
-  .jtable__corner { background: transparent; border: 0; }
-  .jtier { vertical-align: top; background: var(--color-secondary); color: #fff; border-bottom: 2px solid var(--color-secondary); }
   .jtier:first-of-type { border-top-left-radius: var(--radius-md); }
   .jtier:last-of-type { border-top-right-radius: var(--radius-md); }
-  .jtier__name { display: block; font-size: var(--font-size-h3); font-weight: var(--font-weight-bold); }
-  .jtier__note { display: block; font-size: var(--font-size-caption); font-weight: var(--font-weight-regular); opacity: 0.85; margin-top: 2px; }
   .jfeat { text-align: left; font-weight: var(--font-weight-medium); color: var(--color-text); font-size: var(--font-size-small); }
   .jtable tbody tr { border-bottom: 1px solid var(--color-border); }
   .jcell { font-size: var(--font-size-small); color: var(--color-text); }
@@ -260,7 +221,6 @@ const jobsAddons = [
   .addons__list li { display: flex; justify-content: space-between; gap: var(--space-4); padding: var(--space-3) 0; border-bottom: 1px solid var(--color-border); }
   .addons__list li:last-child { border-bottom: 0; }
   .addons__list strong { color: var(--color-secondary); white-space: nowrap; }
-  .jtable__note { margin-top: var(--space-5); }
 
   .checklist { list-style: none; display: grid; gap: var(--space-2); }
   .checklist li { display: flex; align-items: flex-start; gap: var(--space-2); color: var(--color-text); }

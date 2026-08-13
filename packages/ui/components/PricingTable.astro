@@ -1,0 +1,294 @@
+---
+/**
+ * PricingTable: SDÍLENÁ srovnávací tabulka ceníku.
+ * Varianty ve sloupcích, funkce v řádcích, jeden sloupec může být zvýrazněný.
+ *
+ * Vzniklo sloučením dvou ručních tabulek Grasonu: .ptable na /grasonflexi
+ * (s přepínačem délky předplatného) a .jtable na /grasonjobs (bez něj).
+ * Struktura byla shodná, lišil se jen prefix tříd a ten přepínač.
+ *
+ * POZOR, tohle NENÍ komponenta pro každou srovnávací tabulku. Septim /index má
+ * tabulku obrácenou (varianta na řádku, vlastnost ve sloupci) a bez cen a CTA.
+ * To je jiná struktura, ne prop téhle.
+ *
+ *   tiers:    [{ name, note?, badge?, featured?, price?, unit?, cta? }]
+ *             price je string (pevná cena nebo text jako „Na vyžádání"),
+ *             nebo mapa období na cenu: { '3': '3 330 Kč', '12': '1 990 Kč' }
+ *   features: [{ label, vals: (true | false | string)[] }]
+ *             vals musí mít stejný počet položek jako tiers, v tom pořadí
+ *   periods?: [{ id, label }] zapne přepínač; bez něj se bere price jako string
+ *   ariaLabel?: popis přepínače pro čtečky
+ *   eyebrow, title, lead, footnote, background, space, id
+ *   default slot: obsah pod tabulkou (příplatky, poznámky, vlastní CTA)
+ */
+import Section from './Section.astro';
+import Heading from './Heading.astro';
+import Text from './Text.astro';
+import Icon from './Icon.astro';
+
+interface Period { id: string; label: string; }
+interface Tier {
+  name: string;
+  note?: string;
+  badge?: string;
+  featured?: boolean;
+  price?: string | Record<string, string>;
+  /* Alias pro pevný text ceny u tieru, který nemá cenu podle období
+     („14 dní zdarma", „Na vyžádání"). Grason to tak měl, nechávám to. */
+  fixed?: string;
+  unit?: string;
+  /* Dva zápisy CTA, oba se berou: objekt, nebo plochý text plus href.
+     Grason měl ploché, nechtěl jsem mu kvůli komponentě přepisovat data. */
+  cta?: string | { label: string; href: string };
+  href?: string;
+}
+interface Feature { label: string; vals: (boolean | string)[]; }
+interface Props {
+  tiers: Tier[];
+  features: Feature[];
+  periods?: Period[];
+  ariaLabel?: string;
+  eyebrow?: string;
+  title?: string;
+  titleHtml?: string;
+  lead?: string;
+  footnote?: string;
+  /* Když je vyplněné, ceny se nevykreslí v hlavičce, ale jako spodní řádek
+     s tímhle popiskem (Grason /grasonjobs to má jako „Cena bez DPH"). */
+  priceRow?: string;
+  background?: 'default' | 'alt';
+  space?: 'sm' | 'md' | 'lg';
+  id?: string;
+}
+const {
+  tiers, features, periods = [], ariaLabel = 'Délka předplatného',
+  eyebrow, title, titleHtml, lead, footnote, priceRow,
+  background = 'default', space = 'lg', id,
+} = Astro.props;
+
+const hasHead = !!(eyebrow || title || titleHtml || lead);
+const hasPeriods = periods.length > 1;
+/* Badge drží výšku i tam, kde chybí, jinak by se sloupce rozešly o jeho výšku.
+   Ukazuje se jen když ho aspoň jeden tier má. */
+const anyBadge = tiers.some((t) => t.badge);
+
+/* Cenu normalizuju tady, ne v šabloně. Cast typu <Record<string, string>>
+   uvnitř šablony si Astro přeloží jako JSX a build spadne. */
+const rows = tiers.map((t) => {
+  const raw = t.price ?? t.fixed;
+  const isMap = raw !== undefined && typeof raw !== 'string';
+  const cta = typeof t.cta === 'string' ? { label: t.cta, href: t.href ?? '#' } : t.cta;
+  return {
+    ...t,
+    cta,
+    priceText: typeof raw === 'string' ? raw : undefined,
+    priceMap: isMap ? (raw as Record<string, string>) : undefined,
+  };
+});
+const anyCta2 = rows.some((r) => r.cta);
+const showPriceInHead = !priceRow;
+---
+
+<Section background={background} space={space} id={id} reveal={false}>
+  {hasHead && (
+    <div class="ptb__head">
+      {eyebrow && <Text size="label" color="accent" align="center" class="reveal reveal--from-top">{eyebrow}</Text>}
+      {(title || titleHtml) && (
+        <Heading as="h2" size="h2" align="center" class="reveal reveal--from-top">
+          {titleHtml ? <Fragment set:html={titleHtml} /> : title}
+        </Heading>
+      )}
+      {lead && <Text size="lead" color="muted" align="center" balance class="reveal reveal--from-top reveal--d1">{lead}</Text>}
+    </div>
+  )}
+
+  {hasPeriods && (
+    <div class="ptb__toggle" role="tablist" aria-label={ariaLabel} data-ptb-toggle>
+      {periods.map((p, i) => (
+        <button type="button" class:list={['ptb__btn', i === 0 && 'is-active']}
+                data-period={p.id} role="tab" aria-selected={i === 0 ? 'true' : 'false'}>{p.label}</button>
+      ))}
+    </div>
+  )}
+
+  {/* Tabulka je na mobilu širší než okno, proto vodorovný scroll ve vlastním
+      kontejneru. Stránka se tím do strany nehýbe. */}
+  <div class="ptb__scroll" data-ptb>
+    <table class="ptb__table">
+      <thead>
+        <tr>
+          <td class="ptb__corner"></td>
+          {rows.map((t) => (
+            <th class:list={['ptb__tier', t.featured && 'ptb__tier--featured']} scope="col">
+              {anyBadge && (
+                <span class:list={['ptb__badge', !t.badge && 'ptb__badge--ghost']} aria-hidden={!t.badge ? 'true' : undefined}>
+                  {t.badge ?? 'x'}
+                </span>
+              )}
+              <span class="ptb__name">{t.name}</span>
+              {t.note && <span class="ptb__note">{t.note}</span>}
+              {showPriceInHead && (t.priceText || t.priceMap) && (
+                <span class="ptb__price">
+                  {t.priceText && <>{t.priceText}{t.unit && <small>{t.unit}</small>}</>}
+                  {t.priceMap && periods.map((p, pi) => (
+                    <span class="ptb__val" data-period={p.id} hidden={pi !== 0}>
+                      {t.priceMap![p.id]}{t.unit && <small>{t.unit}</small>}
+                    </span>
+                  ))}
+                </span>
+              )}
+              {anyCta2 && (t.cta
+                ? <a href={t.cta.href} class="ptb__cta">{t.cta.label}</a>
+                : <span class="ptb__cta ptb__cta--ghost" aria-hidden="true">x</span>)}
+            </th>
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+        {features.map((f) => (
+          <tr>
+            <th class="ptb__feat" scope="row">{f.label}</th>
+            {f.vals.map((v, ci) => (
+              <td class:list={['ptb__cell', tiers[ci]?.featured && 'is-featured']}>
+                {/* Fajfka a křížek nesou význam, takže k ikoně patří text pro
+                    čtečku. Samotná ikona je pro ni prázdná. */}
+                {v === true ? (
+                  <><Icon name="lucide:check" size="sm" class="ptb__yes" /><span class="ptb__sr">ano</span></>
+                ) : v === false ? (
+                  <><Icon name="lucide:x" size="sm" class="ptb__no" /><span class="ptb__sr">ne</span></>
+                ) : (
+                  <span>{v}</span>
+                )}
+              </td>
+            ))}
+          </tr>
+        ))}
+      </tbody>
+      {priceRow && (
+        <tfoot>
+          <tr>
+            <th class="ptb__feat ptb__feat--price" scope="row">{priceRow}</th>
+            {rows.map((t) => (
+              <td class:list={['ptb__cell', 'ptb__cell--price', t.featured && 'is-featured']}>
+                {t.priceText && <>{t.priceText}{t.unit && <small>{t.unit}</small>}</>}
+                {t.priceMap && periods.map((p, pi) => (
+                  <span class="ptb__val" data-period={p.id} hidden={pi !== 0}>
+                    {t.priceMap![p.id]}{t.unit && <small>{t.unit}</small>}
+                  </span>
+                ))}
+              </td>
+            ))}
+          </tr>
+        </tfoot>
+      )}
+    </table>
+  </div>
+
+  {/* Obsah pod tabulkou: doplňkový ceník, poznámky, CTA. Grason /grasonjobs
+      má pod tabulkou seznam příplatků a vlastní CTA. */}
+  <slot />
+
+  {footnote && <Text size="small" color="muted" align="center" class="ptb__foot">{footnote}</Text>}
+</Section>
+
+{hasPeriods && (
+  <script>
+    /* Přepínač období. Vázaný na svou tabulku, ne na celý dokument, aby dvě
+       tabulky na jedné stránce nepřepínaly jedna druhou. */
+    document.querySelectorAll('[data-ptb-toggle]').forEach((toggle) => {
+      const table = toggle.parentElement?.querySelector('[data-ptb]');
+      if (!table) return;
+      const btns = Array.from(toggle.querySelectorAll('.ptb__btn'));
+      const vals = Array.from(table.querySelectorAll('.ptb__val'));
+      btns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const period = btn.getAttribute('data-period');
+          btns.forEach((b) => {
+            const active = b === btn;
+            b.classList.toggle('is-active', active);
+            b.setAttribute('aria-selected', String(active));
+          });
+          vals.forEach((el) => { el.hidden = el.getAttribute('data-period') !== period; });
+        });
+      });
+    });
+  </script>
+)}
+
+<style>
+  .ptb__head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-7); text-align: center; }
+  .ptb__head > * + * { margin-top: var(--space-3); }
+
+  .ptb__toggle {
+    display: flex; width: max-content; max-width: 100%;
+    margin: 0 auto var(--space-7); gap: 4px; padding: 4px;
+    background: var(--color-neutral-100, var(--color-bg-alt));
+    border-radius: var(--radius-full);
+  }
+  .ptb__btn {
+    border: none; background: transparent;
+    padding: var(--space-2) var(--space-5); border-radius: var(--radius-full);
+    font-family: var(--font-sans); font-size: var(--font-size-small);
+    font-weight: var(--font-weight-semibold); color: var(--color-text-muted);
+    cursor: pointer; transition: var(--transition); white-space: nowrap;
+  }
+  .ptb__btn.is-active { background: var(--color-bg); color: var(--color-text); box-shadow: var(--shadow-sm); }
+  .ptb__btn:focus-visible { outline: none; box-shadow: var(--shadow-focus); }
+
+  .ptb__scroll { overflow-x: auto; }
+  .ptb__table { width: 100%; min-width: 680px; border-collapse: collapse; }
+
+  .ptb__corner { background: transparent; border: 0; }
+  .ptb__tier {
+    vertical-align: top; text-align: left; padding: var(--space-5);
+    background: var(--color-bg); border-bottom: 2px solid var(--color-border);
+  }
+  .ptb__tier--featured {
+    background: var(--color-bg-alt);
+    border-bottom: 2px solid var(--color-primary);
+    border-top-left-radius: var(--radius-lg); border-top-right-radius: var(--radius-lg);
+  }
+  .ptb__badge {
+    display: inline-block; background: var(--color-secondary-gold, var(--color-primary));
+    color: var(--color-text); font-size: var(--font-size-caption);
+    font-weight: var(--font-weight-bold); padding: 2px var(--space-3);
+    border-radius: var(--radius-full); margin-bottom: var(--space-2);
+  }
+  .ptb__badge--ghost { visibility: hidden; }
+  .ptb__name { display: block; font-size: var(--font-size-h3); font-weight: var(--font-weight-bold); line-height: 1.15; }
+  .ptb__note { display: block; font-size: var(--font-size-caption); color: var(--color-text-muted); margin-top: 2px; }
+  .ptb__price { display: block; margin-top: var(--space-3); font-weight: var(--font-weight-semibold); color: var(--color-secondary); }
+  .ptb__price small { font-size: var(--font-size-caption); font-weight: var(--font-weight-regular); color: var(--color-text-muted); }
+  .ptb__cta {
+    display: inline-block; margin-top: var(--space-4);
+    padding: var(--space-2) var(--space-4); border-radius: var(--radius-md);
+    background: var(--color-primary); color: var(--color-text-on-dark);
+    font-size: var(--font-size-small); font-weight: var(--font-weight-semibold);
+    text-decoration: none;
+  }
+  .ptb__cta--ghost { visibility: hidden; }
+
+  .ptb__feat {
+    text-align: left; font-weight: var(--font-weight-regular);
+    padding: var(--space-3) var(--space-4) var(--space-3) 0;
+    border-bottom: 1px solid var(--color-border); color: var(--color-text);
+    font-size: var(--font-size-small);
+  }
+  .ptb__cell {
+    text-align: center; padding: var(--space-3) var(--space-4);
+    border-bottom: 1px solid var(--color-border);
+    font-size: var(--font-size-small); color: var(--color-text-muted);
+  }
+  .ptb__cell.is-featured { background: var(--color-bg-alt); }
+  .ptb__yes { color: var(--color-success, var(--color-primary)); }
+  .ptb__no { color: var(--color-neutral-300, var(--color-border-strong)); }
+
+  /* Text jen pro čtečky. Ikona sama význam nepředá. */
+  .ptb__sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+  .ptb__feat--price { font-weight: var(--font-weight-semibold); }
+  .ptb__cell--price { color: var(--color-secondary); font-weight: var(--font-weight-semibold); }
+  .ptb__cell--price small { font-size: var(--font-size-caption); font-weight: var(--font-weight-regular); color: var(--color-text-muted); }
+
+  .ptb__foot { margin-top: var(--space-5); text-align: center; }
+</style>
