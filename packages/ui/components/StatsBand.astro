@@ -29,10 +29,20 @@ const { items, columns = 4, background = 'alt', space = 'sm' } = Astro.props;
 const onDark = background === 'invert' || background === 'primary';
 ---
 
-<Section background={background} space={space}>
-  <ul class:list={['stats', `stats--cols-${columns}`, onDark && 'stats--on-dark']}>
+{/* Reveal na sekci vypnutý, nasouvá se každé číslo zvlášť. Kdyby se animovala
+    i sekce, transformace by se skládaly a pruh by se hýbal dvakrát.
+
+    Čísla se ZÁMĚRNĚ nepočítají od nuly. Grason to tak nemá (jeho BigNumber
+    sloupce jen prokreslí a nasune s prodlevou 250 a 500ms) a dopočítávání by
+    tady navíc měnilo šířku textu pod číslem, takže by popisek poskakoval.
+    Hodnota je proto v HTML rovnou, JS do ní nesahá: čtečka i vyhledávač
+    vidí finální číslo. Start 250ms je z Grasonova BigNumberu, krok už je
+    naše listová kadence, protože pro čtyři čísla čte lépe než dva kroky. */}
+<Section background={background} space={space} reveal={false}>
+  <ul class:list={['stats', `stats--cols-${columns}`, onDark && 'stats--on-dark']}
+      data-reveal-group style="--reveal-stagger-base: 250ms">
     {items.map((s) => (
-      <li class="stats__item"><span class="stats__num">{s.num}</span><span class="stats__lbl">{s.lbl}</span></li>
+      <li class="stats__item reveal"><span class="stats__num">{s.num}</span><span class="stats__lbl">{s.lbl}</span></li>
     ))}
   </ul>
 </Section>
