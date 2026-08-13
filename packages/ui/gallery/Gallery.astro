@@ -94,6 +94,7 @@ const OBSAH = [
   { id: 'logowall', label: 'LogoWall' },
   { id: 'leadform', label: 'LeadForm' },
   { id: 'postgrid', label: 'PostGrid' },
+  { id: 'articledetail', label: 'ArticleDetail' },
   { id: 'categorychips', label: 'CategoryChips' },
   { id: 'header-footer', label: 'Header a Footer' },
   { id: 'herocarousel', label: 'HeroCarousel' },
@@ -108,7 +109,7 @@ const OBSAH = [
       <p class="gal__kicker">Katalog komponent</p>
       <h1 class="gal__h1">{brand}</h1>
       <p class="gal__lead">
-        Všech 24 sdílených komponent z <code>packages/ui</code>, jejich varianty a props.
+        Všech 25 sdílených komponent z <code>packages/ui</code>, jejich varianty a props.
         Renderuje se skutečnými komponentami v tokenech značky {brand}, takže co je tady,
         to je na webu. Stejná stránka existuje na každém webu skupiny, takže se dá porovnat,
         jak stejná komponenta vypadá v jiné značce.
@@ -395,6 +396,7 @@ const OBSAH = [
     <Spec id="breadcrumb" name="Breadcrumb" count={42}
       what="Drobečková navigace. Poslední položka bez href je aktuální stránka."
       when="Na podstránkách hlouběji než druhá úroveň. Na homepage ne."
+      note="Nese si vlastní Container, takže je určený jako samostatný pás NAD sekcí. Uvnitř Section by vznikl vnořený kontejner s dvojím odsazením; tam použij lokální Breadcrumb webu, jako to dělá ArticleDetail."
       props={[
         { prop: 'items', type: '{ label, href? }[]', req: true },
         { prop: 'background', type: "'default' | 'alt'", def: "'default'" },
@@ -697,6 +699,34 @@ const OBSAH = [
         { prop: 'more', type: 'string', def: "'Číst článek'" },
       ]}>
       <Demo label="tři karty bez obrázků"><PostGrid posts={posts} /></Demo>
+    </Spec>
+
+    <Spec id="articledetail" name="ArticleDetail" count={2}
+      what="Detail článku: rubrika, datum, nadpis, perex, obrázek, tělo a CTA na konci."
+      when="Na stránce /<blog>/<slug>. Výpis a rubriky řeší PostGrid a CategoryChips."
+      note="Do teď byl detail psaný přímo ve stránce na Pecostě a Pianu a byl z 84 % shodný. Blogy mají vzniknout i na dalších webech, tak ať se ta odchylka nemnoží. Ve stránce zůstává title a description pro Base, schema.org a getStaticPaths, protože to je SEO a routing."
+      props={[
+        { prop: 'title', type: 'string', req: true },
+        { prop: 'pubDate', type: 'Date', req: true, note: 'formátuje se česky uvnitř' },
+        { prop: 'description', type: 'string', note: 'perex pod nadpisem' },
+        { prop: 'image', type: 'string', note: 'obrázek článku, 1200 x 675' },
+        { prop: 'imageAlt', type: 'string', def: 'title' },
+        { prop: 'category', type: 'string', note: 'rubrika nad nadpisem' },
+        { prop: 'categoryHref', type: 'string', note: 'bez ní se rubrika neodkazuje' },
+        { prop: 'cta', type: '{ label, href }', note: 'nebo slot cta' },
+      ]}
+      slots={[
+        { slot: 'default', note: 'tělo článku, typicky <Content /> z astro:content' },
+        { slot: 'breadcrumb', note: 'drobečky si dodává stránka svou komponentou' },
+        { slot: 'cta', note: 'když nestačí jedno tlačítko' },
+      ]}>
+      <Demo label="tělo drží 720, sekce je container narrow">
+        <Text size="small" color="muted">
+          Živou ukázku sem nedávám, protože komponenta obsahuje celou Section a uvnitř katalogu
+          by kolidovala s okolními sekcemi. Podoba je na jakémkoli článku:
+          <code>/novinky/&lt;slug&gt;</code> na Pecostě, <code>/blog/&lt;slug&gt;</code> na Pianu.
+        </Text>
+      </Demo>
     </Spec>
 
     <Spec id="categorychips" name="CategoryChips" count={4}

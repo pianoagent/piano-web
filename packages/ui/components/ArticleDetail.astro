@@ -1,0 +1,94 @@
+---
+/**
+ * ArticleDetail: SDÍLENÝ detail článku.
+ *
+ * Do teď byl detail psaný přímo ve stránce na Pecostě a Pianu a byl z 84 %
+ * shodný. Blogy mají vzniknout i na dalších webech, tak ať se ta odchylka
+ * nemnoží s každým dalším.
+ *
+ * Co zůstává ve stránce a co sem NEPATŘÍ: title a description pro <Base>,
+ * schema.org a getStaticPaths. To je SEO a routing, per web jiné.
+ *
+ *   title, description?, pubDate, image?, imageAlt?
+ *   category? + categoryHref?   rubrika nad nadpisem, odkaz volitelný
+ *   slot "breadcrumb"           drobečky si dodává stránka svou komponentou.
+ *                               SDÍLENÝ Breadcrumb sem NEDÁVAT: nese si vlastní
+ *                               Container a uvnitř sekce by vznikl vnořený
+ *                               kontejner s dvojím odsazením. Je určený jako
+ *                               samostatný pás nad sekcí.
+ *   cta?                        { label, href }, nebo slot "cta"
+ *
+ * Tělo článku jde default slotem, typicky <Content /> z astro:content.
+ * Datum se formátuje česky uvnitř, stránka posílá Date.
+ */
+import Section from './Section.astro';
+import Heading from './Heading.astro';
+import Text from './Text.astro';
+import Button from './Button.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  pubDate: Date;
+  image?: string;
+  imageAlt?: string;
+  category?: string;
+  categoryHref?: string;
+  cta?: { label: string; href: string };
+}
+const { title, description, pubDate, image, imageAlt, category, categoryHref, cta } = Astro.props;
+
+const fmtDate = (d: Date) => d.toLocaleDateString('cs-CZ', { day: 'numeric', month: 'long', year: 'numeric' });
+const hasCtaSlot = Astro.slots.has('cta');
+const hasCrumbs = Astro.slots.has('breadcrumb');
+---
+
+<Section background="default" space="lg" container="narrow">
+  {hasCrumbs && <slot name="breadcrumb" />}
+
+  <div class="meta">
+    {category && (categoryHref
+      ? <a class="meta__cat" href={categoryHref}>{category}</a>
+      : <span class="meta__cat">{category}</span>)}
+    <time datetime={pubDate.toISOString()}>{fmtDate(pubDate)}</time>
+  </div>
+
+  <Heading as="h1" size="h1">{title}</Heading>
+  {description && <Text size="lead" color="muted" class="lead">{description}</Text>}
+  {image && <img class="cover" src={image} alt={imageAlt ?? title} width="1200" height="675" loading="lazy" decoding="async" />}
+
+  <article class="prose"><slot /></article>
+
+  {(hasCtaSlot || cta) && (
+    <div class="cta">
+      {hasCtaSlot ? <slot name="cta" /> : cta && <Button href={cta.href}>{cta.label}</Button>}
+    </div>
+  )}
+</Section>
+
+<style>
+  .meta { display: flex; align-items: center; gap: var(--space-3); font-size: var(--font-size-caption); color: var(--color-text-muted); margin-bottom: var(--space-2); }
+  .meta__cat { color: var(--color-text-accent); font-weight: var(--font-weight-medium); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide); text-decoration: none; }
+  a.meta__cat:hover { text-decoration: underline; }
+  .lead { margin-top: var(--space-3); }
+  .cover { width: 100%; height: auto; border-radius: var(--radius-md); margin-top: var(--space-6); }
+
+  /* Tělo článku. Sloupec 720 drží délku řádku na čitelné míře, i když je
+     kontejner narrow širší. */
+  .prose { max-width: 720px; margin-top: var(--space-6); }
+  .prose :global(h2) { font-size: var(--font-size-h3); margin-top: var(--space-7); margin-bottom: var(--space-3); }
+  .prose :global(h3), .prose :global(h4) { font-size: var(--font-size-lead); margin-top: var(--space-5); margin-bottom: var(--space-2); }
+  .prose :global(p) { margin-bottom: var(--space-4); line-height: var(--line-height-body); }
+  .prose :global(ul), .prose :global(ol) { margin: 0 0 var(--space-4) var(--space-5); display: flex; flex-direction: column; gap: var(--space-2); }
+  .prose :global(li) { list-style: disc; }
+  .prose :global(a) { color: var(--color-text-accent); }
+  /* max-width, ne width: menší obrázek v textu se nemá roztahovat na plnou
+     šířku sloupce. Pecosta i Piano to měly každý jinak, tady je bezpečnější
+     varianta a vzdušnější okraj z těch dvou. */
+  .prose :global(img) { max-width: 100%; height: auto; border-radius: var(--radius-md); margin: var(--space-6) 0; }
+  .prose :global(.gallery) { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-3); margin: var(--space-5) 0; }
+  .prose :global(.gallery img) { margin: 0; width: 100%; height: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+  .prose :global(h2:first-child), .prose :global(p:first-child) { margin-top: 0; }
+
+  .cta { margin-top: var(--space-8); }
+</style>
