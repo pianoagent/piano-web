@@ -6,7 +6,7 @@
  *   eyebrow?:    string  → malý verzálkový popisek nad nadpisem
  *   title?:      string  → nadpis (pro akcent PP Eiko použij slot "title")
  *   lead?:       string  → perex pod nadpisem
- *   align?:      "left" | "center"   (default "left"; ignorováno u split layoutu)
+ *   align?:      "left" | "center"   (default "center"; uplatní se jen bez média)
  *   background?: "default" | "alt" | "invert" | "primary"
  *   space?:      "sm" | "md" | "lg"  (default "lg")
  *
@@ -32,6 +32,10 @@ interface Props {
   eyebrow?: string;
   title?: string;
   lead?: string;
+  /* Zarovnání textu u varianty BEZ média. Výchozí je center: rozhodnuto
+     13. 8. 2026, protože hero bez média vypadá vlevo osiřele a zbytek
+     kontejneru zůstane prázdný. Stránka, která vlevo chce, si o to řekne
+     explicitně. U split a cover se prop neuplatní, tam pozici drží kompozice. */
   align?: 'left' | 'center';
   background?: 'default' | 'alt' | 'warm' | 'invert' | 'primary' | 'gradient';
   space?: 'sm' | 'md' | 'lg';
@@ -46,7 +50,7 @@ interface Props {
   variant?: 'split' | 'cover';
 }
 
-const { eyebrow, title, lead, align = 'left', background = 'default', space = 'lg', usp = [], slides = [], carouselLabel = 'Přepnout sdělení', variant = 'split' } = Astro.props;
+const { eyebrow, title, lead, align = 'center', background = 'default', space = 'lg', usp = [], slides = [], carouselLabel = 'Přepnout sdělení', variant = 'split' } = Astro.props;
 const isCover = variant === 'cover';
 const uspItems = usp.map((u) => (typeof u === 'string' ? { text: u, icon: 'lucide:check' } : { text: u.text, icon: u.icon ?? 'lucide:check' }));
 

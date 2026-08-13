@@ -1,0 +1,140 @@
+---
+/**
+ * PricingTiers: SDÍLENÝ ceník jako karty vedle sebe.
+ *
+ * Vzor je Septim /cenik, který tuhle podobu měl nejúplnější. Stejnou věc si
+ * ručně kreslí i Hugo a v jiném provedení Harsys, proto komponenta.
+ *
+ * POZOR na druhou podobu ceníku. Grason a Septim /index mají srovnávací
+ * TABULKU (funkce v řádcích, varianty ve sloupcích, přepínač období). To je
+ * jiná struktura a patří jí vlastní komponenta, ne prop téhle. Nemíchat.
+ *
+ *   items:   [{ name, price, unit?, note?, feats[], highlight?, cta? }]
+ *   eyebrow, title, lead   hlavička sekce
+ *   badge:   text štítku u zvýrazněné karty (default „Nejoblíbenější")
+ *   footnote: text pod kartami, typicky poznámka o DPH
+ *   namePrefix: předřadí se před name v popisku i v CTA (Septim má „Septim.")
+ *   background, space, id
+ *
+ * Slot "footnote" má přednost před propem, když potřebuješ odkaz uvnitř.
+ */
+import Section from './Section.astro';
+import Heading from './Heading.astro';
+import Text from './Text.astro';
+import Button from './Button.astro';
+import Icon from './Icon.astro';
+
+interface Tier {
+  name: string;
+  price: string;
+  unit?: string;
+  note?: string;
+  feats: string[];
+  highlight?: boolean;
+  cta?: { label?: string; href: string };
+}
+interface Props {
+  items: Tier[];
+  eyebrow?: string;
+  title?: string;
+  titleHtml?: string;
+  lead?: string;
+  badge?: string;
+  footnote?: string;
+  namePrefix?: string;
+  ctaHref?: string;
+  background?: 'default' | 'alt';
+  space?: 'sm' | 'md' | 'lg';
+  id?: string;
+}
+const {
+  items, eyebrow, title, titleHtml, lead,
+  badge = 'Nejoblíbenější', footnote, namePrefix = '',
+  ctaHref = '#poptavka', background = 'default', space = 'lg', id,
+} = Astro.props;
+
+const hasHead = !!(eyebrow || title || titleHtml || lead);
+const hasFootSlot = Astro.slots.has('footnote');
+---
+
+<Section background={background} space={space} id={id} reveal={false}>
+  {hasHead && (
+    <div class="pt__head">
+      {eyebrow && <Text size="label" color="accent" align="center" class="reveal reveal--from-top">{eyebrow}</Text>}
+      {(title || titleHtml) && (
+        <Heading as="h2" size="h2" align="center" class="reveal reveal--from-top">
+          {titleHtml ? <Fragment set:html={titleHtml} /> : title}
+        </Heading>
+      )}
+      {lead && <Text size="lead" color="muted" align="center" balance class="reveal reveal--from-top reveal--d1">{lead}</Text>}
+    </div>
+  )}
+
+  <div class="pt__grid" data-reveal-group>
+    {items.map((t) => (
+      <div class:list={['pt__tier', t.highlight && 'pt__tier--hl', 'reveal']}>
+        {t.highlight && <span class="pt__badge">{badge}</span>}
+        <Text size="label" color="accent">{namePrefix}{t.name}</Text>
+        <p class="pt__price">{t.price}{t.unit && <span class="pt__unit">{t.unit}</span>}</p>
+        {t.note && <Text size="caption" color="muted" class="pt__note">{t.note}</Text>}
+        <ul class="pt__list">
+          {t.feats.map((f) => (
+            <li class="pt__item"><Icon name="lucide:check" size="xs" class="pt__check" /><span>{f}</span></li>
+          ))}
+        </ul>
+        <Button href={t.cta?.href ?? ctaHref} variant={t.highlight ? 'primary' : 'secondary'} full>
+          {t.cta?.label ?? `Chci ${namePrefix}${t.name}`}
+        </Button>
+      </div>
+    ))}
+  </div>
+
+  {hasFootSlot
+    ? <div class="pt__foot"><slot name="footnote" /></div>
+    : footnote && <Text size="small" color="muted" align="center" class="pt__foot">{footnote}</Text>}
+</Section>
+
+<style>
+  .pt__head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-7); text-align: center; }
+  .pt__head > * + * { margin-top: var(--space-3); }
+
+  .pt__grid {
+    display: grid; gap: var(--space-5);
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    align-items: start;
+  }
+
+  .pt__tier {
+    position: relative;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    padding: var(--space-6);
+    display: flex; flex-direction: column; gap: var(--space-3);
+  }
+  /* Zvýrazněná karta má silnější rámeček, ne jinou barvu plochy: zůstane
+     čitelná i na barevném pásu a nepotřebuje vlastní token. */
+  .pt__tier--hl { border: 2px solid var(--color-primary); }
+
+  .pt__badge {
+    position: absolute; top: -12px; left: var(--space-6);
+    background: var(--color-primary); color: var(--color-text-on-dark);
+    font-size: var(--font-size-caption); font-weight: var(--font-weight-semibold);
+    padding: 4px 12px; border-radius: var(--radius-full);
+  }
+
+  .pt__price {
+    font-size: var(--font-size-h2); font-weight: var(--font-weight-bold);
+    color: var(--color-secondary); line-height: 1;
+  }
+  .pt__unit { font-size: var(--font-size-small); font-weight: var(--font-weight-regular); color: var(--color-text-muted); }
+  /* Poznámky mají různou délku, tohle drží ceny karet na jedné lince. */
+  .pt__note { min-height: 2.4em; }
+
+  .pt__list { list-style: none; display: flex; flex-direction: column; gap: var(--space-2); flex: 1; }
+  .pt__item { display: flex; align-items: flex-start; gap: var(--space-2); font-size: var(--font-size-small); }
+  .pt__check { color: var(--color-primary); flex-shrink: 0; margin-top: 3px; }
+
+  .pt__foot { margin-top: var(--space-6); text-align: center; }
+</style>

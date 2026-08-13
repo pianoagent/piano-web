@@ -28,6 +28,7 @@ import Breadcrumb from '../components/Breadcrumb.astro';
 import Hero from '../components/Hero.astro';
 import USPGrid from '../components/USPGrid.astro';
 import Split from '../components/Split.astro';
+import PricingTiers from '../components/PricingTiers.astro';
 import StatsBand from '../components/StatsBand.astro';
 import Testimonials from '../components/Testimonials.astro';
 import Faq from '../components/Faq.astro';
@@ -86,6 +87,7 @@ const OBSAH = [
   { id: 'hero', label: 'Hero' },
   { id: 'uspgrid', label: 'USPGrid' },
   { id: 'split', label: 'Split' },
+  { id: 'pricingtiers', label: 'PricingTiers' },
   { id: 'statsband', label: 'StatsBand' },
   { id: 'testimonials', label: 'Testimonials' },
   { id: 'faq', label: 'Faq' },
@@ -106,7 +108,7 @@ const OBSAH = [
       <p class="gal__kicker">Katalog komponent</p>
       <h1 class="gal__h1">{brand}</h1>
       <p class="gal__lead">
-        Všech 23 sdílených komponent z <code>packages/ui</code>, jejich varianty a props.
+        Všech 24 sdílených komponent z <code>packages/ui</code>, jejich varianty a props.
         Renderuje se skutečnými komponentami v tokenech značky {brand}, takže co je tady,
         to je na webu. Stejná stránka existuje na každém webu skupiny, takže se dá porovnat,
         jak stejná komponenta vypadá v jiné značce.
@@ -534,6 +536,35 @@ const OBSAH = [
           <div slot="media" class="gal__phsplit">slot media</div>
           <Fragment slot="actions"><Button href="#" variant="secondary" onDark>CTA</Button></Fragment>
         </Split>
+      </Demo>
+    </Spec>
+
+    <Spec id="pricingtiers" name="PricingTiers" count={1}
+      what="Ceník jako karty vedle sebe. Jedna karta může být zvýrazněná se štítkem."
+      when="Na cenících s licencemi nebo balíčky. Srovnávací tabulka funkcí je jiná struktura a patří jí vlastní komponenta."
+      note="Ceník má na webech tři různé podstaty a tahle komponenta pokrývá jen první: karty tierů (Septim /cenik). Druhá je srovnávací tabulka s přepínačem období (Grason 3x, Septim /index), třetí jsou karty s dvojí cenou a maticí dostupnosti funkcí (Harsys /cenik). Ty dvě zbývající zatím komponentu nemají."
+      props={[
+        { prop: 'items', type: '{ name, price, unit?, note?, feats[], highlight?, cta? }[]', req: true },
+        { prop: 'namePrefix', type: 'string', def: "''", note: 'Septim má „Septim.“' },
+        { prop: 'badge', type: 'string', def: "'Nejoblíbenější'" },
+        { prop: 'ctaHref', type: 'string', def: "'#poptavka'" },
+        { prop: 'eyebrow', type: 'string' },
+        { prop: 'title', type: 'string', note: 'nebo titleHtml' },
+        { prop: 'lead', type: 'string' },
+        { prop: 'footnote', type: 'string', note: 'nebo slot footnote, když potřebuješ odkaz' },
+        { prop: 'background', type: "'default' | 'alt'", def: "'default'" },
+        { prop: 'space', type: "'sm' | 'md' | 'lg'", def: "'lg'" },
+      ]}
+      slots={[{ slot: 'footnote', note: 'text pod kartami, typicky poznámka o DPH' }]}>
+      <Demo label="tři tiery, prostřední zvýrazněný" bleed>
+        <PricingTiers
+          eyebrow="Ceník" title="Vyberte si licenci"
+          items={[
+            { name: 'Základ', price: '1 990 Kč', unit: '/měsíc', note: 'za pokladnu, sleva při roční platbě', feats: ['První funkce', 'Druhá funkce', 'Třetí funkce'] },
+            { name: 'Standard', price: '2 990 Kč', unit: '/měsíc', note: 'za pokladnu, druhá a další se slevou', feats: ['Vše ze Základu', 'Čtvrtá funkce', 'Pátá funkce', 'Šestá funkce'], highlight: true },
+            { name: 'Plus', price: '3 990 Kč', unit: '/měsíc', note: 'za pokladnu, pro provozy s více kasami', feats: ['Vše ze Standardu', 'Sedmá funkce', 'Osmá funkce'] },
+          ]}
+          footnote="Ceny jsou uvedeny bez DPH." />
       </Demo>
     </Spec>
 
