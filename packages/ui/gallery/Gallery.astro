@@ -28,6 +28,7 @@ import Breadcrumb from '../components/Breadcrumb.astro';
 import Hero from '../components/Hero.astro';
 import USPGrid from '../components/USPGrid.astro';
 import Split from '../components/Split.astro';
+import ContactCards from '../components/ContactCards.astro';
 import PricingTiers from '../components/PricingTiers.astro';
 import PricingTable from '../components/PricingTable.astro';
 import StatsBand from '../components/StatsBand.astro';
@@ -85,6 +86,7 @@ const OBSAH = [
   { id: 'card', label: 'Card' },
   { id: 'field', label: 'Field' },
   { id: 'breadcrumb', label: 'Breadcrumb' },
+  { id: 'contactcards', label: 'ContactCards' },
   { id: 'hero', label: 'Hero' },
   { id: 'uspgrid', label: 'USPGrid' },
   { id: 'split', label: 'Split' },
@@ -111,7 +113,7 @@ const OBSAH = [
       <p class="gal__kicker">Katalog komponent</p>
       <h1 class="gal__h1">{brand}</h1>
       <p class="gal__lead">
-        Všech 26 sdílených komponent z <code>packages/ui</code>, jejich varianty a props.
+        Všech 27 sdílených komponent z <code>packages/ui</code>, jejich varianty a props.
         Renderuje se skutečnými komponentami v tokenech značky {brand}, takže co je tady,
         to je na webu. Stejná stránka existuje na každém webu skupiny, takže se dá porovnat,
         jak stejná komponenta vypadá v jiné značce.
@@ -409,6 +411,36 @@ const OBSAH = [
     </Spec>
 
     {/* ---------- BLOKY ---------- */}
+    <Spec id="contactcards" name="ContactCards" count={2}
+      what="Mřížka kontaktních údajů: ikona, popisek, hodnota. Hodnota je odkaz, pokud má href."
+      when="Na kontaktní stránce. Telefon a mail jako odkaz, adresa a IČ jako text."
+      note="Grason a Protel to měly ručně se shodným tvarem dat, lišil se jen vzhled. Rozdíl drží prop variant: plain bez rámečku (Grason), boxed s plochou a ikonou v kolečku (Protel)."
+      props={[
+        { prop: 'items', type: '{ icon, label, value, href? }[]', req: true },
+        { prop: 'variant', type: "'plain' | 'boxed'", def: "'plain'" },
+        { prop: 'eyebrow', type: 'string' },
+        { prop: 'title', type: 'string', note: 'nebo titleHtml' },
+        { prop: 'lead', type: 'string' },
+        { prop: 'headingAs', type: "'h1' | 'h2'", def: "'h2'", note: "h1 na kontaktní stránce" },
+        { prop: 'minItemWidth', type: 'string', def: "'240px'" },
+        { prop: 'background', type: "'default' | 'alt' | 'invert' | 'primary'", def: "'default'" },
+      ]}>
+      <Demo label="plain, bez rámečku" bleed>
+        <ContactCards variant="plain" items={[
+          { icon: 'lucide:phone', label: 'Zavolejte', value: '+420 000 000 000', href: '#' },
+          { icon: 'lucide:mail', label: 'Napište nám', value: 'info@example.cz', href: '#' },
+          { icon: 'lucide:map-pin', label: 'Sídlo', value: 'Ulice 1, 100 00 Praha' },
+        ]} />
+      </Demo>
+      <Demo label="boxed, s plochou a ikonou v kolečku" bleed code='variant="boxed"'>
+        <ContactCards variant="boxed" background="alt" items={[
+          { icon: 'lucide:briefcase', label: 'Obchod', value: 'sales@example.cz', href: '#' },
+          { icon: 'lucide:life-buoy', label: 'Hotline', value: 'help@example.cz', href: '#' },
+          { icon: 'lucide:map-pin', label: 'Sídlo', value: 'Ulice 1, 100 00 Praha' },
+        ]} />
+      </Demo>
+    </Spec>
+
     <Spec id="hero" name="Hero" count={150}
       what="Úvodní blok stránky. Nese návěs, nadpis, perex, CTA, proužek USP a volitelně médium."
       when="Právě jednou na začátku každé stránky. H1 stránky patří sem."

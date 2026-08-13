@@ -7,6 +7,7 @@
  */
 import Base from '../layouts/Base.astro';
 import Header from '@piano/ui/components/Header.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
 import Footer from '@piano/ui/components/Footer.astro';
 import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
 import Section from '@piano/ui/components/Section.astro';
@@ -86,21 +87,11 @@ const schema = {
   </Hero>
 
   <!-- VERZE -->
-  <Section id="verze" background="default" space="lg">
-    <div class="head head--center">
-      <Text size="label" color="accent" align="center">Možnosti nasazení</Text>
-      <Heading as="h2" size="h2" align="center">Tři verze pro <span class="accent">každý typ provozu</span></Heading>
-    </div>
-    <div class="cards">
-      {verze.map((v) => (
-        <article class="card">
-          <span class="card__icon"><Icon name={v.icon} size="md" /></span>
-          <Heading as="h3" size="h3">{v.title}</Heading>
-          <Text size="small" color="muted">{v.text}</Text>
-        </article>
-      ))}
-    </div>
-  </Section>
+  <USPGrid id="verze" background="default" space="lg"
+    eyebrow="Možnosti nasazení"
+    items={verze.map((v) => ({ icon: v.icon, title: v.title, text: v.text }))}>
+    <Heading slot="title" as="h2" size="h2" align="center">Tři verze pro <span class="accent">každý typ provozu</span></Heading>
+  </USPGrid>
 
   <!-- FUNKCE -->
   <Section background="alt" space="lg">
@@ -121,21 +112,9 @@ const schema = {
   </Section>
 
   <!-- SOUVISEJÍCÍ -->
-  <Section background="default" space="lg">
-    <div class="head head--center">
-      <Heading as="h2" size="h2" align="center">K pokladně patří</Heading>
-    </div>
-    <div class="cards">
-      {souvisejici.map((s) => (
-        <a class="card card--link" href={s.href}>
-          <span class="card__icon"><Icon name={s.icon} size="md" /></span>
-          <Heading as="h3" size="h3">{s.title}</Heading>
-          <Text size="small" color="muted">{s.text}</Text>
-          <span class="card__more">Zobrazit <Icon name="lucide:arrow-right" size="xs" /></span>
-        </a>
-      ))}
-    </div>
-  </Section>
+  <USPGrid background="default" space="lg"
+    title="K pokladně patří"
+    items={souvisejici.map((s) => ({ icon: s.icon, title: s.title, text: s.text, href: s.href }))} />
 
   <!-- POPTÁVKA -->
   <LeadForm proofs={savarinLeadProofs} id="poptavka" variant="full" message background="alt"
@@ -152,14 +131,6 @@ const schema = {
   .head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-7); }
   .head--center { text-align: center; }
   .head > * + * { margin-top: var(--space-3); }
-
-  .cards { display: grid; gap: var(--space-5); grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
-  .card { background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-6) var(--space-5); transition: var(--transition); }
-  .card:hover { border-color: var(--color-primary); box-shadow: var(--shadow-sm); }
-  .card > * + * { margin-top: var(--space-3); }
-  .card__icon { display: inline-flex; color: var(--color-text-accent); }
-  .card--link { text-decoration: none; color: inherit; display: flex; flex-direction: column; }
-  .card__more { margin-top: var(--space-4); color: var(--color-text-accent); font-weight: var(--font-weight-semibold); font-size: var(--font-size-small); display: inline-flex; align-items: center; gap: var(--space-1); }
 
   .split { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-8); align-items: center; }
   .split__text > * + * { margin-top: var(--space-4); }
