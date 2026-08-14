@@ -87,7 +87,7 @@ const revealClass = ['reveal', revealFrom !== 'bottom' && `reveal--from-${reveal
   /* „warm" je dnes varianta jen pro Piano, jen ono definuje --color-bg-warm
      (26 stránek). Fallback byl zadrátovaná krémová #FFF5E8, tedy barva Piana,
      která na brandovém webu svítila jako cizí prvek. Teď spadne na vlastní
-     plochu značky. Katalog na /styleguide tuhle mezeru odhalil. */
+     plochu značky. Odhalilo se to při srovnání variant pozadí vedle sebe. */
   .section--bg-warm    { background: var(--color-bg-warm, var(--color-bg-alt)); }
   .section--bg-invert  { background: var(--color-neutral-900); color: var(--color-text-on-dark); }
   .section--bg-primary { background: var(--color-primary-bg); color: var(--color-text-on-dark); }

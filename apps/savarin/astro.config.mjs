@@ -13,8 +13,7 @@ export default defineConfig({
     service: { entrypoint: 'astro/assets/services/sharp' },
   },
   integrations: [
-    // /styleguide je interni katalog komponent, do sitemapy nepatri
-    sitemap({ filter: (page) => !page.includes('/styleguide') }),
+    sitemap(),
     icon({ iconDir: 'src/icons' }),
   ],
 });

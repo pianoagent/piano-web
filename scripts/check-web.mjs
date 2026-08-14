@@ -87,7 +87,7 @@ function pageMeta(txt) {
     const dyn = (name) => new RegExp(`\\b${name}\\s*=\\s*\\{`).test(tag) || new RegExp(`\\b${name}\\s*=\\s*"[^"]*\\$\\{`).test(tag);
     if (title || description || dyn('title')) {
       /* Stranka s noindex se nedostane do vysledku hledani, takze delka title
-         ani description u ni nic neresi. Napr. /styleguide, interni katalog. */
+         ani description u ni nic neresi. Napr. /dekujeme nebo 404. */
       const noindex = /\bnoindex\b/.test(tag);
       return { title, description, noindex, dynTitle: !title && dyn('title'), dynDesc: !description && dyn('description') };
     }
@@ -115,7 +115,7 @@ function auditReport(files) {
     if (title) {
       const len = title.length;
       /* U servisnich stranek je kratky title v poradku (Kontakt, Děkujeme…) */
-      const utility = /\/(kontakt|dekujeme|cookies|ochrana-udaju|ochrana-osobnich-udaju|obchodni-podminky|kariera|styleguide)\b/.test(f);
+      const utility = /\/(kontakt|dekujeme|cookies|ochrana-udaju|ochrana-osobnich-udaju|obchodni-podminky|kariera)\b/.test(f);
       if (len > TITLE_MAX || (len < TITLE_MIN && !utility)) warn.push(`${f}: délka title ${len} zn. (cíl ${TITLE_MIN}–${TITLE_MAX}): „${title}"`);
       /* CLAUDE.md: meta title ve tvaru „Text | Název webu" */
       if (site && !title.endsWith(`| ${site}`)) warn.push(`${f}: title není ve tvaru „Text | ${site}": „${title}"`);

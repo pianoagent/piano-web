@@ -256,9 +256,6 @@ for (const app of APPS) {
     await page.setViewport({ width: w, height: mobil ? 812 : 900, deviceScaleFactor: 2, isMobile: mobil, hasTouch: mobil });
     let i = 0;
     for (const r of routes) {
-      // /styleguide je vnitřní katalog s noindex, schválně na něm stojí demo
-      // vedle sebe. Do hodnocení webu nepatří.
-      if (r.startsWith('/styleguide')) continue;
       await page.goto(`http://127.0.0.1:${p}${r}`, { waitUntil: 'load', timeout: 30000 }).catch(() => {});
       await page.evaluate(settleInPage).catch(() => {});
       const res = await page.evaluate(auditInPage, mobil ? 44 : 32).catch((e) => ({ err: String(e) }));
