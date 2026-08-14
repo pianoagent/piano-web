@@ -68,7 +68,10 @@ const hasCrumbs = Astro.slots.has('breadcrumb');
 
 <style>
   .meta { display: flex; align-items: center; gap: var(--space-3); font-size: var(--font-size-caption); color: var(--color-text-muted); margin-bottom: var(--space-2); }
+  /* inline-flex a min-height 24px: jako odkaz to byla klikací plocha 19px,
+     WCAG 2.5.8 chce aspoň 24. Netýká se to případu, kdy rubrika odkaz není. */
   .meta__cat { color: var(--color-text-accent); font-weight: var(--font-weight-medium); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide); text-decoration: none; }
+  a.meta__cat { display: inline-flex; align-items: center; min-height: 24px; }
   a.meta__cat:hover { text-decoration: underline; }
   .lead { margin-top: var(--space-3); }
   .cover { width: 100%; height: auto; border-radius: var(--radius-md); margin-top: var(--space-6); }
@@ -81,7 +84,10 @@ const hasCrumbs = Astro.slots.has('breadcrumb');
   .prose :global(p) { margin-bottom: var(--space-4); line-height: var(--line-height-body); }
   .prose :global(ul), .prose :global(ol) { margin: 0 0 var(--space-4) var(--space-5); display: flex; flex-direction: column; gap: var(--space-2); }
   .prose :global(li) { list-style: disc; }
-  .prose :global(a) { color: var(--color-text-accent); }
+  /* overflow-wrap: anywhere: v článcích jsou holé odkazy typu
+     <https://sdeleni.idnes.cz/zpravy/…>, které se jako jeden řetězec nezlomí
+     a na mobilu koukají za okraj. */
+  .prose :global(a) { color: var(--color-text-accent); overflow-wrap: anywhere; }
   /* max-width, ne width: menší obrázek v textu se nemá roztahovat na plnou
      šířku sloupce. Pecosta i Piano to měly každý jinak, tady je bezpečnější
      varianta a vzdušnější okraj z těch dvou. */

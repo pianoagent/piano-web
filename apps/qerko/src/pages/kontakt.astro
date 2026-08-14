@@ -54,6 +54,7 @@ const support = [
   .ccard { background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); box-shadow: var(--shadow-sm); padding: var(--space-6); text-align: center; }
   .ccard__icon { display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: var(--radius-md); background: color-mix(in srgb, var(--color-primary) 12%, #fff); color: var(--color-primary); margin-bottom: var(--space-3); }
   .ccard__phone { display: block; font-size: var(--font-size-h3); font-weight: var(--font-weight-bold); color: var(--color-secondary); text-decoration: none; margin-top: var(--space-2); }
-  .ccard__mail { display: block; font-size: var(--font-size-small); color: var(--color-text-accent); text-decoration: none; margin-top: var(--space-1); }
+  /* min-height 24px: klikací plocha podle WCAG 2.5.8. */
+  .ccard__mail { display: flex; align-items: center; min-height: 24px; font-size: var(--font-size-small); color: var(--color-text-accent); text-decoration: none; margin-top: var(--space-1); }
   .legal { margin-top: var(--space-7); }
 </style>

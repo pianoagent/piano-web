@@ -176,13 +176,16 @@ const topStyle = `--footer-cols: ${columns.length + (hasOffices ? 1 : 0) + 1};`;
   .footer__parent-link { color: var(--color-primary); font-size: var(--font-size-small); font-weight: var(--font-weight-medium); text-decoration: none; }
   .footer__parent-link:hover { text-decoration: underline; }
   .footer__social { display: flex; gap: var(--space-2); list-style: none; margin-top: var(--space-5); }
-  .footer__social-link { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; color: var(--color-text-on-dark); border: 1px solid var(--color-border-on-dark); border-radius: var(--radius-sm); transition: var(--transition); }
+  .footer__social-link { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; color: var(--color-text-on-dark); border: 1px solid var(--color-border-on-dark); border-radius: var(--radius-sm); transition: var(--transition); }
   .footer__social-link:hover { background: var(--color-primary); border-color: var(--color-primary); }
 
   /* Sloupce */
   .footer__heading { font-family: var(--font-sans); font-size: var(--font-size-label); font-weight: var(--font-weight-semibold); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide); color: var(--color-text-on-dark-muted); margin-bottom: var(--space-4); }
   .footer__list { list-style: none; display: flex; flex-direction: column; gap: var(--space-3); }
-  .footer__link { color: var(--color-text-on-dark); text-decoration: none; font-size: var(--font-size-body); transition: var(--transition); }
+  /* overflow-wrap: anywhere kvůli dlouhým doménám a mailům. Hugo má v patičce
+     „Přihlášení: pos.unlikeotherai.com", což je jeden nezlomitelný řetězec
+     a bez tohohle kouká za okraj stránky. */
+  .footer__link { color: var(--color-text-on-dark); text-decoration: none; font-size: var(--font-size-body); transition: var(--transition); overflow-wrap: anywhere; }
   .footer__link:hover { color: var(--color-primary); }
   .footer__link--small { font-size: var(--font-size-small); }
   .footer__muted { color: var(--color-text-on-dark-muted); font-size: var(--font-size-body); }

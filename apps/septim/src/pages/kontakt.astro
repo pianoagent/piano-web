@@ -84,10 +84,13 @@ const support = [
   .office { text-align: left; }
   .ccard__icon { display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: var(--radius-md); background: color-mix(in srgb, var(--color-primary) 12%, #fff); color: var(--color-primary); margin-bottom: var(--space-3); }
   .ccard__phone { display: block; font-size: var(--font-size-h3); font-weight: var(--font-weight-bold); color: var(--color-secondary); text-decoration: none; margin-top: var(--space-2); }
-  .ccard__mail { display: block; font-size: var(--font-size-small); color: var(--color-text-accent); text-decoration: none; margin-top: var(--space-1); }
+  /* min-height 24px: klikací plocha podle WCAG 2.5.8. */
+  .ccard__mail { display: flex; align-items: center; min-height: 24px; font-size: var(--font-size-small); color: var(--color-text-accent); text-decoration: none; margin-top: var(--space-1); }
   .office__contacts { list-style: none; margin-top: var(--space-3); display: flex; flex-direction: column; gap: var(--space-2); }
   .office__contacts li { display: flex; align-items: center; gap: var(--space-2); font-size: var(--font-size-small); }
-  .office__contacts a { color: var(--color-text-accent); text-decoration: none; }
+  /* min-height 24px: telefon a mail se na mobilu vytáčí prstem, klikací plocha
+     měla 21px (WCAG 2.5.8 chce aspoň 24). */
+  .office__contacts a { color: var(--color-text-accent); text-decoration: none; display: inline-flex; align-items: center; min-height: 24px; }
   .office__ico { color: var(--color-text-muted); }
   .head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-7); text-align: center; }
   .head > * + * { margin-top: var(--space-3); }

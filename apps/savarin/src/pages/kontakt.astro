@@ -85,6 +85,7 @@ import { savarinLeadProofs } from '../config/leadProofs';
   .contact__icon { display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: var(--radius-md); background: var(--color-bg-alt); color: var(--color-primary); }
   .contact__card a { color: var(--color-text-accent); text-decoration: none; }
   .contact__card a:hover { color: var(--color-secondary-terracotta); }
-  .contact__map { display: inline-flex; align-items: center; gap: var(--space-2); margin-top: var(--space-2); font-size: var(--font-size-small); font-weight: var(--font-weight-semibold); }
+  /* min-height 24px: klikací plocha podle WCAG 2.5.8. */
+  .contact__map { display: inline-flex; align-items: center; min-height: 24px; gap: var(--space-2); margin-top: var(--space-2); font-size: var(--font-size-small); font-weight: var(--font-weight-semibold); }
   .contact__map:hover { text-decoration: underline; }
 </style>

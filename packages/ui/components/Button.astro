@@ -81,6 +81,9 @@ const classes = ['btn', `btn--${variant}`, `btn--${size}`, full && 'btn--full', 
 
   .btn--md {
     padding: var(--space-3) var(--space-5);
+    /* 44px je doporučená klikací plocha na dotyku (Apple HIG, WCAG 2.5.5).
+       Odsazení dávalo 43px, chyběl jediný pixel. */
+    min-height: 44px;
   }
 
   .btn--lg {
