@@ -4,6 +4,8 @@
    Nový web = kopie tohoto souboru s jinými hodnotami.
 */
 @import "@piano/ui/styles/base.css";
+@import "./tokens.css";               /* tokeny v názvosloví styleguidu */
+@import "@piano/ui/styles/bridge.css"; /* mapování na názvy v komponentách */
 
 @font-face {
   font-family: "Borna";

@@ -11,6 +11,8 @@
    (velké plochy / akcenty), na text se nepoužívá kvůli nízkému kontrastu.
 */
 @import "@piano/ui/styles/base.css";
+@import "./tokens.css";               /* tokeny v názvosloví styleguidu */
+@import "@piano/ui/styles/bridge.css"; /* mapování na názvy v komponentách */
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&display=swap");
 
 :root {

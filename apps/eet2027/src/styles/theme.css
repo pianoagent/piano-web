@@ -6,6 +6,8 @@
    pouze hodnoty zde. Base struktura (typo skala, spacing) zustava z @piano/ui.
 */
 @import "@piano/ui/styles/base.css";
+@import "./tokens.css";               /* tokeny v názvosloví styleguidu */
+@import "@piano/ui/styles/bridge.css"; /* mapování na názvy v komponentách */
 
 :root {
   /* ----- Pismo (systemovy bezpatkovy stack, bez externich fontu) ----- */

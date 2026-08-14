@@ -1,0 +1,77 @@
+/* =========================================================
+   EET 2027 (kampaňový web): tokeny v názvosloví styleguidu
+   =========================================================
+   Tenhle web token vrstvu neměl a mapoval se přímo z base.css. Doplněno, ať
+   platí stejná stavba jako u brandových webů:
+     base.css -> tokens.css -> bridge.css -> zbytek theme.css
+
+   HODNOTY JSOU ODVOZENÉ Z TOHO, CO WEB VYKRESLOVAL PŘED ZAVEDENÍM VRSTVY.
+   Cílem bylo nulové vizuální posunutí, ne přepsání na brandový styleguide.
+   Dva tokeny se od brandových webů schválně liší, přepnutí je na jeden řádek:
+     --page-pad / --page-pad-mobile   tady 24px / 24px, brandové weby 40px / 20px
+     --lh-h1                          tady 1.1 (fallback z base.css), styleguide 1.02
+   ========================================================= */
+
+:root {
+  /* ---------- Barvy ---------- */
+  --bg:        #FFFFFF;
+  --bg-alt:    #F5F7FA;
+  --bg-invert: #131922;
+
+  --ink:            #1B2330;
+  --ink-2:          #5A6472;
+  --ink-invert:     #FFFFFF;
+  --ink-invert-2:   rgba(255, 255, 255, .74);
+
+  --line:        #DCE2EA;
+  --line-strong: #C2CAD6;
+
+  /* --accent nese hodnotu, kterou web dosud vykresloval jako --color-primary.
+     --accent-aa (ztmavená varianta pro kontrast) se tady nepoužívá, mapování
+     v bridge.css na ni má fallback. */
+  --accent:  #1A4F8B;
+
+  --success: #1F8A5B;
+  --warning: #C77A12;
+  --error:   #C8323D;
+
+  /* ---------- Typografie ---------- */
+  --font-text: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, system-ui, sans-serif;
+
+  --fs-display: clamp(34px, 4.2vw, 56px);
+  --fs-h1:      clamp(34px, 4.4vw, 60px);
+  --fs-h2:      clamp(27px, 3vw, 40px);
+  --fs-h3:      22px;
+  --fs-lead:    clamp(18px, 1.5vw, 22px);
+  --fs-body:    16px;
+  --fs-small:   14px;
+  --fs-caption: 12px;
+  --fs-label:   13px;
+
+  /* 1.1 = fallback, se kterým base.css dosud sázel h1. Styleguide má 1.02,
+     přepnutím se nadpisy stáhnou, proto to není součást téhle změny. */
+  --lh-h1:      1.1;
+  --lh-display: 1.1;
+  --lh-h2:      1.06;
+  --lh-h3:      1.12;
+  --lh-lead:    1.45;
+  --lh-body:    1.55;
+
+  --ls-display: -.01em;
+  --ls-body:    0;
+  --ls-label:   .08em;
+
+  /* ---------- Spacing ---------- */
+  --s-1: 4px;  --s-2: 8px;  --s-3: 12px; --s-4: 16px; --s-5: 24px;
+  --s-6: 32px; --s-7: 48px; --s-8: 64px; --s-9: 96px; --s-10: 128px;
+
+  /* ---------- Layout ---------- */
+  --container:       1200px;
+  --page-pad:        24px;
+  --page-pad-mobile: 24px;
+
+  /* ---------- Pohyb ---------- */
+  --dur-micro:    .14s;
+  --dur-standard: .18s;
+  --ease:         ease-out;
+}
