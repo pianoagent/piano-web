@@ -10,6 +10,7 @@ import Base from '../layouts/Base.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import Section from '@piano/ui/components/Section.astro';
+import Faq from '@piano/ui/components/Faq.astro';
 import Hero from '@piano/ui/components/Hero.astro';
 import Heading from '@piano/ui/components/Heading.astro';
 import Text from '@piano/ui/components/Text.astro';
@@ -300,18 +301,11 @@ const faqSchema = {
   </Section>
 
   <!-- FAQ -->
-  <Section id="faq" background="default" space="lg" container="narrow">
-    <Heading as="h2" size="h2" align="center">Časté dotazy</Heading>
-    <div class="faq">
-      {faqs.map((f) => (
-        <details class="faq__item">
-          <summary class="faq__q">{f.q}</summary>
-          <div class="faq__a"><Text color="muted">{f.a}</Text></div>
-        </details>
-      ))}
-    </div>
-  </Section>
-
+  <Faq
+    id="faq"
+    background="default"
+    items={faqs}
+    title="Časté dotazy" />
   <!-- ODBER: prihlaseni k informacim o EET -->
   <Section id="odber" background="primary" space="lg">
     <div class="head-center">
@@ -419,7 +413,8 @@ const faqSchema = {
   .sub__label { font-size: var(--font-size-small); font-weight: var(--font-weight-medium); color: var(--color-text); }
   .sub__control { position: relative; display: flex; align-items: center; }
   .sub__control::after { content: ""; position: absolute; right: var(--space-4); width: 8px; height: 8px; border-right: 2px solid var(--color-text-muted); border-bottom: 2px solid var(--color-text-muted); transform: rotate(45deg) translateY(-2px); pointer-events: none; }
-  .sub__select { width: 100%; appearance: none; -webkit-appearance: none; font-family: var(--font-sans); font-size: 15px; color: var(--color-text); background: var(--color-bg); border: 1.5px solid var(--color-border); border-radius: var(--field-radius); padding: var(--space-3) var(--space-7) var(--space-3) var(--space-4); cursor: pointer; }
+  /* font-size 16px, ne méně: iOS by si pole při kliknutí přizoomoval. */
+  .sub__select { width: 100%; appearance: none; -webkit-appearance: none; font-family: var(--font-sans); font-size: 16px; color: var(--color-text); background: var(--color-bg); border: 1.5px solid var(--color-border); border-radius: var(--field-radius); padding: var(--space-3) var(--space-7) var(--space-3) var(--space-4); cursor: pointer; }
   .sub__select:focus-visible { outline: none; border-color: var(--color-primary); box-shadow: var(--shadow-focus); }
   .sub__check { display: flex; align-items: flex-start; gap: var(--space-3); cursor: pointer; }
   .sub__check input { position: absolute; opacity: 0; width: 0; height: 0; }
@@ -468,13 +463,6 @@ const faqSchema = {
   .step__ico { display: inline-flex; color: var(--color-text-accent); }
 
   /* FAQ */
-  .faq { margin-top: var(--space-6); display: flex; flex-direction: column; gap: var(--space-3); }
-  .faq__item { background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-4) var(--space-5); }
-  .faq__q { cursor: pointer; font-family: var(--font-sans); font-weight: var(--font-weight-semibold); color: var(--color-text); list-style: none; display: flex; justify-content: space-between; align-items: center; gap: var(--space-4); }
-  .faq__q::-webkit-details-marker { display: none; }
-  .faq__q::after { content: "+"; color: var(--color-text-accent); font-size: 1.4em; line-height: 1; flex-shrink: 0; }
-  .faq__item[open] .faq__q::after { content: "\2212"; }
-  .faq__a { margin-top: var(--space-3); }
 </style>
 
 <!-- Globalni styly pro prvky vkladane pres JS (innerHTML) - scoped styly na ne nedosahnou -->

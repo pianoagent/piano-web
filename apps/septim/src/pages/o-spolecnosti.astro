@@ -1,5 +1,5 @@
 ---
-/** Septim — O společnosti. Obsah: septim-obsah/o-spolecnosti.md. SEO meta nově. */
+/** Septim: O společnosti. Obsah: septim-obsah/o-spolecnosti.md. SEO meta nově. */
 import Base from '../layouts/Base.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
@@ -11,6 +11,7 @@ import Button from '@piano/ui/components/Button.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import StatsBand from '../components/StatsBand.astro';
 import LogoWall from '../components/LogoWall.astro';
+import { septimLeadProofs } from '../config/leadProofs';
 
 const timeline = [
   { year: '2025', title: 'Součástí skupiny Piano', text: 'Septim se stává hrdým členem ekosystému Piano Solutions.' },
@@ -18,12 +19,12 @@ const timeline = [
   { year: '2023', title: 'Miton většinovým vlastníkem', text: 'Investiční skupina Miton navýšila podíl na 80 %. Stáváme se garantovaným partnerem AHR ČR.' },
   { year: '2021–2022', title: 'Septim.4.1 a vstup Mitonu', text: 'Vydání release 4.1.32 a vstup investiční skupiny Miton.' },
   { year: '2017–2018', title: 'Představení Septim.4', text: 'Nová generace systému; akvizice společnosti Spectu.' },
-  { year: '2009', title: 'Septim v SazkaAréně (O2 areně)', text: '250 pokladních míst — nejrozsáhlejší pokladní systém v ČR. Výhradní distribuce PMS Protel.' },
+  { year: '2009', title: 'Septim v SazkaAréně (O2 areně)', text: '250 pokladních míst: nejrozsáhlejší pokladní systém v ČR. Výhradní distribuce PMS Protel.' },
   { year: '1994', title: 'První verze Septimu', text: 'Zakladatel Zbyněk Švec napsal první verzi pokladního softwaru.' },
 ];
 ---
-<Base title="O společnosti Septim Systems – 30 let nejrespektovanějšího systému"
-      description="Septim Systems a.s. (dříve ASW Systems) vyvíjí provozní systém Septim od roku 1994. Přes 3 000 pokladen, 60+ kolegů, člen skupiny Piano. Nejrespektovanější gastro systém v ČR.">
+<Base title="O společnosti Septim Systems | Septim"
+      description="Septim Systems a.s. (dříve ASW Systems) vyvíjí pokladní a provozní systém Septim už 30 let. Poznejte firmu za gastro systémem č. 1.">
   <SiteHeader />
   <main>
     <Hero eyebrow="O společnosti" background="alt"
@@ -64,16 +65,16 @@ const timeline = [
         <Text size="label" color="on-dark" align="center">Septim je součástí skupiny Piano</Text>
         <Heading as="h2" size="h2" align="center" color="on-dark">Jeden partner pro celý váš provoz</Heading>
         <Text size="lead" color="on-dark-muted" align="center" balance>
-          Nově máte přístup ke všem klíčovým nástrojům pro gastro provoz pod jednou střechou — méně práce,
+          Nově máte přístup ke všem klíčovým nástrojům pro gastro provoz pod jednou střechou, méně práce,
           lepší přehled, vyšší zisk.
         </Text>
         <div class="piano__cta"><Button href="https://piano.cz">Prozkoumat Piano</Button></div>
       </div>
     </Section>
 
-    <LeadForm id="poptavka" variant="full" background="alt"
+    <LeadForm proofs={septimLeadProofs} id="poptavka" variant="full" background="alt"
               title="Chcete Septim do svého provozu?"
-              lead="Nechte nám kontakt — rádi se vám ozveme." />
+              lead="Nechte nám kontakt, rádi se vám ozveme." />
   </main>
   <SiteFooter />
 </Base>

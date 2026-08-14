@@ -1,6 +1,6 @@
 ---
 /**
- * Řešení — Platby a komunikace s hosty (piano.cz/reseni/platby).
+ * Řešení: Platby a komunikace s hosty (piano.cz/reseni/platby).
  * Obsah dle stávajícího webu piano.cz/platby-a-komunikace-s-hosty.
  */
 import Base from '../../layouts/Base.astro';
@@ -9,6 +9,7 @@ import Heading from '@piano/ui/components/Heading.astro';
 import Button from '@piano/ui/components/Button.astro';
 import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
+import { pianoLeadProofs } from '../../config/leadProofs';
 
 const benefits = [
   { icon: 'lucide:utensils', title: 'Více obsloužených stolů', text: 'Platba hostům i obsluze zabírá zbytečně moc času. Ve špičce hosté čekající na zaplacení zabírají místo nově příchozím a obsluha řeší platby místo objednávek. Nechte hosty zaplatit samostatně, obsloužíte jich víc a výrazně zvýšíte tržby.' },
@@ -33,7 +34,7 @@ const benefits = [
   <USPGrid eyebrow="Jak to řešíme" title="Rychlejší platby, spokojenější hosté"
            items={benefits} columns={2} background="default" minItemWidth="320px" />
 
-  <LeadForm id="poptavka" variant="full"
+  <LeadForm proofs={pianoLeadProofs} id="poptavka" variant="full"
             title="Vyřešte rychlejší platby a komunikaci s hosty ještě dnes"
             lead="Kontaktujte nás pro konzultaci zdarma, navrhneme řešení šité na míru vašemu provozu." />
 </Base>

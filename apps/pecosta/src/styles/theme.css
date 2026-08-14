@@ -1,73 +1,112 @@
-/* TÉMA — Pecosta
+/* TÉMA: Pecosta
    =========================================================
-   Brandové tokeny Pecosty. Komponenty se NEMĚNÍ — pouze hodnoty zde.
+   Brandové tokeny Pecosty. Komponenty se NEMĚNÍ: pouze hodnoty zde.
    Zdroj: logo (logos/pecosta_logo.svg) + pecosta-context.md.
-   Identita: geometrický modrý wordmark. Rohy sjednoceny na JEDEN jazyk —
+   Identita: geometrický modrý wordmark. Rohy sjednoceny na JEDEN jazyk
    lehké zaoblení (žádný chamfer, žádné pilulky) napříč tlačítky, štítky,
    poli i kartami. Akcent „úspora" = svěží zelená.
    Base struktura (typo škála, spacing, geometrie) zůstává z @piano/ui.
-   Font: Poppins (geometrická bezserifka, ladí s logem).
+   Font: Cabin na nadpisy, Open Sans na text (dle BRAND.md).
 */
 @import "@piano/ui/styles/base.css";
 
+@import "./tokens.css";              /* tokeny ze styleguidu (nové názvy) */
+@import "@piano/ui/styles/bridge.css"; /* mapování na názvy v komponentách */
+
 /* =========================================================
-   FONT — Poppins (400 / 600 / 700), latin + latin-ext (CZ/SK diakritika)
+   FONT: Cabin na nadpisy + Open Sans na text (dle BRAND.md; styleguide chybne uvadi Lato)
+   Self-hosted woff2, latin + latin-ext (diakritika CZ/SK).
+   Zdroj rezu: brand/fonty/subbrandy/
    ========================================================= */
 @font-face {
-  font-family: "Poppins"; font-style: normal; font-weight: 400; font-display: swap;
-  src: url("/fonts/poppins-400.woff2") format("woff2");
+  font-family: "Cabin"; font-style: normal; font-weight: 400; font-display: swap;
+  src: url("/fonts/cabin-400.woff2") format("woff2");
   unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
 }
 @font-face {
-  font-family: "Poppins"; font-style: normal; font-weight: 400; font-display: swap;
-  src: url("/fonts/poppins-ext-400.woff2") format("woff2");
+  font-family: "Cabin"; font-style: normal; font-weight: 400; font-display: swap;
+  src: url("/fonts/cabin-ext-400.woff2") format("woff2");
   unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
 }
 @font-face {
-  font-family: "Poppins"; font-style: normal; font-weight: 600; font-display: swap;
-  src: url("/fonts/poppins-600.woff2") format("woff2");
+  font-family: "Cabin"; font-style: normal; font-weight: 600; font-display: swap;
+  src: url("/fonts/cabin-600.woff2") format("woff2");
   unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
 }
 @font-face {
-  font-family: "Poppins"; font-style: normal; font-weight: 600; font-display: swap;
-  src: url("/fonts/poppins-ext-600.woff2") format("woff2");
+  font-family: "Cabin"; font-style: normal; font-weight: 600; font-display: swap;
+  src: url("/fonts/cabin-ext-600.woff2") format("woff2");
   unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
 }
 @font-face {
-  font-family: "Poppins"; font-style: normal; font-weight: 700; font-display: swap;
-  src: url("/fonts/poppins-700.woff2") format("woff2");
+  font-family: "Cabin"; font-style: normal; font-weight: 700; font-display: swap;
+  src: url("/fonts/cabin-700.woff2") format("woff2");
   unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
 }
 @font-face {
-  font-family: "Poppins"; font-style: normal; font-weight: 700; font-display: swap;
-  src: url("/fonts/poppins-ext-700.woff2") format("woff2");
+  font-family: "Cabin"; font-style: normal; font-weight: 700; font-display: swap;
+  src: url("/fonts/cabin-ext-700.woff2") format("woff2");
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+@font-face {
+  font-family: "Open Sans"; font-style: normal; font-weight: 400; font-display: swap;
+  src: url("/fonts/opensans-400.woff2") format("woff2");
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: "Open Sans"; font-style: normal; font-weight: 400; font-display: swap;
+  src: url("/fonts/opensans-ext-400.woff2") format("woff2");
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+@font-face {
+  font-family: "Open Sans"; font-style: normal; font-weight: 600; font-display: swap;
+  src: url("/fonts/opensans-600.woff2") format("woff2");
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: "Open Sans"; font-style: normal; font-weight: 600; font-display: swap;
+  src: url("/fonts/opensans-ext-600.woff2") format("woff2");
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+@font-face {
+  font-family: "Open Sans"; font-style: normal; font-weight: 700; font-display: swap;
+  src: url("/fonts/opensans-700.woff2") format("woff2");
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: "Open Sans"; font-style: normal; font-weight: 700; font-display: swap;
+  src: url("/fonts/opensans-ext-700.woff2") format("woff2");
   unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
 }
 
 :root {
+  /* Odstín závoje nad fotkou v hero variantě cover. Pecosta modrá, aby fotka
+     provozu čtla jako součást značky, ne jako stocková ilustrace. Bez tohoto
+     tokenu je závoj neutrálně černý. */
+  --hero-cover-tint: rgba(13, 61, 99, 0.42);
   /* ----- Písmo ----- */
-  --font-sans:  "Poppins", "Segoe UI", system-ui, -apple-system, sans-serif;
-  --font-serif: "Poppins", "Segoe UI", system-ui, sans-serif; /* akcent <em> ve stejné rodině */
+  --font-sans:  "Open Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-display: "Cabin", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-serif: "Cabin", "Segoe UI", system-ui, -apple-system, sans-serif; /* akcent <em> ve stejné rodině */
 
-  /* Nadpisy: Poppins 700; Medium cut nedodán → 600 */
+  /* Nadpisy: Cabin 700; medium cut se nepoužívá, semibold 600 */
   --font-weight-medium:   700;
   --font-weight-semibold: 600;
 
-  /* ----- Primary — logo blue (signature) -----
+  /* ----- Primary: logo blue (signature) -----
      #1265A7 vs bílá = 6.10:1 → WCAG AA ✓ pro tlačítka i běžný text */
-  --color-primary:          #1265A7;
   --color-primary-hover:    #0F5895;
   --color-primary-active:   #0E4F86;
-  --color-primary-bg:       #0A2A44;  /* hluboká námořní modř — tmavé sekce */
+  --color-primary-bg:       #0A2A44;  /* hluboká námořní modř, tmavé sekce */
   --color-primary-bg-hover: #07203A;
 
-  /* ----- Secondary — deep navy (decor headings, velká čísla) ----- */
+  /* ----- Secondary: deep navy (decor headings, velká čísla) ----- */
   --color-secondary:            #0D3D63;
   --color-secondary-terracotta: #0E4F86;
   --color-secondary-gold:       #E8910C;
   --color-secondary-azure:      #2E8BD0;
 
-  /* ----- Testimonials — gradienty avatarů ----- */
+  /* ----- Testimonials: gradienty avatarů ----- */
   --testimonial-grad-1: linear-gradient(150deg, #2E8BD0, #1265A7);
   --testimonial-grad-2: linear-gradient(150deg, #1265A7, #0D3D63);
   --testimonial-grad-3: linear-gradient(150deg, #15A06B, #0E7A52);
@@ -83,55 +122,53 @@
   --color-neutral-900: #0F1A26;
 
   /* ----- Status (savings green = brandový akcent „úspora") ----- */
-  --color-success:       #15A06B;   /* úspora / kladné výsledky */
   --color-success-hover: #11885A;
-  --color-warning:       #E8910C;
   --color-info:          #1265A7;
-  --color-error:         #DC3B47;
   --color-error-hover:   #B82E39;
 
   /* ----- Text ----- */
-  --color-text:               #16324A; /* tmavá chladná modro-šedá */
-  --color-text-muted:         #5A6A7D;
-  --color-text-accent:        #0F5895; /* eyebrow / odkazy — 7.37:1 ✓ */
-  --color-text-on-dark:       #FFFFFF;
-  --color-text-on-dark-muted: rgba(255, 255, 255, 0.74);
+  --color-text-accent:        #0F5895; /* eyebrow / odkazy, 7.37:1 ✓ */
 
   /* ----- Povrchy ----- */
-  --color-bg:        #FFFFFF;
-  --color-bg-alt:    #F5F8FB;
-  --color-bg-invert: #0A2A44;
   --color-bg-hover:  color-mix(in srgb, var(--color-neutral-900) 4%, #FFFFFF);
 
-  /* Signature gradient (hero) — hluboká navy → logo blue → svěží azur */
+  /* Signature gradient (hero): hluboká navy → logo blue → svěží azur */
   --color-bg-gradient: linear-gradient(118deg, #07203A 0%, #0A2A44 30%, #1265A7 78%, #2E8BD0 100%);
 
   /* ----- Okraje ----- */
-  --color-border:         #D8E1EC;
-  --color-border-strong:  #BCC9D9;
   --color-border-on-dark: rgba(255, 255, 255, 0.22);
 
-  /* ----- Radius — JEDEN jednotný jazyk: lehké zaoblení (žádný chamfer, žádné pilulky) ----- */
+  /* ----- Radius: JEDEN jednotný jazyk: lehké zaoblení (žádný chamfer, žádné pilulky) ----- */
   --radius-sm:   6px;
   --radius-md:   8px;
   --radius-lg:   12px;
   --radius-full: 999px;  /* zůstává jen pro skutečné kruhy (avatary, tečky) */
 
-  /* ----- Chamfer VYPNUT — sjednoceno na lehký radius ----- */
+  /* ----- Chamfer VYPNUT: sjednoceno na lehký radius ----- */
   --chamfer-depth: 0px;
 
-  /* ----- Tlačítka — lehký radius, bez chamferu a bez pilulky ----- */
+  /* ----- Tlačítka: lehký radius, bez chamferu a bez pilulky ----- */
   --btn-radius: var(--radius-md);
   --btn-clip:   none;
 
-  /* ----- Formulářová pole — stejný lehký radius ----- */
+  /* ----- Formulářová pole: stejný lehký radius ----- */
   --field-radius: var(--radius-md);
 
-  /* ----- Stíny — měkké, navy-tónované ----- */
+  /* ----- Stíny: měkké, navy-tónované ----- */
   --shadow-sm: 0 2px 8px rgba(10, 42, 68, 0.07);
   --shadow-md: 0 8px 24px rgba(10, 42, 68, 0.10);
   --shadow-lg: 0 16px 48px rgba(10, 42, 68, 0.14);
 
-  /* ----- Focus ring — logo blue ----- */
+  /* ----- Focus ring: logo blue ----- */
   --shadow-focus: 0 0 0 3px rgba(18, 101, 167, 0.38);
 }
+
+/* Hero obrázek (split layout): fotografie z prostředí Pecosty. */
+.hero-pic {
+  margin: 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  aspect-ratio: 3 / 2;
+}
+.hero-pic img { display: block; width: 100%; height: 100%; object-fit: cover; }

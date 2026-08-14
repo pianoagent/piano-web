@@ -1,0 +1,961 @@
+---
+/**
+ * Gallery: živý katalog všech komponent @piano/ui.
+ *
+ * Renderuje se SKUTEČNÝMI komponentami, ne obrázky, a nasazuje se jako route
+ * /styleguide do každé appky. Každá značka tak vidí katalog ve svých vlastních
+ * tokenech a fontech, protože tokens.css a theme.css se berou z té appky.
+ * Katalog proto nemůže odejít od reality: když se komponenta změní, změní se tu.
+ *
+ *   brand:      název značky do hlavičky stránky
+ *   logos?:     názvy souborů log pro ukázku LogoWall (per web, jinak se ukázka
+ *               vynechá, protože soubory jsou v public/ každé appky jiné)
+ *   heroImage?: cesta k obrázku pro ukázku hero se médiem; bez ní se použije
+ *               zástupná plocha, což pro posouzení layoutu stačí
+ *
+ * Počty „N souborů" u komponent jsou z inventury repozitáře k 13. 8. 2026.
+ */
+import Section from '../components/Section.astro';
+import Container from '../components/Container.astro';
+import Heading from '../components/Heading.astro';
+import Text from '../components/Text.astro';
+import Button from '../components/Button.astro';
+import Badge from '../components/Badge.astro';
+import Icon from '../components/Icon.astro';
+import Card from '../components/Card.astro';
+import Field from '../components/Field.astro';
+import Breadcrumb from '../components/Breadcrumb.astro';
+import Hero from '../components/Hero.astro';
+import USPGrid from '../components/USPGrid.astro';
+import Split from '../components/Split.astro';
+import ContactCards from '../components/ContactCards.astro';
+import PricingTiers from '../components/PricingTiers.astro';
+import PricingTable from '../components/PricingTable.astro';
+import StatsBand from '../components/StatsBand.astro';
+import Testimonials from '../components/Testimonials.astro';
+import Faq from '../components/Faq.astro';
+import LogoWall from '../components/LogoWall.astro';
+import LeadForm from '../components/LeadForm.astro';
+import PostGrid from '../components/PostGrid.astro';
+import CategoryChips from '../components/CategoryChips.astro';
+import Spec from './Spec.astro';
+import Demo from './Demo.astro';
+import Tokens from './Tokens.astro';
+
+interface Props { brand: string; logos?: string[]; heroImage?: string; }
+const { brand, logos, heroImage } = Astro.props;
+
+/* Ukázková data. Záměrně neutrální, ne reálné claimy značek, aby si to nikdo
+   nezkopíroval z katalogu do produkčního copy. */
+const uspItems = [
+  { icon: 'lucide:zap', title: 'Krátký titulek', text: 'Dvě až tři řádky textu, které rozvedou titulek karty.' },
+  { icon: 'lucide:shield-check', title: 'Druhá karta', text: 'Mřížka se sama zalomí podle minItemWidth a šířky okna.' },
+  { icon: 'lucide:clock', title: 'Třetí karta', text: 'Ikona je volitelná, bez ní zůstane jen titulek a text.' },
+];
+const statItems = [
+  { num: '25 %', lbl: 'popisek pod číslem' },
+  { num: '960+', lbl: 'druhý údaj' },
+  { num: '48 h', lbl: 'třetí údaj' },
+  { num: '0 Kč', lbl: 'čtvrtý údaj' },
+];
+const quotes = [
+  { quote: 'Citace klienta na dva až čtyři řádky. Konkrétní výsledek řekne víc než přídavná jména.', author: 'Jméno Klienta', role: 'Pozice, Firma', initials: 'JK', headline: 'Nadpis citace' },
+  { quote: 'Druhá citace. Vejdou se tři na řádek, čtvrtá se zalomí na další.', author: 'Druhé Jméno', role: 'Pozice, Firma', initials: 'DJ', headline: 'Nadpis citace' },
+  { quote: 'Třetí citace. Bez pole headline zůstane jen text a podpis.', author: 'Třetí Jméno', role: 'Pozice, Firma', initials: 'TJ' },
+];
+const faqItems = [
+  { q: 'Otázka, kterou se zákazník opravdu ptá?', a: 'Odpověď v jazyce provozu, ne v jazyce dodavatele. Krátce a bez vytáček.' },
+  { q: 'Druhá otázka?', a: 'Druhá odpověď. Accordion je nativní details a summary, funguje i bez JS.' },
+];
+const posts = [
+  { href: '#', title: 'Titulek článku na dva řádky', description: 'Perex článku, dvě věty.', category: 'Kategorie', date: new Date(2026, 6, 27) },
+  { href: '#', title: 'Druhý článek', description: 'Bez obrázku se karta jen zkrátí.', category: 'Kategorie', date: new Date(2026, 5, 1) },
+  { href: '#', title: 'Třetí článek', description: 'Mřížka je tři sloupce, na tabletu dva, na mobilu jeden.', category: 'Kategorie', date: new Date(2026, 4, 12) },
+];
+
+const OBSAH = [
+  { id: 'skladani', label: 'Jak skládat stránku' },
+  { id: 'tokeny', label: 'Tokeny značky' },
+  { id: 'section', label: 'Section' },
+  { id: 'container', label: 'Container' },
+  { id: 'heading', label: 'Heading' },
+  { id: 'text', label: 'Text' },
+  { id: 'button', label: 'Button' },
+  { id: 'badge', label: 'Badge' },
+  { id: 'icon', label: 'Icon' },
+  { id: 'card', label: 'Card' },
+  { id: 'field', label: 'Field' },
+  { id: 'breadcrumb', label: 'Breadcrumb' },
+  { id: 'contactcards', label: 'ContactCards' },
+  { id: 'hero', label: 'Hero' },
+  { id: 'uspgrid', label: 'USPGrid' },
+  { id: 'split', label: 'Split' },
+  { id: 'pricingtiers', label: 'PricingTiers' },
+  { id: 'pricingtable', label: 'PricingTable' },
+  { id: 'statsband', label: 'StatsBand' },
+  { id: 'testimonials', label: 'Testimonials' },
+  { id: 'faq', label: 'Faq' },
+  { id: 'logowall', label: 'LogoWall' },
+  { id: 'leadform', label: 'LeadForm' },
+  { id: 'postgrid', label: 'PostGrid' },
+  { id: 'articledetail', label: 'ArticleDetail' },
+  { id: 'categorychips', label: 'CategoryChips' },
+  { id: 'header-footer', label: 'Header a Footer' },
+  { id: 'herocarousel', label: 'HeroCarousel' },
+  { id: 'reveal', label: 'Scroll reveal' },
+  { id: 'otevrene', label: 'Otevřené otázky' },
+];
+---
+
+<div class="gal">
+  <Container>
+    <header class="gal__head">
+      <p class="gal__kicker">Katalog komponent</p>
+      <h1 class="gal__h1">{brand}</h1>
+      <p class="gal__lead">
+        Všech 27 sdílených komponent z <code>packages/ui</code>, jejich varianty a props.
+        Renderuje se skutečnými komponentami v tokenech značky {brand}, takže co je tady,
+        to je na webu. Stejná stránka existuje na každém webu skupiny, takže se dá porovnat,
+        jak stejná komponenta vypadá v jiné značce.
+      </p>
+      <nav class="gal__toc" aria-label="Obsah katalogu">
+        {OBSAH.map((o) => <a href={`#${o.id}`}>{o.label}</a>)}
+      </nav>
+    </header>
+
+    {/* ============================================================ */}
+    <section class="gal__block" id="skladani">
+      <h2 class="gal__h2">Jak skládat stránku</h2>
+      <p class="gal__p">
+        Stránka je vždycky posloupnost sekcí. <strong>Section</strong> dělá vodorovný pás:
+        drží pozadí, svislé mezery a uvnitř sebe <strong>Container</strong>, který drží
+        šířku a odsazení od okrajů. Komponenta typu blok (Hero, USPGrid, StatsBand,
+        Testimonials, Faq, LeadForm) už Section obsahuje v sobě, takže se do další Section
+        nezanořuje. Prvky (Heading, Text, Button, Badge, Icon, Card, Field) Section neobsahují
+        a patří dovnitř sekce nebo bloku.
+      </p>
+      <pre class="gal__pre"><code>{`<Base title="Text | ${brand}" description="...">
+  <SiteHeader />
+  <main>
+    <Hero eyebrow="..." background="gradient" usp={[...]}>
+      <Heading slot="title" as="h1" size="display">Nadpis</Heading>
+      <Fragment slot="actions"><Button href="/kontakt">CTA</Button></Fragment>
+      <img slot="media" src="..." alt="..." />
+    </Hero>
+
+    <LogoWall logos={[...]} />
+    <USPGrid eyebrow="..." title="..." items={[...]} />
+    <StatsBand items={[...]} />
+    <Testimonials items={[...]} />
+    <Faq items={[...]} />
+    <LeadForm id="poptavka" proofs={${brand.toLowerCase()}LeadProofs} />
+  </main>
+  <SiteFooter />
+</Base>`}</code></pre>
+      <p class="gal__p gal__p--muted">
+        Dvě pravidla, která drží weby pohromadě: <strong>hodnoty se mění v tokens.css
+        značky, nikdy v komponentě</strong>, a <strong>proofs u LeadFormu si dodává každý
+        web sám</strong> ze svého <code>config/leadProofs.ts</code>, protože skupinová čísla
+        Piana nejsou čísla jedné značky.
+      </p>
+    </section>
+
+    {/* ============================================================ */}
+    <Tokens />
+
+    {/* ============================================================ */}
+    <Spec id="section" name="Section" count={159}
+      what="Vodorovný pás stránky. Drží pozadí, svislé mezery, šířku obsahu a scroll reveal."
+      when="Vždycky, když zakládáš nový pás obsahu. Bloky jako Hero nebo USPGrid ji už mají v sobě."
+      props={[
+        { prop: 'background', type: "'default' | 'alt' | 'warm' | 'invert' | 'primary' | 'gradient' | 'cyan' | 'yellow' | 'pink'", def: "'default'", note: 'cyan, yellow a pink jsou barevné pásy Grasonu' },
+        { prop: 'space', type: "'sm' | 'md' | 'lg'", def: "'md'", note: 'svislé odsazení' },
+        { prop: 'container', type: "'default' | 'narrow' | 'wide' | 'full' | false", def: "'default'", note: 'false = obsah bez kontejneru' },
+        { prop: 'decor', type: "boolean | 'top' | 'bottom' | 'both'", def: 'false', note: 'dekorativní kruh na hranici pásu' },
+        { prop: 'reveal', type: 'boolean', def: 'true', note: 'vypnout, když si blok animuje části sám' },
+        { prop: 'revealFrom', type: "'bottom' | 'left' | 'right' | 'top'", def: "'bottom'" },
+        { prop: 'as', type: 'string', def: "'section'" },
+        { prop: 'id', type: 'string', note: 'ukotvení pro odkazy' },
+      ]}>
+      <Demo label="pozadí default, alt, warm" bleed code='<Section background="alt">'>
+        <Section background="default"><Text>background="default"</Text></Section>
+        <Section background="alt"><Text>background="alt"</Text></Section>
+        <Section background="warm"><Text>background="warm" (token má jen Piano, jinde spadne na alt)</Text></Section>
+      </Demo>
+      <Demo label="pozadí invert, primary, gradient" bleed>
+        <Section background="invert"><Text color="on-dark">background="invert"</Text></Section>
+        <Section background="primary"><Text color="on-dark">background="primary"</Text></Section>
+        <Section background="gradient"><Text color="on-dark">background="gradient"</Text></Section>
+      </Demo>
+      <Demo label="barevné pásy Grasonu (na ostatních značkách se nepoužívají)" bleed>
+        <Section background="cyan"><Text>background="cyan"</Text></Section>
+        <Section background="yellow"><Text>background="yellow"</Text></Section>
+        <Section background="pink"><Text>background="pink"</Text></Section>
+      </Demo>
+      <Demo label="dekorativní kruh na hranici" bleed code='decor="both"'>
+        <Section background="alt" decor="both"><Text>decor="both"</Text></Section>
+      </Demo>
+    </Spec>
+
+    <Spec id="container" name="Container" count={2}
+      what="Šířka a odsazení obsahu od okrajů okna. Používá ji Section a Breadcrumb, přímo ve stránkách skoro nikdy."
+      when="Sám o sobě jen tehdy, když potřebuješ jinou šířku uvnitř pásu bez kontejneru."
+      props={[
+        { prop: 'size', type: "'default' | 'narrow' | 'wide' | 'full'", def: "'default'" },
+        { prop: 'as', type: 'string', def: "'div'" },
+      ]}>
+      <Demo label="čtyři šířky">
+        <div class="gal__widths">
+          <Container size="narrow"><span>narrow</span></Container>
+          <Container size="default"><span>default</span></Container>
+          <Container size="wide"><span>wide</span></Container>
+          <Container size="full"><span>full</span></Container>
+        </div>
+      </Demo>
+    </Spec>
+
+    <Spec id="heading" name="Heading" count={176}
+      what="Nadpis. Velikost je oddělená od úrovně, takže h2 může vypadat jako display."
+      when="Na každý nadpis. Úroveň (as) vybírej podle struktury dokumentu, velikost (size) podle vzhledu."
+      props={[
+        { prop: 'as', type: "'h1' | 'h2' | 'h3' | 'h4' | 'p'", def: "'h2'", note: 'úroveň v dokumentu' },
+        { prop: 'size', type: "'display' | 'h1' | 'h2' | 'h3'", note: 'vzhled, bez ní podle as' },
+        { prop: 'align', type: "'left' | 'center' | 'right'", def: "'left'" },
+        { prop: 'color', type: "'default' | 'muted' | 'accent' | 'on-dark'", def: "'default'" },
+        { prop: 'balance', type: 'boolean', def: 'true', note: 'vyrovnané zalomení řádků' },
+      ]}>
+      <Demo label="velikosti">
+        <Heading as="p" size="display">display</Heading>
+        <Heading as="p" size="h1">h1</Heading>
+        <Heading as="p" size="h2">h2</Heading>
+        <Heading as="p" size="h3">h3</Heading>
+      </Demo>
+      <Demo label="akcentní slovo v nadpisu" code="<em> nebo <span class='accent'>">
+        <Heading as="p" size="h2">Nadpis s <em>akcentem</em> uvnitř</Heading>
+        <Heading as="p" size="h2">Nadpis s <span class="accent">akcentem</span> uvnitř</Heading>
+      </Demo>
+    </Spec>
+
+    <Spec id="text" name="Text" count={146}
+      what="Odstavec a všechny nenadpisové velikosti textu včetně popisků a návěsů."
+      when="Na běžný text, perex, popisek i na návěs nad nadpisem (size='label')."
+      props={[
+        { prop: 'as', type: "'p' | 'span' | 'div' | 'li'", def: "'p'" },
+        { prop: 'size', type: "'lead' | 'body' | 'small' | 'caption' | 'label'", def: "'body'" },
+        { prop: 'color', type: "'default' | 'muted' | 'accent' | 'on-dark' | 'on-dark-muted'", def: "'default'" },
+        { prop: 'weight', type: "'regular' | 'medium' | 'semibold' | 'bold'" },
+        { prop: 'align', type: "'left' | 'center' | 'right'", def: "'left'" },
+        { prop: 'balance', type: 'boolean', def: 'false' },
+      ]}>
+      <Demo label="velikosti">
+        <Text size="lead">lead, perex pod nadpisem</Text>
+        <Text size="body">body, běžný text</Text>
+        <Text size="small">small, doplňkový text</Text>
+        <Text size="caption">caption, popisek</Text>
+        <Text size="label">label, návěs nad nadpisem</Text>
+      </Demo>
+      <Demo label="barvy">
+        <Text color="default">default</Text>
+        <Text color="muted">muted</Text>
+        <Text color="accent">accent</Text>
+      </Demo>
+    </Spec>
+
+    <Spec id="button" name="Button" count={144}
+      what="Tlačítko nebo odkaz vypadající jako tlačítko. S href renderuje <a>, bez něj <button>."
+      when="Primary jen jednou v sekci, na hlavní akci. Secondary na doplňkovou, ghost na potlačenou."
+      props={[
+        { prop: 'variant', type: "'primary' | 'secondary' | 'ghost'", def: "'primary'" },
+        { prop: 'size', type: "'sm' | 'md' | 'lg'", def: "'md'" },
+        { prop: 'href', type: 'string', note: 'renderuje <a> místo <button>' },
+        { prop: 'full', type: 'boolean', def: 'false', note: 'na plnou šířku' },
+        { prop: 'onDark', type: 'boolean', def: 'false', note: 'čitelnost na tmavém pásu' },
+        { prop: 'type', type: "'button' | 'submit' | 'reset'", def: "'button'" },
+      ]}>
+      <Demo label="varianty">
+        <div class="gal__row">
+          <Button href="#">primary</Button>
+          <Button href="#" variant="secondary">secondary</Button>
+          <Button href="#" variant="ghost">ghost</Button>
+        </div>
+      </Demo>
+      <Demo label="velikosti">
+        <div class="gal__row">
+          <Button href="#" size="sm">sm</Button>
+          <Button href="#" size="md">md</Button>
+          <Button href="#" size="lg">lg</Button>
+        </div>
+      </Demo>
+      <Demo label="na tmavém pásu" bleed code="onDark">
+        <Section background="primary">
+          <div class="gal__row">
+            <Button href="#">primary</Button>
+            <Button href="#" variant="secondary" onDark>secondary onDark</Button>
+          </div>
+        </Section>
+      </Demo>
+    </Spec>
+
+    <Spec id="badge" name="Badge" count={5}
+      what="Malý štítek pro stav nebo příznak."
+      when="Na příznak u karty nebo v ceníku. Ne jako dekoraci."
+      props={[
+        { prop: 'variant', type: "'neutral' | 'primary' | 'success' | 'warning' | 'info'", def: "'neutral'" },
+        { prop: 'tone', type: "'soft' | 'solid'", def: "'soft'" },
+        { prop: 'size', type: "'sm' | 'md'", def: "'md'" },
+        { prop: 'icon', type: 'string', note: 'název ikony, např. lucide:check' },
+      ]}>
+      <Demo label="varianty, tón soft">
+        <div class="gal__row">
+          <Badge>neutral</Badge><Badge variant="primary">primary</Badge>
+          <Badge variant="success">success</Badge><Badge variant="warning">warning</Badge>
+          <Badge variant="info">info</Badge>
+        </div>
+      </Demo>
+      <Demo label="tón solid a s ikonou">
+        <div class="gal__row">
+          <Badge variant="primary" tone="solid">solid</Badge>
+          <Badge variant="success" icon="lucide:check">s ikonou</Badge>
+          <Badge size="sm">sm</Badge>
+        </div>
+      </Demo>
+    </Spec>
+
+    <Spec id="icon" name="Icon" count={113}
+      what="Ikona ze sady Lucide. Jméno se zapisuje jako lucide:nazev."
+      when="Vždy s textem, nikdy jako jediný nositel významu. Dekorativní ikona nemá title."
+      props={[
+        { prop: 'name', type: 'string', note: 'např. lucide:zap', req: true },
+        { prop: 'size', type: "'xs' | 'sm' | 'md' | 'lg' | 'xl' | number", def: "'md'" },
+        { prop: 'color', type: "'inherit' | 'default' | 'muted' | 'accent' | 'on-dark'", def: "'inherit'" },
+        { prop: 'title', type: 'string', note: 'jen když ikona nese význam sama' },
+      ]}>
+      <Demo label="velikosti">
+        <div class="gal__row gal__row--mid">
+          <Icon name="lucide:zap" size="xs" /><Icon name="lucide:zap" size="sm" />
+          <Icon name="lucide:zap" size="md" /><Icon name="lucide:zap" size="lg" />
+          <Icon name="lucide:zap" size="xl" />
+        </div>
+      </Demo>
+      <Demo label="barvy">
+        <div class="gal__row gal__row--mid">
+          <Icon name="lucide:shield-check" size="lg" color="default" />
+          <Icon name="lucide:shield-check" size="lg" color="muted" />
+          <Icon name="lucide:shield-check" size="lg" color="accent" />
+        </div>
+      </Demo>
+    </Spec>
+
+    <Spec id="card" name="Card" count={9}
+      what="Kontejner karty. Sám nic neobsahuje, obsah jde slotem, obrázek slotem media."
+      when="Když potřebuješ obsah v rámečku a není na to hotový blok. Na mřížku výhod použij USPGrid."
+      props={[
+        { prop: 'variant', type: "'default' | 'elevated' | 'bordered' | 'filled'", def: "'default'" },
+        { prop: 'padding', type: "'none' | 'sm' | 'md' | 'lg'", def: "'md'" },
+        { prop: 'chamfer', type: 'boolean', def: 'false', note: 'seříznutý levý horní roh' },
+        { prop: 'href', type: 'string', note: 'klikací karta s hoverem' },
+        { prop: 'as', type: "'div' | 'article' | 'li'", def: "'div'" },
+      ]}
+      slots={[{ slot: 'media', note: 'obrázek nahoře, bez paddingu' }]}>
+      <Demo label="varianty">
+        <div class="gal__cards">
+          <Card><Text weight="semibold">default</Text><Text size="small" color="muted">1px rámeček</Text></Card>
+          <Card variant="elevated"><Text weight="semibold">elevated</Text><Text size="small" color="muted">stín místo rámečku</Text></Card>
+          <Card variant="bordered"><Text weight="semibold">bordered</Text><Text size="small" color="muted">silnější linka</Text></Card>
+          <Card variant="filled"><Text weight="semibold">filled</Text><Text size="small" color="muted">plocha bez rámečku</Text></Card>
+        </div>
+      </Demo>
+      <Demo label="chamfer a klikací karta">
+        <div class="gal__cards">
+          <Card chamfer><Text weight="semibold">chamfer</Text><Text size="small" color="muted">signature seříznutý roh</Text></Card>
+          <Card href="#"><Text weight="semibold">href</Text><Text size="small" color="muted">celá karta je odkaz</Text></Card>
+        </div>
+      </Demo>
+    </Spec>
+
+    <Spec id="field" name="Field" count={1}
+      what="Jedno pole formuláře: popisek, vstup, nápověda, stav povinnosti."
+      when="Uvnitř vlastního formuláře. Poptávkový formulář má hotový LeadForm."
+      props={[
+        { prop: 'label', type: 'string', req: true },
+        { prop: 'name', type: 'string', req: true },
+        { prop: 'type', type: "'text' | 'email' | 'tel'", def: "'text'" },
+        { prop: 'required', type: 'boolean', def: 'false' },
+        { prop: 'prefix', type: 'string', note: 'např. předvolba' },
+        { prop: 'icon', type: 'string' },
+        { prop: 'helper', type: 'string', note: 'nápověda pod polem' },
+        { prop: 'multiline', type: 'boolean', def: 'false', note: 'renderuje textarea' },
+        { prop: 'rows', type: 'number', def: '4' },
+      ]}>
+      <Demo label="typy polí">
+        <div class="gal__fields">
+          <Field label="Jméno" name="g-name" required />
+          <Field label="E-mail" name="g-email" type="email" placeholder="info@podnik.cz" />
+          <Field label="Telefon" name="g-tel" type="tel" prefix="+420" helper="Zavoláme vám zpět." />
+          <Field label="Zpráva" name="g-msg" multiline rows={3} />
+        </div>
+      </Demo>
+    </Spec>
+
+    <Spec id="breadcrumb" name="Breadcrumb" count={42}
+      what="Drobečková navigace. Poslední položka bez href je aktuální stránka."
+      when="Na podstránkách hlouběji než druhá úroveň. Na homepage ne."
+      note="Nese si vlastní Container, takže je určený jako samostatný pás NAD sekcí. Uvnitř Section by vznikl vnořený kontejner s dvojím odsazením; tam použij lokální Breadcrumb webu, jako to dělá ArticleDetail."
+      props={[
+        { prop: 'items', type: '{ label, href? }[]', req: true },
+        { prop: 'background', type: "'default' | 'alt'", def: "'default'" },
+      ]}>
+      <Demo label="tři úrovně" bleed>
+        <Breadcrumb items={[{ label: 'Domů', href: '/' }, { label: 'Rubrika', href: '#' }, { label: 'Aktuální stránka' }]} />
+      </Demo>
+    </Spec>
+
+    {/* ---------- BLOKY ---------- */}
+    <Spec id="contactcards" name="ContactCards" count={2}
+      what="Mřížka kontaktních údajů: ikona, popisek, hodnota. Hodnota je odkaz, pokud má href."
+      when="Na kontaktní stránce. Telefon a mail jako odkaz, adresa a IČ jako text."
+      note="Grason a Protel to měly ručně se shodným tvarem dat, lišil se jen vzhled. Rozdíl drží prop variant: plain bez rámečku (Grason), boxed s plochou a ikonou v kolečku (Protel)."
+      props={[
+        { prop: 'items', type: '{ icon, label, value, href? }[]', req: true },
+        { prop: 'variant', type: "'plain' | 'boxed'", def: "'plain'" },
+        { prop: 'eyebrow', type: 'string' },
+        { prop: 'title', type: 'string', note: 'nebo titleHtml' },
+        { prop: 'lead', type: 'string' },
+        { prop: 'headingAs', type: "'h1' | 'h2'", def: "'h2'", note: "h1 na kontaktní stránce" },
+        { prop: 'minItemWidth', type: 'string', def: "'240px'" },
+        { prop: 'background', type: "'default' | 'alt' | 'invert' | 'primary'", def: "'default'" },
+      ]}>
+      <Demo label="plain, bez rámečku" bleed>
+        <ContactCards variant="plain" items={[
+          { icon: 'lucide:phone', label: 'Zavolejte', value: '+420 000 000 000', href: '#' },
+          { icon: 'lucide:mail', label: 'Napište nám', value: 'info@example.cz', href: '#' },
+          { icon: 'lucide:map-pin', label: 'Sídlo', value: 'Ulice 1, 100 00 Praha' },
+        ]} />
+      </Demo>
+      <Demo label="boxed, s plochou a ikonou v kolečku" bleed code='variant="boxed"'>
+        <ContactCards variant="boxed" background="alt" items={[
+          { icon: 'lucide:briefcase', label: 'Obchod', value: 'sales@example.cz', href: '#' },
+          { icon: 'lucide:life-buoy', label: 'Hotline', value: 'help@example.cz', href: '#' },
+          { icon: 'lucide:map-pin', label: 'Sídlo', value: 'Ulice 1, 100 00 Praha' },
+        ]} />
+      </Demo>
+    </Spec>
+
+    <Spec id="hero" name="Hero" count={150}
+      what="Úvodní blok stránky. Nese návěs, nadpis, perex, CTA, proužek USP a volitelně médium."
+      when="Právě jednou na začátku každé stránky. H1 stránky patří sem."
+      note="Tady je ta komponenta, kterou chceme odgenerizovat. Dnes má čtyři reálně používané varianty a všechny jsou v jednom souboru. Rozpad použití v repozitáři: split s médiem 100x, single left 40x, single center 6x, carousel 4x. Pátá varianta cover je nová a je zatím nasazená jen na homepage Pecosty. Cover počítá s průhlednou hlavičkou, stránka tedy musí předat <Header transparent /> nebo <SiteHeader transparent />, jinak lišta zůstane v toku a hero začne pod ní. Odsazení o výšku hlavičky si drží sekce sama, a to ze stejného tokenu --header-h-overlay jako hlavička. V overlay režimu je lišta vyšší než na bílém pozadí: 120 px na desktopu, 88 px na mobilu, po odscrollování se stáhne na svou přirozenou výšku (72 px). Brandový odstín závoje řídí token --hero-cover-tint v theme.css, bez něj je závoj neutrálně černý."
+      props={[
+        { prop: 'eyebrow', type: 'string', note: 'návěs nad nadpisem' },
+        { prop: 'title', type: 'string', note: 'alternativa ke slotu title' },
+        { prop: 'lead', type: 'string' },
+        { prop: 'align', type: "'left' | 'center'", def: "'left'", note: 'jen bez média' },
+        { prop: 'background', type: "'default' | 'alt' | 'warm' | 'invert' | 'primary' | 'gradient'", def: "'default'" },
+        { prop: 'space', type: "'sm' | 'md' | 'lg'", def: "'lg'" },
+        { prop: 'usp', type: 'string[] | { text, icon? }[]', def: '[]', note: 'proužek bodů pod CTA' },
+        { prop: 'slides', type: 'HeroSlide[]', def: '[]', note: '2 a více = carousel' },
+        { prop: 'carouselLabel', type: 'string', def: "'Přepnout sdělení'" },
+        { prop: 'variant', type: "'split' | 'cover'", def: "'split'", note: 'cover = médium na plnou šířku jako pozadí' },
+      ]}
+      slots={[
+        { slot: 'title', note: 'nadpis, když potřebuješ akcent nebo vynucené zalomení' },
+        { slot: 'actions', note: 'CTA tlačítka' },
+        { slot: 'media', note: 'obrázek nebo grafika vpravo' },
+      ]}>
+      <Demo label="varianta 1: split, s médiem (100x v repozitáři)" bleed code='<Hero> + slot="media"'>
+        <Hero eyebrow="Návěs" background="gradient"
+              lead="Perex hero sekce na dva až tři řádky, který rozvede nadpis a řekne, co z toho zákazník má."
+              usp={[{ text: 'První bod', icon: 'lucide:check' }, { text: 'Druhý bod', icon: 'lucide:check' }, { text: 'Třetí bod', icon: 'lucide:check' }]}>
+          <Heading slot="title" as="p" size="display" color="on-dark">Nadpis hero sekce na dva řádky</Heading>
+          <Fragment slot="actions">
+            <Button href="#">Hlavní CTA</Button>
+            <Button href="#" variant="secondary" onDark>Doplňkové</Button>
+          </Fragment>
+          {heroImage
+            ? <img slot="media" src={heroImage} alt="" width="1100" height="733" />
+            : <div slot="media" class="gal__ph">slot media</div>}
+        </Hero>
+      </Demo>
+      <Demo label="varianta 2: single left, bez média (40x)" bleed code='<Hero background="alt">'>
+        <Hero eyebrow="Návěs" background="alt" lead="Perex bez média. Text drží maximální šířku, aby se dobře čtl.">
+          <Heading slot="title" as="p" size="display">Nadpis bez média</Heading>
+          <Fragment slot="actions"><Button href="#">CTA</Button></Fragment>
+        </Hero>
+      </Demo>
+      <Demo label="varianta 3: single center (6x)" bleed code='align="center"'>
+        <Hero eyebrow="Návěs" background="warm" align="center" lead="Centrovaná varianta. Používá se na servisních a rozcestníkových stránkách.">
+          <Heading slot="title" as="p" size="display" align="center">Centrovaný nadpis</Heading>
+          <Fragment slot="actions"><Button href="#">CTA</Button></Fragment>
+        </Hero>
+      </Demo>
+      <Demo label="varianta 5: cover, médium na plnou šířku jako pozadí (nová)" bleed code='variant="cover"'>
+        <Hero variant="cover" background="invert" eyebrow="Návěs"
+              lead="Perex přes fotku. Závoj drží kontrast: černý gradient je základ, brandový odstín se přidává tokenem --hero-cover-tint.">
+          <Heading slot="title" as="p" size="display" color="on-dark">Vizuálnější hero přes celou šířku</Heading>
+          <Fragment slot="actions"><Button href="#">Hlavní CTA</Button></Fragment>
+          <div slot="media" class="gal__phcover">slot media na pozadí</div>
+        </Hero>
+      </Demo>
+      <Demo label="varianta 4: carousel, rotující sdělení (4x)" bleed code="slides={[...]}">
+        <Hero background="gradient"
+              slides={[
+                { eyebrow: 'První sdělení', title: 'Nadpis prvního slidu', lead: 'Perex prvního slidu.' },
+                { eyebrow: 'Druhé sdělení', title: 'Nadpis druhého slidu', lead: 'Perex druhého slidu.' },
+              ]}
+              usp={[{ text: 'CTA a USP zůstávají', icon: 'lucide:check' }]}>
+          <Fragment slot="actions"><Button href="#">CTA</Button></Fragment>
+        </Hero>
+      </Demo>
+    </Spec>
+
+    <Spec id="uspgrid" name="USPGrid" count={92}
+      what="Sekce s hlavičkou a mřížkou karet s ikonou, titulkem a textem. Nejpoužívanější blok po hero."
+      when="Na výhody, funkce, kroky procesu, cokoli, co je seznam tří až šesti věcí."
+      props={[
+        { prop: 'items', type: '{ icon?, title, text, href? }[]', req: true },
+        { prop: 'eyebrow', type: 'string' },
+        { prop: 'title', type: 'string', note: 'nebo slot title' },
+        { prop: 'lead', type: 'string' },
+        { prop: 'align', type: "'left' | 'center'", def: "'center'", note: 'zarovnání hlavičky' },
+        { prop: 'columns', type: 'number', note: 'bez ní se mřížka zalomí sama' },
+        { prop: 'minItemWidth', type: 'string', def: "'240px'" },
+        { prop: 'background', type: "'default' | 'alt' | 'invert' | 'primary'", def: "'default'" },
+        { prop: 'space', type: "'sm' | 'md' | 'lg'", def: "'md'" },
+      ]}>
+      <Demo label="hlavička centrovaná" bleed>
+        <USPGrid eyebrow="Návěs" title="Nadpis sekce" lead="Perex sekce na jeden až dva řádky." items={uspItems} />
+      </Demo>
+      <Demo label="na tmavém pásu, hlavička vlevo" bleed code='background="invert" align="left"'>
+        <USPGrid background="invert" align="left" eyebrow="Návěs" title="Nadpis vlevo" items={uspItems} />
+      </Demo>
+    </Spec>
+
+    <Spec id="split" name="Split" count={0}
+      what="Sekce text a médium vedle sebe, v obou pořadích. Na mobilu je médium vždy nahoře."
+      when="Na vysvětlení jedné věci, kde k textu patří obrázek. Několik takových sekcí za sebou se střídavým reverse je nejběžnější tělo produktové stránky."
+      note="Komponenta je nová. Devět stránek si tuhle sekci dosud dělalo samo (Harsys 4x, Savarin 3x, Grason, Protel), shodně přes třídy split, split__text a split--reverse, takže je lze nahradit beze změny vzhledu. To ještě není provedené."
+      props={[
+        { prop: 'eyebrow', type: 'string' },
+        { prop: 'title', type: 'string', note: 'nebo titleHtml pro akcent, nebo slot title' },
+        { prop: 'titleHtml', type: 'string' },
+        { prop: 'lead', type: 'string' },
+        { prop: 'bullets', type: 'string[]', def: '[]', note: 'odrážky s fajfkou' },
+        { prop: 'reverse', type: 'boolean', def: 'false', note: 'médium vlevo, text vpravo' },
+        { prop: 'ratio', type: "'equal' | 'text' | 'media'", def: "'equal'", note: 'který sloupec je širší' },
+        { prop: 'image', type: 'string', note: 'nebo si médium pošli slotem media' },
+        { prop: 'imageAlt', type: 'string', def: "''" },
+        { prop: 'background', type: "'default' | 'alt' | 'invert' | 'primary'", def: "'default'" },
+        { prop: 'space', type: "'sm' | 'md' | 'lg'", def: "'md'" },
+      ]}
+      slots={[
+        { slot: 'media', note: 'obrázek, video, cokoli' },
+        { slot: 'actions', note: 'CTA tlačítka' },
+        { slot: 'title', note: 'vlastní nadpis' },
+      ]}>
+      <Demo label="text | médium (default)" bleed code="<Split>">
+        <Split eyebrow="Návěs sekce" title="Nadpis vlevo, obrázek vpravo"
+               lead="Perex sekce na dva až tři řádky, který vysvětlí jednu věc."
+               bullets={['První odrážka', 'Druhá odrážka', 'Třetí odrážka']}>
+          <div slot="media" class="gal__phsplit">slot media</div>
+          <Fragment slot="actions"><Button href="#">CTA</Button></Fragment>
+        </Split>
+      </Demo>
+      <Demo label="médium | text" bleed code="reverse">
+        <Split reverse background="alt" eyebrow="Návěs sekce" title="Obrázek vlevo, text vpravo"
+               lead="Střídání pořadí drží dlouhou stránku v rytmu. Na mobilu je médium vždycky nahoře, i tady.">
+          <div slot="media" class="gal__phsplit">slot media</div>
+        </Split>
+      </Demo>
+      <Demo label="širší text a tmavý pás" bleed code='ratio="text" background="invert"'>
+        <Split ratio="text" background="invert" eyebrow="Návěs sekce" title="Poměr sloupců na míru"
+               lead="ratio přepne, který sloupec je širší: equal, text, media.">
+          <div slot="media" class="gal__phsplit">slot media</div>
+          <Fragment slot="actions"><Button href="#" variant="secondary" onDark>CTA</Button></Fragment>
+        </Split>
+      </Demo>
+    </Spec>
+
+    <Spec id="pricingtiers" name="PricingTiers" count={1}
+      what="Ceník jako karty vedle sebe. Jedna karta může být zvýrazněná se štítkem."
+      when="Na cenících s licencemi nebo balíčky. Srovnávací tabulka funkcí je jiná struktura a patří jí vlastní komponenta."
+      note="Ceník má na webech tři různé podstaty a tahle komponenta pokrývá jen první: karty tierů (Septim /cenik). Druhá je srovnávací tabulka s přepínačem období (Grason 3x, Septim /index), třetí jsou karty s dvojí cenou a maticí dostupnosti funkcí (Harsys /cenik). Ty dvě zbývající zatím komponentu nemají."
+      props={[
+        { prop: 'items', type: '{ name, price, unit?, note?, feats[], highlight?, cta? }[]', req: true },
+        { prop: 'namePrefix', type: 'string', def: "''", note: 'Septim má „Septim.“' },
+        { prop: 'badge', type: 'string', def: "'Nejoblíbenější'" },
+        { prop: 'ctaHref', type: 'string', def: "'#poptavka'" },
+        { prop: 'eyebrow', type: 'string' },
+        { prop: 'title', type: 'string', note: 'nebo titleHtml' },
+        { prop: 'lead', type: 'string' },
+        { prop: 'footnote', type: 'string', note: 'nebo slot footnote, když potřebuješ odkaz' },
+        { prop: 'background', type: "'default' | 'alt'", def: "'default'" },
+        { prop: 'space', type: "'sm' | 'md' | 'lg'", def: "'lg'" },
+      ]}
+      slots={[{ slot: 'footnote', note: 'text pod kartami, typicky poznámka o DPH' }]}>
+      <Demo label="tři tiery, prostřední zvýrazněný" bleed>
+        <PricingTiers
+          eyebrow="Ceník" title="Vyberte si licenci"
+          items={[
+            { name: 'Základ', price: '1 990 Kč', unit: '/měsíc', note: 'za pokladnu, sleva při roční platbě', feats: ['První funkce', 'Druhá funkce', 'Třetí funkce'] },
+            { name: 'Standard', price: '2 990 Kč', unit: '/měsíc', note: 'za pokladnu, druhá a další se slevou', feats: ['Vše ze Základu', 'Čtvrtá funkce', 'Pátá funkce', 'Šestá funkce'], highlight: true },
+            { name: 'Plus', price: '3 990 Kč', unit: '/měsíc', note: 'za pokladnu, pro provozy s více kasami', feats: ['Vše ze Standardu', 'Sedmá funkce', 'Osmá funkce'] },
+          ]}
+          footnote="Ceny jsou uvedeny bez DPH." />
+      </Demo>
+    </Spec>
+
+    <Spec id="pricingtable" name="PricingTable" count={2}
+      what="Srovnávací tabulka ceníku: varianty ve sloupcích, funkce v řádcích, jeden sloupec zvýrazněný."
+      when="Když se varianty porovnávají funkce po funkci. Když jde jen o balíčky s cenou a výčtem, stačí PricingTiers."
+      note="Vzniklo sloučením dvou ručních tabulek Grasonu: .ptable na /grasonflexi (s přepínačem délky předplatného) a .jtable na /grasonjobs (bez něj, s cenou ve spodním řádku). Septim /index má tabulku obrácenou (varianta na řádku, vlastnost ve sloupci) a bez cen, což je jiná struktura a tahle komponenta ji nepokrývá."
+      props={[
+        { prop: 'tiers', type: '{ name, note?, badge?, featured?, price?, fixed?, unit?, cta?, href? }[]', req: true },
+        { prop: 'features', type: '{ label, vals: (true | false | string)[] }[]', req: true, note: 'vals musí mít stejný počet položek jako tiers' },
+        { prop: 'periods', type: '{ id, label }[]', def: '[]', note: 'dvě a více zapne přepínač období' },
+        { prop: 'priceRow', type: 'string', note: 'ceny do spodního řádku s tímto popiskem místo do hlavičky' },
+        { prop: 'ariaLabel', type: 'string', def: "'Délka předplatného'" },
+        { prop: 'eyebrow', type: 'string' },
+        { prop: 'title', type: 'string', note: 'nebo titleHtml' },
+        { prop: 'lead', type: 'string' },
+        { prop: 'footnote', type: 'string' },
+        { prop: 'background', type: "'default' | 'alt'", def: "'default'" },
+      ]}
+      slots={[{ slot: 'default', note: 'obsah pod tabulkou: příplatky, poznámky, vlastní CTA' }]}>
+      <Demo label="s přepínačem období a zvýrazněným sloupcem" bleed>
+        <PricingTable
+          eyebrow="Ceník" title="Srovnání variant"
+          periods={[{ id: '6', label: '6 měsíců' }, { id: '12', label: '12 měsíců' }]}
+          tiers={[
+            { name: 'Start', fixed: '14 dní zdarma', cta: { label: 'Vyzkoušet', href: '#' } },
+            { name: 'Standard', badge: 'Nejoblíbenější', featured: true, price: { '6': '2 490 Kč', '12': '1 990 Kč' }, unit: '/měsíc', cta: { label: 'Vybrat', href: '#' } },
+            { name: 'Plus', price: { '6': '4 990 Kč', '12': '3 990 Kč' }, unit: '/měsíc', cta: { label: 'Vybrat', href: '#' } },
+          ]}
+          features={[
+            { label: 'Počet uživatelů', vals: ['1', '5', 'Neomezeně'] },
+            { label: 'Zákaznická linka', vals: [true, true, true] },
+            { label: 'Dedikovaný manažer', vals: [false, false, true] },
+          ]}
+          footnote="Ceny jsou uvedeny bez DPH." />
+      </Demo>
+    </Spec>
+
+    <Spec id="statsband" name="StatsBand" count={39}
+      what="Úzký pás s velkými čísly a popisky. Čísla se nasouvají po jednom."
+      when="Za hero nebo před poptávkou, jako doklad velikosti. Čísla musí být z bázových, ne vymyšlená."
+      props={[
+        { prop: 'items', type: '{ num, lbl }[]', req: true },
+        { prop: 'columns', type: '3 | 4', def: '4', note: '4 se na mobilu lámou na 2, 3 na 1' },
+        { prop: 'background', type: "'default' | 'alt' | 'invert' | 'primary'", def: "'alt'" },
+        { prop: 'space', type: "'sm' | 'md' | 'lg'", def: "'sm'" },
+      ]}
+      note="Typografii čísel řídí tokeny --stats-num-size, --stats-num-font, --stats-num-weight a --stats-num-color v theme.css značky, ne props.">
+      <Demo label="čtyři sloupce" bleed>
+        <StatsBand items={statItems} />
+      </Demo>
+      <Demo label="tři sloupce na tmavém pásu" bleed code='columns={3} background="invert"'>
+        <StatsBand items={statItems.slice(0, 3)} columns={3} background="invert" space="md" />
+      </Demo>
+    </Spec>
+
+    <Spec id="testimonials" name="Testimonials" count={16}
+      what="Sekce s referencemi v kartách. Podpis může být nad citací nebo v patičce karty."
+      when="Na doklad výsledků. Citace a jména ber výhradně z banky referencí ve znalostní bázi."
+      props={[
+        { prop: 'items', type: '{ quote, author, role, initials?, headline?, michelin?, photo? }[]', req: true },
+        { prop: 'title', type: 'string', def: "'Důvěřují nám ti nejlepší'" },
+        { prop: 'titleHtml', type: 'string', note: 'nadpis s akcentem, jde přes set:html' },
+        { prop: 'lead', type: 'string' },
+        { prop: 'eyebrow', type: 'string', def: "'Reference'" },
+        { prop: 'eyebrowColor', type: "'accent' | 'default' | 'muted' | 'on-dark-muted'", def: "'accent'" },
+        { prop: 'background', type: "'default' | 'alt' | 'invert' | 'primary' | 'cyan' | 'yellow' | 'pink'", def: "'default'" },
+        { prop: 'attribution', type: "'top' | 'bottom'", def: "'top'", note: 'bottom = karta s podpisem dole' },
+        { prop: 'header', type: 'boolean', def: 'true', note: 'false, když nadpis nese hero stránky' },
+        { prop: 'decor', type: "boolean | 'top' | 'bottom' | 'both'", def: 'false' },
+      ]}
+      slots={[{ slot: 'default', note: 'obsah pod mřížkou, typicky CTA tlačítko' }]}>
+      <Demo label="podpis nad citací (default)" bleed>
+        <Testimonials items={quotes} lead="Perex nad referencemi." />
+      </Demo>
+      <Demo label="podpis v patičce karty" bleed code='attribution="bottom"'>
+        <Testimonials items={quotes} background="alt" attribution="bottom" title="Karty s podpisem dole" />
+      </Demo>
+      <Demo label="na tmavém pásu a s CTA pod mřížkou" bleed code='background="primary" + children'>
+        <Testimonials items={quotes.slice(0, 3)} background="primary" eyebrowColor="on-dark-muted" title="Na tmavém pásu">
+          <Button href="#" variant="secondary" onDark>CTA pod mřížkou</Button>
+        </Testimonials>
+      </Demo>
+    </Spec>
+
+    <Spec id="faq" name="Faq" count={45}
+      what="Sekce s často kladenými dotazy. Nativní details a summary, funguje i bez JS."
+      when="Na námitky a technické dotazy. Otázky formuluj tak, jak je pokládá zákazník."
+      props={[
+        { prop: 'items', type: '{ q, a }[]', def: '[]', note: 'plochý seznam' },
+        { prop: 'groups', type: '{ title, items }[]', note: 'seskupené, např. per produkt' },
+        { prop: 'title', type: 'string', def: "'Často kladené dotazy'" },
+        { prop: 'lead', type: 'string' },
+        { prop: 'background', type: "'default' | 'alt'", def: "'default'" },
+        { prop: 'id', type: 'string', note: 'ukotvení, Harsys má v navigaci #faq' },
+      ]}>
+      <Demo label="plochý seznam" bleed>
+        <Faq items={faqItems} lead="Nenašli jste odpověď? Ozvěte se nám." />
+      </Demo>
+      <Demo label="seskupený" bleed code="groups={[...]}">
+        <Faq background="alt" title="Seskupené dotazy"
+             groups={[{ title: 'První skupina', items: faqItems }, { title: 'Druhá skupina', items: faqItems }]} />
+      </Demo>
+    </Spec>
+
+    <Spec id="logowall" name="LogoWall" count={37}
+      what="Pás log klientů, plynule se posouvá. Při prefers-reduced-motion se zastaví a zalomí."
+      when="Hned za hero, jako první doklad důvěry."
+      props={[
+        { prop: 'logos', type: 'string[]', note: 'názvy souborů v public/logos bez přípony', req: true },
+        { prop: 'label', type: 'string', def: "'Důvěřují nám ti nejlepší'" },
+        { prop: 'background', type: "'default' | 'alt'", def: "'alt'" },
+        { prop: 'ext', type: 'string', def: "'svg'" },
+        { prop: 'logoHeight', type: 'string', def: "'96px'" },
+        { prop: 'gap', type: 'string', def: 'var(--space-9)' },
+        { prop: 'duration', type: 'string', def: "'60s'", note: 'rychlost posuvu' },
+      ]}>
+      {logos && logos.length > 0 ? (
+        <Demo label="pás log tohoto webu" bleed><LogoWall logos={logos} /></Demo>
+      ) : (
+        <Demo label="ukázka vynechána">
+          <Text size="small" color="muted">
+            Loga jsou soubory v <code>public/logos</code> každé appky zvlášť, takže ukázka
+            by tady odkazovala na neexistující soubory. Galerie ji vykreslí, když se jí
+            předá prop <code>logos</code>.
+          </Text>
+        </Demo>
+      )}
+    </Spec>
+
+    <Spec id="leadform" name="LeadForm" count={130}
+      what="Poptávkový formulář s body důvěry vedle. Dvě varianty: plný a jen zpětné volání."
+      when="Na konci každé stránky. Body důvěry si dodává každý web sám, viz poznámka."
+      note="proofs se předává vždycky z apps/<web>/src/config/leadProofs.ts. Výchozí hodnoty ve komponentě jsou záměrně bez čísel, protože skupinová čísla Piana nejsou čísla jedné značky."
+      props={[
+        { prop: 'variant', type: "'full' | 'callback'", def: "'full'" },
+        { prop: 'proofs', type: '{ icon?, title, text? }[]', note: 'body důvěry vedle formuláře' },
+        { prop: 'title', type: 'string' },
+        { prop: 'lead', type: 'string' },
+        { prop: 'layout', type: "'split' | 'stacked'", def: "'split'" },
+        { prop: 'message', type: 'boolean | string', def: 'false', note: 'přidá pole Zpráva' },
+        { prop: 'background', type: "'default' | 'alt' | 'invert' | 'primary'", def: "'alt'" },
+        { prop: 'successUrl', type: 'string', def: "'/dekujeme'" },
+        { prop: 'locale', type: "'cs' | 'en'", def: "'cs'" },
+        { prop: 'id', type: 'string', note: 'ukotvení, typicky poptavka' },
+      ]}>
+      <Demo label="varianta full" bleed>
+        <LeadForm variant="full" title="Nechte nám kontakt" lead="Ozveme se co nejdříve." message
+                  proofs={[
+                    { icon: 'lucide:gift', title: 'Konzultace zdarma', text: 'Nezávazně a bez rizika.' },
+                    { icon: 'lucide:headset', title: 'Česká podpora', text: 'Mluvíme jazykem provozu.' },
+                  ]} />
+      </Demo>
+      <Demo label="varianta callback" bleed code='variant="callback"'>
+        <LeadForm variant="callback" background="default" title="Zavoláme vám" />
+      </Demo>
+    </Spec>
+
+    <Spec id="postgrid" name="PostGrid" count={4}
+      what="Mřížka karet článků. Datum se formátuje česky uvnitř komponenty."
+      when="Na výpisu blogu a novinek a na rubrikových stránkách."
+      props={[
+        { prop: 'posts', type: '{ href, title, description?, image?, category?, date }[]', req: true },
+        { prop: 'headingAs', type: "'h2' | 'h3'", def: "'h2'" },
+        { prop: 'more', type: 'string', def: "'Číst článek'" },
+      ]}>
+      <Demo label="tři karty bez obrázků"><PostGrid posts={posts} /></Demo>
+    </Spec>
+
+    <Spec id="articledetail" name="ArticleDetail" count={2}
+      what="Detail článku: rubrika, datum, nadpis, perex, obrázek, tělo a CTA na konci."
+      when="Na stránce /<blog>/<slug>. Výpis a rubriky řeší PostGrid a CategoryChips."
+      note="Do teď byl detail psaný přímo ve stránce na Pecostě a Pianu a byl z 84 % shodný. Blogy mají vzniknout i na dalších webech, tak ať se ta odchylka nemnoží. Ve stránce zůstává title a description pro Base, schema.org a getStaticPaths, protože to je SEO a routing."
+      props={[
+        { prop: 'title', type: 'string', req: true },
+        { prop: 'pubDate', type: 'Date', req: true, note: 'formátuje se česky uvnitř' },
+        { prop: 'description', type: 'string', note: 'perex pod nadpisem' },
+        { prop: 'image', type: 'string', note: 'obrázek článku, 1200 x 675' },
+        { prop: 'imageAlt', type: 'string', def: 'title' },
+        { prop: 'category', type: 'string', note: 'rubrika nad nadpisem' },
+        { prop: 'categoryHref', type: 'string', note: 'bez ní se rubrika neodkazuje' },
+        { prop: 'cta', type: '{ label, href }', note: 'nebo slot cta' },
+      ]}
+      slots={[
+        { slot: 'default', note: 'tělo článku, typicky <Content /> z astro:content' },
+        { slot: 'breadcrumb', note: 'drobečky si dodává stránka svou komponentou' },
+        { slot: 'cta', note: 'když nestačí jedno tlačítko' },
+      ]}>
+      <Demo label="tělo drží 720, sekce je container narrow">
+        <Text size="small" color="muted">
+          Živou ukázku sem nedávám, protože komponenta obsahuje celou Section a uvnitř katalogu
+          by kolidovala s okolními sekcemi. Podoba je na jakémkoli článku:
+          <code>/novinky/&lt;slug&gt;</code> na Pecostě, <code>/blog/&lt;slug&gt;</code> na Pianu.
+        </Text>
+      </Demo>
+    </Spec>
+
+    <Spec id="categorychips" name="CategoryChips" count={4}
+      what="Filtr rubrik nad výpisem článků. Aktivní se pozná podle activeHref."
+      when="Vždycky s PostGridem."
+      props={[
+        { prop: 'items', type: '{ label, href }[]', req: true },
+        { prop: 'activeHref', type: 'string' },
+        { prop: 'label', type: 'string', def: "'Kategorie článků'", note: 'aria-label navigace' },
+      ]}
+      note="Zaoblení řídí token --chip-radius. Piano má pilulky (radius-full), ostatní weby zaoblený čtverec (radius-md).">
+      <Demo label="s aktivní položkou">
+        <CategoryChips items={[{ label: 'Vše', href: '#' }, { label: 'První rubrika', href: '#a' }, { label: 'Druhá rubrika', href: '#b' }]} activeHref="#" />
+      </Demo>
+    </Spec>
+
+    <Spec id="header-footer" name="Header a Footer" count={49}
+      what="Hlavička a patička webu. Obě jsou na téhle stránce nahoře a dole, tak je nekreslím podruhé."
+      when="Přes tenký wrapper v každé appce (SiteHeader, SiteFooter), který dodá navigaci, logo a CTA té značky."
+      props={[
+        { prop: 'Header: nav', type: 'NavItem[]', note: 'per web z config/nav.ts' },
+        { prop: 'Header: logoSrc', type: 'string', note: 'brandové weby cca 26px výška' },
+        { prop: 'Header: cta', type: '{ label, href }' },
+        { prop: 'Header: transparent', type: 'boolean', def: 'false' },
+        { prop: 'Footer: columns', type: 'FooterColumn[]' },
+        { prop: 'Footer: tagline', type: 'string' },
+        { prop: 'Footer: parentNote', type: '{ text, href }', note: '„je součástí skupiny Piano"' },
+        { prop: 'Footer: offices', type: '{ heading?, items }' },
+      ]} />
+
+    <Spec id="herocarousel" name="HeroCarousel" count={0}
+      what="Samostatná carouselová komponenta s vlastními šipkami, tečkami a autoplay."
+      when="Nikde. Carousel dnes umí Hero přes prop slides, takže tahle komponenta je duplicitní definice téhož."
+      note="Návrh: buď smazat, nebo z ní udělat základ nové hero varianty. Než se rozhodne, nechávám ji být a nepoužívám."
+      props={[
+        { prop: 'slides', type: 'Slide[]', def: '[]' },
+        { prop: 'background', type: "'default' | 'alt' | 'invert' | 'primary'", def: "'primary'" },
+        { prop: 'space', type: "'sm' | 'md' | 'lg'", def: "'lg'" },
+        { prop: 'interval', type: 'number', def: '6000', note: '0 = bez autoplay' },
+      ]} />
+
+    {/* ============================================================ */}
+    <section class="gal__block" id="reveal">
+      <h2 class="gal__h2">Scroll reveal</h2>
+      <p class="gal__p">
+        Nájezd obsahu je převzatý z živého grason.cz. Trvání 500 ms, křivka
+        <code>ease-out</code>, posun 30 px, vodorovně od tabletu výš. Uvnitř sekce má pořadí:
+        nadpis hned, perex po 300 ms, CTA po 600 ms. V mřížkách nastupuje první položka
+        po 450 ms a každá další o 150 ms později. Spouští se, když horní hrana překročí
+        80 % výšky okna.
+      </p>
+      <p class="gal__p gal__p--muted">
+        O čase rozhoduje celá skupina <code>[data-reveal-group]</code>, ne jednotlivá karta,
+        jinak by druhý řádek mřížky dostal pozdější spuštění a zároveň vyšší prodlevu. Hodnoty
+        jsou tokeny <code>--dur-reveal</code>, <code>--reveal-shift</code>,
+        <code>--reveal-delay-1</code>, <code>--reveal-delay-2</code>,
+        <code>--reveal-stagger-base</code> a <code>--reveal-stagger</code>, takže se ladí
+        v tokens.css. Bez JS je obsah viditelný a při <code>prefers-reduced-motion</code>
+        se nehýbe nic.
+      </p>
+    </section>
+
+    <section class="gal__block" id="otevrene">
+      <h2 class="gal__h2">Otevřené otázky pro grafika</h2>
+      <ol class="gal__ol">
+        <li>
+          <strong>Cover je zatím jen na Pecostě.</strong> Nová varianta hero s médiem na plnou
+          šířku běží na homepage Pecosty. Na které další weby ji nasadit a s jakou fotkou?
+          Dosavadní čtyři varianty zůstávají bez dotčení.
+        </li>
+        <li>
+          <strong>HeroCarousel nikdo nepoužívá.</strong> Duplicitní definice carouselu.
+          Smazat, nebo z ní udělat základ té nové hero varianty?
+        </li>
+        <li>
+          <strong>Card se skoro nepoužívá</strong> (9 souborů), zatímco tři kontaktní stránky
+          si kartu stylují samy, každá jinak. Sjednotit, nebo nechat?
+        </li>
+        <li>
+          <strong>Barevné pásy cyan, yellow a pink</strong> má jen Grason. Je to jeho signature,
+          nebo to má být k dispozici všem?
+        </li>
+        <li>
+          <strong>Pozadí „warm" má jen Piano.</strong> Token <code>--color-bg-warm</code>
+          definuje jedině piano.cz (26 stránek), na sedmi brandových webech chybí a pás
+          spadne na vlastní <code>alt</code>. Má to zůstat výsadou masterbrandu, nebo si má
+          každá značka definovat vlastní teplou plochu?
+        </li>
+        <li>
+          <strong>Šířka Container</strong> má čtyři stupně, ale <code>wide</code> a
+          <code>full</code> se v šablonách skoro nevyskytují. Potřebujeme je?
+        </li>
+      </ol>
+    </section>
+  </Container>
+</div>
+
+<style>
+  .gal { padding-block: 40px 80px; }
+  .gal code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.9em; }
+
+  .gal__head { padding-bottom: 24px; }
+  .gal__kicker { font-size: var(--font-size-label); font-weight: var(--font-weight-semibold); text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-text-accent); }
+  .gal__h1 { font-family: var(--font-display, var(--font-sans)); font-size: var(--font-size-display); font-weight: var(--font-weight-bold); line-height: 1.05; margin-top: 6px; }
+  .gal__lead { margin-top: 12px; font-size: var(--font-size-lead); color: var(--color-text-muted); max-width: 74ch; }
+
+  .gal__toc { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 24px; }
+  .gal__toc a {
+    font-size: var(--font-size-caption); text-decoration: none;
+    color: var(--color-text); background: var(--color-bg-alt);
+    border: 1px solid var(--color-border); border-radius: var(--radius-full);
+    padding: 3px 10px;
+  }
+  .gal__toc a:hover { border-color: var(--color-primary); color: var(--color-text-accent); }
+
+  .gal__block { scroll-margin-top: 90px; padding-top: 48px; border-top: 2px solid var(--color-border); }
+  .gal__h2 { font-family: var(--font-display, var(--font-sans)); font-size: var(--font-size-h1); font-weight: var(--font-weight-bold); line-height: 1.1; }
+  .gal__p { margin-top: 12px; max-width: 74ch; }
+  .gal__p--muted { color: var(--color-text-muted); font-size: var(--font-size-small); }
+  .gal__ol { margin-top: 14px; padding-left: 22px; max-width: 74ch; }
+  .gal__ol li + li { margin-top: 10px; }
+
+  .gal__pre {
+    margin-top: 16px; overflow-x: auto; background: var(--color-bg-invert);
+    color: var(--color-text-on-dark); border-radius: var(--radius-md);
+    padding: 16px 18px; font-size: var(--font-size-small); line-height: 1.6;
+  }
+  .gal__pre code { color: inherit; }
+
+  .gal__row { display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-start; }
+  .gal__row--mid { align-items: center; }
+  .gal__cards { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); }
+  .gal__fields { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  .gal__widths { display: grid; gap: 8px; }
+  .gal__widths span { display: block; background: var(--color-bg-alt); border: 1px solid var(--color-border); padding: 6px 10px; font-size: var(--font-size-caption); font-family: ui-monospace, monospace; }
+
+  /* Zástupná plocha pro médium ve Splitu. */
+  .gal__phsplit {
+    aspect-ratio: 4 / 3; display: grid; place-items: center;
+    background: repeating-linear-gradient(45deg, #cfcfcf 0 18px, #c2c2c2 18px 36px);
+    border-radius: var(--radius-lg);
+    color: #444; font-size: var(--font-size-caption); font-family: ui-monospace, monospace;
+  }
+
+  /* Zástupná plocha pro cover: vyplní celé pozadí sekce. */
+  .gal__phcover {
+    width: 100%; height: 100%; min-height: 420px;
+    display: grid; place-items: center;
+    background: repeating-linear-gradient(45deg, #7a7a7a 0 18px, #676767 18px 36px);
+    color: #fff; font-size: var(--font-size-caption); font-family: ui-monospace, monospace;
+  }
+
+  /* Zástupná plocha místo obrázku, ať je vidět, kde je slot media a jaký má poměr. */
+  .gal__ph {
+    display: grid; place-items: center; aspect-ratio: 3 / 2;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px dashed var(--color-border-on-dark, rgba(255, 255, 255, 0.4));
+    border-radius: var(--radius-lg);
+    color: var(--color-text-on-dark);
+    font-size: var(--font-size-caption);
+    font-family: ui-monospace, monospace;
+  }
+</style>

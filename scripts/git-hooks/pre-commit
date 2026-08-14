@@ -1,0 +1,12 @@
+#!/bin/sh
+# Piano web pre-commit guard: tvrdá pravidla (em-pomlčky) na měněné soubory.
+root="$(git rev-parse --show-toplevel)"
+files=$(git diff --cached --name-only --diff-filter=ACM)
+[ -z "$files" ] && exit 0
+printf '%s\n' "$files" | tr '\n' '\0' | xargs -0 node "$root/scripts/check-web.mjs" || {
+  echo ""
+  echo "Commit zablokován brand kontrolou. Oprav nálezy výše a commitni znovu."
+  echo "(Vynutit jen výjimečně: git commit --no-verify)"
+  exit 1
+}
+exit 0

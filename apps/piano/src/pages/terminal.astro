@@ -1,6 +1,6 @@
 ---
 /**
- * Terminál — produktová stránka piano.cz/terminal (1:1 dle piano.cz).
+ * Terminál: produktová stránka piano.cz/terminal (1:1 dle piano.cz).
  * Obrázky z mirroru převedené na webp. Sdílené komponenty @piano/ui.
  */
 import Base from '../layouts/Base.astro';
@@ -12,6 +12,7 @@ import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
+import { pianoLeadProofs } from '../config/leadProofs';
 
 const benefits = [
   { icon: 'lucide:credit-card', title: 'Bezstarostné platby', text: 'Zapomeňte na hotovost pro závozníky a hlídání splatnosti faktur. Zaplatíte za zboží online na jedno kliknutí.' },
@@ -40,7 +41,7 @@ const steps = [
   { icon: 'lucide:receipt', title: 'Částka se automaticky odečte z vyúčtování.' },
 ];
 
-// Srovnání: Piano vždy ✓; ostatní terminály — no (nemají) / maybe (možná) / yes (mají)
+// Srovnání: Piano vždy ✓; ostatní terminály: no (nemají) / maybe (možná) / yes (mají)
 const compare = [
   { label: 'Unikátní data o hostech v čase (štamgasti vs. noví)', other: 'no' },
   { label: 'Platby dodavatelům na kliknutí (bez hotovosti)', other: 'no' },
@@ -73,7 +74,7 @@ const compare = [
   <USPGrid eyebrow="Vše v jednom zařízení" title="Co Piano Terminál umí navíc"
            items={benefits} columns={4} background="default" minItemWidth="220px" />
 
-  <!-- Data o hostech — se screenshotem -->
+  <!-- Data o hostech: se screenshotem -->
   <Section background="alt" space="lg">
     <div class="td-head">
       <Text size="label" color="accent">Data o hostech</Text>
@@ -90,7 +91,7 @@ const compare = [
     </div>
   </Section>
 
-  <!-- Platby dodavatelům — telefon uprostřed, text po stranách -->
+  <!-- Platby dodavatelům: telefon uprostřed, text po stranách -->
   <Section background="warm" space="lg">
     <Heading as="h2" size="h2" align="center">Platím dodavatele automaticky</Heading>
     <div class="sup">
@@ -108,7 +109,7 @@ const compare = [
     </div>
   </Section>
 
-  <!-- Krok za krokem — timeline -->
+  <!-- Krok za krokem: timeline -->
   <Section background="warm" space="lg">
     <Heading as="h2" size="h2" align="center">Krok za krokem</Heading>
     <ol class="timeline">
@@ -182,7 +183,7 @@ const compare = [
     </Text>
   </Section>
 
-  <LeadForm id="poptavka" variant="full"
+  <LeadForm proofs={pianoLeadProofs} id="poptavka" variant="full"
             title="Posuňte své podnikání na vyšší úroveň"
             lead="Ozvěte se nám a připravíme nabídku šitou na míru vašemu provozu." />
 
@@ -213,14 +214,14 @@ const compare = [
   .td-list strong { font-weight: var(--font-weight-semibold); color: var(--color-text); }
   .td-list span { color: var(--color-text-muted); font-size: var(--font-size-small); }
 
-  /* Platby dodavatelům — telefon uprostřed */
+  /* Platby dodavatelům: telefon uprostřed */
   .sup { display: grid; grid-template-columns: 1fr auto 1fr; gap: var(--space-7); align-items: center; margin-top: var(--space-7); }
   .sup__col { display: flex; flex-direction: column; gap: var(--space-6); }
   .sup__item :global(h3) { margin-bottom: var(--space-2); }
   .sup__phone { margin: 0; }
   .sup__phone img { display: block; width: 280px; max-width: 100%; height: auto; filter: drop-shadow(var(--shadow-lg)); }
 
-  /* Krok za krokem — timeline */
+  /* Krok za krokem: timeline */
   .timeline { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); max-width: 880px; margin: var(--space-7) auto 0; position: relative; }
   .timeline::before { content: ""; position: absolute; top: 28px; left: 16%; right: 16%; height: 2px; background: var(--color-primary); z-index: 0; }
   .tl__step { display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--space-3); }

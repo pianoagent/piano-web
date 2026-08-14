@@ -8,6 +8,9 @@
     "apps/*"
   ],
   "scripts": {
+    "prepare": "git config core.hooksPath scripts/git-hooks || true",
+    "check": "node scripts/check-web.mjs",
+    "audit": "node scripts/check-web.mjs --audit",
     "dev:piano": "npm run dev -w @piano/app-piano",
     "build:piano": "npm run build -w @piano/app-piano",
     "preview:piano": "npm run preview -w @piano/app-piano",

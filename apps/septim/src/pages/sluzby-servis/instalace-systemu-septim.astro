@@ -1,5 +1,5 @@
 ---
-/** Septim — Služby: Instalace systému Septim. Obsah: septim-obsah/sluzby-servis/instalace-systemu-septim.md. SEO meta nově. */
+/** Septim: Služby: Instalace systému Septim. Obsah: septim-obsah/sluzby-servis/instalace-systemu-septim.md. SEO meta nově. */
 import Base from '../../layouts/Base.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
@@ -13,6 +13,7 @@ import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import StatsBand from '../../components/StatsBand.astro';
 import Faq from '@piano/ui/components/Faq.astro';
+import { septimLeadProofs } from '../../config/leadProofs';
 
 const startBody = [
   'Nastavení procesů organizace restaurace',
@@ -31,23 +32,26 @@ const faqs = [
   { q: 'Jaký je první krok?', a: 'Kontaktujte nás a spojte se s našimi zkušenými konzultanty. Navrhneme vhodné řešení pro váš provoz.' },
 ];
 ---
-<Base title="Instalace systému Septim – od výběru řešení po spuštění"
-      description="Instalace pokladního a provozního systému Septim: příprava receptur a skladů, asistované spuštění v domluvený termín a následná servisní správa. Provede vás zkušený konzultant.">
+<Base title="Instalace pokladního systému | Septim"
+      description="Postaráme se o celý proces – od výběru řešení po spuštění plně funkčního systému Septim ve vašem provozu. Instalace na klíč.">
   <SiteHeader />
   <main>
     <Hero eyebrow="Služby a servis" background="alt"
-          lead="Rozhodli jste se pro systém Septim? Podívejte se, jaký průběh instalace vás čeká. Celým procesem od výběru vhodného řešení až po spuštění vás provede náš zkušený konzultant — žádný ajťák!">
+          lead="Rozhodli jste se pro systém Septim? Podívejte se, jaký průběh instalace vás čeká. Celým procesem od výběru vhodného řešení až po spuštění vás provede náš zkušený konzultant, žádný ajťák!">
       <Heading slot="title" as="h1" size="display">Instalace <em>systému Septim</em></Heading>
       <Fragment slot="actions">
         <Button href="#poptavka">Chci konzultaci</Button>
         <Button href="/sluzby-servis" variant="secondary">Všechny služby</Button>
       </Fragment>
+      <figure slot="media" class="hero-pic">
+        <img src="/images/sluzby-instalace.webp" alt="Instalace pokladního systému Septim v provozu" width="960" height="738" loading="eager" decoding="async" />
+      </figure>
     </Hero>
 
     <Section background="default" space="lg">
       <div class="prose">
         <Heading as="h2" size="h2">Start systému je příležitost pro celý provoz</Heading>
-        <Text color="muted">Spuštění Septimu vidíme jako klíčový krok pro restauraci. Zdaleka nejde jen o zapnutí pokladny — je to příležitost nastavit efektivní řízení restaurace:</Text>
+        <Text color="muted">Spuštění Septimu vidíme jako klíčový krok pro restauraci. Zdaleka nejde jen o zapnutí pokladny, je to příležitost nastavit efektivní řízení restaurace:</Text>
       </div>
       <ul class="checklist">
         {startBody.map((f) => (<li><Icon name="lucide:check" size="sm" class="checklist__icon" />{f}</li>))}
@@ -57,9 +61,9 @@ const faqs = [
     <USPGrid eyebrow="Průběh instalace" title="Jak instalace Septimu probíhá" items={kroky} background="alt" space="lg" minItemWidth="260px" />
     <StatsBand background="default" />
     <Faq items={faqs} title="Často kladené otázky k instalaci" background="alt" />
-    <LeadForm id="poptavka" variant="callback" background="default"
+    <LeadForm proofs={septimLeadProofs} id="poptavka" variant="callback" background="default"
               title="Proberte s našimi konzultanty, jak na to"
-              lead="Nechte nám telefon — navrhneme vhodné řešení pro váš provoz." />
+              lead="Nechte nám telefon, navrhneme vhodné řešení pro váš provoz." />
   </main>
   <SiteFooter />
 </Base>

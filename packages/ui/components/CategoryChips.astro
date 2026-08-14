@@ -1,0 +1,34 @@
+---
+/**
+ * CategoryChips: SDÍLENÝ filtr kategorií nad výpisem článků.
+ * Aktivní chip se pozná podle `activeHref`, ne podle třídy zvenčí.
+ *
+ *   items: [{ label, href }]
+ *   activeHref: která položka je aktivní
+ *   label: aria-label navigace (default „Kategorie článků")
+ *
+ * Zaoblení řídí token --chip-radius (fallback --radius-md). Piano má v theme.css
+ * --chip-radius: var(--radius-full), proto má chipy jako pilulky.
+ */
+interface Item { label: string; href: string; }
+interface Props { items: Item[]; activeHref?: string; label?: string; }
+const { items, activeHref, label = 'Kategorie článků' } = Astro.props;
+---
+
+<nav class="blog-filter" aria-label={label}>
+  {items.map((c) => (
+    <a class:list={['blog-chip', c.href === activeHref && 'is-active']} href={c.href}>{c.label}</a>
+  ))}
+</nav>
+
+<style>
+  .blog-filter { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-bottom: var(--space-7); }
+  .blog-chip {
+    font-family: var(--font-sans); font-size: var(--font-size-small); font-weight: var(--font-weight-medium);
+    color: var(--color-text); background: var(--color-bg); border: 1px solid var(--color-border);
+    border-radius: var(--chip-radius, var(--radius-md)); padding: var(--space-2) var(--space-4);
+    text-decoration: none; transition: var(--transition);
+  }
+  .blog-chip:hover { border-color: var(--color-primary); color: var(--color-text-accent); }
+  .blog-chip.is-active { background: var(--color-primary); border-color: var(--color-primary); color: var(--color-text-on-dark); }
+</style>

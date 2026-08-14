@@ -1,6 +1,6 @@
 ---
 /**
- * Products — overview of the entire Piano ecosystem (piano.cz/en/produkty).
+ * Products: overview of the entire Piano ecosystem (piano.cz/en/produkty).
  */
 import Base from '../../layouts/Base.astro';
 import Section from '@piano/ui/components/Section.astro';
@@ -11,6 +11,7 @@ import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import { locPath } from '../../i18n';
+import { pianoLeadProofsEn } from '../../config/leadProofs';
 
 const groups = [
   {
@@ -76,7 +77,7 @@ const groups = [
     </Section>
   ))}
 
-  <LeadForm id="poptavka" variant="full" locale="en"
+  <LeadForm proofs={pianoLeadProofsEn} id="poptavka" variant="full" locale="en"
             title="Not sure what fits you best?"
             lead="Get in touch and we will design a combination of tools tailored to your operation." />
 </Base>

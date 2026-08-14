@@ -1,6 +1,6 @@
 ---
 /**
- * Field — Piano formulářové pole (label + input)
+ * Field: Piano formulářové pole (label + input)
  *
  * Props:
  *   label:        string   → popisek nad polem
@@ -140,10 +140,15 @@ const hasAdornment = Boolean(prefix || icon);
     outline: none;
     background: transparent;
     font-family: var(--font-sans);
-    font-size: 15px;
+    /* NESNIŽOVAT pod 16px. Safari na iOSu si pole s menším písmem při kliknutí
+       sám přizoomuje, stránka se rozjede do strany a uživatel se musí
+       vracet gestem. Dřív tu bylo 15px a týkalo se to 143 stránek. */
+    font-size: 16px;
     color: var(--color-text);
   }
   .field__input::placeholder { color: var(--color-neutral-300); }
+  /* 44px doporučená klikací plocha; odsazení dávalo 43. Textarea má vlastní. */
+  .field__input:not(.field__input--textarea) { min-height: 44px; }
   .field__input--textarea { resize: vertical; min-height: 96px; line-height: var(--line-height-body); }
 
   .field__helper {

@@ -2,7 +2,7 @@ import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
 /**
- * Kolekce „aktualne" — novinky a verze pro stránku /aktualne.
+ * Kolekce „aktualne", novinky a verze pro stránku /aktualne.
  * Přidání novinky = vytvořit nový .md soubor v src/content/aktualne/
  * (viz src/content/aktualne/README.md).
  */

@@ -1,17 +1,19 @@
 ---
 /**
- * Qerko — homepage (první verze).
+ * Qerko: homepage (první verze).
  * Obsah vytěžen ze starých stránek qerko.com (index, qr-platba, objednavani,
  * vernostni-program, hodnoceni, q-point, rezervace) + qerko-context.md.
  * Vše ze SDÍLENÝCH komponent @piano/ui; téma řeší src/styles/theme.css.
  * Sekce bez vlastní komponenty (Stats, Steps, Feature rows, Awards, Reference,
- * FAQ) jsou složené z primitivů (Section/Heading/Text/Button/Icon) —
+ * FAQ) jsou složené z primitivů (Section/Heading/Text/Button/Icon)
  * komponenty se NEFORKUJÍ.
  */
 import Base from '../layouts/Base.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import Section from '@piano/ui/components/Section.astro';
+import Faq from '@piano/ui/components/Faq.astro';
+import Testimonials from '@piano/ui/components/Testimonials.astro';
 import Hero from '@piano/ui/components/Hero.astro';
 import Heading from '@piano/ui/components/Heading.astro';
 import Text from '@piano/ui/components/Text.astro';
@@ -21,17 +23,11 @@ import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import LogoWall from '@piano/ui/components/LogoWall.astro';
 
-const stats = [
-  { num: '+20 %', lbl: 'více otočených stolů' },
-  { num: '+40 %', lbl: 'vyšší dýška pro obsluhu' },
-  { num: '4 min', lbl: 'ušetřené na každý stůl' },
-  { num: '1,5 mil.+', lbl: 'obsloužených hostů' },
-];
 
 const steps = [
-  { icon: 'lucide:qr-code', title: 'Host naskenuje QR', text: 'Na stole je QR kód nebo NFC. Host ho naskenuje telefonem — žádná aplikace navíc není potřeba.' },
+  { icon: 'lucide:qr-code', title: 'Host naskenuje QR', text: 'Na stole je QR kód nebo NFC. Host ho naskenuje telefonem, žádná aplikace navíc není potřeba.' },
   { icon: 'lucide:utensils', title: 'Vidí menu a objednává', text: 'Digitální menu se načte z vaší pokladny. Host si může rovnou objednat další jídlo i pití.' },
-  { icon: 'lucide:smartphone', title: 'Zaplatí z mobilu', text: 'Rozdělí účet, přidá spropitné a zaplatí kartou, Apple Pay nebo stravenkou — kdykoliv chce.' },
+  { icon: 'lucide:smartphone', title: 'Zaplatí z mobilu', text: 'Rozdělí účet, přidá spropitné a zaplatí kartou, Apple Pay nebo stravenkou, kdykoliv chce.' },
   { icon: 'lucide:monitor-check', title: 'Obsluha vše vidí v POS', text: 'Platba i objednávka se okamžitě propíší do pokladny. Číšník má čas na nově příchozí.' },
   { icon: 'lucide:receipt', title: 'Účtenka e-mailem', text: 'Host dostane digitální účtenku automaticky. Žádné čekání, žádný papír navíc.' },
   { icon: 'lucide:star', title: 'Qerko požádá o recenzi', text: 'Po platbě se Qerko zeptá na hodnocení a vybídne k recenzi na Googlu i follow na Instagramu.' },
@@ -46,18 +42,18 @@ const features = [
   { icon: 'lucide:star', title: 'Hodnocení a Google recenze', text: 'Qerko automaticky sbírá recenze od spokojených hostů. Buďte číslo 1 ve městě.' },
 ];
 
-// Detailní bloky produktu — kotvy odpovídají navigaci a patičce
+// Detailní bloky produktu: kotvy odpovídají navigaci a patičce
 const blocks = [
   {
     id: 'qr-platba', bg: 'default', icon: 'lucide:qr-code', eyebrow: 'Qerko platba',
     title: 'Zaplatí sami. Vy markujete dál.',
-    text: '„Zaplatím!" je fráze, která běžně stojí obsluhu i hosty desítky minut. S Qerkem si hosté sami rozpočítají účet a zaplatí z mobilu — platba se propíše do pokladny a obsluha o všem ví.',
+    text: '„Zaplatím!" je fráze, která běžně stojí obsluhu i hosty desítky minut. S Qerkem si hosté sami rozpočítají účet a zaplatí z mobilu, platba se propíše do pokladny a obsluha o všem ví.',
     bullets: ['Bezkontaktní platba bez PIN', 'Visa, Mastercard, Apple Pay, stravenky', 'Rozdělení účtu mezi hosty'],
   },
   {
     id: 'objednavani', bg: 'alt', icon: 'lucide:utensils', eyebrow: 'Digitální menu a objednávka',
     title: 'Co takhle kávu nebo dezert?',
-    text: 'Na tuhle otázku je někdy zoufale málo času. Vaše menu si automaticky stáhneme z pokladny, ukážeme ho hostům a doporučíme položky na míru. Objednávky z telefonu jdou přímo do POS a kuchyně — tržby rostou až o 10 %.',
+    text: 'Na tuhle otázku je někdy zoufale málo času. Vaše menu si automaticky stáhneme z pokladny, ukážeme ho hostům a doporučíme položky na míru. Objednávky z telefonu jdou přímo do POS a kuchyně a tržby rostou až o 25 %.',
     bullets: ['Menu s fotkami, vždy aktuální', 'Objednávky rovnou do POS a kuchyně', 'Předobjednávky i takeaway'],
   },
   {
@@ -69,19 +65,19 @@ const blocks = [
   {
     id: 'vernost', bg: 'alt', icon: 'lucide:heart-handshake', eyebrow: 'Věrnostní program',
     title: 'Aby se k vám hosté vraceli',
-    text: 'Pomocí chytrých nástrojů přivedeme vaše hosty zpět a přimějeme je chodit častěji. Po platbě jim pošlete poděkování, voucher nebo pozvánku na nové menu — bez práce navíc.',
+    text: 'Pomocí chytrých nástrojů přivedeme vaše hosty zpět a přimějeme je chodit častěji. Po platbě jim pošlete poděkování, voucher nebo pozvánku na nové menu, bez práce navíc.',
     bullets: ['Personalizované zprávy po platbě', 'Vouchery a chytré nabídky', 'Hosté jako followeři podniku'],
   },
   {
     id: 'hodnoceni', bg: 'default', icon: 'lucide:star', eyebrow: 'Hodnocení a reputace',
     title: 'Staňte se podnikem číslo jedna',
-    text: 'Bylo vše v pořádku? Ve šrumci špičky někdy nezbyde čas se zeptat. Qerko se zákazníka zeptá hned po platbě — a vy na hodnocení reagujete poděkováním nebo omluvou. Spokojené hosty pak vybídneme k recenzi na Google Maps a follow na Instagramu.',
+    text: 'Bylo vše v pořádku? Ve šrumci špičky někdy nezbyde čas se zeptat. Qerko se zákazníka zeptá hned po platbě a vy na hodnocení reagujete poděkováním nebo omluvou. Spokojené hosty pak vybídneme k recenzi na Google Maps a follow na Instagramu.',
     bullets: ['Soukromá zpětná vazba hned po platbě', 'Automatické Google recenze', 'Více sledujících na Instagramu'],
   },
   {
     id: 'qpoint', bg: 'alt', icon: 'lucide:tablet-smartphone', eyebrow: 'Qpoint',
     title: 'Rozvoz i e-shop v jednom tabletu',
-    text: 'Qpoint agreguje objednávky z rozvozu a vlastního online shopu přehledně na jednom tabletu. Žádné přepínání mezi platformami — vše na jednom místě.',
+    text: 'Qpoint agreguje objednávky z rozvozu a vlastního online shopu přehledně na jednom tabletu. Žádné přepínání mezi platformami, vše na jednom místě.',
     bullets: ['Objednávky z rozvozu i e-shopu', 'Vše přehledně na jednom tabletu', 'Vlastní online shop podniku'],
   },
 ];
@@ -90,22 +86,22 @@ const awards = [
   { title: 'Vítěz Startup Awards', note: 'Cena veřejnosti' },
   { title: '2× Křišťálová Lupa', note: 'E-commerce inspirace' },
   { title: 'Licence ČNB', note: 'Evropská platební instituce' },
-  { title: 'Banka roku — 2. místo', note: 'Kategorie Fintech' },
+  { title: 'Banka roku: 2. místo', note: 'Kategorie Fintech' },
   { title: 'Top 10 App Store', note: 'Jídlo a pití' },
   { title: '1,5 mil.+ uživatelů', note: 've 3 evropských zemích' },
 ];
 
 const testimonials = [
-  { initials: 'TH', headline: 'Super funkční Qerko', quote: 'Byl jsem několikrát a pokaždé skvělá návštěva. Super funkční Qerko — to se mi tam líbilo nejvíc.', author: 'Tomáš Hofmann', role: '199 recenzí · Google Maps' },
+  { initials: 'TH', headline: 'Super funkční Qerko', quote: 'Byl jsem několikrát a pokaždé skvělá návštěva. Super funkční Qerko, to se mi tam líbilo nejvíc.', author: 'Tomáš Hofmann', role: '199 recenzí · Google Maps' },
   { initials: 'NL', headline: 'Platba přes Qerko je plus', quote: 'Moc milá obsluha, skvělé jídlo, fajn polední nabídky. Další plus je platba přes Qerko.', author: 'Nikola Lešková', role: '19 recenzí · Google Maps' },
   { initials: 'JK', headline: 'Bonusové body za podporu', quote: 'Dobré pivo, dobré jídlo, bonusové body za podporu Qerka a velmi milí číšníci.', author: 'Jiří Kučera', role: '110 recenzí · Google Maps' },
 ];
 
 const faqs = [
   { q: 'Kolik Qerko stojí?', a: 'Žádný měsíční paušál. Platíte jen transakční poplatek 2,90 Kč + 1,35 % z částky a jednorázový starter pack podle počtu stolů (od 2 890 Kč). Platby, objednávání, věrnostní program i rezervace jsou v ceně.' },
-  { q: 'Musíme měnit pokladnu?', a: 'Ne. Qerko je napojené na 30+ POS systémů včetně Septimu. Menu i platby se propisují do vaší stávající pokladny.' },
-  { q: 'Co když host nechce platit přes telefon?', a: 'Qerko nic nenahrazuje násilím — funguje vedle běžné obsluhy. Host zaplatí přes Qerko, jen když chce. Obsluha má díky tomu víc času na ostatní stoly.' },
-  { q: 'Jaké platební metody hosté využijí?', a: 'Visa, Mastercard, Apple Pay, uložené karty, stravenky (Edenred, Sodexo, Benefit Plus, Naše Stravenka, UP) i Bitcoin.' },
+  { q: 'Musíme měnit pokladnu?', a: 'Ne. Qerko je napojené na 26 pokladních systémů včetně Septimu. Menu i platby se propisují do vaší stávající pokladny.' },
+  { q: 'Co když host nechce platit přes telefon?', a: 'Qerko nic nenahrazuje násilím: funguje vedle běžné obsluhy. Host zaplatí přes Qerko, jen když chce. Obsluha má díky tomu víc času na ostatní stoly.' },
+  { q: 'Jaké platební metody hosté využijí?', a: 'Visa, Mastercard, Apple Pay, uložené karty, stravenky (Edenred, Pluxee, Naše Stravenka, UP) i Bitcoin.' },
   { q: 'Jak dlouho trvá instalace?', a: 'Profesionální instalace zabere do 3 hodin (4 900 Kč), nebo si Qerko nasadíte sami zdarma. Stačí vytisknout QR kódy na stoly a napojit pokladnu.' },
 ];
 
@@ -117,7 +113,7 @@ const leadProofs = [
 ];
 ---
 
-<Base title="Vyšší tržby, vyšší dýška a lepší recenze pro váš podnik | Qerko"
+<Base title="Vyšší tržby, dýška a lepší recenze | Qerko"
       description="Qerko je pomocník na place, se kterým otočíte více stolů, získáte vyšší dýška a lepší hodnocení na Google i Instagramu.">
   <SiteHeader />
 
@@ -126,7 +122,7 @@ const leadProofs = [
   <!-- HERO -->
   <Hero eyebrow="Pomocník na place" background="gradient"
         lead="Qerko pomáhá číšníkům připravit pro hosty bezchybný zážitek. Hosté platí a objednávají z mobilu, dávají vyšší dýško a lepší recenze. Obsluha má čas na to podstatné."
-        usp={[{ text: '+20 % otočených stolů', icon: 'lucide:armchair' }, { text: 'o 40 % vyšší dýško', icon: 'lucide:hand-coins' }, { text: '1,5 mil.+ hostů', icon: 'lucide:users' }]}>
+        usp={[{ text: 'Tržby až +25 %', icon: 'lucide:trending-up' }, { text: 'o 40 % vyšší dýško', icon: 'lucide:hand-coins' }, { text: '+20 % otočených stolů', icon: 'lucide:armchair' }]}>
     <Heading slot="title" as="h1" size="display" color="on-dark">Skvělé podniky ví, jak vytěžit ze špiček maximum</Heading>
     <Fragment slot="actions">
       <Button href="#poptavka">Chci Qerko</Button>
@@ -135,7 +131,7 @@ const leadProofs = [
     <figure slot="media" class="hero-figure">
       <video src="https://cdn.prod.website-files.com/677d1d0f99a9ef91f1f05c2b%2F67c70aec4aa0c237bae76eca_new_zvla%CC%81st_na_kasu-transcode.mp4"
              autoplay loop muted playsinline preload="metadata"
-             aria-label="Qerko — platba z mobilu přímo od stolu"></video>
+             aria-label="Qerko: platba z mobilu přímo od stolu"></video>
     </figure>
   </Hero>
 
@@ -147,7 +143,7 @@ const leadProofs = [
   <Section id="jak-to-funguje" background="default" space="lg">
     <div class="head head--center">
       <Text size="label" color="accent" align="center">Jak to funguje</Text>
-      <Heading as="h2" size="h2" align="center">Od QR kódu po <em>recenzi</em> — bez práce navíc</Heading>
+      <Heading as="h2" size="h2" align="center">Placením to <em>nekončí</em>, umíme toho mnohem víc</Heading>
       <Text size="lead" color="muted" align="center" balance>
         Kde zrovna není číšník, tam pomůže Qerko. Šest kroků, které otočí víc stolů a zvednou dýška.
       </Text>
@@ -167,7 +163,7 @@ const leadProofs = [
   <!-- FUNKCE -->
   <div id="funkce">
     <USPGrid eyebrow="Co Qerko umí" title="Všechny nástroje pro pohostinství pod jednou střechou"
-             lead="Platba, objednávání, věrnost i reputace — v jednom řešení napojeném na vaši pokladnu."
+             lead="Platba, objednávání, věrnost i reputace: v jednom řešení napojeném na vaši pokladnu."
              items={features} minItemWidth="280px" background="alt" space="lg" />
   </div>
 
@@ -209,32 +205,13 @@ const leadProofs = [
   </Section>
 
   <!-- REFERENCE -->
-  <Section id="komunita" background="default" space="lg">
-    <div class="head head--center">
-      <Text size="label" color="accent" align="center">Říkají hosté</Text>
-      <Heading as="h2" size="h2" align="center">Nejlépe hodnocené podniky <em>mají Qerko</em></Heading>
-      <Text size="lead" color="muted" align="center" balance>
-        Qerko obsloužilo přes 1 500 000 hostů. Tady je, co o podnicích s Qerkem píšou.
-      </Text>
-    </div>
-    <div class="quotes">
-      {testimonials.map((t, i) => (
-        <figure class={`quote quote--${i}`}>
-          <div class="quote__head">
-            <div class="quote__id">
-              <strong class="quote__name">{t.author}</strong>
-              <span class="quote__role">{t.role}</span>
-            </div>
-            <span class="quote__avatar" aria-hidden="true">{t.initials}</span>
-          </div>
-          <span class="quote__mark"><Icon name="lucide:quote" size="md" /></span>
-          <p class="quote__headline">{t.headline}</p>
-          <blockquote class="quote__text">{t.quote}</blockquote>
-        </figure>
-      ))}
-    </div>
-  </Section>
-
+  <Testimonials
+    background="default"
+    id="komunita"
+    items={testimonials}
+    eyebrow="Říkají hosté"
+    titleHtml="Nejlépe hodnocené podniky <em>mají Qerko</em>"
+    lead="Přes 1 500 000 hostů ví, že když vidí zelené Q na stole, nemusí se bát zaplatit. Tady je, co o podnicích s Qerkem píšou." />
   <!-- CTA -->
   <Section background="primary" space="lg">
     <div class="head head--center">
@@ -251,25 +228,15 @@ const leadProofs = [
   </Section>
 
   <!-- FAQ -->
-  <Section background="alt" space="lg">
-    <div class="head head--center">
-      <Heading as="h2" size="h2" align="center">Často kladené dotazy</Heading>
-      <Text size="lead" color="muted" align="center">Nenašli jste odpověď? Ozvěte se nám, rádi poradíme.</Text>
-    </div>
-    <div class="faq">
-      {faqs.map((f) => (
-        <details class="faq__item">
-          <summary>{f.q}<Icon name="lucide:chevron-down" size="sm" class="faq__chev" /></summary>
-          <div class="faq__a"><Text color="muted">{f.a}</Text></div>
-        </details>
-      ))}
-    </div>
-  </Section>
-
+  <Faq
+    background="alt"
+    items={faqs}
+    title="Často kladené dotazy"
+    lead="Nenašli jste odpověď? Ozvěte se nám, rádi poradíme." />
   <!-- POPTÁVKA -->
   <LeadForm id="poptavka" variant="full" background="default"
             title="Chci vyzkoušet Qerko"
-            lead="Nechte nám kontakt — ukážeme vám, jak Qerko otočí víc stolů a zvedne dýška ve vašem podniku."
+            lead="Nechte nám kontakt, ukážeme vám, jak Qerko otočí víc stolů a zvedne dýška ve vašem podniku."
             submitLabel="Chci Qerko"
             proofs={leadProofs} />
 
@@ -279,7 +246,7 @@ const leadProofs = [
 </Base>
 
 <style>
-  /* Hero video — oříznuto do čtverce (vyšší a větší v split layoutu) */
+  /* Hero video: oříznuto do čtverce (vyšší a větší v split layoutu) */
   .hero-figure {
     position: relative; margin: 0; width: 100%;
     aspect-ratio: 1 / 1;
@@ -292,16 +259,6 @@ const leadProofs = [
   .head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-7); }
   .head--center { text-align: center; }
   .head > * + * { margin-top: var(--space-3); }
-
-  /* Stats band */
-  .stats {
-    list-style: none; display: grid; gap: var(--space-5);
-    grid-template-columns: repeat(4, 1fr); text-align: center;
-  }
-  .stats__item { display: flex; flex-direction: column; gap: var(--space-1); }
-  .stats__num { font-size: var(--font-size-h2); font-weight: var(--font-weight-bold); line-height: 1; color: var(--color-secondary); }
-  .stats__lbl { font-size: var(--font-size-small); color: var(--color-text-muted); }
-  @media (max-width: 720px) { .stats { grid-template-columns: repeat(2, 1fr); } }
 
   /* Steps */
   .steps {
@@ -362,41 +319,9 @@ const leadProofs = [
   .award__note { font-size: var(--font-size-small); color: var(--color-text-on-dark-muted); }
 
   /* Reference */
-  .quotes { display: grid; gap: var(--space-8) var(--space-6); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-  .quote { margin: 0; display: flex; flex-direction: column; }
-  .quote__head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); margin-bottom: var(--space-5); }
-  .quote__id { display: flex; flex-direction: column; gap: 2px; }
-  .quote__name { font-size: var(--font-size-h3); font-weight: var(--font-weight-bold); color: var(--color-secondary); line-height: 1.1; }
-  .quote__role { font-size: var(--font-size-small); color: var(--color-text-muted); }
-  .quote__avatar {
-    flex-shrink: 0; width: 84px; height: 84px; border-radius: 50%;
-    display: inline-flex; align-items: center; justify-content: center;
-    font-size: var(--font-size-h3); font-weight: var(--font-weight-bold);
-    color: #fff; letter-spacing: 0.02em; box-shadow: var(--shadow-md);
-  }
-  .quote--0 .quote__avatar { background: var(--testimonial-grad-1); }
-  .quote--1 .quote__avatar { background: var(--testimonial-grad-2); }
-  .quote--2 .quote__avatar { background: var(--testimonial-grad-3); }
-  .quote__mark { color: var(--color-primary); display: block; margin-bottom: var(--space-2); }
-  .quote__headline { font-weight: var(--font-weight-bold); color: var(--color-secondary); margin-bottom: var(--space-2); }
-  .quote__text { font-size: var(--font-size-body); color: var(--color-text-muted); line-height: var(--line-height-body); }
 
   /* CTA */
   .cta-actions { display: flex; gap: var(--space-3); justify-content: center; flex-wrap: wrap; margin-top: var(--space-5); }
 
   /* FAQ */
-  .faq { max-width: 760px; margin-inline: auto; display: flex; flex-direction: column; gap: var(--space-3); }
-  .faq__item {
-    border: 1px solid var(--color-border); border-radius: var(--radius-md);
-    background: var(--color-bg); padding: 0 var(--space-5);
-  }
-  .faq__item summary {
-    display: flex; align-items: center; justify-content: space-between; gap: var(--space-4);
-    padding: var(--space-4) 0; cursor: pointer; font-weight: var(--font-weight-semibold);
-    list-style: none;
-  }
-  .faq__item summary::-webkit-details-marker { display: none; }
-  .faq__chev { transition: transform var(--duration-base) var(--easing); color: var(--color-text-muted); }
-  .faq__item[open] .faq__chev { transform: rotate(180deg); }
-  .faq__a { padding-bottom: var(--space-5); }
 </style>

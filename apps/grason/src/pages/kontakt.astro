@@ -1,7 +1,8 @@
 ---
-/** Grason — Kontakt. Údaje ze starého webu (contact_markup, cs.json) + footer config. */
+/** Grason: Kontakt. Údaje ze starého webu (contact_markup, cs.json) + footer config. */
 import Base from '../layouts/Base.astro';
 import Header from '@piano/ui/components/Header.astro';
+import ContactCards from '@piano/ui/components/ContactCards.astro';
 import Footer from '@piano/ui/components/Footer.astro';
 import Section from '@piano/ui/components/Section.astro';
 import Hero from '@piano/ui/components/Hero.astro';
@@ -10,6 +11,7 @@ import Text from '@piano/ui/components/Text.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import { grasonNav, grasonCta, grasonFooter, grasonLogin } from '../config/nav';
+import { grasonLeadProofs } from '../config/leadProofs';
 
 const contacts = [
   { icon: 'lucide:phone', label: 'Zavolejte', value: '+420 739 877 799', href: 'tel:+420739877799' },
@@ -19,39 +21,25 @@ const contacts = [
 ];
 ---
 <Base title="Kontakt | Grason"
-      description="Spojte se s Grasonem — telefon +420 739 877 799, e-mail info@grason.cz. Grason Solutions s.r.o., Thámova 166/18, Praha 8.">
+      description="Spojte se s Grasonem, telefon +420 739 877 799, e-mail info@grason.cz. Grason Solutions s.r.o., Thámova 166/18, Praha 8.">
   <Header brand="Grason" logoSrc="/logos/grason_logo.svg" logoHeight="28px" homeHref="/" nav={grasonNav} cta={grasonCta} login={grasonLogin} />
   <main>
     <Hero eyebrow="Kontakt" background="alt" space="md"
-          lead="Ozvěte se nám — poradíme s výběrem služby i s nastavením účtu.">
+          lead="Ozvěte se nám, poradíme s výběrem služby i s nastavením účtu.">
       <Heading slot="title" as="h1" size="h1">Jsme tu pro vás</Heading>
+      <figure slot="media" class="hero-pic">
+        <img src="/images/kontakt-hero.webp" alt="Ilustrace kalendáře se směnami v Grasonu" width="760" height="568" loading="eager" decoding="async" />
+      </figure>
     </Hero>
 
-    <Section background="default" space="lg">
-      <div class="cards">
-        {contacts.map((c) => (
-          <article class="card">
-            <span class="card__icon"><Icon name={c.icon} size="md" /></span>
-            <Text size="label" color="muted">{c.label}</Text>
-            {c.href
-              ? <a class="card__value" href={c.href}>{c.value}</a>
-              : <span class="card__value">{c.value}</span>}
-          </article>
-        ))}
-      </div>
-    </Section>
+    <ContactCards items={contacts} variant="plain" background="default" space="lg" />
 
-    <LeadForm id="poptavka" variant="full" background="alt"
+    <LeadForm proofs={grasonLeadProofs} id="poptavka" variant="full" background="alt"
               title="Napište nám"
-              lead="Nechte nám kontakt a krátkou zprávu — ozveme se co nejdříve." />
+              lead="Nechte nám kontakt a krátkou zprávu, ozveme se co nejdříve." />
   </main>
   <Footer {...grasonFooter} />
 </Base>
 
 <style>
-  .cards { display: grid; gap: var(--space-5); grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
-  .card { display: flex; flex-direction: column; gap: var(--space-2); align-items: flex-start; padding: var(--space-5); border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-bg); }
-  .card__icon { color: var(--color-primary); }
-  .card__value { font-weight: var(--font-weight-semibold); color: var(--color-text); text-decoration: none; }
-  a.card__value:hover { color: var(--color-primary); }
 </style>

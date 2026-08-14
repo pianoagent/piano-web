@@ -1,0 +1,104 @@
+/* Piano UI: MEZIVRSTVA mezi styleguidem a komponentami
+   =========================================================
+   Styleguide (brand/design-system/styleguide/) pojmenovává tokeny jinak než
+   komponenty v tomto repu: --bg vs --color-bg, --s-5 vs --space-5, --fs-body
+   vs --font-size-body. V kódu je přes 4 500 odkazů na staré názvy, takže se
+   místo přejmenování mapuje.
+
+   POŘADÍ IMPORTŮ v apps/<web>/src/styles/theme.css:
+     1. @piano/ui/styles/base.css   struktura a výchozí hodnoty
+     2. ./tokens.css                tokeny ze styleguidu (nové názvy)
+     3. @piano/ui/styles/bridge.css tento soubor (mapování)
+     4. zbytek theme.css            per-web věci, které mapování nevyjádří
+
+   Přejmenování na názvy ze styleguidu je samostatný krok do budoucna. Do té
+   doby je tenhle soubor jediné místo, kde se obě sady názvů potkávají.
+*/
+
+:root {
+  /* =========================================================
+     BARVY
+     ========================================================= */
+  --color-bg:        var(--bg);
+  --color-bg-alt:    var(--bg-alt);
+  --color-bg-invert: var(--bg-invert);
+
+  --color-text:               var(--ink);
+  --color-text-muted:         var(--ink-2);
+  --color-text-on-dark:       var(--ink-invert);
+  --color-text-on-dark-muted: var(--ink-invert-2);
+
+  --color-border:        var(--line);
+  --color-border-strong: var(--line-strong);
+
+  /* Primární barva pro text, odkazy a tlačítka.
+     --accent-aa je ztmavená varianta pro weby, kde brandový --accent nesplňuje
+     WCAG AA (4,5:1) s bílým labelem. Definuje ji theme.css daného webu; kde
+     brandová barva kontrast splňuje, --accent-aa chybí a použije se --accent. */
+  --color-primary: var(--accent-aa, var(--accent));
+
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-error:   var(--error);
+
+  /* =========================================================
+     TYPOGRAFIE
+     Škála poměr 1,25 od základu 17 px, sdílená celým ekosystémem.
+     ========================================================= */
+  --font-sans: var(--font-text);
+  /* --font-display si base.css bere pro nadpisy, kde je definovaný */
+
+  --line-height-h1: var(--lh-h1);
+
+  --font-size-display: var(--fs-display);
+  --font-size-h1:      var(--fs-h1);
+  --font-size-h2:      var(--fs-h2);
+  --font-size-h3:      var(--fs-h3);
+  --font-size-lead:    var(--fs-lead);
+  --font-size-body:    var(--fs-body);
+  --font-size-small:   var(--fs-small);
+  --font-size-caption: var(--fs-caption);
+  --font-size-label:   var(--fs-label);
+
+  --line-height-display: var(--lh-display);
+  --line-height-heading: var(--lh-h2);
+  --line-height-snug:    var(--lh-h3);
+  --line-height-lead:    var(--lh-lead);
+  --line-height-body:    var(--lh-body);
+
+  --letter-spacing-tight: var(--ls-display);
+  --letter-spacing-normal: var(--ls-body);
+  --letter-spacing-wide:  var(--ls-label);
+
+  /* =========================================================
+     SPACING
+     ========================================================= */
+  --space-1: var(--s-1);
+  --space-2: var(--s-2);
+  --space-3: var(--s-3);
+  --space-4: var(--s-4);
+  --space-5: var(--s-5);
+  --space-6: var(--s-6);
+  --space-7: var(--s-7);
+  --space-8: var(--s-8);
+  --space-9: var(--s-9);
+  --space-10: var(--s-10);
+
+  /* =========================================================
+     LAYOUT
+     ========================================================= */
+  --container-max: var(--container);
+  --container-pad: var(--page-pad);
+
+  /* =========================================================
+     POHYB
+     ========================================================= */
+  --duration-fast: var(--dur-micro);
+  --duration-base: var(--dur-standard);
+  --easing:        var(--ease);
+}
+
+/* Menší vnitřní okraj stránky na mobilu (styleguide: --page-pad-mobile) */
+@media (max-width: 768px) {
+  :root { --container-pad: var(--page-pad-mobile); }
+}

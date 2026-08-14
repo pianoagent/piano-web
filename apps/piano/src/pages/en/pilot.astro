@@ -12,6 +12,7 @@ import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
+import { pianoLeadProofsEn } from '../../config/leadProofs';
 
 // Pilot pricing - feature comparison. `free` = included in the Free plan.
 const planFeatures = [
@@ -155,7 +156,7 @@ const features = [
     </div>
   </section>
 
-  <LeadForm id="poptavka" variant="full" locale="en"
+  <LeadForm proofs={pianoLeadProofsEn} id="poptavka" variant="full" locale="en"
             title="Take your business to the next level"
             lead="Get in touch and we will put together an offer tailored to your needs." />
 

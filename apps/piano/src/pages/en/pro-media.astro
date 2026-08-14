@@ -1,6 +1,6 @@
 ---
 /**
- * For media — piano.cz/en/pro-media (press centre).
+ * For media: piano.cz/en/pro-media (press centre).
  * Mirrors CS pro-media.astro with the same layout/CSS, translated content.
  */
 import Base from '../../layouts/Base.astro';
@@ -90,7 +90,7 @@ const mediaKit = 'https://drive.google.com/drive/folders/1-W3kD79LVz5aMy6kSGHNwJ
 
   .pm-pub { display: inline-flex; align-items: center; gap: var(--space-2); font-size: var(--font-size-caption); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide); font-weight: var(--font-weight-semibold); color: var(--color-text-muted); }
   .pm-pub--accent { color: var(--color-text-accent); }
-  /* Loga médií — barevná, ve výšce blízké textu */
+  /* Loga médií: barevná, ve výšce blízké textu */
   .pm-logo { height: 16px; width: auto; max-width: 120px; object-fit: contain; }
   .pm-logo--article { height: 20px; display: block; margin-bottom: var(--space-1); }
   .pm-pub__date { white-space: nowrap; }
@@ -105,7 +105,7 @@ const mediaKit = 'https://drive.google.com/drive/folders/1-W3kD79LVz5aMy6kSGHNwJ
   .pm-video__thumb:hover .pm-video__play { background: var(--color-primary); }
   .pm-video :global(.btn) { margin-top: var(--space-2); }
 
-  /* Napsali o nás — celá karta je odkaz */
+  /* Napsali o nás: celá karta je odkaz */
   .pm-article { display: flex; flex-direction: column; gap: var(--space-2); text-align: left; padding: 0 0 var(--space-5); background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); overflow: hidden; text-decoration: none; color: var(--color-text); transition: var(--transition); }
   .pm-article:hover { border-color: var(--color-primary); transform: translateY(-4px); box-shadow: var(--shadow-lg, 0 18px 40px rgba(0,0,0,.10)); }
   .pm-article__media { aspect-ratio: 16/9; overflow: hidden; background: var(--color-bg-alt); }
@@ -115,10 +115,11 @@ const mediaKit = 'https://drive.google.com/drive/folders/1-W3kD79LVz5aMy6kSGHNwJ
   .pm-artdate { font-size: var(--font-size-caption); color: var(--color-text-muted); }
   .pm-article .pm-more { margin-top: var(--space-2); }
 
-  /* Tiskové zprávy — vycentrované */
+  /* Tiskové zprávy: vycentrované */
   .pm-release { display: flex; flex-direction: column; align-items: center; gap: var(--space-2); text-align: center; padding: 0 var(--space-3); }
   .pm-release__title { font-family: var(--font-sans); font-weight: var(--font-weight-semibold); font-size: var(--font-size-lead); line-height: var(--line-height-tight); margin: 0; }
-  .pm-link { display: inline-flex; align-items: center; gap: var(--space-1); margin-top: var(--space-1); color: var(--color-text-accent); text-decoration: none; font-weight: var(--font-weight-medium); font-size: var(--font-size-small); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide); }
+  /* min-height 24px: klikací plocha podle WCAG 2.5.8. */
+  .pm-link { display: inline-flex; align-items: center; min-height: 24px; gap: var(--space-1); margin-top: var(--space-1); color: var(--color-text-accent); text-decoration: none; font-weight: var(--font-weight-medium); font-size: var(--font-size-small); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide); }
 
   /* Media kit */
   .pm-kit { display: flex; flex-direction: column; align-items: center; text-align: center; }

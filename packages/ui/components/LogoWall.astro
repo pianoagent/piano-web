@@ -1,17 +1,17 @@
 ---
 /**
- * LogoWall — SDÍLENÝ marquee referenčních log (jednotná velikost 96px).
+ * LogoWall: SDÍLENÝ marquee referenčních log (jednotná velikost 96px).
  * Loga se berou z public/logos daného webu. Per-web sada se předává v `logos`
  * (názvy souborů bez přípony); pokud web nemá vlastní reference, použij Piano sadu.
  *
- *   logos       — názvy souborů bez přípony (např. 'ref-kolkovna')
- *   label       — nadpis nad pruhem
- *   background  — 'default' | 'alt' (pruh Section)
- *   id          — kotva sekce
- *   ext         — přípona souborů ('svg' default, 'png' pro rastry)
- *   logoHeight  — výška log (default '96px'; např. Pecosta '34px')
- *   gap         — mezera mezi logy (default 'var(--space-9)')
- *   duration    — rychlost marquee (default '60s')
+ *   logos: názvy souborů bez přípony (např. 'ref-kolkovna')
+ *   label: nadpis nad pruhem
+ *   background'default' | 'alt' (pruh Section)
+ *   id: kotva sekce
+ *   ext: přípona souborů ('svg' default, 'png' pro rastry)
+ *   logoHeight: výška log (default '96px'; např. Pecosta '34px')
+ *   gap: mezera mezi logy (default 'var(--space-9)')
+ *   duration: rychlost marquee (default '60s')
  */
 import Section from './Section.astro';
 import Text from './Text.astro';

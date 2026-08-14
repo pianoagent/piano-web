@@ -1,6 +1,6 @@
 ---
 /**
- * Protel — produkt „Čtečka dokladů“. Obsah vytěžen z produkty/ctecka-dokladu.html
+ * Protel: produkt „Čtečka dokladů“. Obsah vytěžen z produkty/ctecka-dokladu.html
  * starého protelsystems.cz (jazykově uhlazeno, fakta zachována).
  * Vše ze sdílených komponent @piano/ui.
  */
@@ -16,6 +16,7 @@ import Icon from '@piano/ui/components/Icon.astro';
 import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
 import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
+import { protelLeadProofs } from '../../config/leadProofs';
 
 const features = [
   {
@@ -39,14 +40,14 @@ const features = [
 ];
 
 const related = [
-  { icon: "lucide:file-signature", title: "Digitální registrační karta", text: "Registrace hosta digitálně — konec papírování.", href: "/produkty/digitalni-registracni-karta" },
+  { icon: "lucide:file-signature", title: "Digitální registrační karta", text: "Registrace hosta digitálně: konec papírování.", href: "/produkty/digitalni-registracni-karta" },
   { icon: "lucide:monitor-smartphone", title: "Kiosek", text: "Samoobslužný check-in/out terminál přímo v hotelu.", href: "/produkty/kiosek" },
   { icon: "lucide:smartphone", title: "Online check-in/out", text: "Host vyřídí check-in i check-out přes mobil, bez fronty na recepci.", href: "/produkty/online-check-in-out" },
-  { icon: "lucide:layout-dashboard", title: "Hotelový systém", text: "Správa pokojů, rezervací, hostů a statistik — snadné používání a pokročilé funkce pro kompletní přehled o provozu.", href: "/produkty/hotelovy-system-protel" },
+  { icon: "lucide:layout-dashboard", title: "Hotelový systém", text: "Správa pokojů, rezervací, hostů a statistik: snadné používání a pokročilé funkce pro kompletní přehled o provozu.", href: "/produkty/hotelovy-system-protel" },
 ];
 ---
 
-<Base title="Čtečka dokladů | Protel"
+<Base title="Čtečka dokladů a karet | Protel"
       description="Údaje o hostech načtete do hotelového systému rychle přímo z jejich dokladů. Stejná čtečka zvládne i platební karty.">
   <SiteHeader />
 
@@ -60,6 +61,9 @@ const related = [
         <Button href="#poptavka">Vyzkoušet Protel zdarma</Button>
         <Button href="/produkty" variant="secondary" onDark>Všechny produkty</Button>
       </Fragment>
+      <figure slot="media" class="hero-pic">
+        <img src="/images/ctecka-dokladu.webp" alt="Čtečka dokladů na recepci hotelu" width="960" height="875" loading="eager" decoding="async" />
+      </figure>
     </Hero>
 
     <Section background="default" space="lg">
@@ -90,12 +94,12 @@ const related = [
       </figure>
     </Section>
 
-    <USPGrid eyebrow="Dále by vás mohlo zajímat" title="Související produkty"
+    <USPGrid eyebrow="Dále by Vás mohlo zajímat" title="Související produkty"
              items={related} minItemWidth="260px" background="alt" space="lg" />
 
-    <LeadForm id="poptavka" variant="full" background="default"
+    <LeadForm proofs={protelLeadProofs} id="poptavka" variant="full" background="default"
               title="Vyzkoušejte Protel zdarma"
-              lead="Co byste u vás v hotelu rádi zlepšili? Nechte nám kontakt — ozveme se a ukážeme Protel přímo ve vašem hotelu." />
+              lead="Co byste u Vás v hotelu rádi zlepšili? Nechte nám kontakt, ozveme se a ukážeme Protel přímo ve Vašem hotelu." />
   </main>
 
   <SiteFooter />

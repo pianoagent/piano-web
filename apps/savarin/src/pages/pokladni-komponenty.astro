@@ -1,6 +1,6 @@
 ---
 /**
- * Savarin — Pokladní komponenty. Obsah z legacy stránky pokladni-komponenty.
+ * Savarin: Pokladní komponenty. Obsah z legacy stránky pokladni-komponenty.
  * Sdílené komponenty @piano/ui.
  */
 import Base from '../layouts/Base.astro';
@@ -15,19 +15,20 @@ import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import { savarinNav, savarinCta } from '../config/nav';
+import { savarinLeadProofs } from '../config/leadProofs';
 
 const skupiny = [
   {
     icon: 'lucide:monitor', title: 'PC POS a monitory',
     items: [
-      'PC POS ET-700 Gladius — kompletní POS s dotykovou obrazovkou a integrovaným UPS (základna 24,5 × 26,5 cm)',
-      'Dotykový monitor ELO — TouchScreen (37 × 33 × 27 cm)',
+      'PC POS ET-700 Gladius: kompletní POS s dotykovou obrazovkou a integrovaným UPS (základna 24,5 × 26,5 cm)',
+      'Dotykový monitor ELO TouchScreen (37 × 33 × 27 cm)',
     ],
   },
   {
     icon: 'lucide:smartphone', title: 'Mobilní zařízení',
     items: [
-      'Mobilní číšník Android — telefon, phablet nebo tablet (min. Android 5.1)',
+      'Mobilní číšník Android: telefon, phablet nebo tablet (min. Android 5.1)',
       'Doporučená baterie nad 3000 mAh, zadní ochranný kryt, záložní baterie',
       'Komunikace přes WiFi',
     ],
@@ -35,15 +36,15 @@ const skupiny = [
   {
     icon: 'lucide:printer', title: 'Tiskárny',
     items: [
-      'Termální EPSON TM-T20 — kotouč 80 mm, rychlý (200 mm/s) a tichý tisk, grafické logo, řezačka',
-      'Jehličková EPSON TM-U220 — kotouč 76 mm, dvoubarevný tisk, tisk loga, řezačka',
+      'Termální EPSON TM-T20: kotouč 80 mm, rychlý (200 mm/s) a tichý tisk, grafické logo, řezačka',
+      'Jehličková EPSON TM-U220: kotouč 76 mm, dvoubarevný tisk, tisk loga, řezačka',
     ],
   },
   {
     icon: 'lucide:keyboard', title: 'Klávesnice',
     items: [
-      'PCU — programovatelná tlačítková klávesnice, 111 kláves (cca 85 pro sortiment), čtečka magnetických karet',
-      'Tipro — 128 kláves (cca 85 pro sortiment), připojení klasické klávesnice',
+      'PCU: programovatelná tlačítková klávesnice, 111 kláves (cca 85 pro sortiment), čtečka magnetických karet',
+      'Tipro: 128 kláves (cca 85 pro sortiment), připojení klasické klávesnice',
     ],
   },
   {
@@ -53,6 +54,27 @@ const skupiny = [
       'Předtištěná účtenka z jehličkové i laserové tiskárny',
     ],
   },
+];
+
+/* Fotografie hardwaru z původního webu Savarinu. Rozměry jsou zdrojové,
+   obrázky se nezvětšují, aby zůstaly ostré. */
+const hardware = [
+  { img: 'hw-gladius.webp', w: 480, h: 480, caption: 'PC POS ET-700 Gladius',
+    alt: 'PC POS ET-700 Gladius s dotykovou obrazovkou a integrovaným UPS' },
+  { img: 'hw-elo-monitor.webp', w: 545, h: 434, caption: 'Dotykový monitor ELO TouchScreen',
+    alt: 'Dotykový monitor ELO TouchScreen pro pokladnu Savarin' },
+  { img: 'hw-mobilni-cisnik.webp', w: 373, h: 664, caption: 'Mobilní číšník na Androidu',
+    alt: 'Mobilní číšník Savarin na telefonu s Androidem' },
+  { img: 'hw-klavesnice-pcu.webp', w: 550, h: 412, caption: 'Programovatelná klávesnice PCU',
+    alt: 'Programovatelná tlačítková klávesnice PCU se čtečkou magnetických karet' },
+  { img: 'hw-klavesnice-tipro.webp', w: 550, h: 412, caption: 'Klávesnice Tipro',
+    alt: 'Programovatelná klávesnice Tipro se 128 klávesami' },
+  { img: 'hw-tiskarna-termalni.webp', w: 300, h: 279, caption: 'Termální tiskárna EPSON',
+    alt: 'Termální pokladní tiskárna EPSON s řezačkou' },
+  { img: 'hw-tiskarna-jehlickova.webp', w: 500, h: 397, caption: 'Jehličková tiskárna EPSON TM-U220',
+    alt: 'Jehličková pokladní tiskárna EPSON TM-U220 s dvoubarevným tiskem' },
+  { img: 'uctenka-jehlickova.webp', w: 250, h: 550, caption: 'Účtenka z jehličkové tiskárny',
+    alt: 'Vzor účtenky vytištěné na jehličkové tiskárně' },
 ];
 
 const schema = {
@@ -70,8 +92,8 @@ const schema = {
 };
 ---
 
-<Base title="Pokladní komponenty Savarin — POS, tiskárny, klávesnice"
-      description="Pokladní komponenty pro systém Savarin: POS terminály a dotykové monitory, mobilní zařízení Android, termální i jehličkové tiskárny, programovatelné klávesnice a účtenky."
+<Base title="Pokladní komponenty, POS a tiskárny | Savarin"
+      description="Pokladní komponenty pro Savarin: POS terminály a dotykové monitory, zařízení s Androidem, termální i jehličkové tiskárny a klávesnice."
       schema={schema}>
   <Header brand="Savarin" logoSrc="/logos/savarin_logo.svg" logoHeight="36px" homeHref="/" nav={savarinNav} cta={savarinCta} />
 
@@ -80,12 +102,15 @@ const schema = {
   <Breadcrumb items={[{ label: 'Domů', href: '/' }, { label: 'Pokladna', href: '/pokladna' }, { label: 'Pokladní komponenty' }]} />
 
   <Hero eyebrow="Modul · Pokladní komponenty" background="gradient"
-        lead="Dodáváme a servisujeme kompletní pokladní techniku — od POS terminálů a dotykových monitorů po tiskárny a programovatelné klávesnice.">
+        lead="Dodáváme a servisujeme kompletní pokladní techniku, od POS terminálů a dotykových monitorů po tiskárny a programovatelné klávesnice.">
     <Heading slot="title" as="h1" size="display" color="on-dark">Hardware <span class="accent">prověřený v provozu</span></Heading>
     <Fragment slot="actions">
       <Button href="#poptavka">Nezávazná poptávka</Button>
       <Button href="/technicke-predpoklady" variant="secondary" onDark>Technické předpoklady</Button>
     </Fragment>
+    <figure slot="media" class="hero-pic">
+      <img src="/images/hw-gladius.webp" alt="PC POS ET-700 Gladius s dotykovou obrazovkou" width="480" height="480" loading="eager" decoding="async" />
+    </figure>
   </Hero>
 
   <Section background="default" space="lg">
@@ -104,9 +129,24 @@ const schema = {
     </div>
   </Section>
 
-  <LeadForm id="poptavka" variant="full" message background="alt"
+  <Section background="alt" space="lg">
+    <Heading as="h2" size="h2">Jak technika vypadá</Heading>
+    <Text size="lead" color="muted">Fotografie hardwaru, který k pokladně Savarin dodáváme.</Text>
+    <div class="shots">
+      {hardware.map((h) => (
+        <figure class="shot">
+          <span class="shot__img">
+            <img src={`/images/${h.img}`} alt={h.alt} width={h.w} height={h.h} loading="lazy" decoding="async" />
+          </span>
+          <figcaption>{h.caption}</figcaption>
+        </figure>
+      ))}
+    </div>
+  </Section>
+
+  <LeadForm proofs={savarinLeadProofs} id="poptavka" variant="full" message background="alt"
             title="Potřebujete poradit s technikou?"
-            lead="Napište nám o svém provozu — doporučíme vhodné komponenty k pokladně a připravíme cenovou nabídku."
+            lead="Napište nám o svém provozu, doporučíme vhodné komponenty k pokladně a připravíme cenovou nabídku."
             successUrl="/dekujeme" />
 
   </main>

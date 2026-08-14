@@ -13,7 +13,7 @@ const sluzbyMega = {
       links: [
         { label: 'Aukční nákupy surovin', href: '/sluzby/aukcni-nakupy', icon: 'lucide:gavel' },
         { label: 'Energie pro gastro', href: '/sluzby/energie', icon: 'lucide:zap' },
-        { label: 'Autset — naskladnění', href: '/sluzby/autset', icon: 'lucide:package' },
+        { label: 'Autset: naskladnění', href: '/sluzby/autset', icon: 'lucide:package' },
         { label: 'Burzovní obchody', href: '/sluzby/burzovni-obchody', icon: 'lucide:landmark' },
       ],
     },

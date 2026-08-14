@@ -1,6 +1,6 @@
 ---
 /**
- * Protel — Ceník. Sloučeno z cenik.html (licence) a cenik-servisnich-sluzeb.html
+ * Protel: Ceník. Sloučeno z cenik.html (licence) a cenik-servisnich-sluzeb.html
  * (servisní služby) starého protelsystems.cz. Ceny zachovány beze změny.
  * Vše ze sdílených komponent @piano/ui.
  */
@@ -17,9 +17,9 @@ import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 
 const velikosti = [
-  { icon: 'lucide:home', title: 'Hotel do 30 pokojů', text: 'Penziony a menší hotely — plnohodnotný Protel bez velkých vstupních poplatků.' },
-  { icon: 'lucide:hotel', title: 'Hotel do 60 pokojů', text: 'Střední hotely — kompletní provoz od rezervací po reporting.' },
-  { icon: 'lucide:building-2', title: 'Hotel do 120 pokojů', text: 'Velké hotely a resorty — pokročilé funkce i integrace.' },
+  { icon: 'lucide:home', title: 'Hotel do 30 pokojů', text: 'Penziony a menší hotely, plnohodnotný Protel bez velkých vstupních poplatků.' },
+  { icon: 'lucide:hotel', title: 'Hotel do 60 pokojů', text: 'Střední hotely, kompletní provoz od rezervací po reporting.' },
+  { icon: 'lucide:building-2', title: 'Hotel do 120 pokojů', text: 'Velké hotely a resorty, pokročilé funkce i integrace.' },
 ];
 
 const servis = [
@@ -35,7 +35,7 @@ const servis = [
 ];
 ---
 
-<Base title="Ceník | Protel"
+<Base title="Ceník hotelového systému | Protel"
       description="Bez velkých vstupních poplatků můžete používat to, co je top pro české a slovenské hoteliéry. Ceník licencí hotelového systému Protel a ceník servisních služeb.">
   <SiteHeader />
 
@@ -49,7 +49,7 @@ const servis = [
         <Heading as="h1" size="h1" align="center">Kolik mě bude Protel <em>stát?</em></Heading>
         <Text size="lead" color="muted" align="center" balance>
           Bez velkých vstupních poplatků můžete používat to, co je top pro české a slovenské hoteliéry.
-          Cena se odvíjí od velikosti vašeho hotelu — vyberte tu svou a my vám obratem připravíme nabídku na míru.
+          Cena se odvíjí od velikosti Vašeho hotelu, vyberte tu svou a my Vám obratem připravíme nabídku na míru.
         </Text>
       </div>
       <div class="sizes">
@@ -70,9 +70,9 @@ const servis = [
     <Section id="servisni-sluzby" background="default" space="lg">
       <div class="head head--center">
         <Text size="label" color="accent" align="center">Ceník servisních služeb</Text>
-        <Heading as="h2" size="h2" align="center">Profesionální péče pro váš <em>maximální komfort</em></Heading>
+        <Heading as="h2" size="h2" align="center">Profesionální péče pro Váš <em>maximální komfort</em></Heading>
         <Text size="lead" color="muted" align="center" balance>
-          Nabízíme kvalitní a profesionální péči pro váš maximální hotelový komfort.
+          Nabízíme kvalitní a profesionální péči pro Váš maximální hotelový komfort.
         </Text>
       </div>
 
@@ -111,7 +111,7 @@ const servis = [
 
     <LeadForm id="poptavka" variant="full" background="alt"
               title="Zjistěte cenu pro svůj hotel"
-              lead="Nechte nám kontakt a okamžitě zjistíte, kolik zaplatí za Protel hotel vaší velikosti. Nezávazně a zdarma."
+              lead="Nechte nám kontakt a okamžitě zjistíte, kolik zaplatí za Protel hotel Vaší velikosti. Nezávazně a zdarma."
               proofs={[
                 { icon: 'lucide:piggy-bank', title: 'Bez vstupních poplatků', text: 'Žádné velké investice na startu.' },
                 { icon: 'lucide:headset', title: 'CZ / SK podpora', text: 'Plnohodnotná lokální podpora.' },

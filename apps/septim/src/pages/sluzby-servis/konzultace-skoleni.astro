@@ -1,5 +1,5 @@
 ---
-/** Septim — Služby: Konzultace a školení. Obsah: septim-obsah/sluzby-servis/konzultace-skoleni.md. SEO meta nově. */
+/** Septim: Služby: Konzultace a školení. Obsah: septim-obsah/sluzby-servis/konzultace-skoleni.md. SEO meta nově. */
 import Base from '../../layouts/Base.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
@@ -13,6 +13,7 @@ import Badge from '@piano/ui/components/Badge.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import StatsBand from '../../components/StatsBand.astro';
 import Faq from '@piano/ui/components/Faq.astro';
+import { septimLeadProofs } from '../../config/leadProofs';
 
 const skoleni = [
   {
@@ -38,11 +39,11 @@ const skoleni = [
     audience: 'Pro majitele, provozní a manažery restaurací',
     intro: 'Školení je určeno k osvojení kompletní problematiky provozní a prodejní části systému Septim.',
     topics: [
-      'Zákazníci — evidence, zákaznická konta, personální stravování, přednabité karty, bonusy, slevy, firemní konta',
-      'Prodej — receptury, podreceptury, prodejní ceny, Happy Hours, podpora prodeje',
-      'Uživatelé — definice uživatelských práv, skupiny uživatelů',
+      'Zákazníci: evidence, zákaznická konta, personální stravování, přednabité karty, bonusy, slevy, firemní konta',
+      'Prodej: receptury, podreceptury, prodejní ceny, Happy Hours, podpora prodeje',
+      'Uživatelé: definice uživatelských práv, skupiny uživatelů',
       'Konfigurace pokladny a volby obecně',
-      'Tipy pro používání Septimu — vybrané FAQ',
+      'Tipy pro používání Septimu: vybrané FAQ',
       'Zajímavé vlastnosti a jejich praktické využití',
       'Sdílení receptur mezi více provozovnami',
     ],
@@ -68,23 +69,26 @@ const faqs = [
   { q: 'Jak fungují konzultace Septim?', a: 'Před začátkem používání systému Septim nabízíme konzultace v oblasti zjištění potřeb provozu a následné přípravy ideálního řešení řízení provozu. Pokud už jste našimi zákazníky, konzultace vám pomohou s nastavením, podrobnějšími přehledy provozu a rozšířením automatizace.' },
 ];
 ---
-<Base title="Konzultace a školení Septim – využijte systém na maximum"
-      description="Konzultace a školení k pokladnímu a provoznímu systému Septim: skladové hospodářství, konfigurace prodeje a vyhodnocení prodeje. Fyzicky i online, termíny dle zájmu i na míru.">
+<Base title="Konzultace a školení k systému | Septim"
+      description="Nabízíme konzultace a školení k pokladnímu a provoznímu systému Septim. Naučte svůj tým využívat systém naplno a efektivně.">
   <SiteHeader />
   <main>
     <Hero eyebrow="Služby a servis" background="alt"
-          lead="Provozní systém Septim má mnoho možností, jak pomoci vašemu provozu — efektivita kuchyně, skladové hospodářství i finanční řízení. Využijte Septim na maximum díky konzultacím a školením.">
+          lead="Provozní systém Septim má mnoho možností, jak pomoci vašemu provozu, efektivita kuchyně, skladové hospodářství i finanční řízení. Využijte Septim na maximum díky konzultacím a školením.">
       <Heading slot="title" as="h1" size="display">Konzultace a <em>školení</em></Heading>
       <Fragment slot="actions">
         <Button href="#poptavka">Mám zájem o školení</Button>
         <Button href="/sluzby-servis" variant="secondary">Všechny služby</Button>
       </Fragment>
+      <figure slot="media" class="hero-pic">
+        <img src="/images/sluzby-skoleni.webp" alt="Školení personálu na pokladní systém Septim" width="960" height="738" loading="eager" decoding="async" />
+      </figure>
     </Hero>
 
     <Section background="default" space="lg">
       <div class="prose">
         <Heading as="h2" size="h2">Školení k systému Septim</Heading>
-        <Text color="muted">Školení jsou vhodná před začátkem používání systému i pro stávající zákazníky. Děláme je fyzicky i online jako webináře — termíny volíme podle aktuálního zájmu. Napište nám a dáme vám vědět ohledně následujícího termínu. V případě zájmu připravíme školení na míru.</Text>
+        <Text color="muted">Školení jsou vhodná před začátkem používání systému i pro stávající zákazníky. Děláme je fyzicky i online jako webináře, termíny volíme podle aktuálního zájmu. Napište nám a dáme vám vědět ohledně následujícího termínu. V případě zájmu připravíme školení na míru.</Text>
       </div>
       <div class="courses">
         {skoleni.map((s) => (
@@ -103,9 +107,9 @@ const faqs = [
 
     <StatsBand />
     <Faq items={faqs} title="Často kladené otázky ke školením a konzultacím" background="default" />
-    <LeadForm id="poptavka" variant="callback" background="alt"
+    <LeadForm proofs={septimLeadProofs} id="poptavka" variant="callback" background="alt"
               title="Mám zájem o školení nebo konzultaci"
-              lead="Nechte nám telefon — dáme vám vědět termín nejbližšího školení, nebo připravíme školení na míru." />
+              lead="Nechte nám telefon, dáme vám vědět termín nejbližšího školení, nebo připravíme školení na míru." />
   </main>
   <SiteFooter />
 </Base>

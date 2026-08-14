@@ -1,13 +1,13 @@
 /**
- * POST /api/lead — příjem poptávky z <LeadForm>.
+ * POST /api/lead: příjem poptávky z <LeadForm>.
  * Teď: odešle e-mail přes Resend na obchod@piano.cz.
  * Později: dolepit Odoo crm.lead (viz TODO níže).
  *
- * Cloudflare Pages (adaptér @astrojs/cloudflare) — secrets čteme z
+ * Cloudflare Pages (adaptér @astrojs/cloudflare): secrets čteme z
  * `locals.runtime.env`. Nastav v projektu piano → Settings → Variables:
  *   RESEND_API_KEY  (povinné pro odesílání e-mailu)
  *   LEAD_TO         (volitelné, default obchod@piano.cz)
- *   LEAD_FROM       (volitelné, default "Piano web <web@piano.cz>" — doména musí být v Resend ověřená)
+ *   LEAD_FROM       (volitelné, default "Piano web <web@piano.cz>": doména musí být v Resend ověřená)
  */
 export const prerender = false;
 
@@ -22,7 +22,7 @@ export const POST = async ({ request, locals }: { request: Request; locals: any 
     return json({ ok: false, error: 'bad_request' }, 400);
   }
 
-  // Honeypot — boti vyplní skryté pole "website" → tváříme se úspěšně, nic neposíláme
+  // Honeypot: boti vyplní skryté pole "website" → tváříme se úspěšně, nic neposíláme
   if ((form.get('website') || '').toString().trim()) return json({ ok: true });
 
   const v = (k: string) => (form.get(k) || '').toString().trim();
@@ -35,7 +35,7 @@ export const POST = async ({ request, locals }: { request: Request; locals: any 
     city: v('city'),
   };
 
-  // Minimální validace — aspoň telefon nebo e-mail
+  // Minimální validace: aspoň telefon nebo e-mail
   if (!lead.phone && !lead.email) return json({ ok: false, error: 'missing_contact' }, 422);
 
   const env = locals?.runtime?.env ?? {};

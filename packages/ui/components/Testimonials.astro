@@ -1,46 +1,103 @@
 ---
 /**
- * Testimonials — SDÍLENÉ reference v kartách s avatary.
+ * Testimonials: SDÍLENÉ reference v kartách s avatary.
  * Položky přes prop `items`. Barvy avatarů (gradienty) se přebírají z tématu:
  * v theme.css daného webu lze definovat --testimonial-grad-1/2/3;
  * bez nich se použije gradient z --color-primary → --color-secondary.
  *
- *   items       — [{ initials, headline, quote, author, role, michelin?, photo? }]
- *   title, lead, eyebrow, background — hlavička sekce
+ *   items: [{ quote, author, role, initials?, headline?, michelin?, photo? }]
+ *   title, lead, eyebrow, background, id, decor, hlavička sekce
+ *
+ *   attribution: "top" (default) podpis a avatar nad citátem
+ *                "bottom"        citát první, fotka a podpis v patičce
+ *
+ * `headline` je volitelný: Grason ho nepoužívá, jeho karty nesou jen citát.
+ * `initials` je volitelný, dokud je vyplněná `photo`.
  */
 import Section from './Section.astro';
 import Heading from './Heading.astro';
 import Text from './Text.astro';
 import Icon from './Icon.astro';
 
-interface Item { initials: string; headline: string; quote: string; author: string; role: string; michelin?: boolean; photo?: string; }
-interface Props { items: Item[]; title?: string; lead?: string; eyebrow?: string; background?: 'default' | 'alt'; }
-const { items, title = 'Důvěřují nám ti nejlepší', lead, eyebrow = 'Reference', background = 'default' } = Astro.props;
+interface Item { quote: string; author: string; role: string; initials?: string; headline?: string; michelin?: boolean; photo?: string; }
+interface Props {
+  items: Item[];
+  title?: string;
+  /* Nadpis s akcentem: <em> u značek se serifem, <span class="accent"> u těch
+     bez něj. Prochází přes set:html, proto sem nedávat vstup od uživatele. */
+  titleHtml?: string;
+  lead?: string;
+  eyebrow?: string;
+  /* Na barevných pásech (Grason cyan a pink) by akcentní barva eyebrow splynula
+     s pozadím, proto ji lze přepnout. */
+  eyebrowColor?: 'accent' | 'default' | 'muted' | 'on-dark-muted';
+  background?: 'default' | 'alt' | 'invert' | 'primary' | 'cyan' | 'yellow' | 'pink';
+  attribution?: 'top' | 'bottom';
+  id?: string;
+  decor?: boolean | 'top' | 'bottom' | 'both';
+  /* header={false} pro sekce, kde nadpis nese uz hero stránky (Harsys /reference). */
+  header?: boolean;
+}
+const {
+  items,
+  title = 'Důvěřují nám ti nejlepší',
+  titleHtml,
+  lead,
+  eyebrow = 'Reference',
+  eyebrowColor = 'accent',
+  background = 'default',
+  attribution = 'top',
+  id,
+  decor = false,
+  header = true,
+} = Astro.props;
+const onDark = background === 'invert' || background === 'primary';
 ---
-<Section background={background} space="lg">
+<Section background={background} space="lg" id={id} decor={decor}>
+  {header && (
   <div class="head head--center">
-    <Text size="label" color="accent" align="center">{eyebrow}</Text>
-    <Heading as="h2" size="h2" align="center">{title}</Heading>
-    {lead && <Text size="lead" color="muted" align="center" balance>{lead}</Text>}
+    <Text size="label" color={eyebrowColor} align="center" class="reveal reveal--from-top">{eyebrow}</Text>
+    <Heading as="h2" size="h2" align="center" color={onDark ? 'on-dark' : 'default'} class="reveal reveal--from-top">
+      {titleHtml ? <Fragment set:html={titleHtml} /> : title}
+    </Heading>
+    {lead && <Text size="lead" color={onDark ? 'on-dark-muted' : 'muted'} align="center" balance class="reveal reveal--from-top reveal--d1">{lead}</Text>}
   </div>
-  <div class="quotes">
+  )}
+  <div class:list={['quotes', onDark && 'quotes--on-dark']} data-reveal-group>
     {items.map((t, i) => (
-      <figure class={`quote quote--${i % 3}`}>
-        <div class="quote__head">
-          <div class="quote__id">
-            <strong class="quote__name">{t.author}</strong>
-            <span class="quote__role">{t.role}{t.michelin && <span class="quote__michelin"> · Michelin ★</span>}</span>
+      <figure class:list={['quote', `quote--${i % 3}`, attribution === 'bottom' && 'quote--foot', 'reveal']}>
+        {attribution === 'top' && (
+          <div class="quote__head">
+            <div class="quote__id">
+              <strong class="quote__name">{t.author}</strong>
+              <span class="quote__role">{t.role}{t.michelin && <span class="quote__michelin"> · Michelin ★</span>}</span>
+            </div>
+            {t.photo
+              ? <span class="quote__avatar quote__avatar--photo"><img src={t.photo} alt={t.author} width="84" height="84" loading="lazy" decoding="async" /></span>
+              : <span class="quote__avatar" aria-hidden="true">{t.initials}</span>}
           </div>
-          {t.photo
-            ? <span class="quote__avatar quote__avatar--photo"><img src={t.photo} alt={t.author} loading="lazy" /></span>
-            : <span class="quote__avatar" aria-hidden="true">{t.initials}</span>}
-        </div>
+        )}
         <span class="quote__mark"><Icon name="lucide:quote" size="md" /></span>
-        <p class="quote__headline">{t.headline}</p>
+        {t.headline && <p class="quote__headline">{t.headline}</p>}
         <blockquote class="quote__text">{t.quote}</blockquote>
+        {attribution === 'bottom' && (
+          <figcaption class="quote__foot">
+            {t.photo
+              ? <img class="quote__photo" src={t.photo} alt={t.author} width="52" height="52" loading="lazy" decoding="async" />
+              : <span class="quote__avatar" aria-hidden="true">{t.initials}</span>}
+            <span class="quote__id">
+              <strong class="quote__name">{t.author}</strong>
+              <span class="quote__role">{t.role}{t.michelin && <span class="quote__michelin"> · Michelin ★</span>}</span>
+            </span>
+          </figcaption>
+        )}
       </figure>
     ))}
   </div>
+  {/* Volitelný obsah pod mřížkou, typicky CTA tlačítko (Septim a Pecosta ho mají). */}
+  {Astro.slots.has('default') && (
+    <div class="quotes__cta reveal"><slot /></div>
+  )}
 </Section>
 
 <style>
@@ -62,4 +119,36 @@ const { items, title = 'Důvěřují nám ti nejlepší', lead, eyebrow = 'Refer
   .quote__mark { color: var(--color-primary); display: block; margin-bottom: var(--space-2); }
   .quote__headline { font-weight: var(--font-weight-bold); color: var(--color-secondary); margin-bottom: var(--space-2); }
   .quote__text { font-size: var(--font-size-body); color: var(--color-text-muted); line-height: var(--line-height-body); }
+  .quotes__cta { display: flex; justify-content: center; margin-top: var(--space-8); }
+
+  /* ===========================================================
+     VARIANTA attribution="bottom": citát první, fotka a podpis v patičce.
+     Vzor ABX Harsysu, kde je reference vždy karta s podpisem dole.
+     =========================================================== */
+  .quote--foot {
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    box-shadow: var(--shadow-sm);
+  }
+  .quote--foot .quote__mark { color: var(--color-secondary-terracotta, var(--color-primary)); margin-bottom: var(--space-3); }
+  .quote--foot .quote__text { color: var(--color-text); flex: 1; }
+  .quote__foot { display: flex; align-items: center; gap: var(--space-3); margin-top: var(--space-5); }
+  .quote__photo { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+  .quote--foot .quote__id { flex-direction: column; }
+  .quote--foot .quote__name { font-size: var(--font-size-body); color: var(--color-primary); line-height: 1.15; }
+  .quote--foot .quote__avatar { width: 52px; height: 52px; font-size: var(--font-size-body); }
+
+  /* Na tmavém pásu (Grason používá primary a invert) musí text zesvětlit.
+     Třída je na .quotes, ne na sekci: scoped styl Astra na cizí komponentu
+     nedosáhne. */
+  .quotes--on-dark .quote__name,
+  .quotes--on-dark .quote__headline { color: var(--color-text-on-dark); }
+  .quotes--on-dark .quote__text,
+  .quotes--on-dark .quote__role { color: var(--color-text-on-dark-muted); }
+  .quotes--on-dark .quote--foot {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--color-border-on-dark);
+  }
 </style>

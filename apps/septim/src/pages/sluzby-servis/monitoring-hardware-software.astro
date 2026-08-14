@@ -1,5 +1,5 @@
 ---
-/** Septim — Služby: Monitoring hardware a software. Obsah: septim-obsah/sluzby-servis/monitoring-hardware-software.md. SEO meta nově. */
+/** Septim: Služby: Monitoring hardware a software. Obsah: septim-obsah/sluzby-servis/monitoring-hardware-software.md. SEO meta nově. */
 import Base from '../../layouts/Base.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
@@ -11,6 +11,7 @@ import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import StatsBand from '../../components/StatsBand.astro';
+import { septimLeadProofs } from '../../config/leadProofs';
 
 const sledujeme = [
   'Dostatek volného místa na disku',
@@ -24,8 +25,8 @@ const sledujeme = [
   'Další služby dle vašeho provozu',
 ];
 ---
-<Base title="Monitoring hardware a software Septim – předcházejte problémům"
-      description="Vzdálený dohled nad hardwarem i softwarem systému Septim: disky, databáze, zálohování, záložní zdroje i dostupnost služeb. Varovné signály aktivně řešíme dřív, než ohrozí provoz.">
+<Base title="Monitoring hardwaru a softwaru | Septim"
+      description="Monitoring hardwaru a softwaru Septim odhalí problémy dřív, než ovlivní provoz. Zvýšená kontrola a prevence výpadků.">
   <SiteHeader />
   <main>
     <Hero eyebrow="Služby a servis" background="alt"
@@ -35,6 +36,9 @@ const sledujeme = [
         <Button href="#poptavka">Mám zájem o monitoring</Button>
         <Button href="/sluzby-servis" variant="secondary">Všechny služby</Button>
       </Fragment>
+      <figure slot="media" class="hero-pic">
+        <img src="/images/sluzby-monitoring.webp" alt="Monitoring hardwaru a softwaru pokladního systému" width="960" height="738" loading="eager" decoding="async" />
+      </figure>
     </Hero>
 
     <Section background="default" space="lg">
@@ -49,15 +53,15 @@ const sledujeme = [
 
     <Section background="alt" space="md">
       <div class="prose">
-        <Heading as="h2" size="h3">Nejen sledování — aktivní řešení</Heading>
+        <Heading as="h2" size="h3">Nejen sledování: aktivní řešení</Heading>
         <Text color="muted">Běžnou součástí našich služeb je nejen samotný monitoring, ale zejména aktivní řešení varovných signálů. Pokud například u služeb WebCare nebo Centrální databáze zákazníků roste doba odezvy, pomáhá monitoring problém řešit dříve, než si stěžuje první zákazník. O možném problému vás bezodkladně informujeme a v rámci vaší objednávky servisních služeb jsme připraveni jej rovnou začít řešit.</Text>
       </div>
     </Section>
 
     <StatsBand background="default" />
-    <LeadForm id="poptavka" variant="callback" background="alt"
+    <LeadForm proofs={septimLeadProofs} id="poptavka" variant="callback" background="alt"
               title="Mám zájem o monitorovací službu"
-              lead="Nechte nám telefon — probereme s vámi rozsah monitoringu pro váš provoz." />
+              lead="Nechte nám telefon, probereme s vámi rozsah monitoringu pro váš provoz." />
   </main>
   <SiteFooter />
 </Base>

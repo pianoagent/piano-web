@@ -1,0 +1,101 @@
+---
+/**
+ * ContactCards: SDÍLENÁ mřížka kontaktních údajů.
+ * Ikona, popisek, hodnota. Hodnota je odkaz, pokud má href (telefon, mail),
+ * jinak jen text (adresa, IČ).
+ *
+ * Grason a Protel to na svých kontaktech měly ručně a se shodným tvarem dat,
+ * lišil se jen vzhled: Grason bez rámečku, Protel s plochou a ikonou v kolečku.
+ * Rozdíl teď drží prop variant, ať se každá značka pozná.
+ *
+ *   items:   [{ icon, label, value, href? }]
+ *   eyebrow, title / titleHtml, lead   hlavička sekce (Protel ji má, Grason ne)
+ *   headingAs: úroveň nadpisu, 'h1' na kontaktní stránce, jinak 'h2'
+ *   variant: 'plain' bez rámečku (Grason) | 'boxed' plocha a ikona v kolečku (Protel)
+ *   minItemWidth: kdy se mřížka zalomí (default 240px)
+ *   background, space, id
+ */
+import Section from './Section.astro';
+import Heading from './Heading.astro';
+import Text from './Text.astro';
+import Icon from './Icon.astro';
+
+interface Item { icon: string; label: string; value: string; href?: string | null; }
+interface Props {
+  items: Item[];
+  eyebrow?: string;
+  title?: string;
+  titleHtml?: string;
+  lead?: string;
+  headingAs?: 'h1' | 'h2';
+  variant?: 'plain' | 'boxed';
+  minItemWidth?: string;
+  background?: 'default' | 'alt' | 'invert' | 'primary';
+  space?: 'sm' | 'md' | 'lg';
+  id?: string;
+}
+const { items, eyebrow, title, titleHtml, lead, headingAs = 'h2', variant = 'plain', minItemWidth = '240px', background = 'default', space = 'lg', id } = Astro.props;
+const onDark = background === 'invert' || background === 'primary';
+const hasHead = !!(eyebrow || title || titleHtml || lead);
+---
+
+<Section background={background} space={space} id={id} reveal={false}>
+  {hasHead && (
+    <div class="cc__head">
+      {eyebrow && <Text size="label" color={onDark ? 'on-dark-muted' : 'accent'} align="center" class="reveal reveal--from-top">{eyebrow}</Text>}
+      {(title || titleHtml) && (
+        <Heading as={headingAs} size={headingAs === 'h1' ? 'h1' : 'h2'} align="center" color={onDark ? 'on-dark' : 'default'} class="reveal reveal--from-top">
+          {titleHtml ? <Fragment set:html={titleHtml} /> : title}
+        </Heading>
+      )}
+      {lead && <Text size="lead" color={onDark ? 'on-dark-muted' : 'muted'} align="center" balance class="reveal reveal--from-top reveal--d1">{lead}</Text>}
+    </div>
+  )}
+
+  <ul class:list={['cc', `cc--${variant}`, onDark && 'cc--on-dark']}
+      style={`--cc-min: ${minItemWidth}`} data-reveal-group>
+    {items.map((it) => (
+      <li class="cc__item reveal">
+        <span class="cc__icon"><Icon name={it.icon} size="md" /></span>
+        <Text size="label" color={onDark ? 'on-dark-muted' : 'muted'}>{it.label}</Text>
+        {it.href
+          ? <a class="cc__value" href={it.href}>{it.value}</a>
+          : <span class="cc__value">{it.value}</span>}
+      </li>
+    ))}
+  </ul>
+</Section>
+
+<style>
+  .cc__head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-7); text-align: center; }
+  .cc__head > * + * { margin-top: var(--space-3); }
+
+  .cc {
+    list-style: none; display: grid; gap: var(--space-5);
+    grid-template-columns: repeat(auto-fit, minmax(var(--cc-min, 240px), 1fr));
+  }
+  .cc__item { display: flex; flex-direction: column; gap: var(--space-2); align-items: flex-start; }
+  .cc__icon { color: var(--color-primary); display: inline-flex; }
+  .cc__value { font-weight: var(--font-weight-semibold); color: var(--color-text); text-decoration: none; }
+  a.cc__value:hover { color: var(--color-text-accent); text-decoration: underline; }
+
+  /* Grason: bez rámečku, jen odsazení. */
+  .cc--plain .cc__item { padding: var(--space-5); }
+
+  /* Protel: plocha s rámečkem a ikona v kolečku. */
+  .cc--boxed .cc__item {
+    padding: var(--space-6);
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+  }
+  .cc--boxed .cc__icon {
+    width: 48px; height: 48px; border-radius: 50%;
+    align-items: center; justify-content: center;
+    background: var(--color-bg-alt);
+  }
+
+  .cc--on-dark .cc__value { color: var(--color-text-on-dark); }
+  .cc--on-dark .cc__icon { color: var(--color-secondary-gold, var(--color-text-on-dark)); }
+  .cc--on-dark.cc--boxed .cc__item { background: rgba(255, 255, 255, 0.05); border-color: var(--color-border-on-dark); }
+</style>

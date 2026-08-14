@@ -1,6 +1,6 @@
 ---
 /**
- * Protel — landing „Čísla pod kontrolou“. Obsah vytěžen z cisla-pod-kontrolou.html starého
+ * Protel: landing „Čísla pod kontrolou“. Obsah vytěžen z cisla-pod-kontrolou.html starého
  * protelsystems.cz (jazykově uhlazeno). Vše ze sdílených komponent @piano/ui.
  */
 import Base from '../layouts/Base.astro';
@@ -15,17 +15,18 @@ import Icon from '@piano/ui/components/Icon.astro';
 import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
 import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
+import { protelLeadProofs } from '../config/leadProofs';
 
 const related = [
   { icon: "lucide:layout-dashboard", title: "Hotelový systém Protel", text: "Data o provozu na jednom místě.", href: "/produkty/hotelovy-system-protel" },
   { icon: "lucide:tags", title: "Cenotvorba", text: "Flexibilní ceny plně pod kontrolou.", href: "/produkty/hotelovy-system-protel#cenotvorba" },
   { icon: "lucide:receipt", title: "Fakturace", text: "Automatické účtování s historií změn.", href: "/produkty/hotelovy-system-protel#fakturace" },
-  { icon: "lucide:line-chart", title: "Reporting", text: "Dashboardy a sestavy podle vaší segmentace.", href: "/produkty/hotelovy-system-protel#reporting" },
+  { icon: "lucide:line-chart", title: "Reporting", text: "Dashboardy a sestavy podle Vaší segmentace.", href: "/produkty/hotelovy-system-protel#reporting" },
 ];
 ---
 
-<Base title="Čísla pod kontrolou | Protel"
-      description="Kdy máte nejlepší obsazenost? Kdo jsou vaši hosté? Co nejvíce vydělává? Protel hlídá obsazenost, výnosy i segmentaci hostů — přehledně a bez práce navíc.">
+<Base title="Čísla hotelu pod kontrolou | Protel"
+      description="Kdy máte nejlepší obsazenost? Kdo jsou Vaši hosté? Co nejvíce vydělává? Protel hlídá obsazenost, výnosy i segmentaci hostů, přehledně a bez práce navíc.">
   <SiteHeader />
 
   <main>
@@ -38,13 +39,16 @@ const related = [
         <Button href="#poptavka">Vyzkoušet Protel zdarma</Button>
         <Button href="/produkty" variant="secondary" onDark>Prohlédnout produkty</Button>
       </Fragment>
+      <figure slot="media" class="hero-pic">
+        <img src="/images/cisla-pod-kontrolou.webp" alt="Manažerský přehled obsazenosti a výnosů hotelu" width="960" height="640" loading="eager" decoding="async" />
+      </figure>
     </Hero>
 
     <Section background="default" space="lg">
       <div class="solution">
         <Text size="label" color="accent">Protel má řešení</Text>
-        <Heading as="h2" size="h2">Protel vám pomůže vyznat se ve složitých číslech</Heading>
-        <Text size="lead" color="muted">Už jen tím, že vznikne rezervace, se v hotelovém systému ukládá mnoho cenných dat. Ta nejzásadnější se týkají obsazenosti, sledování výnosů ve správných kategoriích a segmentace hostů. V PMS Protel si sami nastavíte segmenty tak, aby byly u každé rezervace vždy správně alokovány. Zvolíte si i vlastní kategorie produktů, které pro lepší reporting zařadíte do správných skupin. Pak už stačí nastavit rozpočet a cenovou politiku — a hotel vám funguje skoro sám.</Text>
+        <Heading as="h2" size="h2">Protel Vám pomůže vyznat se ve složitých číslech</Heading>
+        <Text size="lead" color="muted">Už jen tím, že vznikne rezervace, se v hotelovém systému ukládá mnoho cenných dat. Ta nejzásadnější se týkají obsazenosti, sledování výnosů ve správných kategoriích a segmentace hostů. V PMS Protel si sami nastavíte segmenty tak, aby byly u každé rezervace vždy správně alokovány. Zvolíte si i vlastní kategorie produktů, které pro lepší reporting zařadíte do správných skupin. Pak už stačí nastavit rozpočet a cenovou politiku a hotel Vám funguje skoro sám.</Text>
       </div>
     </Section>
 
@@ -60,9 +64,9 @@ const related = [
     <USPGrid eyebrow="Související" title="Související s čísly pod kontrolou"
              items={related} minItemWidth="260px" background="alt" space="lg" />
 
-    <LeadForm id="poptavka" variant="full" background="default"
+    <LeadForm proofs={protelLeadProofs} id="poptavka" variant="full" background="default"
               title="Vyzkoušejte Protel zdarma"
-              lead="Co byste u vás v hotelu rádi zlepšili? Nechte nám kontakt — ozveme se a ukážeme Protel přímo ve vašem hotelu." />
+              lead="Co byste u Vás v hotelu rádi zlepšili? Nechte nám kontakt, ozveme se a ukážeme Protel přímo ve Vašem hotelu." />
   </main>
 
   <SiteFooter />

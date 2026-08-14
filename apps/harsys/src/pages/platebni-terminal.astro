@@ -5,6 +5,7 @@
  */
 import Base from '../layouts/Base.astro';
 import Header from '@piano/ui/components/Header.astro';
+import Faq from '@piano/ui/components/Faq.astro';
 import Footer from '@piano/ui/components/Footer.astro';
 import Section from '@piano/ui/components/Section.astro';
 import Hero from '@piano/ui/components/Hero.astro';
@@ -38,7 +39,7 @@ const leadProofs = [
 ---
 
 <Base title="Platební terminál pro restaurace | ABX HARSYS"
-      description="Platební terminál propojený s pokladnou Harsys - částka se přenese automaticky. Zprostředkujeme nabídku od více poskytovatelů (Global Payments, Teya, ČSOB, EVO/Moneta), napojení zdarma.">
+      description="Platební terminál propojený s pokladnou Harsys, částka se přenese automaticky. Zprostředkujeme nabídku od více poskytovatelů, napojení zdarma.">
   <Header brand="ABX HARSYS" logoSrc="/logos/abx_logo.svg" logoHeight="26px" homeHref="/" nav={harsysNav} cta={harsysCta} />
 
   <main>
@@ -72,18 +73,10 @@ const leadProofs = [
   </Section>
 
   <!-- FAQ -->
-  <Section background="default" space="lg">
-    <div class="head"><Heading as="h2" size="h2" align="center">Časté otázky</Heading></div>
-    <div class="faq">
-      {faqs.map((f) => (
-        <details class="faq__item">
-          <summary>{f.q}<Icon name="lucide:chevron-down" size="sm" class="faq__chev" /></summary>
-          <div class="faq__a"><Text color="muted">{f.a}</Text></div>
-        </details>
-      ))}
-    </div>
-  </Section>
-
+  <Faq
+    background="default"
+    items={faqs}
+    title="Časté otázky" />
   <LeadForm id="poptavka" variant="callback" background="primary"
             title="Máte zájem o nabídku platebního terminálu?"
             lead="Zanechte číslo a my se vám ozveme. Zajistíme nabídky od více poskytovatelů a pomůžeme vybrat."
@@ -103,11 +96,4 @@ const leadProofs = [
   .checks li { display: flex; align-items: flex-start; gap: var(--space-2); color: var(--color-text); }
   .checks :global(.check) { color: var(--color-secondary-azure); flex-shrink: 0; margin-top: 3px; }
   .note { margin-top: var(--space-3); }
-  .faq { max-width: 800px; margin-inline: auto; display: flex; flex-direction: column; gap: var(--space-3); }
-  .faq__item { border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-bg); padding: 0 var(--space-5); }
-  .faq__item summary { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); padding: var(--space-4) 0; cursor: pointer; font-weight: var(--font-weight-semibold); list-style: none; }
-  .faq__item summary::-webkit-details-marker { display: none; }
-  .faq__chev { transition: transform var(--duration-base) var(--easing); color: var(--color-text-muted); }
-  .faq__item[open] .faq__chev { transform: rotate(180deg); }
-  .faq__a { padding-bottom: var(--space-5); }
 </style>

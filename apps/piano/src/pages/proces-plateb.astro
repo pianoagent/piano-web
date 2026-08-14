@@ -1,6 +1,6 @@
 ---
 /**
- * Proces plateb — piano.cz/proces-plateb (vzhled dle reálné piano.cz).
+ * Proces plateb: piano.cz/proces-plateb (vzhled dle reálné piano.cz).
  * Celá sekce na warm white, střídané kroky (text/obrázek), CTA + kontaktní pruh.
  */
 import Base from '../layouts/Base.astro';
@@ -8,6 +8,7 @@ import Section from '@piano/ui/components/Section.astro';
 import Heading from '@piano/ui/components/Heading.astro';
 import Text from '@piano/ui/components/Text.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
+import { pianoLeadProofs } from '../config/leadProofs';
 
 const steps = [
   { img: '/images/proces-1.webp', label: 'Udělení přístupu', title: 'Schválení bez účasti majitele/provozního', points: [
@@ -30,7 +31,7 @@ const steps = [
 <Base title="Proces plateb dodavatelům, Piano Terminál"
       description="Jak funguje autorizace bezhotovostních plateb dodavatelům přes Piano Terminál a Qerko, krok za krokem, bezpečně a bez přístupu personálu k vašemu účtu.">
 
-  <!-- Proces — celé na warm white, střídané kroky -->
+  <!-- Proces: celé na warm white, střídané kroky -->
   <Section background="warm" space="lg">
     <Heading as="h1" size="h1" align="center" class="pp-title">Proces autorizace plateb dodavatelům</Heading>
     <ol class="pp-steps">
@@ -61,7 +62,7 @@ const steps = [
     <a class="contactband__half contactband__half--alt" href="mailto:info@piano.cz">info@piano.cz</a>
   </div>
 
-  <LeadForm id="poptavka" variant="full"
+  <LeadForm proofs={pianoLeadProofs} id="poptavka" variant="full"
             title="Kontaktujte nás ještě dnes pro konzultaci zdarma"
             lead="Ozvěte se nám a uděláme vám nabídku šitou na míru vašemu provozu." />
 
@@ -82,7 +83,7 @@ const steps = [
   /* CTA */
   .pp-cta { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-7); align-items: center; max-width: var(--container-max); }
 
-  /* Kontaktní pruh — dvě karmínové poloviny */
+  /* Kontaktní pruh: dvě karmínové poloviny */
   .contactband { display: flex; flex-wrap: wrap; }
   .contactband__half { flex: 1 1 50%; text-align: center; text-decoration: none; color: var(--color-text-on-dark); background: var(--color-primary-bg); padding: var(--space-6) var(--space-4); font-size: var(--font-size-lead); font-weight: var(--font-weight-medium); transition: var(--transition); }
   .contactband__half:hover { background: var(--color-primary-bg-hover); }

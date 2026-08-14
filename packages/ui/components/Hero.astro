@@ -1,12 +1,12 @@
 ---
 /**
- * Hero — Piano sekční blok (úvodní sekce stránky)
+ * Hero: Piano sekční blok (úvodní sekce stránky)
  *
  * Props:
  *   eyebrow?:    string  → malý verzálkový popisek nad nadpisem
  *   title?:      string  → nadpis (pro akcent PP Eiko použij slot "title")
  *   lead?:       string  → perex pod nadpisem
- *   align?:      "left" | "center"   (default "left"; ignorováno u split layoutu)
+ *   align?:      "left" | "center"   (default "center"; uplatní se jen bez média)
  *   background?: "default" | "alt" | "invert" | "primary"
  *   space?:      "sm" | "md" | "lg"  (default "lg")
  *
@@ -32,15 +32,26 @@ interface Props {
   eyebrow?: string;
   title?: string;
   lead?: string;
+  /* Zarovnání textu u varianty BEZ média. Výchozí je center: rozhodnuto
+     13. 8. 2026, protože hero bez média vypadá vlevo osiřele a zbytek
+     kontejneru zůstane prázdný. Stránka, která vlevo chce, si o to řekne
+     explicitně. U split a cover se prop neuplatní, tam pozici drží kompozice. */
   align?: 'left' | 'center';
   background?: 'default' | 'alt' | 'warm' | 'invert' | 'primary' | 'gradient';
   space?: 'sm' | 'md' | 'lg';
   usp?: (string | { text: string; icon?: string })[];   // klíčové body → proužek uvnitř hero; ikonu lze určit per bod
   slides?: HeroSlide[];  // rotující eyebrow+nadpis+lead+obrázek; actions a usp zůstávají fixní
   carouselLabel?: string;  // aria-label přepínače (teček) carouselu; default česky
+  /* Kompozice hero:
+       "split" (default) médium jako blok vedle textu, dosavadní chování
+       "cover"           médium na plnou šířku a výšku jako pozadí, text přes něj
+     Cover počítá s průhlednou hlavičkou (<Header transparent />) a sám si drží
+     odsazení o její výšku, ať text nekončí pod logem. */
+  variant?: 'split' | 'cover';
 }
 
-const { eyebrow, title, lead, align = 'left', background = 'default', space = 'lg', usp = [], slides = [], carouselLabel = 'Přepnout sdělení' } = Astro.props;
+const { eyebrow, title, lead, align = 'center', background = 'default', space = 'lg', usp = [], slides = [], carouselLabel = 'Přepnout sdělení', variant = 'split' } = Astro.props;
+const isCover = variant === 'cover';
 const uspItems = usp.map((u) => (typeof u === 'string' ? { text: u, icon: 'lucide:check' } : { text: u.text, icon: u.icon ?? 'lucide:check' }));
 
 const useSlides = slides.length > 0;
@@ -50,49 +61,81 @@ const hasActions = Astro.slots.has('actions');
 const hasMedia = useSlides ? slides.some((s) => s.image) : Astro.slots.has('media');
 const onDark = background === 'invert' || background === 'primary' || background === 'gradient';
 
+/* U coveru je text vždycky na tmavém podkladu (fotka plus závoj), takže se
+   chová jako on-dark bez ohledu na prop background. */
+const textOnDark = onDark || isCover;
+
 const innerClasses = [
   'hero__inner',
-  hasMedia ? 'hero__inner--split' : 'hero__inner--single',
-  !hasMedia && `hero__inner--align-${align}`,
-  onDark && 'hero__inner--on-dark',
+  isCover ? 'hero__inner--cover' : (hasMedia ? 'hero__inner--split' : 'hero__inner--single'),
+  (isCover || !hasMedia) && `hero__inner--align-${isCover ? 'left' : align}`,
+  textOnDark && 'hero__inner--on-dark',
 ]
   .filter(Boolean)
   .join(' ');
+
+/* Zarovnání textu se řídí KOMPOZICÍ, ne propem naslepo. U splitu je text ve
+   sloupci vedle média a u coveru v levé části fotky, tam je vždycky vlevo.
+   Prop align se uplatní jen u varianty bez média. Bez tohohle propadal
+   výchozí center i do splitu a perex byl centrovaný pod nadpisem vlevo. */
+const textAlign: 'left' | 'center' = (isCover || hasMedia) ? 'left' : align;
+
+/* Režie náběhu jako na živém grason.cz: nadpis, po 300ms perex, po 600ms CTA.
+   Směr kopíruje kompozici, stejně jako tam sekce left a center: text zarovnaný
+   vlevo přijede zleva, centrovaný blok spadne shora. */
+const from = textAlign === 'center' ? 'reveal--from-top' : 'reveal--from-left';
+const rv = (delay?: 'd1' | 'd2') => ['reveal', from, delay && `reveal--${delay}`].filter(Boolean).join(' ');
 ---
 
-<Section background={background} space={space}>
+{/* Hero je nad ohybem, reveal.js ho odkryje bez animace. Reveal na sekci
+    proto vypinam a smer resim na sloupcich: pri split layoutu text zleva,
+    medium zprava, stejne jako sekce left a right na zivem grason.cz. */}
+<Section background={background} space={space} reveal={false} class={isCover ? 'section--hero-cover' : undefined}>
+  {/* Cover: médium jde na pozadí celé sekce, ne do sloupce vedle textu.
+      Absolutní pozicování se zavěsí na .section (Container nemá position),
+      takže pozadí jde přes celou šířku okna, i když text drží kontejner.
+      aria-hidden proto, že fotka je tady dekorace, sdělení nese text. */}
+  {isCover && hasMedia && (
+    <div class="hero__bg" aria-hidden="true"><slot name="media" /></div>
+  )}
   <div class={innerClasses} data-hero-carousel={isCarousel ? '' : undefined}>
     <div class="hero__text">
       {useSlides ? (
-        <div class="hero__rot">
+        <div class:list={['hero__rot', rv()]}>
           {slides.map((s, i) => (
             <div class={`hero__slide${i === 0 ? ' is-active' : ''}`} data-hero-slide={i} role="tabpanel" id={`hero-panel-${i}`} aria-labelledby={`hero-tab-${i}`}>
               {s.eyebrow && <p class="hero__eyebrow">{s.eyebrow}</p>}
-              <Heading as="h1" size="display" color={onDark ? 'on-dark' : 'default'}><Fragment set:html={s.title} /></Heading>
+              {/* H1 jen na prvnim slidu. Vsechny slidy jsou v DOM zaroven (prepina je CSS),
+                  takze <h1> na kazdem z nich by znamenalo vic H1 na strance. */}
+              <Heading as={i === 0 ? 'h1' : 'p'} size="display" color={onDark ? 'on-dark' : 'default'}><Fragment set:html={s.title} /></Heading>
               {s.lead && <Text size="lead" color={onDark ? 'on-dark-muted' : 'muted'} class="hero__lead">{s.lead}</Text>}
             </div>
           ))}
         </div>
       ) : (
         <>
-          {eyebrow && <p class="hero__eyebrow">{eyebrow}</p>}
-          {hasTitle ? (
-            <slot name="title" />
-          ) : (
-            title && <Heading as="h1" size="display" color={onDark ? 'on-dark' : 'default'}>{title}</Heading>
-          )}
+          {/* Návěs a nadpis přijedou spolu jako jeden blok, proto obal.
+              Nadpis chodí ze stránky slotem, přidat mu třídu odsud nejde. */}
+          <div class:list={['hero__head', rv()]}>
+            {eyebrow && <p class="hero__eyebrow">{eyebrow}</p>}
+            {hasTitle ? (
+              <slot name="title" />
+            ) : (
+              title && <Heading as="h1" size="display" color={onDark ? 'on-dark' : 'default'}>{title}</Heading>
+            )}
+          </div>
           {lead && (
-            <Text size="lead" align={align} color={onDark ? 'on-dark-muted' : 'muted'} class="hero__lead">{lead}</Text>
+            <Text size="lead" align={textAlign} color={onDark ? 'on-dark-muted' : 'muted'} class={`hero__lead ${rv('d1')}`}>{lead}</Text>
           )}
         </>
       )}
 
       {hasActions && (
-        <div class="hero__actions"><slot name="actions" /></div>
+        <div class:list={['hero__actions', rv('d2')]}><slot name="actions" /></div>
       )}
 
       {uspItems.length > 0 && (
-        <ul class="hero__usp">
+        <ul class:list={['hero__usp', rv('d2')]}>
           {uspItems.map((u) => (
             <li class="hero__usp-item">
               <span class="hero__usp-check"><Icon name={u.icon} size="sm" /></span>
@@ -111,8 +154,8 @@ const innerClasses = [
       )}
     </div>
 
-    {hasMedia && (
-      <div class="hero__media">
+    {hasMedia && !isCover && (
+      <div class:list={['hero__media', 'reveal', 'reveal--from-right', 'reveal--d1']}>
         {useSlides ? (
           <div class="hero__rot hero__media-rot">
             {slides.map((s, i) => s.image && (
@@ -173,7 +216,7 @@ const innerClasses = [
 <style>
   .hero__inner { display: flex; flex-direction: column; }
 
-  /* Split — text vlevo, média vpravo */
+  /* Split: text vlevo, média vpravo */
   .hero__inner--split {
     display: grid;
     grid-template-columns: 1.1fr 1fr;
@@ -181,7 +224,70 @@ const innerClasses = [
     align-items: center;
   }
 
-  /* Single — sloupec, volitelně vycentrovaný */
+  /* Single: sloupec, volitelně vycentrovaný */
+  /* ===========================================================
+     VARIANTA COVER: médium na plnou šířku a výšku, text přes něj.
+     Počítá s <Header transparent />, proto si sama drží odsazení o výšku
+     hlavičky, ať nadpis nekončí pod logem. Bere ji ze stejného tokenu
+     --header-h-overlay jako sama hlavička, ať se ty dvě hodnoty nerozjedou.
+     =========================================================== */
+  .section--hero-cover {
+    padding-top: calc(var(--header-h-overlay, 120px) + clamp(24px, 5vw, 64px));
+    padding-bottom: clamp(48px, 8vw, 104px);
+    /* Fotka jde až k hranám sekce, případný dekorativní kruh by ji přeřízl. */
+    overflow: hidden;
+  }
+  .hero__bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+  .hero__bg :global(img),
+  .hero__bg :global(video) { width: 100%; height: 100%; object-fit: cover; display: block; }
+  /* Média se do coveru posílají stejným slotem jako do splitu, kde bývají
+     zabalená ve <figure class="hero-figure"> se zaoblením a stínem. Na pozadí
+     by to dělalo rámeček uvnitř sekce, proto se to tady vypíná. */
+  .hero__bg :global(figure) { margin: 0; width: 100%; height: 100%; border-radius: 0; box-shadow: none; overflow: hidden; }
+
+  /* Závoj. Černý gradient drží kontrast textu za všech okolností, brandový
+     odstín se přidává tokenem --hero-cover-tint (rgba). Bez tokenu je závoj
+     neutrální, takže nová značka nemá jak vyrobit nečitelné hero. */
+  .hero__bg::after {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background:
+      linear-gradient(90deg,
+        rgba(0, 0, 0, 0.80) 0%,
+        rgba(0, 0, 0, 0.66) 50%,
+        rgba(0, 0, 0, 0.46) 78%,
+        rgba(0, 0, 0, 0.28) 100%),
+      linear-gradient(0deg, var(--hero-cover-tint, transparent), var(--hero-cover-tint, transparent));
+  }
+
+  .hero__inner--cover {
+    position: relative; z-index: 1;
+    /* POZOR na osy. .hero__inner má flex-direction: column, takže align-items
+       míří VODOROVNĚ. Původní align-items: center proto text nesrovnal svisle,
+       ale odsadil ho o polovinu zbylé šířky doprava (u Pecosty o 135px), což
+       vypadalo jako náhodné šoupnutí. Svisle centruje justify-content,
+       vodorovně drží text u levé hrany align-items: flex-start, stejně jako
+       ostatní varianty hero. */
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: flex-start;
+    min-height: min(66vh, 640px);
+  }
+  .hero__inner--cover .hero__text { max-width: 620px; }
+  /* Perex nad fotkou musí být plnou bílou. Tlumená bílá (72 % krytí) vycházela
+     nad světlým místem fotky na 3,1:1, což je pod AA pro běžný text (4,5:1).
+     Plnou bílou a se zesíleným závojem je to 6,3:1. */
+  .hero__inner--cover .hero__lead { color: var(--color-text-on-dark); }
+  /* Na úzké obrazovce je fotka za textem přes celou šířku, samotný vodorovný
+     gradient by nestačil. Přidává se svislý, aby text zůstal čitelný i tam,
+     kde je pod ním světlé místo fotky. */
+  @media (max-width: 900px) {
+    .hero__bg::after {
+      background:
+        linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.72) 100%),
+        linear-gradient(0deg, var(--hero-cover-tint, transparent), var(--hero-cover-tint, transparent));
+    }
+    .hero__inner--cover { min-height: min(72vh, 560px); }
+  }
+
   .hero__inner--single .hero__text { max-width: 720px; }
   .hero__inner--align-center {
     align-items: center;
@@ -189,8 +295,13 @@ const innerClasses = [
   }
   .hero__inner--align-center .hero__text { margin-inline: auto; }
   .hero__inner--align-center .hero__actions { justify-content: center; }
+  /* Nadpis chodí ze stránky slotem a Heading si nese vlastní heading--align-left,
+     protože stránky align neuvádějí. Explicitní třída přebije dědění text-align,
+     takže by nadpis zůstal vlevo v centrovaném hero. Tady se to srovná. */
+  .hero__inner--align-center .hero__head :global(.heading),
+  .hero__inner--align-center .hero__head .hero__eyebrow { text-align: center; }
 
-  /* Rotace (carousel) — slidy se stackují přes sebe a prolínají */
+  /* Rotace (carousel): slidy se stackují přes sebe a prolínají */
   .hero__rot { display: grid; }
   .hero__rot > .hero__slide { grid-area: 1 / 1; }
   .hero__slide {
@@ -201,7 +312,7 @@ const innerClasses = [
   .hero__slide.is-active { opacity: 1; visibility: visible; }
   /* Carousel nadpisy o něco menší, ať se vejdou vynucené řádky (<br>) bez dalšího lámání */
   .hero__slide :global(h1) { font-size: clamp(30px, 3.6vw, 46px); }
-  /* Média v carouselu — srovnaná na stejnou výšku a vystředěná */
+  /* Média v carouselu: srovnaná na stejnou výšku a vystředěná */
   .hero__media-rot { align-items: center; justify-items: center; }
   .hero__media-rot > img { width: auto; height: auto; max-width: 100%; max-height: 460px; }
 
@@ -243,7 +354,7 @@ const innerClasses = [
     margin-top: var(--space-7);
   }
 
-  /* USP proužek — klíčové body uvnitř hero */
+  /* USP proužek: klíčové body uvnitř hero */
   .hero__usp {
     list-style: none;
     display: flex;
@@ -281,7 +392,7 @@ const innerClasses = [
     object-fit: cover;
   }
 
-  /* Responsive — split se skládá pod sebe */
+  /* Responsive: split se skládá pod sebe */
   @media (max-width: 880px) {
     .hero__inner--split {
       grid-template-columns: 1fr;

@@ -1,5 +1,5 @@
 ---
-/** Septim — Produkt (edice): Septim.Hotel. Obsah: septim-obsah/produkty/septim-hotel-*. SEO meta nově. */
+/** Septim: Produkt (edice): Septim.Hotel. Obsah: septim-obsah/produkty/septim-hotel-*. SEO meta nově. */
 import Base from '../../layouts/Base.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
@@ -13,6 +13,7 @@ import LeadForm from '@piano/ui/components/LeadForm.astro';
 import StatsBand from '../../components/StatsBand.astro';
 import LogoWall from '../../components/LogoWall.astro';
 import Faq from '@piano/ui/components/Faq.astro';
+import { septimLeadProofs } from '../../config/leadProofs';
 
 const highlights = [
   { icon: 'lucide:receipt', title: 'Vše na jeden účet', text: 'Veškerá útrata hotelového hosta na jednom účtu.' },
@@ -26,22 +27,22 @@ const areas = [
   { icon: 'lucide:presentation', title: 'Konference a bankety', text: 'Evidence konzumace na eventech, MTZ sklad, markování na více středisek.' },
 ];
 const faqs = [
-  { q: 'Jak se Septim propojí s hotelovým systémem?', a: 'Septim.Hotel se jednoduše integruje na hotelový PMS Protel — útrata hosta z restaurace, baru i pokojové služby se automaticky účtuje na pokoj.' },
+  { q: 'Jak se Septim propojí s hotelovým systémem?', a: 'Septim.Hotel se jednoduše integruje na hotelový PMS Protel, útrata hosta z restaurace, baru i pokojové služby se automaticky účtuje na pokoj.' },
   { q: 'Pro jaké hotely se hodí?', a: 'Od jednotlivých hotelů po sítě. Septim používají české hotelové špičky a díky modulům škáluje dle velikosti provozu.' },
 ];
 ---
-<Base title="Septim.Hotel – hotelový POS s napojením na PMS Protel"
-      description="Septim.Hotel propojuje celý hotel: restauraci, bar, pokojovou službu i konference. Veškerá útrata hosta na jednom účtu a jednoduchá integrace na hotelový PMS Protel.">
+<Base title="Septim.Hotel – POS systém pro hotely | Septim"
+      description="Septim.Hotel je hotelový POS propojující celý hotel včetně jednoduché integrace na hotelový systém (PMS). Gastro i recepce v jednom.">
   <SiteHeader />
   <main>
-    <Hero eyebrow="Produkt — edice" background="alt"
-          lead="Hotelový POS, který propojuje celý hotel — včetně jednoduché integrace na hotelový PMS. Ovládejte restauraci, bar, pokoje i konference z jednoho místa.">
+    <Hero eyebrow="Produkt: edice" background="alt"
+          lead="Hotelový POS, který propojuje celý hotel, včetně jednoduché integrace na hotelový PMS. Ovládejte restauraci, bar, pokoje i konference z jednoho místa.">
       <Heading slot="title" as="h1" size="display">Septim<em>.Hotel</em></Heading>
       <Fragment slot="actions">
         <Button href="#poptavka">Chci Septim</Button>
         <Button href="/reseni/hotely" variant="secondary">Řešení pro hotely</Button>
       </Fragment>
-      <figure slot="media" class="hero-pic"><img src="/images/produkt-septim-hotel.webp" alt="Septim.Hotel — hotelový POS" width="1300" height="1000" loading="eager" /></figure>
+      <figure slot="media" class="hero-pic"><img src="/images/produkt-septim-hotel.webp" alt="Septim.Hotel: hotelový POS" width="1300" height="1000" loading="eager" /></figure>
     </Hero>
 
     <USPGrid title="Hotelový POS, který propojuje celý hotel" items={highlights} background="default" space="md" minItemWidth="240px" />
@@ -49,9 +50,9 @@ const faqs = [
     <LogoWall label="Septim používají české hotelové špičky" background="default" />
     <StatsBand />
     <Faq items={faqs} title="Často kladené dotazy k Septim.Hotel" background="default" />
-    <LeadForm id="poptavka" variant="full" background="alt"
+    <LeadForm proofs={septimLeadProofs} id="poptavka" variant="full" background="alt"
               title="Mám zájem o Septim.Hotel"
-              lead="Kontaktujte nás — ukážeme propojení celého hotelu z jednoho místa." />
+              lead="Kontaktujte nás, ukážeme propojení celého hotelu z jednoho místa." />
   </main>
   <SiteFooter />
 </Base>

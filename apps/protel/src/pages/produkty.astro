@@ -1,7 +1,7 @@
 ---
 /**
- * Protel — Produkty (rozcestník). Obsah z produkty.html starého protelsystems.cz.
- * Vše ze sdílených komponent @piano/ui — karty produktů řeší USPGrid (items s href).
+ * Protel: Produkty (rozcestník). Obsah z produkty.html starého protelsystems.cz.
+ * Vše ze sdílených komponent @piano/ui: karty produktů řeší USPGrid (items s href).
  */
 import Base from '../layouts/Base.astro';
 import SiteHeader from '../components/SiteHeader.astro';
@@ -17,9 +17,9 @@ const system = [
   { icon: 'lucide:layout-dashboard', title: 'Hotelový systém', text: 'Globálně respektovaný hotelový systém s plnohodnotnou lokální podporou. I přes snadné používání a přehlednost překvapí množstvím pokročilých funkcí a schopností udržet pod kontrolou celý hotelový provoz.', href: '/produkty/hotelovy-system-protel' },
   { icon: 'lucide:credit-card', title: 'Platební řešení hotelu', text: 'Protel má vlastní plně integrované platební řešení. Zefektivníte práci s platbami, minimalizujete chybovost a snížíte riziko vracení transakcí.', href: '/produkty/platebni-reseni-hotelu' },
   { icon: 'lucide:concierge-bell', title: 'Room Service', text: 'Naprostá rarita! Host načte QR kód a má nabídku Room Service ve svém telefonu. Protel sám pozná, ze kterého pokoje host objednává, a napojený restaurační systém Septim se postará o vše v kuchyni i na baru.', href: '/produkty/room-service' },
-  { icon: 'lucide:presentation', title: 'Konference', text: 'Rezervace konferenčních místností, sledování dostupnosti a vybavení, správa stravování, fakturace za pronájem i správa účastníků — vše přímo v hotelovém systému.', href: '/produkty/konference' },
+  { icon: 'lucide:presentation', title: 'Konference', text: 'Rezervace konferenčních místností, sledování dostupnosti a vybavení, správa stravování, fakturace za pronájem i správa účastníků: vše přímo v hotelovém systému.', href: '/produkty/konference' },
   { icon: 'lucide:bed-double', title: 'Housekeeping', text: 'Digitální řešení pro úklid a údržbu pokojů. Snadné sledování a přidělování úkolů, kontrola stavu pokojů a komunikace mezi zaměstnanci.', href: '/produkty/housekeeping' },
-  { icon: 'lucide:soup', title: 'MealPlan', text: 'Kompletní digitalizace evidence snídaní, obědů a večeří. Obsluha má vše v mobilu nebo na tabletu — žádné papírové seznamy ani ruční sčítání.', href: '/produkty/meal-plan' },
+  { icon: 'lucide:soup', title: 'MealPlan', text: 'Kompletní digitalizace evidence snídaní, obědů a večeří. Obsluha má vše v mobilu nebo na tabletu, žádné papírové seznamy ani ruční sčítání.', href: '/produkty/meal-plan' },
 ];
 
 const recepce = [
@@ -30,11 +30,11 @@ const recepce = [
 ];
 
 const doplnky = [
-  { icon: 'lucide:globe', title: 'Webové rezervace', text: 'Online formulář na vašich stránkách umožní hostům kdykoli si rezervovat pobyt přímo u vás.', href: '/produkty/webove-rezervace' },
+  { icon: 'lucide:globe', title: 'Webové rezervace', text: 'Online formulář na Vašich stránkách umožní hostům kdykoli si rezervovat pobyt přímo u Vás.', href: '/produkty/webove-rezervace' },
   { icon: 'lucide:mail', title: 'Automatický mailing', text: 'Důležité informace, potvrzení rezervací i upozornění odcházejí hostům včas a bez zásahu recepčního. Filtry zachovají personalizaci a přesné cílení.', href: '/produkty/automaticky-mailing' },
   { icon: 'lucide:scan-line', title: 'Čtečka dokladů', text: 'Údaje o hostech načtete do systému rychle přímo z jejich dokladů. Stejná čtečka zvládne i platební karty.', href: '/produkty/ctecka-dokladu' },
-  { icon: 'lucide:network', title: 'Hotelové řetězce', text: 'Řídíte dva a více hotelů? Řešení navržené přímo pro hotelové řetězce — efektivnější řízení, nižší náklady a lepší zážitek hostů. Z jednoho místa!', href: '/produkty/hotelove-retezce' },
-  { icon: 'lucide:plug', title: 'Napojení a integrace', text: 'Channel managery, platby, zámkové a televizní systémy, účetní programy i POS Septim — Protel mluví s celým vaším technologickým zázemím.', href: '/napojeni' },
+  { icon: 'lucide:network', title: 'Hotelové řetězce', text: 'Řídíte dva a více hotelů? Řešení navržené přímo pro hotelové řetězce, efektivnější řízení, nižší náklady a lepší zážitek hostů. Z jednoho místa!', href: '/produkty/hotelove-retezce' },
+  { icon: 'lucide:plug', title: 'Napojení a integrace', text: 'Channel managery, platby, zámkové a televizní systémy, účetní programy i POS Septim. Protel mluví s celým Vaším technologickým zázemím.', href: '/napojeni' },
 ];
 
 const leadProofs = [
@@ -45,15 +45,15 @@ const leadProofs = [
 ];
 ---
 
-<Base title="Produkty | Hotelový systém Protel"
-      description="Hotelové produkty pro váš hotelový byznys. Přemýšlíte o hotelovém systému Protel a nevíte si rady? Nabídku produktů jsme strukturovali tak, abychom vám výběr co nejvíce usnadnili.">
+<Base title="Produkty hotelového systému | Protel"
+      description="Hotelové produkty pro Váš byznys. Přemýšlíte o systému Protel a nevíte si rady? Nabídku jsme strukturovali tak, aby byl výběr co nejjednodušší.">
   <SiteHeader />
 
   <main>
     <Breadcrumb items={[{ label: 'Úvod', href: '/' }, { label: 'Produkty' }]} />
 
     <Hero eyebrow="Produkty" background="gradient"
-          lead="Přemýšlíte o tom, jak zlepšit fungování ve svém hotelu, a nevíte si rady? Nabídku produktů jsme strukturovali tak, abychom vám výběr co nejvíce usnadnili.">
+          lead="Přemýšlíte o tom, jak zlepšit fungování ve svém hotelu, a nevíte si rady? Nabídku produktů jsme strukturovali tak, abychom Vám výběr co nejvíce usnadnili.">
       <Heading slot="title" as="h1" size="display" color="on-dark">Zvyšujeme hotelům <em>ziskovost</em></Heading>
       <Fragment slot="actions">
         <Button href="#poptavka">Vyzkoušet Protel zdarma</Button>
@@ -62,20 +62,20 @@ const leadProofs = [
     </Hero>
 
     <USPGrid id="system-protel" eyebrow="Systém Protel" title="Jádro hotelového provozu"
-             lead="Od rezervací a plateb po Room Service a konference — vše přímo v hotelovém systému."
+             lead="Od rezervací a plateb po Room Service a konference, vše přímo v hotelovém systému."
              items={system} minItemWidth="300px" background="default" space="lg" />
 
     <USPGrid id="online-check-in-out" eyebrow="Digitální recepce" title="Online check-in/out"
-             lead="Recepční úkony vyřídí host přes mobil — bez fyzické asistence recepčního."
+             lead="Recepční úkony vyřídí host přes mobil: bez fyzické asistence recepčního."
              items={recepce} minItemWidth="280px" background="alt" space="lg" />
 
     <USPGrid id="doplnky" eyebrow="Doplňky" title="Rozšiřte Protel podle potřeby"
-             lead="Doplňky a integrace, které dotáhnou automatizaci vašeho hotelu do konce."
+             lead="Doplňky a integrace, které dotáhnou automatizaci Vašeho hotelu do konce."
              items={doplnky} minItemWidth="280px" background="default" space="lg" />
 
     <LeadForm id="poptavka" variant="full" background="alt"
               title="Vyzkoušejte Protel zdarma"
-              lead="Co byste u vás v hotelu rádi zlepšili? Pojďme to probrat — ozveme se a ukážeme Protel přímo ve vašem hotelu."
+              lead="Co byste u Vás v hotelu rádi zlepšili? Pojďme to probrat, ozveme se a ukážeme Protel přímo ve Vašem hotelu."
               proofs={leadProofs} />
   </main>
 

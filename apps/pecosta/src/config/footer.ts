@@ -16,7 +16,7 @@ export const pecostaFooter = {
       links: [
         { label: 'Aukční nákupy', href: '/sluzby/aukcni-nakupy' },
         { label: 'Energie pro gastro', href: '/sluzby/energie' },
-        { label: 'Autset — naskladnění', href: '/sluzby/autset' },
+        { label: 'Autset: naskladnění', href: '/sluzby/autset' },
         { label: 'Burzovní obchody', href: '/sluzby/burzovni-obchody' },
       ],
     },

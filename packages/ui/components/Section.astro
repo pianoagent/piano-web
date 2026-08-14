@@ -19,6 +19,8 @@ interface Props {
   space?: 'sm' | 'md' | 'lg';
   container?: 'default' | 'narrow' | 'wide' | 'full' | false;
   decor?: boolean | 'top' | 'bottom' | 'both';   // dekorativní kruh na hranici sekce (brandový styl)
+  reveal?: boolean;   // scroll reveal při nájezdu do viewportu (default true)
+  revealFrom?: 'bottom' | 'left' | 'right' | 'top';  // směr nájezdu (default "bottom")
   as?: string;
   id?: string;
   class?: string;
@@ -30,6 +32,8 @@ const {
   space = 'md',
   container = 'default',
   decor = false,
+  reveal = true,
+  revealFrom = 'bottom',
   as = 'section',
   id,
   class: className,
@@ -49,10 +53,24 @@ const classes = [
 ]
   .filter(Boolean)
   .join(' ');
+
+/* Směr nájezdu podle kompozice: zdola je výchozí, ostatní přidají variantu. */
+const revealClass = ['reveal', revealFrom !== 'bottom' && `reveal--from-${revealFrom}`]
+  .filter(Boolean)
+  .join(' ');
 ---
 
+{/* Scroll reveal jde na OBSAH, ne na sekci.
+    Kdyby byl na sekci, animovala by se i celá barevná plocha pásu: tmavý nebo
+    barevný blok by nabíhal z bílé, což se nečte jako „obsah přišel", ale jako
+    blafnutí. Navíc je to plocha přes celé okno, takže se každý frame přepočítá
+    obří vrstva a animace seká. Takhle pás zůstane plný a hýbe se jen obsah.
+    Sekce, které jsou při načtení už nad spouštěcí linkou (hero), odkryje
+    reveal.js bez animace. */}
 <Tag class={classes} id={id} {...rest}>
-  {container === false ? <slot /> : <Container size={container}><slot /></Container>}
+  {container === false
+    ? (reveal ? <div class={revealClass}><slot /></div> : <slot />)
+    : <Container size={container} class={reveal ? revealClass : undefined}><slot /></Container>}
 </Tag>
 
 <style>
@@ -66,7 +84,11 @@ const classes = [
   /* Pozadí */
   .section--bg-default { background: var(--color-bg); }
   .section--bg-alt     { background: var(--color-bg-alt); }
-  .section--bg-warm    { background: var(--color-bg-warm, #FFF5E8); }
+  /* „warm" je dnes varianta jen pro Piano, jen ono definuje --color-bg-warm
+     (26 stránek). Fallback byl zadrátovaná krémová #FFF5E8, tedy barva Piana,
+     která na brandovém webu svítila jako cizí prvek. Teď spadne na vlastní
+     plochu značky. Katalog na /styleguide tuhle mezeru odhalil. */
+  .section--bg-warm    { background: var(--color-bg-warm, var(--color-bg-alt)); }
   .section--bg-invert  { background: var(--color-neutral-900); color: var(--color-text-on-dark); }
   .section--bg-primary { background: var(--color-primary-bg); color: var(--color-text-on-dark); }
   .section--bg-gradient { background: var(--color-bg-gradient, var(--color-primary-bg)); color: var(--color-text-on-dark); }

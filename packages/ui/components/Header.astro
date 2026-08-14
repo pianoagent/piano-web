@@ -1,11 +1,11 @@
 ---
 /**
- * Header — Piano (sticky navigace + mobilní drawer)
+ * Header: Piano (sticky navigace + mobilní drawer)
  *
  *   transparent: boolean → overlay přes hero (světlý text), po scrollu zpevní na bílou
  *
  * Navigace se čte z src/config/nav.ts (obsah oddělen od vzhledu).
- * Logo je prozatím textový wordmark + piano-mark ikona — výměna za reálné SVG
+ * Logo je prozatím textový wordmark + piano-mark ikona, výměna za reálné SVG
  * je triviální (nahradit obsah .header__logo).
  */
 import Icon from './Icon.astro';
@@ -318,7 +318,7 @@ const classes = ['header', transparent && 'header--transparent'].filter(Boolean)
     transition: var(--transition);
     z-index: 300;
   }
-  /* Neviditelný „most" přes mezeru pod lištou — udrží hover při přejezdu kurzoru */
+  /* Neviditelný „most" přes mezeru pod lištou: udrží hover při přejezdu kurzoru */
   .header__mega::before {
     content: "";
     position: absolute;
@@ -477,7 +477,7 @@ const classes = ['header', transparent && 'header--transparent'].filter(Boolean)
   /* Přepínač jazyků */
   .header__lang {
     display: inline-flex; align-items: center; justify-content: center;
-    min-width: 40px; min-height: 40px; padding: 0 var(--space-2);
+    min-width: 44px; min-height: 44px; padding: 0 var(--space-2);
     font-family: var(--font-sans); font-size: var(--font-size-small); font-weight: var(--font-weight-semibold);
     color: var(--color-text); text-decoration: none; border-radius: var(--radius-sm);
     transition: var(--transition);
@@ -497,8 +497,9 @@ const classes = ['header', transparent && 'header--transparent'].filter(Boolean)
     flex-direction: column;
     justify-content: center;
     gap: 5px;
-    width: 40px;
-    height: 40px;
+    /* 44px: hlavní ovládání navigace na mobilu, ať se dá spolehlivě chytit. */
+    width: 44px;
+    height: 44px;
     padding: 0 8px;
     background: none;
     border: none;
@@ -513,6 +514,24 @@ const classes = ['header', transparent && 'header--transparent'].filter(Boolean)
   }
 
   /* ---- Transparent varianta (overlay přes hero) ---- */
+  /* Průhledná hlavička musí ležet PŘES hero, ne nad ním. Sticky sice drží
+     u horní hrany, ale zabírá místo v toku, takže hero začínalo pod ní a za
+     průhlednou lištou svítilo bílé pozadí stránky. Bílé odkazy pak byly na
+     bílém neviditelné. Fixed ji z toku vyndá.
+     Odsazení o výšku hlavičky si drží první sekce, u hero varianty cover je to
+     padding-top: calc(var(--header-h-overlay) + …). */
+  .header--transparent {
+    position: fixed;
+    inset-inline: 0;
+  }
+  /* Vzdušnější lišta nad obrázkem: nalepené logo u horní hrany hero fotky
+     vypadalo těsně. Po scrollu se lišta zpevní na bílou a min-height jde na 0,
+     takže se stáhne na svou přirozenou výšku a nezabírá zbytečně obsah. */
+  .header--transparent .header__inner {
+    min-height: var(--header-h-overlay, 120px);
+    transition: min-height var(--duration-base) var(--easing);
+  }
+  .header--transparent.is-scrolled .header__inner { min-height: 0; }
   .header--transparent:not(.is-scrolled) {
     background: transparent;
     border-bottom-color: transparent;
@@ -595,7 +614,20 @@ const classes = ['header', transparent && 'header--transparent'].filter(Boolean)
   .drawer__cta { margin-top: var(--space-6); }
 
   /* ---- Responsive přepínač ---- */
-  @media (max-width: 880px) {
+
+  /* Mezi burgerem a plnou šířkou se lišta stlačí. Bez tohohle se navigace
+     nevejde do kontejneru a poslední prvek, typicky CTA, přeteče za pravý
+     okraj. Nebylo to vidět, protože base.css má overflow-x: clip, takže
+     tlačítko se tiše uřízlo. Měřeno: Pecosta potřebovala 1146px okna,
+     Harsys 1112, Grason 1066. Menší mezery a odsazení odkazů to stáhnou
+     pod hranici burgeru. */
+  @media (max-width: 1280px) {
+    .header__inner { gap: var(--space-4); }
+    .header__link { padding-inline: var(--space-2); }
+    .header__menu { gap: var(--space-1); }
+  }
+
+  @media (max-width: 1099px) {
     .header__nav { display: none; }
     /* CTA je vykreslené přes komponentu Button → scoped selektor ho netrefí, proto :global */
     .header__actions :global(.header__cta) { display: none; }

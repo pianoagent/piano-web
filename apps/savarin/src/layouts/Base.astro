@@ -1,8 +1,11 @@
 ---
 /**
- * Base — layout webu Savarin.
+ * Base: layout webu Savarin.
  * Načte téma Savarin + sdílenou SEO hlavičku. Definuje Organization schema.
  */
+/* reveal.css MUSI byt pred tematem: ma v :root fallback hodnoty
+   (--reveal-shift a spol.), ktere by jinak prebily tokeny produktu. */
+import '@piano/ui/styles/reveal.css';
 import '../styles/theme.css';
 import BaseHead from '@piano/ui/layouts/BaseHead.astro';
 
@@ -20,7 +23,7 @@ const SITE_URL = 'https://savarin.cz';
 
 const {
   title,
-  description = 'Savarin — restaurační a hotelový systém. Pokladna, recepce, sklady a kalkulace. Modulární SW řešení pro gastro a ubytovací provozy od roku 1990.',
+  description = 'Savarin: restaurační a hotelový systém. Pokladna, recepce, sklady a kalkulace. Modulární SW řešení pro gastro a ubytovací provozy od roku 1990.',
   image = '/og-default.jpg',
   type = 'website',
   noindex = false,
@@ -52,6 +55,8 @@ const schemas = [organizationSchema, ...(schema ? [schema] : [])];
 <!doctype html>
 <html lang="cs">
   <head>
+    <!-- Scroll reveal: bez defer, trida .js musi byt na <html> driv nez obsah -->
+    <script is:inline src="/js/reveal.js"></script>
     <BaseHead
       title={title}
       description={description}

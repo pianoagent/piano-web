@@ -1,5 +1,5 @@
 ---
-/** Septim — Case study: Kolkovna Group. Obsah: septim-obsah/kolkovna/10x-restaurant.md. Starý slug zachován kvůli SEO. */
+/** Septim: Case study: Kolkovna Group. Obsah: septim-obsah/kolkovna/10x-restaurant.md. Starý slug zachován kvůli SEO. */
 import Base from '../../layouts/Base.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
@@ -11,6 +11,7 @@ import Button from '@piano/ui/components/Button.astro';
 import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import StatsBand from '../../components/StatsBand.astro';
+import { septimLeadProofs } from '../../config/leadProofs';
 
 const provozy = [
   { num: '10×', lbl: 'restaurace Kolkovna' },
@@ -32,11 +33,11 @@ const vedeni = [
   { icon: 'lucide:git-merge', title: 'Jeden vstup, Septim počítá sám', text: 'Celá společnost KOLKOVNA GROUP a.s. běží kompletně přes Septim už od roku 2001!' },
 ];
 ---
-<Base title="Kolkovna & Septim – 23 let spolu | případová studie"
-      description="Případová studie: síť KOLKOVNA GROUP řídí přes Septim 10 restaurací, jídelnu i 2 bistra už od roku 2001. Automatické naskladňování, QR platby a úspora 30 minut denně na pobočce.">
+<Base title="Kolkovna a Septim: 23 let spolupráce | Septim"
+      description="Restaurační síť Kolkovna Group sází na pokladní systém Septim už od roku 2001. Přečtěte si příběh 23 let úspěšné spolupráce.">
   <SiteHeader />
   <main>
-    <Hero eyebrow="Kolkovna Group + Septim — případová studie" background="gradient"
+    <Hero eyebrow="Kolkovna Group + Septim: případová studie" background="gradient"
           lead="Již v roce 2001 se renomovaná restaurační síť KOLKOVNA GROUP rozhodla pro implementaci pokladního systému Septim do svých provozoven. Od té doby tato spolupráce nejen přežila zkoušky času, ale stala se jedním z nejúspěšnějších a dlouhodobě nejstabilnějších partnerství v gastronomii v ČR.">
       <Heading slot="title" as="h1" size="display" color="on-dark">10× restaurace. <em>23 let spolu.</em></Heading>
       <Fragment slot="actions">
@@ -66,13 +67,13 @@ const vedeni = [
 
     <Section background="default" space="lg">
       <div class="prose">
-        <Text size="label" color="accent">Septim — na míru dobrým restauracím</Text>
+        <Text size="label" color="accent">Septim: na míru dobrým restauracím</Text>
         <Heading as="h2" size="h2">Chceme gastro podnikům zefektivnit podnikání</Heading>
-        <Text color="muted">Proto vyvíjíme komplexní a moderní provozní systém včetně manažerské aplikace. Jsme partnerem pro každého, kdo chce svou restauraci řídit efektivně — pro všechny, kteří chtějí svým hostům připravit opravdu skvělý zážitek.</Text>
+        <Text color="muted">Proto vyvíjíme komplexní a moderní provozní systém včetně manažerské aplikace. Jsme partnerem pro každého, kdo chce svou restauraci řídit efektivně, pro všechny, kteří chtějí svým hostům připravit opravdu skvělý zážitek.</Text>
       </div>
     </Section>
 
-    <LeadForm id="poptavka" variant="full" background="alt"
+    <LeadForm proofs={septimLeadProofs} id="poptavka" variant="full" background="alt"
               title="Máte dotaz? Napište nám"
               lead="Ukážeme vám, jak by Septim fungoval ve vašem provozu nebo síti provozů." />
   </main>

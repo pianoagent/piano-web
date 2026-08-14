@@ -1,6 +1,6 @@
 ---
 /**
- * Protel — produkt „Digitální registrační karta“. Obsah vytěžen z produkty/digitalni-registracni-karta.html
+ * Protel: produkt „Digitální registrační karta“. Obsah vytěžen z produkty/digitalni-registracni-karta.html
  * starého protelsystems.cz (jazykově uhlazeno, fakta zachována).
  * Vše ze sdílených komponent @piano/ui.
  */
@@ -16,12 +16,13 @@ import Icon from '@piano/ui/components/Icon.astro';
 import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
 import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
+import { protelLeadProofs } from '../../config/leadProofs';
 
 const features = [
   {
     id: "vyplneni-udaju", icon: "lucide:pencil-line", title: "Vyplnění údajů",
     paras: [
-      "Host vyplní všechny potřebné údaje k pobytu přímo na svém mobilním zařízení — kdekoli a kdykoli. Získáte navíc skutečnou e-mailovou adresu hosta, což usnadňuje budoucí komunikaci mezi hotelem a hostem.",
+      "Host vyplní všechny potřebné údaje k pobytu přímo na svém mobilním zařízení, kdekoli a kdykoli. Získáte navíc skutečnou e-mailovou adresu hosta, což usnadňuje budoucí komunikaci mezi hotelem a hostem.",
     ],
   },
   {
@@ -34,25 +35,25 @@ const features = [
   {
     id: "nahled-na-ucet", icon: "lucide:receipt", title: "Náhled na účet",
     paras: [
-      "Při vyplňování registrační karty si host zobrazí i náhled svého účtu — plánovaný pobyt, cenu za ubytování, služby a další položky. Vše zkontroluje a případně upraví ještě před dokončením registrace.",
+      "Při vyplňování registrační karty si host zobrazí i náhled svého účtu, plánovaný pobyt, cenu za ubytování, služby a další položky. Vše zkontroluje a případně upraví ještě před dokončením registrace.",
     ],
   },
   {
     id: "upselling", icon: "lucide:trending-up", title: "Upselling",
     paras: [
-      "Během check-inu nabídnete hostům doplňkové služby — snídaně, wellness procedury nebo pokojový servis — přímo v jejich mobilu. Host si službu pohodlně vybere a okamžitě zakoupí; transakce se zaznamenávají v reálném čase.",
+      "Během check-inu nabídnete hostům doplňkové služby, snídaně, wellness procedury nebo pokojový servis, přímo v jejich mobilu. Host si službu pohodlně vybere a okamžitě zakoupí; transakce se zaznamenávají v reálném čase.",
     ],
   },
   {
     id: "bezpecnost", icon: "lucide:shield-check", title: "Bezpečnost",
     paras: [
-      "S Protelem je vše bezpečné. Při ztrátě nebo odcizení lze digitální registrační kartu rychle deaktivovat — uživatel nebo správce ji okamžitě zablokuje a zamezí neoprávněnému přístupu.",
+      "S Protelem je vše bezpečné. Při ztrátě nebo odcizení lze digitální registrační kartu rychle deaktivovat, uživatel nebo správce ji okamžitě zablokuje a zamezí neoprávněnému přístupu.",
     ],
   },
   {
     id: "automaticke-archivovani", icon: "lucide:archive", title: "Automatické archivování",
     paras: [
-      "Každý záznam se po vyplnění formuláře automaticky uloží do bezpečného úložiště. Data jsou kdykoli dostupná — pro kontrolu cizinecké policie, reporting i další administrativní účely. Žádné ruční ukládání ani třídění.",
+      "Každý záznam se po vyplnění formuláře automaticky uloží do bezpečného úložiště. Data jsou kdykoli dostupná, pro kontrolu cizinecké policie, reporting i další administrativní účely. Žádné ruční ukládání ani třídění.",
     ],
   },
 ];
@@ -79,6 +80,9 @@ const related = [
         <Button href="#poptavka">Vyzkoušet Protel zdarma</Button>
         <Button href="/produkty" variant="secondary" onDark>Všechny produkty</Button>
       </Fragment>
+      <figure slot="media" class="hero-pic">
+        <img src="/images/registracni-karta.webp" alt="Digitální registrační karta hosta na tabletu" width="960" height="875" loading="eager" decoding="async" />
+      </figure>
     </Hero>
 
     <Section background="default" space="lg">
@@ -104,17 +108,17 @@ const related = [
       <figure class="quoteband">
         <span class="quoteband__mark"><Icon name="lucide:quote" size="lg" /></span>
         <blockquote>
-          <Heading as="p" size="h3" color="on-dark" align="center">Digitální registrační karta usnadňuje hostům registraci a zkracuje čekání u recepce. Host může kdykoli nahlédnout na svůj účet a vy mu jednoduše nabídnete další služby. Zefektivněte své hotelové podnikání!</Heading>
+          <Heading as="p" size="h3" color="on-dark" align="center">Digitální registrační karta usnadňuje hostům registraci a zkracuje čekání u recepce. Host může kdykoli nahlédnout na svůj účet a Vy mu jednoduše nabídnete další služby. Zefektivněte své hotelové podnikání!</Heading>
         </blockquote>
       </figure>
     </Section>
 
-    <USPGrid eyebrow="Dále by vás mohlo zajímat" title="Související produkty"
+    <USPGrid eyebrow="Dále by Vás mohlo zajímat" title="Související produkty"
              items={related} minItemWidth="260px" background="alt" space="lg" />
 
-    <LeadForm id="poptavka" variant="full" background="default"
+    <LeadForm proofs={protelLeadProofs} id="poptavka" variant="full" background="default"
               title="Vyzkoušejte Protel zdarma"
-              lead="Co byste u vás v hotelu rádi zlepšili? Nechte nám kontakt — ozveme se a ukážeme Protel přímo ve vašem hotelu." />
+              lead="Co byste u Vás v hotelu rádi zlepšili? Nechte nám kontakt, ozveme se a ukážeme Protel přímo ve Vašem hotelu." />
   </main>
 
   <SiteFooter />

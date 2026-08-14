@@ -1,22 +1,22 @@
 ---
 /**
- * Kalkulačka Piano Terminál — INTERNÍ obchodní nástroj (piano.cz/kalkulacka-terminal).
+ * Kalkulačka Piano Terminál: INTERNÍ obchodní nástroj (piano.cz/kalkulacka-terminal).
  *
  * Skrytá stránka jen pro obchodníky. Není v navigaci, je `noindex` a chráněná
- * jednoduchým heslem (klientský popup). POZOR: ochrana je pouze klientská —
+ * jednoduchým heslem (klientský popup). POZOR: ochrana je pouze klientská:
  * heslo je čitelné ve zdrojovém kódu. Slouží jen k tomu, aby stránka nebyla
  * veřejně dohledatelná, ne jako skutečné zabezpečení.
  *
  * Heslo se mění v <script> níže: konstanta KALK_HESLO.
  *
  * Výpočetní logika převzata z prototypu weby/prototypy/kalkulacka-terminalu.html.
- * Ceny bez DPH, orientační — při změně ceníku uprav pole T_TIERS a ceny příslušenství.
+ * Ceny bez DPH, orientační: při změně ceníku uprav pole T_TIERS a ceny příslušenství.
  */
 import Base from '../layouts/Base.astro';
 ---
 
 <Base
-  title="Kalkulačka Piano Terminál — interní"
+  title="Kalkulačka Piano Terminál: interní"
   description="Interní kalkulačka cen Piano Terminál pro obchodníky."
   noindex={true}
   contactBand={false}
@@ -45,7 +45,7 @@ import Base from '../layouts/Base.astro';
     <div class="kalk-inner">
       <div class="kalk-eyebrow">Interní kalkulačka ceny</div>
       <h2>Kolik vás <em>Piano Terminál bude stát?</em></h2>
-      <p class="kalk-sub">Cena se odvíjí od měsíčního obratu kartami — vyšší obrat znamená nižší sazbu a více terminálů zdarma.</p>
+      <p class="kalk-sub">Cena se odvíjí od měsíčního obratu kartami: vyšší obrat znamená nižší sazbu a více terminálů zdarma.</p>
 
       <div class="kalk-body">
         <!-- Levý sloupec: vstupy -->
@@ -184,7 +184,7 @@ import Base from '../layouts/Base.astro';
           <!-- 1) Transakční poplatky -->
           <div class="kalk-result-section-lbl">1) Transakční poplatky</div>
           <div class="kalk-result-item">
-            <span class="kalk-result-lbl">Acquiring fee <i class="info-tip" data-tip="Poplatek z obratu — účtuje se z každé transakce kartou">?</i></span>
+            <span class="kalk-result-lbl">Acquiring fee <i class="info-tip" data-tip="Poplatek z obratu: účtuje se z každé transakce kartou">?</i></span>
             <span class="kalk-result-val"><span id="t-acq-orig" class="kalk-strike" hidden></span><span id="t-acq-kc">0,59</span><span id="t-acq-unit">&nbsp;%</span></span>
           </div>
           <div class="kalk-result-item">
@@ -205,7 +205,7 @@ import Base from '../layouts/Base.astro';
 
           <div class="kalk-result-total">
             <div class="kalk-result-total-lbl">Celkem / měsíc</div>
-            <div class="kalk-result-total-val" id="t-monthly-total">—</div>
+            <div class="kalk-result-total-val" id="t-monthly-total">:</div>
             <div id="t-fees-note" class="kalk-result-total-sub" hidden>+ Acquiring / Processing fees z transakcí</div>
             <div class="kalk-result-total-sub" id="t-mininv-note" hidden></div>
           </div>
@@ -345,7 +345,7 @@ import Base from '../layouts/Base.astro';
     padding: 4px 12px; border-radius: var(--radius-full); white-space: nowrap;
   }
 
-  /* Info tooltip — ikona */
+  /* Info tooltip: ikona */
   .info-tip {
     display: inline-flex; align-items: center; justify-content: center;
     width: 16px; height: 16px; border-radius: 50%;
@@ -354,7 +354,7 @@ import Base from '../layouts/Base.astro';
     cursor: pointer; flex-shrink: 0; vertical-align: middle; margin-left: 5px;
     -webkit-tap-highlight-color: transparent;
   }
-  /* Info tooltip — popover (sdílený element připojený k body) */
+  /* Info tooltip: popover (sdílený element připojený k body) */
   .info-tooltip {
     position: absolute; top: 0; left: 0;
     background: var(--color-neutral-900); color: var(--color-text-on-dark);
@@ -635,11 +635,11 @@ import Base from '../layouts/Base.astro';
     const rowPronajem = document.getElementById('t-row-pronajem');
     if (isIndividual && totalT > 0) {
       rowPronajem.hidden = false;
-      document.getElementById('t-pronajem-label').textContent = 'Pronájem terminálu — ' + totalT + ' ks';
+      document.getElementById('t-pronajem-label').textContent = 'Pronájem terminálu: ' + totalT + ' ks';
       document.getElementById('t-pronajem-val').textContent = 'dle dohody';
     } else if (extraT > 0) {
       rowPronajem.hidden = false;
-      document.getElementById('t-pronajem-label').textContent = 'Pronájem terminálu — ' + extraT + ' ks × 380 Kč';
+      document.getElementById('t-pronajem-label').textContent = 'Pronájem terminálu: ' + extraT + ' ks × 380 Kč';
       document.getElementById('t-pronajem-val').textContent = fmtKc(rentCost) + ' / měsíc';
     } else {
       rowPronajem.hidden = true;
@@ -647,7 +647,7 @@ import Base from '../layouts/Base.astro';
 
     document.getElementById('t-monthly-total').textContent =
       isIndividual ? 'dle dohody'
-      : (obrat > 0 || totalT > 0) ? fmtKc(rentCost) + ' / měsíc' : '—';
+      : (obrat > 0 || totalT > 0) ? fmtKc(rentCost) + ' / měsíc' : ':';
 
     const feesNote = document.getElementById('t-fees-note');
     if (feesNote) feesNote.hidden = !(isIndividual || obrat > 0 || totalT > 0);
@@ -667,13 +667,13 @@ import Base from '../layouts/Base.astro';
       rowPriprava.hidden = false;
       if (fixaceChecked) {
         document.getElementById('t-priprava-label').innerHTML =
-          'Příprava a expedice — ' + totalT + ' ks';
+          'Příprava a expedice: ' + totalT + ' ks';
         document.getElementById('t-priprava-val').innerHTML =
           '<span style="text-decoration:line-through;color:var(--color-text-muted);margin-right:6px;">' +
           fmtKc(totalT * PRIPRAVA_PRICE) + '</span><span style="color:var(--color-success);">zdarma</span>';
       } else {
         document.getElementById('t-priprava-label').textContent =
-          'Příprava a expedice — ' + totalT + ' ks × ' + PRIPRAVA_PRICE + ' Kč';
+          'Příprava a expedice: ' + totalT + ' ks × ' + PRIPRAVA_PRICE + ' Kč';
         document.getElementById('t-priprava-val').textContent = fmtKc(pripravaCost);
         document.getElementById('t-priprava-val').style.color = '';
       }
@@ -689,7 +689,7 @@ import Base from '../layouts/Base.astro';
 
     if (nObal > 0) {
       rowObal.hidden = false;
-      document.getElementById('t-obal-label').textContent = 'Náhradní obal — ' + nObal + ' ks × ' + OBAL_PRICE + ' Kč';
+      document.getElementById('t-obal-label').textContent = 'Náhradní obal: ' + nObal + ' ks × ' + OBAL_PRICE + ' Kč';
       document.getElementById('t-obal-val').textContent = fmtKc(obalCost);
     } else {
       rowObal.hidden = true;
@@ -697,7 +697,7 @@ import Base from '../layouts/Base.astro';
 
     if (nKolebka > 0) {
       rowKolebka.hidden = false;
-      document.getElementById('t-kolebka-label').textContent = 'Dobíjecí kolébka — ' + nKolebka + ' ks × ' + KOLEBKA_PRICE + ' Kč';
+      document.getElementById('t-kolebka-label').textContent = 'Dobíjecí kolébka: ' + nKolebka + ' ks × ' + KOLEBKA_PRICE + ' Kč';
       document.getElementById('t-kolebka-val').textContent = fmtKc(kolebkaCost);
     } else {
       rowKolebka.hidden = true;

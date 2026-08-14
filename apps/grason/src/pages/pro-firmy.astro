@@ -5,6 +5,7 @@
  */
 import Base from '../layouts/Base.astro';
 import Header from '@piano/ui/components/Header.astro';
+import Testimonials from '@piano/ui/components/Testimonials.astro';
 import Footer from '@piano/ui/components/Footer.astro';
 import Section from '@piano/ui/components/Section.astro';
 import Hero from '@piano/ui/components/Hero.astro';
@@ -20,7 +21,7 @@ const products = [
     tag: 'GrasonFlexi',
     title: 'Brigádníci na směnu',
     text: 'Vypíšete směnu, ověření brigádníci se přihlásí a vy vyberete. Zaměstnavatelem zůstáváte vy, Grason lidi zprostředkuje a připraví podklady.',
-    points: ['3 357+ ověřených pracovníků', 'Obsazení směny během minut', 'Podpis DPP i přes appku (příplatek)'],
+    points: ['5 500 ověřených pracovníků', 'Obsazení směny během minut', 'Podpis DPP i přes appku (příplatek)'],
     href: '/grasonflexi',
   },
   {
@@ -48,14 +49,14 @@ const testimonials = [
 
 const leadProofs = [
   { icon: 'lucide:gift', title: '14 dní zdarma', text: 'Bez platební karty, nezávazně.' },
-  { icon: 'lucide:users', title: '3 357+ brigádníků', text: 'Ověření pracovníci po celé ČR.' },
+  { icon: 'lucide:users', title: '5 500 brigádníků', text: 'Ověření pracovníci po celé ČR.' },
   { icon: 'lucide:calendar-days', title: '220 000+ směn', text: 'Naplánováno přes GrasonPlan.' },
   { icon: 'lucide:phone', title: 'Anna Pánková', text: 'anna.pankova@grason.cz' },
 ];
 ---
 
-<Base title="Pro firmy, Grason"
-      description="Tři řešení pro celý personál: GrasonFlexi (brigádníci na směnu), GrasonPlan (plánování vlastního týmu, docházka, mzdové podklady) a GrasonJobs (inzerce a nábor stálých zaměstnanců).">
+<Base title="Řešení personálu pro firmy | Grason"
+      description="Tři řešení pro celý personál: GrasonFlexi na brigádníky, GrasonPlan na plánování vlastního týmu a GrasonJobs na nábor stálých zaměstnanců.">
   <Header brand="Grason" logoSrc="/logos/grason_logo.svg" logoHeight="28px" homeHref="/" nav={grasonNav} cta={grasonCta} login={grasonLogin} />
 
   <main>
@@ -149,28 +150,13 @@ const leadProofs = [
   </Section>
 
   <!-- REFERENCE -->
-  <Section background="cyan" decor="top" space="lg">
-    <div class="head head--center">
-      <Text size="label" color="default" align="center">Reference</Text>
-      <Heading as="h2" size="h2" align="center">Co říkají <span class="accent">naši klienti</span></Heading>
-    </div>
-    <div class="quotes">
-      {testimonials.map((t, i) => (
-        <figure class={`quote quote--${i % 3}`}>
-          <div class="quote__head">
-            <div class="quote__id">
-              <strong class="quote__name">{t.author}</strong>
-              <span class="quote__role">{t.role}</span>
-            </div>
-            <span class="quote__avatar" aria-hidden="true">{t.initials}</span>
-          </div>
-          <span class="quote__mark"><Icon name="lucide:quote" size="md" /></span>
-          <blockquote class="quote__text">{t.quote}</blockquote>
-        </figure>
-      ))}
-    </div>
-  </Section>
-
+  <Testimonials
+    eyebrow="Reference"
+    eyebrowColor="default"
+    background="cyan"
+    items={testimonials}
+    decor="top"
+    titleHtml={'Co říkají <span class="accent">naši klienti</span>'} />
   </main>
 
   <Footer {...grasonFooter} />
@@ -198,7 +184,8 @@ const leadProofs = [
   .pillar__points { list-style: none; display: flex; flex-direction: column; gap: var(--space-2); margin-top: var(--space-2); }
   .pillar__points li { display: flex; align-items: flex-start; gap: var(--space-2); font-size: var(--font-size-small); color: var(--color-text); }
   .pillar__check { color: var(--color-secondary-azure); flex-shrink: 0; margin-top: 2px; }
-  .pillar__link { display: inline-flex; align-items: center; gap: var(--space-1); margin-top: auto; padding-top: var(--space-4); color: var(--color-text-accent); font-weight: var(--font-weight-semibold); font-size: var(--font-size-small); text-decoration: none; }
+  /* min-height 24px: klikací plocha podle WCAG 2.5.8. */
+  .pillar__link { display: inline-flex; align-items: center; min-height: 24px; gap: var(--space-1); margin-top: auto; padding-top: var(--space-4); color: var(--color-text-accent); font-weight: var(--font-weight-semibold); font-size: var(--font-size-small); text-decoration: none; }
   .pillar__link:hover { gap: var(--space-2); }
 
   /* Pricing */
@@ -215,16 +202,4 @@ const leadProofs = [
   .price__cta { margin-top: auto; padding-top: var(--space-4); }
 
   /* Reference */
-  .quotes { display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-  .quote { margin: 0; display: flex; flex-direction: column; background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-6); box-shadow: var(--shadow-sm); }
-  .quote__head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); margin-bottom: var(--space-4); }
-  .quote__id { display: flex; flex-direction: column; gap: 2px; }
-  .quote__name { font-size: var(--font-size-lead); font-weight: var(--font-weight-bold); color: var(--color-secondary); line-height: 1.15; }
-  .quote__role { font-size: var(--font-size-small); color: var(--color-text-muted); }
-  .quote__avatar { flex-shrink: 0; width: 56px; height: 56px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: var(--font-size-body); font-weight: var(--font-weight-bold); color: #fff; }
-  .quote--0 .quote__avatar { background: var(--testimonial-grad-1); }
-  .quote--1 .quote__avatar { background: var(--testimonial-grad-2); }
-  .quote--2 .quote__avatar { background: var(--testimonial-grad-3); }
-  .quote__mark { color: var(--color-secondary-azure); display: block; margin-bottom: var(--space-2); }
-  .quote__text { font-size: var(--font-size-body); color: var(--color-text); line-height: var(--line-height-body); }
 </style>

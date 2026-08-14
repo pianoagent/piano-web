@@ -1,5 +1,5 @@
 ---
-/** Septim — Kontakt. Obsah: septim-obsah/kontakt.md. SEO meta nově. */
+/** Septim: Kontakt. Obsah: septim-obsah/kontakt.md. SEO meta nově. */
 import Base from '../layouts/Base.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
@@ -9,6 +9,7 @@ import Heading from '@piano/ui/components/Heading.astro';
 import Text from '@piano/ui/components/Text.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
+import { septimLeadProofs } from '../config/leadProofs';
 
 const offices = [
   { title: 'Centrála Praha', icon: 'lucide:building-2', lines: ['Thámova 166/18, Karlín', '186 00 Praha 8'],
@@ -23,12 +24,15 @@ const support = [
 ];
 ---
 <Base title="Kontakt | Septim"
-      description="Kontakt na Septim Systems a.s.: obchod, helpdesk a hotline 24/7, centrála v Praze-Karlíně a servisní pobočka v Olomouci. Napište nám nebo zavolejte — jsme tu pro vás.">
+      description="Zajímá vás Septim pro váš provoz, nebo už patříte do rodiny Septim? Ozvěte se nám – rádi vám kdykoliv pomůžeme.">
   <SiteHeader />
   <main>
     <Hero eyebrow="Kontakt" background="alt"
-          lead="Zajímá vás Septim pro váš provoz, nebo už jste v rodině Septim? Rádi pomůžeme — jsme tu pro vás.">
+          lead="Zajímá vás Septim pro váš provoz, nebo už jste v rodině Septim? Rádi pomůžeme, jsme tu pro vás.">
       <Heading slot="title" as="h1" size="display">Ozvěte se <em>nám</em></Heading>
+      <figure slot="media" class="hero-pic">
+        <img src="/images/kontakt.webp" alt="Domluvte si schůzku s týmem Septim" width="1280" height="356" loading="eager" decoding="async" />
+      </figure>
     </Hero>
 
     <Section background="default" space="lg">
@@ -66,9 +70,9 @@ const support = [
       </Text>
     </Section>
 
-    <LeadForm id="poptavka" variant="full" background="default"
+    <LeadForm proofs={septimLeadProofs} id="poptavka" variant="full" background="default"
               title="Napište nám"
-              lead="Nechte nám kontakt a krátkou zprávu — ozveme se co nejdříve." />
+              lead="Nechte nám kontakt a krátkou zprávu, ozveme se co nejdříve." />
   </main>
   <SiteFooter />
 </Base>
@@ -80,10 +84,13 @@ const support = [
   .office { text-align: left; }
   .ccard__icon { display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: var(--radius-md); background: color-mix(in srgb, var(--color-primary) 12%, #fff); color: var(--color-primary); margin-bottom: var(--space-3); }
   .ccard__phone { display: block; font-size: var(--font-size-h3); font-weight: var(--font-weight-bold); color: var(--color-secondary); text-decoration: none; margin-top: var(--space-2); }
-  .ccard__mail { display: block; font-size: var(--font-size-small); color: var(--color-text-accent); text-decoration: none; margin-top: var(--space-1); }
+  /* min-height 24px: klikací plocha podle WCAG 2.5.8. */
+  .ccard__mail { display: flex; align-items: center; min-height: 24px; font-size: var(--font-size-small); color: var(--color-text-accent); text-decoration: none; margin-top: var(--space-1); }
   .office__contacts { list-style: none; margin-top: var(--space-3); display: flex; flex-direction: column; gap: var(--space-2); }
   .office__contacts li { display: flex; align-items: center; gap: var(--space-2); font-size: var(--font-size-small); }
-  .office__contacts a { color: var(--color-text-accent); text-decoration: none; }
+  /* min-height 24px: telefon a mail se na mobilu vytáčí prstem, klikací plocha
+     měla 21px (WCAG 2.5.8 chce aspoň 24). */
+  .office__contacts a { color: var(--color-text-accent); text-decoration: none; display: inline-flex; align-items: center; min-height: 24px; }
   .office__ico { color: var(--color-text-muted); }
   .head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-7); text-align: center; }
   .head > * + * { margin-top: var(--space-3); }

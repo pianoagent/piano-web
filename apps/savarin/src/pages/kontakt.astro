@@ -1,6 +1,6 @@
 ---
 /**
- * Savarin — Kontakt. Údaje z legacy stránky kontakt (ComInn s.r.o., Zlín).
+ * Savarin: Kontakt. Údaje z legacy stránky kontakt (ComInn s.r.o., Zlín).
  * Sdílené komponenty @piano/ui.
  */
 import Base from '../layouts/Base.astro';
@@ -13,10 +13,11 @@ import Text from '@piano/ui/components/Text.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import { savarinNav, savarinCta } from '../config/nav';
+import { savarinLeadProofs } from '../config/leadProofs';
 ---
 
-<Base title="Kontakt — Savarin / ComInn s.r.o."
-      description="Kontakt na ComInn s.r.o., Zlín — dodavatele restauračního a hotelového systému Savarin. Telefon 577 925 145, e-mail obchod@cominn.cz.">
+<Base title="Kontakt, ComInn s.r.o. | Savarin"
+      description="Kontakt na ComInn s.r.o., Zlín: dodavatele restauračního a hotelového systému Savarin. Telefon 577 925 145, e-mail obchod@cominn.cz.">
   <Header brand="Savarin" logoSrc="/logos/savarin_logo.svg" logoHeight="36px" homeHref="/" nav={savarinNav} cta={savarinCta} />
 
   <main>
@@ -67,7 +68,7 @@ import { savarinNav, savarinCta } from '../config/nav';
     </div>
   </Section>
 
-  <LeadForm id="poptavka" variant="full" message background="alt"
+  <LeadForm proofs={savarinLeadProofs} id="poptavka" variant="full" message background="alt"
             title="Napište nám"
             lead="Pomocí formuláře nás můžete kontaktovat. Stručně popište svůj provoz a my se vám co nejdříve ozveme."
             successUrl="/dekujeme" />
@@ -84,6 +85,7 @@ import { savarinNav, savarinCta } from '../config/nav';
   .contact__icon { display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: var(--radius-md); background: var(--color-bg-alt); color: var(--color-primary); }
   .contact__card a { color: var(--color-text-accent); text-decoration: none; }
   .contact__card a:hover { color: var(--color-secondary-terracotta); }
-  .contact__map { display: inline-flex; align-items: center; gap: var(--space-2); margin-top: var(--space-2); font-size: var(--font-size-small); font-weight: var(--font-weight-semibold); }
+  /* min-height 24px: klikací plocha podle WCAG 2.5.8. */
+  .contact__map { display: inline-flex; align-items: center; min-height: 24px; gap: var(--space-2); margin-top: var(--space-2); font-size: var(--font-size-small); font-weight: var(--font-weight-semibold); }
   .contact__map:hover { text-decoration: underline; }
 </style>

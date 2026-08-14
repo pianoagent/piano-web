@@ -1,6 +1,6 @@
 ---
 /**
- * Savarin — Servis. Obsah z legacy stránky sluzby-servis (servisní část).
+ * Savarin: Servis. Obsah z legacy stránky sluzby-servis (servisní část).
  * Ceny bez DPH, platné od 1. 1. 2026 (dle podkladu). Sdílené komponenty @piano/ui.
  */
 import Base from '../layouts/Base.astro';
@@ -15,6 +15,7 @@ import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import { savarinNav, savarinCta } from '../config/nav';
+import { savarinLeadProofs } from '../config/leadProofs';
 
 const schema = {
   '@context': 'https://schema.org',
@@ -27,8 +28,8 @@ const schema = {
 };
 ---
 
-<Base title="Servis Savarin — garance zásahu do 24 h, hotline 24/7"
-      description="Servisní služby k systému Savarin: garance servisního zásahu do 24 hodin, hotline 24/7 pro smluvní zákazníky, školení a nové verze. Ceník servisu se smlouvou i bez ní."
+<Base title="Servis s garancí zásahu do 24 h | Savarin"
+      description="Servisní služby k systému Savarin: garance zásahu do 24 hodin, hotline 24/7 pro smluvní zákazníky, školení a nové verze. Ceník servisu."
       schema={schema}>
   <Header brand="Savarin" logoSrc="/logos/savarin_logo.svg" logoHeight="36px" homeHref="/" nav={savarinNav} cta={savarinCta} />
 
@@ -107,9 +108,9 @@ const schema = {
     </div>
   </Section>
 
-  <LeadForm id="poptavka" variant="full" message background="alt"
+  <LeadForm proofs={savarinLeadProofs} id="poptavka" variant="full" message background="alt"
             title="Potřebujete servis nebo smlouvu?"
-            lead="Napište nám — domluvíme servisní smlouvu nebo vyřešíme konkrétní požadavek. Smluvním zákazníkům garantujeme zásah do 24 hodin."
+            lead="Napište nám, domluvíme servisní smlouvu nebo vyřešíme konkrétní požadavek. Smluvním zákazníkům garantujeme zásah do 24 hodin."
             successUrl="/dekujeme" />
 
   </main>

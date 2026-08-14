@@ -1,5 +1,5 @@
 ---
-/** Grason — Nejčastější dotazy — podniky. Ze starého webu (faq-companies, cs.json). Slug zachován kvůli SEO. */
+/** Grason: Nejčastější dotazy: podniky. Ze starého webu (faq-companies, cs.json). Slug zachován kvůli SEO. */
 import Base from '../layouts/Base.astro';
 import Header from '@piano/ui/components/Header.astro';
 import Footer from '@piano/ui/components/Footer.astro';
@@ -28,12 +28,12 @@ const items = [
   { q: 'Kde všude Grason aplikace funguje?', a: 'Grason funguje po celé republice. Jste-li z odlehlejšího regionu a máte-li tu možnost, je vhodné k práci nabídnout i ubytování. Grasoni rádi přijedou i do horských či turistických lokalit.' },
 ];
 ---
-<Base title="Nejčastější dotazy — podniky | Grason"
+<Base title="Nejčastější dotazy: podniky | Grason"
       description="Odpovědi na nejčastější dotazy podniků: registrace, předplatné GrasonFlexi, směny, smlouvy s pracovníky, hodinové sazby.">
   <Header brand="Grason" logoSrc="/logos/grason_logo.svg" logoHeight="28px" homeHref="/" nav={grasonNav} cta={grasonCta} login={grasonLogin} />
   <main>
-    <Hero eyebrow="Podpora" background="alt" space="md" lead="Registrace podniku, směny, předplatné i vyplácení pracovníků — vše na jednom místě.">
-      <Heading slot="title" as="h1" size="h1">Nejčastější dotazy — podniky</Heading>
+    <Hero eyebrow="Podpora" background="alt" space="md" lead="Registrace podniku, směny, předplatné i vyplácení pracovníků: vše na jednom místě.">
+      <Heading slot="title" as="h1" size="h1">Nejčastější dotazy: podniky</Heading>
     </Hero>
     <Faq items={items} title="" background="default" />
   </main>

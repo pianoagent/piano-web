@@ -1,0 +1,28 @@
+---
+/**
+ * Reveal.astro: obalí obsah scroll reveal animací.
+ *
+ * <Reveal>            jeden prvek
+ * <Reveal group>      mřížka: potomci nastupují se staggerem
+ * <Reveal as="section"> jiný tag než div
+ *
+ * Vyžaduje reveal.css + reveal.js v layoutu (viz README).
+ */
+interface Props {
+  group?: boolean;
+  as?: string;
+  class?: string;
+}
+const { group = false, as = 'div', class: className = '', ...rest } = Astro.props;
+const Tag = as as any;
+---
+
+{group ? (
+  <Tag data-reveal-group class={className} {...rest}>
+    <slot />
+  </Tag>
+) : (
+  <Tag class={`reveal ${className}`} {...rest}>
+    <slot />
+  </Tag>
+)}

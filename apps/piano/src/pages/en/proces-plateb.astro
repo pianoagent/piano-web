@@ -1,6 +1,6 @@
 ---
 /**
- * Payment process — English page piano.cz/en/proces-plateb (layout follows the real piano.cz).
+ * Payment process: English page piano.cz/en/proces-plateb (layout follows the real piano.cz).
  * Whole section on warm white, alternating steps (text/image), CTA + contact band.
  */
 import Base from '../../layouts/Base.astro';
@@ -8,6 +8,7 @@ import Section from '@piano/ui/components/Section.astro';
 import Heading from '@piano/ui/components/Heading.astro';
 import Text from '@piano/ui/components/Text.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
+import { pianoLeadProofsEn } from '../../config/leadProofs';
 
 const steps = [
   { img: '/images/proces-1.webp', label: 'Granting access', title: 'Approval without the owner/manager', points: [
@@ -31,7 +32,7 @@ const steps = [
       title="Supplier payment process, Piano Terminal"
       description="How authorization of cashless supplier payments works via Piano Terminal and Qerko, step by step, securely and without staff access to your account.">
 
-  <!-- Process — all on warm white, alternating steps -->
+  <!-- Process: all on warm white, alternating steps -->
   <Section background="warm" space="lg">
     <Heading as="h1" size="h1" align="center" class="pp-title">The supplier payment authorization process</Heading>
     <ol class="pp-steps">
@@ -62,7 +63,7 @@ const steps = [
     <a class="contactband__half contactband__half--alt" href="mailto:info@piano.cz">info@piano.cz</a>
   </div>
 
-  <LeadForm id="poptavka" variant="full" locale="en"
+  <LeadForm proofs={pianoLeadProofsEn} id="poptavka" variant="full" locale="en"
             title="Contact us today for a free consultation"
             lead="Get in touch and we will put together an offer tailored to your operation." />
 
@@ -83,7 +84,7 @@ const steps = [
   /* CTA */
   .pp-cta { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-7); align-items: center; max-width: var(--container-max); }
 
-  /* Contact band — two crimson halves */
+  /* Contact band: two crimson halves */
   .contactband { display: flex; flex-wrap: wrap; }
   .contactband__half { flex: 1 1 50%; text-align: center; text-decoration: none; color: var(--color-text-on-dark); background: var(--color-primary-bg); padding: var(--space-6) var(--space-4); font-size: var(--font-size-lead); font-weight: var(--font-weight-medium); transition: var(--transition); }
   .contactband__half:hover { background: var(--color-primary-bg-hover); }

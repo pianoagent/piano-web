@@ -1,31 +1,74 @@
 ---
 /**
- * StatsBand — SDÍLENÝ pruh se statistikami (grid čísel s popiskem).
- * Čísla se předávají přes prop `items` — per-web výchozí hodnoty řeší
- * tenký wrapper v dané app (apps/<web>/src/components/StatsBand.astro).
+ * StatsBand: SDÍLENÝ pruh se statistikami (velké číslo + popisek).
  *
- *   items       — [{ num, lbl }]
- *   background  — 'default' | 'alt'
+ *   items: [{ num, lbl }]
+ *   columns: 3 | 4 (default 4). Na mobilu se 4 sloupce lámou na 2, 3 sloupce na 1.
+ *   background: 'default' | 'alt' | 'invert' | 'primary'
+ *   space: mezera sekce, 'sm' (default) | 'md' | 'lg'
+ *
+ * Typografii čísel řídí značka přes tokeny v theme.css, ne přes props:
+ *   --stats-num-size    velikost čísla (default --font-size-h2)
+ *   --stats-num-font    řez písma čísla (default dědí, Hugo má serif)
+ *   --stats-num-weight  tučnost (default --font-weight-bold)
+ *   --stats-num-color   barva (default --color-secondary, na tmavém pásu bílá)
+ *   --stats-item-gap    mezera mezi číslem a popiskem (default --space-1)
+ *   --stats-item-pad    vnitřní odsazení položky (default 0, Hugo má --space-3)
+ *   --stats-gap-mobile  mezera mřížky na mobilu (default --space-5)
  */
 import Section from './Section.astro';
 
 interface Stat { num: string; lbl: string; }
-interface Props { items: Stat[]; background?: 'default' | 'alt'; }
-const { items, background = 'alt' } = Astro.props;
+interface Props {
+  items: Stat[];
+  columns?: 3 | 4;
+  background?: 'default' | 'alt' | 'invert' | 'primary';
+  space?: 'sm' | 'md' | 'lg';
+}
+const { items, columns = 4, background = 'alt', space = 'sm' } = Astro.props;
+const onDark = background === 'invert' || background === 'primary';
 ---
 
-<Section background={background} space="sm">
-  <ul class="stats">
+{/* Reveal na sekci vypnutý, nasouvá se každé číslo zvlášť. Kdyby se animovala
+    i sekce, transformace by se skládaly a pruh by se hýbal dvakrát.
+
+    Čísla se ZÁMĚRNĚ nepočítají od nuly. Grason to tak nemá (jeho BigNumber
+    sloupce jen prokreslí a nasune s prodlevou 250 a 500ms) a dopočítávání by
+    tady navíc měnilo šířku textu pod číslem, takže by popisek poskakoval.
+    Hodnota je proto v HTML rovnou, JS do ní nesahá: čtečka i vyhledávač
+    vidí finální číslo. Start 250ms je z Grasonova BigNumberu, krok už je
+    naše listová kadence, protože pro čtyři čísla čte lépe než dva kroky. */}
+<Section background={background} space={space} reveal={false}>
+  <ul class:list={['stats', `stats--cols-${columns}`, onDark && 'stats--on-dark']}
+      data-reveal-group style="--reveal-stagger-base: 250ms">
     {items.map((s) => (
-      <li class="stats__item"><span class="stats__num">{s.num}</span><span class="stats__lbl">{s.lbl}</span></li>
+      <li class="stats__item reveal"><span class="stats__num">{s.num}</span><span class="stats__lbl">{s.lbl}</span></li>
     ))}
   </ul>
 </Section>
 
 <style>
-  .stats { list-style: none; display: grid; gap: var(--space-5); grid-template-columns: repeat(4, 1fr); text-align: center; }
-  .stats__item { display: flex; flex-direction: column; gap: var(--space-1); }
-  .stats__num { font-size: var(--font-size-h2); font-weight: var(--font-weight-bold); line-height: 1; color: var(--color-secondary); }
+  .stats { list-style: none; display: grid; gap: var(--space-5); text-align: center; }
+  .stats--cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .stats--cols-4 { grid-template-columns: repeat(4, 1fr); }
+  .stats__item { display: flex; flex-direction: column; gap: var(--stats-item-gap, var(--space-1)); padding: 0 var(--stats-item-pad, 0); }
+  .stats__num {
+    font-family: var(--stats-num-font, inherit);
+    font-size: var(--stats-num-size, var(--font-size-h2));
+    font-weight: var(--stats-num-weight, var(--font-weight-bold));
+    line-height: 1;
+    color: var(--stats-num-color, var(--color-secondary));
+    white-space: nowrap;
+  }
   .stats__lbl { font-size: var(--font-size-small); color: var(--color-text-muted); }
-  @media (max-width: 720px) { .stats { grid-template-columns: repeat(2, 1fr); } }
+
+  /* Na tmavém pásu (Harsys /reference) musí číslo i popisek zesvětlit. */
+  .stats--on-dark .stats__num { color: var(--stats-num-color-on-dark, #fff); }
+  .stats--on-dark .stats__lbl { color: var(--color-text-on-dark-muted); }
+
+  @media (max-width: 720px) {
+    .stats { gap: var(--stats-gap-mobile, var(--space-5)); }
+    .stats--cols-4 { grid-template-columns: repeat(2, 1fr); }
+    .stats--cols-3 { grid-template-columns: 1fr; }
+  }
 </style>

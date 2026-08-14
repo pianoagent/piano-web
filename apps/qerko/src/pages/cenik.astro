@@ -1,6 +1,6 @@
 ---
 /**
- * Qerko — Ceník. Obsah z qerko-context.md (transakční poplatky, starter packy, instalace).
+ * Qerko: Ceník. Obsah z qerko-context.md (transakční poplatky, starter packy, instalace).
  * Vše ze sdílených komponent @piano/ui; sekce bez vlastní komponenty složené z primitivů.
  */
 import Base from '../layouts/Base.astro';
@@ -17,7 +17,7 @@ const transakce = [
   { item: 'Transakční poplatek', price: '2,90 Kč / platba + 1,35 %' },
   { item: 'Stravenky Edenred', price: '+1,9 %' },
   { item: 'Naše Stravenka', price: '+4,5 %' },
-  { item: 'Benefit Plus', price: '+5,3 %' },
+  { item: 'Pluxee', price: '+5,3 %' },
   { item: 'UP', price: '+5,5 %' },
 ];
 
@@ -31,12 +31,12 @@ const packs = [
 
 const included = [
   'QR platby od stolu', 'Digitální menu a objednávání', 'Rozdělení účtu a spropitné',
-  'Věrnostní program', 'Rezervace', 'Hodnocení a Google recenze', 'Napojení na 30+ POS',
+  'Věrnostní program', 'Rezervace', 'Hodnocení a Google recenze', 'Napojení na 26 POS',
 ];
 ---
 
-<Base title="Ceník | Qerko"
-      description="Ceník Qerko: transakční poplatek 2,90 Kč + 1,35 %, starter packy od 2 890 Kč podle počtu stolů. Bez měsíčního paušálu — platby, objednávání, věrnostní program i rezervace jsou v ceně.">
+<Base title="Ceník Qerka bez paušálu | Qerko"
+      description="Ceník Qerko: transakční poplatek 2,90 Kč a 1,35 %, starter packy od 2 890 Kč. Bez měsíčního paušálu, platby i objednávání jsou v ceně.">
   <SiteHeader />
   <main>
     <Hero eyebrow="Ceník" background="gradient" align="center"

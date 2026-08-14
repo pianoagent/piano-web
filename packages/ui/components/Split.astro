@@ -1,0 +1,139 @@
+---
+/**
+ * Split: SDÍLENÁ sekce text a médium vedle sebe, v obou pořadích.
+ *
+ * Tuhle sekci si dosud dělalo samo devět stránek (Harsys 4x, Savarin 3x,
+ * Grason, Protel) a shodně přes třídy .split, .split__text, .split__media
+ * a .split--reverse. Tohle je totéž jako komponenta, takže se ty ruční kopie
+ * dají nahradit beze změny vzhledu.
+ *
+ *   eyebrow, title / titleHtml, lead   hlavička textového sloupce
+ *   bullets      odrážky s fajfkou pod perexem
+ *   reverse      médium vlevo, text vpravo (default je text vlevo)
+ *   ratio        'equal' 1:1 (default) | 'text' širší text | 'media' širší médium
+ *   image        cesta k obrázku, nebo si médium pošli slotem "media"
+ *   background, space, id
+ *
+ * Sloty: "media" (obrázek, video, cokoli), "actions" (CTA), default (obsah
+ * pod perexem, když nestačí bullets).
+ *
+ * Na mobilu je médium VŽDY nahoře, ať je pořadí jakékoli. Obrázek dole pod
+ * dlouhým textem už nikdo neuvidí.
+ */
+import Section from './Section.astro';
+import Heading from './Heading.astro';
+import Text from './Text.astro';
+import Icon from './Icon.astro';
+
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  /* Nadpis s akcentem (<em> nebo <span class="accent">). Jde přes set:html,
+     takže sem nedávat vstup od uživatele. */
+  titleHtml?: string;
+  lead?: string;
+  bullets?: string[];
+  reverse?: boolean;
+  ratio?: 'equal' | 'text' | 'media';
+  image?: string;
+  imageAlt?: string;
+  background?: 'default' | 'alt' | 'invert' | 'primary';
+  space?: 'sm' | 'md' | 'lg';
+  id?: string;
+}
+const {
+  eyebrow, title, titleHtml, lead, bullets = [],
+  reverse = false, ratio = 'equal',
+  image, imageAlt = '',
+  background = 'default', space = 'md', id,
+} = Astro.props;
+
+const onDark = background === 'invert' || background === 'primary';
+const hasTitleSlot = Astro.slots.has('title');
+const hasActions = Astro.slots.has('actions');
+const hasMediaSlot = Astro.slots.has('media');
+
+/* Text přijíždí ze své strany, médium z opačné, stejně jako hero split.
+   Nadpis hned, perex po 300ms, CTA po 600ms. */
+const textFrom = reverse ? 'reveal--from-right' : 'reveal--from-left';
+const mediaFrom = reverse ? 'reveal--from-left' : 'reveal--from-right';
+const rv = (from: string, delay?: 'd1' | 'd2') => ['reveal', from, delay && `reveal--${delay}`].filter(Boolean).join(' ');
+---
+
+<Section background={background} space={space} id={id} reveal={false}>
+  <div class:list={['split', `split--ratio-${ratio}`, reverse && 'split--reverse', onDark && 'split--on-dark']}>
+    <div class="split__text">
+      <div class:list={['split__head', rv(textFrom)]}>
+        {eyebrow && <Text size="label" color={onDark ? 'on-dark-muted' : 'accent'}>{eyebrow}</Text>}
+        {hasTitleSlot ? <slot name="title" /> : (
+          (title || titleHtml) && (
+            <Heading as="h2" size="h2" color={onDark ? 'on-dark' : 'default'}>
+              {titleHtml ? <Fragment set:html={titleHtml} /> : title}
+            </Heading>
+          )
+        )}
+      </div>
+
+      {lead && (
+        <Text size="lead" color={onDark ? 'on-dark-muted' : 'muted'} balance class={`split__lead ${rv(textFrom, 'd1')}`}>{lead}</Text>
+      )}
+
+      {bullets.length > 0 && (
+        <ul class:list={['split__list', rv(textFrom, 'd1')]}>
+          {bullets.map((b) => (
+            <li class="split__item">
+              <span class="split__check"><Icon name="lucide:check" size="sm" /></span>
+              <span>{b}</span>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      <slot />
+
+      {hasActions && (
+        <div class:list={['split__cta', rv(textFrom, 'd2')]}><slot name="actions" /></div>
+      )}
+    </div>
+
+    <figure class:list={['split__media', rv(mediaFrom, 'd1')]}>
+      {hasMediaSlot ? <slot name="media" /> : (
+        image && <img src={image} alt={imageAlt} loading="lazy" decoding="async" />
+      )}
+    </figure>
+  </div>
+</Section>
+
+<style>
+  .split { display: grid; gap: var(--space-8); align-items: center; }
+  .split--ratio-equal { grid-template-columns: 1fr 1fr; }
+  .split--ratio-text  { grid-template-columns: 1.15fr 0.85fr; }
+  .split--ratio-media { grid-template-columns: 0.85fr 1.15fr; }
+
+  .split__head > * + * { margin-top: var(--space-3); }
+  .split__lead { margin-top: var(--space-4); }
+
+  .split__list { list-style: none; margin-top: var(--space-5); display: flex; flex-direction: column; gap: var(--space-3); }
+  .split__item { display: flex; align-items: flex-start; gap: var(--space-3); }
+  .split__check { flex-shrink: 0; color: var(--color-text-accent); line-height: 1; margin-top: 2px; }
+  .split--on-dark .split__check { color: var(--color-secondary-gold, var(--color-text-on-dark)); }
+
+  .split__cta { margin-top: var(--space-6); display: flex; flex-wrap: wrap; gap: var(--space-3); }
+
+  .split__media { margin: 0; line-height: 0; }
+  .split__media :global(img),
+  .split__media :global(video) {
+    width: 100%; height: auto; display: block;
+    border-radius: var(--radius-lg);
+  }
+
+  /* Obrácené pořadí: médium do prvního sloupce. Přes order, ne přes prohození
+     v markupu, aby text zůstal v DOM první a čtečka i vyhledávač ho vzali dřív. */
+  .split--reverse .split__media { order: -1; }
+
+  @media (max-width: 860px) {
+    .split { grid-template-columns: 1fr; gap: var(--space-6); }
+    /* Médium nahoru vždycky, i u neobráceného pořadí. */
+    .split__media, .split--reverse .split__media { order: -1; }
+  }
+</style>

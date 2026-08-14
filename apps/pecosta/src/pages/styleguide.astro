@@ -1,0 +1,24 @@
+---
+/**
+ * Katalog komponent: Pecosta.
+ *
+ * Obsah je sdílená Gallery z @piano/ui, takže katalog je na všech webech stejný
+ * a renderuje se vždycky v tokenech a fontech té které značky. Stránka je
+ * noindex a je vyřazená ze sitemapy, není určená pro vyhledávače ani zákazníky.
+ * Slouží k ladění s grafikem a jako referenci, z čeho se skládají stránky.
+ */
+import Base from '../layouts/Base.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import Gallery from '@piano/ui/gallery/Gallery.astro';
+---
+
+<Base title="Katalog komponent | Pecosta" noindex
+      description="Interní katalog sdílených komponent, jejich variant a tokenů značky Pecosta.">
+  <SiteHeader />
+  <main>
+    <Gallery brand="Pecosta"
+      />
+  </main>
+  <SiteFooter />
+</Base>

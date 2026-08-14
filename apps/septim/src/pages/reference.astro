@@ -1,5 +1,5 @@
 ---
-/** Septim — Reference / Naši zákazníci. Obsah: septim-obsah/nasi-zakaznici.md. SEO meta nově. */
+/** Septim: Reference / Naši zákazníci. Obsah: septim-obsah/nasi-zakaznici.md. SEO meta nově. */
 import Base from '../layouts/Base.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
@@ -12,38 +12,42 @@ import LeadForm from '@piano/ui/components/LeadForm.astro';
 import StatsBand from '../components/StatsBand.astro';
 import LogoWall from '../components/LogoWall.astro';
 import Testimonials from '../components/Testimonials.astro';
+import { septimLeadProofs } from '../config/leadProofs';
 ---
-<Base title="Reference – koho řídí Septim | michelinské restaurace i sítě"
-      description="Septim používají Ambiente, FIELD, Entrée, Kolkovna, SaSaZu, Zátiší Group i Pizza Coloseum. Michelinské restaurace, přední sítě a známí šéfkuchaři. Jednička na trhu už 30 let.">
+<Base title="Naši zákazníci a reference | Septim"
+      description="Ambiente, FIELD, Kolkovna, Grandhotel Pupp a další. Podívejte se, které špičkové restaurace a hotely spoléhají na Septim.">
   <SiteHeader />
   <main>
     <Hero eyebrow="Reference" background="gradient"
-          lead="Komplexní provozní systém Septim je nejrespektovanější software pro restaurace v ČR. Michelinské restaurace, přední sítě i známí šéfkuchaři — většina používá právě Septim.">
+          lead="Komplexní provozní systém Septim je nejrespektovanější software pro restaurace v ČR. Michelinské restaurace, přední sítě i známí šéfkuchaři, většina používá právě Septim.">
       <Heading slot="title" as="h1" size="display" color="on-dark">Důvěřují nám <em>ti nejlepší</em></Heading>
       <Fragment slot="actions">
         <Button href="#poptavka">Chci Septim</Button>
       </Fragment>
+      <figure slot="media" class="hero-pic">
+        <img src="/images/reference.webp" alt="Interiér restaurace, která používá systém Septim" width="1100" height="1003" loading="eager" decoding="async" />
+      </figure>
     </Hero>
 
     <LogoWall label="Více než 1 500 spokojených provozů po celé ČR" background="default" />
     <StatsBand />
-    <Testimonials background="alt" lead="Od michelinských restaurací po kavárny za rohem — Septim řídí provoz těch nejnáročnějších." />
+    <Testimonials background="alt" lead="Od michelinských restaurací po kavárny za rohem. Septim řídí provoz těch nejnáročnějších." />
 
     <Section background="default" space="lg">
       <div class="cta">
         <Text size="label" color="accent">Případová studie</Text>
-        <Heading as="h2" size="h2">Kolkovna &amp; Septim — 23 let spolu</Heading>
+        <Heading as="h2" size="h2">Kolkovna &amp; Septim: 23 let spolu</Heading>
         <Text color="muted" class="cta__text">
-          2 bistra, 10 restaurací a 1 jídelna pod jednou skupinou — celé řízené Septimem. Podívejte se,
+          2 bistra, 10 restaurací a 1 jídelna pod jednou skupinou, celé řízené Septimem. Podívejte se,
           jak vypadá spolupráce, která trvá přes dvě dekády.
         </Text>
         <Button href="/kolkovna/10x-restaurant" variant="secondary">Přečíst případovou studii</Button>
       </div>
     </Section>
 
-    <LeadForm id="poptavka" variant="full" background="alt"
+    <LeadForm proofs={septimLeadProofs} id="poptavka" variant="full" background="alt"
               title="Přidejte se k nejlepším"
-              lead="Nechte nám kontakt — ukážeme vám Septim přímo na vašem typu provozu." />
+              lead="Nechte nám kontakt, ukážeme vám Septim přímo na vašem typu provozu." />
   </main>
   <SiteFooter />
 </Base>

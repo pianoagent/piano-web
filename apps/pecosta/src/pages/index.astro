@@ -1,16 +1,18 @@
 ---
 /**
- * Pecosta — homepage (první verze).
+ * Pecosta: homepage (první verze).
  * Obsah z pecosta-context.md + blok #page-pecosta (piano-web-2026.html).
  * Vše ze SDÍLENÝCH komponent @piano/ui; téma řeší src/styles/theme.css.
  * Sekce bez vlastní komponenty (Stats, Steps, Integrace, Reference, Logo wall,
- * FAQ) jsou složené z primitivů (Section/Heading/Text/Button/Icon) —
+ * FAQ) jsou složené z primitivů (Section/Heading/Text/Button/Icon)
  * komponenty se NEFORKUJÍ.
  */
 import Base from '../layouts/Base.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import Section from '@piano/ui/components/Section.astro';
+import Faq from '@piano/ui/components/Faq.astro';
+import Testimonials from '@piano/ui/components/Testimonials.astro';
 import Hero from '@piano/ui/components/Hero.astro';
 import Heading from '@piano/ui/components/Heading.astro';
 import Text from '@piano/ui/components/Text.astro';
@@ -22,16 +24,10 @@ import LogoWall from '@piano/ui/components/LogoWall.astro';
 import { pecostaLeadProofs } from '../config/leadProofs';
 import { klientiGastro } from '../config/klienti';
 
-const stats = [
-  { num: '16 %', lbl: 'průměrná úspora na surovinách' },
-  { num: '25 %', lbl: 'úspora na energiích' },
-  { num: '960+', lbl: 'provozů nakupuje s Pecostou' },
-  { num: '2,5 mld.', lbl: 'Kč nákupní objem ročně' },
-];
 
 const steps = [
   { icon: 'lucide:calculator', title: 'Analýza zdarma', text: 'Připravíme cenové porovnání a kalkulaci úspor bez závazků. Vidíte reálná čísla ještě před podpisem.' },
-  { icon: 'lucide:plug', title: 'Napojení dodavatelů', text: 'Napojíme vaše stávající dodavatele na náš nákupní portál. Nemusíte je měnit — soutěží o vaši přízeň.' },
+  { icon: 'lucide:plug', title: 'Napojení dodavatelů', text: 'Napojíme vaše stávající dodavatele na náš nákupní portál. Nemusíte je měnit, soutěží o vaši přízeň.' },
   { icon: 'lucide:shopping-cart', title: 'Nakupujete z jednoho místa', text: 'Nakupujete od všech svých dodavatelů z jednoho portálu za ceny z aukcí.' },
   { icon: 'lucide:package-check', title: 'Automatické naskladnění', text: 'Dodací listy jdou automaticky do vašeho skladového systému přes Autset.' },
 ];
@@ -39,7 +35,7 @@ const steps = [
 const features = [
   { icon: 'lucide:gavel', title: 'Aukční nákupy surovin', text: 'E-aukce od ověřených dodavatelů. Ceny srovnané u stovek dodavatelů najednou.' },
   { icon: 'lucide:zap', title: 'Energie pro gastro', text: 'Úspora až 25 % na elektřině a plynu. Energie sdružíme a vyjednáme lepší ceny.' },
-  { icon: 'lucide:package', title: 'Autset — automatické naskladnění', text: 'Dodací listy od 400+ dodavatelů se automaticky přenesou do vašeho skladového systému.' },
+  { icon: 'lucide:package', title: 'Autset: automatické naskladnění', text: 'Dodací listy od 450+ dodavatelů se automaticky přenesou do vašeho skladového systému.' },
   { icon: 'lucide:bar-chart-3', title: 'Přehled nákladů', text: 'Jeden portál pro všechny nákupy. Vidíte, kde utrácíte a kde šetříte.' },
   { icon: 'lucide:shield-check', title: 'Ověření dodavatelé', text: 'Nakupujete od prověřených partnerů. Kvalita se nemění, cena jde dolů.' },
   { icon: 'lucide:badge-percent', title: 'Analýza zdarma', text: 'Víte, kolik ušetříte, ještě před zahájením spolupráce. Bez závazků.' },
@@ -59,10 +55,10 @@ const testimonials = [
 
 
 const faqs = [
-  { q: 'Jak funguje aukční nákup?', a: 'Pecosta pravidelně sdružuje poptávky stovek provozů a vyjednává hromadné ceny — dostanete ceny, na které byste jako jednotlivec nedosáhli. Dodavatelé soutěží, vy vyděláváte.' },
+  { q: 'Jak funguje aukční nákup?', a: 'Pecosta pravidelně sdružuje poptávky stovek provozů a vyjednává hromadné ceny, dostanete ceny, na které byste jako jednotlivec nedosáhli. Dodavatelé soutěží, vy vyděláváte.' },
   { q: 'Kolik reálně ušetřím?', a: 'V průměru až 16 % na surovinách a 25 % na energiích. Konkrétní číslo pro váš provoz spočítáme v bezplatné analýze.' },
   { q: 'Musím měnit dodavatele?', a: 'Není třeba. Nákupy řešíte z jednoho místa a Pecosta vám nabízí nejlepší ceny od ověřených dodavatelů. S největší pravděpodobností zde najdete i 90 % těch svých. Nakupovat však můžete i nadále od svých lokálních dodavatelů a na nákupní portál je dodatečně zařadit.' },
-  { q: 'Co je automatické naskladnění?', a: 'Dodací listy se naskladní automaticky (přes Autset), bez ručního přepisování — ušetříte hodiny administrativy každý měsíc.' },
+  { q: 'Co je automatické naskladnění?', a: 'Dodací listy se naskladní automaticky (přes Autset), bez ručního přepisování, ušetříte hodiny administrativy každý měsíc.' },
   { q: 'Hodí se Pecosta i pro menší provoz?', a: 'Ano. Automatické naskladňování šetří čas menší kavárně stejně jako hotelovým sítím. Aukční nákupy pak doporučujeme hlavně provozům, jejichž objem nákupů přesahuje 5 mil. Kč ročně. Čím víc nakupujete, tím víc ušetříte.' },
 ];
 
@@ -70,12 +66,12 @@ const faqs = [
 
 <Base title="Nákupčí pro váš podnik | Pecosta"
       description="Pecosta vám díky aukčním nákupům ušetří až 16 % na surovinách i energiích a Autset zvládne zboží automaticky naskladnit.">
-  <SiteHeader />
+  <SiteHeader transparent />
 
   <main>
 
   <!-- HERO -->
-  <Hero eyebrow="Aukční nákupy surovin a energií" background="gradient"
+  <Hero eyebrow="Jednoduše chytrý nákup" background="invert" variant="cover"
         lead="Poskytujeme nástroje, se kterými ušetříte až 16 % nákladů na suroviny, 25 % na energie a až 30 hodin práce spojené s naskladňováním zboží."
         usp={[{ text: '-16 % na surovinách', icon: 'lucide:badge-percent' }, { text: '-25 % na energiích', icon: 'lucide:zap' }, { text: '-30 hodin měsíčně', icon: 'lucide:clock' }]}>
     <Heading slot="title" as="h1" size="display" color="on-dark">Šetříme náklady vašemu provozu</Heading>
@@ -83,14 +79,11 @@ const faqs = [
       <Button href="#poptavka">Chci aukční nákupy</Button>
       <Button href="#poptavka" variant="secondary" onDark>Kolik ušetřím?</Button>
     </Fragment>
-    <figure slot="media" class="hero-figure">
-      <video src="/videos/hero-pecosta.mp4" poster="/images/hero-pecosta.webp"
-             autoplay loop muted playsinline width="1280" height="720"
-             aria-label="Pecosta — chytrý nákup surovin a energií"></video>
-    </figure>
+    <video slot="media" src="/videos/hero-pecosta.mp4" poster="/images/hero-pecosta.webp"
+           autoplay loop muted playsinline width="1280" height="720"></video>
   </Hero>
 
-  <!-- LOGA KLIENTŮ — hned pod hero -->
+  <!-- LOGA KLIENTŮ: hned pod hero -->
   <LogoWall id="zakaznici" background="default" label="Naši klienti" logos={klientiGastro} ext="webp" logoHeight="44px" />
 
   <!-- JAK TO FUNGUJE -->
@@ -117,7 +110,7 @@ const faqs = [
   <!-- FUNKCE (USPGrid neforwarduje id → kotva na wrapperu) -->
   <div id="funkce">
     <USPGrid eyebrow="Co Pecosta umí" title="Nakupujte chytřeji. Nakupujte za míň."
-             lead="Aukční nákupy surovin, výhodnější energie a automatické naskladnění — vše z jednoho místa."
+             lead="Aukční nákupy surovin, výhodnější energie a automatické naskladnění: vše z jednoho místa."
              items={features} minItemWidth="280px" background="alt" space="lg" />
   </div>
 
@@ -128,7 +121,7 @@ const faqs = [
       <Heading as="h2" size="h2" align="center" color="on-dark">Pecosta + Autset = <em>nákup bez práce</em></Heading>
       <Text size="lead" color="on-dark-muted" align="center">Od objednávky po naskladnění bez ručního přepisování.</Text>
       <Text color="on-dark-muted" align="center" balance>
-        Naše řešení je propojeno s většinou gastro systémů na českém trhu a s více než 400 dodavateli potravin a nápojů.
+        Naše řešení je propojeno s 15 skladovými systémy na českém a slovenském trhu a s více než 450 dodavateli potravin a nápojů.
       </Text>
     </div>
     <ul class="chips">
@@ -139,35 +132,15 @@ const faqs = [
   </Section>
 
   <!-- REFERENCE -->
-  <Section id="reference" background="alt" space="lg">
-    <div class="head head--center">
-      <Text size="label" color="accent" align="center">Reference</Text>
-      <Heading as="h2" size="h2" align="center">Spoří s námi <em>ti nejlepší</em></Heading>
-      <Text size="lead" color="muted" align="center" balance>
-        Od hotelových skupin po michelinské restaurace — Pecosta drží náklady pod kontrolou.
-      </Text>
-    </div>
-    <div class="quotes">
-      {testimonials.map((t, i) => (
-        <figure class={`quote quote--${i}`}>
-          <div class="quote__head">
-            <div class="quote__id">
-              <strong class="quote__name">{t.author}</strong>
-              <span class="quote__role">{t.role}</span>
-            </div>
-            <span class="quote__avatar" aria-hidden="true">{t.initials}</span>
-          </div>
-          <span class="quote__mark"><Icon name="lucide:quote" size="md" /></span>
-          <p class="quote__headline">{t.headline}</p>
-          <blockquote class="quote__text">{t.quote}</blockquote>
-        </figure>
-      ))}
-    </div>
-    <div class="quotes__cta">
-      <Button href="#zakaznici" variant="secondary">Naši zákazníci</Button>
-    </div>
-  </Section>
-
+  <Testimonials
+    background="alt"
+    id="reference"
+    items={testimonials}
+    eyebrow="Reference"
+    titleHtml="Spoří s námi <em>ti nejlepší</em>"
+    lead="Od hotelových skupin po michelinské restaurace. Pecosta drží náklady pod kontrolou.">
+    <Button href="#zakaznici" variant="secondary">Naši zákazníci</Button>
+  </Testimonials>
   <!-- CTA -->
   <Section background="primary" space="lg">
     <div class="head head--center">
@@ -178,31 +151,21 @@ const faqs = [
       </Text>
       <div class="cta-actions">
         <Button href="#poptavka">Chci analýzu zdarma</Button>
-        <Button href="tel:+420734442683" variant="secondary">+420 734 442 683</Button>
+        <Button href="tel:+420734442683" variant="secondary" onDark>+420 734 442 683</Button>
       </div>
     </div>
   </Section>
 
   <!-- FAQ -->
-  <Section background="default" space="lg">
-    <div class="head head--center">
-      <Heading as="h2" size="h2" align="center">Často kladené dotazy</Heading>
-      <Text size="lead" color="muted" align="center">Nenašli jste odpověď? Ozvěte se nám, rádi vám poradíme.</Text>
-    </div>
-    <div class="faq">
-      {faqs.map((f) => (
-        <details class="faq__item">
-          <summary>{f.q}<Icon name="lucide:chevron-down" size="sm" class="faq__chev" /></summary>
-          <div class="faq__a"><Text color="muted">{f.a}</Text></div>
-        </details>
-      ))}
-    </div>
-  </Section>
-
+  <Faq
+    background="default"
+    items={faqs}
+    title="Často kladené dotazy"
+    lead="Nenašli jste odpověď? Ozvěte se nám, rádi vám poradíme." />
   <!-- POPTÁVKA -->
   <LeadForm id="poptavka" variant="full" background="alt"
             title="Zjistěte, kolik ušetříte"
-            lead="Nechte nám kontakt — připravíme cenové porovnání a kalkulaci úspor. Zdarma a bez závazků."
+            lead="Nechte nám kontakt, připravíme cenové porovnání a kalkulaci úspor. Zdarma a bez závazků."
             submitLabel="Chci analýzu zdarma"
             proofs={pecostaLeadProofs} />
 
@@ -228,16 +191,6 @@ const faqs = [
   .head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-7); }
   .head--center { text-align: center; }
   .head > * + * { margin-top: var(--space-3); }
-
-  /* Stats band */
-  .stats {
-    list-style: none; display: grid; gap: var(--space-5);
-    grid-template-columns: repeat(4, 1fr); text-align: center;
-  }
-  .stats__item { display: flex; flex-direction: column; gap: var(--space-1); }
-  .stats__num { font-size: var(--font-size-h2); font-weight: var(--font-weight-bold); line-height: 1; color: var(--color-secondary); }
-  .stats__lbl { font-size: var(--font-size-small); color: var(--color-text-muted); }
-  @media (max-width: 720px) { .stats { grid-template-columns: repeat(2, 1fr); } }
 
   /* Steps */
   .steps {
@@ -275,29 +228,7 @@ const faqs = [
   }
   .chip__dot { width: 8px; height: 8px; border-radius: 50%; background: var(--color-success); flex-shrink: 0; }
 
-  /* Reference */
-  .quotes { display: grid; gap: var(--space-8) var(--space-6); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-  .quote { margin: 0; display: flex; flex-direction: column; }
-  .quote__head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); margin-bottom: var(--space-5); }
-  .quote__id { display: flex; flex-direction: column; gap: 2px; }
-  .quote__name { font-size: var(--font-size-h3); font-weight: var(--font-weight-bold); color: var(--color-secondary); line-height: 1.1; }
-  .quote__role { font-size: var(--font-size-small); color: var(--color-text-muted); }
-  .quote__avatar {
-    flex-shrink: 0; width: 84px; height: 84px; border-radius: 50%;
-    display: inline-flex; align-items: center; justify-content: center;
-    font-size: var(--font-size-h3); font-weight: var(--font-weight-bold);
-    color: #fff; letter-spacing: 0.02em;
-    box-shadow: var(--shadow-md);
-  }
-  .quote--0 .quote__avatar { background: var(--testimonial-grad-1); }
-  .quote--1 .quote__avatar { background: var(--testimonial-grad-2); }
-  .quote--2 .quote__avatar { background: var(--testimonial-grad-3); }
-  .quote__mark { color: var(--color-primary); display: block; margin-bottom: var(--space-2); }
-  .quote__headline { font-weight: var(--font-weight-bold); color: var(--color-secondary); margin-bottom: var(--space-2); }
-  .quote__text { font-size: var(--font-size-body); color: var(--color-text-muted); line-height: var(--line-height-body); }
-  .quotes__cta { display: flex; justify-content: center; margin-top: var(--space-8); }
-
-  /* Logo wall — marquee */
+  /* Logo wall: marquee */
   .logos__label { margin-bottom: var(--space-5); }
   .logos { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
   .logos__track { display: flex; align-items: center; gap: var(--space-8); width: max-content; animation: logos-scroll 48s linear infinite; }
@@ -309,18 +240,4 @@ const faqs = [
   .cta-actions { display: flex; gap: var(--space-3); justify-content: center; flex-wrap: wrap; margin-top: var(--space-5); }
 
   /* FAQ */
-  .faq { max-width: 760px; margin-inline: auto; display: flex; flex-direction: column; gap: var(--space-3); }
-  .faq__item {
-    border: 1px solid var(--color-border); border-radius: var(--radius-md);
-    background: var(--color-bg); padding: 0 var(--space-5);
-  }
-  .faq__item summary {
-    display: flex; align-items: center; justify-content: space-between; gap: var(--space-4);
-    padding: var(--space-4) 0; cursor: pointer; font-weight: var(--font-weight-semibold);
-    list-style: none;
-  }
-  .faq__item summary::-webkit-details-marker { display: none; }
-  .faq__chev { transition: transform var(--duration-base) var(--easing); color: var(--color-text-muted); }
-  .faq__item[open] .faq__chev { transform: rotate(180deg); }
-  .faq__a { padding-bottom: var(--space-5); }
 </style>

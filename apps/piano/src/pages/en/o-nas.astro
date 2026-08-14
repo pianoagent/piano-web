@@ -1,6 +1,6 @@
 ---
 /**
- * About us — piano.cz/en/o-nas. Content mirrored from piano.cz. Shared components @piano/ui.
+ * About us: piano.cz/en/o-nas. Content mirrored from piano.cz. Shared components @piano/ui.
  */
 import Base from '../../layouts/Base.astro';
 import Section from '@piano/ui/components/Section.astro';
@@ -10,6 +10,7 @@ import Text from '@piano/ui/components/Text.astro';
 import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
+import { pianoLeadProofsEn } from '../../config/leadProofs';
 
 const stats = [
   { num: 'CZK 36bn', lbl: 'flows through our tools every year' },
@@ -17,7 +18,7 @@ const stats = [
   { num: '10+', lbl: 'tools for complete operations management' },
 ];
 
-// Piano in the media — video interviews (newest first)
+// Piano in the media: video interviews (newest first)
 const videos = [
   { publisher: 'Česká televize', logo: '/images/press/logos/ceska-televize.webp', date: '17. 7. 2026', image: 'https://ctfs.ceskatelevize.cz/ivysimgct/upload/ivysilani/indexes/226/226411000100717/1198887.jpg?width=1200&height=675', title: 'Výjimky z EET (Události ČT)', href: 'https://www.ceskatelevize.cz/porady/1097181328-udalosti/226411000100717/cast/1198887/' },
   { publisher: 'e15', logo: '/images/press/logos/e15.webp', date: '2. 4. 2026', image: '/images/press/e15.webp', title: 'Pod Lupou: České gastro sbírá uznání, zároveň bojuje o lidi. Bez změn bude tlak jen sílit', href: 'https://www.e15.cz/podcasty/pod-lupou-ceske-gastro-sbira-uznani-zaroven-bojuje-o-lidi-bez-zmen-bude-tlak-jen-silit-1431865' },
@@ -123,7 +124,7 @@ const articles = [
     </div>
   </Section>
 
-  <LeadForm id="poptavka" variant="full" locale="en"
+  <LeadForm proofs={pianoLeadProofsEn} id="poptavka" variant="full" locale="en"
             title="Let's digitalize your hospitality"
             lead="Get in touch and we will put together an offer tailored to your operation." />
 
@@ -146,7 +147,7 @@ const articles = [
     .vals { grid-template-columns: 1fr; gap: var(--space-6); }
   }
 
-  /* Piano in the media — video interviews + press coverage */
+  /* Piano in the media: video interviews + press coverage */
   .pm-h { margin-bottom: var(--space-7); }
   .pm-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-6); }
   .pm-grid--articles { grid-template-columns: repeat(3, minmax(0, 1fr)); }

@@ -1,5 +1,5 @@
 /**
- * i18n pro piano.cz — čeština v rootu (/), angličtina pod /en/.
+ * i18n pro piano.cz: čeština v rootu (/), angličtina pod /en/.
  *
  * Rollout probíhá po stránkách: EN_READY drží cesty, které už mají EN verzi.
  * `locPath` u zatím nepřeložených cílů vrátí českou URL (žádné 404 mezitím).
@@ -44,10 +44,10 @@ export function localeFromPath(pathname: string): Locale {
 }
 
 /* ------------------------------------------------------------------ */
-/* Navigace — EN varianta (fáze 1: ploché odkazy, cíle přes locPath)   */
+/* Navigace: EN varianta (fáze 1: ploché odkazy, cíle přes locPath)   */
 /* ------------------------------------------------------------------ */
 
-// EN mega — Products (celý ekosystém). Interní hrefy lokalizuje getNav přes locPath.
+// EN mega: Products (celý ekosystém). Interní hrefy lokalizuje getNav přes locPath.
 const produktyMegaEn: MegaPanel = {
   featured: {
     label: 'New',
@@ -83,7 +83,7 @@ const produktyMegaEn: MegaPanel = {
   ],
 };
 
-// EN mega — Solutions (podle problému). Interní hrefy lokalizuje getNav přes locPath.
+// EN mega: Solutions (podle problému). Interní hrefy lokalizuje getNav přes locPath.
 const reseniMegaEn: MegaPanel = {
   columns: [
     {
