@@ -5,6 +5,9 @@
  * Stránky dodávají JEN vnitřní obsah (do <slot/>). Hlavička/patička se tak
  * nastavují na jednom místě.
  */
+/* reveal.css MUSI byt pred tematem: ma v :root fallback hodnoty
+   (--reveal-shift a spol.), ktere by jinak prebily tokeny produktu. */
+import '@piano/ui/styles/reveal.css';
 import '../styles/theme.css';
 import BaseHead from '@piano/ui/layouts/BaseHead.astro';
 import Header from '@piano/ui/components/Header.astro';
@@ -99,6 +102,8 @@ const schemas = [organizationSchema, ...(schema ? [schema] : [])];
 <!doctype html>
 <html lang={locale}>
   <head>
+    <!-- Scroll reveal: bez defer, trida .js musi byt na <html> driv nez obsah -->
+    <script is:inline src="/js/reveal.js"></script>
     <!-- Google Search Console: ověření přes HTML tag (DNS na hostingu blokované) -->
     <meta name="google-site-verification" content="KgZuNpYxxMSjYosWLt0mC_2B8zkvHz-DUCYw_HbbtKw" />
     {preloadImage && <link rel="preload" as="image" href={preloadImage} fetchpriority="high" />}

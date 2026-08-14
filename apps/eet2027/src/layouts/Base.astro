@@ -4,6 +4,9 @@
  * Nacte vlastni neutralni tema + sdilenou SEO hlavicku.
  * Schema je neutralni (WebSite + Organization "EET 2027"), bez vazby na jine brandy.
  */
+/* reveal.css MUSI byt pred tematem: ma v :root fallback hodnoty
+   (--reveal-shift a spol.), ktere by jinak prebily tokeny produktu. */
+import '@piano/ui/styles/reveal.css';
 import '../styles/theme.css';
 import BaseHead from '@piano/ui/layouts/BaseHead.astro';
 
@@ -51,6 +54,8 @@ const schemas = [websiteSchema, organizationSchema, ...(schema ? [schema] : [])]
 <!doctype html>
 <html lang="cs">
   <head>
+    <!-- Scroll reveal: bez defer, trida .js musi byt na <html> driv nez obsah -->
+    <script is:inline src="/js/reveal.js"></script>
     <BaseHead
       title={title}
       description={description}
