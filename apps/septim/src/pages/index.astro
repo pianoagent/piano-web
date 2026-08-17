@@ -92,18 +92,29 @@ const leadProofs = [
 
 <Base title="Pokladní a provozní systém pro gastro | Septim"
       description="Septim je nejrespektovanější pokladní a provozní systém pro restaurace v ČR. Pokladna, sklad, reporty i CRM v jednom. 30 let, podpora 24/7.">
-  <SiteHeader />
+  <SiteHeader transparent />
 
   <main>
 
-  <!-- HERO (carousel) -->
-  <Hero background="gradient"
-        slides={heroSlides}
+  <!-- HERO (split-bleed s videem)
+       TEST kompozice: text vlevo na plné ploše, video vytéká k pravé hraně.
+       Texty jsou doslova z prvního slidu původního carouselu (heroSlides),
+       ten je kousek výš zachovaný, ať je návrat na jednu úpravu.
+       Dvě zbylá sdělení (Septim.Air, Septim.Hotel) tím zatím nejsou na
+       homepage vidět, to je rozhodnutí o obsahu, ne o kompozici. -->
+  <Hero variant="split-bleed" background="invert"
+        eyebrow="Pokladní a provozní systém"
+        lead="Septim není jen pokladna. Řídí celý váš provoz, od naskladnění surovin přes výdej jídel až po finanční přehledy. Věří mu michelinské restaurace i kavárny za rohem."
         usp={[{ text: 'Připraveno na EET 2.0', icon: 'lucide:badge-check' }, { text: '30 let na trhu', icon: 'lucide:calendar-check' }, { text: '6 000+ provozů', icon: 'lucide:store' }, { text: 'Podpora 24/7', icon: 'lucide:headset' }]}>
+    <Heading slot="title" as="h1" size="display" color="on-dark">Pravá ruka<br />každého manažera</Heading>
     <Fragment slot="actions">
       <Button href="#poptavka">Chci Septim</Button>
       <Button href="#rada" variant="secondary" onDark>Vyberte variantu</Button>
     </Fragment>
+    <video slot="media" class="hero__video" poster="/video/hero-septim-poster.jpg"
+           autoplay muted loop playsinline preload="metadata">
+      <source src="/video/hero-septim.mp4" type="video/mp4" />
+    </video>
   </Hero>
 
   <!-- LOGA KLIENTŮ: hned pod hero -->
