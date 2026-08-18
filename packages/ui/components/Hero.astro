@@ -56,9 +56,16 @@ interface Props {
      platí menší plochou pro obraz. Ke split-bleed patří zdroj v poměru 1:1,
      protože sloupec je na desktopu skoro čtverec (0,77 až 1,52). */
   variant?: 'split' | 'cover' | 'split-bleed';
+  /* Jak se médium u split-bleed potkává s plochou vlevo:
+       "panel" (default) tvrdá hrana se zaoblením, panel odsazený svisle
+       "fade"            prolnutí do plochy přes přechod
+     Panel je výchozí záměrně: prolnutí rozpouští subjekt v obraze a vypadá
+     jako chyba, ne jako kompozice. Fade má smysl u záběru bez subjektu
+     (textura, celek provozu), kde se rozpad do plochy neprozradí. */
+  bleedEdge?: 'panel' | 'fade';
 }
 
-const { eyebrow, title, lead, align = 'center', background = 'default', space = 'lg', usp = [], slides = [], carouselLabel = 'Přepnout sdělení', variant = 'split' } = Astro.props;
+const { eyebrow, title, lead, align = 'center', background = 'default', space = 'lg', usp = [], slides = [], carouselLabel = 'Přepnout sdělení', variant = 'split', bleedEdge = 'panel' } = Astro.props;
 const isCover = variant === 'cover';
 const isBleed = variant === 'split-bleed';
 /* Obě varianty pouštějí médium na pozadí sekce, ne do sloupce. */
@@ -107,7 +114,7 @@ const rv = (delay?: 'd1' | 'd2') => ['reveal', from, delay && `reveal--${delay}`
       takže pozadí jde přes celou šířku okna, i když text drží kontejner.
       aria-hidden proto, že fotka je tady dekorace, sdělení nese text. */}
   {isBg && hasMedia && (
-    <div class:list={['hero__bg', isBleed && 'hero__bg--bleed']} aria-hidden="true"><slot name="media" /></div>
+    <div class:list={['hero__bg', isBleed && 'hero__bg--bleed', isBleed && `hero__bg--${bleedEdge}`]} aria-hidden="true"><slot name="media" /></div>
   )}
   <div class={innerClasses} data-hero-carousel={isCarousel ? '' : undefined}>
     <div class="hero__text">
@@ -302,6 +309,21 @@ const rv = (delay?: 'd1' | 'd2') => ['reveal', from, delay && `reveal--${delay}`
         color-mix(in srgb, var(--hero-bleed-ground, var(--color-neutral-900)) 40%, transparent) 60%,
         transparent calc(var(--header-h-overlay, 120px) + 24px));
   }
+  /* Panel: tvrdá hrana. Médium neběží od hrany k hraně svisle, je odsazené
+     pod hlavičkou i nad spodním okrajem sekce a vlevo zaoblené. Přechod na
+     levé hraně se vypíná, hranu drží tvar. */
+  .hero__bg--panel {
+    left: 52%;
+    top: calc(var(--header-h-overlay, 120px) + 8px);
+    bottom: clamp(32px, 5vw, 64px);
+    border-start-start-radius: var(--radius-lg);
+    border-end-start-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  .hero__bg--panel::after { background: none; }
+  /* U panelu text nezasahuje nad médium, takže může být širší. */
+  .section--hero-bleed .hero__bg--panel ~ .hero__inner .hero__text { max-width: min(46%, 620px); }
+
   /* Text smí zajít nad médium, ale jen do té části, kde je přechod ještě krycí
      (prvních 18 % šířky média). Proto 48 %: při 1024 vycházelo 620px a nadpis
      končil až na poloprůhledném videu. */
@@ -333,7 +355,10 @@ const rv = (delay?: 'd1' | 'd2') => ['reveal', from, delay && `reveal--${delay}`
     .hero__bg--bleed :global(img) {
       object-position: var(--hero-media-focus, center 32%);
     }
-    .section--hero-bleed .hero__text { max-width: none; }
+    .section--hero-bleed .hero__text,
+    .section--hero-bleed .hero__bg--panel ~ .hero__inner .hero__text { max-width: none; }
+    /* Pás jde na mobilu k hranám, takže žádné zaoblení ani svislé odsazení. */
+    .hero__bg--panel { top: auto; bottom: auto; border-radius: 0; }
     .hero__bg--bleed::after {
       background: linear-gradient(180deg,
         color-mix(in srgb, var(--hero-bleed-ground, var(--color-neutral-900)) 88%, transparent) 0%,
