@@ -45,31 +45,13 @@ interface Props {
   /* Kompozice hero:
        "split" (default) médium jako blok vedle textu, dosavadní chování
        "cover"           médium na plnou šířku a výšku jako pozadí, text přes něj
-       "split-bleed"     médium vytéká k pravé hraně okna, text drží kontejner
-                         na plné ploše vlevo
-     Cover i split-bleed počítají s průhlednou hlavičkou (<Header transparent />)
-     a samy si drží odsazení o její výšku, ať text nekončí pod logem.
-
-     Rozdíl mezi cover a split-bleed: cover musí přes celé médium přetáhnout
-     závoj, aby byl text čitelný, čímž se obraz utlumí. Split-bleed staví text
-     na plnou barvu vedle média, takže závoj nepotřebuje a barvy zůstanou. Za to
-     platí menší plochou pro obraz. Ke split-bleed patří zdroj v poměru 1:1,
-     protože sloupec je na desktopu skoro čtverec (0,77 až 1,52). */
-  variant?: 'split' | 'cover' | 'split-bleed';
-  /* Jak se médium u split-bleed potkává s plochou vlevo:
-       "panel" (default) tvrdá hrana se zaoblením, panel odsazený svisle
-       "fade"            prolnutí do plochy přes přechod
-     Panel je výchozí záměrně: prolnutí rozpouští subjekt v obraze a vypadá
-     jako chyba, ne jako kompozice. Fade má smysl u záběru bez subjektu
-     (textura, celek provozu), kde se rozpad do plochy neprozradí. */
-  bleedEdge?: 'panel' | 'fade';
+     Cover počítá s průhlednou hlavičkou (<Header transparent />) a sám si drží
+     odsazení o její výšku, ať text nekončí pod logem. */
+  variant?: 'split' | 'cover';
 }
 
-const { eyebrow, title, lead, align = 'center', background = 'default', space = 'lg', usp = [], slides = [], carouselLabel = 'Přepnout sdělení', variant = 'split', bleedEdge = 'panel' } = Astro.props;
+const { eyebrow, title, lead, align = 'center', background = 'default', space = 'lg', usp = [], slides = [], carouselLabel = 'Přepnout sdělení', variant = 'split' } = Astro.props;
 const isCover = variant === 'cover';
-const isBleed = variant === 'split-bleed';
-/* Obě varianty pouštějí médium na pozadí sekce, ne do sloupce. */
-const isBg = isCover || isBleed;
 const uspItems = usp.map((u) => (typeof u === 'string' ? { text: u, icon: 'lucide:check' } : { text: u.text, icon: u.icon ?? 'lucide:check' }));
 
 const useSlides = slides.length > 0;
@@ -81,12 +63,12 @@ const onDark = background === 'invert' || background === 'primary' || background
 
 /* U coveru je text vždycky na tmavém podkladu (fotka plus závoj), takže se
    chová jako on-dark bez ohledu na prop background. */
-const textOnDark = onDark || isBg;
+const textOnDark = onDark || isCover;
 
 const innerClasses = [
   'hero__inner',
-  isBg ? 'hero__inner--cover' : (hasMedia ? 'hero__inner--split' : 'hero__inner--single'),
-  (isBg || !hasMedia) && `hero__inner--align-${isBg ? 'left' : align}`,
+  isCover ? 'hero__inner--cover' : (hasMedia ? 'hero__inner--split' : 'hero__inner--single'),
+  (isCover || !hasMedia) && `hero__inner--align-${isCover ? 'left' : align}`,
   textOnDark && 'hero__inner--on-dark',
 ]
   .filter(Boolean)
@@ -96,7 +78,7 @@ const innerClasses = [
    sloupci vedle média a u coveru v levé části fotky, tam je vždycky vlevo.
    Prop align se uplatní jen u varianty bez média. Bez tohohle propadal
    výchozí center i do splitu a perex byl centrovaný pod nadpisem vlevo. */
-const textAlign: 'left' | 'center' = (isBg || hasMedia) ? 'left' : align;
+const textAlign: 'left' | 'center' = (isCover || hasMedia) ? 'left' : align;
 
 /* Režie náběhu jako na živém grason.cz: nadpis, po 300ms perex, po 600ms CTA.
    Směr kopíruje kompozici, stejně jako tam sekce left a center: text zarovnaný
@@ -108,13 +90,13 @@ const rv = (delay?: 'd1' | 'd2') => ['reveal', from, delay && `reveal--${delay}`
 {/* Hero je nad ohybem, reveal.js ho odkryje bez animace. Reveal na sekci
     proto vypinam a smer resim na sloupcich: pri split layoutu text zleva,
     medium zprava, stejne jako sekce left a right na zivem grason.cz. */}
-<Section background={background} space={space} reveal={false} class={isCover ? 'section--hero-cover' : (isBleed ? 'section--hero-bleed' : undefined)}>
+<Section background={background} space={space} reveal={false} class={isCover ? 'section--hero-cover' : undefined}>
   {/* Cover: médium jde na pozadí celé sekce, ne do sloupce vedle textu.
       Absolutní pozicování se zavěsí na .section (Container nemá position),
       takže pozadí jde přes celou šířku okna, i když text drží kontejner.
       aria-hidden proto, že fotka je tady dekorace, sdělení nese text. */}
-  {isBg && hasMedia && (
-    <div class:list={['hero__bg', isBleed && 'hero__bg--bleed', isBleed && `hero__bg--${bleedEdge}`]} aria-hidden="true"><slot name="media" /></div>
+  {isCover && hasMedia && (
+    <div class="hero__bg" aria-hidden="true"><slot name="media" /></div>
   )}
   <div class={innerClasses} data-hero-carousel={isCarousel ? '' : undefined}>
     <div class="hero__text">
@@ -172,7 +154,7 @@ const rv = (delay?: 'd1' | 'd2') => ['reveal', from, delay && `reveal--${delay}`
       )}
     </div>
 
-    {hasMedia && !isBg && (
+    {hasMedia && !isCover && (
       <div class:list={['hero__media', 'reveal', 'reveal--from-right', 'reveal--d1']}>
         {useSlides ? (
           <div class="hero__rot hero__media-rot">
@@ -275,96 +257,6 @@ const rv = (delay?: 'd1' | 'd2') => ['reveal', from, delay && `reveal--${delay}`
         rgba(0, 0, 0, 0.46) 78%,
         rgba(0, 0, 0, 0.28) 100%),
       linear-gradient(0deg, var(--hero-cover-tint, transparent), var(--hero-cover-tint, transparent));
-  }
-
-  /* ===========================================================
-     VARIANTA SPLIT-BLEED: médium vytéká k pravé hraně okna, text stojí
-     vlevo na plné barvě sekce.
-     Proti coveru nemá závoj přes celý obraz, takže barvy videa zůstanou.
-     Čitelnost textu drží plná plocha vlevo, ne ztmavení fotky. Sešívají se
-     dvěma přechody z barvy podkladu: vodorovným na levé hraně média
-     a krátkým svislým u horní hrany, aby zůstala čitelná průhledná hlavička.
-     Barvu podkladu řídí --hero-bleed-ground, výchozí je tmavá plocha (sekce
-     se používá s background="invert").
-     =========================================================== */
-  .section--hero-bleed {
-    padding-top: calc(var(--header-h-overlay, 120px) + clamp(24px, 5vw, 64px));
-    padding-bottom: clamp(48px, 8vw, 104px);
-    overflow: hidden;
-  }
-  .hero__bg--bleed {
-    /* Pravých 55 % okna. Sloupec je pak na desktopu skoro čtverec, proto
-       k téhle variantě patří zdroj 1:1. */
-    left: 45%;
-    right: 0;
-  }
-  .hero__bg--bleed::after {
-    background:
-      linear-gradient(90deg,
-        var(--hero-bleed-ground, var(--color-neutral-900)) 0%,
-        color-mix(in srgb, var(--hero-bleed-ground, var(--color-neutral-900)) 55%, transparent) 18%,
-        transparent 42%),
-      linear-gradient(180deg,
-        color-mix(in srgb, var(--hero-bleed-ground, var(--color-neutral-900)) 88%, transparent) 0%,
-        color-mix(in srgb, var(--hero-bleed-ground, var(--color-neutral-900)) 40%, transparent) 60%,
-        transparent calc(var(--header-h-overlay, 120px) + 24px));
-  }
-  /* Panel: tvrdá hrana. Médium neběží od hrany k hraně svisle, je odsazené
-     pod hlavičkou i nad spodním okrajem sekce a vlevo zaoblené. Přechod na
-     levé hraně se vypíná, hranu drží tvar. */
-  .hero__bg--panel {
-    left: 52%;
-    top: calc(var(--header-h-overlay, 120px) + 8px);
-    bottom: clamp(32px, 5vw, 64px);
-    border-start-start-radius: var(--radius-lg);
-    border-end-start-radius: var(--radius-lg);
-    overflow: hidden;
-  }
-  .hero__bg--panel::after { background: none; }
-  /* U panelu text nezasahuje nad médium, takže může být širší. */
-  .section--hero-bleed .hero__bg--panel ~ .hero__inner .hero__text { max-width: min(46%, 620px); }
-
-  /* Text smí zajít nad médium, ale jen do té části, kde je přechod ještě krycí
-     (prvních 18 % šířky média). Proto 48 %: při 1024 vycházelo 620px a nadpis
-     končil až na poloprůhledném videu. */
-  .section--hero-bleed .hero__text { max-width: min(48%, 620px); }
-
-  /* Hranice 1100, ne 900: pod ní je pravý sloupec užší než 500px a text by se
-     do krycí části přechodu nevešel. Radši pás nahoře než nadpis na videu. */
-  @media (max-width: 1100px) {
-    /* Médium se překlopí na pás přes celou šířku nad textem. Pás jde pod
-       průhlednou hlavičku, tu chrání ten svislý přechod. */
-    .section--hero-bleed { padding-top: 0; }
-    .hero__bg--bleed {
-      position: static;
-      left: auto; right: auto;
-      /* Ven z kontejneru až k hranám okna, jinak by pás měl po stranách okraje. */
-      width: auto;
-      margin-inline: calc(-1 * var(--container-pad));
-      /* Výška, ne aspect-ratio: se stropem max-height by poměr stáhl i šířku
-         (při 1024 vycházel pás 471px místo přes celou šířku).
-         75vw drží na telefonu poměr přibližně 4:3, 46vh krotí nízká okna,
-         aby text nespadl pod ohyb. Video si vevnitř ořezává samo. */
-      height: min(46vh, 75vw);
-      margin-bottom: var(--space-6);
-    }
-    /* Pás je široký a nízký, takže z kvadratického zdroje bere svislý střed.
-       U záběru s postavou to uřízne hlavu, proto se ohnisko posouvá nahoru.
-       Per web se dá doladit tokenem --hero-media-focus. */
-    .hero__bg--bleed :global(video),
-    .hero__bg--bleed :global(img) {
-      object-position: var(--hero-media-focus, center 32%);
-    }
-    .section--hero-bleed .hero__text,
-    .section--hero-bleed .hero__bg--panel ~ .hero__inner .hero__text { max-width: none; }
-    /* Pás jde na mobilu k hranám, takže žádné zaoblení ani svislé odsazení. */
-    .hero__bg--panel { top: auto; bottom: auto; border-radius: 0; }
-    .hero__bg--bleed::after {
-      background: linear-gradient(180deg,
-        color-mix(in srgb, var(--hero-bleed-ground, var(--color-neutral-900)) 88%, transparent) 0%,
-        color-mix(in srgb, var(--hero-bleed-ground, var(--color-neutral-900)) 40%, transparent) 60%,
-        transparent calc(var(--header-h-overlay, 120px) + 24px));
-    }
   }
 
   .hero__inner--cover {
@@ -509,18 +401,3 @@ const rv = (delay?: 'd1' | 'd2') => ['reveal', from, delay && `reveal--${delay}`
     .hero__inner--split .hero__media { order: -1; }
   }
 </style>
-
-<script>
-  /* Video v hero se nesmí rozjet samo, když si člověk vypnul animace.
-     CSS na autoplay nedosáhne, proto tenhle guard. Poster zůstane, takže
-     hero vypadá pořád stejně, jen se nehýbe. */
-  const bezPohybu = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const zastav = () => {
-    document.querySelectorAll<HTMLVideoElement>('.hero__bg video').forEach((v) => {
-      if (bezPohybu.matches) { v.autoplay = false; v.pause(); }
-      else if (v.dataset.heroAutoplay !== 'off' && v.paused) { v.play().catch(() => {}); }
-    });
-  };
-  zastav();
-  bezPohybu.addEventListener('change', zastav);
-</script>
