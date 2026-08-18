@@ -92,18 +92,27 @@ const leadProofs = [
 
 <Base title="Pokladní a provozní systém pro gastro | Septim"
       description="Septim je nejrespektovanější pokladní a provozní systém pro restaurace v ČR. Pokladna, sklad, reporty i CRM v jednom. 30 let, podpora 24/7.">
-  <SiteHeader />
+  <SiteHeader transparent />
 
   <main>
 
-  <!-- HERO (carousel) -->
-  <Hero background="gradient"
-        slides={heroSlides}
+  <!-- HERO (cover s fotkou)
+       Texty jsou doslova z prvního slidu původního carouselu, ten zůstává
+       v souboru jako heroSlides. Zbylá dvě sdělení (Septim.Air, Septim.Hotel)
+       tím na homepage nejsou, to je rozhodnutí o obsahu.
+       POZOR na zdroj fotky: je to snímek z videa, tedy 1080x1080. Nad šířkou
+       okna 1440 se dotahuje a měkne, viz poznámka v commitu. -->
+  <Hero variant="cover" background="invert"
+        eyebrow="Pokladní a provozní systém"
+        lead="Septim není jen pokladna. Řídí celý váš provoz, od naskladnění surovin přes výdej jídel až po finanční přehledy. Věří mu michelinské restaurace i kavárny za rohem."
         usp={[{ text: 'Připraveno na EET 2.0', icon: 'lucide:badge-check' }, { text: '30 let na trhu', icon: 'lucide:calendar-check' }, { text: '6 000+ provozů', icon: 'lucide:store' }, { text: 'Podpora 24/7', icon: 'lucide:headset' }]}>
+    <Heading slot="title" as="h1" size="display" color="on-dark">Pravá ruka<br />každého manažera</Heading>
     <Fragment slot="actions">
       <Button href="#poptavka">Chci Septim</Button>
       <Button href="#rada" variant="secondary" onDark>Vyberte variantu</Button>
     </Fragment>
+    <img slot="media" src="/images/hero-septim-cover.webp" alt="" width="1080" height="1080"
+         loading="eager" fetchpriority="high" />
   </Hero>
 
   <!-- LOGA KLIENTŮ: hned pod hero -->
