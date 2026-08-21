@@ -96,3 +96,15 @@
   /* ----- Focus ring ----- */
   --shadow-focus: 0 0 0 3px rgba(26, 79, 139, 0.35);
 }
+
+/* CTA v hlavicce je zlate, ne modre: nad tmavym hero se modre tlacitko
+   v navy podkladu ztraci a nejde poznat, ze je to hlavni akce. Zlata je uz
+   v teto palete jako tepla akcentni barva. Tmavy text na ni ma kontrast
+   8,9:1, tedy AAA. Plati jen pro hlavicku, tlacitka v obsahu zustavaji modra. */
+.header__cta,
+.drawer__cta {
+  --btn-bg:        var(--color-secondary-gold);
+  --btn-bg-hover:  #D8912A;
+  --btn-bg-active: #C0801F;
+  --btn-fg:        var(--color-neutral-900);
+}

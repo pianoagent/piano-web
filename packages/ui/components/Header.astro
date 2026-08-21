@@ -3,6 +3,11 @@
  * Header: Piano (sticky navigace + mobilní drawer)
  *
  *   transparent: boolean → overlay přes hero (světlý text), po scrollu zpevní na bílou
+ *   logoSrcLight        → varianta loga pro tmavý podklad. Uplatní se jen u
+ *                         transparent hlavičky, dokud uživatel neodscrolluje;
+ *                         pak se lišta zpevní na bílou a vrátí se logoSrc.
+ *                         Bez tohohle propu zůstává logoSrc v obou stavech,
+ *                         takže se stávající weby nemění.
  *
  * Navigace se čte z src/config/nav.ts (obsah oddělen od vzhledu).
  * Logo je prozatím textový wordmark + piano-mark ikona, výměna za reálné SVG
@@ -18,6 +23,7 @@ interface Props {
   transparent?: boolean;
   brand?: string;       // název pro aria-label / wordmark (default "Piano")
   logoSrc?: string;     // cesta k obrázku loga; bez něj piano-mark + wordmark
+  logoSrcLight?: string; // logo pro tmavý podklad (jen transparent + neodscrollováno)
   logoHeight?: string;  // výška loga v liště (default 38px); brandové weby ~26px
   homeHref?: string;    // odkaz loga (default "/")
   nav?: NavItem[];      // per-web navigace (default sdílená mainNav)
@@ -30,6 +36,7 @@ const {
   transparent = false,
   brand = 'Piano',
   logoSrc,
+  logoSrcLight,
   logoHeight = '38px',
   homeHref = '/',
   nav = mainNav,
@@ -51,7 +58,12 @@ const classes = ['header', transparent && 'header--transparent'].filter(Boolean)
     <!-- Logo -->
     <a href={homeHref} class="header__logo" aria-label={`${brand}, ${A.home}`}>
       {logoSrc ? (
-        <img class="header__logo-img" src={logoSrc} alt={brand} />
+        <>
+          <img class="header__logo-img" src={logoSrc} alt={brand} />
+          {/* Světlá varianta jde do DOM vedle tmavé a přepíná se CSS, ne JS:
+              při zpevnění lišty na bílou se nesmí objevit blik s prázdným logem. */}
+          {logoSrcLight && <img class="header__logo-img header__logo-img--light" src={logoSrcLight} alt="" aria-hidden="true" />}
+        </>
       ) : (
         <>
           <Icon name="piano-mark" size="md" />
@@ -273,6 +285,11 @@ const classes = ['header', transparent && 'header--transparent'].filter(Boolean)
     letter-spacing: var(--letter-spacing-tight);
   }
   .header__logo-img { height: var(--logo-h, 38px); width: auto; display: block; }
+  /* Světlé logo se ukazuje jen na průhledné liště nad hero. Jakmile se lišta
+     zpevní na bílou, vrací se tmavá varianta. */
+  .header__logo-img--light { display: none; }
+  .header--transparent:not(.is-scrolled) .header__logo-img { display: none; }
+  .header--transparent:not(.is-scrolled) .header__logo-img--light { display: block; }
 
   /* Desktop navigace */
   .header__nav { margin-left: auto; }
