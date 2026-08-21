@@ -9,6 +9,9 @@
  *   title: nadpis sekce (default „Často kladené dotazy")
  *   lead: volitelný perex pod nadpisem
  *   background: 'default' | 'alt'
+ *   layout: 'center' (default) | 'split'
+ *     center = hlavička vycentrovaná nad accordionem, dosavadní chování
+ *     split  = hlavička v levém pruhu, accordion vpravo (eet2027)
  *   id: ukotvení sekce (Harsys má v navigaci odkaz #faq)
  */
 import Section from './Section.astro';
@@ -17,17 +20,20 @@ import Text from './Text.astro';
 
 interface Item { q: string; a: string; }
 interface Group { title: string; items: Item[]; }
-interface Props { items?: Item[]; groups?: Group[]; eyebrow?: string; title?: string; lead?: string; background?: 'default' | 'alt'; id?: string; }
-const { items = [], groups, eyebrow, title = 'Často kladené dotazy', lead, background = 'default', id } = Astro.props;
+interface Props { items?: Item[]; groups?: Group[]; eyebrow?: string; title?: string; lead?: string; background?: 'default' | 'alt'; layout?: 'center' | 'split'; id?: string; }
+const { items = [], groups, eyebrow, title = 'Často kladené dotazy', lead, background = 'default', layout = 'center', id } = Astro.props;
+const isSplit = layout === 'split';
+const headAlign = isSplit ? 'left' : 'center';
 
 const resolvedGroups: Group[] = groups && groups.length > 0 ? groups : [{ title: '', items }];
 ---
 
 <Section background={background} space="lg" id={id}>
-  <div class="head head--center">
-    {eyebrow && <Text size="label" color="accent" align="center">{eyebrow}</Text>}
-    <Heading as="h2" size="h2" align="center">{title}</Heading>
-    {lead && <Text size="lead" color="muted" align="center">{lead}</Text>}
+  <div class:list={['faqlayout', isSplit && 'faqlayout--split']}>
+  <div class:list={['head', !isSplit && 'head--center']}>
+    {eyebrow && <Text size="label" color="accent" align={headAlign}>{eyebrow}</Text>}
+    <Heading as="h2" size="h2" align={headAlign}>{title}</Heading>
+    {lead && <Text size="lead" color="muted" align={headAlign}>{lead}</Text>}
   </div>
   <div class="faqwrap">
     {resolvedGroups.map((g) => (
@@ -44,12 +50,24 @@ const resolvedGroups: Group[] = groups && groups.length > 0 ? groups : [{ title:
       </div>
     ))}
   </div>
+  </div>
 </Section>
 
 <style>
-  .head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-7); text-align: center; }
+  .head--center { max-width: 760px; margin-inline: auto; text-align: center; }
+  .head { margin-bottom: var(--space-7); }
   .head > * + * { margin-top: var(--space-3); }
   .faqwrap { max-width: 760px; margin-inline: auto; }
+
+  /* Split: nadpis v levém pruhu, otázky vpravo. Pruh je užší, ať se
+     accordion nesmrskne, řádek odpovědi má zůstat čitelně dlouhý. */
+  .faqlayout--split { display: grid; grid-template-columns: 0.72fr 1.28fr; gap: var(--space-8); align-items: start; }
+  .faqlayout--split .head { margin-bottom: 0; max-width: 34ch; }
+  .faqlayout--split .faqwrap { max-width: none; margin-inline: 0; }
+  @media (max-width: 860px) {
+    .faqlayout--split { grid-template-columns: 1fr; gap: var(--space-6); }
+    .faqlayout--split .head { max-width: none; margin-bottom: 0; }
+  }
   .faqgroup + .faqgroup { margin-top: var(--space-7); }
   .faqgroup__title { font-size: var(--font-size-label); font-weight: var(--font-weight-semibold); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide); color: var(--color-text-accent); margin-bottom: var(--space-4); }
   .faq { display: flex; flex-direction: column; gap: var(--space-3); }

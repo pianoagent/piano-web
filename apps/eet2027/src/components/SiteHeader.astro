@@ -2,6 +2,7 @@
 /**
  * SiteHeader - EET 2027 wrapper nad sdilenym @piano/ui Header.
  * Vlastni wordmark logo, vlastni navigace. Zadne cizi logo.
+ * Nad hero jde lista pruhledne (transparent), pak ma svetlou variantu loga.
  */
 import Header from '@piano/ui/components/Header.astro';
 import { eetNav, eetCta } from '../config/nav';
@@ -9,5 +10,5 @@ import { eetNav, eetCta } from '../config/nav';
 interface Props { transparent?: boolean; }
 const { transparent = false } = Astro.props;
 ---
-<Header brand="EET 2027" logoSrc="/logo.svg" logoHeight="34px" homeHref="/"
+<Header brand="EET 2027" logoSrc="/logo.svg" logoSrcLight="/logo-light.svg" logoHeight="34px" homeHref="/"
         nav={eetNav} cta={eetCta} transparent={transparent} />

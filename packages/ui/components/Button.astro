@@ -99,7 +99,9 @@ const classes = ['btn', `btn--${variant}`, `btn--${size}`, full && 'btn--full', 
   /* Primary: karmínová CTA se signature zkosením */
   .btn--primary {
     background: var(--btn-bg, var(--color-primary));
-    color: var(--color-text-on-dark);
+    /* --btn-fg je pro pripad, kdy si web prebarvi --btn-bg na svetlejsi odstin
+       (eet2027 ma zlate CTA v hlavicce) a bily text by na nem nemel kontrast. */
+    color: var(--btn-fg, var(--color-text-on-dark));
     border-color: var(--btn-bg, var(--color-primary));
     clip-path: var(--btn-clip);
   }

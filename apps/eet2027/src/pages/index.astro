@@ -16,7 +16,6 @@ import Heading from '@piano/ui/components/Heading.astro';
 import Text from '@piano/ui/components/Text.astro';
 import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
-import USPGrid from '@piano/ui/components/USPGrid.astro';
 import Field from '@piano/ui/components/Field.astro';
 
 // Co odberatel ziska (duvody pro prihlaseni)
@@ -135,11 +134,14 @@ const faqSchema = {
 <Base title="Návrat EET od roku 2027, co se mění a jak se připravit"
       description="Přehledný průvodce návratem elektronické evidence tržeb od 1. ledna 2027. Co se mění, koho se to týká, harmonogram a jak se včas připravit. Novinky k EET 2.0 zdarma na e-mail."
       schema={faqSchema}>
-  <SiteHeader />
+  <SiteHeader transparent />
 
   <main>
 
-  <!-- HERO: info o EET + prihlaseni k odberu -->
+  <!-- HERO: info o EET + prihlaseni k odberu.
+       Obal .herowrap je tu jen kvuli fotce na pozadi sekce: Hero prop na tridu
+       nema, takze se na jeho Section dosahne odsud pres :global. -->
+  <div class="herowrap">
   <Hero background="gradient"
         eyebrow="Elektronická evidence tržeb · od 1. ledna 2027"
         lead="Od 1. ledna 2027 musí každá pokladna zvládnout novou evidenci tržeb. Tady najdete přehledně, co se mění, koho se to týká a jak se v klidu připravit. Novinky vám pošleme na e-mail."
@@ -194,16 +196,26 @@ const faqSchema = {
       </form>
     </div>
   </Hero>
+  </div>
 
   <!-- BLUE OCEAN: hospoda dnes vs zitra -->
-  <Section id="budoucnost" background="alt" space="lg">
-    <div class="head-center">
-      <Text size="label" color="accent" align="center">Nejen kvůli zákonu</Text>
-      <Heading as="h2" size="h2" align="center">EET zvládne každý. Vy můžete být <em>o krok dál</em></Heading>
-      <Text size="lead" color="muted" align="center" balance>
+  <Section id="budoucnost" background="alt" space="lg" reveal={false}>
+    <div class="rail">
+    <div class="rail__aside reveal reveal--from-left">
+      <figure class="rail__figure">
+        <img src="/img/budoucnost-kuchar.webp" width="760" height="507" alt="Kuchař nese bednu se zásobami provozní kuchyní" loading="lazy" decoding="async" />
+      </figure>
+      <Text size="label" color="accent">Nejen kvůli zákonu</Text>
+      <Heading as="h2" size="h2">EET zvládne každý. Vy můžete být <em>o krok dál</em></Heading>
+      <Text size="lead" color="muted">
         EET 2.0 je moment, kdy stejně sáhnete na pokladnu. Udělejte z povinnosti odrazový můstek. Budoucnost gastra bude neúprosná k těm, kdo zůstanou u papíru, ale hodně světlá pro připravené. Hospoda nemusí být řehole.
       </Text>
+      <div class="rail__cta">
+        <Button href="#odber">Takovou hospodu chci</Button>
+        <p class="rail__note">Technologie za vás počítá, plánuje a hlídá. EET 2.0 je jen první krok.</p>
+      </div>
     </div>
+    <div class="rail__main reveal reveal--d1">
     <div class="vs">
       <div class="vs__col vs__col--now">
         <p class="vs__head"><span class="vs__tag vs__tag--now">Dnes</span> Hospoda jako řehole</p>
@@ -222,26 +234,44 @@ const faqSchema = {
         </ul>
       </div>
     </div>
-    <div class="vs__cta">
-      <Button href="#odber">Takovou hospodu chci</Button>
-      <p class="vs__note">Technologie za vás počítá, plánuje a hlídá. EET 2.0 je jen první krok.</p>
+    </div>
     </div>
   </Section>
 
   <!-- CO SE MENI -->
-  <div id="co-se-meni">
-    <USPGrid eyebrow="Co se mění" title="Nová pravidla v kostce"
-             lead="EET 2.0 je jednodušší než první vlna. Tady jsou změny, které se vás dotknou nejvíc."
-             items={zmeny} columns={3} background="default" space="lg" />
-  </div>
+  <Section id="co-se-meni" background="default" space="lg" reveal={false}>
+    <div class="rail">
+    <div class="rail__aside reveal reveal--from-left">
+      <figure class="rail__figure">
+        <img src="/img/pokladna-tablet.webp" width="612" height="408" alt="Obsluha zadává objednávku na pokladním tabletu za barem" loading="lazy" decoding="async" />
+      </figure>
+      <Text size="label" color="accent">Co se mění</Text>
+      <Heading as="h2" size="h2">Nová pravidla <em>v kostce</em></Heading>
+      <Text size="lead" color="muted">
+        EET 2.0 je jednodušší než první vlna. Tady jsou změny, které se vás dotknou nejvíc.
+      </Text>
+    </div>
+    <div class="rail__main reveal reveal--d1">
+      <div class="cards cards--2">
+        {zmeny.map((z) => (
+          <article class="card">
+            <span class="card__ico"><Icon name={z.icon} size="md" /></span>
+            <Heading as="h3" size="h3">{z.title}</Heading>
+            <Text size="small" color="muted">{z.text}</Text>
+          </article>
+        ))}
+      </div>
+    </div>
+    </div>
+  </Section>
 
   <!-- HARMONOGRAM -->
-  <Section background="alt" space="lg">
+  <Section background="primary" space="lg">
     <div class="head-center">
-      <Text size="label" color="accent" align="center">Časová osa</Text>
-      <Heading as="h2" size="h2" align="center">Harmonogram zavedení</Heading>
+      <Text size="label" color="on-dark-muted" align="center">Časová osa</Text>
+      <Heading as="h2" size="h2" align="center" color="on-dark">Harmonogram zavedení</Heading>
     </div>
-    <div class="tl">
+    <div class="tl tl--on-dark">
       <span class="tl__line" aria-hidden="true"></span>
       {timeline.map((m) => (
         <div class:list={['tl__item', `tl__item--${m.state}`]}>
@@ -257,54 +287,69 @@ const faqSchema = {
   </Section>
 
   <!-- KOHO SE TO TYKA -->
-  <Section id="koho" background="default" space="lg">
-    <div class="head-center">
-      <Text size="label" color="accent" align="center">Koho se to týká</Text>
-      <Heading as="h2" size="h2" align="center">Týká se prakticky <em>celé gastronomie</em></Heading>
-      <Text size="lead" color="muted" align="center" balance>
+  <Section id="koho" background="alt" space="lg" reveal={false}>
+    <div class="rail">
+    <div class="rail__aside reveal reveal--from-left">
+      <figure class="rail__figure">
+        <img src="/img/koho-platba-qr.webp" width="760" height="507" alt="Host platí u stolu telefonem přes QR kód nalepený na desce stolu" loading="lazy" decoding="async" />
+      </figure>
+      <Text size="label" color="accent">Koho se to týká</Text>
+      <Heading as="h2" size="h2">Týká se prakticky <em>celé gastronomie</em></Heading>
+      <Text size="lead" color="muted">
         Evidovat se budou všechny platby přijaté při osobním kontaktu se zákazníkem: hotovost, karta, QR kód i stravenky.
       </Text>
+      <p class="rail__hint">
+        <span class="rail__hint-ico"><Icon name="lucide:info" size="sm" /></span>
+        Výjimku mají pouze OSVČ v prvním pásmu paušálního režimu s příjmy do 1 milionu Kč ročně.
+      </p>
     </div>
-    <div class="who">
-      {koho.map((k) => (
-        <article class="who__card">
-          <span class="who__ico"><Icon name={k.icon} size="md" /></span>
-          <Heading as="h3" size="h3">{k.title}</Heading>
-          <Text size="small" color="muted">{k.text}</Text>
-        </article>
-      ))}
+    <div class="rail__main reveal reveal--d1">
+      <div class="cards cards--2">
+        {koho.map((k) => (
+          <article class="card">
+            <span class="card__ico"><Icon name={k.icon} size="md" /></span>
+            <Heading as="h3" size="h3">{k.title}</Heading>
+            <Text size="small" color="muted">{k.text}</Text>
+          </article>
+        ))}
+      </div>
     </div>
-    <p class="note">
-      <span class="note__ico"><Icon name="lucide:info" size="sm" /></span>
-      Výjimku mají pouze OSVČ v prvním pásmu paušálního režimu s příjmy do 1 milionu Kč ročně.
-    </p>
+    </div>
   </Section>
 
   <!-- JAK SE PRIPRAVIT -->
-  <Section id="priprava" background="alt" space="lg">
-    <div class="head-center">
-      <Text size="label" color="accent" align="center">Jak se připravit</Text>
-      <Heading as="h2" size="h2" align="center">Čtyři kroky k <em>klidnému</em> startu</Heading>
-      <Text size="lead" color="muted" align="center" balance>
+  <Section id="priprava" background="default" space="lg" reveal={false}>
+    <div class="rail">
+    <div class="rail__aside reveal reveal--from-left">
+      <figure class="rail__figure">
+        <img src="/img/priprava-terminal.webp" width="760" height="507" alt="Bezkontaktní platba telefonem na platebním terminálu" loading="lazy" decoding="async" />
+      </figure>
+      <Text size="label" color="accent">Jak se připravit</Text>
+      <Heading as="h2" size="h2">Čtyři kroky ke <em>klidnému</em> startu</Heading>
+      <Text size="lead" color="muted">
         Nečekejte na poslední chvíli. S předstihem je příprava otázkou několika kroků.
       </Text>
     </div>
-    <ol class="steps">
-      {kroky.map((s, i) => (
-        <li class="step">
-          <span class="step__num">{i + 1}</span>
-          <span class="step__ico"><Icon name={s.icon} size="md" /></span>
-          <Heading as="h3" size="h3">{s.title}</Heading>
-          <Text size="small" color="muted">{s.text}</Text>
-        </li>
-      ))}
-    </ol>
+    <div class="rail__main reveal reveal--d1">
+      <ol class="cards cards--2 steps">
+        {kroky.map((k, i) => (
+          <li class="card step">
+            <span class="step__num">{i + 1}</span>
+            <span class="card__ico"><Icon name={k.icon} size="md" /></span>
+            <Heading as="h3" size="h3">{k.title}</Heading>
+            <Text size="small" color="muted">{k.text}</Text>
+          </li>
+        ))}
+      </ol>
+    </div>
+    </div>
   </Section>
 
   <!-- FAQ -->
   <Faq
     id="faq"
-    background="default"
+    background="alt"
+    layout="split"
     items={faqs}
     title="Časté dotazy" />
   <!-- ODBER: prihlaseni k informacim o EET -->
@@ -375,6 +420,61 @@ const faqSchema = {
   .head-center { max-width: 720px; margin: 0 auto var(--space-7); text-align: center; }
   .head-center :global(h2) { margin-top: var(--space-2); }
 
+  /* HERO - fotka na pozadi.
+     Gradient drzi Section, fotka lezi nad nim a je zprava vymaskovana do nicoho,
+     aby nadpis vlevo zustal na cistem tmavem podkladu a drzel kontrast.
+     Zdroj ma jen 612 px na sirku, proto blur: mekci obraz je poznat mnohem mensi
+     nez rozostrene pixely. Az bude vetsi export, blur staci snizit. */
+  .herowrap { position: relative; }
+  .herowrap :global(.section--bg-gradient) { position: relative; isolation: isolate; overflow: clip; }
+  .herowrap :global(.section--bg-gradient)::before {
+    content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+    background: url("/img/pokladna-tablet.webp") center / cover no-repeat;
+    opacity: .5;
+    filter: blur(2px) saturate(.85);
+    transform: scale(1.04);
+    mask-image: linear-gradient(100deg, transparent 0%, transparent 42%, rgba(0,0,0,.45) 64%, #000 100%);
+  }
+  .herowrap :global(.section--bg-gradient) > :global(*) { position: relative; z-index: 1; }
+  /* Na mobilu je text pres celou sirku, takze fotka nema kam ustoupit.
+     Jde dolu pod text a hodne se stlumi, at perex zustane citelny. */
+  @media (max-width: 860px) {
+    .herowrap :global(.section--bg-gradient)::before {
+      opacity: .3;
+      mask-image: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,.5) 55%, #000 100%);
+    }
+  }
+
+  /* LEVY PRUH + KARTY VPRAVO
+     Stejna kompozice jako sdilena Split, ale fotka patri NAD nadpis do levcho
+     sloupce, ne do sloupce vedle. Split to neumi a meni ji ctyri dalsi weby,
+     takze je to radeji lokalni layout tady. */
+  .rail { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: var(--space-8); align-items: start; }
+  .rail__aside > * + * { margin-top: var(--space-4); }
+  .rail__aside :global(h2) { margin-top: var(--space-2); }
+  .rail__figure { margin: 0 0 var(--space-5); max-width: 300px; line-height: 0; }
+  .rail__figure img { width: 100%; height: auto; display: block; border-radius: var(--radius-lg); box-shadow: var(--shadow-md); }
+  .rail__cta { margin-top: var(--space-6); }
+  .rail__note { margin-top: var(--space-3); font-size: var(--font-size-small); color: var(--color-text-muted); }
+  .rail__hint { display: flex; align-items: flex-start; gap: var(--space-2); margin-top: var(--space-5); font-size: var(--font-size-small); color: var(--color-text-muted); }
+  .rail__hint-ico { display: inline-flex; flex-shrink: 0; margin-top: 2px; color: var(--color-text-accent); }
+
+  @media (max-width: 860px) {
+    .rail { grid-template-columns: 1fr; gap: var(--space-6); }
+    /* Fotka je na mobilu prvni vec pod ohybem, proto zustava nahore a na plnou sirku. */
+    .rail__figure { max-width: none; }
+  }
+
+  /* KARTY (sdilena podoba pro "co se meni", "koho se to tyka" a kroky) */
+  .cards { list-style: none; display: grid; gap: var(--space-5); }
+  .cards--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .card { position: relative; background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-6) var(--space-5); box-shadow: var(--shadow-sm); }
+  .card > * + * { margin-top: var(--space-3); }
+  .card__ico { display: inline-flex; color: var(--color-text-accent); }
+  /* Na sedem pasu by bila karta se stinem plavala, tam ji drzi jen linka. */
+  :global(.section--bg-alt) .card { box-shadow: none; }
+  @media (max-width: 560px) { .cards--2 { grid-template-columns: 1fr; } }
+
   /* CHECKER (bily panel na tmavem hero) */
   /* HERO SIGNUP (prihlaseni k odberu v hero karte) */
   .hs { background: var(--color-bg); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); padding: var(--space-6); }
@@ -385,7 +485,7 @@ const faqSchema = {
   .hs__hint { font-size: var(--font-size-caption); color: var(--color-text-muted); text-align: center; }
 
   /* BLUE OCEAN - hospoda dnes vs zitra */
-  .vs { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-5); max-width: 900px; margin: 0 auto; align-items: start; }
+  .vs { display: grid; grid-template-columns: 1fr; gap: var(--space-5); align-items: start; }
   .vs__col { background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-6); }
   .vs__col--next { border: 2px solid var(--color-primary); box-shadow: var(--shadow-md); }
   .vs__head { display: flex; align-items: center; gap: var(--space-3); font-family: var(--font-sans); font-weight: var(--font-weight-bold); font-size: var(--font-size-h3); color: var(--color-text); margin-bottom: var(--space-5); }
@@ -399,9 +499,6 @@ const faqSchema = {
   .vs__ico { display: inline-flex; flex-shrink: 0; margin-top: 1px; }
   .vs__item--now .vs__ico { color: var(--color-neutral-400); }
   .vs__item--next .vs__ico { color: var(--color-success); }
-  .vs__cta { text-align: center; margin-top: var(--space-7); }
-  .vs__note { margin-top: var(--space-3); font-size: var(--font-size-small); color: var(--color-text-muted); }
-  @media (max-width: 760px) { .vs { grid-template-columns: 1fr; max-width: 460px; } }
 
   /* ODBER (prihlaseni k novinkam) */
   .sub { display: grid; grid-template-columns: 1fr minmax(0, 420px); gap: var(--space-8); align-items: start; max-width: 940px; margin: 0 auto; }
@@ -446,22 +543,28 @@ const faqSchema = {
   .tl__title { margin: var(--space-1) 0 0; font-size: var(--font-size-body); font-weight: var(--font-weight-semibold); line-height: var(--line-height-tight); }
   .tl__badge { display: inline-block; margin-top: var(--space-2); font-size: var(--font-size-caption); font-weight: var(--font-weight-medium); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide); color: #fff; background: var(--color-primary); padding: 1px var(--space-2); border-radius: var(--radius-sm); }
 
-  /* KOHO SE TO TYKA */
-  .who { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-5); }
-  .who__card { background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-6) var(--space-5); }
-  .who__card > * + * { margin-top: var(--space-3); }
-  .who__ico { display: inline-flex; color: var(--color-text-accent); }
-  .note { display: flex; align-items: center; justify-content: center; gap: var(--space-2); margin-top: var(--space-6); font-size: var(--font-size-small); color: var(--color-text-muted); text-align: center; }
-  .note__ico { display: inline-flex; color: var(--color-text-accent); flex-shrink: 0; }
-  @media (max-width: 880px) { .who { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  @media (max-width: 520px) { .who { grid-template-columns: 1fr; } }
+  /* Harmonogram na tmavem pasu. Hotove a aktualni milniky drzi bila karta,
+     budouci zustavaji jen obtazene, aby se cetlo, ze jeste nenastaly. Tam ale
+     text lezi na navy, takze musi zesvetlat, jinak by byl neciteny. */
+  .tl--on-dark .tl__line { background: var(--color-border-on-dark); }
+  /* Sekce je on-dark, takze text v ni dedi bilou. Karta hotoveho a aktualniho
+     milniku je ale bila, tam se musi vratit tmavy text. */
+  .tl--on-dark .tl__title { color: var(--color-text); }
+  .tl--on-dark .tl__dot { background: var(--color-primary-bg); border-color: var(--color-border-on-dark); }
+  .tl--on-dark .tl__item--done .tl__dot { background: var(--color-text-on-dark); border-color: var(--color-text-on-dark); }
+  .tl--on-dark .tl__item--current .tl__dot { border-color: var(--color-secondary-gold); box-shadow: 0 0 0 4px var(--color-primary-bg), 0 0 0 6px var(--color-secondary-gold); }
+  .tl--on-dark .tl__item--current .tl__dot::after { background: var(--color-secondary-gold); }
+  .tl--on-dark .tl__item--current .tl__card { border-color: var(--color-secondary-gold); box-shadow: 0 8px 24px rgba(0, 0, 0, .22); }
+  .tl--on-dark .tl__item--future .tl__card { border-color: var(--color-border-on-dark); }
+  .tl--on-dark .tl__item--future .tl__date { color: var(--color-text-on-dark-muted); }
+  .tl--on-dark .tl__item--future .tl__title { color: var(--color-text-on-dark); }
 
-  /* JAK SE PRIPRAVIT (kroky) */
-  .steps { list-style: none; display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
-  .step { position: relative; padding: var(--space-6); background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); box-shadow: var(--shadow-sm); }
-  .step > * + * { margin-top: var(--space-3); }
+  /* JAK SE PRIPRAVIT - cislo kroku v rohu karty */
   .step__num { position: absolute; top: var(--space-4); right: var(--space-5); font-size: var(--font-size-h2); font-weight: var(--font-weight-bold); color: var(--color-neutral-200); line-height: 1; }
-  .step__ico { display: inline-flex; color: var(--color-text-accent); }
+  /* Cislo je dekorace nad ikonou, at nezvedne prvni odsazeni v karte. */
+  .step > .step__num + * { margin-top: 0; }
+  /* Karta kroku ma vpravo misto pro cislo, at do nej nelezl nadpis. */
+  .step :global(h3) { padding-right: var(--space-8); }
 
   /* FAQ */
 </style>
