@@ -291,6 +291,12 @@ const faqSchema = {
         </div>
       ))}
     </div>
+    <div class="tl-note">
+      <Text size="small" align="center" color="muted">
+        O konečné podobě zákona bude znovu hlasovat Sněmovna. Termíny výše vycházejí
+        z návrhu schváleného 15. července 2026.
+      </Text>
+    </div>
   </Section>
 
   <!-- KOHO SE TO TYKA -->
@@ -566,6 +572,9 @@ const faqSchema = {
   .tl--on-dark .tl__item--future .tl__card { border-color: var(--color-border-on-dark); }
   .tl--on-dark .tl__item--future .tl__date { color: var(--color-text-on-dark-muted); }
   .tl--on-dark .tl__item--future .tl__title { color: var(--color-text-on-dark); }
+  /* Poznamka pod osou lezi na tmavem pasu, proto bila karta jako u milniku:
+     Text color="muted" je tmava sed a na navy by se necetla. */
+  .tl-note { max-width: 620px; margin: var(--space-5) auto 0; padding: var(--space-4) var(--space-5); background: var(--color-bg); border-left: 3px solid var(--color-secondary-gold); border-radius: var(--radius-sm); }
 
   /* JAK SE PRIPRAVIT - cislo kroku v rohu karty */
   .step__num { position: absolute; top: var(--space-4); right: var(--space-5); font-size: var(--font-size-h2); font-weight: var(--font-weight-bold); color: var(--color-neutral-200); line-height: 1; }

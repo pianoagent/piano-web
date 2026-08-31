@@ -11,7 +11,9 @@ Elektronická evidence tržeb se po několika letech vrací do českých obchod�
 
 Zákon zatím není definitivní. Senát ho 19. srpna 2026 vrátil Sněmovně s pozměňovacími návrhy, chce z evidence vyjmout bezhotovostní platby. Sněmovna o konečné podobě znovu nehlasovala a chybí i podpis prezidenta. Teprve pak se potvrdí, že evidence naběhne v navrhované podobě, tedy leden 2027 jako pilotní provoz a od 1. února 2027 plošná povinnost. I tak se ale vyplatí připravit se dopředu, ne narychlo po Novém roce.
 
-![Časová osa EET 2.0: Sněmovna (schváleno 15. 7. 2026), Senát, prezident, zkušební režim od 1. 1. 2027, ostrý provoz povinně od 1. 2. 2027](/images/blog/eet-2-0-casova-osa.webp)
+<!-- TODO grafika: časová osa, překreslit dle stavu k 31. 8. 2026. Skryto do výměny,
+     pak odstraň tenhle komentář i obal kolem řádku níž. -->
+<!-- ![Časová osa EET 2.0: Sněmovna (schváleno 15. 7. 2026), Senát, prezident, zkušební režim od 1. 1. 2027, ostrý provoz povinně od 1. 2. 2027](/images/blog/eet-2-0-casova-osa.webp) -->
 
 ## Evidovat se bude jen to, co zaplatíte na místě
 
@@ -27,8 +29,9 @@ Tisk účtenky přestává být kvůli evidenci povinný. Zákazník ji dostane 
 
 Nová evidence by neměla vyžadovat nákup nových pokladen, poslouží i stávající technologie. Pro nejmenší podnikatele navíc stát chystá bezplatnou webovou aplikaci ovladatelnou z mobilu, tabletu i počítače.
 
-<!-- TODO: nahradit překreslenou grafikou 5 rozdílů -->
-![5 klíčových rozdílů mezi EET a EET 2.0: účtenka, co se eviduje, hardware, data a kontroly](/images/blog/eet-2-0-5-rozdilu.webp)
+<!-- TODO grafika: 5 rozdílů, překreslit dle stavu k 31. 8. 2026. Skryto do výměny,
+     pak odstraň tenhle komentář i obal kolem řádku níž. -->
+<!-- ![5 klíčových rozdílů mezi EET a EET 2.0: účtenka, co se eviduje, hardware, data a kontroly](/images/blog/eet-2-0-5-rozdilu.webp) -->
 
 ## Výpadek internetu není důvod k panice
 
@@ -46,7 +49,7 @@ Zvlášť se vyplatí zmínit spropitné: bude osvobozeno od daně z příjmů a
 
 ## Co dělat už teď
 
-Ověřte si, zda a jak se vás nová evidence bude týkat. Zvažte, zda pro vás dává smysl režim EET OFF. A sledujte, jak se zákonem naloží Senát, protože definitivní podoba se v detailech ještě může posunout.
+Ověřte si, zda a jak se vás nová evidence bude týkat. Zvažte, zda pro vás dává smysl režim EET OFF. A sledujte, jak se zákonem naloží Sněmovna, protože definitivní podoba se v detailech ještě může posunout.
 
 Pokud si nejste jistí, jak se změny dotknou konkrétně vašeho podnikání nebo pokladního systému, rádi vám s přípravou pomůžeme.
 

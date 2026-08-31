@@ -29,8 +29,8 @@ const novinky = [
 // s fiskálním kódem, ne nutně vytisknout.
 const compare = [
   { icon: 'lucide:receipt', cat: 'Účtenka', old: 'Vždy, s fiskálním kódem', neu: 'Jen na vyžádání' },
-  { icon: 'lucide:credit-card', cat: 'Co se eviduje', old: 'Hotovost, zpočátku i karty', neu: 'Osobní platby včetně karet' },
-  { icon: 'lucide:cpu', cat: 'Hardware', old: 'Nové, pokud starý nestačil', neu: 'Stačí stávající pokladna' },
+  { icon: 'lucide:credit-card', cat: 'Co se eviduje', old: 'Hotovost, zpočátku i karty', neu: 'Platby na místě, i kartou' },
+  { icon: 'lucide:cpu', cat: 'Hardware', old: 'Nové, pokud staré nestačilo', neu: 'Stačí stávající pokladna' },
   { icon: 'lucide:file-text', cat: 'Data', old: 'Částka i rozpis DPH', neu: 'Jen celková částka s DPH' },
   { icon: 'lucide:search', cat: 'Kontroly', old: 'Plošné kontroly', neu: 'Cílená analytika' },
 ];
@@ -149,6 +149,12 @@ const faqSchema = {
         </div>
       ))}
     </div>
+    <div class="tl-note">
+      <Text size="small" align="center" color="muted">
+        O konečné podobě zákona bude znovu hlasovat Sněmovna. Termíny výše vycházejí
+        z návrhu schváleného 15. července 2026.
+      </Text>
+    </div>
   </Section>
 
   <!-- Z blogu -->
@@ -222,6 +228,9 @@ const faqSchema = {
   .tl__item--future .tl__date { color: var(--color-text-muted); }
   .tl__title { margin: var(--space-1) 0 0; font-size: var(--font-size-body); font-weight: var(--font-weight-semibold); line-height: var(--line-height-tight); }
   .tl__badge { display: inline-block; margin-top: var(--space-2); font-size: var(--font-size-caption); font-weight: var(--font-weight-medium); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide); color: #fff; background: var(--color-primary); padding: 1px var(--space-2); border-radius: var(--radius-sm); }
+  /* Sekce s osou je bila stejne jako --color-bg, takze karta musi mit ramecek,
+     jinak by z ni zbyl jen levy pruh. Stejny 1px jako maji .tl__card nad ni. */
+  .tl-note { max-width: 620px; margin: var(--space-5) auto 0; padding: var(--space-4) var(--space-5); background: var(--color-bg); border: 1px solid var(--color-border); border-left: 3px solid var(--color-primary); border-radius: var(--radius-sm); }
 
   @media (max-width: 768px) {
     .cmp { grid-template-columns: 1fr; max-width: 460px; }
