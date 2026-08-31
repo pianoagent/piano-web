@@ -24,12 +24,16 @@ const novinky = [
   { icon: 'lucide:receipt', title: 'Modernized sales', text: 'No more mandatory receipt printing and simpler record-keeping without needless paperwork.' },
 ];
 
-// EET vs. EET 2.0: 5 key differences (per source)
+// EET vs. EET 2.0: 5 key differences
+// Wording corrected 31 Aug 2026 after a factual review by Hedvika Trunečková (Protel)
+// and Jana Cave-Ayland (Hustá): under EET 1.0 cards were recorded for the first
+// 15 months only (until the Constitutional Court ruling), new hardware was not
+// mandatory, and the receipt had to be "issued" with a fiscal code, not necessarily printed.
 const compare = [
-  { icon: 'lucide:receipt', cat: 'Receipt', old: 'Mandatory printing', neu: 'Only on request' },
-  { icon: 'lucide:credit-card', cat: 'What is recorded', old: 'Cash and cards', neu: 'In-person payments only' },
-  { icon: 'lucide:cpu', cat: 'Hardware', old: 'New equipment', neu: 'Your POS is enough' },
-  { icon: 'lucide:file-text', cat: 'Data', old: 'Extensive report', neu: 'Minimal details' },
+  { icon: 'lucide:receipt', cat: 'Receipt', old: 'Always, with fiscal code', neu: 'Only on request' },
+  { icon: 'lucide:credit-card', cat: 'What is recorded', old: 'Cash, cards at first', neu: 'In-person, cards included' },
+  { icon: 'lucide:cpu', cat: 'Hardware', old: 'New only if old fell short', neu: 'Your current POS is enough' },
+  { icon: 'lucide:file-text', cat: 'Data', old: 'Amount, VAT breakdown', neu: 'Total amount incl. VAT' },
   { icon: 'lucide:search', cat: 'Inspections', old: 'Blanket inspections', neu: 'Targeted analytics' },
 ];
 
@@ -39,16 +43,17 @@ const timeline = [
   { date: 'April 2026', title: 'Resolution of comments', state: 'done' },
   { date: 'May 2026', title: 'Bill passed its first reading', state: 'done' },
   { date: 'June 2026', title: 'Publication of the technical specification', state: 'done' },
-  { date: '15 July 2026', title: 'EET 2.0 approved by the Chamber of Deputies, test environment made available', state: 'current' },
-  { date: 'November 2026', title: 'Certificate generation in the DIS+ environment', state: 'future' },
-  { date: 'December 2026', title: 'Launch of the MOJE EET application', state: 'future' },
-  { date: '1 January 2027', title: 'Start of regular EET 2.0 operation', state: 'future' },
-  { date: 'January 2027', title: 'Project trial mode', state: 'future' },
+  { date: '15 July 2026', title: 'EET 2.0 approved by the Chamber of Deputies, test environment made available', state: 'done' },
+  { date: '19 August 2026', title: 'Senate returned the bill to the Chamber with amendments', state: 'current' },
+  { date: '1 November 2026', title: 'Certificate generation in the DIS+ environment', state: 'future' },
+  { date: '1 December 2026', title: 'Launch of the MOJE EET application', state: 'future' },
+  { date: 'January 2027', title: 'Pilot operation, guidance without inspections', state: 'future' },
+  { date: '1 February 2027', title: 'Full operation, inspections begin', state: 'future' },
 ];
 
 const faqs = [
-  { q: 'When does EET 2.0 take effect and do I have to deal with it now?', a: 'From 1 January 2027. By then every business must have a working POS system ready for the new rules, including installation, setup and staff training.' },
-  { q: 'Who does EET 2.0 apply to?', a: 'Practically every restaurant, café, bar or hotel. You will record all payments received in person from the customer: cash, card, QR code and meal vouchers. The only exception is self-employed people in the first band of the flat-rate scheme with income up to CZK 1 million per year.' },
+  { q: 'When does EET 2.0 take effect and do I have to deal with it now?', a: 'From 1 February 2027 for everyone. January 2027 is a pilot run with guidance, when you can fine-tune your setup and inspections are not yet running. So by the end of 2026 every business must have a working POS system ready for the new rules, including installation, setup and staff training.' },
+  { q: 'Who does EET 2.0 apply to?', a: 'Practically every restaurant, café, bar or hotel. You will record all payments received in person from the customer: cash, card, QR code and meal vouchers. The only exception is self-employed people in the first band of the flat-rate scheme with income up to CZK 1 million per year. Recording of cashless payments is still being negotiated, in August 2026 the Senate proposed excluding them.' },
   { q: 'Do I have to buy a new POS system?', a: 'It depends on what you use now. Modern systems can handle EET 2.0 with a software update. An outdated or unsuitable system, however, can prove costly, and time to switch is running out.' },
   { q: 'What happens if I do not keep records?', a: 'A fine of up to CZK 500,000. On top of that, the tax authority will actively compare the revenues of businesses in the same field and region, so anomalies will automatically draw inspectors’ attention.' },
   { q: 'Is EET 2.0 more complicated than the first one?', a: 'No, quite the opposite. It works only in online mode with no exceptions or variants, you issue a receipt only on request and digitally, and the state asks for less data than before. If you have the right system, you will hardly notice most of it.' },
@@ -118,6 +123,13 @@ const faqSchema = {
           </div>
         ))}
       </div>
+    </div>
+    <div class="cmp-note">
+      <Text size="small" color="muted">
+        Recording of card payments is still being negotiated. In August 2026 the Senate
+        proposed excluding cashless payments from the recording requirement. We are watching it for you
+        and will keep this page updated.
+      </Text>
     </div>
   </Section>
 
@@ -196,6 +208,7 @@ const faqSchema = {
   .cmp__cat { font-size: var(--font-size-caption); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide); color: var(--color-text-muted); }
   .cmp__col--new .cmp__cat { color: rgba(255,255,255,.65); }
   .cmp__val { font-weight: var(--font-weight-semibold); font-size: var(--font-size-body); }
+  .cmp-note { max-width: 620px; margin: var(--space-5) auto 0; padding: var(--space-4) var(--space-5); background: var(--color-bg); border-left: 3px solid var(--color-primary); border-radius: var(--radius-sm); }
 
   /* Timeline: vertical list */
   .tl { position: relative; max-width: 620px; margin: 0 auto; display: flex; flex-direction: column; gap: var(--space-4); padding-left: var(--space-1); }

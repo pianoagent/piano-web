@@ -1,6 +1,6 @@
 ---
 title: "EET vs. EET 2.0"
-description: "EET 2.0 startuje v lednu 2027. Žádné povinné účtenky, méně dat, jeden režim. Přehled všech klíčových změn oproti původní EET."
+description: "EET 2.0 je plošně povinná od 1. února 2027, leden 2027 je pilotní provoz. Žádné povinné účtenky, méně dat, jeden režim. Přehled změn oproti původní EET."
 pubDate: 2026-06-01
 image: "/images/blog/eet-vs-eet-2-0.webp"
 categories: ["EET", "Legislativa a povinnosti"]
@@ -8,7 +8,7 @@ categories: ["EET", "Legislativa a povinnosti"]
 
 ## **Co se mění a co zůstává?**
 
-Elektronická evidence tržeb se vrací – tentokrát pod označením EET 2.0. Nová verze, která se spustí v lednu 2027, se však od své předchůdkyně zásadně liší. Nevyžaduje povinné tištění účtenek u každého stolu ani povinné vývěsky o tom, že evidujete tržby a některé drobné podnikatele od evidence dokonce osvobozuje úplně. Máte obavu, že se v nové legislativě i tak ztratíte? Přinášíme přehled hlavních změn.
+Elektronická evidence tržeb se vrací – tentokrát pod označením EET 2.0. Nová verze, která se v lednu 2027 rozjede v pilotním režimu a od 1. února 2027 bude povinná plošně, se však od své předchůdkyně zásadně liší. Nevyžaduje povinné tištění účtenek u každého stolu ani povinné vývěsky o tom, že evidujete tržby a některé drobné podnikatele od evidence dokonce osvobozuje úplně. Máte obavu, že se v nové legislativě i tak ztratíte? Přinášíme přehled hlavních změn.
 
 Málokterý zákon rozvířil české podnikatelské vody tolik jako elektronická evidence tržeb. Od svého spuštění v roce 2016 přinesla povinné tištěné účtenky, cedule na zdech, složité režimy evidence a přísné kontroly, které mohly skončit nejen vysokou pokutou, ale i okamžitým uzavřením podniku. Administrativní zátěž rostla, systém se několikrát novelizoval a po pozastavení kvůli pandemii ho nová vláda v roce 2023 zrušila úplně.
 
@@ -16,7 +16,7 @@ EET 2.0 přichází s jiným přístupem: jednodušší technologie, méně byro
 
 ### **1. Konec povinných účtenek**
 
-V první vlně EET museli podnikatelé tisknout účtenku při každé transakci a předat ji zákazníkovi, ať ji chtěl, nebo ne. U rychloobrátkových provozů, jako jsou bary, stánky s jídlem nebo rušné restaurace to znamenalo zpomalení obsluhy a zbytečné náklady na papír a tisk.
+V první vlně EET museli podnikatelé u každé transakce vystavit účtenku s fiskálním kódem a předat ji zákazníkovi, ať ji chtěl, nebo ne. U rychloobrátkových provozů, jako jsou bary, stánky s jídlem nebo rušné restaurace to znamenalo zpomalení obsluhy a zbytečné náklady na papír a tisk.
 
 EET 2.0 povinnost tisknout účtenku ruší. Nyní doklad vydáte pouze tehdy, pokud ho host sám vyžaduje a klidně v digitální podobě. Pokud provozujete kavárnu s desítkami transakcí denně, oceníte, že obsluha nemusí u každého espressa čekat na vytištění papírku.Podnikatelé tak nebudou muset kontrolovat, zda účtenka z tiskárny skutečně vyjela, a stát nebude kontrolovat její fyzické předání zákazníkovi.
 
@@ -24,7 +24,7 @@ Pozor – povinnost vystavit daňový doklad na žádost zákazníka podle záko
 
 ### **2. Méně dat odesílaných státu**
 
-První EET vyžadovala odesílání poměrně detailních údajů, včetně sazeb DPH, bezpečnostního a podpisového kódu a rozpisu jednotlivých položek. Pro podnikatele to znamenalo technicky náročnější nastavení systémů a větší objem přenášených dat.
+První EET vyžadovala odesílání poměrně detailních údajů, včetně základů daně podle jednotlivých sazeb DPH a bezpečnostního i podpisového kódu. Pro podnikatele to znamenalo technicky náročnější nastavení systémů a větší objem přenášených dat.
 
 EET 2.0 jde na věc jinak. Státu posíláte pouze minimum informací, konkrétně identifikační číslo, označení provozovny a pokladního zařízení, pořadové číslo tržby, datum, čas a celkovou částku. Položky nákupu, rozpis DPH nebo osobní údaje zákazníků nově řešit nemusíte.
 
@@ -56,7 +56,7 @@ Většina restaurací a větších provozů jako společnosti s ručením omezen
 
 ### **6. Žádné speciální zařízení**
 
-Jednou z nejčastějších stížností na původní EET byly náklady na pořízení a provoz certifikovaných pokladních zařízení. Každoroční náklady na straně podnikatelů všech oborů se odhadovaly na 1,5 miliardy korun. Na rozdíl od okolních zemí jako Slovensko, Maďarsko nebo Polsko přitom Česko nevyžaduje žádný certifikovaný hardware ani speciální zařízení připojené k pokladně. Systém bude vyžadovat pouze software, který je schopný odeslat datovou zprávu a digitální certifikát pro autentizaci.
+Jednou z nejčastějších obav při zavádění první EET byly náklady na pokladní vybavení a jeho provoz. Každoroční náklady na straně podnikatelů všech oborů se odhadovaly na 1,5 miliardy korun. Na rozdíl od okolních zemí jako Slovensko, Maďarsko nebo Polsko přitom Česko nevyžaduje žádný certifikovaný hardware ani speciální zařízení připojené k pokladně. Systém bude vyžadovat pouze software, který je schopný odeslat datovou zprávu a digitální certifikát pro autentizaci.
 
 EET 2.0 žádné speciální zařízení nevyžaduje. Tržby můžete evidovat na počítači, notebooku, tabletu nebo chytrém telefonu s příslušným softwarem. Pokud už pokladní systém máte, půjde pravděpodobně jen o softwarový update, o který by se měl váš dodavatel postarat v rámci stávajících podmínek.
 

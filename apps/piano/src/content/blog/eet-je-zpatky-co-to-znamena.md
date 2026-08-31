@@ -1,7 +1,7 @@
 ---
 title: "EET je zpátky. Co to pro vás jako podnikatele reálně znamená?"
 seoTitle: "EET 2.0 od 2027: co znamená pro podnikatele | Piano"
-description: "EET 2.0 se vrací od ledna 2027: evidují se jen platby na místě, méně papírování, žádné nové pokladny, spropitné bez daně a režim EET OFF. Co to znamená pro vás."
+description: "EET 2.0 je plošně povinná od února 2027: evidují se jen platby na místě, méně papírování, žádné nové pokladny, spropitné bez daně a režim EET OFF."
 pubDate: 2026-07-27
 image: "/images/blog/eet-je-zpatky-co-to-znamena.webp"
 categories: ["EET", "Legislativa a povinnosti", "Platby a hosté"]
@@ -9,7 +9,7 @@ categories: ["EET", "Legislativa a povinnosti", "Platby a hosté"]
 
 Elektronická evidence tržeb se po několika letech vrací do českých obchodů, restaurací i provozoven služeb. Sněmovna 15. července 2026 schválila zákon, který zavádí takzvanou EET 2.0. Nová verze má být oproti té z let 2016 až 2020 jednodušší a méně nákladná.
 
-Zákon zatím není definitivní. Čeká ho ještě projednání v Senátu a podpis prezidenta. Teprve po splnění obou kroků se potvrdí, že evidence od 1. ledna 2027 skutečně naběhne v navrhované podobě. I tak se ale vyplatí připravit se dopředu, ne narychlo po Novém roce.
+Zákon zatím není definitivní. Senát ho 19. srpna 2026 vrátil Sněmovně s pozměňovacími návrhy, chce z evidence vyjmout bezhotovostní platby. Sněmovna o konečné podobě znovu nehlasovala a chybí i podpis prezidenta. Teprve pak se potvrdí, že evidence naběhne v navrhované podobě, tedy leden 2027 jako pilotní provoz a od 1. února 2027 plošná povinnost. I tak se ale vyplatí připravit se dopředu, ne narychlo po Novém roce.
 
 ![Časová osa EET 2.0: Sněmovna (schváleno 15. 7. 2026), Senát, prezident, zkušební režim od 1. 1. 2027, ostrý provoz povinně od 1. 2. 2027](/images/blog/eet-2-0-casova-osa.webp)
 
@@ -27,6 +27,7 @@ Tisk účtenky přestává být kvůli evidenci povinný. Zákazník ji dostane 
 
 Nová evidence by neměla vyžadovat nákup nových pokladen, poslouží i stávající technologie. Pro nejmenší podnikatele navíc stát chystá bezplatnou webovou aplikaci ovladatelnou z mobilu, tabletu i počítače.
 
+<!-- TODO: nahradit překreslenou grafikou 5 rozdílů -->
 ![5 klíčových rozdílů mezi EET a EET 2.0: účtenka, co se eviduje, hardware, data a kontroly](/images/blog/eet-2-0-5-rozdilu.webp)
 
 ## Výpadek internetu není důvod k panice
