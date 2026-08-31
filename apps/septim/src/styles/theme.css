@@ -126,6 +126,11 @@
 
   /* ----- Focus ring: cyan ----- */
   --shadow-focus: 0 0 0 3px rgba(0, 173, 238, 0.40);
+
+  /* Brandový odstín závoje u hero varianty cover. Bez něj je závoj
+     neutrálně černý a fotka vypadá jen ztmavená, ne v barvě značky.
+     Hodnota je septimí modrá #06038D na 38 %. */
+  --hero-cover-tint: rgba(6, 3, 141, 0.38);
 }
 
 /* Hero obrázek (split layout): sdílená utilita pro stránky webu */

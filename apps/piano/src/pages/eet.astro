@@ -22,12 +22,16 @@ const novinky = [
   { icon: 'lucide:receipt', title: 'Modernizace prodeje', text: 'Konec povinného tisku účtenek a jednodušší evidence bez zbytečného papírování.' },
 ];
 
-// EET vs. EET 2.0: 5 klíčových rozdílů (dle podkladu)
+// EET vs. EET 2.0: 5 klíčových rozdílů
+// Formulace opraveny 31. 8. 2026 dle věcné revize Hedviky Trunečkové (Protel)
+// a Jany Cave-Ayland (Hustá): v EET 1.0 se karty evidovaly prvních 15 měsíců
+// (do nálezu ÚS), nový hardware nebyl povinný a účtenka se měla "vystavit"
+// s fiskálním kódem, ne nutně vytisknout.
 const compare = [
-  { icon: 'lucide:receipt', cat: 'Účtenka', old: 'Povinný tisk', neu: 'Jen na vyžádání' },
-  { icon: 'lucide:credit-card', cat: 'Co se eviduje', old: 'Hotovost i karty', neu: 'Jen kontaktní platby' },
-  { icon: 'lucide:cpu', cat: 'Hardware', old: 'Nové vybavení', neu: 'Pokladna stačí' },
-  { icon: 'lucide:file-text', cat: 'Data', old: 'Rozsáhlý výkaz', neu: 'Minimum údajů' },
+  { icon: 'lucide:receipt', cat: 'Účtenka', old: 'Vždy, s fiskálním kódem', neu: 'Jen na vyžádání' },
+  { icon: 'lucide:credit-card', cat: 'Co se eviduje', old: 'Hotovost, zpočátku i karty', neu: 'Osobní platby včetně karet' },
+  { icon: 'lucide:cpu', cat: 'Hardware', old: 'Nové, pokud starý nestačil', neu: 'Stačí stávající pokladna' },
+  { icon: 'lucide:file-text', cat: 'Data', old: 'Částka i rozpis DPH', neu: 'Jen celková částka s DPH' },
   { icon: 'lucide:search', cat: 'Kontroly', old: 'Plošné kontroly', neu: 'Cílená analytika' },
 ];
 
@@ -37,16 +41,17 @@ const timeline = [
   { date: 'Duben 2026', title: 'Vypořádání připomínek', state: 'done' },
   { date: 'Květen 2026', title: 'Návrh prošel prvním čtením', state: 'done' },
   { date: 'Červen 2026', title: 'Zveřejnění technické specifikace', state: 'done' },
-  { date: '15. července 2026', title: 'EET 2.0 schváleno Sněmovnou, zpřístupnění testovacího prostředí', state: 'current' },
-  { date: 'Listopad 2026', title: 'Generování certifikátů v prostředí DIS+', state: 'future' },
-  { date: 'Prosinec 2026', title: 'Spuštění aplikace MOJE EET', state: 'future' },
-  { date: '1. ledna 2027', title: 'Zahájení běžného provozu EET 2.0', state: 'future' },
-  { date: 'Leden 2027', title: 'Zkušební režim projektu', state: 'future' },
+  { date: '15. července 2026', title: 'EET 2.0 schváleno Sněmovnou, zpřístupnění testovacího prostředí', state: 'done' },
+  { date: '19. srpna 2026', title: 'Senát vrátil návrh Sněmovně s pozměňovacími návrhy', state: 'current' },
+  { date: '1. listopadu 2026', title: 'Generování certifikátů v prostředí DIS+', state: 'future' },
+  { date: '1. prosince 2026', title: 'Spuštění aplikace MOJE EET', state: 'future' },
+  { date: 'Leden 2027', title: 'Pilotní provoz, metodická podpora bez kontrol', state: 'future' },
+  { date: '1. února 2027', title: 'Ostrý provoz, začínají kontroly', state: 'future' },
 ];
 
 const faqs = [
-  { q: 'Kdy začne platit EET 2.0 a musím to řešit už teď?', a: 'Od 1. ledna 2027. Do té doby musí mít každý podnik funkční pokladní systém připravený na nová pravidla, včetně instalace, nastavení a zaškolení obsluhy.' },
-  { q: 'Koho se EET 2.0 týká?', a: 'Prakticky každé restaurace, kavárny, baru nebo hotelu. Evidovat budete všechny platby přijaté při osobním kontaktu se zákazníkem, hotovost, kartu, QR kód i stravenky. Výjimku mají pouze OSVČ v prvním pásmu paušálního režimu s příjmy do 1 milionu Kč ročně.' },
+  { q: 'Kdy začne platit EET 2.0 a musím to řešit už teď?', a: 'Plošně od 1. února 2027. Leden 2027 je pilotní provoz s metodickou podporou, kdy si nastavení v klidu doladíte a kontroly ještě neběží. Do konce roku 2026 proto musí mít každý podnik funkční pokladní systém připravený na nová pravidla, včetně instalace, nastavení a zaškolení obsluhy.' },
+  { q: 'Koho se EET 2.0 týká?', a: 'Prakticky každé restaurace, kavárny, baru nebo hotelu. Evidovat budete všechny platby přijaté při osobním kontaktu se zákazníkem, hotovost, kartu, QR kód i stravenky. Výjimku mají pouze OSVČ v prvním pásmu paušálního režimu s příjmy do 1 milionu Kč ročně. Evidence bezhotovostních plateb se ještě dojednává, Senát je v srpnu 2026 navrhl z evidence vyjmout.' },
   { q: 'Musím si pořizovat nový pokladní systém?', a: 'Záleží na tom, co teď používáte. Moderní systémy zvládnou EET 2.0 softwarovým updatem. Zastaralý nebo nevhodný systém vás ale může přijít draho a čas na přechod se krátí.' },
   { q: 'Co mi hrozí, když nebudu evidovat?', a: 'Pokuta až 500 000 Kč. Finanční správa navíc bude aktivně porovnávat tržby podnikatelů ve stejném oboru a regionu, takže anomálie automaticky přitáhnou pozornost kontrolorů.' },
   { q: 'Je EET 2.0 složitější než to první?', a: 'Ne, naopak. Funguje pouze v online režimu bez výjimek a variant, účtenku vydáváte jen na vyžádání i digitálně a stát po vás chce méně dat než dřív. Pokud máte správný systém, většinu věcí nepoznáte.' },
@@ -115,6 +120,13 @@ const faqSchema = {
           </div>
         ))}
       </div>
+    </div>
+    <div class="cmp-note">
+      <Text size="small" color="muted">
+        Evidence plateb kartou se ještě dojednává, Senát v srpnu 2026 navrhl
+        bezhotovostní platby z evidence vyjmout. Sledujeme to za vás a stránku
+        aktualizujeme.
+      </Text>
     </div>
   </Section>
 
@@ -193,6 +205,7 @@ const faqSchema = {
   .cmp__cat { font-size: var(--font-size-caption); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide); color: var(--color-text-muted); }
   .cmp__col--new .cmp__cat { color: rgba(255,255,255,.65); }
   .cmp__val { font-weight: var(--font-weight-semibold); font-size: var(--font-size-body); }
+  .cmp-note { max-width: 620px; margin: var(--space-5) auto 0; padding: var(--space-4) var(--space-5); background: var(--color-bg); border-left: 3px solid var(--color-primary); border-radius: var(--radius-sm); }
 
   /* Harmonogram: svislý seznam pod sebou */
   .tl { position: relative; max-width: 620px; margin: 0 auto; display: flex; flex-direction: column; gap: var(--space-4); padding-left: var(--space-1); }

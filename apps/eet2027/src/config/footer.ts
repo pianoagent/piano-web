@@ -7,7 +7,7 @@ const year = new Date().getFullYear();
 export const eetFooter = {
   brand: 'EET 2027',
   mark: false,
-  tagline: 'Prehledny pruvodce navratem elektronicke evidence trzeb od 1. ledna 2027. Co se meni, koho se to tyka a jak se vcas pripravit.',
+  tagline: 'Prehledny pruvodce navratem EET. Plosne povinna je od 1. unora 2027, leden je pilotni provoz. Co se meni, koho se to tyka a jak se vcas pripravit.',
   columns: [
     {
       heading: 'Informace',
