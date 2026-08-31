@@ -1,7 +1,7 @@
 ---
 title: "EET je zpátky. Co to pro vás jako podnikatele reálně znamená?"
 seoTitle: "EET 2.0 od 2027: co znamená pro podnikatele | Piano"
-description: "EET 2.0 je plošně povinná od února 2027: evidují se jen platby na místě, méně papírování, žádné nové pokladny, spropitné bez daně a režim EET OFF."
+description: "EET 2.0 je plošně povinná od února 2027: evidují se jen platby na místě, méně papírování, žádný certifikovaný hardware, spropitné bez daně a režim EET OFF."
 pubDate: 2026-07-27
 image: "/images/blog/eet-je-zpatky-co-to-znamena.webp"
 categories: ["EET", "Legislativa a povinnosti", "Platby a hosté"]
@@ -25,9 +25,9 @@ Odpadá povinnost rozepisovat DPH podle jednotlivých sazeb i vypisovat konkrét
 
 Tisk účtenky přestává být kvůli evidenci povinný. Zákazník ji dostane jen na vyžádání, klidně i v elektronické podobě. Zmizí povinná cedule na provozovně a definitivně skončí i účtenková loterie.
 
-## Žádné nové pokladny
+## Žádný certifikovaný hardware
 
-Nová evidence by neměla vyžadovat nákup nových pokladen, poslouží i stávající technologie. Pro nejmenší podnikatele navíc stát chystá bezplatnou webovou aplikaci ovladatelnou z mobilu, tabletu i počítače.
+Evidence nevyžaduje certifikovaný hardware ani speciální zařízení připojené k pokladně. Nevyžadovala ho ani první vlna, takže tady se nic nemění. Nákup nových pokladen by nová evidence vyžadovat neměla, poslouží i stávající technologie. Pro nejmenší podnikatele navíc stát chystá bezplatnou webovou aplikaci ovladatelnou z mobilu, tabletu i počítače.
 
 <!-- TODO grafika: 5 rozdílů, překreslit dle stavu k 31. 8. 2026. Skryto do výměny,
      pak odstraň tenhle komentář i obal kolem řádku níž. -->
