@@ -4,8 +4,9 @@
    ComInn s.r.o.). Identita: modrošedá #587E92 + tmavá navy #222F40,
    červený akcent #EE1625. Paleta vytažená z legacy webu
    (podklady starých webů/Savarin/css/style.css).
-   Font: Figtree (humanistický sans v duchu původního Trebuchetu),
-   tlačítka jemně zaoblená (8px, bez chamferu).
+   Font: Figtree (humanistický sans v duchu původního Trebuchetu).
+   CTA tlačítka: ČERVENÝ PILL v brandové červené z loga (--convert #D32118),
+   dle rozhodnutí grafika (shodné s CTA v mailové šabloně Ecomailu).
    Komponenty se NEMĚNÍ: pouze hodnoty zde. Base struktura
    (typo škála, spacing) zůstává z @piano/ui.
 */
@@ -64,10 +65,10 @@
   --text-h2:      600 var(--font-size-h2)/var(--line-height-heading) var(--font-sans);
   --text-h3:      600 var(--font-size-h3)/var(--line-height-snug) var(--font-sans);
 
-  /* ----- Primary: modrošedá (brandová identita, CTA, odkazy) -----
-     Ztmaveno z brandové #587E92 na #4E7286 kvůli WCAG AA: bílý text na
-     tlačítku má kontrast 5.15:1 (≥4.5). Světlou brandovou #587E92 dál
-     drží --color-secondary pro dekorativní velký text. */
+  /* ----- Primary: modrošedá (odkazy, ikony, dekorativní akcenty) -----
+     POZN.: CTA tlačítka už primary NEPOUŽÍVAJÍ, mají vlastní červené
+     tokeny (--btn-bg níže). Primary zůstává pro odkazy a akcenty.
+     Světlou brandovou #587E92 drží --color-secondary pro velký text. */
   --color-primary-hover:    #456578;
   --color-primary-active:   #3F6276;
   --color-primary-bg:       #222F40;  /* tmavá navy, pozadí sekcí */
@@ -115,9 +116,20 @@
   /* ----- Chamfer vypnut (Savarin nemá seříznutý roh) ----- */
   --chamfer-depth: 0px;
 
-  /* ----- Tlačítka: jemně zaoblená, bez chamferu ----- */
-  --btn-radius: 8px;
-  --btn-clip:   none;
+  /* ----- CTA tlačítka: ČERVENÝ PILL -----
+     Brandová červená z loga Savarinu = --convert (#D32118) ze styleguidu
+     (tokens.css); stejná červená je i v CTA mailové šablony Ecomailu.
+     Bílý text na ní má kontrast 5,25:1 → WCAG AA splněno.
+     Pill = --radius-full (mailová šablona používá border-radius 58px).
+     POZOR: .accent (červené slovo v nadpisu na tmavém hero) zůstává na
+     světlejší #EE1625: #D32118 by na navy pozadí spadla na 2,6:1
+     (pod 3:1 pro velký text). Nesjednocovat. */
+  --btn-bg:        var(--convert);
+  --btn-bg-hover:  var(--convert-hover);
+  --btn-bg-active: var(--convert-hover);
+  --btn-fg:        #FFFFFF;
+  --btn-radius:    var(--radius-full);
+  --btn-clip:      none;
 
   /* ----- Formulářová pole: také jemně zaoblená ----- */
   --field-radius: 8px;
