@@ -1,0 +1,229 @@
+---
+/**
+ * Rezervace - produktová stránka piano.cz/rezervace.
+ * Mirror landing page z rezervace.sandbox.piano.cz: obsah a struktura 1:1,
+ * vzhled přes sdílené komponenty a tokeny piano.cz. Anchory (#features,
+ * #how, #for-whom) záměrně kopírují originál, ať odkazy fungují i tady.
+ */
+import Base from '../layouts/Base.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import Badge from '@piano/ui/components/Badge.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import { pianoLeadProofs } from '../config/leadProofs';
+
+// Appka Rezervace (přihlášení i registrace). Zatím sandbox, před produkcí přepsat.
+const APP_URL = 'https://rezervace.sandbox.piano.cz/admin';
+
+const features = [
+  { icon: 'lucide:clipboard-list', title: 'Rezervační formulář', text: 'Zákazník si vybere datum, čas, počet osob i délku návštěvy. Nabízíme jen termíny, které opravdu můžete obsloužit.' },
+  { icon: 'lucide:calendar-days', title: 'Kalendář rezervací', text: 'Stoly na ose Y, čas na ose X. Zelená linka ukazuje aktuální hodinu, rezervace posunete přetažením a nikdy se nepřekryjí.' },
+  { icon: 'lucide:zap', title: 'Automatické potvrzování', text: 'Nastavte práh obsazenosti a velikost skupiny. Běžné rezervace se potvrdí samy, výjimky vám zůstanou ke schválení.' },
+  { icon: 'lucide:armchair', title: 'Stoly a zóny', text: 'Terasa, salonek, vnitřek. Každý stůl má kapacitu i zónu a systém sám vybere ten, kam se hosté vejdou.' },
+  { icon: 'lucide:mail', title: 'E-mailové notifikace', text: 'Host dostane potvrzení s kalendářovou přílohou i odkazem na zrušení, podnik e-mail o každé nové rezervaci.' },
+  { icon: 'lucide:bar-chart-3', title: 'Statistiky a přehledy', text: 'Počet rezervací, hostů a obsazenost pro vybraný den. Tabulka rezervací s filtrem podle jména, telefonu a stavu.' },
+  { icon: 'lucide:code', title: 'Vložení na váš web', text: 'Formulář nasdílíte odkazem nebo vložíte do vlastního webu jako iframe, který se sám přizpůsobí výšce obsahu.' },
+  { icon: 'lucide:languages', title: 'Pět jazyků', text: 'Čeština, angličtina, slovenština, němčina a maďarština. Pro zákazníky i pro obsluhu, včetně e-mailů.' },
+];
+
+const steps = [
+  { title: 'Založte si podnik', text: 'Vyplňte název, adresu, otevírací dobu a nahrajte logo. Stoly můžete přidat ručně nebo je stáhnout z Qerka.' },
+  { title: 'Nastavte pravidla rezervací', text: 'Časová okna, délka návštěvy, počet osob na stůl, předstih i počet stolů vyhrazených pro rezervace.' },
+  { title: 'Sdílejte odkaz a přijímejte hosty', text: 'Odkaz na formulář dejte na web, sociální sítě nebo do Google profilu. Rezervace naskakují přímo do kalendáře.' },
+];
+
+const audience = [
+  { icon: 'lucide:utensils', title: 'Restaurace' },
+  { icon: 'lucide:coffee', title: 'Kavárny a bistra' },
+  { icon: 'lucide:wine', title: 'Bary a vinotéky' },
+  { icon: 'lucide:door-open', title: 'Salonky a další podniky' },
+];
+
+// Bloky rezervací v mockupu kalendáře: stůl, začátek a délka v % šířky dne.
+const mockRows = [
+  { table: 'T1', left: 8, width: 38, tone: 'a' },
+  { table: 'T2', left: 30, width: 44, tone: 'b' },
+  { table: 'T3', left: 52, width: 34, tone: 'c' },
+  { table: 'T4', left: 18, width: 28, tone: 'a' },
+];
+const NOW_AT = 52;   // pozice linky aktuální hodiny (%)
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Rezervace',
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'Web',
+  description: 'Rezervační systém pro restaurace, kavárny, bary a další podniky. Online rezervační formulář, kalendář pro obsluhu a automatické potvrzování.',
+  url: 'https://piano.cz/rezervace/',
+  inLanguage: 'cs',
+  featureList: features.map((f) => f.title),
+  publisher: { '@type': 'Organization', name: 'Piano Solutions' },
+};
+---
+
+<Base title="Rezervační systém pro restaurace a kavárny | Piano"
+      description="Online rezervační formulář, kalendář pro obsluhu a automatické potvrzování rezervací. Bez papírů, bez telefonování, bez dvojitých rezervací."
+      schema={schema}>
+
+  <Hero eyebrow="Rezervační systém pro podniky" background="warm"
+        lead="Online rezervační formulář, přehledný kalendář pro obsluhu a automatické potvrzování. Vše na jednom místě. Bez papírů, bez telefonování, bez dvojitých rezervací."
+        usp={['Nasazení do minuty', 'Bez instalace', '5 jazyků']}>
+    <Heading slot="title" as="h1" size="display">Rezervace stolů,<br />které se <em>řídí samy</em></Heading>
+    <Fragment slot="actions">
+      <Button href={APP_URL}>Vytvořit účet</Button>
+      <Button href={APP_URL} variant="secondary">Přihlásit se</Button>
+    </Fragment>
+
+    <!-- Ukázka kalendáře obsluhy: statický mockup, sdělení nese text vedle -->
+    <div slot="media" class="mock" aria-hidden="true">
+      <div class="mock__head">
+        <span class="mock__title">Dnes v podniku</span>
+        <Badge variant="success" size="sm">Potvrzeno</Badge>
+      </div>
+      <div class="mock__grid">
+        <div class="mock__rows">
+          {mockRows.map((r) => (
+            <div class="mock__row">
+              <span class="mock__table">{r.table}</span>
+              <div class="mock__track">
+                <span class={`mock__block mock__block--${r.tone}`} style={`left:${r.left}%;width:${r.width}%`}></span>
+              </div>
+            </div>
+          ))}
+          {/* Linka aktuální hodiny leží v ose (za štítky stolů), ne přes celý
+              grid, jinak by se offset štítku počítal dvakrát. */}
+          <span class="mock__axis"><span class="mock__now" style={`left:${NOW_AT}%`}></span></span>
+        </div>
+      </div>
+      <dl class="mock__meta">
+        <div><dt>Host</dt><dd>A. N.</dd></div>
+        <div><dt>Osob</dt><dd>4</dd></div>
+        <div><dt>Stůl</dt><dd>T3</dd></div>
+      </dl>
+    </div>
+  </Hero>
+
+  <!-- USPGrid nepropůjde vlastní id na Section, kotva proto sedí na obalu -->
+  <div id="features">
+    <USPGrid title="Vše, co podnik na rezervace potřebuje"
+             lead="Od prvního kliknutí zákazníka až po usazení hosta u stolu: každý krok máte pod kontrolou."
+             items={features} minItemWidth="260px" background="default" space="lg" />
+  </div>
+
+  <!-- Jak to funguje: tři číslované kroky (stejný pattern jako /pilot) -->
+  <Section id="how" background="warm" space="lg">
+    <div class="head-center">
+      <Heading as="h2" size="h2" align="center">Jak to funguje</Heading>
+      <Text size="lead" color="muted" align="center" balance>Tři kroky od registrace k první rezervaci.</Text>
+    </div>
+    <ol class="nsteps" role="list">
+      {steps.map((s, i) => (
+        <li class="nstep">
+          <span class="nstep__num">{i + 1}</span>
+          <Heading as="h3" size="h3">{s.title}</Heading>
+          <Text color="muted">{s.text}</Text>
+        </li>
+      ))}
+    </ol>
+  </Section>
+
+  <div id="for-whom">
+    <USPGrid title="Pro koho je Rezervace" items={audience}
+             columns={4} background="default" space="lg" />
+  </div>
+
+  <!-- Závěrečné CTA do appky -->
+  <Section background="primary" space="lg">
+    <div class="endcta">
+      <Heading as="h2" size="h2" color="on-dark" align="center" balance>Vyzkoušejte Rezervace ještě dnes</Heading>
+      <Text size="lead" color="on-dark-muted" align="center" balance>
+        Založte si účet a mějte rezervace pod kontrolou už při nejbližší večerní směně.
+      </Text>
+      <div class="endcta__actions">
+        <Button href={APP_URL} onDark>Vytvořit účet</Button>
+        <Button href={APP_URL} variant="secondary" onDark>Přihlásit se</Button>
+      </div>
+    </div>
+  </Section>
+
+  <LeadForm id="poptavka" variant="callback" layout="stacked" background="alt" space="md"
+            proofs={pianoLeadProofs}
+            title="Chcete s nastavením pomoct?"
+            lead="Nechte nám telefon a probereme nastavení pro váš provoz." />
+
+</Base>
+
+<style>
+  /* Hlavička sekce a číslované kroky: varianta z /pilot, jen s perexem
+     místo verzálkového návěsu (proto odsazení řeší .text, ne h2). */
+  .head-center { text-align: center; max-width: 640px; margin: 0 auto var(--space-7); }
+  .head-center :global(.text) { margin-top: var(--space-3); }
+  .nsteps { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); max-width: 980px; margin: 0 auto; }
+  .nstep { display: flex; flex-direction: column; gap: var(--space-2); }
+  .nstep__num { display: grid; place-items: center; width: 40px; height: 40px; background: var(--color-primary); color: var(--color-text-on-dark); border-radius: var(--radius-full); font-weight: var(--font-weight-semibold); margin-bottom: var(--space-2); }
+
+  /* Závěrečné CTA */
+  .endcta { max-width: 640px; margin: 0 auto; }
+  .endcta :global(.text) { margin-top: var(--space-3); }
+  /* Primární CTA na tmavé sekci: bílé tlačítko s karmínovým textem.
+     Hooky --btn-bg / --btn-fg jsou v Buttonu přesně pro tenhle případ:
+     výchozí karmínová na vínové dá 1,37:1, tahle kombinace 6,7:1 (AA),
+     hover na warm white 6,2:1. */
+  .endcta__actions {
+    display: flex; flex-wrap: wrap; gap: var(--space-3); justify-content: center; margin-top: var(--space-6);
+    --btn-bg: var(--color-neutral-0);
+    --btn-fg: var(--color-primary);
+    --btn-bg-hover: var(--color-bg-warm);
+    --btn-bg-active: var(--color-neutral-50);
+  }
+
+  /* Mockup kalendáře obsluhy. Dekorace, sdělení nese text vedle. */
+  .mock {
+    --mock-label: 20px;   /* sloupec štítků stolů, drží ho i osa linky */
+    background: var(--color-bg); border: 1px solid var(--color-border);
+    border-radius: var(--radius-md); padding: var(--space-5); box-shadow: var(--shadow-md);
+  }
+  .mock__head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); }
+  .mock__title { font-weight: var(--font-weight-semibold); font-size: var(--font-size-small); }
+  .mock__grid {
+    margin-top: var(--space-4); padding: var(--space-3);
+    background: var(--color-bg-alt); border: 1px solid var(--color-border); border-radius: var(--radius-sm);
+  }
+  .mock__rows { position: relative; display: flex; flex-direction: column; gap: var(--space-2); }
+  .mock__row { display: flex; align-items: center; gap: var(--space-2); }
+  .mock__table { flex: 0 0 var(--mock-label); font-size: var(--font-size-caption); font-weight: var(--font-weight-medium); color: var(--color-text-muted); }
+  .mock__track { position: relative; flex: 1; height: 24px; background: var(--color-bg); border-radius: var(--radius-sm); }
+  /* Blok rezervace je plocha, takže vínová: karmínová je dle BRAND.md
+     jen pro text, ikony a CTA. Hairline rámeček drží čitelnost zlaté,
+     která má proti bílému tracku 1,96:1. */
+  .mock__block { position: absolute; inset-block: 0; border-radius: var(--radius-sm); border: 1px solid rgba(38, 38, 38, 0.18); }
+  .mock__block--a { background: var(--color-primary-bg); }
+  .mock__block--b { background: var(--color-secondary-gold); }
+  .mock__block--c { background: var(--color-secondary-azure); }
+  /* Osa = plocha tracků bez sloupce štítků. Linka se pozicuje v ní. */
+  .mock__axis { position: absolute; inset-block: 0; left: calc(var(--mock-label) + var(--space-2)); right: 0; pointer-events: none; }
+  .mock__now { position: absolute; inset-block: 0; width: 2px; background: var(--color-secondary-forest); }
+  .mock__meta { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-3); margin-top: var(--space-4); }
+  .mock__meta dt { font-size: var(--font-size-caption); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide); color: var(--color-text-muted); }
+  .mock__meta dd { margin-top: 2px; font-weight: var(--font-weight-semibold); font-size: var(--font-size-small); }
+
+  /* Stejná hranice jako /pilot: hero split se skládá taky na 880 px. */
+  @media (max-width: 880px) {
+    .nsteps { grid-template-columns: 1fr; gap: var(--space-5); }
+  }
+  /* Na mobilu jde mockup nad nadpis (order z Hero). Zmenšený, aby první
+     CTA zůstalo nad ohybem: v plné velikosti bral 37 % výšky okna. */
+  @media (max-width: 767px) {
+    .mock { max-width: 320px; margin-inline: auto; padding: var(--space-4); }
+    .mock__track { height: 20px; }
+    .mock__grid { margin-top: var(--space-3); }
+    /* Host / Osob / Stůl je nejméně nosná část dekorace, na mobilu jde pryč:
+       ušetří dalších cca 50 px a CTA se vejde do prvního okna. */
+    .mock__meta { display: none; }
+  }
+</style>

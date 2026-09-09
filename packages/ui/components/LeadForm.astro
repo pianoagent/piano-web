@@ -125,8 +125,10 @@ const submitText = submitLabel ?? (isCallback ? L.submitCallback : L.submitFull)
 
     <!-- Levý sloupec: nadpis + proofs -->
     <div class="leadform__intro">
-      {title && <Heading as="h2" size="h2" color={onDark ? 'on-dark' : 'default'}>{title}</Heading>}
-      {lead && <Text size="lead" color={onDark ? 'on-dark-muted' : 'muted'} class="leadform__lead">{lead}</Text>}
+      {/* Stacked layout centruje intro, primitivy proto musí dostat align
+          explicitně: jejich vlastní align-left by dědění text-align přebil. */}
+      {title && <Heading as="h2" size="h2" align={isStacked ? 'center' : 'left'} color={onDark ? 'on-dark' : 'default'}>{title}</Heading>}
+      {lead && <Text size="lead" align={isStacked ? 'center' : 'left'} color={onDark ? 'on-dark-muted' : 'muted'} class="leadform__lead">{lead}</Text>}
 
       {proofsList.length > 0 && (
         <ul class:list={['leadform__proofs', onDark && 'leadform__proofs--on-dark']}>

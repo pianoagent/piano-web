@@ -54,6 +54,7 @@ const produktyMegaEn: MegaPanel = {
     items: [
       { label: 'Piano Pilot', href: '/pilot', description: 'Your whole operation in a mobile app. Data, inventory, AI recommendations.', icon: '/brand/piano.svg', badge: 'New' },
       { label: 'Piano Terminal', href: '/terminal', description: 'A terminal where the payment is just the start. Data and supplier payments.', icon: '/brand/piano.svg' },
+      { label: 'Reservations', href: '/rezervace', description: 'Guests book their own table. Calendar, confirmations, notifications.', icon: '/brand/piano.svg', badge: 'New' },
     ],
   },
   columns: [
