@@ -50,7 +50,7 @@ import { supportProducts } from '../config/podpora';
         <a class="nav-card" href={e.href}
            target={e.external ? '_blank' : undefined}
            rel={e.external ? 'noopener noreferrer' : undefined}>
-          <span class="nav-card__tile" style={e.tileBg ? `--tile-bg:${e.tileBg}` : undefined}>
+          <span class="nav-card__tile">
             <img src={e.mark} alt="" width="28" height="28" loading="lazy" />
           </span>
           <span class="nav-card__name">{e.title}</span>
@@ -108,9 +108,7 @@ import { supportProducts } from '../config/podpora';
   }
   .nav-card__tile {
     display: grid; place-items: center;
-    width: 44px; height: 44px; border-radius: var(--radius-md);
-    /* --tile-bg nastavují jen značky, jejichž marka by na světlém podkladu zmizela. */
-    background: var(--tile-bg, var(--color-bg-alt));
+    width: 44px; height: 44px; border-radius: var(--radius-md); background: var(--color-bg-alt);
   }
   .nav-card__tile img { width: 28px; height: 28px; object-fit: contain; display: block; }
   .nav-card__name {
