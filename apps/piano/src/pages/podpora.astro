@@ -1,0 +1,145 @@
+---
+/**
+ * Podpora: rozcestník návodů (piano.cz/podpora).
+ *
+ * Cílový návštěvník přichází z QR kódu, typicky na mobilu, v provozu a
+ * s konkrétním problémem. Stránka má jednu práci: zjistit, jaký systém má,
+ * a odvést ho na jeden tap k jeho návodům. Proto žádný LeadForm ani
+ * kontaktní pruh, publikum je existující zákazník, ne poptávka.
+ *
+ * Data a cíle odkazů: src/config/podpora.ts
+ */
+import Base from '../layouts/Base.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import { supportProducts } from '../config/podpora';
+---
+
+<Base title="Podpora a návody k produktům | Piano"
+      description="Vyberte systém, který ve svém provozu používáte, a projděte jeho návody a technickou podporu. Septim, Protel, Qerko, Hugo i další nástroje Piano."
+      contactBand={false}>
+
+  <Hero eyebrow="Pro zákazníky" background="warm" space="sm"
+        lead="Návody, technické rady a kontakty na podporu k nástrojům Piana. Vyberte systém, se kterým pracujete.">
+    <Heading slot="title" as="h1" size="h1">Podpora a návody</Heading>
+  </Hero>
+
+  {/*
+    Jak začít: nejvýraznější sekce stránky. Jediný sytý pás na celé stránce,
+    aby na mobilu fungoval jako jednoznačný signál, kde se začíná.
+
+    BUDOUCNOST: nad mřížku sem přijde vyhledávací pole (<form role="search">).
+    Karty pod ním zůstanou jako varianta "nebo si vyberte". Dokud search
+    reálně nehledá, nevykreslovat ho ani jako neaktivní placeholder: člověk
+    uprostřed směny do něj napíše dotaz, nic se nestane a zavolá naštvaný.
+  */}
+  <Section background="primary" space="lg" id="jak-zacit">
+    <div class="start">
+      <Text size="label" color="on-dark">Jak začít</Text>
+      <Heading as="h2" size="h1" color="on-dark">Vyberte systém, který používáte</Heading>
+      <Text size="lead" color="on-dark-muted" class="start__lead">
+        Vyberte značku a otevřete její nápovědu, časté dotazy nebo kontakt na podporu.
+      </Text>
+    </div>
+
+    <div class="nav-grid">
+      {supportProducts.map((e) => (
+        <a class="nav-card" href={e.href}
+           target={e.external ? '_blank' : undefined}
+           rel={e.external ? 'noopener noreferrer' : undefined}>
+          <span class="nav-card__tile" style={e.tileBg ? `--tile-bg:${e.tileBg}` : undefined}>
+            <img src={e.mark} alt="" width="28" height="28" loading="lazy" />
+          </span>
+          <span class="nav-card__name">{e.title}</span>
+          <span class="nav-card__chev">
+            <Icon name={e.external ? 'lucide:external-link' : 'lucide:chevron-right'} size="xs" />
+          </span>
+        </a>
+      ))}
+    </div>
+  </Section>
+
+  {/* Když návod nestačí. Vzor a kontakty z /terminal. */}
+  <Section background="default" space="md" container="narrow">
+    <div class="tech">
+      <Heading as="h2" size="h3" align="center">Když návod nestačí</Heading>
+      <Text color="muted" align="center" class="tech__lead">
+        Nenašli jste svůj systém? Potřebujete člověka? Zavolejte nebo napište.
+        Většina značek má navíc vlastní linku podpory, najdete ji na její stránce.
+      </Text>
+      <div class="tech__contacts">
+        <a href="tel:+420228886881"><Icon name="lucide:phone" size="sm" /> +420 228 886 881</a>
+        <a href="mailto:podpora@piano.cz"><Icon name="lucide:mail" size="sm" /> podpora@piano.cz</a>
+      </div>
+    </div>
+  </Section>
+
+</Base>
+
+<style>
+  /* ---- Jak začít: hlavička na sytém pozadí ---- */
+  .start { max-width: 760px; margin-bottom: var(--space-7); }
+  .start :global(h2) { margin-top: var(--space-2); }
+  .start__lead { margin-top: var(--space-3); }
+
+  /* ---- Rozcestník: karty s markou značky ----
+     Vychází z .eco na homepage a .prod-card na /produkty. Rozdíl: marky
+     /brand/<id>.svg mají všechny viewBox 0 0 512 512, takže tile má fixní
+     rozměr a per-značková výška loga (--eco-logo-h) tady není potřeba.
+     Karta je vodorovný řádek, ne svislá kompozice: u jedenácti položek
+     rozhoduje délka seznamu na mobilu, ne velikost karty. */
+  /* 300px: pri devíti kartách vyjdou 3 sloupce (tedy 3 plné řady) i na
+     plném kontejneru 1200px, i na užším desktopu 1024px. */
+  .nav-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-4); }
+  .nav-card {
+    display: grid; grid-template-columns: 44px 1fr 20px;
+    align-items: center; column-gap: var(--space-4);
+    min-height: 72px; padding: var(--space-4) var(--space-5);
+    background: var(--color-bg);
+    color: var(--color-text);   /* nutné: Section primary přepnul text na světlý */
+    border: 1px solid var(--color-border); border-radius: var(--radius-md);
+    text-decoration: none; transition: var(--transition);
+  }
+  .nav-card:hover, .nav-card:focus-visible {
+    border-color: var(--color-primary); box-shadow: var(--shadow-md); transform: translateY(-2px);
+  }
+  .nav-card__tile {
+    display: grid; place-items: center;
+    width: 44px; height: 44px; border-radius: var(--radius-md);
+    /* --tile-bg nastavují jen značky, jejichž marka by na světlém podkladu zmizela. */
+    background: var(--tile-bg, var(--color-bg-alt));
+  }
+  .nav-card__tile img { width: 28px; height: 28px; object-fit: contain; display: block; }
+  .nav-card__name {
+    font-family: var(--font-sans); font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-lead); line-height: 1.2;
+  }
+  /* Muted, ne border-strong: #CFCDCA ma na bile karte jen 1,59:1 a je
+     prakticky nevidet, takze jako signal odkazu nefunguje. Muted da 5,3:1. */
+  .nav-card__chev { display: grid; place-items: center; color: var(--color-text-muted); }
+  .nav-card:hover .nav-card__chev { color: var(--color-primary); }
+
+  /* ---- Když návod nestačí (vzor z /terminal) ---- */
+  .tech { text-align: center; }
+  .tech__lead { margin: var(--space-3) auto var(--space-5); max-width: 620px; }
+  .tech__contacts { display: flex; flex-wrap: wrap; gap: var(--space-5); justify-content: center; }
+  .tech__contacts a {
+    display: inline-flex; align-items: center; gap: var(--space-2);
+    color: var(--color-text-accent); text-decoration: none; font-weight: var(--font-weight-medium);
+  }
+
+  /* 560 px je stejný zlom jako .prod-grid na /produkty. */
+  @media (max-width: 560px) {
+    .nav-grid { grid-template-columns: 1fr; gap: var(--space-3); }
+    .nav-card { grid-template-columns: 40px 1fr 20px; padding: var(--space-3) var(--space-4); min-height: 64px; }
+    .nav-card__tile { width: 40px; height: 40px; }
+    .nav-card__tile img { width: 26px; height: 26px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .nav-card { transition: none; }
+    .nav-card:hover { transform: none; }
+  }
+</style>
