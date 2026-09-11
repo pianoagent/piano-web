@@ -6,7 +6,7 @@
  * Jak přibývají EN stránky, stačí přidat jejich cestu do EN_READY.
  */
 import type { NavItem, NavLink, MegaPanel } from '@piano/ui/config/nav';
-import { mainNav, headerCta, companyNav, legalNav, contact } from '@piano/ui/config/nav';
+import { mainNav, headerCta, legalNav, contact } from '@piano/ui/config/nav';
 
 export type Locale = 'cs' | 'en';
 export const DEFAULT_LOCALE: Locale = 'cs';
@@ -107,9 +107,25 @@ const mainNavEn: NavItem[] = [
   { label: 'Contact', href: '#kontakt' },
 ];
 
+/**
+ * CS „Společnost" pro patičku piano.cz. Vlastní kopie ZÁMĚRNĚ: sdílený
+ * companyNav v packages/ui/config/nav.ts je zároveň fallback patičky
+ * brandových webů (Footer.astro defaultColumns, žádný z nich `columns`
+ * nepředává), takže relativní /podpora by na septim.cz vedlo na 404
+ * a na protelsystems.cz tiše na úplně jinou stránku.
+ */
+const companyNavCs: NavLink[] = [
+  { label: 'O nás', href: '/o-nas' },
+  { label: 'Blog', href: '/blog' },
+  { label: 'Podpora', href: '/podpora' },
+  { label: 'Pro média', href: '/pro-media' },
+  { label: 'Kontakt', href: '#kontakt' },
+];
+
 const companyNavEn: NavLink[] = [
   { label: 'About us', href: '/o-nas' },
   { label: 'Blog', href: '/blog' },
+  { label: 'Support', href: '/podpora' },
   { label: 'Press', href: '/pro-media' },
   { label: 'Contact', href: '#kontakt' },
 ];
@@ -145,7 +161,7 @@ export function getNav(locale: Locale): NavItem[] {
   return locale === 'en' ? localizeNav(mainNavEn, locale) : localizeNav(mainNav, locale);
 }
 export function getCompanyNav(locale: Locale): NavLink[] {
-  return localizeLinks(locale === 'en' ? companyNavEn : companyNav, locale);
+  return localizeLinks(locale === 'en' ? companyNavEn : companyNavCs, locale);
 }
 export function getLegalNav(locale: Locale): NavLink[] {
   return localizeLinks(locale === 'en' ? legalNavEn : legalNav, locale);

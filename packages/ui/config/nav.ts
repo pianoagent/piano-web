@@ -57,6 +57,9 @@ const reseniMega: MegaPanel = {
       ],
     },
   ],
+  /* Spodní lišta mega panelu. Konzumuje ji jen piano.cz (brandové weby mají
+     vlastní <app>/src/config/nav.ts), takže relativní cesta je tu bezpečná. */
+  footer: { label: 'Podpora a návody', href: '/podpora' },
 };
 
 export const mainNav: NavItem[] = [
@@ -114,5 +117,8 @@ export function megaToLinks(item: NavItem): NavLink[] {
   if (!item.mega) return [];
   const featured = item.mega.featured?.items ?? [];
   const cols = item.mega.columns.flatMap((c) => c.links);
-  return [...featured, ...cols];
+  // footer patří do plochého seznamu taky, jinak položka z mega.footer
+  // v mobilním draweru chybí a na mobilu není dostupná vůbec.
+  const footer = item.mega.footer ? [item.mega.footer] : [];
+  return [...featured, ...cols, ...footer];
 }
