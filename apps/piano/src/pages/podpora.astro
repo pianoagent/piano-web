@@ -23,7 +23,7 @@ import { supportProducts } from '../config/podpora';
       contactBand={false}>
 
   <Hero eyebrow="Pro zákazníky" background="warm" space="sm"
-        lead="Návody, technické rady a kontakty na podporu k nástrojům Piana. Vyberte systém, se kterým pracujete.">
+        lead="Návody, technické rady a kontakty na podporu k nástrojům Piana.">
     <Heading slot="title" as="h1" size="h1">Podpora a návody</Heading>
   </Hero>
 
@@ -38,11 +38,7 @@ import { supportProducts } from '../config/podpora';
   */}
   <Section background="primary" space="lg" id="jak-zacit">
     <div class="start">
-      <Text size="label" color="on-dark">Jak začít</Text>
       <Heading as="h2" size="h1" color="on-dark">Vyberte systém, který používáte</Heading>
-      <Text size="lead" color="on-dark-muted" class="start__lead">
-        Vyberte značku a otevřete její nápovědu, časté dotazy nebo kontakt na podporu.
-      </Text>
     </div>
 
     <div class="nav-grid">
@@ -80,10 +76,8 @@ import { supportProducts } from '../config/podpora';
 </Base>
 
 <style>
-  /* ---- Jak začít: hlavička na sytém pozadí ---- */
+  /* ---- Hlavička sekce na sytém pozadí ---- */
   .start { max-width: 760px; margin-bottom: var(--space-7); }
-  .start :global(h2) { margin-top: var(--space-2); }
-  .start__lead { margin-top: var(--space-3); }
 
   /* ---- Rozcestník: karty s markou značky ----
      Vychází z .eco na homepage a .prod-card na /produkty. Rozdíl: marky
