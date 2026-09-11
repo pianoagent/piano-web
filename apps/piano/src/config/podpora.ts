@@ -31,12 +31,7 @@ export interface SupportEntry {
   external?: boolean;
   /** Čtvercová marka z public/brand (všechny mají viewBox 0 0 512 512). */
   mark: string;
-  /**
-   * Pozadí tile, když je marka tak světlá, že na výchozím #F5F4F2 zmizí.
-   * Hugo má marku celou ve žluté #FFDF2C, což dává kontrast 1,21:1, tedy
-   * prázdný čtverec. Na inkoustu Huga #14110D vyjde 14,2:1.
-   */
-  tileBg?: string;
+
   /** Nižší číslo = výš. Nahoře značky, které mají reálné návody. */
   order: number;
   /** false = karta se nevykreslí. */
@@ -100,7 +95,12 @@ export const SUPPORT_ENTRIES: SupportEntry[] = [
     slug: 'hugo', title: 'Hugo', order: 70,
     summary: 'Pokladna v telefonu, web a kontakt.',
     href: 'https://hugopos.cz', external: true,
-    mark: '/brand/hugo.svg', tileBg: '#14110D',   // žlutá marka, na světlém tile neviditelná
+    // hugo.svg je celá ve žluté #FFDF2C a na tile má kontrast 1,21:1, tedy
+    // prázdný čtverec. Navíc paleta Huga říká, že žlutá je jen na plochy,
+    // nikdy na kresbu. hugo-ink.svg je stejná geometrie v jeho primárním
+    // inkoustu #14110D, na tile 17,1:1, a Hugo tak drží stejný vzhled jako
+    // ostatní karty (Protel má marku tmavou taky).
+    mark: '/brand/hugo-ink.svg',
   },
   {
     slug: 'qerko', title: 'Qerko', order: 80,
