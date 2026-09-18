@@ -15,9 +15,11 @@ export default defineConfig({
     routing: { prefixDefaultLocale: false },
   },
   integrations: [
-    // Skryté / noindex stránky vynechat ze sitemapy (kalkulačka pro obchodníky, děkovací stránka)
+    // Stránky s noindex vynechat ze sitemapy, ať si signály neodporují:
+    // kalkulačka pro obchodníky, děkovací stránka, rezervace (nespuštěný produkt)
+    // a 404. České /404 vynechá Astro samo, /en/404 ne, proto je tu taky.
     sitemap({
-      filter: (page) => !/\/(kalkulacka-terminal|dekujeme|kukatko-vseobecne-obchodni-podminky)\/?$/.test(page),
+      filter: (page) => !/\/(kalkulacka-terminal|dekujeme|kukatko-vseobecne-obchodni-podminky|rezervace|404)\/?$/.test(page),
     }),
     // Lokální brandové SVG: src/icons/nazev.svg → name="nazev"
     // Sada Lucide jako zásoba → name="lucide:check"

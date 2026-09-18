@@ -4,6 +4,11 @@
  * Mirror landing page z rezervace.sandbox.piano.cz: obsah a struktura 1:1,
  * vzhled přes sdílené komponenty a tokeny piano.cz. Anchory (#features,
  * #how, #for-whom) záměrně kopírují originál, ať odkazy fungují i tady.
+ *
+ * ZATÍM SKRYTÁ: produkt není spuštěný. Stránka není v navigaci (mega menu,
+ * /produkty, EN nav), je `noindex` a vyňatá ze sitemapy (astro.config.mjs).
+ * Ke spuštění: vrátit odkazy, odebrat `noindex` a smazat `rezervace` z filtru
+ * sitemapy v astro.config.mjs.
  */
 import Base from '../layouts/Base.astro';
 import Section from '@piano/ui/components/Section.astro';
@@ -68,6 +73,7 @@ const schema = {
 
 <Base title="Rezervační systém pro restaurace a kavárny | Piano"
       description="Online rezervační formulář, kalendář pro obsluhu a automatické potvrzování rezervací. Bez papírů, bez telefonování, bez dvojitých rezervací."
+      noindex={true}
       schema={schema}>
 
   <Hero eyebrow="Rezervační systém pro podniky" background="warm"
