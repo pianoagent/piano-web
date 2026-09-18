@@ -11,9 +11,7 @@ Elektronická evidence tržeb se po několika letech vrací do českých obchod�
 
 Zákon zatím není definitivní. Senát ho 19. srpna 2026 vrátil Sněmovně s pozměňovacími návrhy, chce z evidence vyjmout bezhotovostní platby. Sněmovna o konečné podobě znovu nehlasovala a chybí i podpis prezidenta. Teprve pak se potvrdí, že evidence naběhne v navrhované podobě, tedy leden 2027 jako pilotní provoz a od 1. února 2027 plošná povinnost. I tak se ale vyplatí připravit se dopředu, ne narychlo po Novém roce.
 
-<!-- TODO grafika: časová osa, překreslit dle stavu k 31. 8. 2026. Skryto do výměny,
-     pak odstraň tenhle komentář i obal kolem řádku níž. -->
-<!-- ![Časová osa EET 2.0: Sněmovna (schváleno 15. 7. 2026), Senát, prezident, zkušební režim od 1. 1. 2027, ostrý provoz povinně od 1. 2. 2027](/images/blog/eet-2-0-casova-osa.webp) -->
+![Časová osa schvalování EET 2.0 od hlasování Sněmovny 15. 7. 2026 po povinný provoz od 1. 2. 2027](/images/blog/eet-2-0-casova-osa.webp)
 
 ## Evidovat se bude jen to, co zaplatíte na místě
 
@@ -29,9 +27,7 @@ Tisk účtenky přestává být kvůli evidenci povinný. Zákazník ji dostane 
 
 Evidence nevyžaduje certifikovaný hardware ani speciální zařízení připojené k pokladně. Nevyžadovala ho ani první vlna, takže tady se nic nemění. Nákup nových pokladen by nová evidence vyžadovat neměla, poslouží i stávající technologie. Pro nejmenší podnikatele navíc stát chystá bezplatnou webovou aplikaci ovladatelnou z mobilu, tabletu i počítače.
 
-<!-- TODO grafika: 5 rozdílů, překreslit dle stavu k 31. 8. 2026. Skryto do výměny,
-     pak odstraň tenhle komentář i obal kolem řádku níž. -->
-<!-- ![5 klíčových rozdílů mezi EET a EET 2.0: účtenka, co se eviduje, hardware, data a kontroly](/images/blog/eet-2-0-5-rozdilu.webp) -->
+![Srovnání EET a EET 2.0 v pěti bodech: účtenka jen na vyžádání, evidují se platby na místě, obvykle stačí update pokladny, posílá se jen celková částka s DPH a plošné kontroly nahradí cílená analytika](/images/blog/eet-2-0-5-rozdilu.webp)
 
 ## Výpadek internetu není důvod k panice
 

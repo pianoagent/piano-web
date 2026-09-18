@@ -1,0 +1,45 @@
+<!doctype html><meta charset="utf-8"><style>@font-face{font-family:Borna;src:url("FONTS/borna-regular-webfont.woff2") format("woff2");font-weight:400;font-style:normal}@font-face{font-family:Borna;src:url("FONTS/borna-semibold-webfont.woff2") format("woff2");font-weight:600;font-style:normal}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1000px;height:800px}
+body{background:#fff;font-family:Borna,system-ui,sans-serif;color:#262626;
+  padding:34px 40px;display:flex;flex-direction:column}
+.list{display:flex;flex-direction:column;gap:13px}
+.s{border:2px solid #B8093B;border-radius:16px;padding:20px 26px;
+  display:flex;align-items:center;gap:18px;min-height:92px}
+.s.future{border-color:#E3E1DE}
+.s.done,.s.current{background:#94002A;border-color:#94002A}
+.t{font-weight:600;font-size:38px;line-height:1.1;flex:0 0 auto}
+.d{font-weight:400;font-size:32px;line-height:1.2;color:#6E6B68;margin-left:auto;text-align:right}
+.s.done .t,.s.current .t{color:#fff}
+.s.done .d,.s.current .d{color:#FEF4E6}
+.bd{flex:0 0 auto;font-size:22px;font-weight:600;color:#94002A;background:#ECAF04;
+  border-radius:999px;padding:6px 16px;margin-left:16px}
+.s.current .d{margin-left:auto}
+.note{margin-top:20px;border-left:5px solid #B8093B;background:#F5F4F2;border-radius:8px;
+  padding:18px 22px;font-size:26px;line-height:1.45;color:#6E6B68}
+</style><div class="list"><div class="s done">
+  <span class="t">Sněmovna</span>
+  <span class="d">Schváleno 15. 7. 2026</span>
+  
+</div><div class="s current">
+  <span class="t">Senát</span>
+  <span class="d">Vrátil návrh 19. 8. 2026</span>
+  <span class="bd">Aktuálně</span>
+</div><div class="s future">
+  <span class="t">Sněmovna</span>
+  <span class="d">Znovu hlasuje</span>
+  
+</div><div class="s future">
+  <span class="t">Prezident</span>
+  <span class="d">Podpis zákona</span>
+  
+</div><div class="s future">
+  <span class="t">Pilotní provoz</span>
+  <span class="d">Leden 2027</span>
+  
+</div><div class="s future">
+  <span class="t">Ostrý provoz</span>
+  <span class="d">Povinně od 1. 2. 2027</span>
+  
+</div></div>
+<p class="note">O konečné podobě zákona bude znovu hlasovat Sněmovna. Budoucí termíny vycházejí z návrhu schváleného 15. 7. 2026.</p>
