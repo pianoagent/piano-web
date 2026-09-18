@@ -35,11 +35,21 @@ const novinky = [
 // Hero: rotující sdělení (mění se nadpis + lead + obrázek; CTA a USP zůstávají)
 const heroSlides = [
   {
+    eyebrow: 'Novinka: Hugo',
+    title: 'Snadné řešení,<br>pro malé podniky',
+    lead: 'Žádný zbytečně rozsáhlý systém, za který platíte víc, než potřebujete. Hugo je současně pokladna, platby kartou, platby dodavatelům i AI asistent. Přesně to, co váš provoz potřebuje k dennímu fungování. Nic víc, nic míň.',
+    image: '/images/hero-hugo.webp',
+    imageAlt: 'Hugo, mobilní pokladna v telefonu a na Piano Terminálu',
+    imageWidth: 710, imageHeight: 925,
+    cta: { label: 'Poznat Huga', href: 'https://hugopos.eu/', external: true },
+  },
+  {
     eyebrow: 'Technologie pro gastronomii a hotely',
     title: 'Všechny klíčové nástroje<br>pro pohostinství<br>pod jednou střechou',
     lead: 'Piano představuje sehraný orchestr nástrojů, který vyladí váš provoz, ušetří vám čas a zvýší zisk. Ať už provozujete restauraci, kavárnu, bistro, jídelnu či hotel, máme pro vás řešení.',
     image: '/images/home-hero-dark.webp',
     imageAlt: 'Piano, pokladna, terminál a mobilní aplikace',
+    imageWidth: 744, imageHeight: 765,
   },
   {
     eyebrow: 'Novinka: Piano Pilot',
@@ -47,6 +57,7 @@ const heroSlides = [
     lead: 'Tržby, sklad i AI doporučení v reálném čase. S Pilotem máte přehled o podniku odkudkoliv, přímo z telefonu.',
     image: '/images/hero-pilot.webp',
     imageAlt: 'Piano Pilot, mobilní aplikace pro provoz',
+    imageWidth: 816, imageHeight: 822,
   },
   {
     eyebrow: 'Novinka: Piano Terminál',
@@ -54,6 +65,7 @@ const heroSlides = [
     lead: 'Data o hostech a automatické platby dodavatelům. Z obyčejného platebního terminálu děláme chytrý nástroj pro celý provoz.',
     image: '/images/hero-terminal.webp',
     imageAlt: 'Piano Terminál, platební terminál',
+    imageWidth: 1059, imageHeight: 1174,
   },
 ];
 
@@ -119,10 +131,10 @@ const faqSchema = {
 
 <Base title="Všechny klíčové nástroje pro pohostinství pod jednou střechou | Piano"
       description="Piano nabízí technologie pro restaurace a hotely od pokladních systémů po personál a marketing vašeho podniku."
-      preloadImage="/images/home-hero-dark.webp"
+      preloadImage="/images/hero-hugo.webp"
       schema={faqSchema}>
 
-  <Hero background="warm" slides={heroSlides}
+  <Hero background="warm" slides={heroSlides} slideInterval={7000}
         usp={[{ text: '6 000+ podniků', icon: 'lucide:store' }, { text: '36 mld Kč ročně', icon: 'lucide:banknote' }, { text: '30 let inovací', icon: 'lucide:calendar-check' }]}>
     <Fragment slot="actions">
       <Button href="#poptavka">Domluvit konzultaci</Button>

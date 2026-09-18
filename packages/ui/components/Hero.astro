@@ -26,6 +26,14 @@ interface HeroSlide {
   lead?: string;
   image?: string;
   imageAlt?: string;
+  /* Skutečné rozměry obrázku. Bez nich se použije 1100x733, což u portrétních
+     vizuálů rezervuje špatný box a dělá CLS. Udávej reálné pixely souboru. */
+  imageWidth?: number;
+  imageHeight?: number;
+  /* Odkaz patřící JEN tomuhle slidu (např. novinka na vlastní doméně).
+     Fixní CTA pod carouselem zůstávají, tenhle se ukáže uvnitř slidu.
+     Skryté slidy mají visibility: hidden, takže jejich odkaz není ve focusu. */
+  cta?: { label: string; href: string; external?: boolean };
 }
 
 interface Props {
@@ -42,6 +50,9 @@ interface Props {
   usp?: (string | { text: string; icon?: string })[];   // klíčové body → proužek uvnitř hero; ikonu lze určit per bod
   slides?: HeroSlide[];  // rotující eyebrow+nadpis+lead+obrázek; actions a usp zůstávají fixní
   carouselLabel?: string;  // aria-label přepínače (teček) carouselu; default česky
+  /* Jak dlouho stojí jeden slide (ms). Default 4000 stačí na dvouřádkový perex;
+     u delších sdělení ho stránka zvedne, jinak se text nestihne přečíst. */
+  slideInterval?: number;
   /* Kompozice hero:
        "split" (default) médium jako blok vedle textu, dosavadní chování
        "cover"           médium na plnou šířku a výšku jako pozadí, text přes něj
@@ -50,7 +61,7 @@ interface Props {
   variant?: 'split' | 'cover';
 }
 
-const { eyebrow, title, lead, align = 'center', background = 'default', space = 'lg', usp = [], slides = [], carouselLabel = 'Přepnout sdělení', variant = 'split' } = Astro.props;
+const { eyebrow, title, lead, align = 'center', background = 'default', space = 'lg', usp = [], slides = [], carouselLabel = 'Přepnout sdělení', slideInterval = 4000, variant = 'split' } = Astro.props;
 const isCover = variant === 'cover';
 const uspItems = usp.map((u) => (typeof u === 'string' ? { text: u, icon: 'lucide:check' } : { text: u.text, icon: u.icon ?? 'lucide:check' }));
 
@@ -98,7 +109,8 @@ const rv = (delay?: 'd1' | 'd2') => ['reveal', from, delay && `reveal--${delay}`
   {isCover && hasMedia && (
     <div class="hero__bg" aria-hidden="true"><slot name="media" /></div>
   )}
-  <div class={innerClasses} data-hero-carousel={isCarousel ? '' : undefined}>
+  <div class={innerClasses} data-hero-carousel={isCarousel ? '' : undefined}
+       data-hero-interval={isCarousel ? String(slideInterval) : undefined}>
     <div class="hero__text">
       {useSlides ? (
         <div class:list={['hero__rot', rv()]}>
@@ -109,6 +121,18 @@ const rv = (delay?: 'd1' | 'd2') => ['reveal', from, delay && `reveal--${delay}`
                   takze <h1> na kazdem z nich by znamenalo vic H1 na strance. */}
               <Heading as={i === 0 ? 'h1' : 'p'} size="display" color={onDark ? 'on-dark' : 'default'}><Fragment set:html={s.title} /></Heading>
               {s.lead && <Text size="lead" color={onDark ? 'on-dark-muted' : 'muted'} class="hero__lead">{s.lead}</Text>}
+              {s.cta && (
+                <p class="hero__slide-cta">
+                  <a class="hero__slide-link" href={s.cta.href}
+                     target={s.cta.external ? '_blank' : undefined}
+                     rel={s.cta.external ? 'noopener' : undefined}
+                     aria-label={s.cta.external ? `${s.cta.label} (otevře se v novém okně)` : undefined}>
+                    {s.cta.label}
+                    {/* Šikmá šipka = odchod z webu, rovná = navigace uvnitř. */}
+                    <Icon name={s.cta.external ? 'lucide:arrow-up-right' : 'lucide:arrow-right'} size="sm" />
+                  </a>
+                </p>
+              )}
             </div>
           ))}
         </div>
@@ -160,7 +184,8 @@ const rv = (delay?: 'd1' | 'd2') => ['reveal', from, delay && `reveal--${delay}`
           <div class="hero__rot hero__media-rot">
             {slides.map((s, i) => s.image && (
               <img class={`hero__slide${i === 0 ? ' is-active' : ''}`} data-hero-mslide={i}
-                   src={s.image} alt={s.imageAlt ?? ''} width="1100" height="733"
+                   src={s.image} alt={s.imageAlt ?? ''}
+                   width={s.imageWidth ?? 1100} height={s.imageHeight ?? 733}
                    loading={i === 0 ? 'eager' : 'lazy'} fetchpriority={i === 0 ? 'high' : undefined} />
             ))}
           </div>
@@ -181,8 +206,12 @@ const rv = (delay?: 'd1' | 'd2') => ['reveal', from, delay && `reveal--${delay}`
       const n = texts.length;
       if (n < 2) return;
       const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const delay = Number(root.dataset.heroInterval) || 4000;
       let i = 0;
       let timer: ReturnType<typeof setInterval> | undefined;
+      /* Kdo si slide vybere tečkou, ten si ho chce přečíst. Od té chvíle
+         carousel sám nerotuje (WCAG 2.2.2), přepíná se jen tečkami. */
+      let userPicked = false;
       const go = (k: number) => {
         i = (k + n) % n;
         texts.forEach((el, idx) => el.classList.toggle('is-active', idx === i));
@@ -193,8 +222,8 @@ const rv = (delay?: 'd1' | 'd2') => ['reveal', from, delay && `reveal--${delay}`
         });
       };
       const stop = () => { if (timer) clearInterval(timer); timer = undefined; };
-      const start = () => { if (reduce) return; stop(); timer = setInterval(() => go(i + 1), 4000); };
-      dots.forEach((d, idx) => d.addEventListener('click', () => { go(idx); start(); }));
+      const start = () => { if (reduce || userPicked) return; stop(); timer = setInterval(() => go(i + 1), delay); };
+      dots.forEach((d, idx) => d.addEventListener('click', () => { userPicked = true; stop(); go(idx); }));
       root.addEventListener('mouseenter', stop);
       root.addEventListener('mouseleave', start);
       root.addEventListener('focusin', stop);
@@ -310,8 +339,10 @@ const rv = (delay?: 'd1' | 'd2') => ['reveal', from, delay && `reveal--${delay}`
     transition: opacity 0.5s ease;
   }
   .hero__slide.is-active { opacity: 1; visibility: visible; }
-  /* Carousel nadpisy o něco menší, ať se vejdou vynucené řádky (<br>) bez dalšího lámání */
-  .hero__slide :global(h1) { font-size: clamp(30px, 3.6vw, 46px); }
+  /* Carousel nadpisy o něco menší, ať se vejdou vynucené řádky (<br>) bez dalšího lámání.
+     Vázat to na tag <h1> nešlo: ten má jen slide 0, ostatní jsou <p class="heading--display">,
+     takže se zmenšení posouvalo podle toho, který slide je zrovna první. */
+  .hero__slide :global(.heading--display) { font-size: clamp(30px, 3.6vw, 46px); }
   /* Média v carouselu: srovnaná na stejnou výšku a vystředěná */
   .hero__media-rot { align-items: center; justify-items: center; }
   .hero__media-rot > img { width: auto; height: auto; max-width: 100%; max-height: 460px; }
@@ -353,6 +384,35 @@ const rv = (delay?: 'd1' | 'd2') => ['reveal', from, delay && `reveal--${delay}`
     gap: var(--space-4);
     margin-top: var(--space-7);
   }
+
+  /* Odkaz konkrétního slidu: textový, ať nekonkuruje fixním tlačítkům pod ním.
+     Odsazení je zmenšené o svislý padding odkazu, aby optický odstup zůstal
+     stejný jako u perexu a odkaz měl na mobilu dotykovou plochu ~45 px. */
+  .hero__slide-cta { margin-top: var(--space-3); }
+  .hero__slide-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding-block: 10px;
+    font-family: var(--font-sans);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-accent);
+    text-decoration: none;
+  }
+  .hero__slide-link:hover { text-decoration: underline; }
+  .hero__slide-link:focus-visible {
+    outline: none;
+    box-shadow: var(--shadow-focus);
+    border-radius: var(--radius-sm);
+    text-decoration: underline;
+  }
+  .hero__slide-link :global(svg) { transition: var(--transition); }
+  .hero__slide-link:hover :global(svg) { transform: translateX(3px); }
+  .hero__inner--on-dark .hero__slide-link { color: var(--color-secondary-gold); }
+  @media (prefers-reduced-motion: reduce) {
+    .hero__slide-link:hover :global(svg) { transform: none; }
+  }
+
 
   /* USP proužek: klíčové body uvnitř hero */
   .hero__usp {
