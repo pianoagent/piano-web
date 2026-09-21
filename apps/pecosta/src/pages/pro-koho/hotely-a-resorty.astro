@@ -1,0 +1,54 @@
+---
+/** Pecosta: Pro koho: Hotely a resorty. Obsah: pecosta-context.md, autset-context.md,
+    banka referencí (znalostni-baze.md, část 7), sales-playbook.md segment C,
+    zakaznicke-persony.md persona 3. */
+import SegmentPage from '../../components/SegmentPage.astro';
+import { klientiHotely } from '../../config/klienti';
+
+const benefits = [
+  { icon: 'lucide:clock', title: 'Hodina práce denně v každém hotelu', text: 'CPI Hotels ušetří minimálně hodinu práce denně v každém z 24 českých provozů. Ten čas jde zpátky k hostům, ne do přepisování papírů.' },
+  { icon: 'lucide:layers', title: 'Celé portfolio z jednoho portálu', text: 'Objednávky, ceny i doklady za všechny hotely na jednom místě. Online přehled o tom, co, od koho a za kolik se nakupuje.' },
+  { icon: 'lucide:file-check-2', title: 'Podklady pro skladovou účetní', text: 'Data jdou do skladového systému bez přepisu, podklady jsou přesnější a nemusí je kontrolovat položku po položce.' },
+  { icon: 'lucide:zap', title: 'Energie za ceny celého portfolia', text: 'Elektřinu a plyn sdružíme do velkého balíku a poptáme u dodavatelů. Úspora až 25 %, bez objemové podmínky.' },
+];
+
+const services = [
+  { title: 'Autset: automatické naskladnění', href: '/sluzby/autset', text: 'Dodací listy od 450+ dodavatelů se naskladní automaticky do vašeho skladového systému. Napojíme ho i na hotelové a pokladní systémy, které už používáte.' },
+  { title: 'Aukční nákupy surovin', href: '/sluzby/aukcni-nakupy', text: 'Pravidelné e-aukce surovin pro celé portfolio. CPI Hotels realizuje 80 % nákupu přes jednotný portál.' },
+  { title: 'Energie pro gastro', href: '/sluzby/energie', text: 'Úspora až 25 % na elektřině a plynu. Ke smlouvě zkontrolujeme podmínky, aby v ní nebyly skryté poplatky.' },
+];
+
+const testimonials = [
+  { initials: 'CPI', headline: 'Šetříme miliony ročně', quote: 'Díky automatickému naskladňování v každém z našich hotelů, každý den, ušetříme svým lidem minimálně hodinu práce. Již řadu let využíváme také Aukční nákupy, kdy 80 % nákupu realizujeme přes jednotný nákupní portál a šetříme tak několik miliónů ročně.', author: 'Maroš Šivec', role: 'Executive F&B Director, CPI Hotels' },
+  { initials: 'CPI', headline: 'Kvalita dodávek neutrpěla', quote: 'Hledali jsme partnera, který se postará nejen o realizaci aukcí, ale také, aby se za tyto ceny nakupovalo. A samozřejmě nám šlo také o to, aby v žádném případě neutrpěla kvalita dodávek. Můžu říct, že využití aukčních nákupů nám přineslo, co jsme očekávali.', author: 'Jan Kratina', role: 'General manager, CPI Hotels' },
+  { initials: 'PH', headline: 'Všechno na jednom portálu', quote: 'Jestliže se někdo musí zabývat nějakým procesem a dokážeme ten proces automatizovat, že třeba všechno najde na jednom portálu, nemusí překlikávat, má porovnání cen od celé konkurence, tak je to rozhodně úspora času a ve finále i peněz.', author: 'Lukáš Pytloun', role: 'CEO, Pytloun Hotels' },
+  { initials: 'HG', headline: 'Čas navíc pro hosty', quote: 'V HOTELU GOLF jsme otevření novým technologiím, které zjednodušují a zpříjemňují práci. Ušetřený čas mohou zaměstnanci věnovat péči o naše hosty.', author: 'Sylva Čechová', role: 'Ředitelka hotelu, Hotel Golf' },
+  { initials: 'GP', headline: 'Velký potenciál dál', quote: 'Výsledky vypadají skvěle a mají velký potenciál do dalších měsíců, kdy bude nabíhat vyšší objem nakupovaných surovin přes portál.', author: 'Jindřich Krausz', role: 'General manager, Grandhotel Pupp' },
+];
+
+const faqs = [
+  { q: 'Zvládne to portfolio více hotelů?', a: 'Ano, to je typický případ. CPI Hotels má 40 hotelů po Evropě a 24 provozů v ČR, Pecostu používají napříč nimi. Objednávky, ceny i doklady vidíte za celé portfolio na jednom portálu.' },
+  { q: 'Napojíte se na náš skladový systém?', a: 'Autset je propojen s 15 skladovými systémy v ČR a SR. Napojujeme mimo jiné Septim, Savarin, ABX Harsys, POS Experts, Agnis, Fusion, Vento, Vectron, Dotykačku, HotelTime i MemberPro. Napojení řešíme přes univerzální rozhraní a zvládáme i EDI doklady.' },
+  { q: 'Kolik to stojí?', a: 'U aukčních nákupů nepřekročí náklady 10 % dosažené úspory a nezačínáte žádnou vstupní investicí. Cenové porovnání, konzultace, kalkulace úspor i zaškolení jsou zdarma, implementace trvá zhruba 14 dní.' },
+];
+---
+<SegmentPage
+  title="Nákup surovin a energií pro hotely a resorty | Pecosta"
+  description="Aukční nákupy, automatické naskladnění a energie pro hotely a resorty. CPI Hotels šetří hodinu práce denně v každém z 24 provozů a miliony korun ročně."
+  eyebrow="Pro koho · hotely a resorty"
+  titleHtml="Nákup pro <em>hotely a resorty</em>"
+  lead="CPI Hotels ušetří díky automatickému naskladňování hodinu práce denně v každém z 24 českých provozů a přes portál realizuje 80 % nákupu. Stejnou mechaniku nasadíme i u vás."
+  logos={klientiHotely}
+  logoLabel="Hotely, které nakupují s Pecostou"
+  proseTitle="Jedno místo pro nákup celého portfolia"
+  proseText="Hotelový provoz řeší víc systémů najednou a report vlastníkům musí sedět. Pecosta sdružuje poptávku stovek provozů do pravidelných e-aukcí, Autset přenese dodací listy do skladu bez ručního přepisu a energie vyjednáme za celé portfolio. Výsledek je online přehled o tom, co, od koho a za kolik se nakupuje, napříč všemi hotely."
+  benefitsTitle="Proč Pecosta pro hotel"
+  benefits={benefits}
+  services={services}
+  relatedLabel="Podívejte se také na"
+  related={[{ label: "Restaurace a sítě", href: "/pro-koho/restaurace-a-site" }, { label: "Reference Pecosty", href: "/reference" }]}
+  testimonials={testimonials}
+  testimonialsTitle="Hotely, které s námi spoří"
+  faqs={faqs}
+  faqTitle="Časté otázky hotelů"
+/>

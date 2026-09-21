@@ -1,0 +1,45 @@
+---
+/** Pecosta: Pro koho: Školy a nemocnice. Obsah: pecosta-context.md (segmenty, legislativní
+    argument, 200+ organizací MSK), znalostni-baze.md (burzovní obchody, KBP, zákon 229/1992 Sb.).
+    Pozn.: v bance referencí NENÍ k tomuhle segmentu jediná citace, proto blok referencí
+    zůstává prázdný a stránka stojí na legislativním argumentu a logu veřejného sektoru. */
+import SegmentPage from '../../components/SegmentPage.astro';
+import { klientiVerejnySektor } from '../../config/klienti';
+
+const benefits = [
+  { icon: 'lucide:gavel', title: 'V souladu se zákonem', text: 'Celý systém nákupů odpovídá zákonu č. 166/2023 Sb., kterým se mění zákon č. 134/2016 Sb. o zadávání veřejných zakázek.' },
+  { icon: 'lucide:landmark', title: 'Energie přes Komoditní burzu Praha', text: 'Obchodujeme na burze zřízené podle zákona č. 229/1992 Sb. pod dozorem Ministerstva zemědělství a Ministerstva průmyslu a obchodu.' },
+  { icon: 'lucide:users', title: 'Soutěž vede někdo jiný', text: 'Nákupní oddělení ani vlastní tendr k tomu nepotřebujete. Soutěž i nastavení zákonných podmínek běží na pozadí portálu.' },
+  { icon: 'lucide:trending-down', title: '90 % potravin přes portál', text: 'Domov Jistoty pořizuje přes nákupní portál zhruba 90 % všech potravin. Klienti snížili ceny v průměru o 16 %, aniž by pocítili kvalitativní rozdíl surovin.' },
+];
+
+const services = [
+  { title: 'Burzovní obchody', href: '/sluzby/burzovni-obchody', text: 'Nákup energií přes Komoditní burzu Praha pro školy, školky, domovy seniorů, města, obce i kraje. Vlastní znalost burzy nepotřebujete.' },
+  { title: 'Aukční nákupy surovin', href: '/sluzby/aukcni-nakupy', text: 'Vysoutěžené potraviny pro stravovací provoz. Doporučujeme od ročního objemu nákupů nad 5 mil. Kč.' },
+  { title: 'Autset: automatické naskladnění', href: '/sluzby/autset', text: 'Dodací listy se naskladní do vašeho skladového systému bez ručního přepisování položek.' },
+];
+
+const faqs = [
+  { q: 'Můžeme zůstat jen u potravin, nebo jen u energií?', a: 'Ano, služby jdou vzít po částech. Školní jídelna obvykle začíná potravinami na nákupním portálu, zřizovatel energiemi na Komoditní burze Praha. Dohromady vycházejí líp, protože je to jedna poptávka a jeden přehled.' },
+  { q: 'Kolik to stojí a kdy začneme nakupovat?', a: 'U aukčních nákupů nepřekročí náklady 10 % dosažené úspory a nezačínáte žádnou vstupní investicí. Cenové porovnání, konzultace, kalkulace úspor i zaškolení jsou zdarma, implementace trvá zhruba 14 dní.' },
+  { q: 'Odpovídá nákup pravidlům veřejných zakázek?', a: 'Ano. Celý systém nákupů je v souladu se zákonem č. 166/2023 Sb., kterým se mění zákon č. 134/2016 Sb. o zadávání veřejných zakázek. U energií nakupujeme na Komoditní burze Praha, instituci zřízené podle zákona č. 229/1992 Sb. pod dozorem Ministerstva zemědělství a Ministerstva průmyslu a obchodu.' },
+];
+---
+<SegmentPage
+  title="Nákup energií a potravin pro školy a nemocnice | Pecosta"
+  description="Nákup energií přes Komoditní burzu Praha a vysoutěžené potraviny pro školy, nemocnice a další organizace veřejné správy. Podle zákona o zakázkách."
+  eyebrow="Pro koho · veřejná správa"
+  titleHtml="Nákup pro <em>školy a nemocnice</em>"
+  lead="Řešení prověřené více než 200 organizacemi Moravskoslezského kraje, Fakultní nemocnicí Ostrava a Ústavem pro péči o matku a dítě. Energie nakupujeme na Komoditní burze Praha."
+  logos={klientiVerejnySektor}
+  logoLabel="Organizace veřejné správy, které nakupují s Pecostou"
+  proseTitle="Nakupujte podle pravidel, ale bez papírování navíc"
+  proseText="Školy, školky, domovy seniorů, nemocnice, města i kraje musí nakupovat podle pravidel veřejné správy, jenže kapacitu na vlastní soutěže většinou nemají. Pecosta pro ně soutěží potraviny na nákupním portálu a energie obchoduje na Komoditní burze Praha, kde rozhoduje objem a načasování. Kontrola a nastavování zákonných podmínek probíhají na pozadí systému. Vy dostanete cenu, přehled o tom, co a od koho se nakupuje, a doklad, že nákup proběhl podle pravidel."
+  benefitsTitle="Proč Pecosta pro veřejnou správu"
+  benefits={benefits}
+  services={services}
+  relatedLabel="Podívejte se také na"
+  related={[{ label: "Jídelny a kantýny", href: "/pro-koho/jidelny-a-kantyny" }, { label: "Reference Pecosty", href: "/reference" }]}
+  faqs={faqs}
+  faqTitle="Časté otázky veřejné správy"
+/>

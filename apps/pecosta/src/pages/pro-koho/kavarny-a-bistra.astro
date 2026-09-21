@@ -1,0 +1,49 @@
+---
+/** Pecosta: Pro koho: Kavárny a bistra. Obsah: pecosta-context.md (energie bez objemové
+    podmínky, Bistro V Zahradě), autset-context.md (Autset Katalog), banka referencí část 7.
+    Pozn.: nejslabší segment co do podkladů, v bance je k němu jediná citace (Španer). */
+import SegmentPage from '../../components/SegmentPage.astro';
+import { klientiGastro } from '../../config/klienti';
+
+const benefits = [
+  { icon: 'lucide:zap', title: 'Energie bez objemové podmínky', text: 'U energií nerozhoduje, kolik nakupujete. Analýzu spotřeby z vyúčtování za 12 měsíců uděláme zdarma.' },
+  { icon: 'lucide:clock', title: 'Konec přepisování dodacích listů', text: 'Autset naskladní dodací listy automaticky. Po nastavení s dodavateli je služba prakticky bezúdržbová.' },
+  { icon: 'lucide:book-open', title: 'Ceny dodavatelů na jednom místě', text: 'Autset Katalog ukazuje položky, které nakupujete, a ceny od všech vašich dodavatelů pohromadě.' },
+  { icon: 'lucide:hand-coins', title: 'Bez vstupní investice', text: 'Cenové porovnání, konzultace, kalkulace úspor i zaškolení jsou zdarma. U energií platíte podílem z úspory.' },
+];
+
+const services = [
+  { title: 'Energie pro gastro', href: '/sluzby/energie', text: 'Poptávku stovek provozů sdružíme a vyjednáme cenu, na kterou by kavárna sama nedosáhla. Bistro V Zahradě díky tomu ušetřilo 60 tisíc Kč za dva roky.' },
+  { title: 'Autset: automatické naskladnění', href: '/sluzby/autset', text: 'Naskladnění bez ručního přepisování. Platí se podle počtu položek a dodacích listů za měsíc, takže sedí i malému provozu.' },
+  { title: 'Aukční nákupy surovin', href: '/sluzby/aukcni-nakupy', text: 'Dávají smysl od ročního objemu nákupů nad 5 mil. Kč. Pokud provozujete víc podniků, objemy se sčítají.' },
+];
+
+const testimonials = [
+  { initials: 'CS', headline: 'Bezúdržbová služba', quote: 'Po nastavení s dodavateli je služba celkem bezúdržbová, a tím i lehce uchopitelná do téměř každého provozu.', author: 'Frederik Španer', role: 'Manager, Café a Restaurant Slavia' },
+];
+
+const faqs = [
+  { q: 'Nejsme na aukce moc malí?', a: 'Na aukční nákupy možná ano, ty doporučujeme od ročního objemu nákupů nad 5 mil. Kč. Energie ale žádnou objemovou podmínku nemají a Autset se počítá podle počtu dodacích listů, ne podle obratu. Pro menší provozy máme navíc Autset Katalog, kde vidíte ceny všech svých dodavatelů na jednom místě.' },
+  { q: 'Kolik reálně ušetříme na energiích?', a: 'V průměru až 25 %. Bistro V Zahradě ušetřilo 60 tisíc Kč za dva roky. Konkrétní číslo pro váš provoz spočítáme v bezplatné analýze z vyúčtování za posledních 12 měsíců.' },
+  { q: 'Kolik práce nám to zabere na začátku?', a: 'Pro cenové porovnání potřebujeme skeny faktur za posledních maximálně 14 dní. Dodavatele i své údaje na nich můžete začernit, stačí nám název položky, množství a cena. Implementace trvá zhruba 14 dní a zaškolení je zdarma.' },
+];
+---
+<SegmentPage
+  title="Nákup surovin a energie pro kavárny a bistra | Pecosta"
+  description="Energie bez objemové podmínky, automatické naskladnění a Autset Katalog pro kavárny a bistra. Bistro V Zahradě ušetřilo na energiích 60 tisíc Kč za dva roky."
+  eyebrow="Pro koho · kavárny a bistra"
+  titleHtml="Nákup pro <em>kavárny a bistra</em>"
+  lead="Na energiích ušetří provozy až 25 % a nerozhoduje přitom, kolik nakupujete. Kavárna nemá nákupčího ani páku na dodavatele, tak začněte tam, kde objem nehraje roli. Analýza je zdarma."
+  logos={klientiGastro}
+  logoLabel="Provozy, které nakupují s Pecostou"
+  proseTitle="Začněte tam, kde nerozhoduje objem"
+  proseText="Aukční nákupy stojí na objemu, a ten kavárna sama neudělá. Energie ale objemovou podmínku nemají, protože poptávku stovek provozů sdružíme za vás. Autset se platí podle počtu dodacích listů, takže dává smysl i tam, kde jich chodí pár denně. A až vyrostete nebo otevřete druhý podnik, objemy se sčítají a otevřou se vám i aukce."
+  benefitsTitle="Proč Pecosta pro kavárnu"
+  benefits={benefits}
+  services={services}
+  relatedLabel="Vyrostli jste?"
+  related={[{ label: "Restaurace a sítě", href: "/pro-koho/restaurace-a-site" }, { label: "Reference Pecosty", href: "/reference" }]}
+  testimonials={testimonials}
+  faqs={faqs}
+  faqTitle="Časté otázky menších provozů"
+/>

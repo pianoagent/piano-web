@@ -1,0 +1,49 @@
+---
+/** Pecosta: Pro koho: Jídelny a kantýny. Obsah: pecosta-context.md (segmenty, Domov Jistoty,
+    legislativní argument), autset-context.md, banka referencí část 7 (Sajler).
+    Pozn.: v bance je k tomuhle segmentu jediná jmenná citace. */
+import SegmentPage from '../../components/SegmentPage.astro';
+import { klientiGastro } from '../../config/klienti';
+
+const benefits = [
+  { icon: 'lucide:scale', title: 'Soutěž proběhne na portálu za vás', text: 'Vysoutěžené potraviny máte na portálu připravené. Nepotřebujete na to vlastní kapacitu ani personál.' },
+  { icon: 'lucide:gavel', title: 'V souladu se zákonem o veřejných zakázkách', text: 'Celý systém nákupů je v souladu se zákonem č. 166/2023 Sb., kterým se mění zákon č. 134/2016 Sb.' },
+  { icon: 'lucide:clock', title: 'Úspora až 1 hodiny denně', text: 'Dodací listy se naskladní automaticky a skladová účetní dostane přesnější podklady.' },
+  { icon: 'lucide:shield-check', title: 'Kvalita zůstává', text: 'Soutěží se podle přesné specifikace položky. Klienti snížili ceny v průměru o 16 %, aniž by pocítili kvalitativní rozdíl surovin.' },
+];
+
+const services = [
+  { title: 'Aukční nákupy surovin', href: '/sluzby/aukcni-nakupy', text: 'Pravidelné e-aukce potravin. Domov Jistoty realizuje přes portál zhruba 90 % nákupu všech potravin.' },
+  { title: 'Autset: automatické naskladnění', href: '/sluzby/autset', text: 'Perfect Canteen nasadil Autset na všech provozovaných kantýnách a restauracích. Dodací listy jdou do skladu bez přepisu.' },
+  { title: 'Energie pro gastro', href: '/sluzby/energie', text: 'Úspora až 25 % na elektřině a plynu, bez objemové podmínky. Pro zřizované organizace řešíme energie i přes burzu.' },
+];
+
+const testimonials = [
+  { initials: 'PC', headline: 'Nasadili jsme to všude', quote: 'Se systémem AUTSET šetříme čas provozním managerům našich restaurací. Způsob zpracování naskladnění a dodacích listů pomáhá i skladové účetní, podklady jsou přesnější, nemusí je kontrolovat položkově. Tento systém jsme díky jeho efektivnosti nasadili již na všech provozovaných kantýnách a restauracích.', author: 'Filip Sajler', role: 'CEO a Chef, Perfect Canteen a Perfect Catering' },
+];
+
+const faqs = [
+  { q: 'Jsme příspěvková organizace, sedí to na naše pravidla?', a: 'Ano. Celý systém nákupů je v souladu se zákonem č. 166/2023 Sb., kterým se mění zákon č. 134/2016 Sb. o zadávání veřejných zakázek. Soutěž a nastavení zákonných podmínek probíhají na pozadí portálu.' },
+  { q: 'Kolik nákupu přes portál má smysl dělat?', a: 'Doporučujeme realizovat přes portál minimálně 60 % nákupního objemu a úspory vykazujeme měsíčně. Domov Jistoty se dostal zhruba na 90 % nákupu všech potravin.' },
+  { q: 'Napojíte se na software, který používáme?', a: 'Autset je propojen s 15 skladovými systémy v ČR a SR a zbytek řešíme přes univerzální rozhraní, včetně EDI dokladů. Podmínkou je identifikace dodavatelů a napojený pokladní systém, příprava trvá zhruba měsíc.' },
+];
+---
+<SegmentPage
+  title="Nákup potravin pro jídelny a školní kantýny | Pecosta"
+  description="Vysoutěžené potraviny a automatické naskladnění pro jídelny a kantýny. V souladu se zákonem o veřejných zakázkách, úspora v průměru 16 %."
+  eyebrow="Pro koho · jídelny a kantýny"
+  titleHtml="Nákup pro <em>jídelny a kantýny</em>"
+  lead="Klienti Pecosty snížili nákupní ceny potravin v průměru o 16 %. Soutěžit je vlastními silami stojí čas a kapacitu, kterou stravovací provoz nemá, tak ji necháme na portálu."
+  logos={klientiGastro}
+  logoLabel="Provozy, které nakupují s Pecostou"
+  proseTitle="Soutěž proběhne za vás, vy jen nakupujete"
+  proseText="Stravovací provoz nakoupí velké objemy potravin, ale málokdy má vlastní nákupní oddělení. Pecosta sdružuje poptávku stovek provozů a pravidelně soutěží ceny u dodavatelů, vy pak objednáváte z portálu za výsledné ceny. U příspěvkových organizací běží celý proces v souladu se zákonem o zadávání veřejných zakázek, takže soulad s pravidly neřešíte vy."
+  benefitsTitle="Proč Pecosta pro jídelnu"
+  benefits={benefits}
+  services={services}
+  relatedLabel="Podívejte se také na"
+  related={[{ label: "Školy a nemocnice", href: "/pro-koho/skoly-a-nemocnice" }, { label: "Reference Pecosty", href: "/reference" }]}
+  testimonials={testimonials}
+  faqs={faqs}
+  faqTitle="Časté otázky jídelen a kantýn"
+/>
