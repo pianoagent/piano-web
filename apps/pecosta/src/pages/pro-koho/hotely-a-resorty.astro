@@ -13,15 +13,15 @@ const benefits = [
 ];
 
 const services = [
-  { title: 'Autset: automatické naskladnění', href: '/sluzby/autset', text: 'Dodací listy od 450+ dodavatelů se naskladní automaticky do vašeho skladového systému. Napojíme ho i na hotelové a pokladní systémy, které už používáte.' },
-  { title: 'Aukční nákupy surovin', href: '/sluzby/aukcni-nakupy', text: 'Pravidelné e-aukce surovin pro celé portfolio. CPI Hotels realizuje 80 % nákupu přes jednotný portál.' },
-  { title: 'Energie pro gastro', href: '/sluzby/energie', text: 'Úspora až 25 % na elektřině a plynu. Ke smlouvě zkontrolujeme podmínky, aby v ní nebyly skryté poplatky.' },
+  { title: 'Autset: automatické naskladnění', href: '/sluzby/autset', text: 'Dodací listy od 450+ dodavatelů se naskladní automaticky do vašeho skladového systému. Napojíme ho i na hotelové a pokladní systémy, které už používáte.', image: '/images/karta-autset.webp' },
+  { title: 'Aukční nákupy surovin', href: '/sluzby/aukcni-nakupy', text: 'Pravidelné e-aukce surovin pro celé portfolio. CPI Hotels realizuje 80 % nákupu přes jednotný portál.', image: '/images/karta-aukcni-nakupy.webp' },
+  { title: 'Energie pro gastro', href: '/sluzby/energie', text: 'Úspora až 25 % na elektřině a plynu. Ke smlouvě zkontrolujeme podmínky, aby v ní nebyly skryté poplatky.', image: '/images/karta-energie.webp' },
 ];
 
 const testimonials = [
-  { initials: 'CPI', headline: 'Šetříme miliony ročně', quote: 'Díky automatickému naskladňování v každém z našich hotelů, každý den, ušetříme svým lidem minimálně hodinu práce. Již řadu let využíváme také Aukční nákupy, kdy 80 % nákupu realizujeme přes jednotný nákupní portál a šetříme tak několik miliónů ročně.', author: 'Maroš Šivec', role: 'Executive F&B Director, CPI Hotels' },
-  { initials: 'CPI', headline: 'Kvalita dodávek neutrpěla', quote: 'Hledali jsme partnera, který se postará nejen o realizaci aukcí, ale také, aby se za tyto ceny nakupovalo. A samozřejmě nám šlo také o to, aby v žádném případě neutrpěla kvalita dodávek. Můžu říct, že využití aukčních nákupů nám přineslo, co jsme očekávali.', author: 'Jan Kratina', role: 'General manager, CPI Hotels' },
-  { initials: 'PH', headline: 'Všechno na jednom portálu', quote: 'Jestliže se někdo musí zabývat nějakým procesem a dokážeme ten proces automatizovat, že třeba všechno najde na jednom portálu, nemusí překlikávat, má porovnání cen od celé konkurence, tak je to rozhodně úspora času a ve finále i peněz.', author: 'Lukáš Pytloun', role: 'CEO, Pytloun Hotels' },
+  { initials: 'CPI', headline: 'Šetříme miliony ročně', quote: 'Díky automatickému naskladňování v každém z našich hotelů, každý den, ušetříme svým lidem minimálně hodinu práce. Již řadu let využíváme také Aukční nákupy, kdy 80 % nákupu realizujeme přes jednotný nákupní portál a šetříme tak několik miliónů ročně.', author: 'Maroš Šivec', photo: '/images/ref/maros-sivec.webp', role: 'Executive F&B Director, CPI Hotels' },
+  { initials: 'CPI', headline: 'Kvalita dodávek neutrpěla', quote: 'Hledali jsme partnera, který se postará nejen o realizaci aukcí, ale také, aby se za tyto ceny nakupovalo. A samozřejmě nám šlo také o to, aby v žádném případě neutrpěla kvalita dodávek. Můžu říct, že využití aukčních nákupů nám přineslo, co jsme očekávali.', author: 'Jan Kratina', photo: '/images/ref/jan-kratina.webp', role: 'General manager, CPI Hotels' },
+  { initials: 'PH', headline: 'Všechno na jednom portálu', quote: 'Jestliže se někdo musí zabývat nějakým procesem a dokážeme ten proces automatizovat, že třeba všechno najde na jednom portálu, nemusí překlikávat, má porovnání cen od celé konkurence, tak je to rozhodně úspora času a ve finále i peněz.', author: 'Lukáš Pytloun', photo: '/images/ref/lukas-pytloun.webp', role: 'CEO, Pytloun Hotels' },
   { initials: 'HG', headline: 'Čas navíc pro hosty', quote: 'V HOTELU GOLF jsme otevření novým technologiím, které zjednodušují a zpříjemňují práci. Ušetřený čas mohou zaměstnanci věnovat péči o naše hosty.', author: 'Sylva Čechová', role: 'Ředitelka hotelu, Hotel Golf' },
   { initials: 'GP', headline: 'Velký potenciál dál', quote: 'Výsledky vypadají skvěle a mají velký potenciál do dalších měsíců, kdy bude nabíhat vyšší objem nakupovaných surovin přes portál.', author: 'Jindřich Krausz', role: 'General manager, Grandhotel Pupp' },
 ];
@@ -39,6 +39,8 @@ const faqs = [
   titleHtml="Nákup pro <em>hotely a resorty</em>"
   lead="CPI Hotels ušetří díky automatickému naskladňování hodinu práce denně v každém z 24 českých provozů a přes portál realizuje 80 % nákupu. Stejnou mechaniku nasadíme i u vás."
   logos={klientiHotely}
+  heroImage="/images/pro-koho-hotely.webp"
+  heroImageAlt="Šéfkuchař dokončuje jídlo v profesionální kuchyni"
   logoLabel="Hotely, které nakupují s Pecostou"
   proseTitle="Jedno místo pro nákup celého portfolia"
   proseText="Hotelový provoz řeší víc systémů najednou a report vlastníkům musí sedět. Pecosta sdružuje poptávku stovek provozů do pravidelných e-aukcí, Autset přenese dodací listy do skladu bez ručního přepisu a energie vyjednáme za celé portfolio. Výsledek je online přehled o tom, co, od koho a za kolik se nakupuje, napříč všemi hotely."
