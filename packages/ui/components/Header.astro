@@ -6,7 +6,8 @@
  *   logoSrcLight        → varianta loga pro tmavý podklad. Uplatní se jen u
  *                         transparent hlavičky, dokud uživatel neodscrolluje;
  *                         pak se lišta zpevní na bílou a vrátí se logoSrc.
- *                         Bez tohohle propu zůstává logoSrc v obou stavech,
+ *                         Bez tohohle propu se nad hero použije logoSrc probarvené
+ *                         na bílou (stejně jako v patičce), aby logo nezmizelo,
  *                         takže se stávající weby nemění.
  *
  * Navigace se čte z src/config/nav.ts (obsah oddělen od vzhledu).
@@ -56,7 +57,7 @@ const classes = ['header', transparent && 'header--transparent'].filter(Boolean)
 <header class={classes} data-header style={`--logo-h: ${logoHeight};`}>
   <div class="header__inner">
     <!-- Logo -->
-    <a href={homeHref} class="header__logo" aria-label={`${brand}, ${A.home}`}>
+    <a href={homeHref} class:list={['header__logo', logoSrc && !logoSrcLight && 'header__logo--invert']} aria-label={`${brand}, ${A.home}`}>
       {logoSrc ? (
         <>
           <img class="header__logo-img" src={logoSrc} alt={brand} />
@@ -290,6 +291,13 @@ const classes = ['header', transparent && 'header--transparent'].filter(Boolean)
   .header__logo-img--light { display: none; }
   .header--transparent:not(.is-scrolled) .header__logo-img { display: none; }
   .header--transparent:not(.is-scrolled) .header__logo-img--light { display: block; }
+  /* Weby bez světlé varianty (Pecosta, Septim, Hugo) měly nad tmavým hero prázdné
+     místo po logu. Fallback: nechat tmavé logo a probarvit ho na bílou, stejně
+     jako to dělá patička. */
+  .header--transparent:not(.is-scrolled) .header__logo--invert .header__logo-img {
+    display: block;
+    filter: brightness(0) invert(1);
+  }
 
   /* Desktop navigace */
   .header__nav { margin-left: auto; }
