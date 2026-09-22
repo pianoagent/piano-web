@@ -16,13 +16,18 @@ import { grasonNav, grasonCta, grasonFooter, grasonLogin } from '../config/nav';
 
 const values = ['Spolehlivost', 'Respekt', 'Slušnost', 'Důvěryhodnost', 'Férovost'];
 
+/* Portréty jsou původní ČB fotky z grason-web-develop/assets/images/team,
+   mapování jméno -> soubor je z i18n starého webu (`page_about_team_people_*_id`),
+   ne z odhadu podle obličeje. Tereza Tiller má fotku taky, ale v aktuálním
+   seznamu týmu už není, proto tu chybí.
+   `photo` je volitelná: kdo ji nemá, dostane gradientní iniciály jako dřív. */
 const team = [
-  { initials: 'ZK', name: 'Zuzana Kočová', position: 'Customer Success Manager', color: 'pink' },
-  { initials: 'KM', name: 'Karel Mařík', position: 'CEO, Partner', color: 'green' },
-  { initials: 'TJ', name: 'Tomáš Jiroušek', position: 'Partner', color: 'yellow' },
-  { initials: 'KG', name: 'Kristýna Gottfrídová', position: 'Customer Success Specialist', color: 'pink' },
-  { initials: 'RV', name: 'Radim Vaculík', position: 'CTO', color: 'green' },
-  { initials: 'MU', name: 'Martin Urbánek', position: 'Sales Representative', color: 'yellow' },
+  { initials: 'ZK', name: 'Zuzana Kočová', position: 'Customer Success Manager', color: 'pink', photo: '/images/team/zuzana-kocova.webp' },
+  { initials: 'KM', name: 'Karel Mařík', position: 'CEO, Partner', color: 'green', photo: '/images/team/karel-marik.webp' },
+  { initials: 'TJ', name: 'Tomáš Jiroušek', position: 'Partner', color: 'yellow', photo: '/images/team/tomas-jirousek.webp' },
+  { initials: 'KG', name: 'Kristýna Gottfrídová', position: 'Customer Success Specialist', color: 'pink', photo: '/images/team/kristyna-gottfridova.webp' },
+  { initials: 'RV', name: 'Radim Vaculík', position: 'CTO', color: 'green', photo: '/images/team/radim-vaculik.webp' },
+  { initials: 'MU', name: 'Martin Urbánek', position: 'Sales Representative', color: 'yellow', photo: '/images/team/martin-urbanek.webp' },
 ];
 ---
 
@@ -84,7 +89,9 @@ const team = [
     <ul class="team">
       {team.map((m) => (
         <li class="member">
-          <span class={`member__avatar member__avatar--${m.color}`} aria-hidden="true">{m.initials}</span>
+          {m.photo
+            ? <img class={`member__avatar member__avatar--photo member__avatar--${m.color}`} src={m.photo} alt="" width="256" height="256" loading="lazy" />
+            : <span class={`member__avatar member__avatar--${m.color}`} aria-hidden="true">{m.initials}</span>}
           <strong class="member__name">{m.name}</strong>
           <span class="member__role">{m.position}</span>
         </li>
@@ -133,6 +140,9 @@ const team = [
   .member__avatar--pink { background: var(--member-grad-pink); }
   .member__avatar--green { background: var(--member-grad-green); color: var(--color-text-on-azure); }
   .member__avatar--yellow { background: var(--member-grad-yellow); color: var(--color-text-on-yellow); }
+  /* U fotky zůstává barevný gradient jako prstenec kolem, aby si tým udržel
+     barevné kódování i po výměně iniciál za portréty. */
+  .member__avatar--photo { object-fit: cover; padding: 3px; }
   .member__name { font-size: var(--font-size-lead); font-weight: var(--font-weight-bold); color: var(--color-secondary); }
   .member__role { font-size: var(--font-size-small); color: var(--color-text-muted); }
 
