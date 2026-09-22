@@ -15,6 +15,7 @@ import Text from '@piano/ui/components/Text.astro';
 import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import Faq from '@piano/ui/components/Faq.astro';
+import { flexiQuotes } from '../config/reference';
 import { grasonNav, grasonCta, grasonFooter, grasonLogin, grasonFlexiRegister } from '../config/nav';
 import { flexiFaqs } from '../config/faq';
 
@@ -29,18 +30,6 @@ const steps = [
   { title: 'Brigádníci se hlásí', text: 'Ověření pracovníci z vašeho okolí dostanou notifikaci a zájemci se přihlásí.' },
   { title: 'Potvrdíte výběr', text: 'Vyberete vhodného kandidáta. Zaměstnavatelem jste vy, DPP můžete podepsat i přes appku (za příplatek).' },
   { title: 'Odpracováno a ohodnoceno', text: 'Pracovník dorazí na směnu, vy mu připravíte výplatu z podkladů a po směně ho ohodnotíte.' },
-];
-
-const testimonials = [
-  { initials: 'MP', quote: 'Pracovníci nalezení přes Grason byli sice dražší, ale mnohem motivovanější a ochotní makat než lidé z jiných kanálů.', author: 'Ing. Michal Prádl', role: 'Vedoucí skladu DATART Jirny' },
-  { initials: 'JK', quote: 'Velkou výhodu vidím v úspoře času, protože Grason za mě řeší byrokratické papírování.', author: 'Josef Kubíček', role: 'Manažer, Likér' },
-];
-
-const leadProofs = [
-  { icon: 'lucide:gift', title: '14 dní zdarma', text: 'Bez platební karty, nezávazně.' },
-  { icon: 'lucide:zap', title: 'Směna za pár minut', text: 'Pozici obsadíte dřív než konkurence.' },
-  { icon: 'lucide:users', title: '5 500 brigádníků', text: 'Ověření pracovníci napříč 82+ městy.' },
-  { icon: 'lucide:badge-check', title: 'Podpis přes appku', text: 'DPP podepíšete i online (příplatek).' },
 ];
 
 // Ceník GrasonFlexi, přepínač délky předplatného (3/6/12 měsíců)
@@ -138,7 +127,7 @@ const priceFeatures = [
     eyebrow="Reference"
     eyebrowColor="default"
     background="pink"
-    items={testimonials}
+    items={flexiQuotes}
     titleHtml={'Co říkají <span class="accent">naši klienti</span>'} />
   <Faq items={flexiFaqs} title="Časté dotazy ke GrasonFlexi" background="default" />
   </main>

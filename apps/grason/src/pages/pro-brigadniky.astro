@@ -7,6 +7,7 @@
 import Base from '../layouts/Base.astro';
 import Header from '@piano/ui/components/Header.astro';
 import Testimonials from '@piano/ui/components/Testimonials.astro';
+import StatsBand from '@piano/ui/components/StatsBand.astro';
 import Footer from '@piano/ui/components/Footer.astro';
 import Section from '@piano/ui/components/Section.astro';
 import Hero from '@piano/ui/components/Hero.astro';
@@ -17,6 +18,7 @@ import Icon from '@piano/ui/components/Icon.astro';
 import Faq from '@piano/ui/components/Faq.astro';
 import { grasonNav, grasonCta, grasonFooter, grasonLogin } from '../config/nav';
 import { brigadniciFaqs } from '../config/faq';
+import { workerQuotes } from '../config/reference';
 
 const steps = [
   { title: 'Zaregistrujete se', text: 'Stačí vám 3 minuty, mobil a naše aplikace.' },
@@ -25,14 +27,33 @@ const steps = [
   { title: 'Pracujete', text: 'Za svou práci dostanete zaplaceno tolik, kolik jste si sami řekli.' },
 ];
 
+/* Ilustrace rolí jsou původní assety Grasonu z live webu (_nuxt/img/*@2x.png),
+   převedené na WebP a přebarvené na navy podle styleguidu. */
 const jobs = [
-  { icon: 'lucide:concierge-bell', label: 'Hosteska' },
-  { icon: 'lucide:bike', label: 'Kurýr' },
-  { icon: 'lucide:calculator', label: 'Pokladní' },
-  { icon: 'lucide:utensils', label: 'Číšník / Servírka' },
-  { icon: 'lucide:package', label: 'Skladník' },
-  { icon: 'lucide:boxes', label: 'Bedňák' },
+  { img: '/images/roles/hosteska.webp', label: 'Hosteska' },
+  { img: '/images/roles/kuryr.webp', label: 'Kurýr' },
+  { img: '/images/roles/pokladni.webp', label: 'Pokladní' },
+  { img: '/images/roles/cisnik.webp', label: 'Číšník / Servírka' },
+  { img: '/images/roles/skladnik.webp', label: 'Skladník' },
+  { img: '/images/roles/bednak.webp', label: 'Bedňák' },
 ];
+
+/* Devět jmenovaných měst + zbytek, stejně jako live grason.cz.
+   Celkem 91 lokalit (grason-context.md). */
+const cities = ['Praha', 'Brno', 'Ostrava', 'Liberec', 'Olomouc', 'Přerov', 'Most', 'Plzeň', 'Ústí nad Labem'];
+
+/* Jen čísla doložená v contexty/. Show-up rate 97 % je v bázi vedený jako
+   neověřený a bez kvalifikátoru „bez omluvy" tvrdí víc než zdroj, proto tady
+   není; celé znění zůstává ve FAQ, kde má kolem sebe kontext. */
+const stats = [
+  { num: '5 500', lbl: 'ověřených brigádníků' },
+  { num: '91', lbl: 'míst po celé ČR' },
+  { num: '220 000+', lbl: 'naplánovaných směn' },
+  { num: '4,75', lbl: 'průměrné hodnocení grasona' },
+];
+
+const STORE_IOS = 'https://apps.apple.com/cz/app/grason/id1367384162';
+const STORE_ANDROID = 'https://play.google.com/store/apps/details?id=com.thefuntasty.grason';
 
 const perks = [
   { icon: 'lucide:wallet', title: 'Mzdu si určujete vy', text: 'Při přihlašování uvidíte, jakou částku podnik preferuje. Je ale jen na vás, za kolik chcete pracovat.' },
@@ -40,11 +61,6 @@ const perks = [
   { icon: 'lucide:banknote', title: 'Výplata ihned po směně', text: 'Žádné čekání na výplatní termín, peníze máte hned, jak odpracujete.' },
 ];
 
-const testimonials = [
-  { initials: 'MD', quote: 'Grason je skvělá aplikace, můžu se přihlásit, kdy chci, kam chci, peníze mám hned a mám jistotu, že vždy nějakou směnu najdu.', author: 'Maryna Dragula', role: 'Servírka' },
-  { initials: 'MŽ', quote: 'Grason bych doporučil, je to cesta ke svobodě. Člověk nedělá pořád to samé, poznává různé technologie a jiné kuchaře. Super věc pro lidi, co gastronomie opravdu zajímá.', author: 'Martin Železník', role: 'Kuchař' },
-  { initials: 'RH', quote: 'Skvělá aplikace, která lidem pomáhá najít brigádu nebo práci, a je vyplácená ihned po směně. Určíš si, kdy chceš pracovat, kolik hodin a za jakou hodinovku.', author: 'Richard Hodási', role: 'Číšník' },
-];
 ---
 
 <Base title="Flexibilní práce pro brigádníky | Grason"
@@ -93,13 +109,16 @@ const testimonials = [
     </div>
     <ul class="jobs">
       {jobs.map((j) => (
-        <li class="job"><span class="job__icon"><Icon name={j.icon} size="md" /></span>{j.label}</li>
+        <li class="job"><img class="job__art" src={j.img} alt="" width="32" height="32" loading="lazy" />{j.label}</li>
       ))}
     </ul>
   </Section>
 
+  <!-- ČÍSLA -->
+  <StatsBand items={stats} background="alt" space="md" />
+
   <!-- VÝHODY -->
-  <Section background="default" space="lg">
+  <Section background="default" decor="bottom" space="lg">
     <ul class="perks">
       {perks.map((p) => (
         <li class="perk">
@@ -108,6 +127,21 @@ const testimonials = [
           <Text size="small" color="muted">{p.text}</Text>
         </li>
       ))}
+    </ul>
+  </Section>
+
+  <!-- MÍSTA -->
+  <Section background="pink" decor="top" space="lg">
+    <div class="head head--center">
+      <Text size="label" color="default" align="center">Kde pracovat</Text>
+      <Heading as="h2" size="h2" align="center">Pracujte <span class="accent">kdekoliv</span></Heading>
+      <Text size="lead" color="muted" align="center" balance>
+        V pondělí v Praze, v úterý v Mostu, ve čtvrtek v Liberci. Pracujte tam, kde se vám to hodí.
+      </Text>
+    </div>
+    <ul class="cities">
+      {cities.map((c) => <li class="city">{c}</li>)}
+      <li class="city city--more">+ 82 dalších míst</li>
     </ul>
   </Section>
 
@@ -120,20 +154,27 @@ const testimonials = [
   <Testimonials
     eyebrow="Co říkají grasoni"
     eyebrowColor="default"
-    background="pink"
-    items={testimonials}
+    background="cyan"
+    items={workerQuotes}
     decor="bottom"
     titleHtml={'Práce, <span class="accent">jak ji chcete žít</span>'} />
   <!-- STÁHNOUT -->
-  <Section id="stahnout" background="primary" decor="top" space="lg">
+  <!-- Žlutý pás, ne navy: odznaky obchodů jsou černá kresba na průhledném
+       pozadí, na tmavém pruhu by zanikly. Live web to má stejně. -->
+  <Section id="stahnout" background="yellow" decor="top" space="lg">
     <div class="head head--center">
-      <Text size="label" color="on-dark-muted" align="center">Mobilní aplikace</Text>
-      <Heading as="h2" size="h2" align="center" color="on-dark">Mějte Grason <span class="accent">stále po ruce</span></Heading>
-      <Text size="lead" color="on-dark-muted" align="center" balance>
+      <Text size="label" color="default" align="center">Mobilní aplikace</Text>
+      <Heading as="h2" size="h2" align="center">Mějte Grason <span class="accent">stále po ruce</span></Heading>
+      <Text size="lead" color="muted" align="center" balance>
         Stáhněte si appku a přihlaste se na první směnu ještě dnes. iOS i Android, zdarma.
       </Text>
       <div class="store">
-        <Button href="https://www.grason.cz/stahnout">Stáhnout aplikaci</Button>
+        <a class="store__badge" href={STORE_IOS} target="_blank" rel="noopener" aria-label="Stáhnout Grason v App Store">
+          <img src="/images/badge-app-store.webp" alt="" width="400" height="134" loading="lazy" />
+        </a>
+        <a class="store__badge" href={STORE_ANDROID} target="_blank" rel="noopener" aria-label="Stáhnout Grason na Google Play">
+          <img src="/images/badge-google-play.webp" alt="" width="400" height="134" loading="lazy" />
+        </a>
       </div>
     </div>
   </Section>
@@ -162,10 +203,19 @@ const testimonials = [
   .step > * + * { margin-top: var(--space-3); }
   .step__num { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: var(--radius-full); background: var(--color-secondary-azure); color: var(--color-text-on-azure); font-size: var(--font-size-lead); font-weight: var(--font-weight-bold); }
 
-  /* Jobs */
+  /* Bílá pilulka má na žluté 1,35:1 a na růžové 2,83:1, tedy hrana mizí.
+     Obrys z brandové navy ji vrátí, aniž by se sáhlo na barvu pásu. */
+  .pb { --pill-edge: color-mix(in srgb, var(--color-secondary) 20%, transparent); }
+
+  /* Jobs, pilulky s původní kresbou role (48px, ať zůstanou v jedné řadě) */
   .jobs { list-style: none; display: flex; flex-wrap: wrap; gap: var(--space-4); justify-content: center; }
-  .job { display: inline-flex; align-items: center; gap: var(--space-3); padding: var(--space-3) var(--space-5); background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-full); font-weight: var(--font-weight-medium); box-shadow: var(--shadow-sm); }
-  .job__icon { display: inline-flex; color: var(--color-secondary-azure); }
+  .job { display: inline-flex; align-items: center; gap: var(--space-3); padding: var(--space-2) var(--space-5) var(--space-2) var(--space-3); background: var(--color-bg); border: 1px solid var(--pill-edge); border-radius: var(--radius-full); font-weight: var(--font-weight-medium); box-shadow: var(--shadow-sm); }
+  .job__art { width: 32px; height: 32px; display: block; flex-shrink: 0; }
+
+  /* Města */
+  .cities { list-style: none; display: flex; flex-wrap: wrap; gap: var(--space-3); justify-content: center; }
+  .city { display: inline-flex; align-items: center; padding: var(--space-3) var(--space-5); background: var(--color-bg); border: 1px solid var(--pill-edge); border-radius: var(--radius-full); font-weight: var(--font-weight-medium); box-shadow: var(--shadow-sm); }
+  .city--more { background: transparent; box-shadow: none; color: var(--color-text-muted); }
 
   /* Perks */
   .perks { list-style: none; display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
@@ -173,8 +223,12 @@ const testimonials = [
   .perk > * + * { margin-top: var(--space-3); }
   .perk__icon { display: inline-flex; width: 56px; height: 56px; align-items: center; justify-content: center; border-radius: var(--radius-full); background: color-mix(in srgb, var(--color-secondary-azure) 16%, #fff); color: var(--color-text-accent); }
 
-  /* Store buttons */
-  .store { display: flex; gap: var(--space-3); justify-content: center; flex-wrap: wrap; margin-top: var(--space-5); }
+  /* Odznaky obchodů, originální assety Grasonu v české mutaci */
+  .store { display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap; margin-top: var(--space-6); }
+  .store__badge { display: block; line-height: 0; border-radius: var(--radius-full); transition: var(--transition); }
+  .store__badge img { width: 180px; height: auto; display: block; }
+  .store__badge:hover { transform: translateY(-2px); }
+  @media (prefers-reduced-motion: reduce) { .store__badge:hover { transform: none; } }
 
   /* Reference */
 </style>

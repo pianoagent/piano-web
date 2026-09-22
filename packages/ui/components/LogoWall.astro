@@ -4,11 +4,15 @@
  * Loga se berou z public/logos daného webu. Per-web sada se předává v `logos`
  * (názvy souborů bez přípony); pokud web nemá vlastní reference, použij Piano sadu.
  *
- *   logos: názvy souborů bez přípony (např. 'ref-kolkovna')
+ *   logos: názvy souborů bez přípony (např. 'ref-kolkovna'). Když má sada
+ *          míchané formáty nebo název souboru nedává rozumný alt, jde místo
+ *          řetězce předat { name, ext, alt }
+ *          (např. { name: 'ref-zatisi-group', alt: 'Zátiší Group' });
+ *          zbytek sady dál jede na společné `ext` a alt z názvu souboru.
  *   label: nadpis nad pruhem
  *   background'default' | 'alt' (pruh Section)
  *   id: kotva sekce
- *   ext: přípona souborů ('svg' default, 'png' pro rastry)
+ *   ext: výchozí přípona souborů ('svg' default, 'png' pro rastry)
  *   logoHeight: výška log (default '96px'; např. Pecosta '34px')
  *   gap: mezera mezi logy (default 'var(--space-9)')
  *   duration: rychlost marquee (default '60s')
@@ -16,8 +20,9 @@
 import Section from './Section.astro';
 import Text from './Text.astro';
 
+type Logo = string | { name: string; ext?: string; alt?: string };
 interface Props {
-  logos: string[];
+  logos: Logo[];
   label?: string;
   background?: 'default' | 'alt';
   id?: string;
@@ -37,18 +42,27 @@ const {
   duration = '60s',
 } = Astro.props;
 
+/* Fallback alt z názvu souboru. Je bez diakritiky a s malými písmeny, proto
+   je u log s háčky lepší předat `alt` ručně. */
 const niceAlt = (l: string) => l.replace(/^ref-/, '').replace(/-/g, ' ');
+/* Sada se normalizuje na { name, ext, alt }, aby šlo v jednom pruhu míchat
+   SVG a rastry. Řetězec dědí výchozí `ext` i odvozený alt. */
+const items = logos.map((l) =>
+  typeof l === 'string'
+    ? { name: l, ext, alt: niceAlt(l) }
+    : { name: l.name, ext: l.ext ?? ext, alt: l.alt ?? niceAlt(l.name) },
+);
 ---
 
 <Section background={background} space="md" container={false} id={id}>
   {label && <Text size="label" color="muted" align="center" class="logos__label">{label}</Text>}
   <div class="logos" style={`--logo-h: ${logoHeight}; --logo-gap: ${gap}; --logo-dur: ${duration};`}>
     <div class="logos__track">
-      {[...logos, ...logos].map((l, i) => (
+      {[...items, ...items].map((l, i) => (
         <img
-          src={`/logos/${l}.${ext}`}
-          alt={i < logos.length ? niceAlt(l) : ''}
-          aria-hidden={i >= logos.length ? 'true' : undefined}
+          src={`/logos/${l.name}.${l.ext}`}
+          alt={i < items.length ? l.alt : ''}
+          aria-hidden={i >= items.length ? 'true' : undefined}
           loading="lazy"
         />
       ))}

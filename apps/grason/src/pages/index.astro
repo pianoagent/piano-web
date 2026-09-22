@@ -22,6 +22,7 @@ import LogoWall from '@piano/ui/components/LogoWall.astro';
 import Faq from '@piano/ui/components/Faq.astro';
 import { grasonNav, grasonCta, grasonFooter, grasonLogin } from '../config/nav';
 import { flexiFaqs, planFaqs, jobsFaqs } from '../config/faq';
+import { homeQuotes } from '../config/reference';
 
 const PHONE = '+420 739 877 799';
 const PHONE_HREF = 'tel:+420739877799';
@@ -63,21 +64,30 @@ const products = [
   },
 ];
 
-const testimonials = [
-  { initials: 'DS', quote: 'Pracovníci z Grasonu u nás vykrývají nejen nárazové směny, ale stávají se i pravidelnou součástí týmu. Oceňujeme jejich spolehlivost a rychlost.', author: 'Denisa Srnková', role: 'HR Business Partner, DámeMarket' },
-  { initials: 'JK', quote: 'Velkou výhodu vidím v úspoře času, protože Grason za mě řeší byrokratické papírování.', author: 'Josef Kubíček', role: 'Manažer, Likér' },
-];
 
+/* Jen DOLOŽENÉ reference Grasonu, ne skupinová zeď log Piana.
+   Čtyři klienti GrasonFlexi jsou z grason-context.md (Pizza Nuova, Datart,
+   Scuk, Portské; Dáme jídlo vynecháno, značka se dnes jmenuje Foodora
+   a její logo v repu není). Šest provozů zespoda jsou reference GrasonPlanu
+   z podkladů starého grasonplan.cz.
+
+   POZOR: v public/logos leží dalších 12 SVG (O2 arena, Kolkovna, Café Savoy,
+   SaSaZu, Zátiší, FIELD, Pizza Coloseum, Clarion, Entrée, Sisters,
+   100 chutí Brna, 420). To jsou reference Piana a Protelu, ne Grasonu
+   (BRAND.md, protel-context.md). Do téhle zdi nepatří.
+
+   Míchané formáty, proto { name, ext }; alt ručně kvůli diakritice. */
 const refLogos = [
-  'ref-grandhotel-pupp', 'ref-klub-malych-pivovaru', 'ref-foodway-catering',
-  'ref-majaland', 'ref-tower-park-praha', 'ref-kavarna-633',
-];
-
-const leadProofs = [
-  { icon: 'lucide:users', title: '5 500 brigádníků', text: 'Ověření pracovníci připraveni nastoupit.' },
-  { icon: 'lucide:map-pin', title: '82+ měst v ČR', text: 'Gastro, sklady i maloobchod po celé republice.' },
-  { icon: 'lucide:gift', title: '1. měsíc zdarma', text: 'GrasonPlan vyzkoušíte bez rizika.' },
-  { icon: 'lucide:phone', title: 'Lidská podpora', text: PHONE + ', voláte rovnou nám.' },
+  { name: 'ref-pizza-nuova', ext: 'webp', alt: 'Pizza Nuova' },
+  { name: 'ref-datart', ext: 'webp', alt: 'Datart' },
+  { name: 'ref-scuk', ext: 'webp', alt: 'Scuk.cz' },
+  { name: 'ref-portske', ext: 'webp', alt: 'Portské.cz' },
+  { name: 'ref-grandhotel-pupp', ext: 'png', alt: 'Grandhotel Pupp' },
+  { name: 'ref-foodway-catering', ext: 'png', alt: 'Foodway Catering' },
+  { name: 'ref-klub-malych-pivovaru', ext: 'png', alt: 'Klub malých pivovarů' },
+  { name: 'ref-tower-park-praha', ext: 'png', alt: 'Tower Park Praha' },
+  { name: 'ref-majaland', ext: 'png', alt: 'Majaland' },
+  { name: 'ref-kavarna-633', ext: 'png', alt: 'Kavárna 633' },
 ];
 ---
 
@@ -90,7 +100,7 @@ const leadProofs = [
   <!-- HERO, split: text vlevo, appka vpravo -->
   <Hero eyebrow="Personalista vašeho provozu" background="gradient"
         lead="Grason je nejrychlejší způsob, jak nárazově či dlouhodobě zaplnit volná místa, naplánovat směny, ohlídat zaměstnance a vyřešit papírování s tím spojené."
-        usp={[{ text: '5 500 brigádníků', icon: 'lucide:users' }, { text: '82+ měst v ČR', icon: 'lucide:map-pin' }, { text: '220 000+ naplánovaných směn', icon: 'lucide:calendar-days' }]}>
+        usp={[{ text: '5 500 brigádníků', icon: 'lucide:users' }, { text: '91 míst v ČR', icon: 'lucide:map-pin' }, { text: '220 000+ naplánovaných směn', icon: 'lucide:calendar-days' }]}>
     <Heading slot="title" as="h1" size="display" color="on-dark">Obsaďte volné pozice a naplánujte směny na pár kliknutí</Heading>
     <Fragment slot="actions">
       <Button href="/kontakt">Konzultace zdarma</Button>
@@ -102,7 +112,7 @@ const leadProofs = [
   </Hero>
 
   <!-- LOGA KLIENTŮ -->
-  <LogoWall id="zakaznici" background="default" label="Důvěřují nám restaurace, hotely i cateringy po celé ČR" logos={refLogos} ext="png" logoHeight="52px" />
+  <LogoWall id="zakaznici" background="default" label="Důvěřují nám restaurace, hotely i cateringy po celé ČR" logos={refLogos} logoHeight="40px" duration="60s" />
 
   <!-- TŘI PRODUKTY -->
   <Section id="funkce" background="default" space="lg">
@@ -144,7 +154,7 @@ const leadProofs = [
     eyebrow="Reference"
     eyebrowColor="default"
     background="cyan"
-    items={testimonials}
+    items={homeQuotes}
     decor="bottom"
     titleHtml={'Co říkají <span class="accent">manažeři provozů</span>'} />
   <!-- CTA -->
