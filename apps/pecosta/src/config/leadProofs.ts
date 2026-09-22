@@ -5,6 +5,6 @@
 export const pecostaLeadProofs = [
   { icon: 'lucide:badge-percent', title: 'Úspora až 16 %', text: 'Na surovinách, v průměru každý měsíc.' },
   { icon: 'lucide:store', title: '960+ provozů', text: 'Restaurace, hotely i instituce v celé ČR.' },
-  { icon: 'lucide:calendar-check', title: 'Zkušený tým', text: 'Nákup pro gastro i veřejnou správu řešíme od roku 2020.' },
+  { icon: 'lucide:calendar-check', title: 'Zkušený tým', text: 'Náš tým se nákupu věnuje od roku 2006.' },
   { icon: 'lucide:gift', title: 'Analýza zdarma', text: 'Kalkulaci úspor máte do 48 hodin.' },
 ];

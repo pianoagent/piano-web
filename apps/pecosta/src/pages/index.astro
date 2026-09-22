@@ -29,7 +29,7 @@ const steps = [
   { icon: 'lucide:calculator', title: 'Analýza zdarma', text: 'Připravíme cenové porovnání a kalkulaci úspor bez závazků. Vidíte reálná čísla ještě před podpisem.' },
   { icon: 'lucide:plug', title: 'Napojení dodavatelů', text: 'Napojíme vaše stávající dodavatele na náš nákupní portál. Nemusíte je měnit, soutěží o vaši přízeň.' },
   { icon: 'lucide:shopping-cart', title: 'Nakupujete z jednoho místa', text: 'Nakupujete od všech svých dodavatelů z jednoho portálu za ceny z aukcí.' },
-  { icon: 'lucide:package-check', title: 'Automatické naskladnění (Autset)', text: 'Dodací listy jdou automaticky do vašeho skladového systému přes Autset.' },
+  { icon: 'lucide:package-check', title: 'Automatické naskladnění', text: 'Dodací listy jdou do vašeho skladového systému samy. Postará se o to Autset.' },
 ];
 
 const features = [
@@ -58,7 +58,7 @@ const faqs = [
   { q: 'Jak funguje aukční nákup?', a: 'Dodavatelé soutěží, vy šetříte. Pecosta pravidelně sdružuje poptávku stovek provozů a dodavatelé o ni soupeří v e-aukci. Na portálu pak nakupujete za vysoutěžené ceny při zachování stejné kvality.' },
   { q: 'Kolik reálně ušetřím?', a: 'V průměru až 16 % na surovinách a 25 % na energiích. Konkrétní číslo pro váš provoz spočítáme v bezplatné analýze.' },
   { q: 'Musím měnit dodavatele?', a: 'Není třeba. Nákupy řešíte z jednoho místa a Pecosta vám nabízí nejlepší ceny od ověřených dodavatelů. S největší pravděpodobností zde najdete i 90 % těch svých. Nakupovat však můžete i nadále od svých lokálních dodavatelů a na nákupní portál je dodatečně zařadit.' },
-  { q: 'Co je automatické naskladnění?', a: 'Dodací listy se naskladní automaticky (přes Autset), bez ručního přepisování, ušetříte hodiny administrativy každý měsíc.' },
+  { q: 'Co je automatické naskladnění?', a: 'Dodací listy se naskladní automaticky, bez ručního přepisování, ušetříte hodiny administrativy každý měsíc.' },
   { q: 'Hodí se Pecosta i pro menší provoz?', a: 'Ano. Automatické naskladňování šetří čas menší kavárně stejně jako hotelovým sítím. Aukční nákupy doporučujeme provozům s ročním objemem nákupů nad 5 mil. Kč, u sítí se objemy jednotlivých provozů sčítají. Když se pod tuhle hranici nevejdete, projdeme to individuálně a nabídneme služby bez objemové podmínky, Autset Katalog nebo energie.' },
 ];
 
@@ -72,7 +72,7 @@ const faqs = [
 
   <!-- HERO -->
   <Hero eyebrow="Jednoduše chytrý nákup" background="invert" variant="cover"
-        lead="Poskytujeme nástroje, se kterými ušetříte až 16 % nákladů na suroviny, 25 % na energie a až 30 hodin práce spojené s naskladňováním zboží."
+        lead="Nabízíme nástroje, se kterými ušetříte až 16 % nákladů na suroviny, 25 % na energie a až 30 hodin práce spojené s naskladňováním zboží."
         usp={[{ text: '-16 % na surovinách', icon: 'lucide:badge-percent' }, { text: '-25 % na energiích', icon: 'lucide:zap' }, { text: '-30 hodin měsíčně', icon: 'lucide:clock' }]}>
     <Heading slot="title" as="h1" size="display" color="on-dark">Šetříme náklady vašemu provozu</Heading>
     <Fragment slot="actions">
