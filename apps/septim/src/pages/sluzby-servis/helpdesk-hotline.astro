@@ -1,96 +1,156 @@
 ---
-/** Septim: Služby: Helpdesk a Hotline. Obsah: septim-obsah/sluzby-servis/helpdesk-hotline.md. SEO meta nově. */
+// https://www.septim.cz/sluzby-servis/helpdesk-hotline (Solid Pixels), port 1:1 skriptem port-septim.py
 import Base from '../../layouts/Base.astro';
-import SiteHeader from '../../components/SiteHeader.astro';
-import SiteFooter from '../../components/SiteFooter.astro';
-import Section from '@piano/ui/components/Section.astro';
-import Hero from '@piano/ui/components/Hero.astro';
-import Heading from '@piano/ui/components/Heading.astro';
-import Text from '@piano/ui/components/Text.astro';
-import Button from '@piano/ui/components/Button.astro';
-import USPGrid from '@piano/ui/components/USPGrid.astro';
-import LeadForm from '@piano/ui/components/LeadForm.astro';
-import StatsBand from '../../components/StatsBand.astro';
-import LogoWall from '../../components/LogoWall.astro';
-import Faq from '@piano/ui/components/Faq.astro';
-import { septimLeadProofs } from '../../config/leadProofs';
-
-const jistoty = [
-  { icon: 'lucide:headset', title: 'Podpora 24/7', text: 'Vzdálená i osobní pomoc: v pracovní době i mimo ni.' },
-  { icon: 'lucide:package-check', title: 'Náhradní díly', text: 'Dostupné náhradní díly a technická podpora pro hardware.' },
-  { icon: 'lucide:lightbulb', title: 'Poradenství', text: 'Rady k používání softwaru Septim a jeho nastavení.' },
-];
-const pokryti = [
-  { icon: 'lucide:badge-check', title: 'Proškolení technici', text: 'Několik desítek techniků zajišťuje bezproblémový chod systému Septim.' },
-  { icon: 'lucide:map-pin', title: 'Praha, Olomouc, Tábor', text: 'Technici na třech místech republiky pro rychlejší dostupnost.' },
-  { icon: 'lucide:monitor-smartphone', title: 'Na dálku i na místě', text: 'Většinu problémů vyřešíme po telefonu nebo vzdáleným připojením.' },
-];
-const faqs = [
-  { q: 'Kde najdu svůj servisní kód?', a: 'Servisní kód byste měli mít nalepený na pokladně a na manažerském počítači. Hledejte nálepku „Septim“.' },
-  { q: 'Pro koho je Helpdesk a Hotline určen?', a: 'Helpdesk a Hotline systému Septim je určen pro zákazníky Septimu s aktuálně platnou servisní smlouvou.' },
-  { q: 'Zaplatil jsem faktury: je můj servisní kód platný?', a: 'V případě zaplacení zaslaných faktur je servisní kód platný. Pro ověření můžete zavolat na naše obchodní oddělení na tel. +420 257 011 100.' },
-  { q: 'Nemohu najít servisní číslo nebo potřebuji urychlit aktivaci. Co mám dělat?', a: 'Kontaktujte naše obchodní oddělení ihned po zaplacení obdržených faktur pro urychlení aktivace servisních služeb. Stejně postupujte, pokud nemůžete najít vaše servisní číslo. Volejte +420 257 011 100.' },
-  { q: 'V jakých termínech se podpora věnuje mým požadavkům?', a: 'Naše oddělení podpory se telefonickým i mailovým požadavkům věnuje v termínech dle vaší servisní smlouvy. Podrobný popis naleznete ve své servisní smlouvě a obecný popis na stránce Podmínky servisní smlouvy.' },
-  { q: 'Řešíte problémy na dálku, nebo na místě?', a: 'Pokud je to možné, řešíme požadavky na dálku, je to rychlejší a levnější. V případě, že je potřeba fyzická přítomnost pro zajištění provozu systému, vyjíždí náš technik k vám.' },
-];
+import Mezera_fd60 from '../../components/blocks/Mezera_fd60.astro';
+import Blok30Let_9e65 from '../../components/blocks/Blok30Let_9e65.astro';
+import Mezera_bb6d from '../../components/blocks/Mezera_bb6d.astro';
+import Novinky from '../../components/blocks/Novinky.astro';
 ---
-<Base title="Helpdesk a hotline 24/7 | Septim"
-      description="Helpdesk a hotline Septim s podporou i mimo pracovní dobu. Garantovaná pomoc 24/7, aby váš provoz běžel bez přerušení.">
-  <SiteHeader />
-  <main>
-    <Hero eyebrow="Služby a servis" background="alt"
-          lead="Septim má propracovaný systém pomoci pro své zákazníky. Zajišťujeme pomoc a poradenství v pracovní době a mimo ni garantujeme NON-STOP pomoc s provozním softwarem i hardwarem.">
-      <Heading slot="title" as="h1" size="display">Helpdesk a <em>Hotline</em></Heading>
-      <Fragment slot="actions">
-        <Button href="tel:+420257011101">Volat Helpdesk</Button>
-        <Button href="/sluzby-servis" variant="secondary">Všechny služby</Button>
-      </Fragment>
-      <figure slot="media" class="hero-pic">
-        <img src="/images/sluzby-helpdesk.webp" alt="Helpdesk Septim s nepřetržitou podporou provozů" width="960" height="738" loading="eager" decoding="async" />
-      </figure>
-    </Hero>
+<Base
+  title="Helpdesk a hotline 24/7 | Septim"
+  description="Helpdesk a hotline Septim s podporou i mimo pracovní dobu. Garantovaná pomoc 24/7, aby váš provoz běžel bez přerušení."
+  path="/sluzby-servis/helpdesk-hotline"
+  bodyClass="use-header-transparent use-menu-primary-uppercase use-menu-secondary-uppercase use-headings-link-plain search-panel-hide-submit-label search-panel-hide-close-label search-panel-hide-open-label use-menu-bar use-header-fixed use-header-fixed-mobile use-header-priority"
+  image="/files/nahled-septim-pomoc.jpg"
+>
+<div class="section height--low align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-card flexcard-size--normal flexcard-media-right valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><a class="image image-mask ratio-original" href="/sluzby-servis/helpdesk-hotline#kontakt" style="padding-bottom:76.92307692307693%"><img alt="Helpdesk a Hotline" decoding="async" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/hdr-helpdesk-hotline.webp" srcset="/files/r/720/hdr-helpdesk-hotline.webp 720w, /files/r/1280/hdr-helpdesk-hotline.webp 1280w, /files/r/1920/hdr-helpdesk-hotline.webp 1920w"/></a></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h1>Helpdesk a Hotline<font color="#00adef"><span style="caret-color: rgb(0, 173, 239);">.</span></font></h1>
+<p class="text-large">Septim má propracovaný systém pomoci pro své zákazníky. Zajišťujeme pomoc a poradenství v pracovní době. Mimo pracovní dobu garantujeme NON-STOP pomoc s provozním softwarem i hardwarem.</p>
+</div></div></div></div></div></div></div></div></div></div></div>
+<div class="section height--low align--middle color--default section-has-background" id="kontakt"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-4-12"><div class="block block-box box box--secondary box--full-height"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-none size-md align-center"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/podpora-servis-helpdesk.svg"/></div></div></div></div></div></div></div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3 class="center"></h3>
+<p class="center"><strong>V pracovní dobu: Po-Pá 8:30 - 17:00</strong></p>
+<h3 class="center"><span class="text-highlight"><a href="tel:+420 257 011 101">+420 257 011 101</a></span></h3>
+<p class="center"><span class="text-highlight"><strong>Helpdesk</strong></span></p>
+<p class="center">Pokud potřebujete poradit s používáním, vyřešit aktuální situaci, nebo nastavit váš Septim</p>
+</div></div></div></div></div> <div class="col col-5-12 grid-4-12"><div class="block block-box box box--secondary box--full-height"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-none size-md align-center"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/ico-hotline.svg"/></div></div></div></div></div></div></div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3 class="center"></h3>
+<p class="center"><strong>Mimo pracovní dobu</strong></p>
+<h3 class="center"><span class="text-highlight"><a href="tel:+420 777 737 846">+420 777 737 846</a></span></h3>
+<p class="center"><span class="text-highlight"><strong>Hotline</strong></span></p>
+<p class="center">Pro akutní řešení problémů v systému Septim nebo přímo souvisejícího hardwaru</p>
+</div></div></div></div></div> <div class="col col-9-12 grid-4-12"><div class="block block-box box box--secondary box--full-height"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-none size-md align-center"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/podpora-konzultace.svg"/></div></div></div></div></div></div></div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3 class="center"></h3>
+<p class="center"><strong>Využijte v případě vytížení Helpdesk</strong></p>
+<h3 class="center"><span class="text-highlight"><a href="mailto:servis@septim.cz">servis@septim.cz</a></span></h3>
+<p class="center"><span class="text-highlight"><span style="color: var(--box-color); font-size: var(--text-size-base); background-color: var(--box-background); font-family: var(--base-font-family);"><b>Mailový kontakt</b></span></span></p>
+<p class="center">Písemné technické dotazy pro pomoc se systémem Septim</p>
+</div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div><div><div class="block-spacer-element" style="--height:30px"></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<div class="section height--low align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p class="center"><strong>Naše oddělení podpory se bude vašim telefonickým i mailovým požadavkům věnovat v termínech dle vaší servisní smlouvy.</strong></p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div><div><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div></div></div></div>
+<div class="section height--medium align--middle color--default no-pb section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Respektované provozy, které se opírají o podporu našeho servisu<span class="text-highlight">.</span></h2>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-gallery grid-sm-2"><div><div><div class="grid gallery-container" style="--gap:40px"><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Field" decoding="async" loading="lazy" src="/files/ref-field.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Ambiente" decoding="async" loading="lazy" src="/files/ref-ambiente.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Entrée" decoding="async" loading="lazy" src="/files/ref-entree.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo O2 arena" decoding="async" loading="lazy" src="/files/ref-02-arena.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Kolkovna" decoding="async" loading="lazy" src="/files/ref-kolkovna.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Potrefená husa" decoding="async" loading="lazy" src="/files/ref-potrefena-husa.svg"/></div></div></div></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(240, 252, 255)"></div></div>
+<div class="section height--low align--middle color--default section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div><div><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-5-12"><div class="block block-image shrinked-large"><div><div><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="" decoding="async" loading="lazy" sizes="(min-width:1390px) 579px, (min-width:720px) 41.67vw, 100.00vw" src="/files/r/1280/servis-pro-restaurace.webp" srcset="/files/r/720/servis-pro-restaurace.webp 720w, /files/r/1280/servis-pro-restaurace.webp 1280w, /files/r/1920/servis-pro-restaurace.webp 1920w"/></div></div></div></div></div> <div class="col col-6-12 grid-7-12"><div class="block block-inline"><h2>Servis a podpora pro váš provoz<span class="text-highlight">.</span></h2>
+</div> <div class="block block-inline"><p>Se Septimem budete mít jistotu správného fungování vašeho provozu.</p>
+</div> <div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-horizontal valign-middle size-sm"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/ico-vzdalena-osobni-podpora.svg"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p>Podpora 24/7 vzdálená i osobní</p>
+</div></div></div></div></div></div></div> <div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-horizontal valign-middle size-sm"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/ico-nahradni-dily.svg"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p>Dostupné náhradní díly a technická podpora</p>
+</div></div></div></div></div></div></div> <div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-horizontal valign-middle size-sm"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/ico-poradenstvi-softwaru.svg"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p>Poradenství ohledně používání softwaru a jeho nastavení</p>
+</div></div></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div><div><div class="center"><a class="btn btn-default" href="/sluzby-servis/helpdesk-hotline#podpora"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">Více o podpoře a servisu</span></a></div></div></div></div></div></div></div><div class="section-background" style="background-color:#fff"></div></div>
+<Mezera_fd60 />
+<div class="section height--low align--middle color--default" id="podpora"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-7-12"><div class="block block-inline"><h2>Podpora servisu po celé republice<span class="text-highlight">.</span></h2>
+<p>Několik desítek našich techniků zajišťuje bezproblémový chod systému Septim ve vašem provozu. Pro rychlejší dostupnost máme techniky v Praze, Olomouci a Táboře. Většina problémů je ale vyřešena po telefonu, případně vzdáleným připojením po internetu.</p>
+</div> <div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-horizontal valign-middle size-sm"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/ico-proskoleni-technici.svg"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p>Proškolení technici</p>
+</div></div></div></div></div></div></div> <div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-horizontal valign-middle size-sm"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/ico-software-hardware.svg"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p>Řešíme software i hardware</p>
+</div></div></div></div></div></div></div> <div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-horizontal valign-middle size-sm"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/ico-vzdalena-osobni-podpora.svg"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p>Servis probíhá na dálku i přímo na místě</p>
+</div></div></div></div></div></div></div></div> <div class="col col-8-12 grid-5-12"><div class="block block-image shrinked-large"><div><div><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="" decoding="async" loading="lazy" sizes="(min-width:1390px) 579px, (min-width:720px) 41.67vw, 100.00vw" src="/files/r/1280/servis-cr.webp" srcset="/files/r/720/servis-cr.webp 720w, /files/r/1280/servis-cr.webp 1280w, /files/r/1920/servis-cr.webp 1920w"/></div></div></div></div></div></div></div></div>
+<Mezera_fd60 />
+<div class="section height--normal align--middle color--default" id="technicke-rady"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-4-12"><div class="block block-inline"><h3>Často kladené otázky<span class="text-highlight">.</span></h3>
+</div></div> <div class="col col-5-12 grid-8-12"><div class="block block-accordion">
+<div class="accordion"><div class="accordion__title"><span class="accordion__title-label">Kde najdu servisní kód?</span><span class="accordion__title-arrow"><div class="cssicon cssicon--chevron cssicon--size-parent"></div></span></div><div class="container accordion__content"><div class="container-body">
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Servisní kód byste měli mít nalepený na pokladně a na manažerském počítači. Hledejte nálepku "Septim".</p>
+</div></div></div>
+</div></div></div>
+<div class="accordion"><div class="accordion__title"><span class="accordion__title-label">Pro koho je Helpdesk a Hotline linka určená?</span><span class="accordion__title-arrow"><div class="cssicon cssicon--chevron cssicon--size-parent"></div></span></div><div class="container accordion__content"><div class="container-body">
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Helpdesk a Hotline systému Septim je určen pro zákazníky Septimu s aktuálně platnou servisní smlouvou.</p>
+</div></div></div>
+</div></div></div>
+<div class="accordion"><div class="accordion__title"><span class="accordion__title-label">Jak zjistím jestli mám zaplacený servisní poplatek?</span><span class="accordion__title-arrow"><div class="cssicon cssicon--chevron cssicon--size-parent"></div></span></div><div class="container accordion__content"><div class="container-body">
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>V případě zaplacení zaslaných faktur je servisní kód platný. Pro ověření můžete zavolat na naše obchodní oddělení na tel. <a href="tel:+420 257 011 100">+420 257 011 100</a></p>
+</div></div></div>
+</div></div></div>
+<div class="accordion"><div class="accordion__title"><span class="accordion__title-label">Co mám dělat, pokud mám Septim, ale nemám zaplacenou servisní smlouvu?</span><span class="accordion__title-arrow"><div class="cssicon cssicon--chevron cssicon--size-parent"></div></span></div><div class="container accordion__content"><div class="container-body">
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Kontaktujte naše obchodní oddělení ihned po zaplacení obdržených faktur pro urychlení aktivace servisních služeb. Stejně postupujte, pokud nemůžete najít vaše servisní číslo. Volejte <a href="tel:+420 257 011 100">+420 257 011 100</a></p>
+</div></div></div>
+</div></div></div>
+<div class="accordion"><div class="accordion__title"><span class="accordion__title-label">Co je součástí mé servisní smlouvy a co je nad rámec?</span><span class="accordion__title-arrow"><div class="cssicon cssicon--chevron cssicon--size-parent"></div></span></div><div class="container accordion__content"><div class="container-body">
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Podrobný popis naleznete ve své servisní smlouvě a obecný popis na stránce <a href="/sluzby-servis/podminky-servisni-smlouvy">Podmínky servisní smlouvy</a>.</p>
+</div></div></div>
+</div></div></div>
+<div class="accordion"><div class="accordion__title"><span class="accordion__title-label">Kdy dochází k fyzickému výjezdu technika a kdy požadavek řešíme na dálku?</span><span class="accordion__title-arrow"><div class="cssicon cssicon--chevron cssicon--size-parent"></div></span></div><div class="container accordion__content"><div class="container-body">
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Pokud je to možné, řešíme požadavky na dálku. Je to rychlejší a levnější. V případě, že je potřeba fyzická přítomnost pro zajištění provozu systému, vyjíždí náš technik k vám.</p>
+</div></div></div>
+</div></div></div>
+<div class="accordion"><div class="accordion__title"><span class="accordion__title-label">Jak si zajistit servis Septimu a stát se klientem?</span><span class="accordion__title-arrow"><div class="cssicon cssicon--chevron cssicon--size-parent"></div></span></div><div class="container accordion__content"><div class="container-body">
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Pro zajištění služeb Septimu <a href="/chci-septim">kontaktujte naše obchodní oddělení</a>.</p>
+</div></div></div>
+</div></div></div>
+</div></div></div></div></div>
+<Blok30Let_9e65 />
+<Mezera_bb6d />
+<div class="section height--normal align--middle color--default section-width-narrow section-has-background" id="kontaktni-formular"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Proberte s našimi konzultanty, jak na to<span class="text-highlight">.</span></h2>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div><div class="block-spacer-element" style="--height:30px"></div></div></div></div></div>
+<div class="row-main"><div class="col col-4-12 grid-6-12">
+<form action="/api/lead" autocomplete="off" class="block block-form" data-lead-form="formular-field_form_1_4_0_0" id="formular-field_form_1_4_0_0" method="post">
+<div class="row">
+<div class="col col-1-12 grid-12-12">
+<div class="field field-form_input_email" id="field-wrapper-email">
+<div class="field-wrapper">
+<label for="field-email" id="label-email">
+            E-mail <span>*</span>
+</label>
+<input class="field-control" id="field-email" name="formular-field_form_1_4_0_0[email]" required="" type="email" value=""/>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col col-1-12 grid-12-12">
+<div class="field field-form_input_tel" id="field-wrapper-phone">
+<div class="field-wrapper">
+<label for="field-phone" id="label-phone">
+            Telefon
+          </label>
+<input class="field-control" id="field-phone" name="formular-field_form_1_4_0_0[phone]" type="tel" value=""/>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col col-1-12 grid-12-12">
+<div class="field field-form_textarea" id="field-wrapper-vase-zprava">
+<div class="field-wrapper">
+<label for="field-vase-zprava" id="label-vase-zprava">
+            Vaše zpráva
+          </label>
+<textarea class="field-control" id="field-vase-zprava" name="formular-field_form_1_4_0_0[vase-zprava]"></textarea>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col col-1-12 grid-12-12">
+<div class="block block-inline"><p>Vaše osobní údaje budou zpracovány podle <a href="/informace-o-zpracovani-osobnich-udaju-formular">Podmínek zpracování osobních údajů</a>.</p>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col col-1-12 grid-12-12">
+<div class="field field-form_button" id="field-wrapper-field_form_1_4_0_0">
+<div class="field-wrapper">
+<div class="center">
+<button class="btn btn-a btn-primary" id="field-field_form_1_4_0_0" name="formular-field_form_1_4_0_0[field_form_1_4_0_0]" type="submit" value="submit"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">Odeslat</span></button>
+</div>
+</div>
+</div>
+</div>
+</div>
 
-    <Section background="primary" space="md">
-      <div class="support">
-        <div class="support__item">
-          <span class="support__label">Helpdesk · Po–Pá 8:30–17:00</span>
-          <a class="support__phone" href="tel:+420257011101">+420 257 011 101</a>
-          <span class="support__hours">Rady s používáním, řešení aktuální situace i nastavení Septimu</span>
-        </div>
-        <div class="support__divider" aria-hidden="true"></div>
-        <div class="support__item">
-          <span class="support__label">Hotline · mimo pracovní dobu</span>
-          <a class="support__phone" href="tel:+420777737846">+420 777 737 846</a>
-          <span class="support__hours">Akutní problémy se systémem Septim a souvisejícím hardwarem</span>
-        </div>
-        <div class="support__divider" aria-hidden="true"></div>
-        <div class="support__item">
-          <span class="support__label">E-mail</span>
-          <a class="support__phone support__phone--sm" href="mailto:servis@septim.cz">servis@septim.cz</a>
-          <span class="support__hours">Písemné technické dotazy k systému Septim</span>
-        </div>
-      </div>
-    </Section>
-
-    <USPGrid eyebrow="Servis a podpora" title="Jistota správného fungování vašeho provozu" items={jistoty} background="default" space="lg" minItemWidth="240px" />
-    <USPGrid eyebrow="Pokrytí" title="Podpora servisu po celé republice" items={pokryti} background="alt" space="lg" minItemWidth="240px" />
-    <LogoWall label="Respektované provozy, které se opírají o podporu našeho servisu" background="default" />
-    <StatsBand />
-    <Faq items={faqs} title="Často kladené otázky k Helpdesku a Hotline" background="default" />
-    <LeadForm proofs={septimLeadProofs} id="poptavka" variant="callback" background="alt"
-              title="Potřebujete zajistit služby Septimu?"
-              lead="Nechte nám telefon, spojí se s vámi naše obchodní oddělení." />
-  </main>
-  <SiteFooter />
+<input name="form_variant" type="hidden" value="formular-field_form_1_4_0_0"/><input name="page" type="hidden" value=""/><div aria-hidden="true" class="visually-hidden"><label>Web <input autocomplete="off" name="website" tabindex="-1" type="text"/></label></div></form>
+</div></div></div><div class="section-background" style="background-color:rgb(235, 252, 255)"></div></div>
+<Novinky />
 </Base>
-
-<style>
-  .support { display: flex; align-items: stretch; justify-content: center; gap: var(--space-6); flex-wrap: wrap; }
-  .support__item { display: flex; flex-direction: column; align-items: center; gap: 2px; text-align: center; max-width: 300px; }
-  .support__label { font-size: var(--font-size-label); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide); color: var(--color-text-on-dark-muted); }
-  .support__phone { font-size: var(--font-size-h3); font-weight: var(--font-weight-bold); color: var(--color-text-on-dark); text-decoration: none; }
-  .support__phone--sm { font-size: var(--font-size-lead); }
-  .support__hours { font-size: var(--font-size-small); color: var(--color-text-on-dark-muted); }
-  .support__divider { width: 1px; background: var(--color-border-on-dark); }
-  @media (max-width: 640px) { .support__divider { display: none; } }
-</style>

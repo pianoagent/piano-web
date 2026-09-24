@@ -1,0 +1,28 @@
+---
+// Stránka 404 (na živém webu ji řešil CMS). Noindex, mimo sitemapu.
+// Bez ní by Cloudflare Pages na neexistující URL vracel homepage se stavem 200.
+import Base from '../layouts/Base.astro';
+---
+<Base
+  title="Stránka nenalezena | Septim"
+  description="Tahle stránka neexistuje. Zkuste hlavní stránku, produkty nebo kontakt."
+  path="/404"
+  noindex
+>
+<div class="section height--high align--middle color--default section-has-background">
+  <div class="section-body">
+    <div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline">
+      <h1 class="center">Stránka nenalezena<span class="text-highlight">.</span></h1>
+      <p class="text-large center">Tahle adresa neexistuje nebo se přesunula.</p>
+    </div></div></div>
+    <div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div class="center">
+      <a class="btn btn-primary" href="/"><span class="btn__icon" aria-hidden="true"></span><span class="btn__label">Hlavní stránka</span></a>
+      <a class="btn btn-default" href="/produkty"><span class="btn__icon" aria-hidden="true"></span><span class="btn__label">Produkty</span></a>
+      <a class="btn btn-default" href="/kontakt"><span class="btn__icon" aria-hidden="true"></span><span class="btn__label">Kontakt</span></a>
+    </div></div></div></div>
+  </div>
+  <div class="section-background container-fit container-fit--cover" style="background-color:rgb(235, 252, 255)">
+    <img alt="" src="/files/r/1920/hdr-tapeta-septim-blue.webp" decoding="async" />
+  </div>
+</div>
+</Base>

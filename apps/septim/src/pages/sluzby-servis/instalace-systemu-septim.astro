@@ -1,77 +1,62 @@
 ---
-/** Septim: Služby: Instalace systému Septim. Obsah: septim-obsah/sluzby-servis/instalace-systemu-septim.md. SEO meta nově. */
+// https://www.septim.cz/sluzby-servis/instalace-systemu-septim (Solid Pixels), port 1:1 skriptem port-septim.py
 import Base from '../../layouts/Base.astro';
-import SiteHeader from '../../components/SiteHeader.astro';
-import SiteFooter from '../../components/SiteFooter.astro';
-import Section from '@piano/ui/components/Section.astro';
-import Hero from '@piano/ui/components/Hero.astro';
-import Heading from '@piano/ui/components/Heading.astro';
-import Text from '@piano/ui/components/Text.astro';
-import Button from '@piano/ui/components/Button.astro';
-import Icon from '@piano/ui/components/Icon.astro';
-import USPGrid from '@piano/ui/components/USPGrid.astro';
-import LeadForm from '@piano/ui/components/LeadForm.astro';
-import StatsBand from '../../components/StatsBand.astro';
-import Faq from '@piano/ui/components/Faq.astro';
-import { septimLeadProofs } from '../../config/leadProofs';
-
-const startBody = [
-  'Nastavení procesů organizace restaurace',
-  'Příprava používání skladů a správy surovin',
-  'Zaškolení personálu',
-  'Příprava na finanční řízení restaurace a datové přehledy',
-];
-const kroky = [
-  { icon: 'lucide:clipboard-list', title: '1. Příprava obsahu', text: 'S naším konzultantem zapíšete do systému receptury, sklady i skladové karty jednotlivých surovin.' },
-  { icon: 'lucide:calendar-check', title: '2. Asistované spuštění', text: 'Společně vybereme termín spuštění Septimu a dohlédneme, aby vše proběhlo hladce.' },
-  { icon: 'lucide:headset', title: '3. Servisní správa', text: 'Po spuštění máte k dispozici Helpdesk pro nastavení Septimu i Hotline pro potíže s hardwarem a softwarem.' },
-];
-const faqs = [
-  { q: 'Kdo mě instalací provede?', a: 'Celým procesem od výběru vhodného řešení až po spuštění systému Septim vás provede náš zkušený konzultant.' },
-  { q: 'Je instalace technicky nebo časově náročná?', a: 'Zásadní je správně popsat potřeby vašeho provozu a vedení restaurace a probrat vhodné řešení. Všechny technické věci s vámi vyřeší náš konzultant, který zbytek zorganizuje s našimi techniky. Nemusíte se bát technické ani časové náročnosti.' },
-  { q: 'Jaký je první krok?', a: 'Kontaktujte nás a spojte se s našimi zkušenými konzultanty. Navrhneme vhodné řešení pro váš provoz.' },
-];
+import Mezera_fd60 from '../../components/blocks/Mezera_fd60.astro';
+import BlokKolikZaplatim_71a6 from '../../components/blocks/BlokKolikZaplatim_71a6.astro';
+import KontaktniFormular from '../../components/blocks/KontaktniFormular.astro';
+import Mezera_bb6d from '../../components/blocks/Mezera_bb6d.astro';
+import Blok30Let_9e65 from '../../components/blocks/Blok30Let_9e65.astro';
+import Novinky from '../../components/blocks/Novinky.astro';
 ---
-<Base title="Instalace pokladního systému | Septim"
-      description="Postaráme se o celý proces – od výběru řešení po spuštění plně funkčního systému Septim ve vašem provozu. Instalace na klíč.">
-  <SiteHeader />
-  <main>
-    <Hero eyebrow="Služby a servis" background="alt"
-          lead="Rozhodli jste se pro systém Septim? Podívejte se, jaký průběh instalace vás čeká. Celým procesem od výběru vhodného řešení až po spuštění vás provede náš zkušený konzultant, žádný ajťák!">
-      <Heading slot="title" as="h1" size="display">Instalace <em>systému Septim</em></Heading>
-      <Fragment slot="actions">
-        <Button href="#poptavka">Chci konzultaci</Button>
-        <Button href="/sluzby-servis" variant="secondary">Všechny služby</Button>
-      </Fragment>
-      <figure slot="media" class="hero-pic">
-        <img src="/images/sluzby-instalace.webp" alt="Instalace pokladního systému Septim v provozu" width="960" height="738" loading="eager" decoding="async" />
-      </figure>
-    </Hero>
-
-    <Section background="default" space="lg">
-      <div class="prose">
-        <Heading as="h2" size="h2">Start systému je příležitost pro celý provoz</Heading>
-        <Text color="muted">Spuštění Septimu vidíme jako klíčový krok pro restauraci. Zdaleka nejde jen o zapnutí pokladny, je to příležitost nastavit efektivní řízení restaurace:</Text>
-      </div>
-      <ul class="checklist">
-        {startBody.map((f) => (<li><Icon name="lucide:check" size="sm" class="checklist__icon" />{f}</li>))}
-      </ul>
-    </Section>
-
-    <USPGrid eyebrow="Průběh instalace" title="Jak instalace Septimu probíhá" items={kroky} background="alt" space="lg" minItemWidth="260px" />
-    <StatsBand background="default" />
-    <Faq items={faqs} title="Často kladené otázky k instalaci" background="alt" />
-    <LeadForm proofs={septimLeadProofs} id="poptavka" variant="callback" background="default"
-              title="Proberte s našimi konzultanty, jak na to"
-              lead="Nechte nám telefon, navrhneme vhodné řešení pro váš provoz." />
-  </main>
-  <SiteFooter />
+<Base
+  title="Instalace pokladního systému Septim | Septim"
+  description="Postaráme se o celý proces, od výběru řešení po spuštění plně funkčního systému Septim ve vašem provozu. Instalace na klíč."
+  path="/sluzby-servis/instalace-systemu-septim"
+  bodyClass="use-header-transparent use-menu-primary-uppercase use-menu-secondary-uppercase use-headings-link-plain search-panel-hide-submit-label search-panel-hide-close-label search-panel-hide-open-label use-menu-bar use-header-fixed use-header-fixed-mobile use-header-priority"
+  image="/files/nahled-instalace.jpg"
+>
+<div class="section height--low align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-card flexcard-size--normal flexcard-media-right valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:76.92307692307693%"><img alt="Instalace systému Septim" decoding="async" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/hdr-instalace-septim.webp" srcset="/files/r/720/hdr-instalace-septim.webp 720w, /files/r/1280/hdr-instalace-septim.webp 1280w, /files/r/1920/hdr-instalace-septim.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h1>Instalace systému Septim<span class="text-highlight">.</span></h1>
+<p class="text-large">Pokud jste se rozhodli pro použití systému Septim, podívejte se jaký průběh instalace Vás čeká. Celým procesem od výběru vhodného řešení až po spuštění systému Septim Vás provede náš zkušený konzultant, žádný ajťák!</p>
+</div></div></div></div></div></div></div></div></div></div></div>
+<div class="section height--low align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image block-image--3-1"><div><div><div class="flexcard flexcard-card flexcard-size--normal flexcard-media-left valign-middle align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Instalace Septimu ve vašem provozu restaurace" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/instalace-septim-k1.webp" srcset="/files/r/720/instalace-septim-k1.webp 720w, /files/r/1280/instalace-septim-k1.webp 1280w, /files/r/1920/instalace-septim-k1.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h3>Instalace Septimu ve vašem provozu restaurace<span class="text-highlight">.</span></h3>
+<p>Krok startu systému Septim vidíme jako klíčový pro restauraci. Zdaleka nejde jen o spuštění pokladny. Naopak jde o příležitost nastavit efektivní řízení restaurace:</p>
+<ul>
+<li>Nastavit procesy organizace restaurace</li>
+<li>Připravit používání skladů a správy suroviny</li>
+<li>Zaškolit personál</li>
+<li>Připravit vše pro finanční řízení restaurace a datové přehledy</li>
+</ul>
+</div></div></div></div></div></div></div></div></div></div></div>
+<Mezera_fd60 />
+<div class="section height--low align--middle color--default section-width-boxed"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image block-image--3-1"><div><div><div class="flexcard flexcard-card flexcard-size--normal flexcard-media-right valign-middle align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Co si připravit před instalací systému Septim" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/instalace-septim-k2.webp" srcset="/files/r/720/instalace-septim-k2.webp 720w, /files/r/1280/instalace-septim-k2.webp 1280w, /files/r/1920/instalace-septim-k2.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h3>Co si připravit před instalací systému Septim<span class="text-highlight">.</span></h3>
+<p>Před instalací spolu s naším konzultantem připravíte "obsah" systému Septim. Tedy receptury, které vaříte, si zapíšete do systému. Sklady, které máte, zadáme do systému. Dále pak skladové karty pro jednotlivé suroviny.</p>
+<p>S naším konzultantem následně vybereme termín asistovaného spuštění Septimu, kdy dohlédneme na to, aby vše hladce proběhlo.</p>
+</div></div></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div><div><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><div><div><hr class="divider divider--normal divider--align-left"/></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div><div><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image block-image--3-1"><div><div><div class="flexcard flexcard-card flexcard-size--normal flexcard-media-left valign-middle align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Co následuje po instalaci" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/instalace-septim-k3-end.webp" srcset="/files/r/720/instalace-septim-k3-end.webp 720w, /files/r/1280/instalace-septim-k3-end.webp 1280w, /files/r/1920/instalace-septim-k3-end.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h3>Co následuje po instalaci<span class="text-highlight">.</span></h3>
+<p>Po spuštění Septimu přecházíte do módu servisní správy. Je vám k dispozici <a href="/sluzby-servis/helpdesk-hotline">Helpdesk</a> pro řešení nastavení Septimu a i <a href="/sluzby-servis/helpdesk-hotline">Hotline</a> pro případné vyřešení potíží s hardwarem i softwarem systému Septim.</p>
+</div></div></div></div></div></div></div></div></div></div></div>
+<Mezera_fd60 />
+<div class="section height--normal align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-4-12"><div class="block block-inline"><h3>Často kladené otázky u instalace pokladního a provozního systému Septim<span class="text-highlight">.</span></h3>
+</div></div> <div class="col col-5-12 grid-8-12"><div class="block block-accordion">
+<div class="accordion"><div class="accordion__title"><span class="accordion__title-label">Kdo mne instalací provede?</span><span class="accordion__title-arrow"><div class="cssicon cssicon--chevron cssicon--size-parent"></div></span></div><div class="container accordion__content"><div class="container-body">
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Celým procesem od výběru vhodného řešení až po spuštění systému Septim vás provede náš zkušený konzultant.</p>
+</div></div></div>
+</div></div></div>
+<div class="accordion"><div class="accordion__title"><span class="accordion__title-label">Je proces spuštění systému Septim časově náročný?</span><span class="accordion__title-arrow"><div class="cssicon cssicon--chevron cssicon--size-parent"></div></span></div><div class="container accordion__content"><div class="container-body">
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Zásadní je správně popsat potřeby vašeho provozu a vedení restaurace. Následně pak probrat vhodné řešení. Všechny technické věci s vámi vyřeší náš konzultant, který zbytek zorganizuje s našimi techniky. Nemusíte se bát ani technické ani časové náročnosti.</p>
+</div></div></div>
+</div></div></div>
+<div class="accordion"><div class="accordion__title"><span class="accordion__title-label">Jaký je první krok pro začátek spolupráce a instalaci Septimu?</span><span class="accordion__title-arrow"><div class="cssicon cssicon--chevron cssicon--size-parent"></div></span></div><div class="container accordion__content"><div class="container-body">
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Kontaktujte nás a<a href="/chci-septim"> spojte se s našimi zkušenými konzultanty</a>. Navrhneme vhodné řešení pro váš provoz.</p>
+</div></div></div>
+</div></div></div>
+</div></div></div></div></div>
+<BlokKolikZaplatim_71a6 />
+<KontaktniFormular />
+<Mezera_bb6d />
+<Blok30Let_9e65 />
+<Novinky />
 </Base>
-
-<style>
-  .prose { max-width: 760px; margin-bottom: var(--space-6); }
-  .prose > * + * { margin-top: var(--space-4); }
-  .checklist { list-style: none; display: grid; gap: var(--space-3); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); max-width: 960px; }
-  .checklist li { display: flex; align-items: flex-start; gap: var(--space-2); font-size: var(--font-size-small); }
-  .checklist__icon { color: var(--color-primary); flex-shrink: 0; margin-top: 2px; }
-</style>

@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /api/
 
-Sitemap: https://septim.cz/sitemap-index.xml
+Sitemap: https://www.septim.cz/sitemap-index.xml

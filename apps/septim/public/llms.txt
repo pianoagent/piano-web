@@ -1,15 +1,22 @@
 # Septim
 
-> Septim je pokladní a provozní systém pro restaurace, jídelny, kavárny a hotely.
+> Septim je pokladní a provozní systém pro restaurace, jídelny, kavárny a hotely od společnosti Septim Systems a.s. (skupina Piano Solutions). Pokladna, sklad, reporty i CRM v jednom, 30 let na trhu, podpora 24/7.
+
+## Hlavní stránky
+
+- [Pokladní systém pro restaurace](https://www.septim.cz/pokladni-provozni-system-pro-restaurace)
+- [Produkty a moduly](https://www.septim.cz/produkty)
+- [Ceník](https://www.septim.cz/cenik)
+- [Služby a servis](https://www.septim.cz/sluzby-servis)
+- [Naši zákazníci a reference](https://www.septim.cz/nasi-zakaznici)
+- [Technické rady a FAQ](https://www.septim.cz/technicke-rady-faq)
+- [Kontakt](https://www.septim.cz/kontakt)
 
 ## Piano ekosystém
 
-- [Qerko](https://qerko-web.pages.dev): QR platby a komunikace s hosty
-- [Pecosta](https://pecosta-web.pages.dev): Aukční nákupy surovin
-- [Grason](https://grason-web.pages.dev): Personál, směny a docházka
-- [Protel](https://protel-web.pages.dev): Hotelový PMS
-- [ABX Harsys](https://harsys-web.pages.dev): Multifunkční pokladní systémy
-- [Savarin](https://savarin-web.pages.dev): Software pro gastro a ubytování
-
-## Více
-- [Piano — celý ekosystém](https://piano.cz): všechny nástroje pro pohostinství pod jednou střechou
+- [Piano](https://piano.cz): všechny nástroje pro pohostinství pod jednou střechou
+- [Qerko](https://www.qerko.com): QR platby, tipy, Google recenze
+- [Grason](https://www.grason.cz): brigádníci, směny, píchačky
+- [Pecosta](https://pecosta.cz): aukční nákupy
+- [Protel](https://www.protelsystems.cz): hotelový PMS systém
+- [Autset](https://autset.com): automatické naskladňování

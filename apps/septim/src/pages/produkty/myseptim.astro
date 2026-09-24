@@ -1,49 +1,128 @@
 ---
-/** Septim: Produkt (edice): MySeptim. Obsah: septim-obsah/produkty/myseptim.md. SEO meta nově. */
+// https://www.septim.cz/produkty/myseptim (Solid Pixels), port 1:1 skriptem port-septim.py
 import Base from '../../layouts/Base.astro';
-import SiteHeader from '../../components/SiteHeader.astro';
-import SiteFooter from '../../components/SiteFooter.astro';
-import Section from '@piano/ui/components/Section.astro';
-import Hero from '@piano/ui/components/Hero.astro';
-import Heading from '@piano/ui/components/Heading.astro';
-import Text from '@piano/ui/components/Text.astro';
-import Button from '@piano/ui/components/Button.astro';
-import USPGrid from '@piano/ui/components/USPGrid.astro';
-import LeadForm from '@piano/ui/components/LeadForm.astro';
-import StatsBand from '../../components/StatsBand.astro';
-import Faq from '@piano/ui/components/Faq.astro';
-import { septimLeadProofs } from '../../config/leadProofs';
 
-const benefits = [
-  { icon: 'lucide:line-chart', title: 'Klíčové ukazatele', text: 'Rychlý a přehledný přístup k nejdůležitějším provozním číslům.' },
-  { icon: 'lucide:refresh-cw', title: 'Data v reálném čase', text: 'Přímé propojení s databází Septim, aktuální čísla, ne včerejší.' },
-  { icon: 'lucide:map-pin', title: 'Odkudkoliv', text: 'Tržby, personál i sklady máte po ruce, kdekoliv jste.' },
-];
-const faqs = [
-  { q: 'Jak MySeptim získám?', a: 'Pokud jste náš zákazník, stáhněte si aplikaci z App Store nebo Google Play a spojte se s námi přes formulář, zařídíme přístup.' },
-  { q: 'Na jakých zařízeních běží?', a: 'MySeptim je k dispozici pro iOS (App Store) i Android (Google Play).' },
-];
 ---
-<Base title="MySeptim – aplikace pro majitele restaurací | Septim"
-      description="MySeptim je mobilní aplikace pro majitele, manažery a provozní. Sledujte tržby a klíčové ukazatele restaurace v reálném čase, kdekoliv.">
-  <SiteHeader />
-  <main>
-    <Hero eyebrow="Produkt: aplikace" background="alt"
-          lead="MySeptim je aplikace pro majitele, manažery a provozní zařízení se Septimem. Rychlý a přehledný přístup k nejdůležitějším provozním ukazatelům, kdykoli a odkudkoli.">
-      <Heading slot="title" as="h1" size="display">My<em>Septim</em></Heading>
-      <Fragment slot="actions">
-        <Button href="#poptavka">Chci přístup</Button>
-        <Button href="/produkty/septim-4" variant="secondary">O systému Septim</Button>
-      </Fragment>
-      <figure slot="media" class="hero-pic"><img src="/images/produkt-myseptim.webp" alt="MySeptim: provoz v mobilu" width="1300" height="1000" loading="eager" /></figure>
-    </Hero>
+<Base
+  title="MySeptim: aplikace pro majitele restaurací | Septim"
+  description="MySeptim je mobilní aplikace pro majitele, manažery a provozní. Sledujte tržby a klíčové ukazatele restaurace v reálném čase, kdekoliv."
+  path="/produkty/myseptim"
+  bodyClass="use-header-transparent use-menu-primary-uppercase use-menu-secondary-uppercase use-headings-link-plain search-panel-hide-submit-label search-panel-hide-close-label search-panel-hide-open-label use-menu-bar use-header-fixed use-header-fixed-mobile use-header-priority i-want-septim header-inverse"
+  image="/files/nahled-myseptim.jpg"
+>
+<div class="section height--fullscreen align--middle color--inverse section-width-narrow section-has-background"><div class="section-body"><div class="row-main"><div class="col col-5-12 grid-4-12"><div class="block block-image"><div><div><div class="align-center"><a class="image image-width-original" href="#muj-provoz"><img alt="" decoding="async" src="/files/myseptim-top.gif"/></a></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h1 class="center"><span class="text-highlight">MySeptim</span></h1>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p class="center text-large"><strong>MŮJ PROVOZ KDEKOLIV SE MNOU</strong></p>
+</div></div></div>
+<div class="row-main"><div class="col col-2-12 grid-10-12"><div class="block block-inline"><p class="center text-large">MySeptim je speciálně navržená aplikace pro majitele, manažery a provozní restauračních zařízení využívajících restaurační systém Septim. Aplikace poskytuje rychlý, přehledný a efektivní přístup k nejdůležitějším provozním ukazatelům.</p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div><div><div class="center"><a class="btn btn-inverse" href="#muj-provoz"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">CHCI VĚDĚT VÍCE</span></a></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-none size-sm align-center"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" src="/files/gap-azur.svg"/></div></div></div></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(0, 173, 238)"></div></div>
+<div class="section height--fullscreen align--middle color--inverse section-width-narrow section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div><div><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div></div></div><div class="section-background container-fit container-fit--cover fx-background-zoom-in" style="background-color:rgb(0, 173, 238)"><img alt="" decoding="async" loading="lazy" sizes="(orientation: portrait) 177.00vw, 100vw" src="/files/r/1280/2000x2000.webp" srcset="/files/r/720/2000x2000.webp 720w, /files/r/1280/2000x2000.webp 1280w, /files/r/1920/2000x2000.webp 1920w"/></div><div class="section-overlay section-overlay--none" style="background-color:rgba(0, 0, 0, 0)"></div></div>
+<div class="section height--fullscreen align--middle color--inverse section-width-narrow section-has-background" id="muj-provoz"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-none size-sm align-center"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/gap-azur.svg"/></div></div></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center text-large"><span class="text-highlight">Kontrolujte svůj provoz. </span>Kdykoli a odkudkoli!</h2>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-4-12"><div class="block block-image"><div><div><div class="align-center"><a class="image image-width-original" href="#jak-na-to"><img alt="" decoding="async" loading="lazy" src="/files/myseptim-v-provozu.webp"/></a></div></div></div></div></div> <div class="col col-5-12 grid-4-12"><div class="block block-image"><div><div><div class="align-center"><a class="image image-width-original" href="#jak-na-to"><img alt="" decoding="async" loading="lazy" src="/files/myseptim-po-praci.webp"/></a></div></div></div></div></div> <div class="col col-9-12 grid-4-12"><div class="block block-image"><div><div><div class="align-center"><a class="image image-width-original" href="#jak-na-to"><img alt="" decoding="async" loading="lazy" src="/files/myseptim-na-druhem-konci-sveta.webp"/></a></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div><div><div class="center"><a class="btn btn-inverse" href="#jak-na-to"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">JAK NA TO?</span></a></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-none size-sm align-center"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/gap-azur.svg"/></div></div></div></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(0, 173, 238)"></div></div>
+<div class="section height--fullscreen align--middle color--inverse section-width-narrow section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div><div><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div></div></div><div class="section-background container-fit container-fit--cover fx-background-zoom-out" style="background-color:rgb(0, 173, 238)"><img alt="" decoding="async" loading="lazy" sizes="(orientation: portrait) 177.00vw, 100vw" src="/files/r/1280/myseptim-cely-provoz-pod-palcem-odkudkoliv.webp" srcset="/files/r/720/myseptim-cely-provoz-pod-palcem-odkudkoliv.webp 720w, /files/r/1280/myseptim-cely-provoz-pod-palcem-odkudkoliv.webp 1280w, /files/r/1920/myseptim-cely-provoz-pod-palcem-odkudkoliv.webp 1920w"/></div><div class="section-overlay section-overlay--none" style="background-color:rgba(0, 0, 0, 0)"></div></div>
+<div class="section height--fullscreen align--middle color--default section-width-narrow section-has-background" id="jak-na-to"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-none size-sm align-center"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/gap-white.svg"/></div></div></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-3-12 grid-8-12"><div class="block block-inline"><h2 class="center text-large">Jak na to?</h2>
+</div></div></div>
+<div class="row-main"><div class="col col-2-12 grid-10-12"><div class="block block-inline"><p class="text-large center">Pokud jste naším zákazníkem, stačí si stáhnout aplikaci z <a href="#appstore">App Store</a> nebo <a href="#googleplay">Google Play</a> na níže uvedených odkazech a <a href="#chci-ziskat-pristup">spojit se pomocí formuláře</a>.</p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div><div><div class="center"><a class="btn btn-default" href="/chci-septim"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">CHCI SE STÁT ZÁKAZNÍKEM</span></a></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-2-12 grid-10-12"><div class="block block-image"><div><div><a class="image image-width-original" href="#chci-ziskat-pristup"><img alt="" decoding="async" loading="lazy" src="/files/myseptim-mobil.gif"/></a></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-1-12"><div class="block block-spacer"><div><div><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div> <div class="col col-2-12 grid-5-12"><div class="block block-box box box--secondary" id="appstore"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-vertical size-md align-center"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/apple-appstore.svg"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p>App Store</p>
+</div></div></div></div></div></div></div> <div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-none size-lg align-center"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/myseptim-appstore.svg"/></div></div></div></div></div></div></div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div><div><div class="center"><a class="btn btn-default btn-sm" href="https://apps.apple.com/cz/app/myseptim/id6745267123" target="_blank"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">STÁHNOUT Z APP STORE</span></a></div></div></div></div></div></div></div></div> <div class="col col-7-12 grid-5-12"><div class="block block-box box box--secondary" id="googleplay"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-vertical size-md align-center"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/android-googleplay.svg"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p>Google Play</p>
+</div></div></div></div></div></div></div> <div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-none size-lg align-center"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/myseptim-googleplay.svg"/></div></div></div></div></div></div></div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div><div><div class="center"><a class="btn btn-default btn-sm" href="https://play.google.com/store/apps/details?id=cz.septim.mySeptim" target="_blank"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">STÁHNOUT Z GOOGLE PLAY</span></a></div></div></div></div></div></div></div></div> <div class="col col-12-12 grid-1-12"><div class="block block-spacer"><div><div><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-2-12 grid-10-12"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-horizontal valign-middle size-md"><a class="flexcard-media" href="#chci-ziskat-pristup"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Staženo? Super! Spojme se" decoding="async" loading="lazy" src="/files/ico-volejte-piste.gif"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2><b><span class="text-highlight">Staženo?</span> Super!</b> Spojme se...</h2>
+</div></div></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-2-12 grid-10-12"><div class="block block-button"><div><div><div class="center"><a class="btn btn-primary" href="#chci-ziskat-pristup"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">SPOJME SE</span></a></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-none size-sm align-center"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/gap-white.svg"/></div></div></div></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<div class="section height--fullscreen align--middle color--default section-width-boxed section-has-background"><div class="section-body"><div class="row-main"><div class="col col-5-12 grid-4-12"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-none size-sm align-center"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/gap-white.svg"/></div></div></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-4-12 grid-6-12"><div class="block block-inline"><h2 class="center text-large">Chci získat přístup do MySeptim</h2>
+</div></div></div>
+<div class="row-main"><div class="col col-5-12 grid-4-12">
+<form action="/api/lead" autocomplete="off" class="block block-form" data-lead-form="chci-ziskat-pristup" id="chci-ziskat-pristup" method="post">
+<div class="row">
+<div class="col col-1-12 grid-12-12">
+<div class="field field-form_input_text" id="field-wrapper-jmeno-a-prijmeni">
+<div class="field-wrapper">
+<label for="field-jmeno-a-prijmeni" id="label-jmeno-a-prijmeni">
+            Jméno a příjmení
+          </label>
+<input class="field-control" id="field-jmeno-a-prijmeni" name="chci-ziskat-pristup[jmeno-a-prijmeni]" type="text" value=""/>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col col-1-12 grid-12-12">
+<div class="field field-form_input_text" id="field-wrapper-nazev-provozu">
+<div class="field-wrapper">
+<label for="field-nazev-provozu" id="label-nazev-provozu">
+            Název provozu
+          </label>
+<input class="field-control" id="field-nazev-provozu" name="chci-ziskat-pristup[nazev-provozu]" type="text" value=""/>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col col-1-12 grid-12-12">
+<div class="field field-form_input_email" id="field-wrapper-email">
+<div class="field-wrapper">
+<label for="field-email" id="label-email">
+            E-mail <span>*</span>
+</label>
+<input class="field-control" id="field-email" name="chci-ziskat-pristup[email]" required="" type="email" value=""/>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col col-1-12 grid-12-12">
+<div class="field field-form_input_tel" id="field-wrapper-field_chci-ziskat-pristup_3_0_0">
+<div class="field-wrapper">
+<label for="field-field_chci-ziskat-pristup_3_0_0" id="label-field_chci-ziskat-pristup_3_0_0">
+            Telefon
+          </label>
+<input class="field-control" id="field-field_chci-ziskat-pristup_3_0_0" name="chci-ziskat-pristup[field_chci-ziskat-pristup_3_0_0]" type="tel" value=""/>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col col-1-12 grid-12-12">
+<div class="field field-form_textarea" id="field-wrapper-zprava">
+<div class="field-wrapper">
+<label for="field-zprava" id="label-zprava">
+            Zpráva
+          </label>
+<textarea class="field-control" id="field-zprava" name="chci-ziskat-pristup[zprava]" placeholder="Chci získat MySeptim do svého provozu..."></textarea>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col col-1-12 grid-12-12">
+<div class="field field-form_button" id="field-wrapper-chci-ziskat-pristup">
+<div class="field-wrapper">
+<div class="center">
+<button class="btn btn-a btn-primary" id="field-chci-ziskat-pristup" name="chci-ziskat-pristup[chci-ziskat-pristup]" type="submit" value="submit"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">CHCI ZÍSKAT PŘÍSTUP</span></button>
+</div>
+</div>
+</div>
+</div>
+</div>
 
-    <USPGrid eyebrow="Proč MySeptim" title="Celý provoz v kapse" items={benefits} background="default" space="lg" minItemWidth="240px" />
-    <StatsBand />
-    <Faq items={faqs} title="Často kladené dotazy k MySeptim" background="alt" />
-    <LeadForm proofs={septimLeadProofs} id="poptavka" variant="callback" background="default"
-              title="Chci získat přístup do MySeptim"
-              lead="Nechte nám telefon, spojíme váš účet a pošleme přístup do aplikace." />
-  </main>
-  <SiteFooter />
+<input name="form_variant" type="hidden" value="chci-ziskat-pristup"/><input name="page" type="hidden" value=""/><div aria-hidden="true" class="visually-hidden"><label>Web <input autocomplete="off" name="website" tabindex="-1" type="text"/></label></div></form>
+</div></div>
+<div class="row-main"><div class="col col-5-12 grid-4-12"><div class="block block-inline"><p>Vaše osobní údaje budou zpracovány podle <a href="/informace-o-zpracovani-osobnich-udaju-formular">Podmínek zpracování osobních údajů</a>.</p>
+</div></div></div>
+<div class="row-main"><div class="col col-5-12 grid-4-12"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-none size-sm align-center"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/gap-white.svg"/></div></div></div></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(235, 252, 255)"></div></div>
 </Base>

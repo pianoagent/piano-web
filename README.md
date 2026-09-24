@@ -39,6 +39,16 @@ Názvy Cloudflare projektů výše jsou ty skutečné, ověřené proti živým 
 - **GitHub**, zdroj pravdy: vývoj na `develop`, produkce `main`
 - **Formuláře**, `LeadForm` posílá POST na `/api/lead.php`. Na Webglobe to obslouží PHP `mail()` (adresát v konstantě `LEAD_TO`), na Cloudflare běží varianta `src/pages/api/lead.ts` přes Resend. **Napojení na Odoo `crm.lead` zatím neexistuje**, je to TODO v obou souborech.
 
+## Septim: kopie živého webu 1:1
+`apps/septim` je od 24. 9. 2026 věrná kopie živého www.septim.cz (Solid Pixels), aby šel web přepnout bez přesměrování: **stejné URL** (bez lomítka a bez `.html`, `build.format: 'file'`), stejný obsah i vzhled. Předchozí redesign (nová IA) je v tagu `septim-redesign-2026-09` a větvi `septim-redesign`.
+
+- **Jak vzniká.** Stránky, sdílené bloky (`src/components/blocks`), hlavička a patička (`src/components/chrome`) a `src/styles/live.css` generuje skript `weby/podklady-migrace/port-septim.py` z čerstvého HTML živého webu (`podklady-migrace/scrapy-starych-webu/septim-2026-09/`). Opravy proti živému webu (404 odkazy, překlepy, jedna H1, alt texty, meta) jsou v tabulkách na začátku skriptu. **Po ručních úpravách stránek skript znovu nepouštěj**, přepsal by je.
+- **Vzhled.** `live.css` je zkompilované CSS živého webu, needituj ho. Úpravy patří do `src/styles/overrides.css`.
+- **Chování.** Menu, taby, slider, akordeony, kotvy a formuláře řeší `public/js/septim.js` (náhrada JavaScriptu CMS).
+- **Formuláře.** Všechny formuláře jdou na `src/pages/api/lead.ts` (Cloudflare, Resend), pak na `/dekujeme`. V projektu `septim-web` musí být proměnná `RESEND_API_KEY`, volitelně `LEAD_TO` (výchozí poptavky@piano.cz) a `LEAD_FROM`. Bez klíče formulář vrátí chybu a lead se neztratí potichu.
+- **Jazyky.** Zatím jen CZ. EN a SK se doplní během skriptu s `--locale en|sk` a zapnutím v `src/i18n/config.ts` (`enabledLocales`). Mapa přeložených URL ze živého přepínače jazyků je v `src/i18n/routes.cs.json`.
+- **Měření.** GTM `GTM-NC3PW2KC`, Cookiebot se načítá přes GTM jako na živém webu.
+
 ## Lokální vývoj
 ```bash
 npm install

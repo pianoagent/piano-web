@@ -1,124 +1,200 @@
 ---
-/** Septim: Služby: Konzultace a školení. Obsah: septim-obsah/sluzby-servis/konzultace-skoleni.md. SEO meta nově. */
+// https://www.septim.cz/sluzby-servis/konzultace-skoleni (Solid Pixels), port 1:1 skriptem port-septim.py
 import Base from '../../layouts/Base.astro';
-import SiteHeader from '../../components/SiteHeader.astro';
-import SiteFooter from '../../components/SiteFooter.astro';
-import Section from '@piano/ui/components/Section.astro';
-import Hero from '@piano/ui/components/Hero.astro';
-import Heading from '@piano/ui/components/Heading.astro';
-import Text from '@piano/ui/components/Text.astro';
-import Button from '@piano/ui/components/Button.astro';
-import Card from '@piano/ui/components/Card.astro';
-import Badge from '@piano/ui/components/Badge.astro';
-import LeadForm from '@piano/ui/components/LeadForm.astro';
-import StatsBand from '../../components/StatsBand.astro';
-import Faq from '@piano/ui/components/Faq.astro';
-import { septimLeadProofs } from '../../config/leadProofs';
-
-const skoleni = [
-  {
-    title: 'Skladové hospodářství',
-    audience: 'Pro skladové účetní, provozní a manažery restaurací',
-    intro: 'Školení je určeno k osvojení kompletní problematiky skladového hospodářství v systému Septim.',
-    topics: [
-      'Uživatelské rozhraní a ovládání (vyhledávání, filtry, exporty dat, tiskové sestavy)',
-      'Skladová položka (hlavní i vedlejší, skupiny, koeficient odpadu)',
-      'Dodací listy (vkládání, automatický import, položky dodacích listů)',
-      'Výdeje ze skladu (převody, prodeje, prodeje pokladnou, znehodnocení)',
-      'Bourání a substituce, normování',
-      'Inventura (zakládání, posun inventury)',
-      'Stavy zásob na skladu (aktuální, minimální a kritické)',
-      'Skladová karta a skladová cena (přepočty skladových cen)',
-      'Přepočty skladů a kontrolní činnost',
-      'Čárové kódy a evidence trvanlivosti',
-      'Tipy pro používání',
-    ],
-  },
-  {
-    title: 'Konfigurace prodeje',
-    audience: 'Pro majitele, provozní a manažery restaurací',
-    intro: 'Školení je určeno k osvojení kompletní problematiky provozní a prodejní části systému Septim.',
-    topics: [
-      'Zákazníci: evidence, zákaznická konta, personální stravování, přednabité karty, bonusy, slevy, firemní konta',
-      'Prodej: receptury, podreceptury, prodejní ceny, Happy Hours, podpora prodeje',
-      'Uživatelé: definice uživatelských práv, skupiny uživatelů',
-      'Konfigurace pokladny a volby obecně',
-      'Tipy pro používání Septimu: vybrané FAQ',
-      'Zajímavé vlastnosti a jejich praktické využití',
-      'Sdílení receptur mezi více provozovnami',
-    ],
-  },
-  {
-    title: 'Vyhodnocení prodeje',
-    audience: 'Pro majitele, provozní a manažery restaurací',
-    intro: 'Školení je určeno k osvojení kompletní problematiky vyhodnocování a rentability provozu s akcentem na otázku bezpečnosti.',
-    topics: [
-      'Uzavřené účty',
-      'Obraty a tržby',
-      'Statistiky',
-      'Surovinová náročnost',
-      'Hospodaření',
-      'Kontrolní nástroje',
-      'Uživatelská oprávnění',
-    ],
-  },
-];
-const faqs = [
-  { q: 'Kdy a pro kolik lidí se školení konají?', a: 'Termíny školení vypisujeme podle zájmu, zpravidla pro 5–12 lidí. Pokud chcete z vaší společnosti proškolit 5 a více lidí, domluvíme termín přímo pro vás. Pokud méně, spojíme vás do třídy s dalšími zájemci a termín včas upřesníme.' },
-  { q: 'Kolik školení a konzultace stojí?', a: 'V rámci placené servisní smlouvy jsou konzultace a školení cenově zvýhodněné. Cenu vám upřesníme podle konkrétní situace.' },
-  { q: 'Jak fungují konzultace Septim?', a: 'Před začátkem používání systému Septim nabízíme konzultace v oblasti zjištění potřeb provozu a následné přípravy ideálního řešení řízení provozu. Pokud už jste našimi zákazníky, konzultace vám pomohou s nastavením, podrobnějšími přehledy provozu a rozšířením automatizace.' },
-];
+import Mezera_fd60 from '../../components/blocks/Mezera_fd60.astro';
+import KontaktniFormular from '../../components/blocks/KontaktniFormular.astro';
+import Mezera_bb6d from '../../components/blocks/Mezera_bb6d.astro';
+import Blok30Let_9e65 from '../../components/blocks/Blok30Let_9e65.astro';
+import Novinky from '../../components/blocks/Novinky.astro';
 ---
-<Base title="Konzultace a školení k systému | Septim"
-      description="Nabízíme konzultace a školení k pokladnímu a provoznímu systému Septim. Naučte svůj tým využívat systém naplno a efektivně.">
-  <SiteHeader />
-  <main>
-    <Hero eyebrow="Služby a servis" background="alt"
-          lead="Provozní systém Septim má mnoho možností, jak pomoci vašemu provozu, efektivita kuchyně, skladové hospodářství i finanční řízení. Využijte Septim na maximum díky konzultacím a školením.">
-      <Heading slot="title" as="h1" size="display">Konzultace a <em>školení</em></Heading>
-      <Fragment slot="actions">
-        <Button href="#poptavka">Mám zájem o školení</Button>
-        <Button href="/sluzby-servis" variant="secondary">Všechny služby</Button>
-      </Fragment>
-      <figure slot="media" class="hero-pic">
-        <img src="/images/sluzby-skoleni.webp" alt="Školení personálu na pokladní systém Septim" width="960" height="738" loading="eager" decoding="async" />
-      </figure>
-    </Hero>
+<Base
+  title="Konzultace a školení k systému Septim | Septim"
+  description="Nabízíme konzultace a školení k pokladnímu a provoznímu systému Septim. Naučte svůj tým využívat systém naplno a efektivně."
+  path="/sluzby-servis/konzultace-skoleni"
+  bodyClass="use-header-transparent use-menu-primary-uppercase use-menu-secondary-uppercase use-headings-link-plain search-panel-hide-submit-label search-panel-hide-close-label search-panel-hide-open-label use-menu-bar use-header-fixed use-header-fixed-mobile use-header-priority"
+  image="/files/nahled-konzultace-skoleni.jpg"
+>
+<div class="section height--low align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-card flexcard-size--normal flexcard-media-right valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:76.92307692307693%"><img alt="Konzultace a školení" decoding="async" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/hdr-skoleni-konzultace.webp" srcset="/files/r/720/hdr-skoleni-konzultace.webp 720w, /files/r/1280/hdr-skoleni-konzultace.webp 1280w, /files/r/1920/hdr-skoleni-konzultace.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h1>Konzultace a školení<span class="text-highlight">.</span></h1>
+<p></p>
+<p class="text-large">Provozní systém Septim má mnoho možností, jak pomoci vašemu provozu. Efektivita provozu, kuchyně, skladového hospodářství nebo finanční řízení restaurace. Využijte Septim na maximum a zjistěte více na konzultacích a školeních.</p>
+</div></div></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-3-12"><div class="block block-spacer"><div><div><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div> <div class="col col-4-12 grid-3-12"><div class="block block-button"><div><div><div class="center"><a class="btn btn-primary" href="/sluzby-servis/konzultace-skoleni#skoleni"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">Více o školeních</span></a></div></div></div></div></div> <div class="col col-7-12 grid-3-12"><div class="block block-button"><div><div><div class="center"><a class="btn btn-primary" href="/sluzby-servis/konzultace-skoleni#konzultace"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">Více o konzultacích</span></a></div></div></div></div></div> <div class="col col-10-12 grid-3-12"><div class="block block-spacer"><div><div><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div></div></div></div>
+<div class="section height--normal align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><div><div><hr class="divider divider--normal divider--align-left"/></div></div></div></div></div></div></div>
+<div class="section height--low align--middle color--default" id="skoleni"><div class="section-body"><div class="row-main"><div class="col col-3-12 grid-8-12"><div class="block block-inline"><h2 class="center">Školení k systému Septim<span class="text-highlight">.</span></h2>
+<p></p>
+<p>Pro zefektivnění provozu využijte následující školení. Školení jsou vhodná před začátkem používání systému, ale i pro stávající zákazníky.</p>
+<ul>
+<li><a href="/sluzby-servis/konzultace-skoleni#skladove-hospodarstvi">Skladové hospodářství</a></li>
+<li><a href="/sluzby-servis/konzultace-skoleni#konfigurace-prodeje">Konfigurace prodeje</a></li>
+<li><a href="/sluzby-servis/konzultace-skoleni#vyhodnoceni-prodeje">Vyhodnocení prodeje</a></li>
+</ul>
+<p>Školení děláme fyzicky i online jako webináře a termíny jsou zvoleny podle aktuálního zájmu. Napište nám a dáme vám vědět ohledně následujícího termínu školení. V případě zájmu můžeme připravit školení na míru.</p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div><div><div class="center"><a class="btn btn-default" href="/sluzby-servis/konzultace-skoleni#skoleni-kontakt"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">Mám zájem o školení</span></a></div></div></div></div></div></div></div></div>
+<Mezera_fd60 />
+<div class="section height--low align--middle color--default" id="skladove-hospodarstvi"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image block-image--3-1"><div><div><div class="flexcard flexcard-card flexcard-size--normal flexcard-media-left valign-middle align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Školení: Skladové hospodářství" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/skoleni-skladove-hospodarstvi.webp" srcset="/files/r/720/skoleni-skladove-hospodarstvi.webp 720w, /files/r/1280/skoleni-skladove-hospodarstvi.webp 1280w, /files/r/1920/skoleni-skladove-hospodarstvi.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h3 class="text-large">Školení<span class="text-highlight">:</span> Skladové hospodářství</h3>
+<p>Školení je určeno k osvojení kompletní problematiky skladového hospodářství v systému Septim.</p>
+<p><strong>Obsah:</strong></p>
+<ul>
+<li>Uživatelské rozhraní a ovládání (vyhledávání, filtry, exporty dat, tiskové sestavy)</li>
+<li>Skladová položka (hlavní i vedlejší, skupiny, koeficient odpadu)</li>
+<li>Dodací listy (vkládání, automatický import, položky dodacích listů)</li>
+<li>Výdeje ze skladu (převody, prodeje, prodeje pokladnou, znehodnocení)</li>
+<li>Bourání a substituce</li>
+<li>Normování</li>
+<li>Inventura (zakládání, posun inventury)</li>
+<li>Stavy zásob na skladu (aktuální, minimální a kritické)</li>
+<li>Skladová karta</li>
+<li>Skladová cena (práce se skladovou cenou, přepočty skladových cen)</li>
+<li>Přepočty skladů</li>
+<li>Kontrolní činnost</li>
+<li>Problematika čárového kódu</li>
+<li>Evidence trvanlivosti</li>
+<li>Tipy pro používání</li>
+</ul>
+<p><strong>Kurz je určen skladovým účetním, provozním a manažerům restaurací.</strong></p>
+</div></div></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div><div><div class="center"><a class="btn btn-default" href="/sluzby-servis/konzultace-skoleni#skoleni-kontakt"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">Mám zájem o školení</span></a></div></div></div></div></div></div></div></div>
+<Mezera_fd60 />
+<div class="section height--low align--middle color--default" id="konfigurace-prodeje"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image block-image--3-1"><div><div><div class="flexcard flexcard-card flexcard-size--normal flexcard-media-right valign-middle align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Školení: Konfigurace prodeje" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/skoleni-konfigurace-prodeje.webp" srcset="/files/r/720/skoleni-konfigurace-prodeje.webp 720w, /files/r/1280/skoleni-konfigurace-prodeje.webp 1280w, /files/r/1920/skoleni-konfigurace-prodeje.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h3 class="text-large">Školení<span class="text-highlight">:</span> Konfigurace prodeje</h3>
+<p>Školení je určeno k osvojení kompletní problematiky provozní a prodejní části systému Septim.</p>
+<p><strong>Obsah:</strong></p>
+<ul>
+<li>Manažer -&gt; Zákazníci (evidence zákazníků, zákaznická konta, personální stravování, přednabité karty, bonusy, slevy, firemní konta)</li>
+<li>Manažer -&gt; Prodej (receptury, podreceptury, prodejní ceny, Happy Hours, podpora prodeje)</li>
+<li>Manažer -&gt; Uživatelé (definice uživatelských práv, skupiny uživatelů)</li>
+<li>Manažer -&gt; Konfigurace pokladny, volby obecně</li>
+<li>Typy pro používání Septim -&gt; vybrané FAQ</li>
+<li>Zajímavé vlastnosti a jejich praktické využití</li>
+<li>Sdílení receptur mezi více provozovnami</li>
+</ul>
+<p><strong>Kurz je určen majitelům, provozním a manažerům restaurací.</strong></p>
+</div></div></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div><div><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div><div><div class="center"><a class="btn btn-default" href="/sluzby-servis/konzultace-skoleni#skoleni-kontakt"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">Mám zájem o školení</span></a></div></div></div></div></div></div></div></div>
+<Mezera_fd60 />
+<div class="section height--low align--middle color--default" id="vyhodnoceni-prodeje"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image block-image--3-1"><div><div><div class="flexcard flexcard-card flexcard-size--normal flexcard-media-left valign-middle align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Školení: Vyhodnocení prodeje" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/skoleni-vyhodnoceni-prodeje.webp" srcset="/files/r/720/skoleni-vyhodnoceni-prodeje.webp 720w, /files/r/1280/skoleni-vyhodnoceni-prodeje.webp 1280w, /files/r/1920/skoleni-vyhodnoceni-prodeje.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h3 class="text-large">Školení<span class="text-highlight">:</span> Vyhodnocení prodeje</h3>
+<p>Školení je určeno k osvojení kompletní problematiky vyhodnocování a rentability provozu s akcentem na otázku bezpečnosti.</p>
+<p><strong>Obsah:</strong></p>
+<ul>
+<li>Uzavřené účty</li>
+<li>Obraty, tržby</li>
+<li>Statistiky</li>
+<li>Surovinová náročnost</li>
+<li>Hospodaření</li>
+<li>Kontrolní nástroje</li>
+<li>Uživatelská oprávnění</li>
+</ul>
+<p><strong>Kurz je určen majitelům, provozním a manažerům restaurací.</strong></p>
+</div></div></div></div></div></div></div></div></div></div></div>
+<Mezera_fd60 />
+<div class="section height--low align--middle color--default col-gaps-bigger section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div><div><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Ohlasy účastníků na školení<span class="text-highlight">.</span></h2>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div><div><div class="block-spacer-element" style="--height:30px"></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-4-12"><div class="block block-quote"><div><div><div class="has-icon left block-quote-figure"><i class="icon icon-quote-right"></i><blockquote class="block-quote-text">Díky školení skladového hospodářství mám s menším úsilím větší kontrolu nad sklady a celým systémem. Je dobré nechat si poradit…</blockquote><div class="block-quote-author"><span class="quote-decor">–</span> Vladislav Suchý ml. <span class="quote-decor">–</span><span class="block-quote-info">Šéf restaurací Restaurant 3. poločas, Praha</span></div></div></div></div></div></div> <div class="col col-5-12 grid-4-12"><div class="block block-quote"><div><div><div class="has-icon left block-quote-figure"><i class="icon icon-quote-right"></i><blockquote class="block-quote-text">I jako začátečník jsem si odnesla užitečné informace, které mi byly dobrým základem pro další konzultace našeho provozu s techniky a obchodním oddělením Septim.</blockquote><div class="block-quote-author"><span class="quote-decor">–</span> Jana Mikulandová <span class="quote-decor">–</span><span class="block-quote-info">Hugo Bagel Café, Slaný</span></div></div></div></div></div></div> <div class="col col-9-12 grid-4-12"><div class="block block-quote"><div><div><div class="has-icon left block-quote-figure"><i class="icon icon-quote-right"></i><blockquote class="block-quote-text">Velmi pozitivně jsem vnímala skupinovou diskuzi, ze které vyplynuly praktické rady. Některé z rad se mi s následnou pomocí a péčí konzultantů z Septim podařilo aplikovat v našem provozu.</blockquote><div class="block-quote-author"><span class="quote-decor">–</span> Barbora Jodasová <span class="quote-decor">–</span><span class="block-quote-info">Restaurant Skleník, Neratovice</span></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-4-12"><div class="block block-quote"><div><div><div class="has-icon left block-quote-figure"><i class="icon icon-quote-right"></i><blockquote class="block-quote-text">Školení Septim jsem absolvovala jako začátečník a vnímám, že nabyté informace se mi postupem času daří měnit na vědomosti, které mi každodenně pomáhají při práci.</blockquote><div class="block-quote-author"><span class="quote-decor">–</span> Paulina Rutkowská <span class="quote-decor">–</span><span class="block-quote-info">OliveFood, Karlín</span></div></div></div></div></div></div> <div class="col col-5-12 grid-4-12"><div class="block block-quote"><div><div><div class="has-icon left block-quote-figure"><i class="icon icon-quote-right"></i><blockquote class="block-quote-text">Septim používám řadu let, přesto mi školení skladového hospodářství přineslo spoustu nových poznatků. Díky novým informacím, se v Septimu pohybuji daleko efektivněji a získávám cenné informace, se kterými mohu dále pracovat při vyhodnocování, kontrole a při zpracování statistik.</blockquote><div class="block-quote-author"><span class="quote-decor">–</span> Zbyněk Skalický <span class="quote-decor">–</span><span class="block-quote-info">Restaurace Máneska, Praha</span></div></div></div></div></div></div> <div class="col col-9-12 grid-4-12"><div class="block block-spacer"><div><div><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div><div><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div><div><div class="center"><a class="btn btn-default" href="/sluzby-servis/konzultace-skoleni#skoleni-kontakt"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">Mám zájem o školení</span></a></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div><div><div class="block-spacer-element" style="--height:60px"></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<div class="section height--low align--middle color--default section-has-background" id="konzultace"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><div><div><hr class="divider divider--normal divider--align-left"/></div></div></div></div></div></div><div class="section-background" style="background-color:#fff"></div></div>
+<div class="section height--normal align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-4-12"><div class="block block-inline"><h3>Často kladené otázky u školení<span class="text-highlight">.</span></h3>
+</div></div> <div class="col col-5-12 grid-8-12"><div class="block block-accordion">
+<div class="accordion"><div class="accordion__title"><span class="accordion__title-label">Jaké jsou termíny školení?</span><span class="accordion__title-arrow"><div class="cssicon cssicon--chevron cssicon--size-parent"></div></span></div><div class="container accordion__content"><div class="container-body">
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Termíny školení vypisujeme podle zájmu. Školíme z pravidla pro 5-12 lidí. Pokud budete chtít z vaší společnosti proškolit 5 a více lidí, domluvíme termín přímo pro vás. Pokud méně, spojíme vás do třídy s dalšími zájemci a termín včas upřesníme.</p>
+</div></div></div>
+</div></div></div>
+<div class="accordion"><div class="accordion__title"><span class="accordion__title-label">Jak jsou školení a konzultace placené?</span><span class="accordion__title-arrow"><div class="cssicon cssicon--chevron cssicon--size-parent"></div></span></div><div class="container accordion__content"><div class="container-body">
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>V rámci placené servisní smlouvy jsou konzultace a školení cenově zvýhodněná. Cenu vám upřesníme podle konkrétní situace.</p>
+</div></div></div>
+</div></div></div>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div><div><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div></div></div></div>
+<div class="section height--medium align--middle color--default section-has-background" id="skoleni-kontakt"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Mám zájem o školení<span class="text-highlight">.</span></h2>
+</div></div></div>
+<div class="row-main"><div class="col col-5-12 grid-4-12">
+<form action="/api/lead" autocomplete="off" class="block block-form" data-lead-form="formular-field_form_1_4_0_0" id="formular-field_form_1_4_0_0" method="post">
+<div class="row">
+<div class="col col-1-12 grid-12-12">
+<div class="field field-form_input_text" id="field-wrapper-jmeno-a-prijmeni">
+<div class="field-wrapper">
+<label for="field-jmeno-a-prijmeni" id="label-jmeno-a-prijmeni">
+            Jméno a příjmení
+          </label>
+<input class="field-control" id="field-jmeno-a-prijmeni" name="formular-field_form_1_4_0_0[jmeno-a-prijmeni]" type="text" value=""/>
+</div>
+</div>
+<div class="field field-form_input_text" id="field-wrapper-firmarestaurace">
+<div class="field-wrapper">
+<label for="field-firmarestaurace" id="label-firmarestaurace">
+            Firma/restaurace
+          </label>
+<input class="field-control" id="field-firmarestaurace" name="formular-field_form_1_4_0_0[firmarestaurace]" type="text" value=""/>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col col-1-12 grid-12-12">
+<div class="field field-form_input_email" id="field-wrapper-email">
+<div class="field-wrapper">
+<label for="field-email" id="label-email">
+            E-mail <span>*</span>
+</label>
+<input class="field-control" id="field-email" name="formular-field_form_1_4_0_0[email]" required="" type="email" value=""/>
+</div>
+</div>
+<div class="field field-form_input_tel" id="field-wrapper-phone">
+<div class="field-wrapper">
+<label for="field-phone" id="label-phone">
+            Telefon
+          </label>
+<input class="field-control" id="field-phone" name="formular-field_form_1_4_0_0[phone]" type="tel" value=""/>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col col-1-12 grid-12-12">
+<div class="field field-form_input_text" id="field-wrapper-prejete-si-neco-doplnit">
+<div class="field-wrapper">
+<label for="field-prejete-si-neco-doplnit" id="label-prejete-si-neco-doplnit">
+            Přejete si něco doplnit?
+          </label>
+<input class="field-control" id="field-prejete-si-neco-doplnit" name="formular-field_form_1_4_0_0[prejete-si-neco-doplnit]" type="text" value=""/>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col col-1-12 grid-12-12">
+<div class="block block-inline"><p>Vaše osobní údaje budou zpracovány podle <a href="/informace-o-zpracovani-osobnich-udaju-formular">Podmínek zpracování osobních údajů</a>.</p>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col col-1-12 grid-12-12">
+<div class="field field-form_button" id="field-wrapper-field_form_1_4_0_0">
+<div class="field-wrapper">
+<div class="center">
+<button class="btn btn-a btn-default" id="field-field_form_1_4_0_0" name="formular-field_form_1_4_0_0[field_form_1_4_0_0]" type="submit" value="submit"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">Odeslat</span></button>
+</div>
+</div>
+</div>
+</div>
+</div>
 
-    <Section background="default" space="lg">
-      <div class="prose">
-        <Heading as="h2" size="h2">Školení k systému Septim</Heading>
-        <Text color="muted">Školení jsou vhodná před začátkem používání systému i pro stávající zákazníky. Děláme je fyzicky i online jako webináře, termíny volíme podle aktuálního zájmu. Napište nám a dáme vám vědět ohledně následujícího termínu. V případě zájmu připravíme školení na míru.</Text>
-      </div>
-      <div class="courses">
-        {skoleni.map((s) => (
-          <Card variant="bordered" padding="lg">
-            <Heading as="h3" size="h3">{s.title}</Heading>
-            <Badge variant="primary" size="sm">{s.audience}</Badge>
-            <Text size="small" color="muted" class="course__intro">{s.intro}</Text>
-            <Text size="small" weight="semibold" as="p">Obsah školení:</Text>
-            <ul class="course__topics">
-              {s.topics.map((t) => (<li>{t}</li>))}
-            </ul>
-          </Card>
-        ))}
-      </div>
-    </Section>
-
-    <StatsBand />
-    <Faq items={faqs} title="Často kladené otázky ke školením a konzultacím" background="default" />
-    <LeadForm proofs={septimLeadProofs} id="poptavka" variant="callback" background="alt"
-              title="Mám zájem o školení nebo konzultaci"
-              lead="Nechte nám telefon, dáme vám vědět termín nejbližšího školení, nebo připravíme školení na míru." />
-  </main>
-  <SiteFooter />
+<input name="form_variant" type="hidden" value="formular-field_form_1_4_0_0"/><input name="page" type="hidden" value=""/><div aria-hidden="true" class="visually-hidden"><label>Web <input autocomplete="off" name="website" tabindex="-1" type="text"/></label></div></form>
+</div></div></div><div class="section-background" style="background-color:rgb(235, 252, 255)"></div></div>
+<div class="section height--low align--middle color--default" id="konzultace-kontakt"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div><div><div class="block-spacer-element" style="--height:30px"></div></div></div></div></div></div></div></div>
+<div class="section height--low align--middle color--default" id="konzultace"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image block-image--3-1"><div><div><div class="flexcard flexcard-card flexcard-size--normal flexcard-media-right valign-middle align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/instalace-septim-k2.webp" srcset="/files/r/720/instalace-septim-k2.webp 720w, /files/r/1280/instalace-septim-k2.webp 1280w, /files/r/1920/instalace-septim-k2.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2>Jak fungují konzultace Septim?</h2>
+<p>Před začátkem používání systému Septim nabízíme konzultace v oblasti zjištění potřeb provozu a následné přípravy ideálního řešení řízení provozu. Kontaktujte naše konzultanty a zjistěte nezávazně, jak vám Septim pomůže.</p>
+<p>Pokud jste našimi zákazníky, konzultace vám pomohou s nastavením, podrobnějšími přehledy provozu a rozšířením automatizace.</p>
+</div></div></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div><div><div class="center"><a class="btn btn-default" href="/sluzby-servis/konzultace-skoleni#konzultace-kontakt"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">Mám zájem o konzultaci</span></a></div></div></div></div></div></div></div></div>
+<div class="section height--low align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div><div><div class="block-spacer-element" style="--height:30px"></div></div></div></div></div></div></div></div>
+<KontaktniFormular />
+<Mezera_bb6d />
+<Blok30Let_9e65 />
+<Novinky />
 </Base>
-
-<style>
-  .prose { max-width: 760px; margin-bottom: var(--space-6); }
-  .prose > * + * { margin-top: var(--space-4); }
-  .courses { display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); align-items: start; }
-  .courses :global(.badge) { margin: var(--space-2) 0; }
-  .course__intro { margin-bottom: var(--space-3); }
-  .course__topics { margin: var(--space-2) 0 0 var(--space-4); display: flex; flex-direction: column; gap: var(--space-1); color: var(--color-text-muted); font-size: var(--font-size-small); }
-</style>

@@ -1,15 +1,89 @@
 ---
-/** Septim: Převod licence. Obsah: septim-obsah/prevod-licence.md. Starý slug zachován kvůli SEO. */
-import LegalPage from '../components/LegalPage.astro';
+// https://www.septim.cz/prevod-licence (Solid Pixels), port 1:1 skriptem port-septim.py
+import Base from './../layouts/Base.astro';
+import Mezera_bb6d from './../components/blocks/Mezera_bb6d.astro';
+import Blok30Let_9e65 from './../components/blocks/Blok30Let_9e65.astro';
+import Novinky from './../components/blocks/Novinky.astro';
 ---
-<LegalPage
-  title="Převod licence systému | Septim"
+<Base
+  title="Převod licence systému Septim | Septim"
   description="Jak převést licenční práva k softwaru Septim na jiného provozovatele. Přehled podmínek a postupu převodu licence krok za krokem."
-  titleHtml="Převod <em>licence</em>">
-  <p>Převodem licence se rozumí převod licenčních práv k zakoupenému softwaru <strong>Septim</strong> na jiného držitele. Převod licence má svá pravidla a podléhá souhlasu držitele licenčních práv, společnosti <strong>Septim Systems a.s.</strong></p>
-  <h2>Jak podat žádost</h2>
-  <p>Formulář žádosti o převod licence vám rádi poskytneme, napište si o něj na <a href="mailto:obchod@septim.cz">obchod@septim.cz</a>.</p>
-  <p>Vyplněné žádosti lze zasílat písemnou formou na adresu Septim Systems a.s. Pro zrychlení procesu je možné zaslat předem sken na e-mailovou adresu <a href="mailto:obchod@septim.cz">obchod@septim.cz</a>.</p>
-  <h2>Zavolejte nám nebo napište</h2>
-  <p>Telefon: <a href="tel:+420255712552">+420 255 712 552</a><br />E-mail: <a href="mailto:mail@septim.cz">mail@septim.cz</a></p>
-</LegalPage>
+  path="/prevod-licence"
+  bodyClass="use-header-transparent use-menu-primary-uppercase use-menu-secondary-uppercase use-headings-link-plain search-panel-hide-submit-label search-panel-hide-close-label search-panel-hide-open-label use-menu-bar use-header-fixed use-header-fixed-mobile use-header-priority"
+  image="/files/nahled-asw-systems.jpg"
+>
+<div class="section height--medium align--middle color--default section-width-narrow no-pb section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h1 class="center">Převod licence<span class="text-highlight">.</span></h1>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div><div><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div></div></div><div class="section-background container-fit container-fit--cover" style="background-color:#fff"><img alt="" decoding="async" sizes="(orientation: portrait) 416.47vw, 100vw" src="/files/r/1280/hdr-tapeta-septim-white.webp" srcset="/files/r/720/hdr-tapeta-septim-white.webp 720w, /files/r/1280/hdr-tapeta-septim-white.webp 1280w, /files/r/1920/hdr-tapeta-septim-white.webp 1920w" style="object-position:48% 0%"/></div></div>
+<div class="section height--normal align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p class="text-large">Převodem licence se rozumí převod licenčních práv k zakoupeného softwaru Septim na jiného držitele. Převod licence má svá pravidla a podléhá souhlasu držitele licenčních práv - společnosti Septim Systems a.s.</p>
+<p class="text-large">Žádost je k dispozici ke stažení <a href="/files/zadost-o-prevod-licence-624.pdf" target="_blank">zde</a>.</p>
+<p class="text-large">Vyplněné žádosti lze zasílat písemnou formou na adresu Septim Systems a.s. Pro zrychlení procesu je možné zaslat předem scan na e-mailovou adresu <a href="mailto:obchod@septim.cz">obchod@septim.cz</a>.</p>
+</div></div></div></div></div>
+<div class="section height--normal align--middle color--default section-width-narrow section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Zavolejte nám nebo napište<span class="text-highlight">.</span></h2>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:30px"></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3 class="center"><span class="text-highlight"><a href="tel:+420 255 712 552">+420 255 712 552</a></span></h3>
+<h4 class="center"><u><a href="mailto:mail@septim.cz">mail@septim.cz</a></u></h4>
+</div></div></div>
+<div class="row-main"><div class="col col-4-12 grid-6-12">
+<form action="/api/lead" autocomplete="off" class="block block-form" data-lead-form="formular-field_form_1_4_0_0" id="formular-field_form_1_4_0_0" method="post">
+<div class="row">
+<div class="col col-1-12 grid-12-12">
+<div class="field field-form_input_email" id="field-wrapper-email">
+<div class="field-wrapper">
+<label for="field-email" id="label-email">
+            E-mail <span>*</span>
+</label>
+<input class="field-control" id="field-email" name="formular-field_form_1_4_0_0[email]" required="" type="email" value=""/>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col col-1-12 grid-12-12">
+<div class="field field-form_input_tel" id="field-wrapper-phone">
+<div class="field-wrapper">
+<label for="field-phone" id="label-phone">
+            Telefon
+          </label>
+<input class="field-control" id="field-phone" name="formular-field_form_1_4_0_0[phone]" type="tel" value=""/>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col col-1-12 grid-12-12">
+<div class="field field-form_textarea" id="field-wrapper-vase-zprava">
+<div class="field-wrapper">
+<label for="field-vase-zprava" id="label-vase-zprava">
+            Vaše zpráva
+          </label>
+<textarea class="field-control" id="field-vase-zprava" name="formular-field_form_1_4_0_0[vase-zprava]"></textarea>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col col-1-12 grid-12-12">
+<div class="block block-inline"><p>Vaše osobní údaje budou zpracovány podle <a href="/informace-o-zpracovani-osobnich-udaju-formular">Podmínek zpracování osobních údajů</a>.</p>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col col-1-12 grid-12-12">
+<div class="field field-form_button" id="field-wrapper-field_form_1_4_0_0">
+<div class="field-wrapper">
+<div class="center">
+<button class="btn btn-a btn-primary" id="field-field_form_1_4_0_0" name="formular-field_form_1_4_0_0[field_form_1_4_0_0]" type="submit" value="submit"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">Odeslat</span></button>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<input name="form_variant" type="hidden" value="formular-field_form_1_4_0_0"/><input name="page" type="hidden" value=""/><div aria-hidden="true" class="visually-hidden"><label>Web <input autocomplete="off" name="website" tabindex="-1" type="text"/></label></div></form>
+</div></div></div><div class="section-background" style="background-color:rgb(235, 252, 255)"></div></div>
+<Mezera_bb6d />
+<Blok30Let_9e65 />
+<Novinky />
+</Base>

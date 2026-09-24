@@ -1,49 +1,191 @@
 ---
-/** Septim: Kariéra. Obsah: septim-obsah/kariera.md. SEO meta nově. */
-import Base from '../layouts/Base.astro';
-import SiteHeader from '../components/SiteHeader.astro';
-import SiteFooter from '../components/SiteFooter.astro';
-import Section from '@piano/ui/components/Section.astro';
-import Hero from '@piano/ui/components/Hero.astro';
-import Heading from '@piano/ui/components/Heading.astro';
-import Text from '@piano/ui/components/Text.astro';
-import Button from '@piano/ui/components/Button.astro';
-import USPGrid from '@piano/ui/components/USPGrid.astro';
-import LeadForm from '@piano/ui/components/LeadForm.astro';
-import { septimLeadProofs } from '../config/leadProofs';
-
-const benefits = [
-  { icon: 'lucide:scale', title: 'Férové ohodnocení', text: 'Tvoje práce má hodnotu a podle toho ji odměňujeme.' },
-  { icon: 'lucide:trending-up', title: 'Kariérní růst', text: 'Pokud se chceš posouvat, dostaneš prostor i podporu.' },
-  { icon: 'lucide:credit-card', title: 'eBenefit karta', text: 'Přístup k aktivitám pro zdraví, rozvoj i relaxaci.' },
-  { icon: 'lucide:coffee', title: 'Pracovní pohoda', text: 'Přátelské prostředí a dobrá spolupráce v týmu.' },
-  { icon: 'lucide:building', title: 'Pevné zázemí', text: 'Stabilní firma s 30letou historií a jasným směrem.' },
-  { icon: 'lucide:map-pin', title: 'Karlín nebo Olomouc', text: 'Kanceláře máme v Praze v Karlíně i v Olomouci.' },
-];
-const why = [
-  { icon: 'lucide:utensils', title: 'Práce, se kterou se chlubíš', text: 'Naše řešení používají michelinské restaurace, velké provozy i malá bistra, potkáš ho skoro na každém kroku.' },
-  { icon: 'lucide:layers', title: 'Posuneš celý gastro byznys', text: 'Septim je součástí ekosystému Piano, přes který ročně protečou transakce za víc než 36 miliard korun.' },
-  { icon: 'lucide:rocket', title: 'Prostor dělat věci pořádně', text: 'Žádný korporát se schvalovacími kolečky: rozhodování v týmu je rychlé a dobré nápady se realizují.' },
-];
+// https://www.septim.cz/kariera (Solid Pixels), port 1:1 skriptem port-septim.py
+import Base from './../layouts/Base.astro';
+import Mezera_3e63 from './../components/blocks/Mezera_3e63.astro';
 ---
-<Base title="Kariéra v Septimu | Septim"
-      description="Miluješ gastro a máš vztah k technologiím? Kariéra v Septimu tě zavede k jednomu z nejrespektovanějších gastro systémů. Prohlédni si pozice.">
-  <SiteHeader />
-  <main>
-    <Hero eyebrow="Kariéra" background="gradient"
-          lead="Miluješ gastro a máš vztah k technologiím? Jsme ryze česká softwarová společnost s 30letou tradicí a vyvíjíme nejrespektovanější pokladní systém v ČR. Čekáme právě na tebe.">
-      <Heading slot="title" as="h1" size="display" color="on-dark">Septim<em>.Kariéra</em></Heading>
-      <Fragment slot="actions">
-        <Button href="#poptavka">Napiš nám</Button>
-      </Fragment>
-    </Hero>
+<Base
+  title="Kariéra | Septim"
+  description="Miluješ gastro a máš vztah k technologiím? Kariéra v Septimu tě zavede k jednomu z nejrespektovanějších gastro systémů. Prohlédni si pozice."
+  path="/kariera"
+  bodyClass="use-header-transparent use-menu-primary-uppercase use-menu-secondary-uppercase use-headings-link-plain search-panel-hide-submit-label search-panel-hide-close-label search-panel-hide-open-label use-menu-bar use-header-fixed use-header-fixed-mobile use-header-priority i-want-septim header-inverse"
+  image="/files/nahled-chci-septim.jpg"
+>
+<div class="section height--normal align--middle color--default section-has-fullrow"><div class="section-body"><div class="row fullrow"><div class="col col-1-12 grid-12-12"><div class="block block-slider block-slider--hero"><div class="gallery-slider-container"><div class="gallery-slider-element" data-slider="true" data-slider-adaptive-height="false" data-slider-autoplay="true" data-slider-centered-slides="false" data-slider-controls="true" data-slider-count="2" data-slider-freemode="false" data-slider-initial-slide="0" data-slider-loop="true" data-slider-mode="slide" data-slider-pager="true" data-slider-per-group="2" data-slider-responsive="false" data-slider-space-between="0" data-slider-speed="3000" data-slider-touch="true" data-slider-transition="1000" data-slider-with-thumbs="false"><div class="gallery-slider-wrapper">
+<div class="container height--normal flex flex--align-center color--inverse gallery-slider-item" data-slide-id="868faee5"><div class="container-body">
+<div class="row-main"><div class="col col-1-12 grid-6-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:50px"></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h1><span class="text-highlight">Septim</span>.Kariéra</h1>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-4-12"><div class="block block-inline"><p class="text-large">Jsme ryze česká softwarová společnost s více než 30letou tradicí a vyvíjíme nejrespektovanější pokladní systém v ČR.</p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div class="left"><a class="btn btn-primary" href="#benefity"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">BENEFITY</span></a></div></div></div></div>
+</div><div class="container-background container-fit container-fit--cover fx-background-none" style="background-color:rgb(255, 255, 255)"><img alt="" decoding="async" sizes="(orientation: portrait) 416.47vw, 100vw" src="/files/r/1280/hr-header-kariera-top.webp" srcset="/files/r/720/hr-header-kariera-top.webp 720w, /files/r/1280/hr-header-kariera-top.webp 1280w, /files/r/1920/hr-header-kariera-top.webp 1920w"/></div></div>
+</div></div></div></div></div></div></div></div>
+<div class="section height--low align--middle color--default section-width-boxed section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image offset-top no-edge-mobile block-image--light-blue mobile-order-reverse"><div class="flexcard flexcard-card flexcard-size--normal flexcard-media-right valign-middle align-left flexcard-media--stretch"><div class="flexcard-media"><div class="image-wrapper"><a class="image image-mask ratio-original" href="#spojme-se" style="padding-bottom:55.55555555555556%"><img alt="" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/hr-mapa-praha-olomouc.webp" srcset="/files/r/720/hr-mapa-praha-olomouc.webp 720w, /files/r/1280/hr-mapa-praha-olomouc.webp 1280w, /files/r/1920/hr-mapa-praha-olomouc.webp 1920w"/></a></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2>Raději Karlín nebo Olomouc?</h2>
+<p class="text-large">Naše kanceláře najdeš v Praze v Karlíně i v Olomouci.</p>
+</div><div class="image-btn"><a class="btn btn-primary" href="#spojme-se"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">SPOJME SE</span></a></div></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<div class="section height--low align--middle color--default section-width-boxed section-has-background" id="benefity"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Co ti nabízíme za benefity?</h2>
+</div></div></div>
+<div class="row-main"><div class="col col-4-12 grid-6-12"><div class="block block-inline"><p class="center text-large">Dobré ohodnocení, stabilní firmu s dlouhou historií, prostor pro tvůj osobní růst a prostředí, kde se ti bude hezky pracovat. Podívej se na benefity, které ti udělají práci v Septimu lepší.</p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-4-12"><div class="block block-box box box--default"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-icon flexcard-none size-lg align-center"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/stabilita-dlouhodobost.svg"/></div></div></div></div></div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center"><strong><span class="text-highlight"><font color="#06038d"><span style="caret-color: rgb(6, 3, 141);">Nové příležitosti</span></font>.</span></strong></h2>
+<p class="center">U nás se dostaneš k projektům, které mají skutečný dopad. Můžeš zkoušet nové věci a posouvat se dál.</p>
+</div></div></div></div></div> <div class="col col-5-12 grid-4-12"><div class="block block-box box box--default"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-icon flexcard-none size-lg align-center"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/funkce-placeni.svg"/></div></div></div></div></div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center"><strong><span class="text-highlight"><font color="#06038d"><span style="caret-color: rgb(6, 3, 141);">Férové ohodnocení</span></font>.</span></strong></h2>
+<p class="center">Tvoje práce má pro nás hodnotu a podle toho ji také odměňujeme. Férovost proto u nás není jen slovo.</p>
+</div></div></div></div></div> <div class="col col-9-12 grid-4-12"><div class="block block-box box box--default"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-icon flexcard-none size-lg align-center"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/skalovatelnost-rust.svg"/></div></div></div></div></div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center"><strong><span class="text-highlight"><font color="#06038d"><span style="caret-color: rgb(6, 3, 141);">Kariérní růst</span></font></span><span class="text-highlight">.</span></strong></h2>
+<p class="center">Pokud se chceš posouvat dál, dostaneš prostor i podporu. Záleží hlavně na tom, kam se chceš dostat.</p>
+</div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-4-12"><div class="block block-box box box--default"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-icon flexcard-none size-lg align-center"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/ico-ebenefit-karta.svg"/></div></div></div></div></div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center"><strong>eBenefit karta<span class="text-highlight">.</span></strong></h2>
+<p class="center">Záleží nám na tvé spokojenosti. Díky eBenefit kartě máš přístup k široké škále aktivit pro zdraví, rozvoj i relaxaci.</p>
+</div></div></div></div></div> <div class="col col-5-12 grid-4-12"><div class="block block-box box box--default"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-icon flexcard-none size-lg align-center"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/podpora-konzultace.svg"/></div></div></div></div></div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center"><strong><span class="text-highlight"><font color="#06038d"><span style="caret-color: rgb(6, 3, 141);">Pracovní pohoda</span></font>.</span></strong></h2>
+<p class="center">Zakládáme si na přátelském prostředí a dobré spolupráci. Prostě aby se ti do práce dobře chodilo.</p>
+</div></div></div></div></div> <div class="col col-9-12 grid-4-12"><div class="block block-box box box--default"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-icon flexcard-none size-lg align-center"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/ico-skoleni.svg"/></div></div></div></div></div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center"><strong>Pevné zázemí<span class="text-highlight">.</span></strong></h2>
+<p class="center">Jsme stabilní firma s dlouhou historií a jasným směrem. Můžeš se opřít o zkušený tým i silné know-how.</p>
+</div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<Mezera_3e63 />
+<div class="section height--low align--middle color--default section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Práce, se kterou se můžeš chlubit!</h2>
+</div></div></div>
+<div class="row-main"><div class="col col-4-12 grid-6-12"><div class="block block-inline"><p class="center text-large">Naše řešení používají michelinské restaurace, velké gastro provozy, jídelny i malá bistra. A taky hospody, kam můžeš po práci zajít na pivo. Výsledek své práce tak můžeš potkávat skoro na každém kroku.</p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-gallery grid-sm-2"><div class="grid gallery-container" style="--gap:40px"><div class="gallery-item grid-col-6"><div class="image-wrapper"><a class="image image-mask ratio-square image-width-stretch" href="/nasi-zakaznici"><img alt="Logo Field" decoding="async" loading="lazy" src="/files/ref-field-michelin-restaurant.svg"/></a></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><a class="image image-mask ratio-square image-width-stretch" href="/nasi-zakaznici" title="Ambiente"><img alt="Ambiente" decoding="async" loading="lazy" src="/files/ref-entree-michelin.svg"/></a></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><a class="image image-mask ratio-square image-width-stretch" href="/nasi-zakaznici"><img alt="Logo Grandhotel Pupp" decoding="async" loading="lazy" src="/files/ref-grandhotel-pupp.svg"/></a></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><a class="image image-mask ratio-square image-width-stretch" href="/chci-septim"><img alt="Logo Ambiente" decoding="async" loading="lazy" src="/files/ref-ambiente.svg"/></a></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><a class="image image-mask ratio-square image-width-stretch" href="/nasi-zakaznici"><img alt="Logo O2 arena" decoding="async" loading="lazy" src="/files/ref-02-arena.svg"/></a></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><a class="image image-mask ratio-square image-width-stretch" href="/nasi-zakaznici"><img alt="Logo Kolkovna" decoding="async" loading="lazy" src="/files/ref-kolkovna.svg"/></a></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<Mezera_3e63 />
+<div class="section height--low align--middle color--default section-width-boxed section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">A nabídnete ti toho ještě mnohem víc...</h2>
+</div></div></div>
+<div class="row-main"><div class="col col-4-12 grid-6-12"><div class="block block-inline"><p class="center text-large">Práce v Septimu není jen o tom, co děláš, ale o dopadu, který může mít tvoje práce na tisíce gastro podniků po celé republice.</p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image block-image--3-1"><div class="flexcard flexcard-card flexcard-size--normal valign-middle align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Posuneš celý gastro byznys" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/hr-benefit-piano.webp" srcset="/files/r/720/hr-benefit-piano.webp 720w, /files/r/1280/hr-benefit-piano.webp 1280w, /files/r/1920/hr-benefit-piano.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2><strong>Posuneš celý gastro byznys<span class="text-highlight">.</span></strong></h2>
+<p>Septim je součástí ekosystému <a href="https://www.piano.cz" target="_blank">Piano</a>, jehož nástroje používají tisíce gastro podniků v celé České republice. Každý rok přes ně protečou transakce za více než 36 miliard korun – a tvoje zkušenosti pomůžou držet celý systém v chodu.</p>
+</div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image block-image--3-1"><div class="flexcard flexcard-card flexcard-size--normal flexcard-media-right valign-middle align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Dostaneš prostor dělat věci pořádně" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/hr-benefit-prostor.webp" srcset="/files/r/720/hr-benefit-prostor.webp 720w, /files/r/1280/hr-benefit-prostor.webp 1280w, /files/r/1920/hr-benefit-prostor.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2><strong>Dostaneš prostor dělat věci pořádně<span class="text-highlight">.</span></strong></h2>
+<p>Nejsme korporát s desítkami schvalovacích koleček. Rozhodování v rámci teamu je rychlé a dobré nápady mají šanci se opravdu realizovat. Pokud chceš věci posouvat dopředu, dostaneš k tomu prostor.</p>
+</div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image block-image--3-1"><div class="flexcard flexcard-card flexcard-size--normal flexcard-media-left valign-middle align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Porosteš společně s námi" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/hr-benefit-rust.webp" srcset="/files/r/720/hr-benefit-rust.webp 720w, /files/r/1280/hr-benefit-rust.webp 1280w, /files/r/1920/hr-benefit-rust.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2><strong>Porosteš společně s námi<span class="text-highlight">.</span></strong></h2>
+<p>Technologie i gastronomie se rychle mění, takže máš prostor učit se nové věci a rozšiřovat své zkušenosti. Zároveň si zakládáme na prostředí, kde se dá dlouhodobě dobře pracovat a kde si lidé navzájem pomáhají.</p>
+</div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<div class="section height--low align--middle color--default section-width-boxed section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:50px"></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-4-12"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2>Nevidíš pozici, která by ti nejlépe seděla?</h2>
+<p class="text-large">Spojme se! Šikovných lidí není v Septimu totiž nikdy dost! </p>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-8-12"><div class="block block-inline"><a href="mailto:kariera@septim.cz">kariera@septim.cz</a></div></div> <div class="col col-9-12 grid-4-12"></div></div></div> <div class="col col-5-12 grid-6-12">
+<form action="/api/lead" autocomplete="off" class="block block-form" data-lead-form="spojme-se" enctype="multipart/form-data" id="spojme-se" method="post">
+<div class="row">
+<div class="col col-1-12 grid-12-12">
+<div class="field field-form_input_text" id="field-wrapper-jmeno-a-prijmeni">
+<div class="field-wrapper">
+<label for="field-jmeno-a-prijmeni" id="label-jmeno-a-prijmeni">
+            Jméno a příjmení
+          </label>
+<input class="field-control" id="field-jmeno-a-prijmeni" name="spojme-se[jmeno-a-prijmeni]" type="text" value=""/>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col col-1-12 grid-6-12">
+<div class="field field-form_input_email" id="field-wrapper-email">
+<div class="field-wrapper">
+<label for="field-email" id="label-email">
+            E-mail <span>*</span>
+</label>
+<input class="field-control" id="field-email" name="spojme-se[email]" required="" type="email" value=""/>
+</div>
+</div>
+</div>
+<div class="col col-7-12 grid-6-12">
+<div class="field field-form_input_tel" id="field-wrapper-telefon">
+<div class="field-wrapper">
+<label for="field-telefon" id="label-telefon">
+            Telefon
+          </label>
+<input class="field-control" id="field-telefon" name="spojme-se[telefon]" type="tel" value=""/>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col col-1-12 grid-12-12">
+<div class="field field-form_textarea" id="field-wrapper-proc-chces-pracovat-pro-septim">
+<div class="field-wrapper">
+<label for="field-proc-chces-pracovat-pro-septim" id="label-proc-chces-pracovat-pro-septim">
+            Proč chceš pracovat pro Septim? <span>*</span>
+</label>
+<textarea class="field-control" id="field-proc-chces-pracovat-pro-septim" name="spojme-se[proc-chces-pracovat-pro-septim]" required=""></textarea>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col col-1-12 grid-12-12">
+<div class="field field-form_select" id="field-wrapper-chci-pracovat-v">
+<div class="field-wrapper">
+<label class="visually-hidden" for="field-chci-pracovat-v" id="label-chci-pracovat-v">
+            Chci pracovat v
+          </label>
+<select class="field-control" id="field-chci-pracovat-v" name="spojme-se[chci-pracovat-v]" placeholder="Chci pracovat v ">
+<option class="field-placeholder" disabled="" selected="selected" value="">Chci pracovat v </option>
+<option value="0">Praha 8 – Karlín</option>
+<option value="1">Olomouc</option>
+</select>
+<div aria-autocomplete="none" aria-expanded="false" aria-labelledby="label-chci-pracovat-v value-chci-pracovat-v" aria-owns="list-chci-pracovat-v" class="field-control field-control-dropdown" data-multiple="false" role="combobox" tabindex="0">
+<div class="field-control-value" id="value-chci-pracovat-v"></div>
+</div>
+<ul class="field-list" id="list-chci-pracovat-v" role="listbox">
+<li class="is-disabled" role="option">Chci pracovat v </li>
+<li class="" data-key="0" role="option">Praha 8 – Karlín</li>
+<li class="" data-key="1" role="option">Olomouc</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col col-1-12 grid-12-12">
+<div class="field field-form_input_file" id="field-wrapper-zivotopis">
+<div class="field-wrapper">
+<div class="field-label">
+          Životopis
+        </div>
+<div class="field-group">
+<label for="field-zivotopis" id="label-zivotopis">
+<span class="form_input_file__label form_input_file__label--icon">
+<span class="icon icon-upload"></span>
+</span>
+<span class="form_input_file__label form_input_file__label--text">Vyberte soubor</span>
+</label>
+<input accept=".jpg,.jpeg,.png,.gif,.ico,.pdf,.txt,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.zip,.rar,.7z,.mp3,.mp4,.svg,.woff,.woff2,.ttf,.eot" class="field-control" data-files-types="jpg|jpeg|png|gif|ico|pdf|txt|doc|docx|xls|xlsx|ppt|pptx|zip|rar|7z|mp3|mp4|svg|woff|woff2|ttf|eot" id="field-zivotopis" maxfilesize="10" multiple="" name="spojme-se[zivotopis][]" type="file" value=""/>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col col-1-12 grid-12-12">
+<div class="block block-inline"><p>Osobní údaje budou zpracovány podle Podmínek zpracování osobních údajů.</p>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col col-1-12 grid-12-12">
+<div class="field field-form_button" id="field-wrapper-odeslat">
+<div class="field-wrapper">
+<div class="left">
+<button class="btn btn-a btn-default" id="field-odeslat" name="spojme-se[odeslat]" type="submit" value="submit"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">ODESLAT</span></button>
+</div>
+</div>
+</div>
+</div>
+</div>
 
-    <USPGrid eyebrow="Benefity" title="Co ti nabízíme" items={benefits} background="default" space="lg" minItemWidth="240px" />
-    <USPGrid eyebrow="Proč Septim" title="Práce, která má dopad" items={why} background="alt" space="lg" minItemWidth="280px" />
-
-    <LeadForm proofs={septimLeadProofs} id="poptavka" variant="callback" background="default"
-              title="Můžeš být přínosem Septimu?"
-              lead="Nech nám na sebe kontakt a krátkou zprávu, ozveme se ti." />
-  </main>
-  <SiteFooter />
+<input name="form_variant" type="hidden" value="spojme-se"/><input name="page" type="hidden" value=""/><div aria-hidden="true" class="visually-hidden"><label>Web <input autocomplete="off" name="website" tabindex="-1" type="text"/></label></div></form>
+</div> <div class="col col-11-12 grid-2-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:50px"></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<div class="section height--normal align--middle color--inverse section-width-wide no-pb conversion-img-section section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image offset-top block-image--inverse conversion-img"><div class="image-poster align-center valign-middle"><div class="image-wrapper"><a class="image image-mask ratio-original has-overlay" href="#spojme-se" style="padding-bottom:27.77777777777778%"><img alt="" decoding="async" loading="lazy" sizes="(min-width:1459px) 1459px, (min-width:720px) 100.00vw, 100.00vw" src="/files/r/1280/hr-pata.webp" srcset="/files/r/720/hr-pata.webp 720w, /files/r/1280/hr-pata.webp 1280w, /files/r/1920/hr-pata.webp 1920w"/></a></div><div class="image-caption image-caption-middle has-link"><div class="image-caption-wrapper"><div class="text-block"><h2>Navrhni si svou vlastní pracovní pozici...</h2>
+<p class="text-large">Máš nápad, jak můžeš být pro Septim přínosem? </p>
+</div><div class="image-btn"><a class="btn btn-primary" href="#spojme-se"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">OZVI SE NÁM</span></a></div></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(6, 3, 141)"></div></div>
 </Base>

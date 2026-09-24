@@ -1,58 +1,153 @@
 ---
-/** Septim: Produkty (rozcestník edic, funkcí a integrací). Cíl odkazu „Produkty" v hlavním menu. */
-import Base from '../layouts/Base.astro';
-import SiteHeader from '../components/SiteHeader.astro';
-import SiteFooter from '../components/SiteFooter.astro';
-import Hero from '@piano/ui/components/Hero.astro';
-import Heading from '@piano/ui/components/Heading.astro';
-import USPGrid from '@piano/ui/components/USPGrid.astro';
-import LeadForm from '@piano/ui/components/LeadForm.astro';
-import { septimLeadProofs } from '../config/leadProofs';
-
-const edice = [
-  { icon: 'lucide:monitor', title: 'Septim.4', text: 'Plnohodnotný provozní systém pro restaurace a gastro provozy.', href: '/produkty/septim-4' },
-  { icon: 'lucide:cloud', title: 'Septim.Air', text: 'Lehká edice pro kavárny, bistra a bary.', href: '/produkty/septim-air' },
-  { icon: 'lucide:soup', title: 'Septim.Jídelna', text: 'Závodní stravování, kredity a výdej jídel.', href: '/produkty/septim-jidelna' },
-  { icon: 'lucide:bed-double', title: 'Septim.Hotel', text: 'POS systém propojený s hotelovým provozem.', href: '/produkty/septim-hotel' },
-  { icon: 'lucide:smartphone', title: 'Septim.Go', text: 'Mobilní číšník: objednávky přímo u stolu.', href: '/produkty/septim-go' },
-  { icon: 'lucide:line-chart', title: 'MySeptim', text: 'Váš provoz v mobilu: tržby a přehledy odkudkoli.', href: '/produkty/myseptim' },
-];
-const funkce = [
-  { icon: 'lucide:monitor', title: 'Pokladna', text: 'Rychlé markování a spolehlivý provoz na place.', href: '/funkce/pokladna' },
-  { icon: 'lucide:boxes', title: 'Skladové hospodářství', text: 'Suroviny, receptury a inventury pod kontrolou.', href: '/funkce/skladove-hospodarstvi' },
-  { icon: 'lucide:sliders-horizontal', title: 'Manažer', text: 'Řízení provozu, ceníky a uživatelská práva.', href: '/funkce/manazer' },
-  { icon: 'lucide:bar-chart-3', title: 'Reporty a přehledy', text: 'Sestavy a vyhodnocení na pár kliknutí.', href: '/funkce/reporty-prehledy' },
-  { icon: 'lucide:award', title: 'Věrnostní systém', text: 'CRM, věrnostní programy a personalizované nabídky.', href: '/funkce/vernostni-system' },
-  { icon: 'lucide:shopping-cart', title: 'E-shop pro restaurace', text: 'Online objednávky propojené s pokladnou.', href: '/funkce/eshop-restaurace' },
-  { icon: 'lucide:settings', title: 'Nastavení', text: 'Systém přizpůsobený vašemu provozu.', href: '/funkce/nastaveni' },
-  { icon: 'lucide:hard-drive', title: 'Hardware do restaurace', text: 'Pokladny, tiskárny, displeje: se zárukou 36 měsíců.', href: '/funkce/hardware-do-restaurace' },
-];
-const integrace = [
-  { icon: 'lucide:bike', title: 'Foodora & Wolt', text: 'Objednávky z rozvozových platforem přímo v systému.', href: '/integrace/foodora-wolt' },
-  { icon: 'lucide:qr-code', title: 'Platby QR kódem (Qerko)', text: 'Hosté zaplatí sami z mobilu, platba se propíše do pokladny.', href: '/integrace/platby-objednavky-qr-kodem' },
-  { icon: 'lucide:boxes', title: 'Automatické naskladňování', text: 'Dodací listy a naskladnění bez ručního přepisování.', href: '/integrace/automaticke-naskladnovani' },
-  { icon: 'lucide:calendar-days', title: 'Plánování směn (Grason)', text: 'Směny, docházka a brigádníci propojení s provozem.', href: '/integrace/planovani-smen' },
-  { icon: 'lucide:tv', title: 'Kuchyňské displeje', text: 'Objednávky z pokladny rovnou do kuchyně.', href: '/integrace/kuchynske-displeje' },
-  { icon: 'lucide:bell', title: 'Pagery', text: 'Svolávací systém pro výdej objednávek.', href: '/integrace/pagery' },
-  { icon: 'lucide:tablet', title: 'Objednávkové systémy', text: 'Kiosky a samoobslužné objednávání.', href: '/integrace/objednavkove-systemy' },
-];
+// https://www.septim.cz/produkty (Solid Pixels), port 1:1 skriptem port-septim.py
+import Base from './../layouts/Base.astro';
+import PojdmeToProbrat from './../components/blocks/PojdmeToProbrat.astro';
+import BlokDemoZdarma_4546 from './../components/blocks/BlokDemoZdarma_4546.astro';
 ---
-<Base title="Produkty a moduly pokladního systému | Septim"
-      description="Prohlédněte si produkty a moduly systému Septim – pokladna, sklad, reporty, CRM i mobilní číšník. Řešení pro váš gastro provoz.">
-  <SiteHeader />
-  <main>
-    <Hero eyebrow="Produkty" background="alt"
-          lead="Jeden systém, který roste s vámi, vyberte edici podle typu provozu a rozšiřte ji o funkce a integrace, které potřebujete.">
-      <Heading slot="title" as="h1" size="display">Produkty <em>Septim</em></Heading>
-    </Hero>
-
-    <USPGrid eyebrow="Edice" title="Vyberte edici pro svůj provoz" items={edice} background="default" space="lg" minItemWidth="260px" />
-    <USPGrid eyebrow="Funkce" title="Vše, co provoz potřebuje" items={funkce} background="alt" space="lg" minItemWidth="260px" />
-    <USPGrid eyebrow="Integrace a zařízení" title="Propojeno s tím, co používáte" items={integrace} background="default" space="lg" minItemWidth="260px" />
-
-    <LeadForm proofs={septimLeadProofs} id="poptavka" variant="callback" background="alt"
-              title="Nevíte, kterou edici zvolit?"
-              lead="Nechte nám telefon, poradíme s výběrem podle vašeho provozu." />
-  </main>
-  <SiteFooter />
+<Base
+  title="Produkty a moduly pokladního systému | Septim"
+  description="Prohlédněte si produkty a moduly systému Septim. Pokladna, sklad, reporty, CRM i mobilní číšník. Řešení pro váš gastro provoz."
+  path="/produkty"
+  bodyClass="use-header-transparent use-menu-primary-uppercase use-menu-secondary-uppercase use-headings-link-plain search-panel-hide-submit-label search-panel-hide-close-label search-panel-hide-open-label use-menu-bar use-header-fixed use-header-fixed-mobile use-header-priority"
+  image="/files/nahled-produkty.jpg"
+>
+<div class="section height--low align--middle color--default section-width-boxed no-pb section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h1 class="center">Vše pro váš gastro byznys<span class="text-highlight">.</span></h1>
+</div></div></div>
+<div class="row-main"><div class="col col-3-12 grid-8-12"><div class="block block-inline"><p class="center text-large">Přemýšlíte, jestli je Septim pro váš podnik ideální a nevíte si rady? Pokusili jsme se naši nabídku produktů strukturovat tak, abychom vám výběr co nejvíce usnadnili.</p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div><div class="section-background container-fit container-fit--cover" style="background-color:rgb(255, 255, 255)"><img alt="" decoding="async" sizes="(orientation: portrait) 416.47vw, 100vw" src="/files/r/1280/hdr-tapeta-septim-white.webp" srcset="/files/r/720/hdr-tapeta-septim-white.webp 720w, /files/r/1280/hdr-tapeta-septim-white.webp 1280w, /files/r/1920/hdr-tapeta-septim-white.webp 1920w" style="object-position:50% 0%"/></div></div>
+<PojdmeToProbrat />
+<div class="section height--low align--middle color--default section-width-boxed no-pb section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:30px"></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="container tab-links"><div class="container-body flex flex--justify-center flex--wrap">
+<div class="flex__item"><div class="block block-inline active"><p><a href="#tab-septim">systém Septim</a></p>
+</div></div>
+<div class="flex__item"><div class="block block-inline"><p><a href="#tab-moduly-septim">Moduly SEPTIM</a></p>
+</div></div>
+<div class="flex__item"><div class="block block-inline"><p><a href="#tab-integrovana-reseni">Integrovaná řešení</a></p>
+</div></div>
+<div class="flex__item"><div class="block block-inline"><p><a href="#tab-hardware">Hardware</a></p>
+</div></div>
+</div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<div class="section height--normal align--middle color--default tab-content tab-septim cols-md-1-centered active"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline tab-link"><p><a href="#tab-septim">Systém Septim</a></p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:50px"></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image block-image--light-blue mobile-order-reverse"><div class="flexcard flexcard-card flexcard-size--normal flexcard-media-right valign-center align-left flexcard-media--stretch"><div class="flexcard-media"><div class="image-wrapper"><a class="image image-mask ratio-original" href="/produkty/myseptim" style="padding-bottom:55.55555555555556%"><img alt="MySeptim" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/banner-hp-myseptim.webp" srcset="/files/r/720/banner-hp-myseptim.webp 720w, /files/r/1280/banner-hp-myseptim.webp 1280w, /files/r/1920/banner-hp-myseptim.webp 1920w"/></a></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2>MySeptim</h2>
+<p>MySeptim je speciálně navržená aplikace pro majitele, manažery a provozní restauračních zařízení využívajících restaurační systém Septim. Aplikace poskytuje rychlý, přehledný a efektivní přístup k nejdůležitějším provozním ukazatelům.</p>
+</div><div class="image-btn"><a class="btn btn-default btn-sm" href="/produkty/myseptim"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">VÍCE O MYSEPTIM</span></a></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:30px"></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image block-image--light-blue mobile-order-reverse"><div class="flexcard flexcard-card flexcard-size--normal flexcard-media-right valign-center align-left flexcard-media--stretch"><div class="flexcard-media"><div class="image-wrapper"><a class="image image-mask ratio-original" href="/produkty/septim-4-system-pro-restaurace" style="padding-bottom:55.55555555555556%"><img alt="Septim.4" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/produkt-btn-septim-4.webp" srcset="/files/r/720/produkt-btn-septim-4.webp 720w, /files/r/1280/produkt-btn-septim-4.webp 1280w, /files/r/1920/produkt-btn-septim-4.webp 1920w"/></a></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2>Septim<span class="text-highlight">.</span>4</h2>
+<p>Pokladní systém Septim je nejrespektovanější provozní software pro restaurace v ČR. Michelinské podniky, známé řetězce restaurací a ti nejlepší šéfkuchaři – většina používá ve svých restauracích právě náš systém.</p>
+</div><div class="image-btn"><a class="btn btn-default btn-sm" href="/produkty/septim-4-system-pro-restaurace"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">VÍCE O SEPTIM.4</span></a></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:30px"></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image block-image--light-blue mobile-order-reverse"><div class="flexcard flexcard-card flexcard-size--normal flexcard-media-right valign-center align-left flexcard-media--stretch"><div class="flexcard-media"><div class="image-wrapper"><a class="image image-mask ratio-original" href="/produkty/septim-jidelna-system-pro-zavodni-stravovani" style="padding-bottom:55.55555555555556%"><img alt="Septim.Jídelna" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/produkt-btn-septim-jidelna.webp" srcset="/files/r/720/produkt-btn-septim-jidelna.webp 720w, /files/r/1280/produkt-btn-septim-jidelna.webp 1280w, /files/r/1920/produkt-btn-septim-jidelna.webp 1920w"/></a></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2>Septim<span class="text-highlight">.</span>Jídelna</h2>
+<p>Software pro jídelny od Septimu je skvělé řešení provozního systému pro závodní stravování. Systém Septim se jako jeden z prvních v České republice přizpůsobil náročným požadavkům závodních jídelen a připravil pro ně unikátní řešení.</p>
+</div><div class="image-btn"><a class="btn btn-default btn-sm" href="/produkty/septim-jidelna-system-pro-zavodni-stravovani"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">VÍCE O SEPTIM.JÍDELNA</span></a></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:30px"></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image block-image--light-blue mobile-order-reverse"><div class="flexcard flexcard-card flexcard-size--normal flexcard-media-right valign-center align-left flexcard-media--stretch"><div class="flexcard-media"><div class="image-wrapper"><a class="image image-mask ratio-original" href="/produkty/septim-air-system-pro-kavarnu-bistro-bar" style="padding-bottom:55.55555555555556%"><img alt="Septim.Air" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/septim-ait-cta-gradient.webp" srcset="/files/r/720/septim-ait-cta-gradient.webp 720w, /files/r/1280/septim-ait-cta-gradient.webp 1280w, /files/r/1920/septim-ait-cta-gradient.webp 1920w"/></a></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2>Septim<span class="text-highlight">.</span>Air</h2>
+<p>Pokladní systém Septim.Air nabízí nejlevnější a nejrychlejší možnost jak začít Septim využívat. Jedná se o online cloudové řešení, kde jednorázově neplatíte software ani hardware.</p>
+</div><div class="image-btn"><a class="btn btn-default btn-sm" href="/produkty/septim-air-system-pro-kavarnu-bistro-bar"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">VÍCE O SEPTIM.AIR</span></a></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:30px"></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image block-image--light-blue mobile-order-reverse"><div class="flexcard flexcard-card flexcard-size--normal flexcard-media-right valign-center align-left flexcard-media--stretch"><div class="flexcard-media"><div class="image-wrapper"><a class="image image-mask ratio-original" href="/produkty/mobilni-cisnik-septim-go" style="padding-bottom:55.55555555555556%"><img alt="Septim.Go" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/produkt-btn-septim-go.webp" srcset="/files/r/720/produkt-btn-septim-go.webp 720w, /files/r/1280/produkt-btn-septim-go.webp 1280w, /files/r/1920/produkt-btn-septim-go.webp 1920w"/></a></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2>Septim<span class="text-highlight">.</span>Go</h2>
+<p>Mobilní číšník. Jde o moderní systém umožňující vašemu personálu efektivněji obsluhovat hosty, přijímat objednávky a zpracovávat platby. A to přímo u stolu! Díky použití nejmodernějšího hardwaru, který v sobě kombinuje funkce chytrého terminálu a platebního zařízení, získáte maximální flexibilitu a efektivitu.</p>
+</div><div class="image-btn"><a class="btn btn-default btn-sm" href="/produkty/mobilni-cisnik-septim-go"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">VÍCE O SEPTIM.GO</span></a></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:30px"></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image block-image--light-blue mobile-order-reverse"><div class="flexcard flexcard-card flexcard-size--normal flexcard-media-right valign-center align-left flexcard-media--stretch"><div class="flexcard-media"><div class="image-wrapper"><a class="image image-mask ratio-original" href="/produkty/septim-hotel-pos-system-pro-hotely" style="padding-bottom:55.55555555555556%"><img alt="Septim.Hotel" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/produkt-btn-septim-hotel.webp" srcset="/files/r/720/produkt-btn-septim-hotel.webp 720w, /files/r/1280/produkt-btn-septim-hotel.webp 1280w, /files/r/1920/produkt-btn-septim-hotel.webp 1920w"/></a></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2>Septim<span class="text-highlight">.</span>Hotel</h2>
+<p>Septim pro hotely. Hotelový pokladní systém, který propojuje celý hotel včetně jednoduché integrace na vlastní hotelový PMS. Využijte 30 let našeho vývoje a ovládejte celý svůj hotel z jednoho místa.</p>
+</div><div class="image-btn"><a class="btn btn-default btn-sm" href="/produkty/septim-hotel-pos-system-pro-hotely"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">VÍCE O SEPTIM.HOTEL</span></a></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-icon flexcard-none size-sm align-center"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/gap-white.svg"/></div></div></div></div></div></div></div></div></div>
+<div class="section height--normal align--middle color--default tab-content tab-moduly-septim"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline tab-link"><p><a href="#tab-moduly-septim">Moduly Septim</a></p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:50px"></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-6-12"><div class="block block-box box box--secondary box--full-height"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Pokladna<span class="text-highlight">.</span></h2>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p class="center">Pokladna je základní modul systému Septim. V pokladně obsluha provádí veškeré běžné kroky, které souvisí s obsloužením hosta. Klíčové je, že je pokladna uživatelsky jednoduchá a jak promyšleně jsou na ni napojeny další části Septimu.</p>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div class="center"><a class="btn btn-default btn-sm" href="/produkty/pokladna"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">VÍCE O MODULU</span></a></div></div></div></div></div></div> <div class="col col-7-12 grid-6-12"><div class="block block-box box box--secondary box--full-height"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Manažer<span class="text-highlight">.</span></h2>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p class="center">V manažerské aplikaci se provádí celá správa systému Septim, včetně konfigurace pokladní části, jako je například rozložení receptur na obrazovce, barevnost a velikost prodejních tlačítek nebo nastavení oprávnění obsluhy.</p>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div class="center"><a class="btn btn-default btn-sm" href="/produkty/manazer"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">VÍCE O MODULU</span></a></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-6-12"><div class="block block-box box box--secondary box--full-height"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Skladové hospodářství<span class="text-highlight">.</span></h2>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p class="center">V manažerské části systému Septim se provádí celá správa provozního systému včetně konfigurace skladů, skladových položek, zobrazování finančních přehledů nebo nastavení pokladní části.</p>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div class="center"><a class="btn btn-default btn-sm" href="/produkty/skladove-hospodarstvi"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">VÍCE O MODULU</span></a></div></div></div></div></div></div> <div class="col col-7-12 grid-6-12"><div class="block block-box box box--secondary box--full-height"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Věrnostní systém<span class="text-highlight">.</span></h2>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p class="center">Důvěra a loajalita stálých zákazníků je jeden z klíčových faktorů, který má vliv na úspěšnost podnikání. Samotný věrnostní program, který nabízíme, vám loajalitu zákazníků nezaručí, ale pokud máte kvalitní produkty a služby, poslouží jako důležitá přidaná hodnota.</p>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div class="center"><a class="btn btn-default btn-sm" href="/produkty/vernostni-system-crm"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">VÍCE O MODULU</span></a></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-6-12"><div class="block block-box box box--secondary box--full-height"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Reporty a přehledy<span class="text-highlight">.</span></h2>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p class="center">Data jsou klíčová pro řízení restaurace. Aby podrobné informace například o prodejích, tržbách, stavu skladu či výnosnosti jednotlivých produktů měly svoji cenu, je třeba je shrnout a vyhodnotit.</p>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div class="center"><a class="btn btn-default btn-sm" href="/produkty/reporty-prehledy"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">VÍCE O MODULU</span></a></div></div></div></div></div></div> <div class="col col-7-12 grid-6-12"><div class="block block-box box box--secondary box--full-height"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Nastavení<span class="text-highlight">.</span></h2>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p class="center">Nastavení v provozním systému Septim vám umožní precizní ovládání systému a tím i vaší restaurace.</p>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div class="center"><a class="btn btn-default btn-sm" href="/produkty/nastaveni"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">VÍCE O MODULU</span></a></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-6-12"><div class="block block-box box box--secondary box--full-height"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Anketa pro jídelny<span class="text-highlight">.</span></h2>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p class="center">Modul Anketa v systému Septim pro závodní restauraci pomáhá zjistit zpětnou vazbu strávníků v jídelně.</p>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div class="center"><a class="btn btn-default btn-sm" href="/produkty/anketa-pro-jidelny"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">VÍCE O MODULU</span></a></div></div></div></div></div></div> <div class="col col-7-12 grid-6-12"><div class="block block-box box box--secondary box--full-height"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Objednávky a výdej pro jídelny<span class="text-highlight">.</span></h2>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p class="center">V některých typech závodního stravování je klíčové i výhodné objednávání jídel zaměstnanci předem. </p>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div class="center"><a class="btn btn-default btn-sm" href="/produkty/objednavky-vydej-pro-jidelny"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">VÍCE O MODULU</span></a></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-6-12"><div class="block block-box box box--secondary box--full-height"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">E-shop<span class="text-highlight">.</span></h2>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p class="center">E-shop umožní rozšířit nabídku vašeho podniku na internet, kde si mohou zákazníci v klidu vybrat a objednat na pobočku nebo domů.</p>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div class="center"><a class="btn btn-default btn-sm" href="/produkty/eshop-restaurace"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">VÍCE O MODULU</span></a></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div></div>
+<div class="section height--normal align--middle color--default tab-content tab-integrovana-reseni"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline tab-link"><p><a href="#tab-integrovana-reseni">Integrovaná řešení</a></p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:50px"></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image block-image--light-blue mobile-order-reverse"><div class="flexcard flexcard-card flexcard-size--normal flexcard-media-right valign-center align-left flexcard-media--stretch"><div class="flexcard-media"><div class="image-wrapper"><a class="image image-mask ratio-original" href="/produkty/foodora-a-wolt" style="padding-bottom:55.55555555555556%"><img alt="Foodora a Wolt" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/foodora-wolt-banner-produkt.webp" srcset="/files/r/720/foodora-wolt-banner-produkt.webp 720w, /files/r/1280/foodora-wolt-banner-produkt.webp 1280w, /files/r/1920/foodora-wolt-banner-produkt.webp 1920w"/></a></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2>Foodora a Wolt<span class="text-highlight">.</span></h2>
+<p>Rozšiřte možnosti svého gastro podnikání díky přímé integraci rozvozových služeb Foodora a Wolt s restauračním systémem Septim.</p>
+</div><div class="image-btn"><a class="btn btn-default btn-sm" href="/produkty/foodora-a-wolt"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">VÍCE O INTEGRACI</span></a></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:30px"></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-6-12"><div class="block block-box box box--secondary"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Plánování směn<span class="text-highlight">.</span></h2>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p class="center">Díky partnerství se společností Grason pomáháme budovat organizované a spolehlivé týmy v gastronomii.</p>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div class="center"><a class="btn btn-default btn-sm" href="/produkty/planovani-smen"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">VÍCE O PRODUKTU</span></a></div></div></div></div></div></div> <div class="col col-7-12 grid-6-12"><div class="block block-box box box--secondary"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Kuchyňské displeje<span class="text-highlight">.</span></h2>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p class="center">Systém kuchyňských displejů je integrované řešení našeho partnera. V České republice exkluzivně nabízíme systém kuchyňských displejů společnosti QSR automations.</p>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div class="center"><a class="btn btn-default btn-sm" href="/produkty/kuchynske-displeje"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">VÍCE O PRODUKTU</span></a></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-6-12"><div class="block block-box box box--secondary"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Pagery<span class="text-highlight">.</span></h2>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p class="center">Propojení paging systému se systémem Septim přináší restauraci velké zvýšení efektivity.</p>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div class="center"><a class="btn btn-default btn-sm" href="/produkty/pagery-pro-restaurace"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">VÍCE O PRODUKTU</span></a></div></div></div></div></div></div> <div class="col col-7-12 grid-6-12"><div class="block block-box box box--secondary"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Hotelový systém Protel<span class="text-highlight">.</span></h2>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p class="center">Pro hotely a hotelové restaurace přináší Septim skvělé řešení díky propojení s hotelovým rezervačním systémem Protel.</p>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div class="center"><a class="btn btn-default btn-sm" href="/partneri/protel"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">VÍCE O PRODUKTU</span></a></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-6-12"><div class="block block-box box box--secondary"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Automatické naskladňování<span class="text-highlight">.</span></h2>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p class="center">Integrovaná řešení našeho partnera Pecosta skvěle doplňuje náš modul Skladové hospodářství.</p>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div class="center"><a class="btn btn-default btn-sm" href="/produkty/automaticke-naskladnovani"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">VÍCE O PRODUKTU</span></a></div></div></div></div></div></div> <div class="col col-7-12 grid-6-12"><div class="block block-box box box--secondary"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Placení a objednávání přes QR<span class="text-highlight">.</span></h2>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p class="center">Díky partnerství se společností Qerko může pokladní systém Septim nabídnout přelomovou funkci placením QR kódem přímo zákazníky. Aplikace ale nabízí mnohem víc a zákazníci jí milují!</p>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div class="center"><a class="btn btn-default btn-sm" href="/produkty/platby-objednavky-qr-kodem"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">VÍCE O PRODUKTU</span></a></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-6-12"><div class="block block-box box box--secondary"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Objednávkové systémy<span class="text-highlight">.</span></h2>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p class="center">V některých typech závodního stravování je klíčové i výhodné objednávání jídel zaměstnanci předem.</p>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div class="center"><a class="btn btn-default btn-sm" href="/produkty/objednavkove-systemy"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">VÍCE O PRODUKTU</span></a></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div></div>
+<div class="section height--normal align--middle color--default tab-content tab-hardware"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline tab-link"><p><a href="#tab-hardware">Hardware</a></p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:50px"></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-box box box--secondary"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Hardware do restaurace<span class="text-highlight">.</span></h2>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p class="center">Pokladny, tiskárny, mobilní pokladny, čtečky, pokladní zásuvky, zákaznické displeje, pokladní váhy,… Hardware a software od Septimu spolu hezky mluví!</p>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div class="center"><a class="btn btn-default btn-sm" href="/produkty/hardware-do-restaurace"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">VÍCE O HARDWARE</span></a></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div></div>
+<BlokDemoZdarma_4546 />
 </Base>

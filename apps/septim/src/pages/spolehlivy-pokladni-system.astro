@@ -1,75 +1,143 @@
 ---
-/** Septim: SEO landing: Spolehlivý pokladní systém. Obsah: septim-obsah/spolehlivy-pokladni-system.md. Starý slug zachován kvůli SEO. */
-import Base from '../layouts/Base.astro';
-import SiteHeader from '../components/SiteHeader.astro';
-import SiteFooter from '../components/SiteFooter.astro';
-import Section from '@piano/ui/components/Section.astro';
-import Hero from '@piano/ui/components/Hero.astro';
-import Heading from '@piano/ui/components/Heading.astro';
-import Text from '@piano/ui/components/Text.astro';
-import Button from '@piano/ui/components/Button.astro';
-import USPGrid from '@piano/ui/components/USPGrid.astro';
-import LeadForm from '@piano/ui/components/LeadForm.astro';
-import StatsBand from '../components/StatsBand.astro';
-import LogoWall from '../components/LogoWall.astro';
-import Testimonials from '../components/Testimonials.astro';
-import Faq from '@piano/ui/components/Faq.astro';
-import { septimLeadProofs } from '../config/leadProofs';
+// https://www.septim.cz/spolehlivy-pokladni-system (Solid Pixels), port 1:1 skriptem port-septim.py
+import Base from './../layouts/Base.astro';
 
-const segmenty = [
-  { icon: 'lucide:coffee', title: 'Kavárny a bistra', text: 'Jednoduchý start a nízké vstupní náklady s edicí Septim.Air.', href: '/reseni/kavarny-bistra-bary' },
-  { icon: 'lucide:utensils-crossed', title: 'Velké restaurace', text: 'Septim.4 na míru: od pokladny po finanční řízení provozu.', href: '/reseni/restaurace' },
-  { icon: 'lucide:network', title: 'Jídelny a řetězce', text: 'Centrální správa, sdílené receptury a přehledy napříč pobočkami.', href: '/reseni/jidelny' },
-];
-const mozek = [
-  { icon: 'lucide:bar-chart-3', title: 'Reporty pro manažery', text: 'Přehled o tržbách, nákladech i personálu: podklad pro rozhodování.', href: '/funkce/reporty-prehledy' },
-  { icon: 'lucide:award', title: 'Věrnostní program', text: 'Akce, kupóny a body, které vracejí hosty zpět k vám.', href: '/funkce/vernostni-system' },
-  { icon: 'lucide:chef-hat', title: 'Receptury', text: 'Přesné receptury a surovinová náročnost pod kontrolou.' },
-];
-const sklad = [
-  { icon: 'lucide:boxes', title: 'Evidence skladových zásob', text: 'Aktuální stav zásob v každém okamžiku.' },
-  { icon: 'lucide:file-input', title: 'Automatizovaný import dodacích listů', text: 'Dodací listy se do systému zapíší samy, bez ručního přepisování.' },
-  { icon: 'lucide:clipboard-check', title: 'Inventury a odpisy', text: 'Vyhodnocování inventur a odpisy ze skladu pro maximální nákladovou efektivitu.' },
-];
-const kroky = [
-  { icon: 'lucide:search', title: '1. Zjistíme vaše potřeby' },
-  { icon: 'lucide:file-text', title: '2. Dostanete nabídku' },
-  { icon: 'lucide:wrench', title: '3. Nainstalujeme systém a hardware' },
-  { icon: 'lucide:graduation-cap', title: '4. Proškolíme vás a váš personál' },
-  { icon: 'lucide:headset', title: '5. Jsme tu pro vás 24/7' },
-  { icon: 'lucide:refresh-cw', title: '6. Systém pravidelně aktualizujeme' },
-];
-const faqs = [
-  { q: 'V čem je Septim jiný než konkurence?', a: 'Konkurence často řeší jen základní vlastnosti pokladního systému. V opravdu šlapajícím provozu ale naši klienti oceňují pokročilou správu skladů, automatické naskladňování, správu cen, receptur a další drobnosti, které dělají z obyčejné restaurace výdělečný byznys.' },
-  { q: 'Kdy mohu začít Septim používat?', a: 'Prakticky ihned! Záleží, jak velký provoz máte, kolik pokladen budeme instalovat a jaké moduly potřebujete. Jiné je také startovat novou restauraci a jiné přecházet za běhu z jiného systému. Vše s vámi projde náš zkušený Septim konzultant.' },
-  { q: 'Jaký je první krok pro získání pokladního systému Septim?', a: 'Prvním krokem je dobrý plán! Zažádejte si o nabídku zdarma a my pro vás sestavíme dobře nastavený systém. Dobrý plán je pro dobře šlapající provoz základ úspěchu.' },
-];
 ---
-<Base title="Spolehlivý pokladní systém pro gastro | Septim"
-      description="Pokladní systém, na který se vždy spolehnete. Septim není jen pokladna, ale komplexní provozní systém pro restaurace, kavárny i hotely.">
-  <SiteHeader />
-  <main>
-    <Hero eyebrow="Pokladní a provozní systém" background="alt"
-          lead="Septim není jen pokladna, ale systém, který vašemu podniku vydělá peníze a dá přehled o tom, co se u vás děje."
-          usp={['Česká podpora 24/7', 'Manažerské funkce', 'Skladové hospodářství']}>
-      <Heading slot="title" as="h1" size="display">Pokladní systém, na který se můžete spolehnout. <em>Vždycky.</em></Heading>
-      <Fragment slot="actions">
-        <Button href="#poptavka">Chci nabídku zdarma</Button>
-        <Button href="/produkty/septim-4" variant="secondary">O systému Septim</Button>
-      </Fragment>
-    </Hero>
+<Base
+  title="Spolehlivý pokladní systém pro gastro | Septim"
+  description="Pokladní systém, na který se vždy spolehnete. Septim není jen pokladna, ale komplexní provozní systém pro restaurace, kavárny, bistra i hotely."
+  path="/spolehlivy-pokladni-system"
+  bodyClass="use-header-transparent use-menu-primary-uppercase use-menu-secondary-uppercase use-headings-link-plain search-panel-hide-submit-label search-panel-hide-close-label search-panel-hide-open-label use-menu-bar use-header-fixed use-header-fixed-mobile use-header-priority"
+  image="/files/nahled-asw-systems.jpg"
+>
+<div class="section height--low align--middle color--default section-width-boxed section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-card flexcard-size--normal flexcard-media-right valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><a class="image image-mask ratio-original" href="#jak-to-probiha" style="padding-bottom:56.73758865248227%"><img alt="Pokladní systém, na který se můžete spolehnout. Vždycky" decoding="async" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/spolehlivy-pokladni-system-mobilni-cisnik-tiskarna.webp" srcset="/files/r/720/spolehlivy-pokladni-system-mobilni-cisnik-tiskarna.webp 720w, /files/r/1280/spolehlivy-pokladni-system-mobilni-cisnik-tiskarna.webp 1280w, /files/r/1920/spolehlivy-pokladni-system-mobilni-cisnik-tiskarna.webp 1920w"/></a></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h1><span class="text-highlight">Pokladní systém</span>, na který se můžete spolehnout. Vždycky<span class="text-highlight">.</span></h1>
+<p class="text-large">Septim není jen pokladna, ale systém, který vašemu podniku vydělá peníze a dá přehled o tom, co se u vás děje.</p>
+</div><div class="image-btn"><a class="btn btn-primary" href="#jak-to-probiha"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">TO MĚ ZAJÍMÁ</span></a></div></div></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-20 grid-3-20"><div class="block block-spacer"><div><div><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div> <div class="col col-4-20 grid-5-20"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-vertical size-md align-center"><a class="flexcard-media" href="#reseni"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" src="/files/podpora-cesky.svg"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p><font color="#00adef"><span style="caret-color: rgb(0, 173, 239);"><b>ČESKÁ PODPORA 24/7 </b></span></font></p>
+</div></div></div></div></div></div></div></div> <div class="col col-9-20 grid-4-20"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-vertical size-md align-center"><a class="flexcard-media" href="#reseni"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" src="/files/funkce-uzivatele-a-prava.svg"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p><span class="text-highlight"><strong>MANAŽERSKÉ FUNKCE</strong></span></p>
+</div></div></div></div></div></div></div></div> <div class="col col-13-20 grid-5-20"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-vertical size-md align-center"><a class="flexcard-media" href="#reseni"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" src="/files/tip-pana-septima.svg"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p><span class="text-highlight"><strong>SKLADOVÉ HOSPODÁŘSTVÍ</strong></span></p>
+</div></div></div></div></div></div></div></div> <div class="col col-18-20 grid-3-20"><div class="block block-spacer"><div><div><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<div class="section height--low align--middle color--default section-width-boxed no-pb"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image no-pb" id="reseni"><div><div><div class="flexcard flexcard-card flexcard-size--normal flexcard-media-left valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><a class="image image-width-original" href="#mozek-provozu"><img alt="Septim je ideální pro malé, střední i ty největší" decoding="async" loading="lazy" src="/files/reseni-provozy.webp"/></a></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2>Septim je ideální pro malé, střední i ty největší</h2>
+<p class="text-large">Ať už provozujete jakýkoliv typ provozu, máme řešení přímo pro vás!</p>
+<p class="text-large"><strong>✅ Kavárny a bistra<br/>
+✅ Velké restaurace<br/>
+✅ Jídelny a řetězce</strong></p>
+</div><div class="image-btn"><a class="btn btn-default" href="#mozek-provozu"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">ZJISTIT VÍCE</span></a></div></div></div></div></div></div></div></div></div></div></div>
+<div class="section height--medium align--top color--inverse section-width-boxed section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Septim používá více než 2000 provozů</h2>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-gallery grid-sm-2"><div><div><div class="grid gallery-container" style="--gap:40px"><div class="gallery-item grid-col-6"><div class="image-wrapper"><a class="image image-mask ratio-square image-width-stretch" href="#testimonials"><img alt="Logo Turnovská pivnice" decoding="async" loading="lazy" src="/files/ref-turnovska-pivnice-white.svg"/></a></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><a class="image image-mask ratio-square image-width-stretch" href="#testimonials"><img alt="Logo Na Květnici" decoding="async" loading="lazy" src="/files/ref-na-kvetnici-white.svg"/></a></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><a class="image image-mask ratio-square image-width-stretch" href="#testimonials"><img alt="Logo Kolkovna" decoding="async" loading="lazy" src="/files/ref-kolkovna-white.svg"/></a></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><a class="image image-mask ratio-square image-width-stretch" href="#testimonials"><img alt="Logo Kavárna Modrý domeček" decoding="async" loading="lazy" src="/files/ref-kavarna-modry-domecek-white.svg"/></a></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><a class="image image-mask ratio-square image-width-stretch" href="#lead-form"><img alt="Logo Sisters bistro" decoding="async" loading="lazy" src="/files/ref-sisters-bistro-white.svg"/></a></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><a class="image image-mask ratio-square image-width-stretch" href="#testimonials"><img alt="Logo Field" decoding="async" loading="lazy" src="/files/ref-field-michelin-restaurant-white.svg"/></a></div></div></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(6, 3, 141)"></div></div>
+<div class="section height--low align--middle color--default section-width-boxed section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image offset-top no-edge-mobile block-image--light-blue mobile-order-reverse" id="mozek-provozu"><div><div><div class="flexcard flexcard-card flexcard-size--normal flexcard-media-right valign-center align-left flexcard-media--stretch"><div class="flexcard-media"><div class="image-wrapper"><a class="image image-mask ratio-original" href="#skladove-hospodarstvi" style="padding-bottom:59.02777777777778%"><img alt="Ostatní vám prodají jen pokladnu, Septim mozek celého provozu!" decoding="async" loading="lazy" sizes="(min-width:1390px) 50vw, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/spolehlivy-pokladni-system-audrey.webp" srcset="/files/r/720/spolehlivy-pokladni-system-audrey.webp 720w, /files/r/1280/spolehlivy-pokladni-system-audrey.webp 1280w, /files/r/1920/spolehlivy-pokladni-system-audrey.webp 1920w"/></a></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2>Ostatní vám prodají jen pokladnu, Septim mozek celého provozu!</h2>
+<p class="text-large">Jiní vám prodávají opravdu čistě jen pokladnu. Septim dodá mozek celému vašemu provozu. Septim vám bude vydělávat!</p>
+<p class="text-large"><strong>✅ Reporty pro manažery<br/>
+✅ Věrnostní program<br/>
+✅ Receptury</strong></p>
+</div><div class="image-btn"><a class="btn btn-default" href="#skladove-hospodarstvi"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">ZJISTIT VÍCE</span></a></div></div></div></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<div class="section height--low align--middle color--default section-width-boxed section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image" id="skladove-hospodarstvi"><div><div><div class="flexcard flexcard-card flexcard-size--normal flexcard-media-left valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><a class="image image-mask ratio-original" href="#jak-to-probiha" style="padding-bottom:64.16666666666667%"><img alt="Septim má skvěle propracované skladové hospodářství" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/skladove-hospodarstvi.webp" srcset="/files/r/720/skladove-hospodarstvi.webp 720w, /files/r/1280/skladove-hospodarstvi.webp 1280w, /files/r/1920/skladove-hospodarstvi.webp 1920w"/></a></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2>Septim má skvěle propracované skladové hospodářství</h2>
+<p class="text-large">Evidence dodacích listů, receptur, odpisy ze skladu i vyhodnocování inventur, to vše směřuje k cíli být nákladově co nejefektivnější.</p>
+<p class="text-large"><strong>✅ Evidence skladových zásob<br/>
+✅ Automatizovaný import dodacích listů<br/>
+✅ Inventury a odpisy</strong></p>
+</div><div class="image-btn"><a class="btn btn-default" href="#jak-to-probiha"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">ZJISTIT VÍCE</span></a></div></div></div></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<div class="section height--low align--middle color--default section-has-background"><div class="section-body"><div class="row-main"><div class="col col-3-12 grid-8-12"><div class="block block-inline"><h2 class="center">Integrace Septim s dalšími systémy</h2>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-gallery grid-sm-2"><div><div><div class="grid gallery-container" style="--gap:40px"><div class="gallery-item grid-col-6"><div class="image-wrapper"><a class="image image-mask ratio-square image-width-stretch" href="#nabidka-zdarma"><img alt="Logo Qerko" decoding="async" loading="lazy" src="/files/integrace-qerko.svg"/></a></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><a class="image image-mask ratio-square image-width-stretch" href="#nabidka-zdarma"><img alt="Logo Foodora" decoding="async" loading="lazy" src="/files/integrace-foodora.svg"/></a></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><a class="image image-mask ratio-square image-width-stretch" href="#nabidka-zdarma"><img alt="Logo Wolt" decoding="async" loading="lazy" src="/files/integrace-wolt.svg"/></a></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><a class="image image-mask ratio-square image-width-stretch" href="#nabidka-zdarma"><img alt="Logo Autset" decoding="async" loading="lazy" src="/files/integrace-autset.svg"/></a></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><a class="image image-mask ratio-square image-width-stretch" href="#nabidka-zdarma"><img alt="Logo Grason" decoding="async" loading="lazy" src="/files/integrace-grason.svg"/></a></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><a class="image image-mask ratio-square image-width-stretch" href="#nabidka-zdarma"><img alt="Logo Pecosta" decoding="async" loading="lazy" src="/files/integrace-pecosta.svg"/></a></div></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><div><div><hr class="divider divider--normal divider--align-left"/></div></div></div></div></div></div><div class="section-background" style="background-color:#fff"></div></div>
+<div class="section height--low align--middle color--default section-width-boxed" id="jak-to-probiha"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-4-12"><div class="block block-inline"><h2>Jak to u Septimu probíhá?</h2>
+</div> <div class="block block-inline"><ul>
+<li class="text-large"><span class="text-highlight"><strong>1)</strong> </span>Zjistíme vaše potřeby</li>
+<li class="text-large"><span class="text-highlight"><strong>2)</strong> </span>Dostanete nabídku</li>
+<li class="text-large"><span class="text-highlight"><strong>3)</strong> </span>Naistalujeme systém a hardware</li>
+<li class="text-large"><span class="text-highlight"><strong>4)</strong> </span>Proškolíme vás a váš personál</li>
+<li class="text-large"><span class="text-highlight"><strong>5)</strong> </span>Jsme tu pro vás 24/7</li>
+<li class="text-large"><span class="text-highlight"><strong>6)</strong> </span>Systém pravidelně aktualizujeme</li>
+</ul>
+</div> <div class="block block-button"><div><div><div class="left"><a class="btn btn-default" href="#nabidka-zdarma"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">NEZÁVAZNÁ NABÍDKA</span></a></div></div></div></div></div> <div class="col col-5-12 grid-8-12"><div class="block block-video"><div><div><div class="embed-container ratio-widescreen"><iframe allowfullscreen="" frameborder="0" loading="lazy" src="https://www.youtube.com/embed/QRVl99pWV-8" title="Externí video"></iframe></div></div></div></div></div></div></div></div>
+<div class="section height--medium align--middle color--default section-width-boxed section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Pojďte do toho s námi!</h2>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div><div><div class="block-spacer-element" style="--height:30px"></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-4-12"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-vertical size-md align-center"><a class="flexcard-media" href="#nabidka-zdarma"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/stabilita-dlouhodobost.svg"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p><span class="text-highlight"><strong>30 LET NA TRHU</strong></span></p>
+</div></div></div></div></div></div></div> <div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-vertical size-md align-center"><a class="flexcard-media" href="#nabidka-zdarma"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/septim-na-mape.svg"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p><span class="text-highlight"><strong>2000+ PROVOZŮ</strong></span></p>
+</div></div></div></div></div></div></div> <div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-vertical size-md align-center"><a class="flexcard-media" href="#nabidka-zdarma"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/podpora-cesky.svg"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p><span class="text-highlight"><strong>ČESKÁ PODPORA 24/7</strong></span></p>
+</div></div></div></div></div></div></div></div> <div class="col col-5-12 grid-4-12">
+<form action="/api/lead" autocomplete="off" class="block block-form" data-lead-form="nabidka-zdarma" id="nabidka-zdarma" method="post">
+<div class="row">
+<div class="col col-1-12 grid-12-12">
+<div class="field field-form_input_email" id="do-sveho-provozu">
+<div class="field-wrapper">
+<label for="field-vas-e-mail" id="label-vas-e-mail">
+            Váš e-mail <span>*</span>
+</label>
+<input class="field-control" id="field-vas-e-mail" name="nabidka-zdarma[vas-e-mail]" required="" type="email" value=""/>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col col-1-12 grid-12-12">
+<div class="field field-form_input_tel" id="field-wrapper-vas-telefon">
+<div class="field-wrapper">
+<label for="field-vas-telefon" id="label-vas-telefon">
+            Váš telefon
+          </label>
+<input class="field-control" id="field-vas-telefon" name="nabidka-zdarma[vas-telefon]" type="tel" value=""/>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col col-1-12 grid-12-12">
+<div class="field field-form_input_text" id="field-wrapper-co-byste-ve-svem-provozu-radi-zlepsili">
+<div class="field-wrapper">
+<label for="field-co-byste-ve-svem-provozu-radi-zlepsili" id="label-co-byste-ve-svem-provozu-radi-zlepsili">
+            Co byste ve svém provozu rádi zlepšili?
+          </label>
+<input class="field-control" id="field-co-byste-ve-svem-provozu-radi-zlepsili" name="nabidka-zdarma[co-byste-ve-svem-provozu-radi-zlepsili]" type="text" value=""/>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col col-1-12 grid-12-12">
+<div class="block block-inline"><p>Vaše osobní údaje budou zpracovány podle <a href="/informace-o-zpracovani-osobnich-udaju-formular">Podmínek zpracování osobních údajů</a>.</p>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col col-1-12 grid-12-12">
+<div class="field field-form_button" id="field-wrapper-mam-zajem-o-nezavaznou-nabidku">
+<div class="field-wrapper">
+<div class="center">
+<button class="btn btn-l btn-primary" id="field-mam-zajem-o-nezavaznou-nabidku" name="nabidka-zdarma[mam-zajem-o-nezavaznou-nabidku]" type="submit" value="submit"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">MÁM ZÁJEM O NEZÁVAZNOU NABÍDKU</span></button>
+</div>
+</div>
+</div>
+</div>
+</div>
 
-    <USPGrid eyebrow="Pro koho" title="Septim je ideální pro malé, střední i ty největší" lead="Ať už provozujete jakýkoliv typ provozu, máme řešení přímo pro vás." items={segmenty} background="default" space="lg" minItemWidth="260px" />
-    <LogoWall label="Septim používá více než 2 000 provozů" background="alt" />
-    <USPGrid eyebrow="Víc než pokladna" title="Ostatní vám prodají jen pokladnu. Septim je mozek celého provozu!" lead="Jiní vám prodají opravdu čistě jen pokladnu. Septim dodá mozek celému vašemu provozu a bude vám vydělávat." items={mozek} background="default" space="lg" minItemWidth="260px" />
-    <USPGrid eyebrow="Skladové hospodářství" title="Skvěle propracované skladové hospodářství" lead="Evidence dodacích listů, receptur, odpisy ze skladu i vyhodnocování inventur: vše směřuje k cíli být nákladově co nejefektivnější." items={sklad} background="alt" space="lg" minItemWidth="260px" />
-    <USPGrid eyebrow="Jak to probíhá" title="Jak to u Septimu probíhá?" items={kroky} background="default" space="lg" minItemWidth="220px" />
-    <StatsBand />
-    <Testimonials title="Co o nás říkají klienti?" background="default" />
-    <Faq items={faqs} title="Nejčastější dotazy" background="alt" />
-    <LeadForm proofs={septimLeadProofs} id="poptavka" variant="full" background="default"
-              title="Pojďte do toho s námi!"
-              lead="Nechte nám kontakt, připravíme vám nabídku zdarma pro provoz vaší velikosti." />
-  </main>
-  <SiteFooter />
+<input name="form_variant" type="hidden" value="nabidka-zdarma"/><input name="page" type="hidden" value=""/><div aria-hidden="true" class="visually-hidden"><label>Web <input autocomplete="off" name="website" tabindex="-1" type="text"/></label></div></form>
+</div> <div class="col col-9-12 grid-4-12"><div class="block block-spacer"><div><div><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(235, 252, 255)"></div></div>
+<div class="section height--medium align--middle color--default col-gaps-bigger section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Co o nás říkají klienti?</h2>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-4-12"><div class="block block-quote"><div><div><div class="has-icon left block-quote-figure"><div class="block-quote-image"><div class="image-wrapper"><div class="image image-mask ratio-square shape-circle"><img alt="Radek Kašpárek" decoding="async" loading="lazy" sizes="auto" src="/files/r/1280/ref-kasparek.webp" srcset="/files/r/720/ref-kasparek.webp 720w, /files/r/1280/ref-kasparek.webp 1280w, /files/r/1920/ref-kasparek.webp 1920w"/></div></div></div><i class="icon icon-quote-right"></i><blockquote class="block-quote-text"><b>Stabilita a efektivita</b><br/>
+Provozní systém Septim je zásadní součástí restaurace FIELD. Díky němu mám jistotu, že celý provoz běží stabilně a efektivně.</blockquote><div class="block-quote-author"><span class="quote-decor">–</span> Radek Kašpárek <span class="quote-decor">–</span><span class="block-quote-info">Michelinský šéfkuchař</span></div></div></div></div></div></div> <div class="col col-5-12 grid-4-12"><div class="block block-quote"><div><div><div class="has-icon left block-quote-figure"><div class="block-quote-image"><div class="image-wrapper"><div class="image image-mask ratio-square shape-circle"><img alt="Zuzana Dudáková" decoding="async" loading="lazy" sizes="auto" src="/files/r/1280/zuzana-dudakova.webp" srcset="/files/r/720/zuzana-dudakova.webp 720w, /files/r/1280/zuzana-dudakova.webp 1280w, /files/r/1920/zuzana-dudakova.webp 1920w"/></div></div></div><i class="icon icon-quote-right"></i><blockquote class="block-quote-text"><b>Spolehlivý a srozumitelný systém</b><br/>
+S pokladním systémem Septim jsme velice spokojeni. Je spolehlivý, srozumitelný a zaměstnanci s ním pracují rádi. V případě jakýchkoliv nejasností jsou technici vždy ochotni telefonicky poradit a zkušeně navést.</blockquote><div class="block-quote-author"><span class="quote-decor">–</span> Zuzana Dudáková <span class="quote-decor">–</span><span class="block-quote-info">Kavárna Modrý domeček</span></div></div></div></div></div></div> <div class="col col-9-12 grid-4-12"><div class="block block-quote"><div><div><div class="has-icon left block-quote-figure"><div class="block-quote-image"><div class="image-wrapper"><div class="image image-mask ratio-square shape-circle"><img alt="Michal Tůma" decoding="async" loading="lazy" sizes="auto" src="/files/r/1280/michal-tuma.webp" srcset="/files/r/720/michal-tuma.webp 720w, /files/r/1280/michal-tuma.webp 1280w, /files/r/1920/michal-tuma.webp 1920w"/></div></div></div><i class="icon icon-quote-right"></i><blockquote class="block-quote-text"><b>Celá KOLKOVNA běží přes Septim</b><br/>
+Na začátku jsme dali do systému jen jeden vstup a od té doby si Septim vše počítá a hlídá sám. Jsme spolu od roku 2001.</blockquote><div class="block-quote-author"><span class="quote-decor">–</span> Michal Tůma <span class="quote-decor">–</span><span class="block-quote-info">KOLKOVNA Restaurants</span></div></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<div class="section height--low align--middle color--default section-width-narrow section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Nejčastější dotazy</h2>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><div><div><hr class="divider divider--normal divider--align-left"/></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p class="text-large"><span class="text-highlight"><b>V čem je Septim jiný než konkurence?</b></span></p>
+</div> <div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-horizontal valign-middle size-sm"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/ico-check-barva.svg"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p>Konkurence často řeší jen základní vlastnosti pokladního systému. Ale v případě používání systému v opravdu šlapajícím provozu oceňují naši klienti pokročilou správu skladů, automatické naskladňování, správu cen, receptur a dalších drobností, které dělají z obyčejné restaurace výdělečný byznys.</p>
+</div></div></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><div><div><hr class="divider divider--normal divider--align-left"/></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p class="text-large"><span class="text-highlight"><b>Kdy mohu začít Septim používat?</b></span></p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-horizontal valign-middle size-sm"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/ico-check-barva.svg"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p>Prakticky ihned! Záleží jak velký provoz máte, kolik pokladen budeme instalovat, jaké moduly potřebujete. Také je jiné startovat novou restauraci a přecházet za běhu z jiného systému. Vše s vámi projde náš zkušený Septim konzultant.</p>
+</div></div></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><div><div><hr class="divider divider--normal divider--align-left"/></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p class="text-large"><span class="text-highlight"><b>Jaký je první krok pro získání pokladního systému Septim?</b></span></p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-horizontal valign-middle size-sm"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/ico-check-barva.svg"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p>Prvním krokem je dobrý plán! <a href="#nabidka-zdarma">Zažádejte si o nabídku ZDARMA</a> a my pro vás sestavíme dobře nastavený systém! Dobrý plán je pro dobře šlapající provoz totiž základ úspěchu!</p>
+</div></div></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><div><div><hr class="divider divider--normal divider--align-left"/></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div><div><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div></div></div><div class="section-background" style="background-color:#fff"></div></div>
 </Base>
