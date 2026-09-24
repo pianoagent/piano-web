@@ -1,0 +1,15 @@
+---
+/* AnnBar: sekce landing page Hugo, port 1:1 z hugopos.eu. Texty jsou v src/i18n/landing.ts. */
+import type { Lang } from '../../i18n/landing';
+import { dict } from '../../i18n/landing';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = dict[lang];
+---
+<div class="annbar" id="annbar">
+  <div class="container annbar-in">
+    <span class="annbar-txt" set:html={t['annbar-txt']}></span>
+    <a href="#pricing" class="annbar-cta" set:html={t['annbar-cta']}></a>
+  </div>
+  <button class="annbar-close" type="button" aria-label="Close">×</button>
+</div>

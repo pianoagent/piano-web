@@ -1,0 +1,20 @@
+---
+/* AbBar: sekce landing page Hugo, port 1:1 z hugopos.eu. Texty jsou v src/i18n/landing.ts. */
+import type { Lang } from '../../i18n/landing';
+import { dict } from '../../i18n/landing';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = dict[lang];
+---
+<div class="abbar" id="abbar">
+  <div class="abbar-in">
+    <span class="abbar-label" set:html={t['abbar-label']}></span>
+    <button class="ab-arrow" type="button" data-dir="-1" aria-label="Previous">‹</button>
+    <div class="ab-seg" id="abSeg">
+      <button class="ab-opt" type="button" data-v="micro" set:html={t['ab-opt-0']}></button>
+      <button class="ab-opt is-on" type="button" data-v="small" set:html={t['ab-opt-1']}></button>
+      <button class="ab-opt" type="button" data-v="mid" set:html={t['ab-opt-2']}></button>
+    </div>
+    <button class="ab-arrow" type="button" data-dir="1" aria-label="Next">›</button>
+  </div>
+</div>

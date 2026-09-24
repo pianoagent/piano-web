@@ -1,0 +1,46 @@
+---
+/* Faq: sekce landing page Hugo, port 1:1 z hugopos.eu. Texty jsou v src/i18n/landing.ts. */
+import type { Lang } from '../../i18n/landing';
+import { dict } from '../../i18n/landing';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = dict[lang];
+---
+<section class="faq">
+  <div class="container">
+    <div class="section-head" style="margin:0 auto 28px; text-align:center;">
+      <span class="eyebrow" set:html={t['faq-section-head-eyebrow']}></span>
+      <h2 set:html={t['faq-section-head-h2']}></h2>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item" open="">
+        <summary><span class="q" set:html={t['faq-item-summary-q-0']}></span><span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="12" y1="6" x2="12" y2="18"></line><line x1="6" y1="12" x2="18" y2="12"></line></svg></span></summary>
+        <div class="a" set:html={t['faq-item-a-0']}></div>
+      </details>
+      <details class="faq-item" id="mif">
+        <summary><span class="q" set:html={t['faq-item-summary-q-1']}></span><span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="12" y1="6" x2="12" y2="18"></line><line x1="6" y1="12" x2="18" y2="12"></line></svg></span></summary>
+        <div class="a" set:html={t['faq-item-a-1']}></div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="q" set:html={t['faq-item-summary-q-2']}></span><span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="12" y1="6" x2="12" y2="18"></line><line x1="6" y1="12" x2="18" y2="12"></line></svg></span></summary>
+        <div class="a" set:html={t['faq-item-a-2']}></div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="q" set:html={t['faq-item-summary-q-3']}></span><span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="12" y1="6" x2="12" y2="18"></line><line x1="6" y1="12" x2="18" y2="12"></line></svg></span></summary>
+        <div class="a" set:html={t['faq-item-a-3']}></div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="q" set:html={t['faq-item-summary-q-4']}></span><span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="12" y1="6" x2="12" y2="18"></line><line x1="6" y1="12" x2="18" y2="12"></line></svg></span></summary>
+        <div class="a" set:html={t['faq-item-a-4']}></div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="q" set:html={t['faq-item-summary-q-5']}></span><span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="12" y1="6" x2="12" y2="18"></line><line x1="6" y1="12" x2="18" y2="12"></line></svg></span></summary>
+        <div class="a" set:html={t['faq-item-a-5']}></div>
+      </details>
+      <details class="faq-item">
+        <summary><span class="q" set:html={t['faq-item-summary-q-6']}></span><span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="12" y1="6" x2="12" y2="18"></line><line x1="6" y1="12" x2="18" y2="12"></line></svg></span></summary>
+        <div class="a" set:html={t['faq-item-a-6']}></div>
+      </details>
+    </div>
+  </div>
+</section>

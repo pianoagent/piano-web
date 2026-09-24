@@ -4,9 +4,9 @@ import sitemap from '@astrojs/sitemap';
 import icon from 'astro-icon';
 
 export default defineConfig({
-  site: 'https://hugo.cz',
+  site: 'https://hugopos.eu',
   integrations: [
-    sitemap(),
+    sitemap({ filter: (page) => !page.includes('/dekujeme') }),
     icon({ iconDir: 'src/icons' }),
   ],
 });

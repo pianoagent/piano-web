@@ -1,14 +1,16 @@
 # Hugo
 
-> Hugo je moderní pokladna pro kavárny, bary a restaurace. Objednávky, platby kartou, spropitné i účtenky v jedné appce na telefonu, co už máš. Připraveno na EET 2027.
+> Hugo je pokladna pro kavárny, bary a restaurace. Objednávky, menu, spropitné i účtenky v jedné appce na zařízení, které už máš. Kartu přijmeš na Androidu nebo na terminálu Hugo. Spustíš ji za 5 minut. Web: https://hugopos.eu (EN: https://hugopos.eu/en/).
 
 ## O Hugovi
 
-- Appka je zdarma, když platby kartou bereš přes Hugo. Platíš jen malé % z platby.
-- Tap to Pay na iPhonu, NFC na Androidu. Žádný proprietární hardware, žádná smlouva.
-- Od stažení k první tržbě za 5 minut. Menu načteš z fotky, hlasem nebo z účtenek.
-- Piano Brain: vestavěná AI radí, co naskladnit, kdy přidat lidi a proč byl slabý den.
-- Migrace z Dotykačky nebo Storyous: menu přeneseme za tebe, běh paralelně bez výpadku.
+- Jeden tarif: 190 Kč měsíčně bez DPH místo 990 Kč, když platby kartou přijímáš přes Hugo. K tomu 0,9 % + 1 Kč (MIF++) z platby kartou.
+- Prvních 14 dní zdarma, bez smlouvy a výpovědní lhůty. Peníze z karet na účtu do 2 dnů.
+- Běží na iPhonu, Androidu, tabletu i webu. Terminál Hugo all-in-one stojí 4 900 Kč bez DPH jednorázově.
+- Menu stačí vyfotit, změny se zadávají vlastními slovy. DPH, účtenky a EET 2.0 řeší Hugo automaticky.
+- Vestavěná inteligence Piano Brain radí, co uvařit, kdo má přijít na směnu a co objednat.
+- Přechod z Dotykačky nebo Storyous: menu přeneseme za tebe, obě pokladny můžou běžet vedle sebe.
+- Kontakt: hugo@piano.cz. Obchodní podmínky: https://hugopos.eu/vseobecne-obchodni-podminky/
 
 ## Piano ekosystém
 

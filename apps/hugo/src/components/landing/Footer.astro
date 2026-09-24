@@ -1,0 +1,51 @@
+---
+/* Footer: sekce landing page Hugo, port 1:1 z hugopos.eu. Texty jsou v src/i18n/landing.ts. */
+import type { Lang } from '../../i18n/landing';
+import { dict } from '../../i18n/landing';
+interface Props {
+  lang: Lang;
+  /** prefix kotev mimo landing page (např. '/' na děkovací stránce) */
+  anchorBase?: string;
+}
+const { lang, anchorBase = '' } = Astro.props;
+const t = dict[lang];
+const home = lang === 'en' ? '/en/' : '/';
+const otherHome = lang === 'en' ? '/' : '/en/';
+---
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="#" class="brand">
+          <img src="/assets/hugo-icon.svg" alt="">
+          <span>Hugo</span>
+        </a>
+        <p set:html={t['foot-brand-p']}></p>
+        <a href="mailto:hugo@piano.cz" class="foot-mail">hugo@piano.cz</a>
+      </div>
+      <div class="foot-col">
+        <h5 set:html={t['foot-col-h5-0']}></h5>
+        <a href={`${anchorBase}#product`} set:html={t['foot-grid-div-nth-child-2-a-0']}></a>
+        <a href={`${anchorBase}#brain`} set:html={t['foot-grid-div-nth-child-2-a-1']}></a>
+        <a href={`${anchorBase}#setup`} set:html={t['foot-grid-div-nth-child-2-a-2']}></a>
+        <a href={`${anchorBase}#pricing`} set:html={t['foot-grid-div-nth-child-2-a-3']}></a>
+      </div>
+      <div class="foot-col">
+        <h5 set:html={t['foot-col-h5-1']}></h5>
+        <a href="mailto:hugo@piano.cz" set:html={t['foot-grid-div-nth-child-3-a-0']}></a>
+        <a href="https://status.hugopos.eu" target="_blank" rel="noopener" set:html={t['foot-grid-div-nth-child-3-a-1']}></a>
+        <a href="https://admin.hugopos.eu/login" target="_blank" rel="noopener" set:html={t['foot-grid-div-nth-child-3-a-2']}></a>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <div set:html={t['foot-bottom-div-first-child']}></div>
+      <div class="legal">
+        <a href="/vseobecne-obchodni-podminky/" set:html={t['foot-bottom-legal-a-0']}></a>
+        <a href="mailto:hugo@piano.cz" set:html={t['foot-bottom-legal-a-1']}></a>
+        <a href="https://piano.cz/gdpr/" target="_blank" rel="noopener" set:html={t['foot-bottom-legal-a-2']}></a>
+        <a href={otherHome} set:html={t['foot-bottom-legal-a-3']} data-lang-switch="1"></a>
+      </div>
+    </div>
+  </div>
+</footer>

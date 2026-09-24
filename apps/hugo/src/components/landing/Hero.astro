@@ -1,0 +1,40 @@
+---
+/* Hero: sekce landing page Hugo, port 1:1 z hugopos.eu. Texty jsou v src/i18n/landing.ts. */
+import type { Lang } from '../../i18n/landing';
+import { dict } from '../../i18n/landing';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = dict[lang];
+---
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <div class="hero-eyebrow-row">
+        <button class="eb-arrow" type="button" data-dir="-1" aria-label="Předchozí verze">‹</button>
+        <span class="hero-eyebrow" set:html={t['hero-eyebrow']}></span>
+        <button class="eb-arrow" type="button" data-dir="1" aria-label="Další verze">›</button>
+      </div>
+      <h1 class="display" set:html={t['hero-h1']}></h1>
+      <p class="lead" set:html={t['hero-p-lead']}></p>
+      <div class="hero-ctas">
+        <a href="https://admin.hugopos.eu/login?start=1" target="_blank" rel="noopener" class="btn btn-primary btn-lg" set:html={t['hero-ctas-btn-primary']}></a>
+        <a href="#product" class="btn btn-ghost btn-lg" set:html={t['hero-ctas-btn-ghost']}></a>
+      </div>
+      <div class="hero-meta">
+        <span class="rr" set:html={t['hero-meta-span-0']}></span>
+        <span class="rr" set:html={t['hero-meta-span-1']}></span>
+        <span class="rr" set:html={t['hero-meta-span-2']}></span>
+      </div>
+      <div class="guarantee">
+        <span class="gi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.4 9.4 8 10 4.6-.6 8-5 8-10V6l-8-4z"></path><polyline points="9 12 11 14 15 10"></polyline></svg></span>
+        <p class="guarantee-txt" set:html={t['guarantee-txt-0']}></p>
+      </div>
+    </div>
+
+    <div class="hero-stage">
+      <div class="blob"></div>
+
+      <img class="hero-terminal-image" src="/assets/terminal-hugo-prazdroj.webp" alt={lang === 'en' ? 'Piano Terminál with the Hugo POS and a card payment' : 'Piano Terminál s pokladnou Hugo a platbou kartou'}>
+    </div>
+  </div>
+</section>

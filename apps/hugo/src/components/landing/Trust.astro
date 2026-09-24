@@ -1,0 +1,17 @@
+---
+/* Trust: sekce landing page Hugo, port 1:1 z hugopos.eu. Texty jsou v src/i18n/landing.ts. */
+import type { Lang } from '../../i18n/landing';
+import { dict } from '../../i18n/landing';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = dict[lang];
+---
+<div class="trust">
+  <div class="container">
+    <div class="trust-row">
+      <span class="trust-chip" set:html={t['trust-chip-0']}></span>
+      <span class="trust-chip" set:html={t['trust-chip-1']}></span>
+      <span class="trust-chip" set:html={t['trust-chip-2']}></span>
+    </div>
+  </div>
+</div>

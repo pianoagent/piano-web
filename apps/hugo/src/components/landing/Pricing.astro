@@ -1,0 +1,94 @@
+---
+/* Pricing: sekce landing page Hugo, port 1:1 z hugopos.eu. Texty jsou v src/i18n/landing.ts. */
+import type { Lang } from '../../i18n/landing';
+import { dict } from '../../i18n/landing';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = dict[lang];
+---
+<section id="pricing">
+  <div class="pricing-wrap">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow" set:html={t['pricing-section-head-eyebrow']}></span>
+        <h2 set:html={t['pricing-section-head-h2']}></h2>
+        <p class="lead" set:html={t['pricing-section-head-p-lead']}></p>
+        <div class="guarantee on-dark">
+          <span class="gi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.4 9.4 8 10 4.6-.6 8-5 8-10V6l-8-4z"></path><polyline points="9 12 11 14 15 10"></polyline></svg></span>
+          <p class="guarantee-txt" set:html={t['guarantee-txt-1']}></p>
+        </div>
+      </div>
+
+      <ul class="price-points">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> <span set:html={t['price-points-li-span-0']}></span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> <span set:html={t['price-points-li-span-1']}></span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> <span set:html={t['price-points-li-span-2']}></span></li>
+      </ul>
+
+      <div class="config">
+        <!-- MAIN CARD: two columns, what you get left, price right -->
+        <div class="config-card">
+          <div class="config-controls">
+            <div class="ctrl">
+              <div class="ctrl-label" set:html={t['config-controls-ctrl-nth-child-1-ctrl-label']}></div>
+              <div class="fee-rows">
+                <div class="fee-row">
+                  <span class="fr-k" set:html={t['fee-row-fr-k-0']}></span>
+                  <span class="fr-v">0,9 % + 1 Kč</span>
+                </div>
+              </div>
+              <p class="pay-note" set:html={t['pay-note']}></p>
+            </div>
+
+            <div class="ctrl">
+              <div class="ctrl-label" set:html={t['config-controls-ctrl-nth-child-2-ctrl-label']}></div>
+              <div class="devopts">
+                <div class="devopt">
+                  <div class="do-h"><span class="do-t" set:html={t['devopt-do-t-0']}></span><span class="do-p" set:html={t['devopt-do-p-0']}></span></div>
+                  <p class="do-s" set:html={t['devopt-do-s-0']}></p>
+                </div>
+                <div class="devopt">
+                  <div class="do-h"><span class="do-t" set:html={t['devopt-do-t-1']}></span><span class="do-p" set:html={t['devopt-do-p-1']}></span></div>
+                  <p class="do-s" set:html={t['devopt-do-s-1']}></p>
+                  <span class="do-tag" set:html={t['devopt-do-tag']}></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PRICE + FEATURES (right) -->
+          <aside class="summary">
+            <div class="sum-head">
+              <div>
+                <div class="sum-tier-label">Hugo</div>
+                <div class="sum-tier-meta" set:html={t['sum-tier-meta']}></div>
+              </div>
+              <div class="sum-badge" set:html={t['sum-badge']}></div>
+            </div>
+
+            <div class="sum-price">
+              <span class="sum-strike">990 Kč</span>
+              <span class="sum-v">190</span>
+              <span class="sum-u" set:html={t['sum-u']}></span>
+            </div>
+            <div class="sum-plus" set:html={t['sum-plus']}></div>
+
+            <ul class="sum-feat">
+              <li class="inc" set:html={t['sum-feat-li-0']}></li>
+              <li class="inc" set:html={t['sum-feat-li-1']}></li>
+              <li class="inc" set:html={t['sum-feat-li-2']}></li>
+              <li class="inc" set:html={t['sum-feat-li-3']}></li>
+              <li class="inc" set:html={t['sum-feat-li-4']}></li>
+              <li class="inc" set:html={t['sum-feat-li-5']}></li>
+              <li class="inc" set:html={t['sum-feat-li-6']}></li>
+              <li class="inc" set:html={t['sum-feat-li-7']}></li>
+            </ul>
+
+            <a href="https://admin.hugopos.eu/login?start=1" target="_blank" rel="noopener" class="btn btn-primary" style="width:100%;" set:html={t['summary-btn-btn-primary']}></a>
+            <div class="sum-fine" set:html={t['sum-fine']}></div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

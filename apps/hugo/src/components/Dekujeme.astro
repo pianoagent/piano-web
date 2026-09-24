@@ -1,0 +1,47 @@
+---
+/**
+ * Dekujeme: děkovací stránka po odeslání formuláře „Ozvi se mi".
+ * Slouží i jako konverze v GTM (pageview /dekujeme), stejně jako na ostatních webech Piana.
+ * Texty vychází z formuláře živého hugopos.eu.
+ */
+import '../styles/hugo.css';
+import type { Lang } from '../i18n/landing';
+import { dict } from '../i18n/landing';
+import Nav from './landing/Nav.astro';
+import Footer from './landing/Footer.astro';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = dict[lang];
+const copy = {
+  cs: {
+    title: 'Díky, brzy se ti ozveme.',
+    text: 'Ozve se ti člověk z Hugo týmu. Chceš začít rovnou? Stáhni appku.',
+    back: 'Zpět na hlavní stránku',
+  },
+  en: {
+    title: 'Thanks, we will be in touch soon.',
+    text: 'A person from the Hugo team will reach out. Want to start right away? Download the app.',
+    back: 'Back to the homepage',
+  },
+}[lang];
+---
+
+<Nav lang={lang} anchorBase={lang === 'en' ? '/en/' : '/'} />
+<section class="final">
+  <div class="container">
+    <div class="final-card">
+      <h1 class="display">{copy.title}</h1>
+      <p>{copy.text}</p>
+      <div class="final-ctas">
+        <a href="https://apps.apple.com/cz/app/hugo-pos/id6766202332" target="_blank" rel="noopener" class="btn btn-dark btn-lg" set:html={t['final-ctas-a-0']}></a>
+        <a href="https://play.google.com/store/apps/details?id=com.piano.hugo" target="_blank" rel="noopener" class="btn btn-dark btn-lg" set:html={t['final-ctas-a-1']}></a>
+      </div>
+      <div class="final-fine">
+        <a href={lang === 'en' ? '/en/' : '/'} style="display:inline-block;padding:12px 0">{copy.back}</a>
+      </div>
+    </div>
+  </div>
+</section>
+<Footer lang={lang} anchorBase={lang === 'en' ? '/en/' : '/'} />
+
+<script is:inline src="/js/hugo.js"></script>

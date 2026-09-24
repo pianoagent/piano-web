@@ -1,0 +1,38 @@
+---
+/* Nav: sekce landing page Hugo, port 1:1 z hugopos.eu. Texty jsou v src/i18n/landing.ts. */
+import type { Lang } from '../../i18n/landing';
+import { dict } from '../../i18n/landing';
+interface Props {
+  lang: Lang;
+  /** prefix kotev mimo landing page (např. '/' na děkovací stránce) */
+  anchorBase?: string;
+}
+const { lang, anchorBase = '' } = Astro.props;
+const t = dict[lang];
+const home = lang === 'en' ? '/en/' : '/';
+const otherHome = lang === 'en' ? '/' : '/en/';
+---
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href={home} class="brand">
+      <img src="/assets/hugo-icon.svg" alt="Hugo">
+      <span>Hugo</span>
+    </a>
+    <nav class="nav-links">
+      <a href={`${anchorBase}#product`} set:html={t['nav-links-a-0']}></a>
+      <a href={`${anchorBase}#brain`} set:html={t['nav-links-a-1']}></a>
+      <a href={`${anchorBase}#setup`} set:html={t['nav-links-a-2']}></a>
+      <a href={`${anchorBase}#vs`} set:html={t['nav-links-a-3']}></a>
+      <a href={`${anchorBase}#pricing`} set:html={t['nav-links-a-4']}></a>
+      <a href="https://hugopos.eu/eshop/" set:html={t['nav-links-a-5']}></a>
+      <a href="#" set:html={t['nav-links-a-6']}></a>
+    </nav>
+    <div class="nav-cta">
+      <div class="lang" id="langToggle">
+        <button type="button" data-lang="cs" class={lang === 'cs' ? 'is-on' : undefined}>CZ</button>
+        <button type="button" data-lang="en" class={lang === 'en' ? 'is-on' : undefined}>EN</button>
+      </div>
+      <a href="https://admin.hugopos.eu/login?start=1" target="_blank" rel="noopener" class="btn btn-primary" set:html={t['nav-cta-btn-btn-primary']}></a>
+    </div>
+  </div>
+</header>

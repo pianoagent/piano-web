@@ -1,0 +1,43 @@
+---
+/* Switch: sekce landing page Hugo, port 1:1 z hugopos.eu. Texty jsou v src/i18n/landing.ts. */
+import type { Lang } from '../../i18n/landing';
+import { dict } from '../../i18n/landing';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = dict[lang];
+---
+<section class="switch">
+  <div class="container">
+    <div class="switch-card">
+      <div>
+        <span class="eyebrow" set:html={t['switch-eyebrow']}></span>
+        <h2 set:html={t['switch-h2']}></h2>
+        <p class="lead" set:html={t['switch-p-lead']}></p>
+        <a href="mailto:hugo@piano.cz" class="btn btn-dark btn-lg" set:html={t['switch-btn-dark']}></a>
+      </div>
+      <div class="switch-points">
+        <div class="switch-point">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg></span>
+          <div>
+            <h4 set:html={t['switch-point-h4-0']}></h4>
+            <p set:html={t['switch-point-p-0']}></p>
+          </div>
+        </div>
+        <div class="switch-point">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="9" height="13" rx="2"></rect><rect x="13" y="4" width="9" height="16" rx="2"></rect></svg></span>
+          <div>
+            <h4 set:html={t['switch-point-h4-1']}></h4>
+            <p set:html={t['switch-point-p-1']}></p>
+          </div>
+        </div>
+        <div class="switch-point">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path></svg></span>
+          <div>
+            <h4 set:html={t['switch-point-h4-2']}></h4>
+            <p set:html={t['switch-point-p-2']}></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

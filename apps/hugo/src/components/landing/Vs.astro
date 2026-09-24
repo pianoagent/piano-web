@@ -1,0 +1,31 @@
+---
+/* Vs: sekce landing page Hugo, port 1:1 z hugopos.eu. Texty jsou v src/i18n/landing.ts. */
+import type { Lang } from '../../i18n/landing';
+import { dict } from '../../i18n/landing';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = dict[lang];
+---
+<section class="vs" id="vs">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow" set:html={t['vs-section-head-eyebrow']}></span>
+      <h2 set:html={t['vs-section-head-h2']}></h2>
+      <p class="lead" set:html={t['vs-section-head-p-lead']}></p>
+    </div>
+    <div class="vs-board" role="table" aria-label="Hugo compared with a traditional POS">
+      <div class="vs-head" role="row"><span role="columnheader" set:html={t['vs-head-span-0']}></span><span role="columnheader" set:html={t['vs-head-span-1']}></span><span role="columnheader" set:html={t['vs-head-span-2']}></span></div>
+      <div class="vs-row" role="row"><span class="vs-k" role="cell" set:html={t['vs-row-vs-k-0']}></span><span class="vs-old" role="cell" set:html={t['vs-row-vs-old-0']}></span><span class="vs-new" role="cell" set:html={t['vs-row-vs-new-0']}></span></div>
+      <div class="vs-row" role="row"><span class="vs-k" role="cell" set:html={t['vs-row-vs-k-1']}></span><span class="vs-old" role="cell" set:html={t['vs-row-vs-old-1']}></span><span class="vs-new" role="cell" set:html={t['vs-row-vs-new-1']}></span></div>
+      <div class="vs-row" role="row"><span class="vs-k" role="cell" set:html={t['vs-row-vs-k-2']}></span><span class="vs-old" role="cell" set:html={t['vs-row-vs-old-2']}></span><span class="vs-new" role="cell" set:html={t['vs-row-vs-new-2']}></span></div>
+      <div class="vs-row" role="row"><span class="vs-k" role="cell" set:html={t['vs-row-vs-k-3']}></span><span class="vs-old" role="cell" set:html={t['vs-row-vs-old-3']}></span><span class="vs-new" role="cell" set:html={t['vs-row-vs-new-3']}></span></div>
+      <div class="vs-row" role="row"><span class="vs-k" role="cell" set:html={t['vs-row-vs-k-4']}></span><span class="vs-old" role="cell" set:html={t['vs-row-vs-old-4']}></span><span class="vs-new" role="cell" set:html={t['vs-row-vs-new-4']}></span></div>
+      <div class="vs-row" role="row"><span class="vs-k" role="cell" set:html={t['vs-row-vs-k-5']}></span><span class="vs-old" role="cell" set:html={t['vs-row-vs-old-5']}></span><span class="vs-new" role="cell" set:html={t['vs-row-vs-new-5']}></span></div>
+      <div class="vs-row" role="row"><span class="vs-k" role="cell" set:html={t['vs-row-vs-k-6']}></span><span class="vs-old" role="cell" set:html={t['vs-row-vs-old-6']}></span><span class="vs-new" role="cell" set:html={t['vs-row-vs-new-6']}></span></div>
+    </div>
+    <div class="vs-foot">
+      <p set:html={t['vs-foot-p']}></p>
+      <a href="https://admin.hugopos.eu/login?start=1" target="_blank" rel="noopener" class="btn btn-primary btn-lg" set:html={t['vs-foot-btn']}></a>
+    </div>
+  </div>
+</section>
