@@ -9,7 +9,8 @@ import cloudflare from '@astrojs/cloudflare';
 export default defineConfig({
   site: 'https://www.septim.cz',
   output: 'static',          // stránky statické; /api/lead běží on-demand na Cloudflare (prerender=false)
-  adapter: cloudflare(),
+  // /cs musí obsloužit _redirects (301 na /), ne worker; ostatní přesměrování tam spadají samy
+  adapter: cloudflare({ routes: { extend: { exclude: [{ pattern: '/cs' }] } } }),
   trailingSlash: 'never',
   server: { port: Number(process.env.PORT) || 4351 },
   build: { format: 'file' },
