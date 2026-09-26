@@ -1,6 +1,11 @@
 # Statický web: index.html má přednost před parkovací index.php od hostingu
 DirectoryIndex index.html index.php
 
+# Hlavní doména je bez www
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^www\.pecosta\.cz$ [NC]
+RewriteRule ^ https://pecosta.cz%{REQUEST_URI} [R=301,L]
+
 # ── Cache statických assetů (efektivní doba platnosti mezipaměti) ──
 <IfModule mod_expires.c>
   ExpiresActive On
