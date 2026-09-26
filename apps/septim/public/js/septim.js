@@ -4,7 +4,7 @@
  * Převzaté HTML a CSS ze Solid Pixels počítá se stavovými třídami, které na živém
  * webu přidával JavaScript CMS. Tady je vlastní, lehká implementace stejného
  * chování: výška hlavičky, scroll stavy, menu, taby, akordeony, slider, kotvy,
- * načtení obrázků a odesílání formulářů na /api/lead.
+ * načtení obrázků a odesílání formulářů na /api/lead.php.
  */
 (function () {
   'use strict';
@@ -320,7 +320,7 @@
     });
   }
 
-  /* ------------------------------------------------ formuláře → /api/lead → /dekujeme */
+  /* ------------------------------------------------ formuláře → /api/lead.php → /dekujeme */
   function forms() {
     $$('form[data-lead-form]').forEach(function (form) {
       form.addEventListener('submit', function (e) {
@@ -340,7 +340,7 @@
         if (label) label.textContent = UI.sending;
         var ctrl = window.AbortController ? new AbortController() : null;
         var killer = ctrl ? setTimeout(function () { ctrl.abort(); }, 15000) : null;
-        fetch(form.getAttribute('action') || '/api/lead', { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' }, signal: ctrl ? ctrl.signal : undefined })
+        fetch(form.getAttribute('action') || '/api/lead.php', { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' }, signal: ctrl ? ctrl.signal : undefined })
           .finally(function () { if (killer) clearTimeout(killer); })
           .then(function (r) { return r.json().catch(function () { return { ok: r.ok }; }).then(function (j) { if (!r.ok || !j.ok) throw new Error(j.error || r.status); }); })
           .then(function () {

@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # Diagnostika: veřejná IP runneru pro Webglobe (rozbitý IP filtr blokuje FTP).
-      # GitHub-hosted runnery mají dynamickou IP z Azure poolu — mění se běh od běhu.
+      # GitHub-hosted runnery mají dynamickou IP z Azure poolu, mění se běh od běhu.
       - name: Veřejná IP runneru
         run: |
           echo "IPv4: $(curl -s --max-time 10 https://api.ipify.org || echo '?')"
@@ -50,9 +50,7 @@ jobs:
           protocol: ${{ vars.FTP_PROTOCOL || 'ftp' }}
           local-dir: apps/piano/dist/
           server-dir: ${{ vars.FTP_SERVER_DIR || './' }}
-          # Cloudflare artefakty (worker/headers/routes) na tomhle hostingu nedávají smysl
+          # _headers je jen pro Cloudflare Pages, na tomhle hostingu nedává smysl
           exclude: |
-            _worker.js/**
-            _routes.json
             _headers
             **/.DS_Store

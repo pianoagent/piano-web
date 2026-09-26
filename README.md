@@ -1,6 +1,6 @@
 # piano-web
 
-Marketingové weby Piano, Astro se statickým výstupem (`output: 'static'`; výjimkou je endpoint `/api/lead`, který má `prerender = false`). Monorepo: `apps/` (weby), `packages/` (sdílené komponenty a konfigurace), `scripts/` (kontroly).
+Marketingové weby Piano, Astro se statickým výstupem (`output: 'static'`). Monorepo: `apps/` (weby), `packages/` (sdílené komponenty a konfigurace), `scripts/` (kontroly).
 
 ## ⚠️ Větve / workflow
 - **`develop` = pracovní větev. Veškerá práce (vč. Cowork/AI vláken) jde sem.** Cloudflare z ní staví preview.
@@ -36,9 +36,9 @@ Lokálně: `npm run dev:piano` pustí Astro dev server, který čte přímo ze `
 Názvy Cloudflare projektů výše jsou ty skutečné, ověřené proti živým `*.pages.dev`. `wrangler.jsonc` v každé appce deklaruje **jiný** název (`piano-web-<app>`), který žádnému existujícímu projektu neodpovídá. Nepouštěj podle něj `wrangler pages deploy`, založil bys tím prázdné projekty vedle živých.
 
 ## Stack
-- **Astro**, statický generátor, obsah jako `.md`, sdílené komponenty a témata per web
+- **Astro 7**, statický generátor, obsah jako `.md`, sdílené komponenty a témata per web
 - **GitHub**, zdroj pravdy: vývoj na `develop`, produkce `main`
-- **Formuláře**, `LeadForm` posílá POST na `/api/lead.php`. Na Webglobe to obslouží PHP `mail()` (adresát v konstantě `LEAD_TO`), na Cloudflare běží varianta `src/pages/api/lead.ts` přes Resend. **Napojení na Odoo `crm.lead` zatím neexistuje**, je to TODO v obou souborech.
+- **Formuláře**, `LeadForm` posílá POST na `/api/lead.php`. Na Webglobe to obslouží PHP `mail()` (adresát v konstantě `LEAD_TO`). Na Cloudflare preview se PHP nespustí, takže tam formuláře nefungují. **Napojení na Odoo `crm.lead` zatím neexistuje**, je to TODO v `lead.php`.
 
 ## Septim: kopie živého webu 1:1
 `apps/septim` je od 24. 9. 2026 věrná kopie živého www.septim.cz (Solid Pixels), aby šel web přepnout bez přesměrování: **stejné URL** (bez lomítka a bez `.html`, `build.format: 'file'`), stejný obsah i vzhled. Předchozí redesign (nová IA) je v tagu `septim-redesign-2026-09` a větvi `septim-redesign`.
@@ -46,7 +46,7 @@ Názvy Cloudflare projektů výše jsou ty skutečné, ověřené proti živým 
 - **Jak vzniká.** Stránky, sdílené bloky (`src/components/blocks`), hlavička a patička (`src/components/chrome`) a `src/styles/live.css` generuje skript `weby/podklady-migrace/port-septim.py` z čerstvého HTML živého webu (`podklady-migrace/scrapy-starych-webu/septim-2026-09/`). Opravy proti živému webu (404 odkazy, překlepy, jedna H1, alt texty, meta) jsou v tabulkách na začátku skriptu. **Po ručních úpravách stránek skript znovu nepouštěj**, přepsal by je.
 - **Vzhled.** `live.css` je zkompilované CSS živého webu, needituj ho. Úpravy patří do `src/styles/overrides.css`.
 - **Chování.** Menu, taby, slider, akordeony, kotvy a formuláře řeší `public/js/septim.js` (náhrada JavaScriptu CMS).
-- **Formuláře.** Všechny formuláře jdou na `src/pages/api/lead.ts` (Cloudflare, Resend), pak na `/dekujeme`. V projektu `septim-web` musí být proměnná `RESEND_API_KEY`, volitelně `LEAD_TO` (výchozí poptavky@piano.cz) a `LEAD_FROM`. Bez klíče formulář vrátí chybu a lead se neztratí potichu.
+- **Formuláře.** Všechny formuláře jdou na `public/api/lead.php` (PHP `mail()` na poptavky@piano.cz, přílohy z kariérních formulářů jako přílohy e-mailu), pak na `/dekujeme`. Na Cloudflare preview PHP neběží, formuláře tam vrátí chybu.
 - **Jazyky.** Zatím jen CZ. EN a SK se doplní během skriptu s `--locale en|sk` a zapnutím v `src/i18n/config.ts` (`enabledLocales`). Mapa přeložených URL ze živého přepínače jazyků je v `src/i18n/routes.cs.json`.
 - **Měření.** GTM `GTM-NC3PW2KC`, Cookiebot se načítá přes GTM jako na živém webu.
 

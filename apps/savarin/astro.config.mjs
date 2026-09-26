@@ -5,6 +5,8 @@ import icon from 'astro-icon';
 
 export default defineConfig({
   site: 'https://savarin.cz',
+  // Astro 7 defaults to 'jsx', which drops whitespace between inline elements
+  compressHTML: true,
   // Obrázky: rastry dávej do src/assets a renderuj přes <Image>/<Picture>
   // z 'astro:assets'. Astro je optimalizuje přes sharp a generuje moderní
   // formáty (WebP) automaticky, viz src/assets/README.md.
