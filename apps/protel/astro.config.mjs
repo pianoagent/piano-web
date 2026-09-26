@@ -5,6 +5,8 @@ import icon from 'astro-icon';
 
 export default defineConfig({
   site: 'https://protelsystems.cz',
+  // Astro 7 defaults to 'jsx', which drops whitespace between inline elements
+  compressHTML: true,
   // Starý web měl duplicitní slug produktu (identický obsah), přesměrování kvůli SEO.
   redirects: {
     '/produkty/hotelovy-system': '/produkty/hotelovy-system-protel',

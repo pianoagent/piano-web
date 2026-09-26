@@ -6,9 +6,9 @@
   "description": "Sdílená knihovna komponent a base tokenů pro weby Piano",
   "dependencies": {
     "@iconify-json/lucide": "^1.2.114",
-    "astro-icon": "^1.1.5"
+    "astro-icon": "^1.2.0"
   },
   "peerDependencies": {
-    "astro": "^5.6.0"
+    "astro": "^7.3.5"
   }
 }

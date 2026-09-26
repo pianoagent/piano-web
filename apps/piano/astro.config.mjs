@@ -2,12 +2,11 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import icon from 'astro-icon';
-import cloudflare from '@astrojs/cloudflare';
 
 export default defineConfig({
   site: 'https://piano.cz',
-  output: 'static',          // stránky statické; /api/lead je on-demand (prerender=false)
-  adapter: cloudflare(),
+  // Astro 7 defaults to 'jsx', which drops whitespace between inline elements
+  compressHTML: true,
   // Vícejazyčnost: čeština v rootu (/), angličtina pod /en/ (stránky v src/pages/en/).
   i18n: {
     defaultLocale: 'cs',

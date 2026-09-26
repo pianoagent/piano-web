@@ -41,5 +41,8 @@
     "dev:eet2027": "npm run dev -w @piano/app-eet2027",
     "build:eet2027": "npm run build -w @piano/app-eet2027",
     "preview:eet2027": "npm run preview -w @piano/app-eet2027"
+  },
+  "dependencies": {
+    "@iconify-json/lucide": "^1.2.114"
   }
 }
