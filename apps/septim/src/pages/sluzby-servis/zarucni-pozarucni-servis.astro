@@ -1,65 +1,44 @@
 ---
-/** Septim: Služby: Záruční a pozáruční servis. Obsah: septim-obsah/sluzby-servis/zarucni-pozarucni-servis.md. SEO meta nově. */
+// https://www.septim.cz/sluzby-servis/zarucni-pozarucni-servis (Solid Pixels), port 1:1 skriptem port-septim.py
 import Base from '../../layouts/Base.astro';
-import SiteHeader from '../../components/SiteHeader.astro';
-import SiteFooter from '../../components/SiteFooter.astro';
-import Section from '@piano/ui/components/Section.astro';
-import Hero from '@piano/ui/components/Hero.astro';
-import Heading from '@piano/ui/components/Heading.astro';
-import Text from '@piano/ui/components/Text.astro';
-import Button from '@piano/ui/components/Button.astro';
-import LeadForm from '@piano/ui/components/LeadForm.astro';
-import StatsBand from '../../components/StatsBand.astro';
-import { septimLeadProofs } from '../../config/leadProofs';
+import Mezera_fd60 from '../../components/blocks/Mezera_fd60.astro';
+import BlokKolikZaplatim_71a6 from '../../components/blocks/BlokKolikZaplatim_71a6.astro';
+import Blok30Let_9e65 from '../../components/blocks/Blok30Let_9e65.astro';
+import Novinky from '../../components/blocks/Novinky.astro';
 ---
-<Base title="Záruční a pozáruční servis | Septim"
-      description="Záruční i pozáruční servis systému Septim. Postaráme se o rychlé řešení závad hardwaru i softwaru, aby váš provoz nestál.">
-  <SiteHeader />
-  <main>
-    <Hero eyebrow="Služby a servis" background="alt"
-          lead="I přes veškerou péči, kterou věnujeme našim instalacím, může v ojedinělých případech nastat porucha. Jsme plně nápomocni k rychlé a zdařilé nápravě softwaru i hardwaru.">
-      <Heading slot="title" as="h1" size="display">Záruční a <em>pozáruční servis</em></Heading>
-      <Fragment slot="actions">
-        <Button href="#poptavka">Potřebuji servis</Button>
-        <Button href="/sluzby-servis" variant="secondary">Všechny služby</Button>
-      </Fragment>
-      <figure slot="media" class="hero-pic">
-        <img src="/images/sluzby-zarucni.webp" alt="Záruční a pozáruční servis pokladní techniky" width="960" height="738" loading="eager" decoding="async" />
-      </figure>
-    </Hero>
-
-    <Section background="default" space="lg" container="narrow">
-      <div class="servis">
-        <Text color="muted">Sjednanou záruční dobu naleznete uvedenou na předávacím nebo servisním protokolu. Předávací protokol je zároveň záručním listem.</Text>
-
-        <Heading as="h2" size="h3">Záruční podmínky pro hardware systému Septim</Heading>
-        <Text color="muted">Záruku poskytujeme na výrobní vady a vady materiálu. Neposkytujeme ji v případech, kdy je vada způsobena mechanickým poškozením, živelnou pohromou nebo nesprávným zacházením.</Text>
-        <Text color="muted">Příjem hardwarového vybavení k záručním opravám či výměnám probíhá v sídle nebo pobočce Morava společnosti Septim Systems a.s., nedomluvíme-li se jinak. Hardware nám můžete doručit osobně, nebo zaslat poštou či jinou zásilkovou službou. V případě opravy mimo sídlo nebo moravskou pobočku jsme oprávněni účtovat cestovní náklady a náklady na práci spojenou s odpojením a zapojením dle aktuálního ceníku.</Text>
-        <Text color="muted">Opravy či výměny počítačů provádíme nejdéle do 48 hodin od doručení do sídla nebo moravské pobočky. Opravy samostatných periferií (pokladny, tiskárny, monitory aj.) jsou provedeny do 48 hodin, pokud máme skladem náhradní díl. Pokud náhradní díl skladem není, periferie se odesílá výrobci a oprava proběhne do 30 dnů od příjmu zařízení k reklamaci.</Text>
-        <Text color="muted">Septim Systems a.s. disponuje hardwarem, který je připraven k zapůjčení dle podmínek uzavřené servisní smlouvy.</Text>
-
-        <Heading as="h2" size="h3">Záruční podmínky pro software systému Septim</Heading>
-        <Text color="muted">Na pokladní a provozní systém Septim poskytujeme záruku za jakost v délce 12 měsíců ode dne dodání.</Text>
-        <Text color="muted">Záruku poskytujeme na vady, které brání užívání softwaru v souladu s účelem, pro který byl dodán, za předpokladu, že zákazník vadu vytkl bez zbytečného odkladu poté, kdy měl možnost ji zjistit. Záruku neposkytujeme v případech, kdy je vada způsobena zacházením se softwarem, případně s hardwarovým vybavením, na kterém je software nainstalován.</Text>
-        <Text color="muted">Odstranění vady softwaru provádíme v sídle Septim Systems a.s. do 30 dnů od příjmu reklamace. V případě oprávněné reklamace zajistíme nejpozději do 48 hodin omezený provoz systému.</Text>
-
-        <Heading as="h2" size="h3">Pozáruční servis systému Septim</Heading>
-        <Text color="muted">Po uplynutí záruky poskytujeme standardní pozáruční servis hardwaru. I zde platí, že příjem zařízení probíhá v sídle nebo moravské pobočce, případně po domluvě jinak, osobně, poštou nebo zásilkovou službou.</Text>
-        <Text color="muted">Hardware po přijetí diagnostikujeme a sdělíme vám popis závady společně s návrhem opravy a odhadem ceny. V případech, kdy není ekonomicky výhodné hardware opravit, navrhujeme koupi nového zařízení nebo odkup zápůjčního, byla-li zápůjčka využita.</Text>
-        <Text color="muted">Vyřízení opravy provádíme do 30 dnů od data příjmu zařízení. Rychlost započetí řešení vad ovlivňuje závažnost vady a typ uzavřené servisní smlouvy.</Text>
-      </div>
-    </Section>
-
-    <StatsBand />
-    <LeadForm proofs={septimLeadProofs} id="poptavka" variant="callback" background="default"
-              title="Potřebujete záruční nebo pozáruční servis?"
-              lead="Nechte nám telefon, poradíme s reklamací i opravou hardwaru a softwaru." />
-  </main>
-  <SiteFooter />
+<Base
+  title="Záruční a pozáruční servis | Septim"
+  description="Záruční i pozáruční servis systému Septim. Postaráme se o rychlé řešení závad hardwaru i softwaru, aby váš provoz nestál."
+  path="/sluzby-servis/zarucni-pozarucni-servis"
+  bodyClass="use-header-transparent use-menu-primary-uppercase use-menu-secondary-uppercase use-headings-link-plain search-panel-hide-submit-label search-panel-hide-close-label search-panel-hide-open-label use-menu-bar use-header-fixed use-header-fixed-mobile use-header-priority"
+  image="/files/nahled-servis.jpg"
+>
+<div class="section height--low align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-card flexcard-size--normal flexcard-media-right valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:76.92307692307693%"><img alt="Záruční a pozáruční servis" decoding="async" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/hdr-zarucni-servis.webp" srcset="/files/r/720/hdr-zarucni-servis.webp 720w, /files/r/1280/hdr-zarucni-servis.webp 1280w, /files/r/1920/hdr-zarucni-servis.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h1>Záruční a pozáruční servis<span class="text-highlight">.</span></h1>
+<p class="text-large">I přes veškerou péči, kterou věnujeme našim instalacím, může v ojedinělých případech nastat porucha. V takovém případě je třeba využít reklamace. Sjednanou záruční dobu naleznete uvedenou na předávacím nebo servisním protokolu. Předávací protokol je zároveň záručním listem.</p>
+</div></div></div></div></div></div></div></div></div></div></div>
+<div class="section height--low align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image block-image--3-1"><div><div><div class="flexcard flexcard-card flexcard-size--normal flexcard-media-left valign-middle align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Záruční podmínky pro hardware systému Septim" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/zarucni-servis-podminky.webp" srcset="/files/r/720/zarucni-servis-podminky.webp 720w, /files/r/1280/zarucni-servis-podminky.webp 1280w, /files/r/1920/zarucni-servis-podminky.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h3 class="text-large">Záruční podmínky pro hardware systému Septim<span class="text-highlight">.</span></h3>
+<p>Záruku poskytujeme na výrobní vady a vady materiálu, naopak neposkytujeme ji v případech, kdy je vada způsobena mechanickým poškozením, živelnou pohromou nebo nesprávným zacházením.</p>
+<p>Příjem hardwarového vybavení k záručním opravám či výměnám je prováděn v sídle nebo pobočce Morava Septim Systems a.s., nedomluví-li se zákazník s námi jinak. Hardware nám můžete doručit buď osobně nebo nám ho můžete do servisního místa zaslat poštou či jinou zásilkovou službou. Dovolujeme si vás upozornit, že v případě opravy mimo sídla nebo moravské pobočky naší společnosti, jsme oprávněni účtovat cestovní náklady a náklady na práci spojenou s odpojením a zapojením dle aktuálního ceníku.</p>
+<p>Opravy či výměny počítačů provádíme nejdéle do 48 hodin od doručení počítačů do sídla nebo moravské pobočky naší společnosti. Opravy samostatných periférií (pokladny, tiskárny, monitory aj.) jsou provedeny do 48 hodin, pokud máme k dispozici skladem náhradní díl. Pokud náhradní díl skladem není, periférie se odesílá výrobci, a oprava bude vykonána do 30 dnů od příjmu hardwarového vybavení k reklamaci.</p>
+<p>Septim Systems a.s. disponuje hardwarem, který je připraven k zapůjčení dle podmínek uzavřené servisní smlouvy.</p>
+</div></div></div></div></div></div></div></div></div></div></div>
+<Mezera_fd60 />
+<div class="section height--low align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image block-image--3-1"><div><div><div class="flexcard flexcard-card flexcard-size--normal flexcard-media-right valign-middle align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Záruční podmínky software systému Septim" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/zarucni-servis-zarucni.webp" srcset="/files/r/720/zarucni-servis-zarucni.webp 720w, /files/r/1280/zarucni-servis-zarucni.webp 1280w, /files/r/1920/zarucni-servis-zarucni.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h3 class="text-large">Záruční podmínky software systému Septim<span class="text-highlight">.</span></h3>
+<p>Na pokladní a provozní systém Septim poskytujeme záruku za jakost v délce 12 měsíců ode dne dodání.</p>
+<p>Záruku poskytujeme na vady, které brání užívání software v souladu s účelem, pro který byl zákazníkovi dodán za předpokladu, že zákazník vadu vytkl bez zbytečného odkladu poté, kdy měl možnost ji zjistit. Záruku naopak neposkytujeme v případech, kdy je vada způsobena zacházením se softwarem, případně hardwarovým vybavením, na kterém je software nainstalován.</p>
+<p>Odstranění vady softwaru provádíme v sídle Septim Systems a.s. do 30 dnů od příjmu reklamace. V případě oprávněné reklamace zajistíme nejpozději do 48 hodin omezený provoz systému.</p>
+</div></div></div></div></div></div></div></div></div></div></div>
+<Mezera_fd60 />
+<div class="section height--low align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image block-image--3-1"><div><div><div class="flexcard flexcard-card flexcard-size--normal flexcard-media-left valign-middle align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Pozáruční servis systému Septim" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/zarucni-servis-pozarucni.webp" srcset="/files/r/720/zarucni-servis-pozarucni.webp 720w, /files/r/1280/zarucni-servis-pozarucni.webp 1280w, /files/r/1920/zarucni-servis-pozarucni.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h3 class="text-large">Pozáruční servis systému Septim<span class="text-highlight">.</span></h3>
+<p>Po uplynutí záruky poskytujeme standardní pozáruční servis k hardwaru.</p>
+<p>Opět platí, že příjem hardwarového vybavení je prováděn v sídle nebo pobočce Morava Septim Systems a.s., nedomluvíte-li se s námi jinak. Hardware nám můžete doručit i osobně nebo nám ho můžete do servisního místa zaslat poštou či jinou zásilkovou službou. Dovolujme si vás upozornit, že v případě opravy mimo sídla nebo moravské pobočky naší společnosti, jsme oprávněni účtovat cestovní náklady a náklady na práci spojenou s odpojením a zapojením dle aktuálního ceníku.</p>
+<p>Hardware je po přijetí diagnostikován a poté je vám sdělen popis závady společně s návrhy k opravě a odhadem ceny. V některých případech, kdy není ekonomicky výhodné hardware opravit, navrhujeme koupi nového zařízení nebo odkup zápůjčního, byla-li zápůjčka využita.</p>
+<p>Vyřízení opravy provádíme do 30 dnů od data příjmu zařízení.</p>
+<p>Rychlost započetí řešení vad ovlivňuje závažnost vady a typ uzavřené servisní smlouvy.</p>
+</div></div></div></div></div></div></div></div></div></div></div>
+<div class="section height--low align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div><div><div class="center"><a class="btn btn-default" href="/sluzby-servis"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">Kontaktovat Helpdesk</span></a></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div><div><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div></div></div></div>
+<BlokKolikZaplatim_71a6 />
+<Blok30Let_9e65 />
+<Novinky />
 </Base>
-
-<style>
-  .servis { max-width: 760px; }
-  .servis > :global(* + *) { margin-top: var(--space-4); }
-  .servis > :global(.heading) { margin-top: var(--space-6); }
-</style>

@@ -13,6 +13,8 @@ import Heading from '@piano/ui/components/Heading.astro';
 import Text from '@piano/ui/components/Text.astro';
 import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
+import VideoFacade from '../components/VideoFacade.astro';
+import { homeQuotes } from '../config/reference';
 import { grasonNav, grasonCta, grasonFooter, grasonLogin } from '../config/nav';
 
 const products = [
@@ -42,17 +44,6 @@ const products = [
   },
 ];
 
-const testimonials = [
-  { initials: 'DS', quote: 'Pracovníci z Grasonu u nás vykrývají nejen nárazové směny, ale stávají se i pravidelnou součástí týmu. Spolupráce funguje na výbornou.', author: 'Denisa Srnková', role: 'HR Business Partner, DámeMarket' },
-  { initials: 'JK', quote: 'Velkou výhodu vidím v úspoře času, protože Grason za mě řeší byrokratické papírování.', author: 'Josef Kubíček', role: 'Manažer, Likér' },
-];
-
-const leadProofs = [
-  { icon: 'lucide:gift', title: '14 dní zdarma', text: 'Bez platební karty, nezávazně.' },
-  { icon: 'lucide:users', title: '5 500 brigádníků', text: 'Ověření pracovníci po celé ČR.' },
-  { icon: 'lucide:calendar-days', title: '220 000+ směn', text: 'Naplánováno přes GrasonPlan.' },
-  { icon: 'lucide:phone', title: 'Anna Pánková', text: 'anna.pankova@grason.cz' },
-];
 ---
 
 <Base title="Řešení personálu pro firmy | Grason"
@@ -71,6 +62,20 @@ const leadProofs = [
       <img src="/images/for-companies-hero.webp" alt="Grason pro firmy, výběr kandidátů na směnu" width="720" height="560" loading="eager" />
     </figure>
   </Hero>
+
+  <!-- VIDEO, jak Grason funguje -->
+  <Section background="alt" space="lg">
+    <div class="video">
+      <div class="video__text">
+        <Text size="label" color="accent">Za dvě minuty</Text>
+        <Heading as="h2" size="h2">Podívejte se, <span class="accent">jak to funguje</span></Heading>
+        <Text size="lead" color="muted">
+          Od vypsání směny po člověka, který v ní stojí. Celý koloběh Grasonu na jednom videu.
+        </Text>
+      </div>
+      <VideoFacade id="nhVECzSEVoY" poster="/images/video-jak-to-funguje.webp" title="Jak Grason funguje" />
+    </div>
+  </Section>
 
   <!-- TŘI PRODUKTY -->
   <Section background="default" space="lg">
@@ -154,7 +159,7 @@ const leadProofs = [
     eyebrow="Reference"
     eyebrowColor="default"
     background="cyan"
-    items={testimonials}
+    items={homeQuotes}
     decor="top"
     titleHtml={'Co říkají <span class="accent">naši klienti</span>'} />
   </main>
@@ -163,6 +168,11 @@ const leadProofs = [
 </Base>
 
 <style>
+  /* Video split: text vlevo, fasáda přehrávače vpravo */
+  .video { display: grid; grid-template-columns: 1fr 1.15fr; gap: var(--space-8); align-items: center; }
+  .video__text > * + * { margin-top: var(--space-3); }
+  @media (max-width: 880px) { .video { grid-template-columns: 1fr; gap: var(--space-6); } }
+
   .hero-figure { margin: 0; width: 100%; line-height: 0; }
   .hero-figure img { width: 100%; height: auto; display: block; filter: drop-shadow(0 24px 48px rgba(7, 7, 7, 0.22)); }
   .head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-7); }

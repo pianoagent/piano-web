@@ -1,0 +1,52 @@
+---
+/** Pecosta: Pro koho: Restaurace a sítě. Obsah: pecosta-context.md, autset-context.md,
+    banka referencí (znalostni-baze.md, část 7), sales-playbook.md segmenty B a D. */
+import SegmentPage from '../../components/SegmentPage.astro';
+import { klientiRestaurace } from '../../config/klienti';
+
+const benefits = [
+  { icon: 'lucide:badge-percent', title: 'V průměru 16 % na surovinách', text: 'Klienti snížili nákupní ceny v průměru o 16 %, aniž by pocítili kvalitativní rozdíl dodávaných surovin.' },
+  { icon: 'lucide:layers', title: 'U sítí se objemy sčítají', text: 'Máte víc provozoven? Do aukce jdete s jejich společným objemem, ne s každou zvlášť.' },
+  { icon: 'lucide:clock', title: 'Úspora až 1 hodiny denně', text: 'Konec ručního přepisování dodacích listů. Naskladnění zvládne Autset za vás.' },
+  { icon: 'lucide:handshake', title: 'Dodavatele měnit nemusíte', text: 'Přímý smluvní vztah mezi vámi a dodavatelem zůstává zachován. Soutěží o vaši přízeň.' },
+];
+
+const services = [
+  { title: 'Aukční nákupy surovin', href: '/sluzby/aukcni-nakupy', text: 'Sdružená poptávka stovek provozů a pravidelné e-aukce. Doporučujeme od ročního objemu nákupů nad 5 mil. Kč, u sítí se objemy provozoven sčítají.', image: '/images/karta-aukcni-nakupy.webp' },
+  { title: 'Autset: automatické naskladnění', href: '/sluzby/autset', text: 'Dodací listy od 450+ dodavatelů jdou do skladu samy. Kolkovna díky tomu nepřeťukává dvacet až třicet položek z každého dokladu.', image: '/images/karta-autset.webp' },
+  { title: 'Energie pro gastro', href: '/sluzby/energie', text: 'Elektřina a plyn za ceny vyjednané pro celé portfolio provozů. Bez objemové podmínky, takže je to dostupné i menší restauraci.', image: '/images/karta-energie.webp' },
+];
+
+const testimonials = [
+  { initials: 'KO', headline: 'Obrovská úspora času', quote: 'Každou položku na všech dodacích listech jsem musel prakticky přeťukat do počítače a některé dodací listy mají dvacet, třicet položek. Tento systém umožňuje jenom pár kliknutí a máte to hotové, takže to je obrovská úspora času.', author: 'Michal Tůma', photo: '/images/ref/michal-tuma.webp', role: 'Generální manažer, Kolkovna Restaurants' },
+  { initials: 'CJ', headline: 'Sdružené nákupy fungují', quote: 'V Červeném jelenu jsme si ověřili, že sdružené nákupy potravin prostřednictvím PECOSTA skutečně fungují a přinášejí hmatatelné výsledky. Naše odvětví potřebuje mít možnost těžce vydělané peníze investovat tam, kde to má skutečný smysl, do zkvalitňování služeb, péče o hosty a dalšího rozvoje.', author: 'Radek Horník', photo: '/images/ref/radek-hornik.webp', role: 'COO, RCBG, Restaurace Červený jelen' },
+  { initials: 'CH', headline: 'Z 20 minut na 3', quote: 'Vždyť jedna taková větší faktura za koloniál se naskladňuje i 20 minut, nyní je to otázka nejvýše 3 minut i s důkladnou kontrolou.', author: 'Vít Málek', role: 'Manager gastro provozu, Chuchle Aréna Praha' },
+];
+
+const faqs = [
+  { q: 'Vyplatí se to jedné restauraci, nebo až síti?', a: 'Aukční nákupy doporučujeme provozům s ročním objemem nákupů nad 5 mil. Kč, u sítí se objemy jednotlivých provozoven sčítají. Autset dává smysl i jedné restauraci, protože se počítá podle počtu dodacích listů, ne podle obratu.' },
+  { q: 'Musím měnit dodavatele?', a: 'Není třeba. Do aukce zveme jak vaše stávající dodavatele, tak prověřené dodavatele Piana. Přímý smluvní vztah mezi vámi a dodavatelem zůstává zachován a fakturační i logistické podmínky si s nimi řešíte dál sami.' },
+  { q: 'Neutrpí kvalita surovin?', a: 'Soutěží se podle přesné specifikace položky z vaší faktury, ne podle skladové karty. Klienti proto snížili nákupní ceny v průměru o 16 %, aniž by pocítili kvalitativní rozdíl dodávaných surovin.' },
+];
+---
+<SegmentPage
+  title="Nákup pro restaurace a sítě restaurací | Pecosta"
+  description="Aukční nákupy surovin a automatické naskladnění pro restaurace a jejich sítě. V průměru 16 % na surovinách a úspora až 1 hodiny denně."
+  eyebrow="Pro koho · restaurace a sítě"
+  titleHtml="Nákup pro <em>restaurace a sítě</em>"
+  lead="Rostoucí food cost a dodací listy přepisované položku po položce. Pecosta řeší obojí: suroviny nakupujete za ceny nižší v průměru o 16 % a naskladnění proběhne samo."
+  logos={klientiRestaurace}
+  heroImage="/images/pro-koho-restaurace.webp"
+  heroImageAlt="Interiér restaurace v Chuchle Aréně Praha, klienta Pecosty"
+  logoLabel="Restaurace, které nakupují s Pecostou"
+  proseTitle="Food cost se dá řídit, ne jen sledovat"
+  proseText="Jedna provozovna má na dodavatele malou páku. Pecosta sdružuje poptávku stovek provozů, takže se o vaši přízeň v pravidelných e-aukcích uchází víc ověřených dodavatelů. Ročně přes nákupní portál proteče objem 2,5 mld. Kč a tuhle vyjednávací sílu dostáváte k dispozici i vy. Máte víc provozoven? Objemy se sčítají, takže do aukce jdete jako síť."
+  benefitsTitle="Proč Pecosta pro restauraci"
+  benefits={benefits}
+  services={services}
+  relatedLabel="Podívejte se také na"
+  related={[{ label: "Hotely a resorty", href: "/pro-koho/hotely-a-resorty" }, { label: "Reference Pecosty", href: "/reference" }]}
+  testimonials={testimonials}
+  faqs={faqs}
+  faqTitle="Časté otázky restaurací"
+/>

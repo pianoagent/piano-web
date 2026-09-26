@@ -1,47 +1,35 @@
 ---
-/** Septim: Služby: Vývoj na míru. Obsah: septim-obsah/sluzby-servis/vyvoj-na-miru.md. SEO meta nově. */
+// https://www.septim.cz/sluzby-servis/vyvoj-na-miru (Solid Pixels), port 1:1 skriptem port-septim.py
 import Base from '../../layouts/Base.astro';
-import SiteHeader from '../../components/SiteHeader.astro';
-import SiteFooter from '../../components/SiteFooter.astro';
-import Section from '@piano/ui/components/Section.astro';
-import Hero from '@piano/ui/components/Hero.astro';
-import Heading from '@piano/ui/components/Heading.astro';
-import Text from '@piano/ui/components/Text.astro';
-import Button from '@piano/ui/components/Button.astro';
-import LeadForm from '@piano/ui/components/LeadForm.astro';
-import StatsBand from '../../components/StatsBand.astro';
-import { septimLeadProofs } from '../../config/leadProofs';
+import BlokKolikZaplatim_71a6 from '../../components/blocks/BlokKolikZaplatim_71a6.astro';
+import Blok30Let_9e65 from '../../components/blocks/Blok30Let_9e65.astro';
+import Novinky from '../../components/blocks/Novinky.astro';
 ---
-<Base title="Vývoj pokladního systému na míru | Septim"
-      description="Potřebuje vaše restaurace nestandardní řešení? Septim nabízí vývoj funkcí na míru přesně podle potřeb vašeho provozu.">
-  <SiteHeader />
-  <main>
-    <Hero eyebrow="Služby a servis" background="alt"
-          lead="V některých unikátních případech je vhodné upravit provozní systém Septim na míru danému provozu nebo celé síti provozů. I takovou službu nabízíme.">
-      <Heading slot="title" as="h1" size="display">Vývoj <em>na míru</em></Heading>
-      <Fragment slot="actions">
-        <Button href="#poptavka">Chci konzultaci</Button>
-        <Button href="/sluzby-servis" variant="secondary">Všechny služby</Button>
-      </Fragment>
-    </Hero>
-
-    <Section background="default" space="lg">
-      <div class="prose">
-        <Heading as="h2" size="h2">Konzultace k systému Septim</Heading>
-        <Text color="muted">Před začátkem používání systému Septim nabízíme konzultace zaměřené na zjištění potřeb provozu a následnou přípravu ideálního řešení řízení provozu. Kontaktujte naše konzultanty a zjistěte nezávazně, jak vám Septim pomůže.</Text>
-        <Text color="muted">Pokud už jste našimi zákazníky, konzultace vám pomohou s nastavením, podrobnějšími přehledy provozu a rozšířením automatizace a v unikátních případech navrhneme i specifické přizpůsobení systému přesně podle potřeb vaší restaurace či sítě restaurací.</Text>
-      </div>
-    </Section>
-
-    <StatsBand />
-    <LeadForm proofs={septimLeadProofs} id="poptavka" variant="callback" background="default"
-              title="Proberte s našimi konzultanty, jak na to"
-              lead="Nechte nám telefon, probereme, zda je pro váš provoz vhodná úprava systému na míru." />
-  </main>
-  <SiteFooter />
+<Base
+  title="Vývoj pokladního systému na míru | Septim"
+  description="Potřebuje vaše restaurace nestandardní řešení? Septim nabízí vývoj funkcí na míru přesně podle potřeb vašeho provozu."
+  path="/sluzby-servis/vyvoj-na-miru"
+  bodyClass="use-header-transparent use-menu-primary-uppercase use-menu-secondary-uppercase use-headings-link-plain search-panel-hide-submit-label search-panel-hide-close-label search-panel-hide-open-label use-menu-bar use-header-fixed use-header-fixed-mobile use-header-priority"
+  image="/files/nahled-vyvoj-na-miru.jpg"
+>
+<div class="section height--low align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-card flexcard-size--normal flexcard-media-right valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:76.92307692307693%"><img alt="Vývoj na míru" decoding="async" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/hdr-vyvoj-na-miru-n.webp" srcset="/files/r/720/hdr-vyvoj-na-miru-n.webp 720w, /files/r/1280/hdr-vyvoj-na-miru-n.webp 1280w, /files/r/1920/hdr-vyvoj-na-miru-n.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h1>Vývoj na míru<span class="text-highlight">.</span></h1>
+<p></p>
+<p class="text-large">V některých unikátních případech je vhodné upravit provozní systém Septim na míru danému provozu nebo celé síti provozů. I takovou službu nabízíme.</p>
+</div></div></div></div></div></div></div></div></div></div></div>
+<div class="section height--low align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image block-image--3-1"><div><div><div class="flexcard flexcard-card flexcard-size--normal flexcard-media-left valign-middle align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Konzultace k systému Septim" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/instalace-septim-k2.webp" srcset="/files/r/720/instalace-septim-k2.webp 720w, /files/r/1280/instalace-septim-k2.webp 1280w, /files/r/1920/instalace-septim-k2.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h3 class="text-large">Konzultace k systému Septim<span class="text-highlight">.</span></h3>
+<p>Před začátkem používání systému Septim nabízíme konzultace v oblasti zjištění potřeb provozu a následné přípravy ideálního řešení řízení provozu. Kontaktujte naše konzultanty a zjistěte nezávazně, jak vám Septim pomůže.</p>
+<p>Pokud jste našimi zákazníky, konzultace vám pomohou s nastavením, podrobnějšími přehledy provozu a rozšířením automatizace.</p>
+</div></div></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div><div><div class="center"><a class="btn btn-default" href="/chci-septim"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">Mám zájem o konzultaci</span></a></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div><div><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div></div></div></div>
+<BlokKolikZaplatim_71a6 />
+<Blok30Let_9e65 />
+<Novinky />
+<div class="section height--normal align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-html"><script is:inline>
+  ;(function() {
+    var script = document.createElement('script');
+    script.src = 'https://assets.dialogshift.com/code/pro247d.js';
+    document.getElementsByTagName('head')[0].appendChild(script);
+  })()
+</script></div></div></div></div></div>
 </Base>
-
-<style>
-  .prose { max-width: 760px; }
-  .prose > * + * { margin-top: var(--space-4); }
-</style>

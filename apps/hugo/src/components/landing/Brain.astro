@@ -1,0 +1,62 @@
+---
+/* Brain: sekce landing page Hugo, port 1:1 z hugopos.eu. Texty jsou v src/i18n/landing.ts. */
+import type { Lang } from '../../i18n/landing';
+import { dict } from '../../i18n/landing';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = dict[lang];
+---
+<section id="brain" class="brain">
+  <div class="container">
+    <div class="brain-grid">
+      <div class="brain-copy">
+        <span class="eyebrow" set:html={t['brain-eyebrow']}></span>
+        <h2 class="display" style="font-size: clamp(38px, 5vw, 64px); line-height: .96; letter-spacing: -0.03em; margin: 14px 0 16px;" set:html={t['brain-h2']}></h2>
+        <p class="lead" set:html={t['brain-p-lead']}></p>
+
+        <div class="brain-callouts">
+          <div class="callout">
+            <div class="ico">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"></path><path d="M7 14l4-4 4 4 5-6"></path></svg>
+            </div>
+            <div>
+              <h4 set:html={t['brain-callouts-callout-h4-0']}></h4>
+              <p set:html={t['brain-callouts-callout-p-0']}></p>
+            </div>
+          </div>
+          <div class="callout">
+            <div class="ico">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="m21 21-4.3-4.3"></path></svg>
+            </div>
+            <div>
+              <h4 set:html={t['brain-callouts-callout-h4-1']}></h4>
+              <p set:html={t['brain-callouts-callout-p-1']}></p>
+            </div>
+          </div>
+          <div class="callout">
+            <div class="ico">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.4 9.4 8 10 4.6-.6 8-5 8-10V6l-8-4z"></path></svg>
+            </div>
+            <div>
+              <h4 set:html={t['brain-callouts-callout-h4-2']}></h4>
+              <p set:html={t['brain-callouts-callout-p-2']}></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="brain-viz">
+        <div class="brain-chat" id="brainChat">
+          <div class="bc-q" id="bcQ" set:html={t['bc-q']}></div>
+          <div class="bc-a" id="bcA" aria-live="polite"></div>
+          <form class="bc-input" onsubmit="return false;">
+            <input class="bc-field" id="bcField" readonly="" placeholder={t['bc-field']}>
+            <button class="bc-star" type="button" aria-label="Zeptat se">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.6 6.3 6.8.5-5.2 4.4 1.6 6.6L12 17.3 6.2 20.8l1.6-6.6L2.6 9.8l6.8-.5L12 2.5z"></path></svg>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

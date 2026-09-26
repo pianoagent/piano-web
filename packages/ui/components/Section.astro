@@ -93,10 +93,22 @@ const revealClass = ['reveal', revealFrom !== 'bottom' && `reveal--from-${reveal
   .section--bg-primary { background: var(--color-primary-bg); color: var(--color-text-on-dark); }
   .section--bg-gradient { background: var(--color-bg-gradient, var(--color-primary-bg)); color: var(--color-text-on-dark); }
 
-  /* Brandové celoplošné barvy (themeable per web) */
-  .section--bg-cyan   { background: var(--color-bg-cyan, var(--color-bg-alt)); color: var(--color-text); }
-  .section--bg-yellow { background: var(--color-bg-yellow, var(--color-bg-alt)); color: var(--color-text); }
-  .section--bg-pink   { background: var(--color-bg-pink, var(--color-bg-alt)); color: var(--color-text); }
+  /* Brandové celoplošné barvy (themeable per web).
+     --band-texture je volitelná textura NAD barvou (Grason má přes pásy jemné
+     zrno, jinak jsou plné plochy ploché). Značka ji zapne v theme.css:
+       --band-texture: url("/images/noise.webp");
+       --band-texture-size: 600px 600px;
+     Nekreslí se pseudoelementem, ::before a ::after tady patří blobům z `decor`. */
+  .section--bg-cyan,
+  .section--bg-yellow,
+  .section--bg-pink {
+    background-image: var(--band-texture, none);
+    background-size: var(--band-texture-size, auto);
+    background-repeat: repeat;
+  }
+  .section--bg-cyan   { background-color: var(--color-bg-cyan, var(--color-bg-alt)); color: var(--color-text); }
+  .section--bg-yellow { background-color: var(--color-bg-yellow, var(--color-bg-alt)); color: var(--color-text); }
+  .section--bg-pink   { background-color: var(--color-bg-pink, var(--color-bg-alt)); color: var(--color-text); }
 
   /* Dekorativní kruh na hranici sekce (brandový styl Grason).
      Dvě sousední dekorované sekce sdílejí JEDNU kružnici na společné hranici:

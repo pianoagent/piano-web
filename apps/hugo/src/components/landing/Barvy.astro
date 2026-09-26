@@ -1,0 +1,26 @@
+---
+/* Barvy: sekce landing page Hugo, port 1:1 z hugopos.eu. Texty jsou v src/i18n/landing.ts. */
+import type { Lang } from '../../i18n/landing';
+import { dict } from '../../i18n/landing';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = dict[lang];
+---
+<section class="tc" id="barvy" aria-label="Hugo terminal case colours">
+  <div class="tc-pin">
+    <div class="container tc-grid">
+      <div class="tc-copy section-head">
+        <span class="eyebrow" set:html={t['tc-eyebrow']}></span>
+        <h2 set:html={t['tc-h2']}></h2>
+        <p class="lead" set:html={t['tc-p-lead']}></p>
+        <p class="tc-note" set:html={t['tc-note']}></p>
+        <a class="btn btn-dark btn-lg tc-cta" href="https://hugopos.eu/eshop/" set:html={t['tc-cta']}></a>
+      </div>
+      <div class="tc-stage">
+        <div class="tc-imgs" id="tcImgs"></div>
+        <div class="tc-name" aria-live="polite"><span class="tc-dot" id="tcDot"></span><span id="tcName"></span></div>
+        <div class="tc-swatches" id="tcSwatches"></div>
+      </div>
+    </div>
+  </div>
+</section>

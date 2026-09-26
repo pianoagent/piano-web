@@ -144,6 +144,21 @@
 .section--bg-yellow .accent,
 .section--bg-pink .accent { color: var(--color-secondary); }
 
+/* Zrno na barevnych pasech
+   =========================================================
+   Styleguide Grasonu ma jako kompozicni podpis jemne zrno pres barevne plochy.
+   Textura je puvodni asset z live grason.cz (_nuxt/img/noise.png), prevedeny
+   na WebP: cerny sum s alfou max 30 %, takze funguje na vsech trech barvach
+   a nemeni jejich odstin, jen ji tlumi.
+
+   Sdilena Section.astro zrno jen vykresli, zapina ho az tahle promenna,
+   takze ostatni weby Piana zustavaji bez textury.
+   ========================================================= */
+:root {
+  --band-texture: url("/images/noise.webp");
+  --band-texture-size: 600px 600px;
+}
+
 /* Kotvy (#cenik apod.) nesmí zajet pod sticky header. Hodnota ~ výška sticky
    hlavičky, aby cílová sekce dosedla přesně pod ni a neodhalila sekci nad ní
    (dřív 120px odhalovalo u barevných sekcí kus předchozí sekce). */

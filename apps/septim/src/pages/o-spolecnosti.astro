@@ -1,94 +1,111 @@
 ---
-/** Septim: O společnosti. Obsah: septim-obsah/o-spolecnosti.md. SEO meta nově. */
-import Base from '../layouts/Base.astro';
-import SiteHeader from '../components/SiteHeader.astro';
-import SiteFooter from '../components/SiteFooter.astro';
-import Section from '@piano/ui/components/Section.astro';
-import Hero from '@piano/ui/components/Hero.astro';
-import Heading from '@piano/ui/components/Heading.astro';
-import Text from '@piano/ui/components/Text.astro';
-import Button from '@piano/ui/components/Button.astro';
-import LeadForm from '@piano/ui/components/LeadForm.astro';
-import StatsBand from '../components/StatsBand.astro';
-import LogoWall from '../components/LogoWall.astro';
-import { septimLeadProofs } from '../config/leadProofs';
-
-const timeline = [
-  { year: '2025', title: 'Součástí skupiny Piano', text: 'Septim se stává hrdým členem ekosystému Piano Solutions.' },
-  { year: '2024', title: 'ASW Systems → Septim Systems', text: 'Společnost přejmenována podle svého nejsilnějšího produktu.' },
-  { year: '2023', title: 'Miton většinovým vlastníkem', text: 'Investiční skupina Miton navýšila podíl na 80 %. Stáváme se garantovaným partnerem AHR ČR.' },
-  { year: '2021–2022', title: 'Septim.4.1 a vstup Mitonu', text: 'Vydání release 4.1.32 a vstup investiční skupiny Miton.' },
-  { year: '2017–2018', title: 'Představení Septim.4', text: 'Nová generace systému; akvizice společnosti Spectu.' },
-  { year: '2009', title: 'Septim v SazkaAréně (O2 areně)', text: '250 pokladních míst: nejrozsáhlejší pokladní systém v ČR. Výhradní distribuce PMS Protel.' },
-  { year: '1994', title: 'První verze Septimu', text: 'Zakladatel Zbyněk Švec napsal první verzi pokladního softwaru.' },
-];
+// https://www.septim.cz/o-spolecnosti (Solid Pixels), port 1:1 skriptem port-septim.py
+import Base from './../layouts/Base.astro';
+import BlokKolikZaplatim_71a6 from './../components/blocks/BlokKolikZaplatim_71a6.astro';
+import KontaktniFormular from './../components/blocks/KontaktniFormular.astro';
 ---
-<Base title="O společnosti Septim Systems | Septim"
-      description="Septim Systems a.s. (dříve ASW Systems) vyvíjí pokladní a provozní systém Septim už 30 let. Poznejte firmu za gastro systémem č. 1.">
-  <SiteHeader />
-  <main>
-    <Hero eyebrow="O společnosti" background="alt"
-          lead="Septim Systems a.s. (dříve ASW Systems) vyvíjí a provozuje vlastní provozní systém Septim. Za téměř 30 let si vybudoval pozici nejrespektovanějšího systému pro gastro podniky v ČR.">
-      <Heading slot="title" as="h1" size="display">Příběh <em>Septimu</em></Heading>
-      <Fragment slot="actions">
-        <Button href="/kariera">Kariéra v Septimu</Button>
-        <Button href="/kontakt" variant="secondary">Kontakt</Button>
-      </Fragment>
-    </Hero>
-
-    <LogoWall label="Respektované provozy, které využívají Septim" background="default" />
-    <StatsBand />
-
-    <Section background="default" space="lg">
-      <div class="head head--center">
-        <Text size="label" color="accent" align="center">Milníky</Text>
-        <Heading as="h2" size="h2" align="center">Od roku 1994 dodnes</Heading>
-        <Text size="lead" color="muted" align="center" balance>
-          Začínali jsme u první verze pokladny, dnes provozujeme přes 3 000 pokladen a je nás víc než 60.
-        </Text>
-      </div>
-      <ol class="timeline">
-        {timeline.map((t) => (
-          <li class="tl">
-            <span class="tl__year">{t.year}</span>
-            <div class="tl__body">
-              <Heading as="h3" size="h3">{t.title}</Heading>
-              <Text size="small" color="muted">{t.text}</Text>
-            </div>
-          </li>
-        ))}
-      </ol>
-    </Section>
-
-    <Section background="gradient" space="lg">
-      <div class="piano">
-        <Text size="label" color="on-dark" align="center">Septim je součástí skupiny Piano</Text>
-        <Heading as="h2" size="h2" align="center" color="on-dark">Jeden partner pro celý váš provoz</Heading>
-        <Text size="lead" color="on-dark-muted" align="center" balance>
-          Nově máte přístup ke všem klíčovým nástrojům pro gastro provoz pod jednou střechou, méně práce,
-          lepší přehled, vyšší zisk.
-        </Text>
-        <div class="piano__cta"><Button href="https://piano.cz">Prozkoumat Piano</Button></div>
-      </div>
-    </Section>
-
-    <LeadForm proofs={septimLeadProofs} id="poptavka" variant="full" background="alt"
-              title="Chcete Septim do svého provozu?"
-              lead="Nechte nám kontakt, rádi se vám ozveme." />
-  </main>
-  <SiteFooter />
+<Base
+  title="O společnosti | Septim"
+  description="Septim Systems a.s. vyvíjí pokladní a provozní systém Septim už 30 let. Poznejte firmu za gastro systémem č. 1."
+  path="/o-spolecnosti"
+  bodyClass="use-header-transparent use-menu-primary-uppercase use-menu-secondary-uppercase use-headings-link-plain search-panel-hide-submit-label search-panel-hide-close-label search-panel-hide-open-label use-menu-bar use-header-fixed use-header-fixed-mobile use-header-priority"
+  image="/files/nahled-asw-systems.jpg"
+>
+<div class="section height--low align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div><div><div><div><div><div><div><div><div><div class="flexcard flexcard-card flexcard-size--normal flexcard-media-right valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:76.92307692307693%"><img alt="O společnosti" decoding="async" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/hdr-asw-septim.webp" srcset="/files/r/720/hdr-asw-septim.webp 720w, /files/r/1280/hdr-asw-septim.webp 1280w, /files/r/1920/hdr-asw-septim.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h1>O společnosti<font color="#00adef"><span style="caret-color: rgb(0, 173, 239);">.</span></font></h1>
+<p class="text-large">Společnost Septim Systems a.s. (dříve ASW Systems a.s.) vyvinula a provozuje vlastní platební a provozní systém restaurace Septim.</p>
+<p class="text-large">Septim si během téměř 30 let vybudoval pozici nejrespektovanějšího systému pro gastro podniky.</p>
+</div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div><div><div><div><div><div><div><div><div><div><div><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
+<div class="section height--normal align--middle color--default no-pb section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Respektované provozy, které využívají Septim<span class="text-highlight">.</span></h2>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-gallery grid-sm-2"><div><div><div><div><div><div><div><div><div><div><div><div class="grid gallery-container" style="--gap:40px"><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Field" decoding="async" loading="lazy" src="/files/ref-field.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Ambiente" decoding="async" loading="lazy" src="/files/ref-ambiente.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Kolkovna" decoding="async" loading="lazy" src="/files/ref-kolkovna.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Perfect Canteen" decoding="async" loading="lazy" src="/files/ref-perfect-canteen.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Pizza Coloseum" decoding="async" loading="lazy" src="/files/ref-pizza-coloseum.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo SaSaZu" decoding="async" loading="lazy" src="/files/ref-sasazu.svg"/></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(240, 252, 255)"></div></div>
+<div class="section height--low align--middle color--default section-width-narrow no-pb"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div><div><div><div><div><div><div><div><div><div><div><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Příběh Septimu<span class="text-highlight">.</span></h2>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p class="center">Vývoj systému Septim začal v roce 1994, kdy jeho zakladatel Zbyněk Švec začal psát první verzi pokladního softwaru. Následně se společnost rozrůstala, přibírala nové klienty a vyvíjela nové verze Septimu. Dnes restaurace využívají čtvrtou verzi systému Septim, máme přes 60 lidí, provozujeme více než 3 000 pokladen a míříme ještě výš.</p>
+</div></div></div></div></div>
+<div class="section height--low align--middle color--default section--timeline"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline timeline-block"><h2 class="center">2025</h2>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3>Jsme hrdým členem <a href="https://piano.cz" target="_blank">Piano Solutions</a>.</h3>
+</div></div></div></div></div>
+<div class="section height--low align--middle color--default section--timeline"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline timeline-block"><h2 class="center">2024</h2>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3><a href="/blog/asw-systems-se-meni-na-septim-systems">ASW Systems se mění na Septim Systems</a>. </h3>
+</div></div></div></div></div>
+<div class="section height--low align--middle color--default section--timeline"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline timeline-block"><h2 class="center">2023</h2>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Investiční skupina <a href="https://www.miton.cz" target="_blank">Miton</a> po dvou letech spolupráce navýšila svůj původně minoritní podíl v Septimu na většinový, 80%. Septimu dál věří i CEO Lukáš Urban a zakladatel Zbyněk Švec, kteří si ve společnosti nadále ponechali každý 10% podíl. Lukáš Urban zůstává v čele firmy a Zbyněk Švec bude fungovat jako externí poradce společnosti.</p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3>Stáváme se garantovaným partnerem <a href="https://www.ahrcr.cz" target="_blank">ASOCIACE HOTELŮ A RESTAURACÍ ČESKÉ REPUBLIKY</a>. </h3>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Provozujeme již 3 000+ pokladen a spolupracuje s námi více než 60 kolegů.</p>
+</div></div></div></div></div>
+<div class="section height--low align--middle color--default section--timeline"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline timeline-block"><h2 class="center">2021 - 2022</h2>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Stále zdokonalujeme systém Septim.4. Na konci roku 2022 je uvolněn release 4.1.32</p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline">Provozujeme již 2 500+ pokladen a máme více než 40 spolupracovníků.</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Investiční skupina <a href="https://www.miton.cz" target="_blank">Miton</a> vstoupila do společnosti Septim.</p>
+</div></div></div></div></div>
+<div class="section height--low align--middle color--default section--timeline"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline timeline-block"><h2 class="center">2013 - 2020</h2>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline">Provozujeme již 2 000+ pokladen a zaměstnáváme více než 30 zaměstnanců.</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Neustále zdokonalujeme náš systém a na přelomu let 2017 a 2018 představujeme Septim.4</p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Dokončili jsme akvizici společnosti Spectu a zařadili jsme nové inovativní produkty do naší nabídky.</p>
+</div></div></div></div></div>
+<div class="section height--low align--middle color--default section--timeline"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline timeline-block"><h2 class="center">2010 - 2012</h2>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Získáváme další významné zákazníky jako GASTRO GROUP, Hooters, Sasazu, La Bottega Finestra Praha, La Finestra Praha, Club Xanadu Jihlava, Cavalli club Praha, Dubina Domažlice, Coa restaurant Praha, BlueOrange Praha, Golf Lipiny Karviná, Café Traverza Praha, Aromi Praha, Bellevue Praha a další desítky nových restaurací.</p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Dále se rozrůstáme a stěhujeme moravskou a slovenskou pobočku.</p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Rozrůstáme se a měníme v rámci Prahy sídlo společnosti.</p>
+</div></div></div></div></div>
+<div class="section height--low align--middle color--default section--timeline"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline timeline-block"><h2 class="center">1995 - 2009</h2>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Každý rok získáváme desítky nových zákazníků. Na konci roku 2009 počet uživatelů pokladního systému Septim překročil počet 850!</p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Dodali jsme systém Septim do SazkaArény (dnešní O2arena). Jedná se o nejrozsáhlejší pokladní systém v ČR, 250 pokladních míst na jednom místě.</p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Stáváme se  výhradním distributorem hotelového systému PROTEL v ČR.</p>
+</div></div></div></div></div>
+<div class="section height--low align--middle color--default section--timeline"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline timeline-block"><h2 class="center">1994</h2>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3 class="right">Zbyněk Švec, zakladatel systému Septim, začal psát první verzi pokladního systému.</h3>
+</div></div></div></div></div>
+<div class="section height--low align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><div><div><div><div><div><div><div><div><div><div><div><hr class="divider divider--normal divider--align-left"/></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
+<div class="section height--low align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image block-image--3-1"><div><div><div><div><div><div><div><div><div><div><div><div class="flexcard flexcard-card flexcard-size--normal flexcard-media-left valign-middle align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Naše vize? Záleží nám na každém detailu" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/vize-septim.webp" srcset="/files/r/720/vize-septim.webp 720w, /files/r/1280/vize-septim.webp 1280w, /files/r/1920/vize-septim.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2>Naše vize? Záleží nám na každém detailu<span class="text-highlight">.</span></h2>
+<p>Naší misí je vývoj a servis systému Septim a tím i zajištění efektivního řízení gastro podniků. Chceme, aby pracovníci v restauracích měli dostatek prostoru pro svou hlavní práci – přípravu skvělého jídla a péči o hosty.</p>
+<p>Tím naplňujeme náš cíl – chceme vést podniky k úspěchu. Chceme, aby se do nich hosté rádi vraceli a jejich dojem z návštěvy byl vždy a ve všech směrech pozitivní.</p>
+<p>Díky tomu věříme, že budeme směřovat k naplnění naší vize: zvýšit celkovou úroveň a kvalitu služeb v českém gastru. Lidé se tak nebudou muset bát, že v nějaké restauraci nedostanou dobré jídlo.</p>
+</div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
+<div class="section height--low align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><div><div><div><div><div><div><div><div><div><div><div><hr class="divider divider--normal divider--align-left"/></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
+<div class="section height--low align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Naše hodnoty<span class="text-highlight">.</span></h2>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div><div><div><div><div><div><div><div><div><div><div><div class="block-spacer-element" style="--height:30px"></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-4-12"><div class="block block-box box box--default"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div><div><div><div><div><div><div><div><div><div class="flexcard flexcard-icon flexcard-none size-md align-left"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/partnerstvi.svg"/></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3><strong>Partnerství<span class="text-highlight">.</span></strong></h3>
+<p>Pro naše zákazníky nejsme jen dodavatelé řešení. Jsme pro ně partneři, na které se mohou kdykoliv obrátit. Věnujeme jim vždy maximální možnou péči.</p>
+</div></div></div></div></div> <div class="col col-5-12 grid-4-12"><div class="block block-box box box--default"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div><div><div><div><div><div><div><div><div><div class="flexcard flexcard-icon flexcard-none size-md align-left"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/stabilita-dlouhodobost.svg"/></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3><strong>Stabilita/dlouhodobost<span class="text-highlight">.</span></strong></h3>
+<p>Přicházíme s produktem, na který se může zákazník opravdu spolehnout. Je totiž základem pro dlouhodobě fungující provoz.</p>
+</div></div></div></div></div> <div class="col col-9-12 grid-4-12"><div class="block block-box box box--default"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div><div><div><div><div><div><div><div><div><div class="flexcard flexcard-icon flexcard-none size-md align-left"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/inovace.svg"/></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3><strong>Inovace<span class="text-highlight">.</span></strong></h3>
+<p>Náš produkt neustále inovujeme. Jedině tak můžeme našim zákazníkům nabídnout vždy dokonale aktuálně řešení jejich byznysových potřeb.</p>
+</div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><div><div><div><div><div><div><div><div><div><div><div><hr class="divider divider--normal divider--align-left"/></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
+<div class="section height--low align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-4-12"><div class="block block-inline"><h3>Často kladené otázky<span class="text-highlight">.</span></h3>
+</div></div> <div class="col col-5-12 grid-8-12"><div class="block block-accordion">
+<div class="accordion"><div class="accordion__title"><span class="accordion__title-label">Kým je vlastněn Septim?</span><span class="accordion__title-arrow"><div class="cssicon cssicon--chevron cssicon--size-parent"></div></span></div><div class="container accordion__content"><div class="container-body">
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Septim je produkt společnosti Septim Systems a.s. Je vyvíjen již od roku 1994.</p>
+</div></div></div>
+</div></div></div>
+<div class="accordion accordion--is-opened"><div class="accordion__title"><span class="accordion__title-label">Vlastní Septim Systems a.s. české zastoupení hotelového systému Protel?</span><span class="accordion__title-arrow"><div class="cssicon cssicon--chevron cssicon--size-parent"></div></span></div><div class="container accordion__content"><div class="container-body">
+<div class="row-main"><div class="col col-1-12 grid-12-12"></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline">Donedávna vlastnila společnost Septim Systems a.s. i zastoupení hotelového systému Protel v Česku a na Slovensku. Nicméně pro lepší organizaci se Septim a Protel rozdělil do separátních firem s podobnou vlastnickou strukturou. Úzká a přátelská spolupráce probíhá i nadále, sdílíme např. kanceláře v pražské centrále a předáváme si zákaznické požadavky v rámci koordinovaného helpdesku. Hotelový systém Protel tedy nabízí a servisuje společnost protel systems s.r.o.  </div></div></div>
+</div></div></div>
+</div> <div class="block block-spacer"><div><div><div><div><div><div><div><div><div><div><div><div class="block-spacer-element" style="--height:30px"></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
+<BlokKolikZaplatim_71a6 />
+<KontaktniFormular />
 </Base>
-
-<style>
-  .head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-7); text-align: center; }
-  .head > * + * { margin-top: var(--space-3); }
-  .timeline { list-style: none; max-width: 760px; margin-inline: auto; display: flex; flex-direction: column; gap: var(--space-5); }
-  .tl { display: grid; grid-template-columns: 110px 1fr; gap: var(--space-5); padding-left: var(--space-4); border-left: 2px solid var(--color-border); position: relative; }
-  .tl::before { content: ''; position: absolute; left: -7px; top: 4px; width: 12px; height: 12px; border-radius: 50%; background: var(--color-primary); }
-  .tl__year { font-weight: var(--font-weight-bold); color: var(--color-secondary); }
-  .tl__body > * + * { margin-top: var(--space-1); }
-  .piano { max-width: 720px; margin-inline: auto; text-align: center; }
-  .piano > * + * { margin-top: var(--space-3); }
-  .piano__cta { margin-top: var(--space-6); }
-  @media (max-width: 560px) { .tl { grid-template-columns: 1fr; gap: var(--space-1); } }
-</style>

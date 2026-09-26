@@ -1,109 +1,80 @@
 ---
-/** Septim: Služby: Podmínky servisní smlouvy. Obsah: septim-obsah/sluzby-servis/podminky-servisni-smlouvy.md. SEO meta nově. */
+// https://www.septim.cz/sluzby-servis/podminky-servisni-smlouvy (Solid Pixels), port 1:1 skriptem port-septim.py
 import Base from '../../layouts/Base.astro';
-import SiteHeader from '../../components/SiteHeader.astro';
-import SiteFooter from '../../components/SiteFooter.astro';
-import Section from '@piano/ui/components/Section.astro';
-import Hero from '@piano/ui/components/Hero.astro';
-import Heading from '@piano/ui/components/Heading.astro';
-import Text from '@piano/ui/components/Text.astro';
-import Button from '@piano/ui/components/Button.astro';
-import Icon from '@piano/ui/components/Icon.astro';
-import Card from '@piano/ui/components/Card.astro';
-import Badge from '@piano/ui/components/Badge.astro';
-import USPGrid from '@piano/ui/components/USPGrid.astro';
-import LeadForm from '@piano/ui/components/LeadForm.astro';
-import LogoWall from '../../components/LogoWall.astro';
-import { septimLeadProofs } from '../../config/leadProofs';
-
-const oblasti = [
-  { icon: 'lucide:lightbulb', title: 'Poradenství', text: 'Rady v oblasti používání systému Septim.' },
-  { icon: 'lucide:wrench', title: 'Řešení potíží', text: 'Řešení nastalých potíží se systémem i hardwarem.' },
-  { icon: 'lucide:zap', title: 'Rychlá podpora', text: 'Co nejrychlejší podpora v případě akutního problému.' },
-  { icon: 'lucide:refresh-cw', title: 'Aktuální verze', text: 'Dostupná aktuální verze systému Septim.' },
-  { icon: 'lucide:scale', title: 'Legislativa', text: 'Legislativní aktualizace, například změny DPH.' },
-];
-const standard = [
-  'Poskytnutí aktuální verze softwaru Septim zdarma, včetně zapracování legislativních změn (DPH atp.)',
-  'Prioritní řešení problému v rámci helpdesku',
-  'Kontakt na servisní podporu i mimo pracovní dobu',
-  'NON-STOP hotline po zadání přiděleného servisního kódu',
-  'Garance, že požadavek na servisní podporu je během pracovní doby řešen bez zbytečného odkladu; po pracovní době jste spojeni přímo s technikem',
-  'Garance zásahů prostřednictvím dálkového servisu v pracovní době, efektivní řešení požadavků bez nutnosti výjezdu',
-  'Garance, že servis je na základě objednávky uskutečněn nejpozději další pracovní den',
-  'Zvýhodněný ceník vlastního servisního zásahu a servisních služeb',
-];
-const plus = [
-  'Veškeré servisní zásahy a konzultace servisního charakteru (vyjma cestovného)',
-  'Servis hardwaru mladšího 3 let dodaného naší společností (vyjma náhradních dílů)',
-  'Hromadné školení 1 tematického okruhu pro 1 osobu ročně, pořádané v prostorách Septim Systems',
-  'Pro vzdálené servisní zásahy je uplatňována Fair User Policy (FUP)',
-];
+import BlokKolikZaplatim_71a6 from '../../components/blocks/BlokKolikZaplatim_71a6.astro';
+import Blok30Let_9e65 from '../../components/blocks/Blok30Let_9e65.astro';
+import Novinky from '../../components/blocks/Novinky.astro';
 ---
-<Base title="Podmínky servisní smlouvy | Septim"
-      description="Servisní smlouva k systému Septim zajišťuje nepřetržitou pomoc a podporu. Přehled podmínek servisu, reakčních časů a rozsahu služeb.">
-  <SiteHeader />
-  <main>
-    <Hero eyebrow="Služby a servis" background="alt"
-          lead="Ihned po spuštění systému Septim na provozovně začíná běžet servisní smlouva. Zajišťuje poradenství, řešení potíží, rychlou podporu i aktuální verzi systému.">
-      <Heading slot="title" as="h1" size="display">Podmínky <em>servisní smlouvy</em></Heading>
-      <Fragment slot="actions">
-        <Button href="#poptavka">Chci probrat servisní smlouvu</Button>
-        <Button href="/sluzby-servis" variant="secondary">Všechny služby</Button>
-      </Fragment>
-      <figure slot="media" class="hero-pic">
-        <img src="/images/sluzby-smlouva.webp" alt="Servisní smlouva k systému Septim" width="960" height="738" loading="eager" decoding="async" />
-      </figure>
-    </Hero>
-
-    <USPGrid eyebrow="Co smlouva zajišťuje" title="Klíčové oblasti servisní smlouvy" items={oblasti} background="default" space="lg" minItemWidth="220px"
-             lead="Vlastní servisní práce mohou být, v závislosti na typu servisní smlouvy, zpoplatněny zvlášť." />
-
-    <Section background="alt" space="lg">
-      <div class="prose">
-        <Heading as="h2" size="h2">Typy servisních smluv systému Septim</Heading>
-        <Text color="muted">Provozní systém Septim nabízí dva typy servisní podpory. Obě varianty jsou určeny zákazníkům, kteří chtějí mít přístup k novým aktualizacím a jistotu NON-STOP možnosti kontaktu servisní linky.</Text>
-      </div>
-      <div class="plans">
-        <Card variant="bordered" padding="lg">
-          <Badge variant="neutral">Standard</Badge>
-          <Heading as="h3" size="h3">Servisní smlouva Standard</Heading>
-          <ul class="plan__list">
-            {standard.map((f) => (<li><Icon name="lucide:check" size="sm" class="plan__icon" />{f}</li>))}
-          </ul>
-        </Card>
-        <Card variant="bordered" padding="lg">
-          <Badge variant="primary">Plus</Badge>
-          <Heading as="h3" size="h3">Servisní smlouva Plus</Heading>
-          <Text size="small" color="muted">Obsahuje vše, co je v rámci podpory Standard, a navíc:</Text>
-          <ul class="plan__list">
-            {plus.map((f) => (<li><Icon name="lucide:plus" size="sm" class="plan__icon" />{f}</li>))}
-          </ul>
-        </Card>
-      </div>
-    </Section>
-
-    <Section background="default" space="md">
-      <div class="prose">
-        <Heading as="h2" size="h3">Co servisní smlouvy neobsahují</Heading>
-        <Text color="muted">Servisní smlouvy v žádné variantě v paušálním poplatku nezahrnují cestovné a dále konzultace, školení, rozšíření provozu a ostatní podobné služby neodstraňující problém.</Text>
-      </div>
-    </Section>
-
-    <LogoWall label="Důvěřují nám ti nejlepší" background="alt" />
-    <LeadForm proofs={septimLeadProofs} id="poptavka" variant="callback" background="default"
-              title="Který typ smlouvy je pro vás?"
-              lead="Nechte nám telefon, poradíme vám s výběrem servisní smlouvy pro váš provoz." />
-  </main>
-  <SiteFooter />
+<Base
+  title="Podmínky servisní smlouvy | Septim"
+  description="Servisní smlouva k systému Septim zajišťuje nepřetržitou pomoc a podporu. Přehled podmínek servisu, reakčních časů a rozsahu služeb."
+  path="/sluzby-servis/podminky-servisni-smlouvy"
+  bodyClass="use-header-transparent use-menu-primary-uppercase use-menu-secondary-uppercase use-headings-link-plain search-panel-hide-submit-label search-panel-hide-close-label search-panel-hide-open-label use-menu-bar use-header-fixed use-header-fixed-mobile use-header-priority"
+  image="/files/nahled-podminky.jpg"
+>
+<div class="section height--low align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-card flexcard-size--normal flexcard-media-right valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:76.92307692307693%"><img alt="Podmínky servisní smlouvy" decoding="async" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/hdr-podminky-servisni-smlouvy.webp" srcset="/files/r/720/hdr-podminky-servisni-smlouvy.webp 720w, /files/r/1280/hdr-podminky-servisni-smlouvy.webp 1280w, /files/r/1920/hdr-podminky-servisni-smlouvy.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h1>Podmínky servisní smlouvy<span class="text-highlight">.</span></h1>
+<p class="text-large"></p>
+<p class="text-large">Ihned po spuštění systému Septim na provozovně zákazníka začíná běžet servisní smlouva. Ta zajišťuje několik klíčových oblastí:</p>
+<ul>
+<li>Poradenství v oblasti používání systému</li>
+<li>Řešení nastalých potíží se systémem i hardwarem</li>
+<li>Co nejrychlejší podporu v případě akutního problému</li>
+<li>Dostupnou aktuální verzi systému</li>
+<li>Legislativní aktualizace, např. změny DPH</li>
+<li>pozn. vlastní servisní práce mohou být, v závislosti na typu servisní smlouvy, zpoplatněny zvlášť. </li>
+</ul>
+</div></div></div></div></div></div></div></div></div></div></div>
+<div class="section height--low align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-2-12 grid-10-12"><div class="block block-inline"><h2 class="center">Typy servisních smluv systému Septim<span class="text-highlight">.</span></h2>
+<p class="center">Provozní systém Septim nabízí několik typů servisní podpory.</p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-6-12"><div class="block block-box box box--secondary box--full-height"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-vertical size-md align-center"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/smlouva-standard.svg"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h3>Standard</h3>
+<p class="left">Je určena všem zákazníkům využívající systém Septim, kteří chtějí mít přístup k novým aktualizacím a kteří chtějí mít jistotu NON-STOP možnosti kontaktu servisní linky.</p>
+<p class="left"><a href="/sluzby-servis/podminky-servisni-smlouvy#smlouva-standard"><strong style="font-size: var(--text-size-base); font-family: var(--base-font-family);">Podrobně obsah servisní smlouvy typu Standard</strong></a></p>
+</div></div></div></div></div></div></div></div></div></div></div> <div class="col col-7-12 grid-6-12"><div class="block block-box box box--secondary box--full-height"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-vertical size-md align-center"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/smlouva-plus.svg"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h3>Plus</h3>
+<p class="left">Je určena všem zákazníkům využívající systém Septim, kteří chtějí mít přístup k novým aktualizacím a kteří chtějí mít jistotu NON-STOP možnosti kontaktu servisní linky.. Obsahuje vše co servisní smlouva "Standard" a navíc další výhody a služby.</p>
+<p class="left"><a href="/sluzby-servis/podminky-servisni-smlouvy#smlouva-plus"><strong style="font-size: var(--text-size-base); font-family: var(--base-font-family);">Podrobně obsah servisní smlouvy typu Plus</strong></a></p>
+</div></div></div></div></div></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div><div><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div></div></div><div class="section-background" style="background-color:#ffffff"></div></div>
+<div class="section height--normal align--middle color--default no-pb section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Důvěřují nám ti nejlepší<span class="text-highlight">.</span></h2>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-gallery grid-sm-2"><div><div><div class="grid gallery-container" style="--gap:40px"><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Field" decoding="async" loading="lazy" src="/files/ref-field.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Ambiente" decoding="async" loading="lazy" src="/files/ref-ambiente.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Bugsy's bar" decoding="async" loading="lazy" src="/files/ref-bugsys-bar.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Entrée" decoding="async" loading="lazy" src="/files/ref-entree.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Perfect Canteen" decoding="async" loading="lazy" src="/files/ref-perfect-canteen.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><a class="image image-mask ratio-square image-width-stretch" href="/chci-septim"><img alt="Vaše logo" decoding="async" loading="lazy" src="/files/ref-vase.svg"/></a></div></div></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(240, 252, 255)"></div></div>
+<div class="section height--low align--middle color--default" id="smlouva-standard"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div><div><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-2-12"><div class="block block-image"><div><div><div class="image image-mask ratio-square"><img alt="" decoding="async" loading="lazy" sizes="(min-width:1390px) 232px, (min-width:720px) 16.67vw, 100.00vw" src="/files/r/1280/smlouva-standard.webp" srcset="/files/r/720/smlouva-standard.webp 720w, /files/r/1280/smlouva-standard.webp 1280w, /files/r/1920/smlouva-standard.webp 1920w"/></div></div></div></div></div> <div class="col col-3-12 grid-1-12"><div class="block block-spacer"><div><div><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div> <div class="col col-4-12 grid-9-12"><div class="block block-spacer"><div><div><div class="block-spacer-element" style="--height:40px"></div></div></div></div> <div class="block block-inline"><h2>Servisní správa "Standard" podrobně<span class="text-highlight">.</span></h2>
+</div> <div class="block block-inline"><p>Je určena všem zákazníkům využívající systém Septim, kteří chtějí mít přístup k novým aktualizacím a kteří chtějí mít jistotu NON-STOP podpory.</p>
+<ul>
+<li>poskytnutí aktuální verze softwaru Septim zdarma, včetně zapracování legislativních změn (DPH atp.)</li>
+<li>prioritní řešení problému v rámci helpdesku</li>
+<li>kontakt na servisní podporu i mimo pracovní dobu</li>
+<li>NON-STOP hotline po zadání přiděleného servisního kódu</li>
+<li>garanci, že požadavek na servisní podporu je během pracovní doby řešen bez zbytečného odkladu, po pracovní době jste spojeni přímo s technikem</li>
+<li>garanci zásahů prostřednictvím dálkového servisu v pracovní době – tedy pomocí nástrojů dálkové správy, kdy lze poskytovat velmi efektivně řešení servisních požadavků bez nutnosti výjezdu</li>
+<li>garanci, že servis je na základě objednávky uskutečněn nejpozději další pracovní den</li>
+<li>zvýhodněný ceník vlastního servisního zásahu a servisních služeb</li>
+</ul>
+</div></div></div></div></div>
+<div class="section height--low align--middle color--default" id="smlouva-plus"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><div><div><hr class="divider divider--normal divider--align-left"/></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-2-12"><div class="block block-image"><div><div><div class="image image-mask ratio-square"><img alt="" decoding="async" loading="lazy" sizes="(min-width:1390px) 232px, (min-width:720px) 16.67vw, 100.00vw" src="/files/r/1280/smlouva-plus.webp" srcset="/files/r/720/smlouva-plus.webp 720w, /files/r/1280/smlouva-plus.webp 1280w, /files/r/1920/smlouva-plus.webp 1920w"/></div></div></div></div></div> <div class="col col-3-12 grid-1-12"><div class="block block-spacer"><div><div><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div> <div class="col col-4-12 grid-9-12"><div class="block block-spacer"><div><div><div class="block-spacer-element" style="--height:40px"></div></div></div></div> <div class="block block-inline"><h2>Servisní správa "Plus" podrobně<span class="text-highlight">.</span></h2>
+</div> <div class="block block-inline"><p>Je určena všem zákazníkům využívající systém Septim, kteří chtějí mít přístup k novým aktualizacím a kteří chtějí mít jistotu NON-STOP podpory.</p>
+<p><strong>Obsahuje vše co je v rámci podpory "Standard" a navíc:</strong></p>
+<ul>
+<li>veškeré servisní zásahy a konzultace servisního charakteru (vyjma cestovného)</li>
+<li>servis hardwaru mladšího 3 let a dodaného naší společností (vyjma náhradních dílů)</li>
+<li>hromadné školení 1 tématického okruhu pro 1 osobu ročně. Hromadné školení Septim je pořádáno v prostorách Septim Systems</li>
+<li>pro vzdálené servisní zásahy je uplatňována FairUserPolicy (FUP)</li>
+</ul>
+</div></div></div></div></div>
+<div class="section height--low align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><div><div><hr class="divider divider--normal"/></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div><div><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-2-12"><div class="block block-image"><div><div><div class="image image-mask ratio-square"><img alt="" decoding="async" loading="lazy" sizes="(min-width:1390px) 232px, (min-width:720px) 16.67vw, 100.00vw" src="/files/r/1280/smlouva-neobsahuje.webp" srcset="/files/r/720/smlouva-neobsahuje.webp 720w, /files/r/1280/smlouva-neobsahuje.webp 1280w, /files/r/1920/smlouva-neobsahuje.webp 1920w"/></div></div></div></div></div> <div class="col col-3-12 grid-1-12"><div class="block block-spacer"><div><div><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div> <div class="col col-4-12 grid-9-12"><div class="block block-spacer"><div><div><div class="block-spacer-element" style="--height:40px"></div></div></div></div> <div class="block block-inline"><h2>Co servisní smlouvy neobsahují<span class="text-highlight">.</span></h2>
+</div> <div class="block block-inline"><p><strong>Servisní smlouvy v žádné variantě v paušálním poplatku nezahrnují:</strong></p>
+<ul>
+<li>cestovné</li>
+<li>konzultace, školení, rozšíření provozu a ostatní podobné služby neodstraňující problém.</li>
+</ul>
+</div></div></div></div></div>
+<div class="section height--low align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div><div><div class="center"><a class="btn btn-default" href="/sluzby-servis"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">Kontakt na Helpdesk</span></a></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div><div><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div></div></div></div>
+<BlokKolikZaplatim_71a6 />
+<Blok30Let_9e65 />
+<Novinky />
 </Base>
-
-<style>
-  .prose { max-width: 760px; margin-bottom: var(--space-6); }
-  .prose > * + * { margin-top: var(--space-4); }
-  .plans { display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); align-items: start; }
-  .plans :global(.heading) { margin: var(--space-2) 0 var(--space-3); }
-  .plan__list { list-style: none; margin-top: var(--space-3); display: flex; flex-direction: column; gap: var(--space-2); }
-  .plan__list li { display: flex; align-items: flex-start; gap: var(--space-2); font-size: var(--font-size-small); color: var(--color-text-muted); }
-  .plan__icon { color: var(--color-primary); flex-shrink: 0; margin-top: 2px; }
-</style>

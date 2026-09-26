@@ -64,3 +64,19 @@ export const klientiVerejnySektor = [
   'reference/verejny-sektor/lazne-karlova-studanka',
   'reference/verejny-sektor/upmd',
 ];
+
+/* Podmnožiny pro segmentové stránky /pro-koho/*. Jen výběry z polí výš, žádná nová loga.
+   Zařazení podle názvu provozu; kde by bylo zařazení dohad (kavárny, jídelny),
+   se na stránce použije celý klientiGastro. */
+export const klientiHotely = klientiGastro.filter((l) => [
+  'cpi-hotels', 'pytloun-hotels', 'grandhotel-pupp', 'hotel-maximus', 'grandhotel-brno',
+  'avanti-hotel', 'jan-hotels', 'hh-hotels', 'hotel-freud', 'hotel-orlik', 'hotel-praded',
+  'hotel-radun', 'hotel-rott', 'hotel-rustikal', 'hotel-duo', 'hotel-obzor',
+  'cervenohorske-sedlo', 'hp-tronic',
+].some((slug) => l.endsWith(`/${slug}`)));
+
+export const klientiRestaurace = klientiGastro.filter((l) => [
+  'ambiente', 'kolkovna', 'sasazu', 'con-gusto', 'pivo-karlin', 'goose-pivovar',
+  'mestansky-pivovar-turnov', 'restaurace-mincovna', 'restaurace-tiskarna',
+  'cerna-madona', 'knedlin', 'staromestska', 'u-pavouka', 'u-zlate-psenice',
+].some((slug) => l.endsWith(`/${slug}`)));

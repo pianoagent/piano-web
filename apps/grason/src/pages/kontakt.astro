@@ -12,6 +12,7 @@ import Icon from '@piano/ui/components/Icon.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import { grasonNav, grasonCta, grasonFooter, grasonLogin } from '../config/nav';
 import { grasonLeadProofs } from '../config/leadProofs';
+import PersonCard from '../components/PersonCard.astro';
 
 const contacts = [
   { icon: 'lucide:phone', label: 'Zavolejte', value: '+420 739 877 799', href: 'tel:+420739877799' },
@@ -34,6 +35,21 @@ const contacts = [
 
     <ContactCards items={contacts} variant="plain" background="default" space="lg" />
 
+    <!-- Konkrétní člověk, ne jen firemní linka. Stejně to má live grasonplan.cz. -->
+    <Section background="default" space="md">
+      <div class="head head--center">
+        <Heading as="h2" size="h2" align="center">Kdo se vám ozve</Heading>
+      </div>
+      <div class="person-wrap">
+        <PersonCard
+          name="Kristýna Gottfrídová"
+          role="Customer Success Specialist"
+          photo="/images/team/kristyna-gottfridova.webp"
+          phone="+420 739 877 799"
+          email="info@grason.cz" />
+      </div>
+    </Section>
+
     <LeadForm proofs={grasonLeadProofs} id="poptavka" variant="full" background="alt"
               title="Napište nám"
               lead="Nechte nám kontakt a krátkou zprávu, ozveme se co nejdříve." />
@@ -42,4 +58,8 @@ const contacts = [
 </Base>
 
 <style>
+  .head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-6); }
+  .head--center { text-align: center; }
+  /* Karta člověka drží šířku formuláře, ať pod kontakty nevisí přes celý pás */
+  .person-wrap { max-width: 640px; margin-inline: auto; }
 </style>

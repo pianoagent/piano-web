@@ -1,0 +1,136 @@
+---
+// https://www.septim.cz/cenik-sluzeb-septim (Solid Pixels), port 1:1 skriptem port-septim.py
+import Base from './../layouts/Base.astro';
+import PojdmeToProbrat from './../components/blocks/PojdmeToProbrat.astro';
+import BlokKolikZaplatim_71a6 from './../components/blocks/BlokKolikZaplatim_71a6.astro';
+---
+<Base
+  title="Ceník služeb Septim | Septim"
+  description="Přehled cen služeb k pokladnímu systému Septim. Ceny zahrnují slevy pro zákazníky se systémovou podporou. Zjistěte aktuální ceník."
+  path="/cenik-sluzeb-septim"
+  bodyClass="use-header-transparent use-menu-primary-uppercase use-menu-secondary-uppercase use-headings-link-plain search-panel-hide-submit-label search-panel-hide-close-label search-panel-hide-open-label use-menu-bar use-header-fixed use-header-fixed-mobile use-header-priority"
+  image="/files/nahled-asw-systems.jpg"
+>
+<div class="section height--low align--middle color--default section-width-narrow no-pb section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h1 class="center">Ceník služeb Septim<span class="text-highlight">.</span></h1>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p class="center text-large">Nabízíme kvalitní a profesionální péči pro Váš maximální komfort. Nebo Vás zajímá ceník licencí?</p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div><div><div><div><div><div class="center"><a class="btn btn-default btn-sm" href="/cenik"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">CENÍK LICENCÍ</span></a></div></div></div></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<div class="section height--low align--middle color--default section-width-narrow no-pb"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><table class="table table-bordered">
+<thead>
+<tr>
+<th scope="col">
+<h3>Popis servisní služby</h3>
+</th>
+<th scope="col">
+<h3 class="right">Jednotka</h3>
+</th>
+<th scope="col">
+<h3 class="right">Septim</h3>
+</th>
+<th scope="col">
+<h3 class="right">Septim SK v EUR</h3>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Servisní zásah v pracovní době</td>
+<td class="right">1 hod</td>
+<td class="right">1 500 Kč</td>
+<td class="right">60 EUR</td>
+</tr>
+<tr>
+<td>
+<p><span class="text-highlight">Servisní zásah mimo pracovní dobu / expres (+100%)</span></p>
+</td>
+<td>
+<p class="right"><span class="text-highlight">1 hod</span></p>
+</td>
+<td>
+<p class="right"><span class="text-highlight">3 000 Kč</span></p>
+</td>
+<td>
+<p class="right"><span class="text-highlight">120 EUR</span></p>
+</td>
+</tr>
+<tr>
+<td>Konzultace, instalace, školení, autorský dozor</td>
+<td class="right">1 hod</td>
+<td class="right">1 800 Kč</td>
+<td class="right">75 EUR</td>
+</tr>
+<tr>
+<td><span class="text-highlight">Konzultace, instalace, školení mimo pracovní dobu (+50%)</span></td>
+<td class="right"><span class="text-highlight">1 hod</span></td>
+<td class="right">2 700 Kč</td>
+<td class="right"><span class="text-highlight">110 EUR</span></td>
+</tr>
+<tr>
+<td>Cestovné po Praze / Bratislavě</td>
+<td class="right">1 cesta</td>
+<td class="right">1 000 Kč</td>
+<td class="right">40 EUR</td>
+</tr>
+<tr>
+<td>Cestovné po Olomouci</td>
+<td class="right">1 cesta</td>
+<td class="right">600 Kč</td>
+<td class="right">-</td>
+</tr>
+<tr>
+<td>Cestovní výlohy (odvoz zákazníkem, čas na cestě)</td>
+<td class="right">započatá hod</td>
+<td class="right">500 Kč</td>
+<td class="right">20 EUR</td>
+</tr>
+<tr>
+<td>Cestovné ostatní</td>
+<td class="right">1 km</td>
+<td class="right">15 Kč</td>
+<td class="right">0,6 EUR</td>
+</tr>
+<tr>
+<td>Diagnostika hardwaru</td>
+<td class="right">1 ks</td>
+<td class="right">1 500 Kč</td>
+<td class="right">60 EUR</td>
+</tr>
+<tr>
+<td>Opravy hardwaru</td>
+<td class="right">1 hod</td>
+<td class="right">1 500 Kč</td>
+<td class="right">60 EUR</td>
+</tr>
+<tr>
+<td>Analýzy problémů, reporty</td>
+<td class="right">1 hod</td>
+<td class="right">2 500 Kč</td>
+<td class="right">100 EUR</td>
+</tr>
+<tr>
+<td>Vývoj na míru (analýza, vývoj)</td>
+<td class="right">1 hod</td>
+<td class="right">2 500 Kč</td>
+<td class="right">100 EUR</td>
+</tr>
+<tr>
+<td>Zápůjčka hardwaru dodaného od Septim</td>
+<td class="right">1 den</td>
+<td class="right">ZDARMA</td>
+<td class="right">ZDARMA</td>
+</tr>
+<tr>
+<td>Hromadné školení Septim</td>
+<td class="right">1 osoba</td>
+<td class="right">5 500 Kč</td>
+<td class="right">220 EUR</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Uvedené ceny zahrnují slevy pro zákazníky, kteří mají zaplacenou systémovou podporu Maintenance Septim/SeptimMU.</strong> V ostatních případech jsou uvedené hodinové sazby a cestovné o 50 % vyšší. Všechny ceny jsou uvedeny bez DPH. Ceníky jednotlivých obchodních partnerů se mohou lišit.</p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div><div><div><div><div><div class="block-spacer-element" style="--height:30px"></div></div></div></div></div></div></div></div></div></div></div>
+<PojdmeToProbrat />
+<BlokKolikZaplatim_71a6 />
+</Base>

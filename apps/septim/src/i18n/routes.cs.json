@@ -1,0 +1,334 @@
+{
+  "/": {
+    "en": "/en",
+    "sk": "/sk"
+  },
+  "/blog/420-restaurant": {
+    "en": "/en/blog/420-restaurant",
+    "sk": "/sk/blog/420-restaurant"
+  },
+  "/blog/aromi-labottega-lafinnestra-laboratorio-amano-spolehaji-na-septim": {
+    "en": "/en",
+    "sk": "/sk"
+  },
+  "/blog/asw-systems-se-meni-na-septim-systems": {
+    "en": "/en",
+    "sk": "/sk"
+  },
+  "/blog/dalsi-michelin-v-rodine-septim": {
+    "en": "/en",
+    "sk": "/sk"
+  },
+  "/blog/grandhotel-pupp-spoleha-na-septim": {
+    "en": "/en",
+    "sk": "/sk"
+  },
+  "/blog/kariera/it-operation-automation-specialist": {
+    "en": "/en",
+    "sk": "/sk"
+  },
+  "/blog/michelin-guide-2025-septim-potvrzuje-svou-silnou-roli-v-ceske-gastronomii": {
+    "en": "/en",
+    "sk": "/sk"
+  },
+  "/blog/miton-navysil-svuj-podil-septim": {
+    "en": "/en/blog/miton-increased-its-stake-in-septim",
+    "sk": "/sk/blog/miton-navysil-svuj-podil-septim"
+  },
+  "/blog/pokladni-system-a-provozni-system-restaurace-rozdil": {
+    "en": "/en/blog/difference-between-pos-and-operating-system-restaurant",
+    "sk": "/sk/blog/pokladnicny-system-a-prevadzkovy-system-restauracie-rozdiel"
+  },
+  "/blog/restaurace-420-expanduje-na-rohlik-cz": {
+    "en": "/en",
+    "sk": "/sk"
+  },
+  "/blog/restaurace-nemusi-nejakou-it-bezpecnost-resit-omyl": {
+    "en": "/en/blog/restaurants-dont-have-to-deal-with-it-security-wrong",
+    "sk": "/sk/blog/restauracie-nemusia-riesit-bezpecnost-it-omyl"
+  },
+  "/blog/septim-neni-jen-pokladni-system-pro-restaurace-ale-i-pro-reznictvi": {
+    "en": "/en",
+    "sk": "/sk"
+  },
+  "/blog/zmena-sidla-spolecnosti-septim-systems": {
+    "en": "/en",
+    "sk": "/sk"
+  },
+  "/cenik": {
+    "en": "/en",
+    "sk": "/sk"
+  },
+  "/cenik-sluzeb-protel": {
+    "en": "/en/price-list-protel-services",
+    "sk": "/sk/cennik-sluzieb-protel"
+  },
+  "/cenik-sluzeb-septim": {
+    "en": "/en/price-list-septim-services",
+    "sk": "/sk/cennik-sluzieb-septim"
+  },
+  "/chci-septim": {
+    "en": "/en/want-septim",
+    "sk": "/sk/chcem-septim"
+  },
+  "/eet-20": {
+    "en": "/en",
+    "sk": "/sk"
+  },
+  "/efektivni-rizeni-restaurace": {
+    "en": "/en/effective-restaurant-management",
+    "sk": "/sk/efektivne-riadeni-restauracie"
+  },
+  "/informace-o-cookies": {
+    "en": "/en/information-about-cookies",
+    "sk": "/sk/informacie-o-cookies"
+  },
+  "/informace-o-zpracovani-osobnich-udaju-formular": {
+    "en": "/en/information-about-working-out-personal-events-form",
+    "sk": "/sk/podmienky-spracovani-osobnych-udajov-formular"
+  },
+  "/kariera": {
+    "en": "/en",
+    "sk": "/sk"
+  },
+  "/kolkovna/10x-restaurant": {
+    "en": "/en/case/10x-restaurant",
+    "sk": "/sk/blog/10x-restaurant"
+  },
+  "/kolkovna/1x-jidelna": {
+    "en": "/en/case/1x-jidelna",
+    "sk": "/sk/blog/1x-jidelna"
+  },
+  "/kolkovna/2x-bistro": {
+    "en": "/en/case/2x-bistro",
+    "sk": "/sk/blog/2x-bistro"
+  },
+  "/kontakt": {
+    "en": "/en/contact",
+    "sk": "/sk/kontakt"
+  },
+  "/nasi-zakaznici": {
+    "en": "/en/our-customers",
+    "sk": "/sk/nasi-zakaznici"
+  },
+  "/novinky": {
+    "en": "/en/news",
+    "sk": "/sk/novinky"
+  },
+  "/o-spolecnosti": {
+    "en": "/en/about-company",
+    "sk": "/sk/o-spolocnosti"
+  },
+  "/obchodni-podminky": {
+    "en": "/en/terms-conditions",
+    "sk": "/sk/podmienky-a-pravidla"
+  },
+  "/partneri/crunchtime": {
+    "en": "/en/partners/crunchtime",
+    "sk": "/sk/partneri/crunchtime"
+  },
+  "/partneri/grason": {
+    "en": "/en/partners/grason",
+    "sk": "/sk/partneri/grason"
+  },
+  "/partneri/pecosta": {
+    "en": "/en/partners/pecosta",
+    "sk": "/sk/partneri/pecosta"
+  },
+  "/partneri/protel": {
+    "en": "/en/partners/protel",
+    "sk": "/sk/partneri/protel"
+  },
+  "/partneri/qerko": {
+    "en": "/en/partners/qerko",
+    "sk": "/sk/partneri/qerko"
+  },
+  "/piano-terminal": {
+    "en": "/en",
+    "sk": "/sk"
+  },
+  "/pokladni-provozni-system-pro-hotely": {
+    "en": "/en/operation-pos-system-for-hotels",
+    "sk": "/sk/pokladnicny-prevadzkovy-system-pre-hotely"
+  },
+  "/pokladni-provozni-system-pro-jidelny": {
+    "en": "/en/operation-pos-system-for-canteens",
+    "sk": "/sk/pokladnicny-prevadzkovy-system-pre-jedalne"
+  },
+  "/pokladni-provozni-system-pro-lazne-resorty": {
+    "en": "/en/operation-pos-system-for-spas-resorts",
+    "sk": "/sk/pokladnicny-prevadzkovy-system-pre-kupele-a-strediska"
+  },
+  "/pokladni-provozni-system-pro-restaurace": {
+    "en": "/en/operation-pos-system-for-restaurants",
+    "sk": "/sk"
+  },
+  "/pokladni-provozni-system-pro-sit-restauraci": {
+    "en": "/en/operation-pos-system-for-restaurant-chains",
+    "sk": "/sk/pokladnicny-prevadzkovy-system-pre-siet-restauracii"
+  },
+  "/pokladni-system-pro-catering": {
+    "en": "/en",
+    "sk": "/sk"
+  },
+  "/pokladni-system-pro-kavarny-bistra-bary": {
+    "en": "/en/pos-system-for-cafes-bistros-bars",
+    "sk": "/sk/pokladnicny-system-pre-kaviarne-bista-bary"
+  },
+  "/pokladni-system-pro-street-food": {
+    "en": "/en",
+    "sk": "/sk"
+  },
+  "/prevod-licence": {
+    "en": "/en/transfer-license",
+    "sk": "/sk/prevod-licencie"
+  },
+  "/produkty": {
+    "en": "/en/products",
+    "sk": "/sk/produkty"
+  },
+  "/produkty/anketa-pro-jidelny": {
+    "en": "/en/products/survey-for-canteens",
+    "sk": "/sk/produkty/prieskum-pre-jedalne"
+  },
+  "/produkty/automaticke-naskladnovani": {
+    "en": "/en/products/automatic-stacking",
+    "sk": "/sk/produkty/automaticke-naskladnovanie"
+  },
+  "/produkty/eshop-restaurace": {
+    "en": "/en/products/eshop-restaurant",
+    "sk": "/sk/produkty/restauracia-eshop"
+  },
+  "/produkty/foodora-a-wolt": {
+    "en": "/en",
+    "sk": "/sk"
+  },
+  "/produkty/hardware-do-restaurace": {
+    "en": "/en/products/restaurant-hardware",
+    "sk": "/sk/produkty/hardware-pre-restauracie"
+  },
+  "/produkty/hotelovy-system": {
+    "en": "/en/products/protel-hotel-system",
+    "sk": "/sk/produkty/hotelovy-system-protel"
+  },
+  "/produkty/kuchynske-displeje": {
+    "en": "/en/products/kitchen-displays",
+    "sk": "/sk/produkty/kuchynske-displeje"
+  },
+  "/produkty/manazer": {
+    "en": "/en/products/manager",
+    "sk": "/sk/produkty/manazer"
+  },
+  "/produkty/mobilni-cisnik-septim-go": {
+    "en": "/en",
+    "sk": "/sk"
+  },
+  "/produkty/myseptim": {
+    "en": "/en",
+    "sk": "/sk"
+  },
+  "/produkty/nastaveni": {
+    "en": "/en/products/settings",
+    "sk": "/sk/produkty/nastavenia"
+  },
+  "/produkty/objednavkove-systemy": {
+    "en": "/en/products/order-systems",
+    "sk": "/sk/produkty/objednavkove-systemy"
+  },
+  "/produkty/objednavky-vydej-pro-jidelny": {
+    "en": "/en/products/ordering-dispensing-for-canteens",
+    "sk": "/sk/produkty/objednavanie-a-vydaj-pre-jedalne"
+  },
+  "/produkty/pagery-pro-restaurace": {
+    "en": "/en/products/pagers-for-restaurants",
+    "sk": "/sk/produkty/pagery-pre-restauracie"
+  },
+  "/produkty/planovani-smen": {
+    "en": "/en",
+    "sk": "/sk"
+  },
+  "/produkty/platby-objednavky-qr-kodem": {
+    "en": "/en/products/payment-ordering-via-qr-code",
+    "sk": "/sk/produkty/platby-objednavky-qr-kodom"
+  },
+  "/produkty/pokladna": {
+    "en": "/en/products/checkout",
+    "sk": "/sk/produkty/pokladna"
+  },
+  "/produkty/reporty-prehledy": {
+    "en": "/en/products/reports-overviews",
+    "sk": "/sk/produkty/spravy-a-prehlady"
+  },
+  "/produkty/septim-4-system-pro-restaurace": {
+    "en": "/en/products/septim-4-system-for-restaurants",
+    "sk": "/sk/produkty/septim-4-system-pre-restauracie"
+  },
+  "/produkty/septim-air-system-pro-kavarnu-bistro-bar": {
+    "en": "/en/products/septim-air-system-for-cafe-bistro-bar",
+    "sk": "/sk"
+  },
+  "/produkty/septim-hotel-pos-system-pro-hotely": {
+    "en": "/en",
+    "sk": "/sk"
+  },
+  "/produkty/septim-jidelna-system-pro-zavodni-stravovani": {
+    "en": "/en/products/septim-canteen-system-for-factory-catering",
+    "sk": "/sk/produkty/septim-jedalen-system-pre-jedalne"
+  },
+  "/produkty/skladove-hospodarstvi": {
+    "en": "/en/products/warehouse-management",
+    "sk": "/sk/produkty/sprava-skladu"
+  },
+  "/produkty/vernostni-system-crm": {
+    "en": "/en/products/loyalty-system-crm",
+    "sk": "/sk/produkty/vernostny-system-crm"
+  },
+  "/sluzby-servis": {
+    "en": "/en/services-support",
+    "sk": "/sk/sluzby-servis"
+  },
+  "/sluzby-servis/helpdesk-hotline": {
+    "en": "/en/services-support/helpdesk-hotline",
+    "sk": "/sk/sluzby-servis/helpdesk-hotline"
+  },
+  "/sluzby-servis/instalace-systemu-septim": {
+    "en": "/en/services-support/installation-septim",
+    "sk": "/sk/sluzby-servis/instalacia-systemu-septim"
+  },
+  "/sluzby-servis/konzultace-skoleni": {
+    "en": "/en/services-support/consultation-training",
+    "sk": "/sk/sluzby-servis/konzultacie-skolenia"
+  },
+  "/sluzby-servis/monitoring-hardware-software": {
+    "en": "/en/services-support/monitoring-hardware-software",
+    "sk": "/sk/sluzby-servis/monitoring-hardware-software"
+  },
+  "/sluzby-servis/podminky-servisni-smlouvy": {
+    "en": "/en/services-support/terms-service-contact",
+    "sk": "/sk/sluzby-servis/podmienky-zmluvy"
+  },
+  "/sluzby-servis/slaboproude-instalace": {
+    "en": "/en/services-support/low-current-installations",
+    "sk": "/sk/sluzby-servis/slaboprudove-instalacie"
+  },
+  "/sluzby-servis/vyvoj-na-miru": {
+    "en": "/en/services-support/tailor-made-development",
+    "sk": "/sk/sluzby-servis/vyvoj-na-mieru"
+  },
+  "/sluzby-servis/zarucni-pozarucni-servis": {
+    "en": "/en/services-support/warranty-post-warranty-service",
+    "sk": "/sk/sluzby-servis/zarucny-pozarucny-servis"
+  },
+  "/spolehlivy-pokladni-system": {
+    "en": "/en",
+    "sk": "/sk"
+  },
+  "/technicke-rady-faq": {
+    "en": "/en/technical-advice",
+    "sk": "/sk/technicke-poradenstvo-faq"
+  },
+  "/zneni-verejnych-obchodnich-podminek": {
+    "en": "/en",
+    "sk": "/sk"
+  }
+}

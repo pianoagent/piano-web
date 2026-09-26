@@ -1,77 +1,27 @@
 ---
-/**
- * Děkovací stránka: cíl přesměrování po odeslání formuláře (analytika: /dekujeme).
- * Krom poděkování krátce uvádí, že Septim je součástí Piana + CTA na Piano.
- * noindex: nemá se objevit ve vyhledávání.
- */
+// Děkovací stránka po odeslání formuláře (na živém webu není, přidaná kvůli měření:
+// konverze v GTM = pageview /dekujeme). Noindex, mimo sitemapu.
 import Base from '../layouts/Base.astro';
-import SiteHeader from '../components/SiteHeader.astro';
-import SiteFooter from '../components/SiteFooter.astro';
-import Section from '@piano/ui/components/Section.astro';
-import Heading from '@piano/ui/components/Heading.astro';
-import Text from '@piano/ui/components/Text.astro';
-import Button from '@piano/ui/components/Button.astro';
-import Icon from '@piano/ui/components/Icon.astro';
-
-const PIANO_URL = 'https://piano.cz';
 ---
-
-<Base title="Děkujeme za zprávu | Septim"
-      description="Děkujeme za zájem o pokladní a provozní systém Septim. Ozveme se vám co nejdříve a probereme, co váš provoz potřebuje." noindex>
-  <SiteHeader />
-
-  <main>
-
-  <Section background="default" space="lg" container="narrow">
-    <div class="ty">
-      <span class="ty__icon"><Icon name="lucide:thumbs-up" size="xl" /></span>
-      <Text size="h3" align="center" class="ty__hello">Děkujeme!</Text>
-      <Heading as="h1" size="h1" align="center">Formulář byl úspěšně odeslán</Heading>
-      <Text size="lead" color="muted" align="center" balance>
-        Budeme vás kontaktovat co nejdříve. Děkujeme za váš zájem o Septim.
-      </Text>
-    </div>
-  </Section>
-
-  <Section background="gradient" space="lg">
-    <div class="piano">
-      <Text size="label" color="on-dark" align="center" class="piano__eyebrow">Septim je teď součástí Piana</Text>
-      <Heading as="h2" size="h2" align="center" color="on-dark">Jeden partner pro celý váš provoz</Heading>
-      <Text size="lead" color="on-dark-muted" align="center" balance class="piano__lead">
-        Septim funguje dál úplně stejně jako dřív, nově ale máte přístup ke všem klíčovým
-        nástrojům pro váš provoz pod jednou střechou.
-      </Text>
-      <Text color="on-dark-muted" align="center" balance class="piano__body">
-        Piano vzniklo z jednoduchého přesvědčení: majitel restaurace, kavárny nebo hotelu si
-        zaslouží jednoho partnera: ne několik dodavatelů, několik smluv a data, která spolu
-        nekomunikují. Méně práce, lepší přehled, vyšší zisk.
-      </Text>
-      <div class="piano__cta">
-        <Button href={PIANO_URL}>Prozkoumat Piano</Button>
-      </div>
-    </div>
-  </Section>
-
-  </main>
-
-  <SiteFooter />
+<Base
+  title="Děkujeme | Septim"
+  description="Děkujeme za zprávu. Ozveme se vám co nejdříve."
+  path="/dekujeme"
+  noindex
+>
+<div class="section height--high align--middle color--default section-has-background">
+  <div class="section-body">
+    <div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline">
+      <h1 class="center">Děkujeme<span class="text-highlight">.</span></h1>
+      <p class="text-large center">Zpráva k nám dorazila. Ozveme se vám co nejdříve.</p>
+      <p class="center">Spěcháte? Zavolejte nám na <a href="tel:+420257011100">+420&nbsp;257 011 100</a>.</p>
+    </div></div></div>
+    <div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div class="center">
+      <a class="btn btn-primary" href="/"><span class="btn__icon" aria-hidden="true"></span><span class="btn__label">Zpět na hlavní stránku</span></a>
+    </div></div></div></div>
+  </div>
+  <div class="section-background container-fit container-fit--cover" style="background-color:rgb(235, 252, 255)">
+    <img alt="" src="/files/r/1920/hdr-tapeta-septim-blue.webp" decoding="async" />
+  </div>
+</div>
 </Base>
-
-<style>
-  .ty { max-width: 640px; margin-inline: auto; text-align: center; }
-  .ty > * + * { margin-top: var(--space-4); }
-  .ty__icon {
-    display: inline-flex; align-items: center; justify-content: center;
-    width: 96px; height: 96px; border-radius: 50%;
-    background: var(--color-primary); color: var(--color-text-on-dark);
-    box-shadow: var(--shadow-accent, var(--shadow-md));
-    margin-bottom: var(--space-2);
-  }
-  .ty__hello { color: var(--color-primary); font-weight: var(--font-weight-bold); }
-
-  .piano { max-width: 720px; margin-inline: auto; text-align: center; }
-  .piano__eyebrow { opacity: 0.85; margin-bottom: var(--space-3); }
-  .piano__lead { margin-top: var(--space-4); }
-  .piano__body { margin-top: var(--space-4); }
-  .piano__cta { margin-top: var(--space-7); display: flex; justify-content: center; }
-</style>

@@ -80,6 +80,9 @@ const classes = [
 
   /* Media (obrázek nahoře: bez paddingu) */
   .card__media { display: block; }
+  /* Slot může zůstat prázdný, když se obrázek renderuje podmíněně.
+     Bez tohohle vznikne prázdný pruh na místě obrázku. */
+  .card__media:empty { display: none; }
   .card__media :global(img) { display: block; width: 100%; height: auto; }
 
   /* Padding (na tělo; media zůstává na hraně) */

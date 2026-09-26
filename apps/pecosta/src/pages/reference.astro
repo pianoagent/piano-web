@@ -16,21 +16,37 @@ import LogoWall from '../components/LogoWall.astro';
 import { pecostaLeadProofs } from '../config/leadProofs';
 
 const testimonials = [
-  { initials: 'CPI', headline: 'Šetříme miliony ročně', quote: 'Díky automatickému naskladňování v každém z našich hotelů každý den ušetříme svým lidem minimálně hodinu práce. 80 % nákupů realizujeme přes Pecostu a šetříme několik milionů ročně.', author: 'Maroš Šivec', role: 'Executive F&B Director, CPI Hotels' },
-  { initials: 'PH', headline: 'Úspora času je nedocenitelná', quote: 'Úspora času je nedocenitelná. Pecosta nám pomáhá mít náklady pod kontrolou a soustředit se na to, co nás baví.', author: 'Michaela Bakrlíková', role: 'Finanční ředitelka, Pytloun Hotels' },
-  { initials: 'HP', headline: 'Zlomili jsme tříletý trend', quote: 'Zlomili jsme tříletý trend růstu nákladů. Výsledky překonaly naše očekávání.', author: 'Tomáš Šico', role: 'HP Tronic' },
-  { initials: 'KO', headline: 'Přesnější podklady', quote: 'Způsob zpracování naskladnění a dodacích listů přes Autset pomáhá i skladové účetní, podklady jsou přesnější a nemusí je kontrolovat položkově.', author: 'Kolkovna', role: 'Síť restaurací' },
+  { initials: 'CPI', headline: 'Šetříme miliony ročně', quote: 'Díky automatickému naskladňování v každém z našich hotelů, každý den, ušetříme svým lidem minimálně hodinu práce. Již řadu let využíváme také Aukční nákupy, kdy 80 % nákupu realizujeme přes jednotný nákupní portál a šetříme tak několik miliónů ročně.', author: 'Maroš Šivec', photo: '/images/ref/maros-sivec.webp', role: 'Executive F&B Director, CPI Hotels' },
+  { initials: 'PH', headline: 'Úspora času je nedocenitelná', quote: 'Úspora času je nedocenitelná. Pokud máte rádi svůj volný čas, jděte do toho.', author: 'Michaela Bakrlíková', photo: '/images/ref/michaela-bakrlikova.webp', role: 'Finanční ředitelka, Pytloun Hotels' },
+  { initials: 'HP', headline: 'Zlomili trend růstu nákladů', quote: 'Teď do konce roku jsme ušetřili zhruba 6 milionů Kč na nákupu zboží. Podařilo se nám porušit stoupající trend nákladů, zvýšili jsme tržby, ale současně snížili náklady o 2 miliony oproti roku 2023.', author: 'Tomas Šico', role: 'Finanční manažer, HP Tronic' },
+];
+
+/* Doslovné citace z banky referencí (contexty/znalostni-baze.md, část 7).
+   Nic se nepřepisuje ani nedoplňuje: zkracovat jde jen vypuštěním, nikdy přidáním věty. */
+const referenceAutset = [
+  { initials: 'KO', headline: 'Obrovská úspora času', quote: 'Každou položku na všech dodacích listech jsem musel prakticky přeťukat do počítače a některé dodací listy mají dvacet, třicet položek. Tento systém umožňuje jenom pár kliknutí a máte to hotové, takže to je obrovská úspora času.', author: 'Michal Tůma', photo: '/images/ref/michal-tuma.webp', role: 'Generální manažer, Kolkovna Restaurants' },
+  { initials: 'PC', headline: 'Nasadili jsme to všude', quote: 'Se systémem AUTSET šetříme čas provozním managerům našich restaurací. Způsob zpracování naskladnění a dodacích listů pomáhá i skladové účetní, podklady jsou přesnější, nemusí je kontrolovat položkově. Tento systém jsme díky jeho efektivnosti nasadili již na všech provozovaných kantýnách a restauracích.', author: 'Filip Sajler', photo: '/images/ref/filip-sajler.webp', role: 'CEO a Chef, Perfect Canteen a Perfect Catering' },
+  { initials: 'CH', headline: 'Z 20 minut na 3', quote: 'Vždyť jedna taková větší faktura za koloniál se naskladňuje i 20 minut, nyní je to otázka nejvýše 3 minut i s důkladnou kontrolou.', author: 'Vít Málek', role: 'Manager gastro provozu, Chuchle Aréna Praha' },
+  { initials: 'TP', headline: 'Uvolňuje to ruce provozním', quote: 'Uvolňuje to ruce našim provozním. Nemusí řešit papírování a mohou se věnovat operativě a provozu.', author: 'Barbora Kubíčková', role: 'Turnovská pivnice' },
+  { initials: 'HG', headline: 'Čas navíc pro hosty', quote: 'V HOTELU GOLF jsme otevření novým technologiím, které zjednodušují a zpříjemňují práci. Ušetřený čas mohou zaměstnanci věnovat péči o naše hosty.', author: 'Sylva Čechová', role: 'Ředitelka hotelu, Hotel Golf' },
+  { initials: 'CS', headline: 'Bezúdržbová služba', quote: 'Po nastavení s dodavateli je služba celkem bezúdržbová, a tím i lehce uchopitelná do téměř každého provozu.', author: 'Frederik Španer', photo: '/images/ref/frederik-spaner.webp', role: 'Manager, Café a Restaurant Slavia' },
+];
+
+const referenceAukce = [
+  { initials: 'CJ', headline: 'Sdružené nákupy fungují', quote: 'V Červeném jelenu jsme si ověřili, že sdružené nákupy potravin prostřednictvím PECOSTA skutečně fungují a přinášejí hmatatelné výsledky. Naše odvětví potřebuje mít možnost těžce vydělané peníze investovat tam, kde to má skutečný smysl, do zkvalitňování služeb, péče o hosty a dalšího rozvoje.', author: 'Radek Horník', photo: '/images/ref/radek-hornik.webp', role: 'COO, RCBG, Restaurace Červený jelen' },
+  { initials: 'CPI', headline: 'Kvalita dodávek neutrpěla', quote: 'Hledali jsme partnera, který se postará nejen o realizaci aukcí, ale také, aby se za tyto ceny nakupovalo. A samozřejmě nám šlo také o to, aby v žádném případě neutrpěla kvalita dodávek. Můžu říct, že využití aukčních nákupů nám přineslo, co jsme očekávali.', author: 'Jan Kratina', photo: '/images/ref/jan-kratina.webp', role: 'General manager, CPI Hotels' },
+  { initials: 'PH', headline: 'Všechno na jednom portálu', quote: 'Jestliže se někdo musí zabývat nějakým procesem a dokážeme ten proces automatizovat, že třeba všechno najde na jednom portálu, nemusí překlikávat, má porovnání cen od celé konkurence, tak je to rozhodně úspora času a ve finále i peněz.', author: 'Lukáš Pytloun', photo: '/images/ref/lukas-pytloun.webp', role: 'CEO, Pytloun Hotels' },
+  { initials: 'GP', headline: 'Velký potenciál dál', quote: 'Výsledky vypadají skvěle a mají velký potenciál do dalších měsíců, kdy bude nabíhat vyšší objem nakupovaných surovin přes portál.', author: 'Jindřich Krausz', role: 'General manager, Grandhotel Pupp' },
 ];
 
 const clients = [
   { name: 'CPI Hotels', note: '24 hotelů v ČR, 80 % 4* a 5*. 80 % nákupů přes portál Pecosta.' },
   { name: 'Pytloun Hotels', note: 'Hotelová skupina: náklady pod kontrolou a úspora času.' },
   { name: 'Grandhotel Pupp', note: 'Karlovy Vary: ikonický hotel mezi klienty Pecosty.' },
-  { name: 'Kavárna Slávia', note: 'Pražská kavárna s tradicí.' },
-  { name: 'Kolkovna', note: 'Síť restaurací: naskladnění přes Autset.' },
-  { name: 'Počernický pivovar', note: 'Pivovar a jeho restaurace.' },
+  { name: 'Café Slavia', note: 'Pražská kavárna s tradicí.' },
+  { name: 'Kolkovna', note: 'Síť restaurací: naskladnění bez přepisování dokladů.' },
   { name: 'Perfect Canteen', note: 'by Filip Sajler: moderní gastro koncept.' },
-  { name: 'Bistro V Zahradě', note: 'Úspora 60 tisíc Kč ročně na energiích.' },
+  { name: 'Bistro V Zahradě', note: 'Úspora 60 tisíc Kč za dva roky na energiích.' },
 ];
 ---
 <Base title="Reference a komu šetříme náklady | Pecosta"
@@ -44,7 +60,7 @@ const clients = [
         <Button href="#poptavka">Chci analýzu zdarma</Button>
       </Fragment>
       <figure slot="media" class="hero-pic">
-        <img src="/images/reference-hero.webp" alt="La Lorraine, klient Pecosty a Autsetu" width="960" height="540" loading="eager" decoding="async" />
+        <img src="/images/reference-hero.webp" alt="Banketní sál Chuchle Arény Praha, klienta Pecosty" width="960" height="540" loading="eager" decoding="async" />
       </figure>
     </Hero>
 
@@ -55,6 +71,18 @@ const clients = [
     items={testimonials}
     eyebrow="Co říkají klienti"
     title="Výsledky, ne sliby" />
+
+    <Testimonials
+    background="default"
+    items={referenceAutset}
+    eyebrow="Automatické naskladnění"
+    title="Konec přepisování dodacích listů" />
+
+    <Testimonials
+    background="alt"
+    items={referenceAukce}
+    eyebrow="Aukční nákupy"
+    title="Ceny, na které byste sami nedosáhli" />
     <Section background="default" space="lg">
       <div class="head head--center">
         <Text size="label" color="accent" align="center">Vybraní klienti</Text>

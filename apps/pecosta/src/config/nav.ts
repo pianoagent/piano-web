@@ -20,11 +20,11 @@ const sluzbyMega = {
     {
       label: 'Pro koho',
       links: [
-        { label: 'Restaurace a sítě', href: '/reference', icon: 'lucide:utensils-crossed' },
-        { label: 'Hotely a resorty', href: '/reference', icon: 'lucide:bed-double' },
-        { label: 'Kavárny a bistra', href: '/reference', icon: 'lucide:coffee' },
-        { label: 'Jídelny a kantýny', href: '/reference', icon: 'lucide:soup' },
-        { label: 'Školy a nemocnice', href: '/reference', icon: 'lucide:building' },
+        { label: 'Restaurace a sítě', href: '/pro-koho/restaurace-a-site', icon: 'lucide:utensils-crossed' },
+        { label: 'Hotely a resorty', href: '/pro-koho/hotely-a-resorty', icon: 'lucide:bed-double' },
+        { label: 'Kavárny a bistra', href: '/pro-koho/kavarny-a-bistra', icon: 'lucide:coffee' },
+        { label: 'Jídelny a kantýny', href: '/pro-koho/jidelny-a-kantyny', icon: 'lucide:soup' },
+        { label: 'Školy a nemocnice', href: '/pro-koho/skoly-a-nemocnice', icon: 'lucide:building' },
       ],
     },
   ],

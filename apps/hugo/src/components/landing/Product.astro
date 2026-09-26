@@ -1,0 +1,61 @@
+---
+/* Product: sekce landing page Hugo, port 1:1 z hugopos.eu. Texty jsou v src/i18n/landing.ts. */
+import type { Lang } from '../../i18n/landing';
+import { dict } from '../../i18n/landing';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = dict[lang];
+---
+<section id="product">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow" set:html={t['product-section-head-eyebrow']}></span>
+      <h2 set:html={t['product-section-head-h2']}></h2>
+      <p class="lead" set:html={t['product-section-head-p-lead']}></p>
+    </div>
+
+    <div class="devices">
+      <div class="container">
+        <div class="device-grid">
+          <div class="dev-card dev-iphone">
+            <span class="label">iOS</span>
+            <h3>iPhone</h3>
+            <p set:html={t['dev-iphone-p']}></p>
+            <div class="art">
+              <div class="scr"><img src="/assets/screen-platba.png" alt=""></div>
+            </div>
+          </div>
+
+          <div class="dev-card dev-android">
+            <span class="label">Android</span>
+            <h3>Android</h3>
+            <p set:html={t['dev-android-p']}></p>
+            <div class="art">
+              <div class="scr"><img src="/assets/screen-objednat.png" alt=""></div>
+            </div>
+          </div>
+
+          <div class="dev-card dev-any">
+            <span class="label" set:html={t['dev-any-label']}></span>
+            <h3 set:html={t['dev-any-h3']}></h3>
+            <p set:html={t['dev-any-p']}></p>
+            <div class="art">
+              <div class="chip">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="3" width="14" height="18" rx="2"></rect><circle cx="12" cy="18" r=".8" fill="currentColor"></circle></svg>
+                <span set:html={t['dev-any-chip-span-0']}></span>
+              </div>
+              <div class="chip">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="4" width="20" height="14" rx="2"></rect><path d="M8 22h8"></path></svg>
+                <span set:html={t['dev-any-chip-span-1']}></span>
+              </div>
+              <div class="chip">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="2" width="14" height="20" rx="3"></rect><path d="M9 18h6"></path></svg>
+                <span set:html={t['dev-any-chip-span-2']}></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

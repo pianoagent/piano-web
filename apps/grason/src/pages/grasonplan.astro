@@ -17,6 +17,9 @@ import Icon from '@piano/ui/components/Icon.astro';
 import Faq from '@piano/ui/components/Faq.astro';
 import { grasonNav, grasonCta, grasonFooter, grasonLogin, grasonPlanRegister } from '../config/nav';
 import { planFaqs } from '../config/faq';
+import { planQuotes } from '../config/reference';
+import Testimonials from '@piano/ui/components/Testimonials.astro';
+import PersonCard from '../components/PersonCard.astro';
 
 const PHONE = '739 877 799';
 
@@ -43,13 +46,6 @@ const moreFeatures = [
   { icon: 'lucide:construction', label: 'Pohlídá kolizní směny pracovníků' },
   { icon: 'lucide:building-2', label: 'Sdílení personálu mezi svými podniky' },
   { icon: 'lucide:refresh-cw', label: 'Najde náhradu za nemocného kolegu' },
-];
-
-const leadProofs = [
-  { icon: 'lucide:gift', title: '1. měsíc zdarma', text: 'Vyzkoušíte bez rizika a závazku.' },
-  { icon: 'lucide:calendar-days', title: '220 000+ směn', text: 'Naplánováno přes GrasonPlan.' },
-  { icon: 'lucide:building-2', title: '80+ provozů', text: 'Restaurace, hotely a cateringy.' },
-  { icon: 'lucide:phone', title: 'Lidská podpora', text: '+420 ' + PHONE },
 ];
 ---
 
@@ -188,13 +184,38 @@ const leadProofs = [
     </div>
   </Section>
 
-  <Faq items={planFaqs} title="Časté dotazy ke GrasonPlanu" background="default" />
+  <!-- REFERENCE, jen citace ke GrasonPlanu -->
+  <Testimonials
+    eyebrow="Reference"
+    eyebrowColor="default"
+    background="default"
+    items={planQuotes}
+    titleHtml={'Co říkají provozy, které <span class="accent">plánují v GrasonPlanu</span>'} />
+
+  <Faq items={planFaqs} title="Časté dotazy ke GrasonPlanu" background="alt" />
+
+  <!-- Jmenovaný kontakt, stejně jako na live grasonplan.cz -->
+  <Section background="default" space="lg">
+    <div class="head head--center">
+      <Heading as="h2" size="h2" align="center">Máte otázky nebo <span class="accent">potřebujete poradit?</span></Heading>
+    </div>
+    <div class="person-wrap">
+      <PersonCard
+        name="Kristýna Gottfrídová"
+        role="Customer Success Specialist"
+        photo="/images/team/kristyna-gottfridova.webp"
+        phone={'+420 ' + PHONE}
+        email="info@grason.cz" />
+    </div>
+  </Section>
   </main>
 
   <Footer {...grasonFooter} />
 </Base>
 
 <style>
+  .person-wrap { max-width: 640px; margin-inline: auto; }
+
   /* GrasonPlan brand: žlutá + tmavě modrá + bílá (page-scoped) */
   .plan { --plan-yellow: var(--color-secondary-gold); --plan-navy: var(--color-neutral-900); }
   /* Žlutá CTA tlačítka (primary) na této stránce */

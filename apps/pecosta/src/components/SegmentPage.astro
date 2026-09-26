@@ -1,0 +1,145 @@
+---
+/**
+ * SegmentPage: Pecosta app šablona pro stránky Pro koho (/pro-koho/*).
+ * Pohled „pro koho / bolest / co s tím". Data přes props, vzor je
+ * apps/septim/src/components/SegmentPage.astro. Vše ze sdílených primitivů,
+ * komponenty se NEFORKUJÍ.
+ *
+ * `testimonials` může být prázdné: u segmentů, kde v bance referencí
+ * (contexty/znalostni-baze.md, část 7) žádná citace není, se blok nevykreslí.
+ */
+import Base from '../layouts/Base.astro';
+import SiteHeader from './SiteHeader.astro';
+import SiteFooter from './SiteFooter.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Hero from '@piano/ui/components/Hero.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import Card from '@piano/ui/components/Card.astro';
+import USPGrid from '@piano/ui/components/USPGrid.astro';
+import Testimonials from '@piano/ui/components/Testimonials.astro';
+import Faq from '@piano/ui/components/Faq.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import StatsBand from './StatsBand.astro';
+import LogoWall from './LogoWall.astro';
+import { pecostaLeadProofs } from '../config/leadProofs';
+
+interface Benefit { icon?: string; title: string; text?: string; }
+interface Service { title: string; href: string; text: string; image?: string; }
+interface Quote { quote: string; author: string; role: string; initials?: string; headline?: string; }
+interface Props {
+  title: string;
+  description: string;
+  eyebrow: string;
+  titleHtml: string;
+  lead: string;
+  logos: string[];
+  logoLabel: string;
+  heroImage?: string;
+  heroImageAlt?: string;
+  benefitsTitle: string;
+  benefits: Benefit[];
+  proseTitle: string;
+  proseText: string;
+  services: Service[];
+  servicesTitle?: string;
+  related?: { label: string; href: string }[];
+  relatedLabel?: string;
+  testimonials?: Quote[];
+  testimonialsTitle?: string;
+  faqs: { q: string; a: string }[];
+  faqTitle: string;
+}
+const {
+  title, description, eyebrow, titleHtml, lead,
+  logos, logoLabel, heroImage, heroImageAlt = '', benefitsTitle, benefits,
+  proseTitle, proseText, services, servicesTitle = 'Služby, které na to sedí',
+  related = [], relatedLabel = 'Podívejte se také na',
+  testimonials = [], testimonialsTitle = 'Co říkají klienti',
+  faqs, faqTitle,
+} = Astro.props;
+---
+<Base title={title} description={description}>
+  <SiteHeader />
+  <main>
+    <Hero eyebrow={eyebrow} background="alt" lead={lead}>
+      <Heading slot="title" as="h1" size="display"><Fragment set:html={titleHtml} /></Heading>
+      <Fragment slot="actions">
+        <Button href="#poptavka">Chci analýzu zdarma</Button>
+        <Button href="/jak-to-funguje" variant="secondary">Jak to funguje</Button>
+      </Fragment>
+      {heroImage && (
+        <figure slot="media" class="hero-pic">
+          <img src={heroImage} alt={heroImageAlt} width="960" height="640" loading="eager" fetchpriority="high" decoding="async" />
+        </figure>
+      )}
+    </Hero>
+
+    <LogoWall logos={logos} label={logoLabel} background="default" />
+
+    <Section background="alt" space="lg">
+      <div class="prose">
+        <Heading as="h2" size="h2">{proseTitle}</Heading>
+        <Text size="lead" color="muted">{proseText}</Text>
+      </div>
+    </Section>
+
+    <USPGrid eyebrow="Výhody" title={benefitsTitle} items={benefits}
+             background="default" space="lg" minItemWidth="240px" />
+
+    <Section background="alt" space="lg">
+      <div class="head head--center">
+        <Text size="label" color="accent" align="center">Co s tím uděláme</Text>
+        <Heading as="h2" size="h2" align="center">{servicesTitle}</Heading>
+      </div>
+      <div class="services">
+        {services.map((s) => (
+          <Card href={s.href} variant="bordered" padding="md">
+            {s.image && (
+              <img slot="media" src={s.image} alt="" width="640" height="400" loading="lazy" decoding="async" />
+            )}
+            <Heading as="h3" size="h3">{s.title}</Heading>
+            <Text size="small" color="muted">{s.text}</Text>
+            <Text size="small" color="accent" class="services__more">
+              Více o službě <Icon name="lucide:arrow-right" size="sm" />
+            </Text>
+          </Card>
+        ))}
+      </div>
+      {related.length > 0 && (
+        <Text size="small" color="muted" align="center" class="related">
+          {relatedLabel}{' '}
+          {related.map((r, i) => (<>{i > 0 && <span>{' · '}</span>}<a href={r.href}>{r.label}</a></>))}
+        </Text>
+      )}
+    </Section>
+
+    {testimonials.length > 0 && (
+      <Testimonials background="default" items={testimonials}
+                    eyebrow="Reference" title={testimonialsTitle} />
+    )}
+
+    <StatsBand background="alt" />
+    <Faq items={faqs} title={faqTitle} background="default" />
+    <LeadForm id="poptavka" variant="full" background="alt"
+              title="Zjistěte, kolik ušetříte"
+              lead="Nechte nám kontakt, připravíme cenové porovnání a kalkulaci úspor. Zdarma a bez závazků."
+              submitLabel="Chci analýzu zdarma" proofs={pecostaLeadProofs} />
+  </main>
+  <SiteFooter />
+</Base>
+
+<style>
+  .prose { max-width: 760px; }
+  .prose > * + * { margin-top: var(--space-4); }
+  .head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-7); text-align: center; }
+  .head > * + * { margin-top: var(--space-3); }
+  .services { display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); max-width: 1000px; margin-inline: auto; }
+  .services > * > * + * { margin-top: var(--space-2); }
+  .services :global(.card__media img) { aspect-ratio: 8 / 5; object-fit: cover; }
+  .services__more { display: flex; align-items: center; gap: var(--space-2); }
+  .related { margin-top: var(--space-6); }
+  .related a { color: var(--color-primary); text-decoration: underline; text-underline-offset: 3px; }
+</style>

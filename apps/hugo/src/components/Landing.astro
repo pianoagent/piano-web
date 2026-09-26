@@ -1,0 +1,60 @@
+---
+/**
+ * Landing: celá stránka Hugo složená ze sekcí v pořadí živého hugopos.eu.
+ * Používá ji CZ (/) i EN (/en/) homepage; texty jsou v src/i18n/landing.ts.
+ */
+import '../styles/hugo.css';
+import type { Lang } from '../i18n/landing';
+import AbBar from './landing/AbBar.astro';
+import AnnBar from './landing/AnnBar.astro';
+import Nav from './landing/Nav.astro';
+import Hero from './landing/Hero.astro';
+import VideoBand from './landing/VideoBand.astro';
+import Product from './landing/Product.astro';
+import Barvy from './landing/Barvy.astro';
+import Trust from './landing/Trust.astro';
+import Floor from './landing/Floor.astro';
+import Relband from './landing/Relband.astro';
+import MidCta from './landing/MidCta.astro';
+import Brain from './landing/Brain.astro';
+import Setup from './landing/Setup.astro';
+import Switch from './landing/Switch.astro';
+import Vs from './landing/Vs.astro';
+import Pricing from './landing/Pricing.astro';
+import Power from './landing/Power.astro';
+import Waitlist from './landing/Waitlist.astro';
+import Faq from './landing/Faq.astro';
+import Final from './landing/Final.astro';
+import Socials from './landing/Socials.astro';
+import Footer from './landing/Footer.astro';
+import MobileBar from './landing/MobileBar.astro';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+---
+
+<AbBar lang={lang} />
+<AnnBar lang={lang} />
+<Nav lang={lang} />
+<Hero lang={lang} />
+<VideoBand lang={lang} />
+<Product lang={lang} />
+<Barvy lang={lang} />
+<Trust lang={lang} />
+<Floor lang={lang} />
+<Relband lang={lang} />
+<MidCta lang={lang} />
+<Brain lang={lang} />
+<Setup lang={lang} />
+<Switch lang={lang} />
+<Vs lang={lang} />
+<Pricing lang={lang} />
+<Power lang={lang} />
+<Waitlist lang={lang} />
+<Faq lang={lang} />
+<Final lang={lang} />
+<Socials lang={lang} />
+<Footer lang={lang} />
+<MobileBar lang={lang} />
+
+<script is:inline src="/js/hugo-variants.js"></script>
+<script is:inline src="/js/hugo.js"></script>

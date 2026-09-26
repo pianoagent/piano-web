@@ -73,7 +73,7 @@ const onDark = background === 'invert' || background === 'primary';
               <span class="quote__role">{t.role}{t.michelin && <span class="quote__michelin"> · Michelin ★</span>}</span>
             </div>
             {t.photo
-              ? <span class="quote__avatar quote__avatar--photo"><img src={t.photo} alt={t.author} width="84" height="84" loading="lazy" decoding="async" /></span>
+              ? <span class="quote__avatar quote__avatar--photo"><img src={t.photo} alt="" width="84" height="84" loading="lazy" decoding="async" /></span>
               : <span class="quote__avatar" aria-hidden="true">{t.initials}</span>}
           </div>
         )}
@@ -83,7 +83,7 @@ const onDark = background === 'invert' || background === 'primary';
         {attribution === 'bottom' && (
           <figcaption class="quote__foot">
             {t.photo
-              ? <img class="quote__photo" src={t.photo} alt={t.author} width="52" height="52" loading="lazy" decoding="async" />
+              ? <img class="quote__photo" src={t.photo} alt="" width="52" height="52" loading="lazy" decoding="async" />
               : <span class="quote__avatar" aria-hidden="true">{t.initials}</span>}
             <span class="quote__id">
               <strong class="quote__name">{t.author}</strong>

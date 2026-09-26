@@ -1,0 +1,30 @@
+---
+/* Final: sekce landing page Hugo, port 1:1 z hugopos.eu. Texty jsou v src/i18n/landing.ts. */
+import type { Lang } from '../../i18n/landing';
+import { dict } from '../../i18n/landing';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = dict[lang];
+---
+<section class="final">
+  <div class="container">
+    <div class="final-card">
+      <h2 class="display" set:html={t['final-card-h2']}></h2>
+      <p set:html={t['final-card-p']}></p>
+      <div class="final-steps">
+        <span class="final-step" set:html={t['final-step-0']}></span>
+        <span class="final-step" set:html={t['final-step-1']}></span>
+        <span class="final-step" set:html={t['final-step-2']}></span>
+      </div>
+      <div class="final-ctas">
+        <a href="https://apps.apple.com/cz/app/hugo-pos/id6766202332" target="_blank" rel="noopener" class="btn btn-dark btn-lg" set:html={t['final-ctas-a-0']}></a>
+        <a href="https://play.google.com/store/apps/details?id=com.piano.hugo" target="_blank" rel="noopener" class="btn btn-dark btn-lg" set:html={t['final-ctas-a-1']}></a>
+      </div>
+      <div class="final-fine">
+        <span set:html={t['final-fine-span-0']}></span>
+        <span set:html={t['final-fine-span-1']}></span>
+        <span set:html={t['final-fine-span-2']}></span>
+      </div>
+    </div>
+  </div>
+</section>

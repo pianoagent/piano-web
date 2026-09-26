@@ -1,0 +1,71 @@
+---
+/**
+ * PersonCard: konkrétní člověk místo anonymního „kontaktujte nás".
+ *
+ * Live grasonplan.cz má u kontaktu jmenovanou Customer Success Manager
+ * s fotkou a to je na B2B stránce silnější důkaz než adresa firmy.
+ * Fotky týmu zatím v repu nejsou, proto komponenta umí i variantu
+ * s iniciálami; jakmile fotky dorazí, stačí doplnit prop `photo`.
+ *
+ *   name, role: kdo to je
+ *   phone, email: kontakty, obojí volitelné
+ *   photo: cesta k fotce v public/; bez ní se vykreslí iniciály
+ *   note: jedna věta pod jménem (např. kdy je k zastižení)
+ */
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+
+interface Props {
+  name: string;
+  role: string;
+  phone?: string;
+  email?: string;
+  photo?: string;
+  note?: string;
+}
+const { name, role, phone, email, photo, note } = Astro.props;
+const initials = name.split(' ').map((w) => w[0]).join('').slice(0, 2).toUpperCase();
+const telHref = phone ? `tel:${phone.replace(/\s/g, '')}` : undefined;
+---
+
+<div class="person">
+  {photo
+    ? <img class="person__photo" src={photo} alt={name} width="120" height="120" loading="lazy" />
+    : <span class="person__photo person__photo--initials" aria-hidden="true">{initials}</span>}
+  <div class="person__body">
+    <Heading as="h3" size="h3">{name}</Heading>
+    <Text size="small" color="muted">{role}</Text>
+    {note && <Text size="small" color="muted">{note}</Text>}
+    <ul class="person__links">
+      {phone && (
+        <li><a href={telHref}><Icon name="lucide:phone" size="sm" />{phone}</a></li>
+      )}
+      {email && (
+        <li><a href={`mailto:${email}`}><Icon name="lucide:mail" size="sm" />{email}</a></li>
+      )}
+    </ul>
+  </div>
+</div>
+
+<style>
+  .person {
+    display: flex; align-items: center; gap: var(--space-5);
+    padding: var(--space-6);
+    background: var(--color-bg); border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg); box-shadow: var(--shadow-sm);
+  }
+  .person__photo { width: 96px; height: 96px; border-radius: var(--radius-full); object-fit: cover; flex-shrink: 0; }
+  .person__photo--initials {
+    display: inline-flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary-azure));
+    color: #fff; font-size: var(--font-size-h3); font-weight: var(--font-weight-bold); line-height: 1;
+  }
+  .person__body > * + * { margin-top: var(--space-2); }
+  .person__links { list-style: none; display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-5); margin-top: var(--space-4); }
+  /* 44px je laťka z agenti/ux-ui.md, ne 24 z WCAG 2.5.8. Záporný margin drží
+     původní odsazení seznamu, aby zvětšený cíl nerozhodil rytmus karty. */
+  .person__links a { display: inline-flex; align-items: center; min-height: 44px; padding-block: 4px; margin-block: -4px; gap: var(--space-2); color: var(--color-text-accent); font-weight: var(--font-weight-semibold); text-decoration: none; }
+  .person__links a:hover { text-decoration: underline; }
+  @media (max-width: 520px) { .person { flex-direction: column; text-align: center; } .person__links { justify-content: center; } }
+</style>

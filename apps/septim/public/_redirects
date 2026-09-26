@@ -1,0 +1,8 @@
+# Adresy živého Solid Pixels webu, které v kopii nejsou.
+# (URL obsahových stránek jsou 1:1, přesměrování nepotřebují.)
+/cs                 /                 301
+/cs/*               /:splat           301
+/vyhledavani        /                 301
+/udalosti/*         /novinky          301
+/produkty/myseptim-early  /produkty/myseptim  301
+/kariera-old        /kariera          301

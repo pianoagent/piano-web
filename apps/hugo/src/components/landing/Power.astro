@@ -1,0 +1,21 @@
+---
+/* Power: sekce landing page Hugo, port 1:1 z hugopos.eu. Texty jsou v src/i18n/landing.ts. */
+import type { Lang } from '../../i18n/landing';
+import { dict } from '../../i18n/landing';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = dict[lang];
+---
+<section class="power">
+  <div class="container">
+    <div class="power-inner">
+      <h2 set:html={t['power-h2']}></h2>
+      <div class="power-sub">
+        <span class="x" set:html={t['power-sub-x-0']}></span>
+        <span class="x" set:html={t['power-sub-x-1']}></span>
+        <span class="x" set:html={t['power-sub-x-2']}></span>
+      </div>
+      <p class="power-tag" set:html={t['power-tag']}></p>
+    </div>
+  </div>
+</section>

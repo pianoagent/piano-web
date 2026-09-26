@@ -1,0 +1,21 @@
+---
+/* MidCta: sekce landing page Hugo, port 1:1 z hugopos.eu. Texty jsou v src/i18n/landing.ts. */
+import type { Lang } from '../../i18n/landing';
+import { dict } from '../../i18n/landing';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = dict[lang];
+---
+<section class="midcta">
+  <div class="container">
+    <div class="midcta-in">
+      <div class="midcta-txt">
+        <h3 set:html={t['midcta-txt-h3']}></h3>
+        <p set:html={t['midcta-txt-p']}></p>
+      </div>
+      <div class="midcta-actions">
+        <a href="https://admin.hugopos.eu/login?start=1" target="_blank" rel="noopener" class="btn btn-primary btn-lg" set:html={t['midcta-actions-btn-primary']}></a>
+      </div>
+    </div>
+  </div>
+</section>

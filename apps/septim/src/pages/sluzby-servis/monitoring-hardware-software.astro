@@ -1,75 +1,122 @@
 ---
-/** Septim: Služby: Monitoring hardware a software. Obsah: septim-obsah/sluzby-servis/monitoring-hardware-software.md. SEO meta nově. */
+// https://www.septim.cz/sluzby-servis/monitoring-hardware-software (Solid Pixels), port 1:1 skriptem port-septim.py
 import Base from '../../layouts/Base.astro';
-import SiteHeader from '../../components/SiteHeader.astro';
-import SiteFooter from '../../components/SiteFooter.astro';
-import Section from '@piano/ui/components/Section.astro';
-import Hero from '@piano/ui/components/Hero.astro';
-import Heading from '@piano/ui/components/Heading.astro';
-import Text from '@piano/ui/components/Text.astro';
-import Button from '@piano/ui/components/Button.astro';
-import Icon from '@piano/ui/components/Icon.astro';
-import LeadForm from '@piano/ui/components/LeadForm.astro';
-import StatsBand from '../../components/StatsBand.astro';
-import { septimLeadProofs } from '../../config/leadProofs';
-
-const sledujeme = [
-  'Dostatek volného místa na disku',
-  'Nepoškozenou databázi',
-  'Životnost a stav pevného disku pomocí technologie SMART',
-  'Pravidelné zálohování',
-  'Stav záložního zdroje',
-  'Dostupnost a funkčnost služby WebCare',
-  'Dostupnost a funkčnost Centrální databáze zákazníků',
-  'Rychlost odezvy služeb WebCare a Centrální databáze zákazníků',
-  'Další služby dle vašeho provozu',
-];
+import BlokKolikZaplatim_71a6 from '../../components/blocks/BlokKolikZaplatim_71a6.astro';
+import Mezera_bb6d from '../../components/blocks/Mezera_bb6d.astro';
+import Blok30Let_9e65 from '../../components/blocks/Blok30Let_9e65.astro';
+import Novinky from '../../components/blocks/Novinky.astro';
 ---
-<Base title="Monitoring hardwaru a softwaru | Septim"
-      description="Monitoring hardwaru a softwaru Septim odhalí problémy dřív, než ovlivní provoz. Zvýšená kontrola a prevence výpadků.">
-  <SiteHeader />
-  <main>
-    <Hero eyebrow="Služby a servis" background="alt"
-          lead="Pro naše klienty nabízíme nástavbu k servisní smlouvě v podobě monitoringu blížících se potenciálních problémů. Předcházejte riziku a mějte svůj systém pod kontrolou.">
-      <Heading slot="title" as="h1" size="display">Monitoring <em>hardware a software</em></Heading>
-      <Fragment slot="actions">
-        <Button href="#poptavka">Mám zájem o monitoring</Button>
-        <Button href="/sluzby-servis" variant="secondary">Všechny služby</Button>
-      </Fragment>
-      <figure slot="media" class="hero-pic">
-        <img src="/images/sluzby-monitoring.webp" alt="Monitoring hardwaru a softwaru pokladního systému" width="960" height="738" loading="eager" decoding="async" />
-      </figure>
-    </Hero>
+<Base
+  title="Monitoring hardwaru a softwaru | Septim"
+  description="Monitoring hardwaru a softwaru Septim odhalí problémy dřív, než ovlivní provoz. Zvýšená kontrola a prevence výpadků."
+  path="/sluzby-servis/monitoring-hardware-software"
+  bodyClass="use-header-transparent use-menu-primary-uppercase use-menu-secondary-uppercase use-headings-link-plain search-panel-hide-submit-label search-panel-hide-close-label search-panel-hide-open-label use-menu-bar use-header-fixed use-header-fixed-mobile use-header-priority"
+  image="/files/nahled-monitoring.jpg"
+>
+<div class="section height--low align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-card flexcard-size--normal flexcard-media-right valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:76.92307692307693%"><img alt="Monitoring hardware a software" decoding="async" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/hdr-monitoring-hw-sw.webp" srcset="/files/r/720/hdr-monitoring-hw-sw.webp 720w, /files/r/1280/hdr-monitoring-hw-sw.webp 1280w, /files/r/1920/hdr-monitoring-hw-sw.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h1>Monitoring hardware a software<span class="text-highlight">.</span></h1>
+<p class="text-large">Pro naše klienty umožňujeme nástavbu k servisní smlouvě v podobě monitoringu blížících se potenciálních problémů.</p>
+</div></div></div></div></div></div></div></div></div></div></div>
+<div class="section height--low align--middle color--default section-has-background"><div class="section-body"><div class="row-main"><div class="col col-3-12 grid-8-12"><div class="block block-inline"><h2>Co je monitoring HW a SW systému Septim?</h2>
+<p></p>
+<p>Pro předcházení problémů nabízíme vzdálený dohled na hardware i software systému Septim. Sledujeme zda:</p>
+<ul>
+<li>disponuje dostatkem volného místa,</li>
+<li>nedošlo k poškození databáze,</li>
+<li>životnost a stav pevného disku pomocí technologie SMART,</li>
+<li>nepřestalo probíhat pravidelné zálohování,</li>
+<li>je stav záložního zdroje v pořádku,</li>
+<li>je dostupný a funkční WebCare,</li>
+<li>je dostupná a funkční Centrální databáze zákazníků,</li>
+<li>rychlost odezvy u služeb WebCare a Centrální databáze zákazníků. Pokud se délka odezvy prodlužuje, monitoring napomáhá problém řešit dříve, než vznese stížnost první zákazník, který službu využívá,</li>
+<li>další služby.</li>
+</ul>
+<p>Každý z uvedených příkladů může na provozu při své poruše způsobit vážné problémy.</p>
+<p>Běžnou součástí našich služeb je nejen samotný monitoring, ale zejména aktivní řešení varovných signálů. Pokud jsme o možném problému informováni, bezodkladně vás o něm informujeme a jsme připraveni v rámci vaší objednávky servisních služeb problém také začít řešit.</p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div><div><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div></div></div><div class="section-background" style="background-color:#fff"></div></div>
+<BlokKolikZaplatim_71a6 />
+<div class="section height--normal align--middle color--default section-has-background" id="skoleni-form"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3 class="center text-large">Mám zájem o monitorovací službu<span class="text-highlight">.</span></h3>
+</div></div></div>
+<div class="row-main"><div class="col col-4-12 grid-6-12">
+<form action="/api/lead" autocomplete="off" class="block block-form" data-lead-form="formular-field_form_2_4_0_0" id="formular-field_form_2_4_0_0" method="post">
+<div class="row">
+<div class="col col-1-12 grid-12-12">
+<div class="field field-form_input_text" id="field-wrapper-jmeno-a-prijmeni">
+<div class="field-wrapper">
+<label for="field-jmeno-a-prijmeni" id="label-jmeno-a-prijmeni">
+            Jméno a příjmení
+          </label>
+<input class="field-control" id="field-jmeno-a-prijmeni" name="formular-field_form_2_4_0_0[jmeno-a-prijmeni]" type="text" value=""/>
+</div>
+</div>
+<div class="field field-form_input_text" id="field-wrapper-firmarestaurace">
+<div class="field-wrapper">
+<label for="field-firmarestaurace" id="label-firmarestaurace">
+            Firma/restaurace
+          </label>
+<input class="field-control" id="field-firmarestaurace" name="formular-field_form_2_4_0_0[firmarestaurace]" type="text" value=""/>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col col-1-12 grid-12-12">
+<div class="field field-form_input_email" id="field-wrapper-email">
+<div class="field-wrapper">
+<label for="field-email" id="label-email">
+            E-mail <span>*</span>
+</label>
+<input class="field-control" id="field-email" name="formular-field_form_2_4_0_0[email]" required="" type="email" value=""/>
+</div>
+</div>
+<div class="field field-form_input_tel" id="field-wrapper-phone">
+<div class="field-wrapper">
+<label for="field-phone" id="label-phone">
+            Telefon
+          </label>
+<input class="field-control" id="field-phone" name="formular-field_form_2_4_0_0[phone]" type="tel" value=""/>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col col-1-12 grid-12-12">
+<div class="field field-form_textarea" id="field-wrapper-potrebujete-nam-sdelit-nejake-doplneni">
+<div class="field-wrapper">
+<label for="field-potrebujete-nam-sdelit-nejake-doplneni" id="label-potrebujete-nam-sdelit-nejake-doplneni">
+            Potřebujete nám sdělit nějaké doplnění?
+          </label>
+<textarea class="field-control" id="field-potrebujete-nam-sdelit-nejake-doplneni" name="formular-field_form_2_4_0_0[potrebujete-nam-sdelit-nejake-doplneni]"></textarea>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col col-1-12 grid-12-12">
+<div class="field-form_agreement-text" id="field-wrapper-field_form_2_3_0_0">
+<div class="field-wrapper">
+<div class="block block-inline">
+<p>Vaše osobní údaje budou zpracovány podle <a href="/informace-o-zpracovani-osobnich-udaju-formular">Podmínek zpracování osobních údajů</a>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col col-1-12 grid-12-12">
+<div class="field field-form_button" id="field-wrapper-field_form_2_4_0_0">
+<div class="field-wrapper">
+<div class="center">
+<button class="btn btn-a btn-default" id="field-field_form_2_4_0_0" name="formular-field_form_2_4_0_0[field_form_2_4_0_0]" type="submit" value="submit"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">Odeslat</span></button>
+</div>
+</div>
+</div>
+</div>
+</div>
 
-    <Section background="default" space="lg">
-      <div class="prose">
-        <Heading as="h2" size="h2">Co je monitoring HW a SW systému Septim?</Heading>
-        <Text color="muted">Pro předcházení problémům nabízíme vzdálený dohled nad hardwarem i softwarem systému Septim. Každá z hlídaných oblastí může při poruše způsobit na provozu vážné problémy. Sledujeme zejména:</Text>
-      </div>
-      <ul class="checklist">
-        {sledujeme.map((f) => (<li><Icon name="lucide:activity" size="sm" class="checklist__icon" />{f}</li>))}
-      </ul>
-    </Section>
-
-    <Section background="alt" space="md">
-      <div class="prose">
-        <Heading as="h2" size="h3">Nejen sledování: aktivní řešení</Heading>
-        <Text color="muted">Běžnou součástí našich služeb je nejen samotný monitoring, ale zejména aktivní řešení varovných signálů. Pokud například u služeb WebCare nebo Centrální databáze zákazníků roste doba odezvy, pomáhá monitoring problém řešit dříve, než si stěžuje první zákazník. O možném problému vás bezodkladně informujeme a v rámci vaší objednávky servisních služeb jsme připraveni jej rovnou začít řešit.</Text>
-      </div>
-    </Section>
-
-    <StatsBand background="default" />
-    <LeadForm proofs={septimLeadProofs} id="poptavka" variant="callback" background="alt"
-              title="Mám zájem o monitorovací službu"
-              lead="Nechte nám telefon, probereme s vámi rozsah monitoringu pro váš provoz." />
-  </main>
-  <SiteFooter />
+<input name="form_variant" type="hidden" value="formular-field_form_2_4_0_0"/><input name="page" type="hidden" value=""/><div aria-hidden="true" class="visually-hidden"><label>Web <input autocomplete="off" name="website" tabindex="-1" type="text"/></label></div></form>
+</div></div></div><div class="section-background" style="background-color:rgb(235, 252, 255)"></div></div>
+<Mezera_bb6d />
+<Blok30Let_9e65 />
+<Novinky />
 </Base>
-
-<style>
-  .prose { max-width: 760px; margin-bottom: var(--space-5); }
-  .prose > * + * { margin-top: var(--space-4); }
-  .checklist { list-style: none; display: grid; gap: var(--space-3); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); max-width: 960px; }
-  .checklist li { display: flex; align-items: flex-start; gap: var(--space-2); font-size: var(--font-size-small); }
-  .checklist__icon { color: var(--color-primary); flex-shrink: 0; margin-top: 2px; }
-</style>

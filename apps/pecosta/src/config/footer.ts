@@ -21,6 +21,16 @@ export const pecostaFooter = {
       ],
     },
     {
+      heading: 'Pro koho',
+      links: [
+        { label: 'Restaurace a sítě', href: '/pro-koho/restaurace-a-site' },
+        { label: 'Hotely a resorty', href: '/pro-koho/hotely-a-resorty' },
+        { label: 'Kavárny a bistra', href: '/pro-koho/kavarny-a-bistra' },
+        { label: 'Jídelny a kantýny', href: '/pro-koho/jidelny-a-kantyny' },
+        { label: 'Školy a nemocnice', href: '/pro-koho/skoly-a-nemocnice' },
+      ],
+    },
+    {
       heading: 'Společnost',
       links: [
         { label: 'Jak to funguje', href: '/jak-to-funguje' },

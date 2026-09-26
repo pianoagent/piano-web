@@ -1,98 +1,218 @@
 ---
-/** Septim: Technické rady a FAQ. Obsah: septim-obsah/technicke-rady-faq.md (otázky rekonstruovány z odpovědí). SEO meta nově. */
-import Base from '../layouts/Base.astro';
-import SiteHeader from '../components/SiteHeader.astro';
-import SiteFooter from '../components/SiteFooter.astro';
-import Section from '@piano/ui/components/Section.astro';
-import Hero from '@piano/ui/components/Hero.astro';
-import Heading from '@piano/ui/components/Heading.astro';
-import Text from '@piano/ui/components/Text.astro';
-import Button from '@piano/ui/components/Button.astro';
-import LeadForm from '@piano/ui/components/LeadForm.astro';
-import StatsBand from '../components/StatsBand.astro';
-import Faq from '@piano/ui/components/Faq.astro';
-import { septimLeadProofs } from '../config/leadProofs';
-
-const predNakupem = [
-  { q: 'Čím se Septim liší od běžné pokladny?', a: 'Septim není zdaleka jen pokladna. Jeho největší přínos je ve finančním, skladovém a lidském řízení celého provozu. Proto je to provozní systém, nikoliv jen pokladní a to jako jeden z mála na trhu. Systém Septim ve své nejaktuálnější verzi 4.1 je nejnovější a nejrespektovanější provozní software pro restaurace v ČR. Michelinské restaurace, přední sítě top restaurací i známí šéfkuchaři, většina používá ve svých restauracích právě Septim.' },
-  { q: 'Kolik Septim stojí?', a: 'Cena se odvíjí od velikosti provozu, využití hardwaru a počtu zakoupených licencí a modulů, od několika stovek korun pro malé provozy až po miliony korun za napojení do provozního celku velkých sítí restauračních řetězců. Zásadní otázka na začátku je, co vše má systém řešit: kolik máte pokladen, jaké manažerské funkce budete potřebovat a jaké nástroje bude nutné napojit. V principu existují dva přístupy, buď si kupujete licenci i se vším zařízením jednorázově a následně platíte servisní poplatek, nebo platíte minimální vstupní náklady a vše ostatní si pronajímáte, podobně jako auto na operativní leasing. Ve zkratce: pro menší provozy je vhodný Septim.Air s měsíčním paušálem, pro větší provozy máme Septim.4 na míru a pro závodní stravování Septim.Jídelna.' },
-  { q: 'Umíte upravit systém na míru našemu provozu?', a: 'Ano, samozřejmě! V některých unikátních případech je vhodné upravit pokladní a provozní systém Septim na míru dané restauraci nebo síti restaurací. I takovou službu nabízíme.' },
-  { q: 'Jak dlouho trvá instalace?', a: 'Instalace se odehraje v rámci několika týdnů. Záleží, jak velký provoz máte, kolik pokladen budeme instalovat a jaké moduly potřebujete. Jiné je také startovat novou restauraci a jiné přecházet za běhu z jiného systému, toto s vámi projde náš konzultant.' },
-  { q: 'Nabízíte konzultace ještě před nákupem?', a: 'Ano. Před začátkem používání systému Septim nabízíme konzultace v oblasti zjištění potřeb provozu a následné přípravy ideálního řešení řízení provozu. Kontaktujte naše konzultanty a zjistěte nezávazně, jak vám Septim pomůže.' },
-];
-
-const pokladna = [
-  { q: 'Může host zaplatit v jedné měně a nechat si vrátit v jiné?', a: 'Ano, je to možné. Nejprve přijmu částku v měně platby zadáním do „Placeno“ a založím platbu. Tím dojde k přeplatku a u následující platby, kterou se bude vracet, pouze přepnu, v jaké měně bude platba s vrácením provedena.' },
-  { q: 'Jak na pokladně změním způsob platby u účtu?', a: 'Na pokladně lze změnit jednosměrně pouze platbu v hotovosti na libovolnou trasu peněz. Měnit způsob platby je možné pouze u účtů s jedinou platbou. Pokud účet obsahuje více plateb (i více plateb stejného typu), změnu platby účtu není možné provést.' },
-  { q: 'Pokladna se po spuštění hned ukončí. Co s tím?', a: 'Nejprve zkontrolujte kasa.log. Pokladna v Septimu 4.1 „nečeká na spuštění DB serveru“ a nepřipojuje se cyklicky, pokud tedy Kasa DB server po spuštění nenajde, hned se ukončí.' },
-  { q: 'Jak nastavím tisk více účtenek najednou?', a: 'V parametrech trasy peněz je nutné zadat příkaz POCETUCTENEK=x, kde za x dosadíme počet, kolik účtenek se má vytisknout.' },
-  { q: 'V grafických rezervacích nevidím všechny stoly. Proč?', a: 'Pravděpodobně je na jednu obrazovku umístěno více než 33 objektů k rezervaci. Použijte tlačítka „+“ a „−“ v pravé spodní části grafického editoru rezervací, pomocí nich upravíte zoom na optimální velikost, při které se zobrazí všechny objekty k rezervaci.' },
-];
-
-const sklady = [
-  { q: 'Jak zavedu počáteční skladové zásoby při přechodu z jiného systému?', a: 'Teoreticky jsou dvě možnosti: založit fiktivní dodací list, nebo založit inventuru a do ní zadat aktuální zásoby. Založení inventury však není dobrý postup, protože tím vzniknou skladové zásoby s nulovou cenou. Prakticky jediným rozumným řešením je fiktivní dodací list, který může vycházet z fyzické inventury; ceny by se měly použít podle účetních hodnot z předchozího systému.' },
-  { q: 'Co je skladová karta?', a: 'Na skladové kartě jsou zobrazeny veškeré skladové operace k dané skladové položce. Skladová karta se vytváří náhledem nad tabulkami, které obsahují skladové operace (denní výdeje, dodací listy, převody, inventury a další).' },
-  { q: 'Jak se ze skladu odepisují ingredience namarkovaných receptur?', a: 'Ingredience se ze skladu odtěžují k účetnímu datu tak, že se odpisy každé skladové položky postupně sčítají. Takto odepsané množství je pak ve skladové kartě v Manažeru uvedeno jako jeden záznam „Denní výdeje“. Když v daném dni neexistuje inventura, jsou denní výdeje vztaženy k účetnímu datu a času 23:59:59. Pokud je v daném dni vytvořena inventura, rozdělí se množství na část před inventurou (se stejným časem, jako je čas založení inventury) a po inventuře (čas 23:59:59).' },
-  { q: 'Jaký je rozdíl mezi množstvím podle Septima a skutečným množstvím?', a: '„Množství podle Septima“ je množství, které Septim na skladě očekává na základě svých výpočtů. „Množství skutečné“ nebo také „fyzické množství“ je množství, které se ve skladu našlo při inventuře.' },
-  { q: 'Co se stane, když opravím starší dodací list?', a: 'Změna se projeví v nejbližší inventuře za opraveným dodacím listem, změní se množství dle Septima. Změna se projeví i na skladové kartě, která zobrazuje historii operací se skladovou položkou, tedy i přebytky a vyřazení inventurou. Nezmění se fyzické množství v inventuře, a tedy ani aktuální zásoby.' },
-];
-
-const reporting = [
-  { q: 'Kde nastavím kurzy cizích měn?', a: 'V Manažeru ve „Volby → Peníze → Měny“ se ve spodním pohledu nastavují kurzy vybrané měny. Kurz se nastavuje pro určitý kurzový model, jehož časovou platnost lze vymezit ve „Volby → Peníze → Kurzový lístek“.' },
-  { q: 'Jak zařídím, aby se u trasy peněz neevidoval zůstatek?', a: 'Při zakládání nové trasy peněz stačí odškrtnout volbu „Evidovat zůstatek v peněžní pokladně“. U stávajících tras už to není možné. Používá se např. u trasy peněz typu „Nevrácené částky“, kde se v peněžních pokladnách kumuluje jejich záporný zůstatek a následně nejde uzavřít peněžní pokladna.' },
-  { q: 'Jak v obratech zobrazím poskytnuté slevy?', a: 'Jsou dvě možnosti: v menu „Finance → Obraty“ zvolíte pohled „Seskupení položek podle výše slevy“, nebo v menu „Finance → Obraty“ zaškrtnete „Zobrazovat základní cenu“.' },
-  { q: 'Proč se liší tržby při omezení dle pokladny a dle peněžní pokladny?', a: 'Je to kvůli účtům stornovaným v Manažeru. Pokud stornuji účet v Manažeru a zobrazím si podrobné tržby, při omezení dle pokladny se toto storno v tržbách neprojeví, při omezení na peněžní pokladnu ano. V takovém případě je lepší používat omezení dle peněžní pokladny.' },
-];
-
-const ceny = [
-  { q: 'Co je tarif a jak souvisí s cenovou kategorií?', a: 'Tarifem si můžeme zakoupit cenovou kategorii na určité období. Když je na zákazníka otevřen účet, je mu přidělena cenová kategorie zakoupená tarifem. Cenová kategorie u zákazníka se nemění a vstoupí v platnost po vypršení tarifu.' },
-  { q: 'Jaká cenová kategorie se použije při otevření účtu na zákazníka?', a: 'Cenová kategorie se nastaví dle zákazníka (podle jeho cenové kategorie). Pokud má zákazník platný tarif, použije se cenová kategorie dle tarifu.' },
-  { q: 'Jak nastavím automatické změny cen v určitých hodinách?', a: 'Automatické změny cen se v Septimu řeší prostřednictvím Happy Hours. Happy Hours mění cenovou kategorii za jinou, nebo nastaví zadanou slevu.' },
-  { q: 'Jaký je rozdíl mezi slevou a cenovou kategorií?', a: 'Sleva se uplatňuje na všechny receptury ve stejné výši (v procentech). Cenová kategorie umožňuje pro každou recepturu definovat různé výše slev (nebo přirážek) tím, že pro cenovou kategorii a recepturu definuji konkrétní cenu.' },
-  { q: 'Lze mít různý tiskový vzor poukázky pro různá zařízení?', a: 'Ne, tiskový vzor poukázky se volí pomocí globálního parametru a je jeden stejný pro všechna zařízení.' },
-];
-
-const nastaveni = [
-  { q: 'Jak u zákazníka evidovat alergeny?', a: 'Jde to nastavit hned při zakládání zákazníka v aplikaci Manažer přes samostatnou záložku editačního dialogu zákazníka. Dodatečně pak v menu „Zákazníci → Zákazníci“ v závislém pohledu „Alergeny“.' },
-  { q: 'Jak založím nového uživatele systému?', a: 'V aplikaci Manažer ve „Volby → Přístupová práva → Uživatelé systému“ vložíme nový záznam. Vyplníme údaje o uživateli, nezbytné jsou „Jméno“, „Uživatelské jméno“ (přihlašovací jméno do systému) a pokud se uživatel bude přihlašovat kartou, do kolonky „Identifikace“ zadáme nebo načteme čtečkou kód karty či čipu. Nově založeného uživatele poté aktivujeme (tlačítkem „A“ na horním ovládacím panelu); při aktivaci je uživatel vyzván k nastavení hesla. Nakonec uživatele vložíme ve spodním závislém pohledu do příslušných skupin pro oprávnění, tím získá veškerá oprávnění nadefinovaná pro tyto skupiny.' },
-  { q: 'Jak uživateli povolím vkládat jiné uživatele do skupin?', a: 'V aplikaci Manažer ve „Volby → Přístupová práva → Skupiny uživatelů“ označíme skupinu, jejímž je uživatel členem, a v podřízeném pohledu „Skupiny, do kterých se mohou vkládat uživatelé (skupiny)“ zvolíme skupiny, do kterých má uživatel moci jiné uživatele (případně celé skupiny) zařazovat. Abychom mohli uživatele do nějaké skupiny vložit, musíme navíc sami mít přidělena všechna práva jako skupina, do které chceme uživatele vložit.' },
-  { q: 'Co je hlavní (master) zákazník?', a: 'Hlavní zákazník je ten, ke kterému lze přiřazovat jiné (slave) zákazníky. Když má zákazník přiřazeného hlavního zákazníka, lze konto hlavního zákazníka použít při platbě účtu. Platbu z master konta jde omezit pouze na vybrané receptury.' },
-  { q: 'Jak uzavřu účet bez tisku účtenky?', a: 'V nabídkách vzhledu obrazovky pro pokladnu, v okně uzavření účtu, vytvořte nové tlačítko. Tomuto tlačítku přiřaďte příkaz „Uzavři účet“ a v jeho parametrech nastavte, že se nemá tisknout účet.' },
-];
-
-const obecne = [
-  { q: 'Může se pokladna připojovat k databázovému serveru přes internet?', a: 'Ano, je to možné, ale jen za podmínky, že download/upload rychlost internetového připojení bude nejméně 4/2 Mb/s a latence nanejvýš 15 ms. Při omezenějších možnostech internetu doporučujeme jiné řešení.' },
-  { q: 'K čemu slouží ceník?', a: 'Ceník slouží pro vymezení platnosti určitého cenového modelu. Pro cenové modely se pak definují ceny receptur.' },
-  { q: 'Co je tára a kde se nastavuje?', a: 'Tárou je myšlena hmotnost obalu, např. talíře nebo misky, která se při vážení má odečíst z celkové váhy. Táry se nastavují v Manažeru v menu „Volby → Základní parametry → Táry“. Na obrazovku markování do účtu v Kase je pak potřeba přidat komponentu „Seznam tár pro váhu“. Při propojení pokladny s váhou dle protokolu Welmec je možné u receptury se zaškrtnutým příznakem „Chráněná vážená položka“ nastavit přednastavenou hodnotu táry.' },
-  { q: 'Musí obraty přesně sedět na součet položek účtů?', a: 'Nemusí. Obraty sumarizují cenu bez DPH, výši DPH a cenu s DPH tak, jak je vedena v položkách uzavřených účtů (vše zaokrouhleno na 2 desetinná místa). Rozdíl se může pohybovat v řádu korun a je způsoben zaokrouhlováním.' },
-  { q: 'Z tiskárny vyjíždí objednávky opakovaně. Čím to je?', a: 'Může to být tím, že je spuštěno více aplikací „Pokladna“ se stejnou klientskou aplikací v ini souboru, připojují se pak jako identické zařízení a vznikají problémy s vyjížděním tisků. Spuštěné klientské aplikace zjistíte v Manažeru ve „Volby → Přístupová práva → Seznam připojených uživatelů“, kde je vidět, z jaké IP adresy je jaká aplikace připojena. Každá aplikace pokladny by zde měla mít dva záznamy: KASA (aplikace pokladna) a SERVICE (vlastní tiskový server kasy). Pokud je pro jednu aplikaci PC Pokladna záznamů víc, je někde spuštěna duplicitně, řešením je duplicitní aplikaci vypnout. V případě nejasností se obraťte na Helpdesk společnosti Septim Systems.' },
-];
+// https://www.septim.cz/technicke-rady-faq (Solid Pixels), port 1:1 skriptem port-septim.py
+import Base from './../layouts/Base.astro';
+import Mezera_fd60 from './../components/blocks/Mezera_fd60.astro';
+import BlokKolikZaplatim_71a6 from './../components/blocks/BlokKolikZaplatim_71a6.astro';
+import Blok30Let_9e65 from './../components/blocks/Blok30Let_9e65.astro';
+import Mezera_bb6d from './../components/blocks/Mezera_bb6d.astro';
+import KontaktniFormular from './../components/blocks/KontaktniFormular.astro';
+import Novinky from './../components/blocks/Novinky.astro';
 ---
-<Base title="Technické rady a časté dotazy (FAQ) | Septim"
-      description="Technické rady a časté dotazy k pokladnímu systému Septim. Najděte odpovědi před i po zakoupení systému na jednom místě.">
-  <SiteHeader />
-  <main>
-    <Hero eyebrow="Podpora" background="alt"
-          lead="Odpovědi na nejčastější dotazy před zakoupením systému Septim i v průběhu užívání, pro personál na place i pro management provozů.">
-      <Heading slot="title" as="h1" size="display">Technické rady a <em>FAQ</em></Heading>
-      <Fragment slot="actions">
-        <Button href="/sluzby-servis/helpdesk-hotline">Helpdesk a Hotline</Button>
-        <Button href="/sluzby-servis" variant="secondary">Služby a servis</Button>
-      </Fragment>
-    </Hero>
-
-    <Faq items={predNakupem} title="Otázky před zakoupením systému Septim" background="default" />
-    <Faq items={pokladna} title="Používání pokladny na place (pro personál)" background="alt" />
-    <Faq items={sklady} title="Aplikace Manažer: skladové hospodářství" background="default" />
-    <Faq items={reporting} title="Aplikace Manažer: reporting a finanční správa" background="alt" />
-    <Faq items={ceny} title="Aplikace Manažer: práce s cenami a akcemi" background="default" />
-    <Faq items={nastaveni} title="Nastavení a práce s pokladnou a účty" background="alt" />
-    <Faq items={obecne} title="Obecné dotazy" background="default" />
-
-    <StatsBand />
-    <LeadForm proofs={septimLeadProofs} id="poptavka" variant="callback" background="default"
-              title="Nenašli jste odpověď?"
-              lead="Nechte nám telefon, proberte to s našimi konzultanty nebo podporou." />
-  </main>
-  <SiteFooter />
+<Base
+  title="Technické rady a časté dotazy (FAQ) | Septim"
+  description="Technické rady a časté dotazy k pokladnímu systému Septim. Najděte odpovědi před i po zakoupení systému na jednom místě."
+  path="/technicke-rady-faq"
+  bodyClass="use-header-transparent use-menu-primary-uppercase use-menu-secondary-uppercase use-headings-link-plain search-panel-hide-submit-label search-panel-hide-close-label search-panel-hide-open-label use-menu-bar use-header-fixed use-header-fixed-mobile use-header-priority"
+  image="/files/nahled-septim-pomoc.jpg"
+>
+<div class="section height--low align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-card flexcard-size--normal flexcard-media-right valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><a class="image image-mask ratio-original" href="/sluzby-servis" style="padding-bottom:76.92307692307693%"><img alt="Technické rady a často kladené otázky k systému Septim" decoding="async" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/hdr-helpdesk-hotline.webp" srcset="/files/r/720/hdr-helpdesk-hotline.webp 720w, /files/r/1280/hdr-helpdesk-hotline.webp 1280w, /files/r/1920/hdr-helpdesk-hotline.webp 1920w"/></a></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h1>Technické rady a často kladené otázky k systému Septim<span class="text-highlight">.</span></h1>
+<p class="text-large"></p>
+</div></div></div></div></div></div></div></div></div></div></div>
+<div class="section height--low align--middle color--default" id="1-co-je"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-2-12"><div class="block block-spacer"><div><div><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div> <div class="col col-3-12 grid-10-12"><div class="block block-inline"><h2>Sekce nejčastějších otázek a odpovědí<span class="text-highlight">.</span></h2>
+</div> <div class="block block-inline"><ul>
+<li><a href="/technicke-rady-faq#faq-pred-zakoupenim-systemu">Otázky před zakoupením systému Septim</a></li>
+<li><a href="/technicke-rady-faq#faq-pokladna">Technické otázky k používání pokladny na place (pro personál)</a></li>
+<li><a href="/technicke-rady-faq#faq-manazer">Technické otázky k používání aplikace manažer (pro management)</a>
+<ul>
+<li><a href="/technicke-rady-faq#faq-manazer">Skladové hospodářství</a></li>
+<li><a href="/technicke-rady-faq#faq-manazer-reporting">Reporting a finanční správa</a></li>
+<li><a href="/technicke-rady-faq#faq-manazer-ceny">Práce s cenami a akcemi</a></li>
+<li><a href="/technicke-rady-faq#faq-manazer-pokladna">Nastavení a práce s pokladnou a účty</a></li>
+<li><a href="/technicke-rady-faq#faq-obecne">Obecné dotazy</a></li>
+</ul>
+</li>
+</ul>
+</div></div></div></div></div>
+<Mezera_fd60 />
+<div class="section height--normal align--middle color--default section-has-background" id="faq-pred-zakoupenim-systemu"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3 class="text-large">Otázky před zakoupením systému Septim<span class="text-highlight">.</span></h3>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div><div><div class="block-spacer-element" style="--height:30px"></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-4-12"><div class="block block-inline"><h4>Často kladené dotazy<span class="text-highlight">.</span></h4>
+</div></div> <div class="col col-5-12 grid-8-12"><div class="block block-accordion">
+<div class="accordion"><div class="accordion__title"><span class="accordion__title-label">Proč zvolit systém Septim pro svůj provoz?</span><span class="accordion__title-arrow"><div class="cssicon cssicon--chevron cssicon--size-parent"></div></span></div><div class="container accordion__content"><div class="container-body">
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Septim není zdaleka jen pokladna. Jeho největší přínos je ve finančním, skladovém a lidském řízení celého provozu. Proto je to provozní systém, nikoliv jen pokladní. A to jako jeden z mála na trhu! Systém Septim ve své nejaktuálnější verzi 4.1 je nejnovější a nejrespektovanější provozní software pro restaurace v ČR. Michelinské restaurace, přední sítě top restaurací a známí šéfkuchaři? Většina používá ve svých restauracích právě Septim.</p>
+</div></div></div>
+</div></div></div>
+<div class="accordion"><div class="accordion__title"><span class="accordion__title-label">Jaká je cena platebního a provozního systému Septim a které řešení je pro mě nejlepší?</span><span class="accordion__title-arrow"><div class="cssicon cssicon--chevron cssicon--size-parent"></div></span></div><div class="container accordion__content"><div class="container-body">
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Cena se odvíjí od velikosti provozu, využití hardwaru a počtu zakoupených licencí a modulů. Platební systémy se pohybují od několika stovek korun pro malé provozy až po miliony korun za napojení do provozního celku velkých sítí restauračních řetězců. Zásadní otázka na začátku výběru je, co vše má systém řešit. Kolik máte v restauraci pokladen, jaké manažerské funkce budete potřebovat a jaké nástroje bude nutné napojit. V principu existují dva přístupy, kdy si buď kupujete licenci i se vším zařízením jednorázově a následně pak platíte servisní poplatek. V druhém případě platíte minimální vstupní náklady a vše ostatní si pak pronajímáte jako například auto na operativní leasing. Ve zkratce můžeme říci, že pro menší provozy je vhodný <a href="/produkty/septim-air-system-pro-kavarnu-bistro-bar">Septim.Air</a> s měsíčním paušálem a pro větší provozy máme <a href="/produkty/septim-4-system-pro-restaurace">Septim.4</a> na míru. Provozujete-li závodní stravování můžeme vám nabídnout <a href="/produkty/septim-jidelna-system-pro-zavodni-stravovani">Septim.Jídelna</a>. </p>
+</div></div></div>
+</div></div></div>
+<div class="accordion"><div class="accordion__title"><span class="accordion__title-label">Pokud mi žádné balíčkové řešení Septim nevyhovuje, máte pro mě i jiné řešení?</span><span class="accordion__title-arrow"><div class="cssicon cssicon--chevron cssicon--size-parent"></div></span></div><div class="container accordion__content"><div class="container-body">
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Ano, samozřejmě! V některých unikátních případech je vhodné upravit pokladní a provozní systém Septim na míru dané restauraci nebo síti restaurací. I takovou službu nabízíme.</p>
+</div></div></div>
+</div></div></div>
+<div class="accordion"><div class="accordion__title"><span class="accordion__title-label">Jak rychlá je instalace systému Septim do mé provozovny?</span><span class="accordion__title-arrow"><div class="cssicon cssicon--chevron cssicon--size-parent"></div></span></div><div class="container accordion__content"><div class="container-body">
+<div class="row-main"><div class="col col-1-12 grid-11-12"><div class="block block-inline"><p>Instalace se odehraje v rámci několik týdnů. Záleží jak velký provoz máte, kolik pokladen budeme instalovat, jaké moduly potřebujete. Také je jiné startovat novou restauraci a přecházet za běhu z jiného systému. Toto s vámi projde náš konzultant.</p>
+</div></div> <div class="col col-12-12 grid-1-12"></div></div>
+</div></div></div>
+<div class="accordion"><div class="accordion__title"><span class="accordion__title-label">Jak fungují konzultace Septim?</span><span class="accordion__title-arrow"><div class="cssicon cssicon--chevron cssicon--size-parent"></div></span></div><div class="container accordion__content"><div class="container-body">
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Před začátkem používání systému Septim nabízíme konzultace v oblasti zjištění potřeb provozu a následné přípravy ideálního řešení řízení provozu. <a href="/chci-septim">Kontaktujte naše konzultanty</a> a zjistěte nezávazně, jak vám Septim pomůže.</p>
+</div></div></div>
+</div></div></div>
+</div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<Mezera_fd60 />
+<div class="section height--normal align--middle color--default section-has-background" id="faq-pokladna"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3 class="text-large">Technické otázky k používání pokladny na place (pro personál)<span class="text-highlight">.</span></h3>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div><div><div class="block-spacer-element" style="--height:30px"></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-4-12"><div class="block block-inline"><h4>Často kladené dotazy<span class="text-highlight">.</span></h4>
+</div></div> <div class="col col-5-12 grid-8-12"><div class="block block-accordion">
+<div class="accordion"><div class="accordion__title"><span class="accordion__title-label">Je možné při placení vrátit v jiné měně než je přijatá měna?</span><span class="accordion__title-arrow"><div class="cssicon cssicon--chevron cssicon--size-parent"></div></span></div><div class="container accordion__content"><div class="container-body">
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Ano, je to možné. Postup je takový, že nejprve příjmu částku v měně platby zadáním do "Placeno" a založím platbu. Tím dojde k přeplatku a u následující platby, kterou se bude vracet pouze přepnu v jaké měně bude platba s vrácením provedena. </p>
+</div></div></div>
+</div></div></div>
+<div class="accordion"><div class="accordion__title"><span class="accordion__title-label">Jaké jsou možnosti změny způsobu platby uzavřeného účtu v Kase?</span><span class="accordion__title-arrow"><div class="cssicon cssicon--chevron cssicon--size-parent"></div></span></div><div class="container accordion__content"><div class="container-body">
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Na pokladně lze změnit jednosměrně pouze platbu v hotovosti na libovolnou trasu peněz. Měnit způsob platby je možné pouze u účtů s jedinou platbou. Pokud účet obsahuje více plateb (i více plateb stejného typu), tak změnu platby účtu není možné provést. </p>
+</div></div></div>
+</div></div></div>
+<div class="accordion"><div class="accordion__title"><span class="accordion__title-label">Co mám dělat, pokud mi po spuštění nechce naběhnout aplikace Kasa v Septim 4.1?</span><span class="accordion__title-arrow"><div class="cssicon cssicon--chevron cssicon--size-parent"></div></span></div><div class="container accordion__content"><div class="container-body">
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>První musím zkontrolovat kasa.log, protože pokladna v Septim 4.1 "nečeká na spuštění DB serveru" a nepřipojuje se cyklicky. Pokud tedy Kasa DB server po spuštění nenajde, tak se hned ukončí. </p>
+</div></div></div>
+</div></div></div>
+<div class="accordion"><div class="accordion__title"><span class="accordion__title-label">Jak v Septimu nastavím, aby se při platbě trasou peněz vytiskl určitý počet účtů?</span><span class="accordion__title-arrow"><div class="cssicon cssicon--chevron cssicon--size-parent"></div></span></div><div class="container accordion__content"><div class="container-body">
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>V parametrech trasy peněz, je nutné zadat tento příkaz: POCETUCTENEK=x, kde za x dosadíme počet, kolik účtenek se má vytisknout. </p>
+</div></div></div>
+</div></div></div>
+<div class="accordion"><div class="accordion__title"><span class="accordion__title-label">V čem je problém, když se mi nezobrazují rezervace v grafickém editoru rezervací? </span><span class="accordion__title-arrow"><div class="cssicon cssicon--chevron cssicon--size-parent"></div></span></div><div class="container accordion__content"><div class="container-body">
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Pravděpodobně je umístěno na 1 obrazovku více než 33 objektů k rezervaci. Použijte tlačítka '+' a '-', která jsou umístěná v pravé spodní straně grafického editoru rezervací. Pomocí těchto tlačítek upravíte zoom na optimální velikost, při které se Vám zobrazí všechny objekty k rezervaci.</p>
+</div></div></div>
+</div></div></div>
+</div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<Mezera_fd60 />
+<div class="section height--low align--middle color--default section-has-background" id="faq-manazer"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div><div><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3 class="text-large">Technické otázky k používání aplikace manažer (pro management)<span class="text-highlight">.</span></h3>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div><div><div class="block-spacer-element" style="--height:30px"></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-4-12"><div class="block block-inline"><h4>Skladové hospodářství<span class="text-highlight">.</span></h4>
+</div></div> <div class="col col-5-12 grid-8-12"><div class="block block-accordion">
+<div class="accordion"><div class="accordion__title"><span class="accordion__title-label">Jak zavést počáteční skladové zásoby?</span><span class="accordion__title-arrow"><div class="cssicon cssicon--chevron cssicon--size-parent"></div></span></div><div class="container accordion__content"><div class="container-body">
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Teoreticky jsou dvě možnosti: 1) založit fiktivní dodací list; 2) založit inventuru a do ní zadat aktuální zásoby. Založení inventury však není dobrý postup, protože tím vzniknou skladové zásoby s nulovou cenou. Prakticky jediným rozumným řešením je fiktivní dodací list, který může vycházet z fyzické inventury a ceny by se měly použít podle účetních hodnot z předchozího systému.</p>
+</div></div></div>
+</div></div></div>
+<div class="accordion"><div class="accordion__title"><span class="accordion__title-label">Jaká data se zobrazují ve skladové kartě?</span><span class="accordion__title-arrow"><div class="cssicon cssicon--chevron cssicon--size-parent"></div></span></div><div class="container accordion__content"><div class="container-body">
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Na skladové kartě jsou zobrazeny veškeré skladové operace k dané skladové položce. Skladová karta se vytváří náhledem nad tabulkami, které obsahují skladové operace (denní výdeje, dodací listy, převody, inventury,...).</p>
+</div></div></div>
+</div></div></div>
+<div class="accordion"><div class="accordion__title"><span class="accordion__title-label">K jakému okamžiku se provede odtížení ze skladu?</span><span class="accordion__title-arrow"><div class="cssicon cssicon--chevron cssicon--size-parent"></div></span></div><div class="container accordion__content"><div class="container-body">
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Ingredience namarkovaných receptur se ze skladu odtěžují k účetnímu datu a to tak, že se odpisy každé skladové položky postupně sčítají. Takto odepsané množství je pak ve "Skladové kartě" v Manažeru uvedeno jako jeden záznam - "Denní výdeje". Když v daném dni neexistuje inventura, jsou denní výdeje vztaženy k účetnímu datu a času 23:59:59. V případě, že je v daném dni vytvořena inventura, rozdělí se toto množství na část před inventurou a po inventuře. Denní výdaje realizované před inventurou mají čas stejný, jako je čas založení inventury, denní výdeje po inventuře mají čas 23:59:59.</p>
+</div></div></div>
+</div></div></div>
+<div class="accordion"><div class="accordion__title"><span class="accordion__title-label">Co znamenají termíny "Množství podle Septima" a "Množství skutečné" u inventur?</span><span class="accordion__title-arrow"><div class="cssicon cssicon--chevron cssicon--size-parent"></div></span></div><div class="container accordion__content"><div class="container-body">
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Množství podle Septima je množství, které Septim na skladě očekává na základě svých výpočtů. "Množství skutečné" nebo také "Fyzické množství" je množství, které se ve skladu našlo při inventuře.</p>
+</div></div></div>
+</div></div></div>
+<div class="accordion"><div class="accordion__title"><span class="accordion__title-label">Jak se projeví oprava množství u položky dodacího listu, který se na časové ose nachází před inventurou?</span><span class="accordion__title-arrow"><div class="cssicon cssicon--chevron cssicon--size-parent"></div></span></div><div class="container accordion__content"><div class="container-body">
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Změna se projeví v nejbližší inventuře za opraveným dodacím listem. Změní se množství dle Septima. Změna se projeví i na skladové kartě, která zobrazuje historii operací se skladovou položkou a tedy i přebytky a vyřazení inventurou. Nezmění se fyzické množství v inventuře a tedy ani aktuální zásoby.</p>
+</div></div></div>
+</div></div></div>
+</div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<div class="section height--low align--middle color--default section-has-background" id="faq-manazer-reporting"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-4-12"><div class="block block-inline"><h4>Reporting a finanční správa<span class="text-highlight">.</span></h4>
+</div></div> <div class="col col-5-12 grid-8-12"><div class="block block-accordion">
+<div class="accordion"><div class="accordion__title"><span class="accordion__title-label">Kde se nastavují kurzy cizích měn?</span><span class="accordion__title-arrow"><div class="cssicon cssicon--chevron cssicon--size-parent"></div></span></div><div class="container accordion__content"><div class="container-body">
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>V Manažeru ve "Volby -&gt; Peníze -&gt; Měny" se ve spodním pohledu nastavují kurzy vybrané měny. Kurz se nastavuje pro určitý Kurzový model, jehož časová platnost jde vymezit ve "Volby -&gt; Peníze -&gt; Kurzový lístek".</p>
+</div></div></div>
+</div></div></div>
+<div class="accordion"><div class="accordion__title"><span class="accordion__title-label">Co dělat, když chci, aby nově založená trasa peněz nebyla evidovaná v peněžních pokladnách?</span><span class="accordion__title-arrow"><div class="cssicon cssicon--chevron cssicon--size-parent"></div></span></div><div class="container accordion__content"><div class="container-body">
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Při zakládání nové trasy peněz stačí odškrtnout volbu "Evidovat zůstatek v peněžní pokladně". U stávajících tras už tohle není možné. Používá se např. u trasy peněz typu "Nevrácené částky", kde se v peněžních pokladnách kumuluje jejich záporný zůstatek a následně nejde uzavřít peněžní pokladna.</p>
+</div></div></div>
+</div></div></div>
+<div class="accordion"><div class="accordion__title"><span class="accordion__title-label">Jak zjistím výši poskytnutých slev v obratech?</span><span class="accordion__title-arrow"><div class="cssicon cssicon--chevron cssicon--size-parent"></div></span></div><div class="container accordion__content"><div class="container-body">
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Jsou dvě možnosti:<br/>
+1) V menu "Finance -&gt; Obraty" zvolím pohled "Seskupení položek podle výše slevy".<br/>
+2) V menu "Finance -&gt; Obraty" zaškrtnu "Zobrazovat základní cenu".</p>
+</div></div></div>
+</div></div></div>
+<div class="accordion"><div class="accordion__title"><span class="accordion__title-label">V Manažeru v "Podrobných tržbách" se mi zobrazují rozdílné částky při omezení na "Pokladnu" a na "Peněžní pokladnu" a to i přesto, že je k "Peněžní pokladně" přiřazena pouze tato jediná "Pokladna". Čím je tedy rozdíl způsobený?</span><span class="accordion__title-arrow"><div class="cssicon cssicon--chevron cssicon--size-parent"></div></span></div><div class="container accordion__content"><div class="container-body">
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Je to kvůli účtům stornovaným v Manažeru. Pokud stornuji účet v Manažeru a zobrazím si podrobné tržby, tak zatímco při omezení dle pokladny se mi toto storno účtu provedené v Manažeru v tržbách neprojeví, při omezení na peněžní pokladnu ano. Je tedy lepší v takovém případě používat omezení dle peněžní pokladny.</p>
+</div></div></div>
+</div></div></div>
+<div class="accordion"><div class="accordion__title"><span class="accordion__title-label">Jaké jsou možnosti změny způsobu platby uzavřeného účtu v Kase?</span><span class="accordion__title-arrow"><div class="cssicon cssicon--chevron cssicon--size-parent"></div></span></div><div class="container accordion__content"><div class="container-body">
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Na pokladně lze změnit jednosměrně pouze platbu v hotovosti na libovolnou trasu peněz. Měnit způsob platby je možné pouze u účtů s jedinou platbou. Pokud účet obsahuje více plateb (i více plateb stejného typu), tak změnu platby účtu není možné provést.</p>
+</div></div></div>
+</div></div></div>
+</div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<div class="section height--low align--middle color--default section-has-background" id="faq-manazer-ceny"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-4-12"><div class="block block-inline"><h4>Práce s cenami a akcemi<span class="text-highlight">.</span></h4>
+</div></div> <div class="col col-5-12 grid-8-12"><div class="block block-accordion">
+<div class="accordion"><div class="accordion__title"><span class="accordion__title-label">K čemu se používají tarify?</span><span class="accordion__title-arrow"><div class="cssicon cssicon--chevron cssicon--size-parent"></div></span></div><div class="container accordion__content"><div class="container-body">
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Tarifem si můžeme zakoupit cenovou kategorii na určité období. Když je na zákazníka otevřen účet, je mu přidělena cenová kategorie zakoupená tarifem. Cenová kategorie u zákazníka se nemění a vstoupí v platnost po vypršení tarifu.</p>
+</div></div></div>
+</div></div></div>
+<div class="accordion"><div class="accordion__title"><span class="accordion__title-label">Jaká cenová kategorie se nastaví k účtu při jeho založení?</span><span class="accordion__title-arrow"><div class="cssicon cssicon--chevron cssicon--size-parent"></div></span></div><div class="container accordion__content"><div class="container-body">
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Cenová kategorie se nastaví dle zákazníka (podle jeho cenové kategorie). Pokud má zákazník platný tarif, tak se použije cenová kategorie dle tarifu.</p>
+</div></div></div>
+</div></div></div>
+<div class="accordion"><div class="accordion__title"><span class="accordion__title-label">Jak lze automaticky měnit ceny v průběhu dne?</span><span class="accordion__title-arrow"><div class="cssicon cssicon--chevron cssicon--size-parent"></div></span></div><div class="container accordion__content"><div class="container-body">
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Automatické změny cen se v Septimu řeší prostřednictvím Happy Hours. Happy Hours mění cenovou kategorii za jinou, nebo nastaví zadanou slevu.</p>
+</div></div></div>
+</div></div></div>
+<div class="accordion"><div class="accordion__title"><span class="accordion__title-label">Jaký je rozdíl mezi cenovou kategorií a slevou?</span><span class="accordion__title-arrow"><div class="cssicon cssicon--chevron cssicon--size-parent"></div></span></div><div class="container accordion__content"><div class="container-body">
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Sleva se uplatňuje na všechny receptury ve stejné výši (v procentech). Cenová kategorie umožňuje v rámci jedné cenové kategorie pro každou recepturu definovat různé výše slev (nebo přirážek) tím, že pro cenovou kategorii a recepturu definuji konkrétní cenu.</p>
+</div></div></div>
+</div></div></div>
+<div class="accordion"><div class="accordion__title"><span class="accordion__title-label">Lze u bonusového programu pro zákazníky definovat různou šířku tiskového vzoru "Bonusová poukázka" pro různá zařízení (tiskárny)? Pokud ano, tak jak?</span><span class="accordion__title-arrow"><div class="cssicon cssicon--chevron cssicon--size-parent"></div></span></div><div class="container accordion__content"><div class="container-body">
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Ne, tiskový vzor poukázky se volí pomocí globálního parametru a je jeden stejný pro všechna zařízení.</p>
+</div></div></div>
+</div></div></div>
+</div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<div class="section height--low align--middle color--default section-has-background" id="faq-manazer-pokladna"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-3-12"><div class="block block-inline"><h4>Nastavení a práce s pokladnou a účty<span class="text-highlight">.</span></h4>
+</div></div> <div class="col col-4-12 grid-1-12"><div class="block block-spacer"><div><div><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div> <div class="col col-5-12 grid-8-12"><div class="block block-accordion">
+<div class="accordion"><div class="accordion__title"><span class="accordion__title-label">Kde nastavím na jaké alergeny je zákazník alergický?</span><span class="accordion__title-arrow"><div class="cssicon cssicon--chevron cssicon--size-parent"></div></span></div><div class="container accordion__content"><div class="container-body">
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Jde to nastavit hned při zakládání zákazníka v aplikaci Manažer přes samostatnou záložku editačního dialogu zákazníka. Dodatečně pak v menu "Zákazníci -&gt; Zákazníci" v závislém pohledu "Alergeny".</p>
+</div></div></div>
+</div></div></div>
+<div class="accordion"><div class="accordion__title"><span class="accordion__title-label">Jak založím nového uživatele? </span><span class="accordion__title-arrow"><div class="cssicon cssicon--chevron cssicon--size-parent"></div></span></div><div class="container accordion__content"><div class="container-body">
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>V aplikaci Manažer ve "Volby -&gt; Přístupová práva -&gt; Uživatelé systému" vložíme nový záznam. Vyplníme údaje o uživateli - nezbytné jsou "Jméno" (např. jméno a příjmení), "Uživatelské jméno" (= přihlašovací jméno do systému) a v případě, že se uživatel bude přihlašovat kartou, tak do kolonky "Identifikace" zadáme nebo načteme čtečkou kód karty/čipu. Nově založeného uživatele musíme poté ještě aktivovat (tlačítkem "A" na horním ovládacím panelu), při aktivaci je uživatel vyzván k nastavení svého hesla. Nakonec je třeba uživatele ještě vložit ve spodním závislém pohledu do příslušných skupin pro oprávnění. Tím uživatel získá veškerá oprávnění nadefinovaná pro tyto skupiny uživatelů. </p>
+</div></div></div>
+</div></div></div>
+<div class="accordion"><div class="accordion__title"><span class="accordion__title-label">Kde se dá omezit, do jakých skupin uživatelů pro práva může uživatel v Manažeru jiné uživatele zařazovat?</span><span class="accordion__title-arrow"><div class="cssicon cssicon--chevron cssicon--size-parent"></div></span></div><div class="container accordion__content"><div class="container-body">
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>V aplikaci Manažer ve "Volby - Přístupová práva - Skupiny uživatelů" si označíme skupinu, jejímž je uživatel členem, a v podřízeném pohledu "Skupiny, do kterých se mohou vkládat uživatelé (skupiny)" zvolíme skupiny, do kterých chceme, aby uživatel mohl jiné uživatele (případně celé skupiny uživatelů) zařazovat. Abychom mohli uživatele do nějaké skupiny vložit, musíme navíc ještě sami mít přidělena všechna práva, jako ta skupina, do které chceme uživatele vložit.</p>
+</div></div></div>
+</div></div></div>
+<div class="accordion"><div class="accordion__title"><span class="accordion__title-label">Co znamená termín „Master zákazník"?</span><span class="accordion__title-arrow"><div class="cssicon cssicon--chevron cssicon--size-parent"></div></span></div><div class="container accordion__content"><div class="container-body">
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Hlavní zákazník, ke kterému lze přiřazovat jiné (slave) zákazníky. Když má zákazník přiřazeného hlavního zákazníka, lze konto hlavního zákazníka použít při platbě účtu. Platbu z master konta jde omezit pouze na vybrané receptury.</p>
+</div></div></div>
+</div></div></div>
+<div class="accordion"><div class="accordion__title"><span class="accordion__title-label">Jak nastavím tlačítko na uzavření účtu, které nebude po uzavření účtu tisknout účtenku?</span><span class="accordion__title-arrow"><div class="cssicon cssicon--chevron cssicon--size-parent"></div></span></div><div class="container accordion__content"><div class="container-body">
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>V nabídkách vzhledu obrazovky pro pokladnu, v okně uzavření účtu, vytvořte nové tlačítko. Tomuto tlačítku přiřaďte příkaz "Uzavři účet" a v jeho parametrech nastavte, že se nemá tisknout účet.</p>
+</div></div></div>
+</div></div></div>
+</div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<div class="section height--low align--middle color--default section-has-background" id="faq-obecne"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-4-12"><div class="block block-inline"><h4>Obecné dotazy<span class="text-highlight">.</span></h4>
+</div></div> <div class="col col-5-12 grid-8-12"><div class="block block-accordion">
+<div class="accordion"><div class="accordion__title"><span class="accordion__title-label">Je možné provozovat aplikace systému Septim 4.1 (např. Manažer) po internetu? A bude práce v nich dostatečně rychlá a plynulá?</span><span class="accordion__title-arrow"><div class="cssicon cssicon--chevron cssicon--size-parent"></div></span></div><div class="container accordion__content"><div class="container-body">
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Ano je to možné, ale jen za podmínky, že download/upload rychlost internetového připojení bude nejméně 4/2 Mb/s a latence nanejvýš 15 ms. Při omezenějších možnostech internetu, zákazníkovi doporučujeme jiné řešení.</p>
+</div></div></div>
+</div></div></div>
+<div class="accordion"><div class="accordion__title"><span class="accordion__title-label">K čemu slouží v Septimu 4.1 ceník?</span><span class="accordion__title-arrow"><div class="cssicon cssicon--chevron cssicon--size-parent"></div></span></div><div class="container accordion__content"><div class="container-body">
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Ceník slouží pro vymezení platnosti určitého cenového modelu. Pro cenové modely se pak definují ceny receptur.</p>
+</div></div></div>
+</div></div></div>
+<div class="accordion"><div class="accordion__title"><span class="accordion__title-label">Co je to "Tára" a jak se nastavuje?</span><span class="accordion__title-arrow"><div class="cssicon cssicon--chevron cssicon--size-parent"></div></span></div><div class="container accordion__content"><div class="container-body">
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Tárou je myšlena hmotnost obalu v našem případě např. talíře, nebo misky, která se při vážení má odečíst z celkové váhy. Táry se nastavují v Manažeru v menu "Volby -&gt; Základní parametry -&gt; Táry". Na obrazovku markování do účtu v Kase je pak potřeba přidat komponentu "Seznam tár pro váhu". V případě použití propojení pokladny s váhou dle protokolu Welmec je možné nastavit u receptury, u níž je zaškrtnutý příznak "Chráněná vážená položka", přednastavenou hodnotu táry.</p>
+</div></div></div>
+</div></div></div>
+<div class="accordion"><div class="accordion__title"><span class="accordion__title-label">Musí vždy v obratech platit rovnost "Součet ceny s DPH = Cena bez DPH x sazba DPH"?</span><span class="accordion__title-arrow"><div class="cssicon cssicon--chevron cssicon--size-parent"></div></span></div><div class="container accordion__content"><div class="container-body">
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Nemusí. Obraty sumarizují cenu bez DPH, výši DPH a cenu s DPH tak, jak je vedena v položkách uzavřených účtů (vše zaokrouhleno na 2 desetinná místa). Rozdíl se může pohybovat v řádu korun a je způsoben zaokrouhlováním. </p>
+</div></div></div>
+</div></div></div>
+<div class="accordion"><div class="accordion__title"><span class="accordion__title-label">Co může být příčinou toho, že mi tisky vyjíždějí na více tiskárnách nebo se mi ztrácí první odeslaný tisk?</span><span class="accordion__title-arrow"><div class="cssicon cssicon--chevron cssicon--size-parent"></div></span></div><div class="container accordion__content"><div class="container-body">
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Může to být tím, že je spuštěno více aplikací "Pokladna", které mají ve svém ini souboru nastavenou stejnou klientskou aplikaci, tudíž se připojují jako identické zařízení a poté vznikají problémy s vyjížděním tisků. Spuštěné klientské aplikace je možno zjistit v aplikaci "Manažer ve Volby -&gt; Přístupová práva -&gt; Seznam připojených uživatelů". Zde je vidět, z jaké IP adresy je jaká aplikace připojena. Každá aplikace pokladny by zde měla mít dva záznamy: KASA a SERVICE. Připojení "KASA" je aplikace pokladna, připojení "SERVICE" je vlastní tiskový server této kasy. Pokud by zde bylo pro jednu aplikaci PC Pokladna víc než tyto 2 záznamy, znamená to, že je někde tato aplikace spuštěna duplicitně. Řešením je duplicitně spuštěnou aplikaci vypnout. V případě nejasností, nebo pokud tento postup nezabere, <a href="/sluzby-servis/helpdesk-hotline">obraťte se na Helpdesk společnosti Septim Systems</a>.</p>
+</div></div></div>
+</div></div></div>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div><div><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<BlokKolikZaplatim_71a6 />
+<Blok30Let_9e65 />
+<Mezera_bb6d />
+<KontaktniFormular />
+<Novinky />
 </Base>

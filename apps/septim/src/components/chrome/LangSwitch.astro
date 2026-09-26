@@ -1,0 +1,26 @@
+---
+/**
+ * Přepínač jazyka ve stejném markupu jako na živém webu (dropdown CZ / EN / SK).
+ * Zobrazí se, až bude zapnutý víc než jeden jazyk (src/i18n/config.ts).
+ */
+import { enabledLocales, localeLabels, translations, type Locale } from '../../i18n/config';
+import { ui } from '../../i18n/ui';
+
+interface Props { path: string; locale: Locale }
+const { path, locale } = Astro.props;
+const t = translations(path, locale);
+const home: Record<Locale, string> = { cs: '/', en: '/en', sk: '/sk' };
+const items = enabledLocales.map((l) => ({ l, href: t[l] ?? home[l], ...localeLabels[l] }));
+---
+{enabledLocales.length > 1 && (
+  <nav class="nav switcher switcher--dropdown language-switcher-dropdown language-switcher--dropdown" aria-label={ui[locale]['nav.language']}>
+    <a href="#language-switcher" class="nav__link switcher__trigger no-scroll" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="Active language"><abbr title={localeLabels[locale].title}>{localeLabels[locale].short}</abbr> <span class="cssicon cssicon--middle cssicon--size-auto cssicon--chevron-down"></span></a>
+    <div class="dropdown__submenu language-switcher__submenu">
+      <ul class="nav__list">
+        {items.map((i) => (
+          <li class:list={['nav__item', { 'is-active': i.l === locale }]}><a href={i.href} class="nav__link switcher__item" hreflang={i.l}><abbr title={i.title}>{i.short}</abbr></a></li>
+        ))}
+      </ul>
+    </div>
+  </nav>
+)}

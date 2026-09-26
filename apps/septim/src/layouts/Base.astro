@@ -1,64 +1,121 @@
 ---
 /**
- * Base: layout webu Septim.
- * Načte téma Septim + sdílenou SEO hlavičku. Definuje Organization schema.
+ * Base: layout webu Septim (www.septim.cz), kopie živého webu na Solid Pixels 1:1.
+ *
+ * Struktura stránky (#page > #header, #main, #footer) i třídy na <body> jsou
+ * převzaté ze živého webu, protože na nich stojí převzaté CSS (styles/live.css).
+ * Chování, které na živém webu dělal JavaScript CMS (menu, taby, slider,
+ * akordeony, formuláře), dělá public/js/septim.js.
+ *
+ * Měření: GTM-NC3PW2KC, souhlas s cookies řeší Cookiebot načítaný přes GTM
+ * (stejně jako na živém webu). Konverze = pageview /dekujeme.
  */
-/* reveal.css MUSI byt pred tematem: ma v :root fallback hodnoty
-   (--reveal-shift a spol.), ktere by jinak prebily tokeny produktu. */
-import '@piano/ui/styles/reveal.css';
-import '../styles/theme.css';
 import BaseHead from '@piano/ui/layouts/BaseHead.astro';
+import Header from '../components/chrome/Header.astro';
+import Footer from '../components/chrome/Footer.astro';
+import { alternates, localeLabels, SITE_URL, type Locale } from '../i18n/config';
+import { ui } from '../i18n/ui';
+import '../styles/fonts.css';
+import '../styles/live.css';
+import '../styles/overrides.css';
 
 interface Props {
   title: string;
   description?: string;
+  /** cesta stránky bez domény, např. /produkty/pokladna (canonical, hreflang, přepínač jazyka) */
+  path: string;
+  /** třídy <body> ze živého webu (hlavička průhledná/inverzní apod.) */
+  bodyClass?: string;
   image?: string;
   type?: 'website' | 'article';
   noindex?: boolean;
-  schema?: object;
+  locale?: Locale;
 }
-
-const SITE_NAME = 'Septim';
-const SITE_URL = 'https://septim.cz';
 
 const {
   title,
-  description = 'Septim: pokladní a provozní systém pro restaurace, kavárny a hotely.',
-  image = '/og-default.jpg',
+  description = 'Septim je nejrespektovanější pokladní a provozní systém pro restaurace v ČR. Pokladna, sklad, reporty i CRM v jednom. 30 let na trhu, podpora 24/7.',
+  path,
+  bodyClass = 'use-header-transparent use-menu-primary-uppercase use-menu-secondary-uppercase use-headings-link-plain use-menu-bar use-header-fixed use-header-fixed-mobile use-header-priority',
+  image = '/files/nahled-chci-septim.jpg',
   type = 'website',
   noindex = false,
-  schema,
+  locale = 'cs',
 } = Astro.props;
 
-const organizationSchema = {
+const organization = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  name: 'Septim',
+  name: 'Septim Systems a.s.',
+  alternateName: 'Septim',
   url: SITE_URL,
-  logo: `${SITE_URL}/logo.svg`,
+  logo: `${SITE_URL}/files/logo-original.svg`,
+  telephone: '+420 257 011 100',
+  email: 'obchod@septim.cz',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Thámova 166/18',
+    addressLocality: 'Praha 8',
+    postalCode: '186 00',
+    addressCountry: 'CZ',
+  },
+  sameAs: [
+    'https://cz.linkedin.com/company/septim-protel',
+    'https://www.instagram.com/septim_cz',
+    'https://www.facebook.com/profile.php?id=61554302241439',
+    'https://www.youtube.com/@Pokladny/videos',
+  ],
   parentOrganization: { '@type': 'Organization', name: 'Piano Solutions', url: 'https://piano.cz' },
 };
 
-const schemas = [organizationSchema, ...(schema ? [schema] : [])];
+const clientUi = { sending: ui[locale]['form.sending'], error: ui[locale]['form.error'], thanks: ui[locale]['form.thanks'] };
 ---
 
 <!doctype html>
-<html lang="cs">
+<html lang={locale} class="html no-js">
   <head>
-    <!-- Scroll reveal: bez defer, trida .js musi byt na <html> driv nez obsah -->
-    <script is:inline src="/js/reveal.js"></script>
+    <script is:inline>document.documentElement.className = 'html js ' + ('ontouchstart' in window ? 'touch' : 'no-touch') + ' menu-type-lg-priority menu-type-overlay';</script>
+    <!-- Google Consent Mode v2: výchozí stav jako na živém webu, souhlas nastavuje Cookiebot (přes GTM) -->
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied', wait_for_update: 500 });
+    </script>
+    <!-- Google Tag Manager -->
+    <script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NC3PW2KC');</script>
+    <!-- End Google Tag Manager -->
     <BaseHead
       title={title}
       description={description}
       image={image}
       type={type}
       noindex={noindex}
-      siteName={SITE_NAME}
+      siteName="Septim"
       siteUrl={SITE_URL}
-      schemas={schemas}
+      locale={localeLabels[locale].og}
+      alternates={alternates(path, locale)}
+      schemas={path === '/' ? [organization] : []}
     />
+    <meta name="google-site-verification" content="sXA3oQDjd_6LeL-dbDO4sq1VvMomhYdAWP4txNCZ7cY" />
+    <meta property="fb:app_id" content="518936135263185" />
+    <link rel="preload" href="/fonts/poppins-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/poppins-700.woff2" as="font" type="font/woff2" crossorigin />
   </head>
-  <body>
-    <slot />
+  <body class={bodyClass}>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NC3PW2KC" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <div id="page" class="page">
+      <Header path={path} locale={locale} />
+      <div id="main" class="main" role="main">
+        <slot />
+      </div>
+      <Footer />
+    </div>
+    <script is:inline define:vars={{ clientUi }}>window.SEPTIM_UI = clientUi;</script>
+    <script is:inline src="/js/septim.js" defer></script>
   </body>
 </html>

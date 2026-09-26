@@ -37,7 +37,8 @@ const {
   schemas = [],
 } = Astro.props;
 
-const canonical = new URL(Astro.url.pathname, siteUrl).href;
+// build.format 'file' (Septim) dává pathname s .html; kanonická URL je bez přípony
+const canonical = new URL(Astro.url.pathname.replace(/\.html$/, ''), siteUrl).href;
 const fullTitle = title.includes(siteName) ? title : `${title} | ${siteName}`;
 const ogImage = image ? new URL(image, siteUrl).href : undefined;
 ---

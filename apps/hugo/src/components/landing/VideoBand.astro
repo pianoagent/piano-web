@@ -1,0 +1,16 @@
+---
+/* VideoBand: sekce landing page Hugo, port 1:1 z hugopos.eu. Texty jsou v src/i18n/landing.ts. */
+import type { Lang } from '../../i18n/landing';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+---
+<section class="video-band" aria-label="Video">
+  <div class="container">
+    <div class="video-frame" id="heroVideo">
+      <button class="video-facade" type="button" data-video-id="a95ibmg9onA" aria-label={lang === 'en' ? 'Play the Hugo video' : 'Přehrát video o pokladně Hugo'}>
+        <img src="https://i.ytimg.com/vi/a95ibmg9onA/maxres1.jpg" alt="" decoding="async" onload="this.onload=null;if(this.naturalWidth<200)this.src='https://i.ytimg.com/vi/a95ibmg9onA/hq1.jpg'">
+        <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24"><polygon points="8.5 5.5 19 12 8.5 18.5" fill="currentColor"></polygon></svg></span>
+      </button>
+    </div>
+  </div>
+</section>
