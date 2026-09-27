@@ -11,7 +11,11 @@ export default defineConfig({
   // e-mails and SMS. Static build emits a meta-refresh page per path, so it
   // works on any hosting. /f/* short links are handled in 404.astro.
   redirects: {
-    '/pravidla-ochrany-osobnich-udaju': '/ochrana-osobnich-udaju/',
+    '/obchodni-podminky': '/flexi/obchodni-podminky/',
+    '/ochrana-osobnich-udaju': '/flexi/gdpr/',
+    '/pravidla-ochrany-osobnich-udaju': '/flexi/gdpr/',
+    '/plan/ochrana-osobnich-udaju': '/plan/gdpr/',
+    '/plan/pravidla-ochrany-osobnich-udaju': '/plan/gdpr/',
     '/nejcastejsi-dotazy-pracovnici': '/faq-grason/',
     '/nejcastejsi-dotazy-podniky': '/faq-companies/',
     '/volna-mista': '/kariera/',
