@@ -37,7 +37,7 @@ const articleSchema = {
 };
 ---
 
-<Base title={post.data.seoTitle ?? `${post.data.title} | Piano blog`} description={post.data.description} type="article" schema={articleSchema}>
+<Base title={post.data.seoTitle ?? `${post.data.title} | Piano blog`} description={post.data.description} type="article" image={post.data.image} schema={articleSchema}>
   <ArticleDetail
     title={post.data.title}
     description={post.data.description}
