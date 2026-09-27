@@ -81,6 +81,9 @@ const clientUi = { sending: ui[locale]['form.sending'], error: ui[locale]['form.
       function gtag(){dataLayer.push(arguments);}
       gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied', wait_for_update: 500 });
     </script>
+    <!-- Preconnect: GTM a Cookiebot (načítá se přes GTM) -->
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <link rel="preconnect" href="https://consent.cookiebot.com" />
     <!-- Google Tag Manager -->
     <script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],

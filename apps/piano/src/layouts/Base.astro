@@ -107,6 +107,9 @@ const schemas = [organizationSchema, ...(schema ? [schema] : [])];
     <!-- Google Search Console: ověření přes HTML tag (DNS na hostingu blokované) -->
     <meta name="google-site-verification" content="KgZuNpYxxMSjYosWLt0mC_2B8zkvHz-DUCYw_HbbtKw" />
     {preloadImage && <link rel="preload" as="image" href={preloadImage} fetchpriority="high" />}
+    <!-- Preconnect: GTM a Cookiebot (načítá se přes GTM) -->
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <link rel="preconnect" href="https://consent.cookiebot.com" />
     <!-- Google Tag Manager -->
     <script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
