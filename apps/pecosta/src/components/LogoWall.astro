@@ -1,13 +1,13 @@
 ---
 /**
  * LogoWall: tenký wrapper nad @piano/ui/LogoWall.
- * Jen definuje pecostí sadu log (public/logos), label a menší velikost pruhu.
+ * Jen definuje pecostí sadu log (src/assets/images/logos), label a menší velikost pruhu.
  * Vzhled a markup řeší sdílená komponenta. NEFORKOVAT.
  */
 import UiLogoWall from '@piano/ui/components/LogoWall.astro';
-import { klientiGastro } from '../config/klienti';
+import { klientiGastro, type Klient } from '../config/klienti';
 
-interface Props { label?: string; background?: 'default' | 'alt'; logos?: string[]; id?: string; }
+interface Props { label?: string; background?: 'default' | 'alt'; logos?: Klient[]; id?: string; }
 const { label = 'Naši klienti', background = 'alt', logos = klientiGastro, id } = Astro.props;
 ---
 
