@@ -11,6 +11,7 @@ import Hero from '@piano/ui/components/Hero.astro';
 import Heading from '@piano/ui/components/Heading.astro';
 import Text from '@piano/ui/components/Text.astro';
 import Button from '@piano/ui/components/Button.astro';
+import Img from '@piano/ui/components/Img.astro';
 import { grasonNav, grasonCta, grasonFooter, grasonLogin } from '../config/nav';
 ---
 <Base title="Volná místa | Grason"
@@ -21,7 +22,8 @@ import { grasonNav, grasonCta, grasonFooter, grasonLogin } from '../config/nav';
           lead="Budujeme nejmodernější nástroj pro řízení lidí v gastru. Grason propojuje restaurace s ověřenými brigádníky a pomáhá majitelům efektivně řídit tým.">
       <Heading slot="title" as="h1" size="h1">Volná místa</Heading>
       <figure slot="media" class="hero-pic">
-        <img src="/images/kariera-hero.webp" alt="Ilustrace práce v týmu Grason" width="900" height="769" loading="eager" decoding="async" />
+        <Img src="/images/kariera-hero.webp" alt="Ilustrace práce v týmu Grason"
+             width={560} sizes="(min-width: 881px) 560px, 100vw" loading="eager" fetchpriority="high" decoding="async" />
       </figure>
     </Hero>
 

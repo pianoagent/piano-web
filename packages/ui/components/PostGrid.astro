@@ -12,6 +12,7 @@
 import Heading from './Heading.astro';
 import Text from './Text.astro';
 import Icon from './Icon.astro';
+import Img from './Img.astro';
 
 interface Post {
   href: string;
@@ -30,7 +31,7 @@ const fmtDate = (d: Date) => d.toLocaleDateString('cs-CZ', { day: 'numeric', mon
 <div class="blog-grid">
   {posts.map((p) => (
     <a class="blog-card" href={p.href}>
-      {p.image && <div class="blog-card__media"><img src={p.image} alt={p.title} loading="lazy" /></div>}
+      {p.image && <div class="blog-card__media"><Img src={p.image} alt={p.title} width={560} sizes="(min-width: 861px) 380px, (min-width: 561px) 50vw, 100vw" /></div>}
       <div class="blog-card__body">
         <div class="blog-card__meta">
           {p.category && <span class="blog-card__cat">{p.category}</span>}

@@ -223,6 +223,10 @@
     position: relative;
     z-index: 1;
     width: 100%;
+    /* Img adds width/height attrs for the picture; without an explicit height
+       the browser would use the height attribute as a fixed px value instead
+       of keeping the source ratio. */
+    height: auto;
     max-height: none;
     justify-self: center;
     object-fit: contain;

@@ -18,6 +18,7 @@ import Heading from '@piano/ui/components/Heading.astro';
 import Text from '@piano/ui/components/Text.astro';
 import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
+import Img from '@piano/ui/components/Img.astro';
 import LogoWall from '@piano/ui/components/LogoWall.astro';
 import Faq from '@piano/ui/components/Faq.astro';
 import { grasonNav, grasonCta, grasonFooter, grasonLogin } from '../config/nav';
@@ -107,7 +108,8 @@ const refLogos = [
       <Button href="#funkce" variant="secondary" onDark>Naše produkty</Button>
     </Fragment>
     <figure slot="media" class="hero-figure">
-      <img src="/images/hp-hero.webp" alt="Grason, mobilní aplikace s nabídkami volných směn" width="720" height="560" loading="eager" />
+      <Img src="/images/hp-hero.webp" alt="Grason, mobilní aplikace s nabídkami volných směn"
+           width={560} sizes="(min-width: 881px) 560px, 100vw" loading="eager" fetchpriority="high" />
     </figure>
   </Hero>
 
@@ -128,7 +130,7 @@ const refLogos = [
         <a class:list={['pillar', `pillar--${p.tone}`]} href={p.href}>
           {p.badge && <span class="pillar__badge">{p.badge}</span>}
           <div class="pillar__media">
-            <img src={p.img} alt="" loading="lazy" />
+            <Img src={p.img} alt="" width={320} loading="lazy" />
           </div>
           <div class="pillar__body">
             <span class="pillar__tag">{p.tag}</span>

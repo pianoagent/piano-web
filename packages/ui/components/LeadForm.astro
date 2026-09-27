@@ -61,7 +61,7 @@ const LEAD_I18N = {
     statusOk: 'Děkujeme! Ozveme se vám co nejdříve.',
     statusErr: 'Něco se nepovedlo. Zkuste to prosím znovu, nebo nám zavolejte.',
     consentHref: '/gdpr', successUrl: '/dekujeme',
-    phEmail: 'info@podnik.cz', phCompany: 'Restaurace U Lva', phCity: 'Praha',
+    phName: 'Jan Novák', phEmail: 'info@podnik.cz', phCompany: 'Restaurace U Lva', phCity: 'Praha',
     /* ZÁMĚRNĚ BEZ ČÍSEL. Dřív tu byla skupinová čísla Piana („6 000+ provozů",
        „30 let na trhu") a každý web, který proofs nepředal, je tvrdil za sebe.
        U Grasonu (5 let na trhu) a Qerka (od 2017) to byla přímo nepravda.
@@ -80,7 +80,7 @@ const LEAD_I18N = {
     statusOk: 'Thank you! We will get back to you shortly.',
     statusErr: 'Something went wrong. Please try again, or give us a call.',
     consentHref: '/gdpr', successUrl: '/en/dekujeme',
-    phEmail: 'info@business.com', phCompany: 'The Lion Restaurant', phCity: 'Prague',
+    phName: 'John Doe', phEmail: 'info@business.com', phCompany: 'The Lion Restaurant', phCity: 'Prague',
     /* Také bez čísel, ze stejného důvodu jako česká varianta výše. */
     proofs: [
       { icon: 'lucide:gift', title: 'Free consultation', text: 'No commitment, no risk.' },
@@ -174,7 +174,7 @@ const submitText = submitLabel ?? (isCallback ? L.submitCallback : L.submitFull)
           />
         ) : (
           <>
-            <Field label={L.name} name="name" placeholder="John Doe" autocomplete="name" required />
+            <Field label={L.name} name="name" placeholder={L.phName} autocomplete="name" required />
             <Field label={L.email} name="email" type="email" placeholder={L.phEmail} autocomplete="email" required />
             <Field label={L.phone} name="phone" type="tel" placeholder="+420 123 456 789" autocomplete="tel" inputmode="tel" />
             <Field label={L.company} name="company" placeholder={L.phCompany} autocomplete="organization" />

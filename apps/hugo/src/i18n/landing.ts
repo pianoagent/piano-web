@@ -2,7 +2,7 @@
  * Texty landing page Hugo (CZ + EN), port 1:1 z hugopos.eu.
  * Klice odpovidaji selektorum ze slovniku zivého webu (hugo-i18n.js), aby se obsah dal
  * snadno srovnat se zdrojem. Hodnoty jsou HTML (vkladaji se pres set:html).
- * Hero texty jsou vychozi varianta "micro"; ostatni varianty prepina /js/hugo-variants.js.
+ * Hero texty jsou vychozi varianta "micro"; ostatni varianty prepina src/scripts/hugo-variants.js.
  */
 export type Lang = 'cs' | 'en';
 

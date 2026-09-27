@@ -17,6 +17,7 @@ import Text from '@piano/ui/components/Text.astro';
 import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
+import Img from '@piano/ui/components/Img.astro';
 import { savarinNav, savarinCta } from '../config/nav';
 import { savarinLeadProofs } from '../config/leadProofs';
 
@@ -82,7 +83,7 @@ const schema = {
       <Button href="#verze" variant="secondary" onDark>Verze programu</Button>
     </Fragment>
     <figure slot="media" class="hero-pic">
-      <img src="/images/pokladna-hlavni.webp" alt="Hlavní obrazovka pokladny Savarin s rozdělením na sortiment a účty" width="500" height="375" loading="eager" decoding="async" />
+      <Img src="/images/pokladna-hlavni.webp" alt="Hlavní obrazovka pokladny Savarin s rozdělením na sortiment a účty" width={540} height={375} sizes="(min-width: 881px) 540px, 100vw" loading="eager" fetchpriority="high" decoding="async" />
     </figure>
   </Hero>
 

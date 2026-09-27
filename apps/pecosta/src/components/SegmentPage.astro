@@ -25,6 +25,7 @@ import LeadForm from '@piano/ui/components/LeadForm.astro';
 import StatsBand from './StatsBand.astro';
 import LogoWall from './LogoWall.astro';
 import { pecostaLeadProofs } from '../config/leadProofs';
+import Img from '@piano/ui/components/Img.astro';
 
 interface Benefit { icon?: string; title: string; text?: string; }
 interface Service { title: string; href: string; text: string; image?: string; }
@@ -72,7 +73,7 @@ const {
       </Fragment>
       {heroImage && (
         <figure slot="media" class="hero-pic">
-          <img src={heroImage} alt={heroImageAlt} width="960" height="640" loading="eager" fetchpriority="high" decoding="async" />
+          <Img src={heroImage} alt={heroImageAlt} width={880} sizes="(min-width: 881px) 560px, 100vw" loading="eager" fetchpriority="high" decoding="async" />
         </figure>
       )}
     </Hero>
@@ -98,7 +99,7 @@ const {
         {services.map((s) => (
           <Card href={s.href} variant="bordered" padding="md">
             {s.image && (
-              <img slot="media" src={s.image} alt="" width="640" height="400" loading="lazy" decoding="async" />
+              <Img slot="media" src={s.image} alt="" width={600} sizes="(min-width: 1000px) 330px, (min-width: 600px) 50vw, 100vw" />
             )}
             <Heading as="h3" size="h3">{s.title}</Heading>
             <Text size="small" color="muted">{s.text}</Text>

@@ -38,6 +38,18 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      # After npm ci, which wipes node_modules. Without it every build regenerates all AVIF/WebP variants.
+      - name: Cache optimalizovaných obrázků
+        uses: actions/cache@v6
+        with:
+          path: apps/piano/node_modules/.astro/assets
+          key: astro-assets-piano-${{ hashFiles('apps/piano/src/assets/**', 'packages/ui/lib/images.ts') }}
+          restore-keys: astro-assets-piano-
+
+      - name: Typová kontrola (astro check)
+        working-directory: apps/piano
+        run: npx astro check
+
       - name: Build piano.cz
         run: npm run build:piano
 

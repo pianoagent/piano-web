@@ -7,6 +7,7 @@
    (--reveal-shift a spol.), ktere by jinak prebily tokeny produktu. */
 import '@piano/ui/styles/reveal.css';
 import '../styles/theme.css';
+import revealUrl from '@piano/ui/scripts/reveal.js?url';
 import BaseHead from '@piano/ui/layouts/BaseHead.astro';
 
 interface Props {
@@ -56,7 +57,7 @@ const schemas = [organizationSchema, ...(schema ? [schema] : [])];
 <html lang="cs">
   <head>
     <!-- Scroll reveal: bez defer, trida .js musi byt na <html> driv nez obsah -->
-    <script is:inline src="/js/reveal.js"></script>
+    <script is:inline src={revealUrl}></script>
     <BaseHead
       title={title}
       description={description}
@@ -67,6 +68,11 @@ const schemas = [organizationSchema, ...(schema ? [schema] : [])];
       siteUrl={SITE_URL}
       schemas={schemas}
     />
+    <!-- Preload: text Open Sans 400, nadpisy Cabin 700; čeština potřebuje i latin-ext -->
+    <link rel="preload" href="/fonts/opensans-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/opensans-ext-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/cabin-700.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/cabin-ext-700.woff2" as="font" type="font/woff2" crossorigin />
   </head>
   <body>
     <slot />

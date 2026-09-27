@@ -24,6 +24,7 @@ import Section from './Section.astro';
 import Heading from './Heading.astro';
 import Text from './Text.astro';
 import Icon from './Icon.astro';
+import Img from './Img.astro';
 
 interface Props {
   eyebrow?: string;
@@ -98,7 +99,7 @@ const rv = (from: string, delay?: 'd1' | 'd2') => ['reveal', from, delay && `rev
 
     <figure class:list={['split__media', rv(mediaFrom, 'd1')]}>
       {hasMediaSlot ? <slot name="media" /> : (
-        image && <img src={image} alt={imageAlt} loading="lazy" decoding="async" />
+        image && <Img src={image} alt={imageAlt} width={640} sizes="(min-width: 861px) 600px, 100vw" />
       )}
     </figure>
   </div>

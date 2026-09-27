@@ -31,6 +31,18 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      # After npm ci, which wipes node_modules. Without it every build regenerates all AVIF/WebP variants.
+      - name: Cache optimalizovaných obrázků
+        uses: actions/cache@v6
+        with:
+          path: apps/eet2027/node_modules/.astro/assets
+          key: astro-assets-eet2027-${{ hashFiles('apps/eet2027/src/assets/**', 'packages/ui/lib/images.ts') }}
+          restore-keys: astro-assets-eet2027-
+
+      - name: Typová kontrola (astro check)
+        working-directory: apps/eet2027
+        run: npx astro check
+
       - name: Build eet2027.cz
         run: npm run build:eet2027
 

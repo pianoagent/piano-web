@@ -19,6 +19,7 @@ import Section from './Section.astro';
 import Heading from './Heading.astro';
 import Text from './Text.astro';
 import Icon from './Icon.astro';
+import Img from './Img.astro';
 
 interface Item { icon?: string; image?: string; imageAlt?: string; title: string; text?: string; href?: string; }
 
@@ -90,7 +91,7 @@ const headFrom = align === 'center' ? 'reveal--from-top' : 'reveal--from-left';
       return (
         <Tag class:list={['usp__card', 'reveal', item.href && 'usp__card--link']} href={item.href}>
           {item.image ? (
-            <span class="usp__icon usp__icon--img"><img src={item.image} alt={item.imageAlt ?? ''} loading="lazy" width="72" height="72" /></span>
+            <span class="usp__icon usp__icon--img"><Img src={item.image} alt={item.imageAlt ?? ''} width={72} height={72} sizes="72px" /></span>
           ) : item.icon && (
             <span class="usp__icon"><Icon name={item.icon} size="md" /></span>
           )}

@@ -15,6 +15,7 @@ import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
+import Img from '@piano/ui/components/Img.astro';
 import { harsysNav, harsysCta, harsysFooter } from '../config/nav';
 
 const ready = [
@@ -65,7 +66,8 @@ const leadProofs = [
   <!-- ÚČTENKY -->
   <Section background="alt" space="lg">
     <div class="split">
-      <figure class="split__media"><img src="/images/eet-uctenka.webp" alt="Povinné náležitosti účtenky v EET" loading="lazy" /></figure>
+      <figure class="split__media"><Img src="/images/eet-uctenka.webp" alt="Povinné náležitosti účtenky v EET"
+                                          width={528} sizes="(min-width: 881px) 528px, 100vw" loading="lazy" /></figure>
       <div class="split__text">
         <Text size="label" color="accent">Účtenky a data</Text>
         <Heading as="h2" size="h2">Co bude účtenka <span class="accent">obsahovat</span></Heading>

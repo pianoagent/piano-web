@@ -16,6 +16,7 @@ import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
 import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import { protelLeadProofs } from '../config/leadProofs';
+import Img from '@piano/ui/components/Img.astro';
 
 const rozcestnik = [
   { icon: 'lucide:layout-dashboard', title: 'Produkty', text: 'Kompletní nabídka produktů Protel: od PMS po digitální recepci.', href: '/produkty' },
@@ -42,7 +43,7 @@ const rozcestnik = [
         <Button href="/kontakt" variant="secondary" onDark>Kontakt</Button>
       </Fragment>
       <figure slot="media" class="hero-pic">
-        <img src="/images/server-cloud.webp" alt="Serverová i cloudová varianta systému Protel" width="960" height="875" loading="eager" decoding="async" />
+        <Img src="/images/server-cloud.webp" alt="Serverová i cloudová varianta systému Protel" width={880} sizes="(min-width: 881px) 560px, 100vw" loading="eager" decoding="async" />
       </figure>
     </Hero>
 

@@ -45,7 +45,7 @@ Názvy Cloudflare projektů výše jsou ty skutečné, ověřené proti živým 
 
 - **Jak vzniká.** Stránky, sdílené bloky (`src/components/blocks`), hlavička a patička (`src/components/chrome`) a `src/styles/live.css` generuje skript `weby/podklady-migrace/port-septim.py` z čerstvého HTML živého webu (`podklady-migrace/scrapy-starych-webu/septim-2026-09/`). Opravy proti živému webu (404 odkazy, překlepy, jedna H1, alt texty, meta) jsou v tabulkách na začátku skriptu. **Po ručních úpravách stránek skript znovu nepouštěj**, přepsal by je.
 - **Vzhled.** `live.css` je zkompilované CSS živého webu, needituj ho. Úpravy patří do `src/styles/overrides.css`.
-- **Chování.** Menu, taby, slider, akordeony, kotvy a formuláře řeší `public/js/septim.js` (náhrada JavaScriptu CMS).
+- **Chování.** Menu, taby, slider, akordeony, kotvy a formuláře řeší `src/scripts/septim.js` (náhrada JavaScriptu CMS).
 - **Formuláře.** Všechny formuláře jdou na `public/api/lead.php` (PHP `mail()` na poptavky@piano.cz, přílohy z kariérních formulářů jako přílohy e-mailu), pak na `/dekujeme`. Na Cloudflare preview PHP neběží, formuláře tam vrátí chybu.
 - **Jazyky.** Zatím jen CZ. EN a SK se doplní během skriptu s `--locale en|sk` a zapnutím v `src/i18n/config.ts` (`enabledLocales`). Mapa přeložených URL ze živého přepínače jazyků je v `src/i18n/routes.cs.json`.
 - **Měření.** GTM `GTM-NC3PW2KC`, Cookiebot se načítá přes GTM jako na živém webu.

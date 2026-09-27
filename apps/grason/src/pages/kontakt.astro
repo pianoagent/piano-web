@@ -9,6 +9,7 @@ import Hero from '@piano/ui/components/Hero.astro';
 import Heading from '@piano/ui/components/Heading.astro';
 import Text from '@piano/ui/components/Text.astro';
 import Icon from '@piano/ui/components/Icon.astro';
+import Img from '@piano/ui/components/Img.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import { grasonNav, grasonCta, grasonFooter, grasonLogin } from '../config/nav';
 import { grasonLeadProofs } from '../config/leadProofs';
@@ -29,7 +30,8 @@ const contacts = [
           lead="Ozvěte se nám, poradíme s výběrem služby i s nastavením účtu.">
       <Heading slot="title" as="h1" size="h1">Jsme tu pro vás</Heading>
       <figure slot="media" class="hero-pic">
-        <img src="/images/kontakt-hero.webp" alt="Ilustrace kalendáře se směnami v Grasonu" width="760" height="568" loading="eager" decoding="async" />
+        <Img src="/images/kontakt-hero.webp" alt="Ilustrace kalendáře se směnami v Grasonu"
+             width={560} sizes="(min-width: 881px) 560px, 100vw" loading="eager" fetchpriority="high" decoding="async" />
       </figure>
     </Hero>
 

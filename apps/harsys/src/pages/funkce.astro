@@ -14,6 +14,7 @@ import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
+import Img from '@piano/ui/components/Img.astro';
 import { harsysNav, harsysCta, harsysFooter } from '../config/nav';
 
 const groups = [
@@ -84,7 +85,8 @@ const leadProofs = [
       <Button href="#poptavka" variant="secondary" onDark>Konzultace zdarma</Button>
     </Fragment>
     <figure slot="media" class="hero-pic">
-      <img src="/images/funkce-hero.webp" alt="Pokladní systém Harsys v restauračním provozu" width="960" height="640" loading="eager" decoding="async" />
+      <Img src="/images/funkce-hero.webp" alt="Pokladní systém Harsys v restauračním provozu"
+           width={503} sizes="(min-width: 881px) 503px, 100vw" loading="eager" fetchpriority="high" />
     </figure>
   </Hero>
 

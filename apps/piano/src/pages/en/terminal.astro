@@ -12,6 +12,7 @@ import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
+import Img from '@piano/ui/components/Img.astro';
 import { locPath } from '../../i18n';
 import { pianoLeadProofsEn } from '../../config/leadProofs';
 
@@ -70,7 +71,8 @@ const compare = [
       <Button href="#poptavka">I want to try it</Button>
       <Button href={locPath('/proces-plateb', 'en')} variant="secondary" onDark>How does it work?</Button>
     </Fragment>
-    <img slot="media" src="/images/terminal-hero.webp" alt="Piano Terminal" width="662" height="1229" style="max-height: 620px; width: auto; margin-inline: auto; display: block;" />
+    <Img slot="media" src="/images/terminal-hero.webp" alt="Piano Terminal" width={334} height={620} sizes="334px"
+         style="max-height: 620px; width: auto; margin-inline: auto; display: block;" loading="eager" fetchpriority="high" />
   </Hero>
 
   <USPGrid eyebrow="Everything in one device" title="What Piano Terminal does on top"
@@ -84,7 +86,7 @@ const compare = [
       <Text size="lead" color="muted" class="td-lead">Track in real time how many people came to you for the first time and who keeps coming back regularly.</Text>
     </div>
     <div class="td-grid">
-      <figure class="td-img"><img src="/images/term-data.webp" alt="Overview of guest data in Piano Terminal" width="709" height="457" loading="lazy" /></figure>
+      <figure class="td-img"><Img src="/images/term-data.webp" alt="Overview of guest data in Piano Terminal" width={608} height={392} sizes="(min-width: 721px) 608px, 100vw" loading="lazy" /></figure>
       <ul class="td-list">
         {data.map((d) => (
           <li><strong>{d.title}</strong><span>{d.text}</span></li>
@@ -102,7 +104,7 @@ const compare = [
           <div class="sup__item"><Heading as="h3" size="h3">{s.title}</Heading><Text color="muted">{s.text}</Text></div>
         ))}
       </div>
-      <figure class="sup__phone"><img src="/images/term-supplier.webp" alt="Authorizing a payment to a supplier on the phone" width="322" height="656" loading="lazy" /></figure>
+      <figure class="sup__phone"><Img src="/images/term-supplier.webp" alt="Authorizing a payment to a supplier on the phone" width={280} height={570} loading="lazy" /></figure>
       <div class="sup__col">
         {[supplier[2], supplier[3]].map((s) => (
           <div class="sup__item"><Heading as="h3" size="h3">{s.title}</Heading><Text color="muted">{s.text}</Text></div>
@@ -125,7 +127,7 @@ const compare = [
     <div class="steps-cta"><Button href={locPath('/proces-plateb', 'en')} variant="secondary">How does it work?</Button></div>
 
     <ul class="paylogos">
-      {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (<li><img src={`/images/pay-${n}.webp`} alt="" height="28" loading="lazy" /></li>))}
+      {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (<li><Img src={`/images/pay-${n}.webp`} alt="" width={70} height={28} sizes="70px" loading="lazy" /></li>))}
     </ul>
   </Section>
 

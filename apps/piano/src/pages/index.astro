@@ -17,6 +17,7 @@ import Icon from '@piano/ui/components/Icon.astro';
 import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import LogoWall from '@piano/ui/components/LogoWall.astro';
+import Img from '@piano/ui/components/Img.astro';
 import { pianoLeadProofs } from '../config/leadProofs';
 
 const stats = [
@@ -27,9 +28,10 @@ const stats = [
 ];
 
 // Novinky od Piana: vlastní vlajkové produkty (spotlight hned pod hero)
+// imageWidth: rendered width at the card's fixed max-height 240px (viz .nov__media img)
 const novinky = [
-  { logo: '/brand/pilot_logo.svg', alt: 'Piano Pilot', image: '/images/hero-pilot.webp', text: 'Celý provoz v jedné mobilní aplikaci. Tržby, sklad i AI doporučení v reálném čase.', href: '/pilot' },
-  { logo: '/brand/terminal_logo.svg', alt: 'Piano Terminál', image: '/images/hero-terminal.webp', text: 'Platební Terminál, který platbou kartou teprve začíná. Data o hostech a platby dodavatelům.', href: '/terminal' },
+  { logo: '/brand/pilot_logo.svg', alt: 'Piano Pilot', image: '/images/hero-pilot.webp', imageWidth: 238, text: 'Celý provoz v jedné mobilní aplikaci. Tržby, sklad i AI doporučení v reálném čase.', href: '/pilot' },
+  { logo: '/brand/terminal_logo.svg', alt: 'Piano Terminál', image: '/images/hero-terminal.webp', imageWidth: 217, text: 'Platební Terminál, který platbou kartou teprve začíná. Data o hostech a platby dodavatelům.', href: '/terminal' },
 ];
 
 // Hero: rotující sdělení (mění se nadpis + lead + obrázek; CTA a USP zůstávají)
@@ -131,7 +133,6 @@ const faqSchema = {
 
 <Base title="Všechny klíčové nástroje pro pohostinství pod jednou střechou | Piano"
       description="Piano nabízí technologie pro restaurace a hotely od pokladních systémů po personál a marketing vašeho podniku."
-      preloadImage="/images/hero-hugo.webp"
       schema={faqSchema}>
 
   <Hero background="warm" slides={heroSlides} slideInterval={7000}
@@ -151,7 +152,7 @@ const faqSchema = {
     <div class="novinky__grid">
       {novinky.map((n) => (
         <a class="nov__card" href={n.href}>
-          <div class="nov__media"><img src={n.image} alt={n.alt} loading="lazy" /></div>
+          <div class="nov__media"><Img src={n.image} alt={n.alt} width={n.imageWidth} height={240} sizes="240px" loading="lazy" /></div>
           <div class="nov__body">
             <img class="nov__logo" src={n.logo} alt={n.alt} loading="lazy" />
             <Text size="small" color="muted">{n.text}</Text>
@@ -202,7 +203,7 @@ const faqSchema = {
           <!-- Pravý sloupec: jen velká fotka -->
           <div class="solscroll__media">
             {categories.map((c, i) => (
-              <img class:list={['solscroll__photo', i === 0 && 'is-active']} data-photo src={c.img} alt={c.title} loading="lazy" width="900" height="675" />
+              <Img class:list={['solscroll__photo', i === 0 && 'is-active']} data-photo src={c.img} alt={c.title} loading="lazy" width={642} height={428} sizes="642px" />
             ))}
           </div>
 

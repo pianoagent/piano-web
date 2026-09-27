@@ -13,7 +13,9 @@ import LeadForm from '@piano/ui/components/LeadForm.astro';
 import { locPath } from '../../i18n';
 import { pianoLeadProofsEn } from '../../config/leadProofs';
 
-const groups = [
+type Product = { name: string; icon: string; desc: string; href: string; badge?: string; external?: boolean };
+
+const groups: { label: string; items: Product[] }[] = [
   {
     label: 'New from Piano',
     items: [

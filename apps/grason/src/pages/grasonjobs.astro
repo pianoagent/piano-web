@@ -14,6 +14,7 @@ import Heading from '@piano/ui/components/Heading.astro';
 import Text from '@piano/ui/components/Text.astro';
 import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
+import Img from '@piano/ui/components/Img.astro';
 import Faq from '@piano/ui/components/Faq.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import { grasonNav, grasonCta, grasonFooter, grasonLogin } from '../config/nav';
@@ -76,7 +77,8 @@ const jobsAddons = [
       <Button href="#jak" variant="secondary" onDark>Jak to funguje</Button>
     </Fragment>
     <figure slot="media" class="hero-figure">
-      <img src="/images/for-companies-choose-favourite-workers.webp" alt="GrasonJobs, výběr kandidátů podle zkušeností a hodnocení" width="720" height="480" loading="eager" />
+      <Img src="/images/for-companies-choose-favourite-workers.webp" alt="GrasonJobs, výběr kandidátů podle zkušeností a hodnocení"
+           width={560} sizes="(min-width: 881px) 560px, 100vw" loading="eager" fetchpriority="high" />
     </figure>
   </Hero>
 

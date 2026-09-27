@@ -2,13 +2,15 @@
 /**
  * Novinky: detail článku (pecosta.cz/novinky/<slug>).
  */
-import { getCollection, render } from 'astro:content';
+import { getCollection } from 'astro:content';
+import { getImage } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
 import ArticleDetail from '@piano/ui/components/ArticleDetail.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 import SiteHeader from '../../components/SiteHeader.astro';
 import SiteFooter from '../../components/SiteFooter.astro';
 import { slugForCategory } from '../../blog-categories';
+import { findImage, optimizeHtmlImages } from '@piano/ui/lib/images';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -16,7 +18,7 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
-const { Content } = await render(post);
+const content = await optimizeHtmlImages(post.rendered?.html ?? '', 720);
 const fmtDate = (d: Date) => d.toLocaleDateString('cs-CZ', { day: 'numeric', month: 'long', year: 'numeric' });
 
 const primaryCat = post.data.categories?.[0];
@@ -28,18 +30,21 @@ const crumbs = [
   { label: post.data.title },
 ];
 
+const coverAsset = post.data.image ? findImage(post.data.image) : undefined;
+const cover = coverAsset ? await getImage({ src: coverAsset, width: 1200, format: 'jpg' }) : undefined;
+
 const articleSchema = {
   '@context': 'https://schema.org',
   '@type': 'Article',
   headline: post.data.title,
   datePublished: post.data.pubDate.toISOString(),
   ...(post.data.description ? { description: post.data.description } : {}),
-  ...(post.data.image ? { image: post.data.image } : {}),
+  ...(cover ? { image: new URL(cover.src, Astro.site).href } : {}),
   author: { '@type': 'Organization', name: 'Pecosta' },
 };
 ---
 
-<Base title={`${post.data.title} | Pecosta`} description={post.data.description} type="article" schema={articleSchema}>
+<Base title={`${post.data.title} | Pecosta`} description={post.data.description} type="article" image={cover?.src} schema={articleSchema}>
   <SiteHeader />
   <main>
     <ArticleDetail
@@ -51,7 +56,7 @@ const articleSchema = {
       categoryHref={catSlug ? `/novinky/kategorie/${catSlug}` : undefined}
       cta={{ label: 'Chci analýzu zdarma', href: '/kontakt' }}>
       <Breadcrumb slot="breadcrumb" items={crumbs} />
-      <Content />
+      <Fragment set:html={content} />
     </ArticleDetail>
   </main>
   <SiteFooter />

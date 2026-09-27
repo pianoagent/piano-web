@@ -14,6 +14,7 @@ import Text from '@piano/ui/components/Text.astro';
 import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
+import Img from '@piano/ui/components/Img.astro';
 import { savarinNav, savarinCta } from '../config/nav';
 import { savarinLeadProofs } from '../config/leadProofs';
 
@@ -109,7 +110,7 @@ const schema = {
       <Button href="/technicke-predpoklady" variant="secondary" onDark>Technické předpoklady</Button>
     </Fragment>
     <figure slot="media" class="hero-pic">
-      <img src="/images/hw-gladius.webp" alt="PC POS ET-700 Gladius s dotykovou obrazovkou" width="480" height="480" loading="eager" decoding="async" />
+      <Img src="/images/hw-gladius.webp" alt="PC POS ET-700 Gladius s dotykovou obrazovkou" width={540} height={480} sizes="(min-width: 881px) 540px, 100vw" loading="eager" fetchpriority="high" decoding="async" />
     </figure>
   </Hero>
 
@@ -136,7 +137,7 @@ const schema = {
       {hardware.map((h) => (
         <figure class="shot">
           <span class="shot__img">
-            <img src={`/images/${h.img}`} alt={h.alt} width={h.w} height={h.h} loading="lazy" decoding="async" />
+            <Img src={`/images/${h.img}`} alt={h.alt} width={h.w} height={h.h} loading="lazy" decoding="async" />
           </span>
           <figcaption>{h.caption}</figcaption>
         </figure>

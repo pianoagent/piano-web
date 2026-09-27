@@ -12,6 +12,7 @@ import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
+import Img from '@piano/ui/components/Img.astro';
 import { pianoLeadProofsEn } from '../../config/leadProofs';
 
 // Pilot pricing - feature comparison. `free` = included in the Free plan.
@@ -61,7 +62,8 @@ const features = [
     <Fragment slot="actions">
       <Button href="#poptavka">I want to try it</Button>
     </Fragment>
-    <img slot="media" src="/images/pilot-app.webp" alt="Piano Pilot, costs and revenue in a mobile app" width="694" height="574" />
+    <Img slot="media" src="/images/pilot-app.webp" alt="Piano Pilot, costs and revenue in a mobile app" width={560} height={463}
+         sizes="(min-width: 881px) 560px, 100vw" loading="eager" fetchpriority="high" />
   </Hero>
 
   <!-- Jak to funguje - tři číslované kroky + pilulky -->
@@ -99,7 +101,8 @@ const features = [
           </li>
         ))}
       </ol>
-      <figure class="ben__photo"><img src="/images/pilot-chef.webp" alt="A manager using the Piano Pilot app" width="640" height="828" loading="lazy" /></figure>
+      <figure class="ben__photo"><Img src="/images/pilot-chef.webp" alt="A manager using the Piano Pilot app" width={360} height={466}
+        sizes="(min-width: 881px) 360px, 100vw" loading="lazy" /></figure>
     </div>
   </Section>
 
@@ -143,7 +146,7 @@ const features = [
 
   <!-- Reference přes fotku interiéru -->
   <section class="testi">
-    <img class="testi__bg" src="/images/pilot-bg.webp" alt="" loading="lazy" />
+    <Img class="testi__bg" src="/images/pilot-bg.webp" alt="" width={1600} height={537} sizes="100vw" loading="lazy" />
     <div class="testi__inner">
       <Text size="label" color="on-dark-muted">What our clients say</Text>
       <Text size="lead" color="on-dark" class="testi__quote">

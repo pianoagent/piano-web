@@ -2,9 +2,11 @@
 /* Floor: sekce landing page Hugo, port 1:1 z hugopos.eu. Texty jsou v src/i18n/landing.ts. */
 import type { Lang } from '../../i18n/landing';
 import { dict } from '../../i18n/landing';
+import Img from '@piano/ui/components/Img.astro';
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const t = dict[lang];
+const floorSizes = '(min-width: 1240px) 343px, (min-width: 981px) calc(33.33vw - 71px), (min-width: 561px) calc(50vw - 77px), calc(100vw - 76px)';
 ---
 <section class="floor">
   <div class="container">
@@ -16,19 +18,19 @@ const t = dict[lang];
 
     <div class="floor-grid">
       <div class="floor-card">
-        <div class="shot"><img src="/assets/floor-order.png" alt={lang === 'en' ? 'Taking an order from the menu in Hugo' : 'Objednávka z menu v Hugovi'}></div>
+        <div class="shot"><Img src="/images/floor-order.png" alt={lang === 'en' ? 'Taking an order from the menu in Hugo' : 'Objednávka z menu v Hugovi'} width={490} height={1060} sizes={floorSizes} /></div>
         <div class="step" set:html={t['floor-card-step-0']}></div>
         <h4 set:html={t['floor-card-h4-0']}></h4>
         <p set:html={t['floor-card-p-0']}></p>
       </div>
       <div class="floor-card">
-        <div class="shot"><img src="/assets/floor-bill.png" alt={lang === 'en' ? 'Reviewing the bill in Hugo' : 'Kontrola účtu v Hugovi'}></div>
+        <div class="shot"><Img src="/images/floor-bill.png" alt={lang === 'en' ? 'Reviewing the bill in Hugo' : 'Kontrola účtu v Hugovi'} width={490} height={1060} sizes={floorSizes} /></div>
         <div class="step" set:html={t['floor-card-step-1']}></div>
         <h4 set:html={t['floor-card-h4-1']}></h4>
         <p set:html={t['floor-card-p-1']}></p>
       </div>
       <div class="floor-card">
-        <div class="shot"><img src="/assets/floor-pay.png" alt={lang === 'en' ? 'Taking a cash payment in Hugo' : 'Platba v hotovosti v Hugovi'}></div>
+        <div class="shot"><Img src="/images/floor-pay.png" alt={lang === 'en' ? 'Taking a cash payment in Hugo' : 'Platba v hotovosti v Hugovi'} width={490} height={1060} sizes={floorSizes} /></div>
         <div class="step" set:html={t['floor-card-step-2']}></div>
         <h4 set:html={t['floor-card-h4-2']}></h4>
         <p set:html={t['floor-card-p-2']}></p>

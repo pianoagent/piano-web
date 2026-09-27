@@ -9,6 +9,7 @@
    (--reveal-shift a spol.), ktere by jinak prebily tokeny produktu. */
 import '@piano/ui/styles/reveal.css';
 import '../styles/theme.css';
+import revealUrl from '@piano/ui/scripts/reveal.js?url';
 import BaseHead from '@piano/ui/layouts/BaseHead.astro';
 import Header from '@piano/ui/components/Header.astro';
 import Footer from '@piano/ui/components/Footer.astro';
@@ -28,7 +29,6 @@ interface Props {
   headerTransparent?: boolean; // overlay header přes hero (per stránka)
   contactBand?: boolean;       // globální pruh „Spojte se s námi" nad patičkou (default true)
   locale?: Locale;             // jazyk stránky (default dle URL: /en/ → en, jinak cs)
-  preloadImage?: string;       // LCP obrázek k přednačtení (preload + fetchpriority): např. hero
 }
 
 const SITE_NAME = 'Piano';
@@ -45,7 +45,6 @@ const {
   headerTransparent = false,
   contactBand = true,
   locale = localeFromPath(Astro.url.pathname),
-  preloadImage,
 } = Astro.props;
 
 const t = ui[locale];
@@ -103,10 +102,14 @@ const schemas = [organizationSchema, ...(schema ? [schema] : [])];
 <html lang={locale}>
   <head>
     <!-- Scroll reveal: bez defer, trida .js musi byt na <html> driv nez obsah -->
-    <script is:inline src="/js/reveal.js"></script>
+    <script is:inline src={revealUrl}></script>
     <!-- Google Search Console: ověření přes HTML tag (DNS na hostingu blokované) -->
     <meta name="google-site-verification" content="KgZuNpYxxMSjYosWLt0mC_2B8zkvHz-DUCYw_HbbtKw" />
-    {preloadImage && <link rel="preload" as="image" href={preloadImage} fetchpriority="high" />}
+    <link rel="preload" href="/fonts/borna-regular-webfont.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/borna-semibold-webfont.woff2" as="font" type="font/woff2" crossorigin />
+    <!-- Preconnect: GTM a Cookiebot (načítá se přes GTM) -->
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <link rel="preconnect" href="https://consent.cookiebot.com" />
     <!-- Google Tag Manager -->
     <script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],

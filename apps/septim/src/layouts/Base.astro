@@ -5,7 +5,7 @@
  * Struktura stránky (#page > #header, #main, #footer) i třídy na <body> jsou
  * převzaté ze živého webu, protože na nich stojí převzaté CSS (styles/live.css).
  * Chování, které na živém webu dělal JavaScript CMS (menu, taby, slider,
- * akordeony, formuláře), dělá public/js/septim.js.
+ * akordeony, formuláře), dělá src/scripts/septim.js.
  *
  * Měření: GTM-NC3PW2KC, souhlas s cookies řeší Cookiebot načítaný přes GTM
  * (stejně jako na živém webu). Konverze = pageview /dekujeme.
@@ -18,6 +18,7 @@ import { ui } from '../i18n/ui';
 import '../styles/fonts.css';
 import '../styles/live.css';
 import '../styles/overrides.css';
+import septimUrl from '../scripts/septim.js?url';
 
 interface Props {
   title: string;
@@ -81,6 +82,9 @@ const clientUi = { sending: ui[locale]['form.sending'], error: ui[locale]['form.
       function gtag(){dataLayer.push(arguments);}
       gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied', wait_for_update: 500 });
     </script>
+    <!-- Preconnect: GTM a Cookiebot (načítá se přes GTM) -->
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <link rel="preconnect" href="https://consent.cookiebot.com" />
     <!-- Google Tag Manager -->
     <script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -116,6 +120,6 @@ const clientUi = { sending: ui[locale]['form.sending'], error: ui[locale]['form.
       <Footer />
     </div>
     <script is:inline define:vars={{ clientUi }}>window.SEPTIM_UI = clientUi;</script>
-    <script is:inline src="/js/septim.js" defer></script>
+    <script is:inline src={septimUrl} defer></script>
   </body>
 </html>

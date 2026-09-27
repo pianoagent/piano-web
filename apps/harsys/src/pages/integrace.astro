@@ -13,6 +13,7 @@ import Text from '@piano/ui/components/Text.astro';
 import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
+import Img from '@piano/ui/components/Img.astro';
 import { harsysNav, harsysCta, harsysFooter } from '../config/nav';
 
 const integrations = [
@@ -69,7 +70,7 @@ const leadProofs = [
     <div class="feats">
       {integrations.map((it, i) => (
         <article class={`feat${i % 2 === 1 ? ' feat--rev' : ''}`}>
-          <figure class="feat__media"><img src={it.img} alt={it.title} loading="lazy" /></figure>
+          <figure class="feat__media"><Img src={it.img} alt={it.title} width={528} sizes="(min-width: 881px) 528px, 100vw" loading="lazy" /></figure>
           <div class="feat__body">
             <span class="feat__tag">{it.tag}</span>
             <Heading as="h2" size="h3">{it.title}</Heading>
