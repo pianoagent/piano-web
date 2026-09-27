@@ -73,15 +73,28 @@
     if (!els.length) return;
 
     var pending = [];
+    var entering = [];
     for (var i = 0; i < els.length; i++) {
       /* Co je pri nacteni uz nad spousteci linkou, odkryjeme bez animace:
          hero se nema animovat, uzivatel na nej kouka od prvni vteriny.
          Pokryva i obnovenou pozici scrollu, kdy je nad linkou pul stranky. */
       if (crossed(els[i])) {
         els[i].classList.add('is-visible');
+      } else if (trigger(els[i]).getBoundingClientRect().top < window.innerHeight) {
+        /* Pod linkou, ale uz v okne: bez tohohle by pod heroem zustal prazdny
+           pas, dokud uzivatel nescrollne. Nabehne hned po prvnim vykresleni. */
+        entering.push(els[i]);
       } else {
         pending.push(els[i]);
       }
+    }
+    if (entering.length) {
+      // Dvojity rAF: skryty stav se musi nejdriv vykreslit, jinak by se neanimoval.
+      window.requestAnimationFrame(function () {
+        window.requestAnimationFrame(function () {
+          for (var e = 0; e < entering.length; e++) entering[e].classList.add('is-visible');
+        });
+      });
     }
     if (!pending.length) return;
 
