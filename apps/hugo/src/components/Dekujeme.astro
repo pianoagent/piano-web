@@ -5,6 +5,7 @@
  * Texty vychází z formuláře živého hugopos.eu.
  */
 import '../styles/hugo.css';
+import hugoUrl from '../scripts/hugo.js?url';
 import type { Lang } from '../i18n/landing';
 import { dict } from '../i18n/landing';
 import Nav from './landing/Nav.astro';
@@ -44,4 +45,4 @@ const copy = {
 </section>
 <Footer lang={lang} anchorBase={lang === 'en' ? '/en/' : '/'} />
 
-<script is:inline src="/js/hugo.js"></script>
+<script is:inline src={hugoUrl}></script>

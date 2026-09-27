@@ -9,6 +9,7 @@
    (--reveal-shift a spol.), ktere by jinak prebily tokeny produktu. */
 import '@piano/ui/styles/reveal.css';
 import '../styles/theme.css';
+import revealUrl from '@piano/ui/scripts/reveal.js?url';
 import BaseHead from '@piano/ui/layouts/BaseHead.astro';
 import Header from '@piano/ui/components/Header.astro';
 import Footer from '@piano/ui/components/Footer.astro';
@@ -103,7 +104,7 @@ const schemas = [organizationSchema, ...(schema ? [schema] : [])];
 <html lang={locale}>
   <head>
     <!-- Scroll reveal: bez defer, trida .js musi byt na <html> driv nez obsah -->
-    <script is:inline src="/js/reveal.js"></script>
+    <script is:inline src={revealUrl}></script>
     <!-- Google Search Console: ověření přes HTML tag (DNS na hostingu blokované) -->
     <meta name="google-site-verification" content="KgZuNpYxxMSjYosWLt0mC_2B8zkvHz-DUCYw_HbbtKw" />
     {preloadImage && <link rel="preload" as="image" href={preloadImage} fetchpriority="high" />}

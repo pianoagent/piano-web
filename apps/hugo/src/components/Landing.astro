@@ -4,6 +4,8 @@
  * Používá ji CZ (/) i EN (/en/) homepage; texty jsou v src/i18n/landing.ts.
  */
 import '../styles/hugo.css';
+import hugoVariantsUrl from '../scripts/hugo-variants.js?url';
+import hugoUrl from '../scripts/hugo.js?url';
 import type { Lang } from '../i18n/landing';
 import AbBar from './landing/AbBar.astro';
 import AnnBar from './landing/AnnBar.astro';
@@ -56,5 +58,5 @@ const { lang } = Astro.props;
 <Footer lang={lang} />
 <MobileBar lang={lang} />
 
-<script is:inline src="/js/hugo-variants.js"></script>
-<script is:inline src="/js/hugo.js"></script>
+<script is:inline src={hugoVariantsUrl}></script>
+<script is:inline src={hugoUrl}></script>

@@ -1,6 +1,6 @@
 /* ============================================================
    Scroll reveal, sdilena implementace pro cely ekosystem Piano.
-   Vlozte jako <script src="/js/reveal.js"> v <head>. Bez defer:
+   Vlozte jako <script is:inline src={revealUrl}> v <head> (import ?url, Vite prida hash). Bez defer:
    trida .js se musi na <html> objevit driv, nez se vykresli obsah,
    jinak prvky nejdriv bliknou viditelne a pak zmizi.
 
