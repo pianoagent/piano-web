@@ -1,68 +1,70 @@
 /**
  * Klientská loga Pecosty (reálné reference).
  * Master: brand/loga/reference/pecosta/{gastro,verejny-sektor}/ ; kopie zde v appce:
- * public/logos/reference/{gastro,verejny-sektor}/<slug>.webp.
- * Názvy jsou vč. podsložky, aby je sdílený LogoWall poskládal jako /logos/<name>.webp.
+ * src/assets/images/logos/reference/{gastro,verejny-sektor}/<slug>.webp (sdílený LogoWall je
+ * optimalizuje na AVIF + WebP). Názvy jsou vč. podsložky, alt je čitelný název klienta.
  * Řazení: silné/známé značky napřed (marquee), zbytek dál.
  */
 
+export type Klient = { name: string; alt: string };
+
 // Gastro provozy, hotely, restaurace
-export const klientiGastro = [
-  'reference/gastro/ambiente',
-  'reference/gastro/cpi-hotels',
-  'reference/gastro/pytloun-hotels',
-  'reference/gastro/kolkovna',
-  'reference/gastro/sasazu',
-  'reference/gastro/grandhotel-pupp',
-  'reference/gastro/hp-tronic',
-  'reference/gastro/perfect-canteen',
-  'reference/gastro/la-lorraine',
-  'reference/gastro/kavarna-slavia',
-  'reference/gastro/hotel-maximus',
-  'reference/gastro/grandhotel-brno',
-  'reference/gastro/avanti-hotel',
-  'reference/gastro/jan-hotels',
-  'reference/gastro/hh-hotels',
-  'reference/gastro/con-gusto',
-  'reference/gastro/la-fresca',
-  'reference/gastro/mistral-cafe',
-  'reference/gastro/pivo-karlin',
-  'reference/gastro/goose-pivovar',
-  'reference/gastro/mestansky-pivovar-turnov',
-  'reference/gastro/restaurace-mincovna',
-  'reference/gastro/restaurace-tiskarna',
-  'reference/gastro/cacao',
-  'reference/gastro/cerna-madona',
-  'reference/gastro/knedlin',
-  'reference/gastro/staromestska',
-  'reference/gastro/u-pavouka',
-  'reference/gastro/u-zlate-psenice',
-  'reference/gastro/dolni-pocernice',
-  'reference/gastro/heipark',
-  'reference/gastro/cervenohorske-sedlo',
-  'reference/gastro/hotel-freud',
-  'reference/gastro/hotel-orlik',
-  'reference/gastro/hotel-praded',
-  'reference/gastro/hotel-radun',
-  'reference/gastro/hotel-rott',
-  'reference/gastro/hotel-rustikal',
-  'reference/gastro/hotel-duo',
-  'reference/gastro/hotel-obzor',
+export const klientiGastro: Klient[] = [
+  { name: 'reference/gastro/ambiente', alt: 'Ambiente' },
+  { name: 'reference/gastro/cpi-hotels', alt: 'CPI Hotels' },
+  { name: 'reference/gastro/pytloun-hotels', alt: 'Pytloun Hotels' },
+  { name: 'reference/gastro/kolkovna', alt: 'Kolkovna' },
+  { name: 'reference/gastro/sasazu', alt: 'SaSaZu' },
+  { name: 'reference/gastro/grandhotel-pupp', alt: 'Grandhotel Pupp' },
+  { name: 'reference/gastro/hp-tronic', alt: 'HP TRONIC' },
+  { name: 'reference/gastro/perfect-canteen', alt: 'Perfect Canteen' },
+  { name: 'reference/gastro/la-lorraine', alt: 'La Lorraine' },
+  { name: 'reference/gastro/kavarna-slavia', alt: 'Kavárna Slavia' },
+  { name: 'reference/gastro/hotel-maximus', alt: 'Hotel Maximus' },
+  { name: 'reference/gastro/grandhotel-brno', alt: 'Grandhotel Brno' },
+  { name: 'reference/gastro/avanti-hotel', alt: 'Hotel Avanti' },
+  { name: 'reference/gastro/jan-hotels', alt: 'JAN Hotels' },
+  { name: 'reference/gastro/hh-hotels', alt: 'HH Hotels' },
+  { name: 'reference/gastro/con-gusto', alt: 'Con Gusto' },
+  { name: 'reference/gastro/la-fresca', alt: 'La Fresca' },
+  { name: 'reference/gastro/mistral-cafe', alt: 'Mistral Café' },
+  { name: 'reference/gastro/pivo-karlin', alt: 'Pivo Karlín' },
+  { name: 'reference/gastro/goose-pivovar', alt: 'Goose pivovar' },
+  { name: 'reference/gastro/mestansky-pivovar-turnov', alt: 'Měšťanský pivovar Turnov' },
+  { name: 'reference/gastro/restaurace-mincovna', alt: 'Restaurace Mincovna' },
+  { name: 'reference/gastro/restaurace-tiskarna', alt: 'Restaurace Tiskárna' },
+  { name: 'reference/gastro/cacao', alt: 'Cacao' },
+  { name: 'reference/gastro/cerna-madona', alt: 'Černá Madona' },
+  { name: 'reference/gastro/knedlin', alt: 'Knedlín' },
+  { name: 'reference/gastro/staromestska', alt: 'Staroměstská restaurace' },
+  { name: 'reference/gastro/u-pavouka', alt: 'U Pavouka' },
+  { name: 'reference/gastro/u-zlate-psenice', alt: 'U Zlaté pšenice' },
+  { name: 'reference/gastro/dolni-pocernice', alt: 'Dolní Počernice' },
+  { name: 'reference/gastro/heipark', alt: 'HEIPARK' },
+  { name: 'reference/gastro/cervenohorske-sedlo', alt: 'Červenohorské sedlo' },
+  { name: 'reference/gastro/hotel-freud', alt: 'Hotel Freud' },
+  { name: 'reference/gastro/hotel-orlik', alt: 'Hotel Orlík' },
+  { name: 'reference/gastro/hotel-praded', alt: 'Hotel Praděd' },
+  { name: 'reference/gastro/hotel-radun', alt: 'Hotel Radun' },
+  { name: 'reference/gastro/hotel-rott', alt: 'Hotel Rott' },
+  { name: 'reference/gastro/hotel-rustikal', alt: 'Hotel Rustikal' },
+  { name: 'reference/gastro/hotel-duo', alt: 'Hotel Duo' },
+  { name: 'reference/gastro/hotel-obzor', alt: 'Hotel Obzor' },
 ];
 
 // Veřejný sektor (burzovní obchody / veřejné zakázky)
-export const klientiVerejnySektor = [
-  'reference/verejny-sektor/moravskoslezsky-kraj',
-  'reference/verejny-sektor/mesto-ostrava',
-  'reference/verejny-sektor/mesto-ricany',
-  'reference/verejny-sektor/mesto-dobris',
-  'reference/verejny-sektor/mesto-semily',
-  'reference/verejny-sektor/fakultni-nemocnice-ostrava',
-  'reference/verejny-sektor/nemocnice-frydek-mistek',
-  'reference/verejny-sektor/nemocnice-nymburk',
-  'reference/verejny-sektor/nemocnice-trinec',
-  'reference/verejny-sektor/lazne-karlova-studanka',
-  'reference/verejny-sektor/upmd',
+export const klientiVerejnySektor: Klient[] = [
+  { name: 'reference/verejny-sektor/moravskoslezsky-kraj', alt: 'Moravskoslezský kraj' },
+  { name: 'reference/verejny-sektor/mesto-ostrava', alt: 'Město Ostrava' },
+  { name: 'reference/verejny-sektor/mesto-ricany', alt: 'Město Říčany' },
+  { name: 'reference/verejny-sektor/mesto-dobris', alt: 'Město Dobříš' },
+  { name: 'reference/verejny-sektor/mesto-semily', alt: 'Město Semily' },
+  { name: 'reference/verejny-sektor/fakultni-nemocnice-ostrava', alt: 'Fakultní nemocnice Ostrava' },
+  { name: 'reference/verejny-sektor/nemocnice-frydek-mistek', alt: 'Nemocnice Frýdek-Místek' },
+  { name: 'reference/verejny-sektor/nemocnice-nymburk', alt: 'Nemocnice Nymburk' },
+  { name: 'reference/verejny-sektor/nemocnice-trinec', alt: 'Nemocnice Třinec' },
+  { name: 'reference/verejny-sektor/lazne-karlova-studanka', alt: 'Lázně Karlova Studánka' },
+  { name: 'reference/verejny-sektor/upmd', alt: 'ÚPMD' },
 ];
 
 /* Podmnožiny pro segmentové stránky /pro-koho/*. Jen výběry z polí výš, žádná nová loga.
@@ -73,10 +75,10 @@ export const klientiHotely = klientiGastro.filter((l) => [
   'avanti-hotel', 'jan-hotels', 'hh-hotels', 'hotel-freud', 'hotel-orlik', 'hotel-praded',
   'hotel-radun', 'hotel-rott', 'hotel-rustikal', 'hotel-duo', 'hotel-obzor',
   'cervenohorske-sedlo', 'hp-tronic',
-].some((slug) => l.endsWith(`/${slug}`)));
+].some((slug) => l.name.endsWith(`/${slug}`)));
 
 export const klientiRestaurace = klientiGastro.filter((l) => [
   'ambiente', 'kolkovna', 'sasazu', 'con-gusto', 'pivo-karlin', 'goose-pivovar',
   'mestansky-pivovar-turnov', 'restaurace-mincovna', 'restaurace-tiskarna',
   'cerna-madona', 'knedlin', 'staromestska', 'u-pavouka', 'u-zlate-psenice',
-].some((slug) => l.endsWith(`/${slug}`)));
+].some((slug) => l.name.endsWith(`/${slug}`)));

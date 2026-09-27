@@ -25,6 +25,7 @@ import LeadForm from '@piano/ui/components/LeadForm.astro';
 import StatsBand from './StatsBand.astro';
 import LogoWall from './LogoWall.astro';
 import { pecostaLeadProofs } from '../config/leadProofs';
+import type { Klient } from '../config/klienti';
 import Img from '@piano/ui/components/Img.astro';
 
 interface Benefit { icon?: string; title: string; text?: string; }
@@ -36,7 +37,7 @@ interface Props {
   eyebrow: string;
   titleHtml: string;
   lead: string;
-  logos: string[];
+  logos: Klient[];
   logoLabel: string;
   heroImage?: string;
   heroImageAlt?: string;

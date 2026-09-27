@@ -1,10 +1,1 @@
-<svg width="184" height="40" viewBox="0 0 184 40" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="EET 2027">
-  <!-- Mark: navy zaobleny ctverec se stylizovanou uctenkou -->
-  <rect x="0" y="4" width="32" height="32" rx="7" fill="#1A4F8B"/>
-  <path d="M9 12.5h14v15.2c0 .5-.6.8-1 .5l-1.7-1.2-1.7 1.2c-.3.2-.7.2-1 0l-1.7-1.2-1.7 1.2c-.3.2-.7.2-1 0L11 27c-.4.3-1 0-1-.5V12.5z" fill="#FFFFFF"/>
-  <rect x="12.4" y="16" width="8.2" height="1.8" rx=".9" fill="#1A4F8B"/>
-  <rect x="12.4" y="19.4" width="8.2" height="1.8" rx=".9" fill="#3E7CB1"/>
-  <!-- Wordmark -->
-  <text x="42" y="27.5" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="22" font-weight="700" letter-spacing="0.5" fill="#1B2330">EET</text>
-  <text x="92" y="27.5" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="22" font-weight="700" letter-spacing="0.5" fill="#1A4F8B">2027</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="184" height="40" fill="none" aria-label="EET 2027" viewBox="0 0 184 40"><rect width="32" height="32" y="4" fill="#1a4f8b" rx="7"/><path fill="#fff" d="M9 12.5h14v15.2c0 .5-.6.8-1 .5L20.3 27l-1.7 1.2c-.3.2-.7.2-1 0L15.9 27l-1.7 1.2c-.3.2-.7.2-1 0L11 27c-.4.3-1 0-1-.5v-14z"/><rect width="8.2" height="1.8" x="12.4" y="16" fill="#1a4f8b" rx=".9"/><rect width="8.2" height="1.8" x="12.4" y="19.4" fill="#3e7cb1" rx=".9"/><text x="42" y="27.5" fill="#1b2330" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="22" font-weight="700" letter-spacing=".5">EET</text><text x="92" y="27.5" fill="#1a4f8b" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="22" font-weight="700" letter-spacing=".5">2027</text></svg>

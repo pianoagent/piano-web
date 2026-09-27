@@ -1,4 +1,1 @@
-<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Hugo">
-  <rect width="64" height="64" rx="16" fill="#FFDF2C"/>
-  <circle cx="32" cy="32" r="14" fill="none" stroke="#FFFFFF" stroke-width="7.5"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="none" aria-label="Hugo" viewBox="0 0 64 64"><rect width="64" height="64" fill="#ffdf2c" rx="16"/><circle cx="32" cy="32" r="14" stroke="#fff" stroke-width="7.5"/></svg>

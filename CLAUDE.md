@@ -16,9 +16,10 @@ Rastrové obrázky (webp/jpg/png) se optimalizují při buildu na AVIF + WebP se
   - `sizes` nastav podle layoutu, když default `(min-width: {width}px) {width}px, 100vw` nesedí. Malé fixní obrázky (avatary, ikonky): `sizes="52px"`.
   - Obrázek nad ohybem (hero, LCP): `loading="eager" fetchpriority="high"`. Jinak nech default (lazy).
 - **Sdílené komponenty** `Hero` (slides), `Split` (image), `USPGrid` (item.image), `Testimonials` (photo), `PostGrid` a `ArticleDetail` už `Img` používají. Stačí jim předat string `/images/…`.
+- **`LogoWall`**: rastrová loga referencí dej do `src/assets/images/logos/<name>.<ext>`, komponenta je vykreslí přes `<Picture>` v 1× a 2× výšky pruhu. SVG loga zůstávají v `public/logos`.
 - **Markdown články**: obrázky v `.md` (i holé `<img>` v textu) převádí `optimizeHtmlImages()` z `@piano/ui/lib/images`. Detail článku renderuje `post.rendered.html` přes tuhle funkci místo `<Content />`. Nový blog/content collection napoj stejně (vzor: `apps/pecosta/src/pages/novinky/[...slug].astro`).
 - **og:image a JSON-LD** potřebují URL, ne `<picture>`: `getImage({ src: findImage(path), width: 1200, format: 'jpg' })` z `astro:assets` a `new URL(result.src, Astro.site).href`.
-- **V `public/` nechávej jen soubory, které musí mít pevnou URL**: CSS `url()`, `poster` u videa, výchozí `og-default.jpg`, loga v `/logos`, SVG. Tyhle se neoptimalizují.
+- **V `public/` nechávej jen soubory, které musí mít pevnou URL**: CSS `url()`, `poster` u videa, výchozí `og-default.jpg`, SVG loga v `/logos`, SVG. Tyhle se neoptimalizují.
 - **Do `src/assets/images/` nedávej nepoužité soubory.** Glob v `images.ts` je načítá všechny a Astro by nepoužité zkopírovalo do buildu jako neoptimalizované originály.
 - **Nečti vlastnosti `ImageMetadata`** (`.width`, `.src`…) mimo `Img`/`getImage`: Astro pak do buildu přibalí i originál.
 - `<Img>` obaluje `<img>` do `<picture>`: selektory `.x > img` nesedí (použij `.x img`) a pokud je obrázek flex/grid item, dej `img` `display: block`, jinak pod ním vznikne mezera.
