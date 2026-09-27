@@ -16,6 +16,7 @@ import Card from '@piano/ui/components/Card.astro';
 import Badge from '@piano/ui/components/Badge.astro';
 import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
+import Img from '@piano/ui/components/Img.astro';
 
 const plany = [
   {
@@ -51,7 +52,7 @@ const plany = [
         <Button href="/produkty/hotelovy-system-protel" variant="secondary" onDark>Poznat hotelový systém</Button>
       </Fragment>
       <figure slot="media" class="hero-pic">
-        <img src="/images/protel-pro-skoly.webp" alt="Studenti hotelové školy se učí na systému Protel" width="1280" height="544" loading="eager" decoding="async" />
+        <Img src="/images/protel-pro-skoly.webp" alt="Studenti hotelové školy se učí na systému Protel" width={880} sizes="(min-width: 881px) 560px, 100vw" loading="eager" decoding="async" />
       </figure>
     </Hero>
 

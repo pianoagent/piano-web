@@ -10,6 +10,7 @@ import Text from '@piano/ui/components/Text.astro';
 import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
+import Img from '@piano/ui/components/Img.astro';
 import { pianoLeadProofsEn } from '../../config/leadProofs';
 
 const stats = [
@@ -49,7 +50,8 @@ const articles = [
   <Hero eyebrow="About us" background="primary"
         lead="We believe in connected hospitality. We support everyone who makes up its entire chain, from farmers and suppliers through chefs to guests. We help those who want to do hospitality better.">
     <Heading slot="title" as="h1" size="display" color="on-dark">We focus on <em>digitalizing</em> hospitality</Heading>
-    <img slot="media" src="/images/about-team.webp" alt="The Piano team" width="1100" height="733" />
+    <Img slot="media" src="/images/about-team.webp" alt="The Piano team" width={560} height={373}
+         sizes="(min-width: 881px) 560px, 100vw" loading="eager" fetchpriority="high" />
   </Hero>
 
   <!-- Stats -->
@@ -93,11 +95,11 @@ const articles = [
       {videos.map((v) => (
         <article class="pm-video">
           <a class="pm-video__thumb" href={v.href} target="_blank" rel="noopener" aria-label={v.title}>
-            <img src={v.image} alt={v.title} loading="lazy" />
+            <Img src={v.image} alt={v.title} width={363} sizes="(min-width: 881px) 363px, 100vw" loading="lazy" />
             <span class="pm-video__play"><Icon name="lucide:play" size="md" /></span>
           </a>
           <span class="pm-pub">{v.logo
-            ? <img class="pm-logo" src={v.logo} alt={v.publisher} loading="lazy" />
+            ? <Img class="pm-logo" src={v.logo} alt={v.publisher} width={120} sizes="120px" loading="lazy" />
             : <span class="pm-pub--accent">{v.publisher}</span>}<span class="pm-pub__date">· {v.date}</span></span>
           <p class="pm-card__title">{v.title}</p>
           <Button href={v.href} variant="secondary" size="sm" target="_blank" rel="noopener noreferrer">Play</Button>
@@ -112,9 +114,9 @@ const articles = [
     <div class="pm-grid pm-grid--articles">
       {articles.map((a) => (
         <a class="pm-article" href={a.href} target="_blank" rel="noopener noreferrer">
-          {a.image && <div class="pm-article__media"><img src={a.image} alt={a.title} loading="lazy" /></div>}
+          {a.image && <div class="pm-article__media"><Img src={a.image} alt={a.title} width={363} sizes="(min-width: 881px) 363px, 100vw" loading="lazy" /></div>}
           {a.logo
-            ? <img class="pm-logo pm-logo--article" src={a.logo} alt={a.publisher} loading="lazy" />
+            ? <Img class="pm-logo pm-logo--article" src={a.logo} alt={a.publisher} width={120} sizes="120px" loading="lazy" />
             : <span class="pm-pub pm-pub--accent pm-pub--article">{a.publisher}</span>}
           {a.date && <span class="pm-artdate">{a.date}</span>}
           <p class="pm-card__title">{a.title}</p>

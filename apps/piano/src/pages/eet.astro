@@ -14,6 +14,7 @@ import Button from '@piano/ui/components/Button.astro';
 import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import Icon from '@piano/ui/components/Icon.astro';
+import Img from '@piano/ui/components/Img.astro';
 import { pianoLeadProofs } from '../config/leadProofs';
 
 const novinky = [
@@ -88,7 +89,8 @@ const faqSchema = {
     <Fragment slot="actions">
       <Button href="#poptavka">Konzultace zdarma</Button>
     </Fragment>
-    <img slot="media" src="/images/eet-hero.webp" alt="EET 2.0 s Pianem" width="612" height="408" />
+    <Img slot="media" src="/images/eet-hero.webp" alt="EET 2.0 s Pianem" width={560} height={373}
+         sizes="(min-width: 881px) 560px, 100vw" loading="eager" fetchpriority="high" />
   </Hero>
 
   <USPGrid eyebrow="Co je nového" title="Klíčové novinky EET 2.0"
@@ -167,7 +169,7 @@ const faqSchema = {
       <div class="eetblog">
         {eetPosts.map((p) => (
           <a class="eetblog__card" href={`/blog/${p.id}`}>
-            {p.data.image && <div class="eetblog__media"><img src={p.data.image} alt={p.data.title} loading="lazy" /></div>}
+            {p.data.image && <div class="eetblog__media"><Img src={p.data.image} alt={p.data.title} width={368} sizes="(min-width: 861px) 368px, 100vw" loading="lazy" /></div>}
             <div class="eetblog__body">
               <span class="eetblog__date">{fmtDate(p.data.pubDate)}</span>
               <p class="eetblog__title">{p.data.title}</p>

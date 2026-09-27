@@ -9,12 +9,13 @@
  *
  *   name, role: kdo to je
  *   phone, email: kontakty, obojí volitelné
- *   photo: cesta k fotce v public/; bez ní se vykreslí iniciály
+ *   photo: cesta k fotce v src/assets/images (jako '/images/…'); bez ní se vykreslí iniciály
  *   note: jedna věta pod jménem (např. kdy je k zastižení)
  */
 import Heading from '@piano/ui/components/Heading.astro';
 import Text from '@piano/ui/components/Text.astro';
 import Icon from '@piano/ui/components/Icon.astro';
+import Img from '@piano/ui/components/Img.astro';
 
 interface Props {
   name: string;
@@ -31,7 +32,7 @@ const telHref = phone ? `tel:${phone.replace(/\s/g, '')}` : undefined;
 
 <div class="person">
   {photo
-    ? <img class="person__photo" src={photo} alt={name} width="120" height="120" loading="lazy" />
+    ? <Img class="person__photo" src={photo} alt={name} width={96} sizes="96px" loading="lazy" />
     : <span class="person__photo person__photo--initials" aria-hidden="true">{initials}</span>}
   <div class="person__body">
     <Heading as="h3" size="h3">{name}</Heading>
@@ -55,7 +56,8 @@ const telHref = phone ? `tel:${phone.replace(/\s/g, '')}` : undefined;
     background: var(--color-bg); border: 1px solid var(--color-border);
     border-radius: var(--radius-lg); box-shadow: var(--shadow-sm);
   }
-  .person__photo { width: 96px; height: 96px; border-radius: var(--radius-full); object-fit: cover; flex-shrink: 0; }
+  /* display: block: bez toho <picture> obalující Img nechá pod fotkou mezeru na descender řádku. */
+  .person__photo { width: 96px; height: 96px; border-radius: var(--radius-full); object-fit: cover; flex-shrink: 0; display: block; }
   .person__photo--initials {
     display: inline-flex; align-items: center; justify-content: center;
     background: linear-gradient(135deg, var(--color-primary), var(--color-secondary-azure));

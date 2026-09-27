@@ -17,6 +17,7 @@ import Text from '@piano/ui/components/Text.astro';
 import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import Field from '@piano/ui/components/Field.astro';
+import Img from '@piano/ui/components/Img.astro';
 
 // Co odberatel ziska (duvody pro prihlaseni)
 const odberBody = [
@@ -203,7 +204,7 @@ const faqSchema = {
     <div class="rail">
     <div class="rail__aside reveal reveal--from-left">
       <figure class="rail__figure">
-        <img src="/img/budoucnost-kuchar.webp" width="760" height="507" alt="Kuchař nese bednu se zásobami provozní kuchyní" loading="lazy" decoding="async" />
+        <Img src="/images/budoucnost-kuchar.webp" alt="Kuchař nese bednu se zásobami provozní kuchyní" width={812} height={542} sizes="(min-width: 861px) 300px, calc(100vw - 48px)" loading="lazy" decoding="async" />
       </figure>
       <Text size="label" color="accent">Nejen kvůli zákonu</Text>
       <Heading as="h2" size="h2">EET zvládne každý. Vy můžete být <em>o krok dál</em></Heading>
@@ -243,7 +244,7 @@ const faqSchema = {
     <div class="rail">
     <div class="rail__aside reveal reveal--from-left">
       <figure class="rail__figure">
-        <img src="/img/pokladna-tablet.webp" width="612" height="408" alt="Obsluha zadává objednávku na pokladním tabletu za barem" loading="lazy" decoding="async" />
+        <Img src="/images/pokladna-tablet.webp" alt="Obsluha zadává objednávku na pokladním tabletu za barem" width={812} height={541} sizes="(min-width: 861px) 300px, calc(100vw - 48px)" loading="lazy" decoding="async" />
       </figure>
       <Text size="label" color="accent">Co se mění</Text>
       <Heading as="h2" size="h2">Nová pravidla <em>v kostce</em></Heading>
@@ -304,7 +305,7 @@ const faqSchema = {
     <div class="rail">
     <div class="rail__aside reveal reveal--from-left">
       <figure class="rail__figure">
-        <img src="/img/koho-platba-qr.webp" width="760" height="507" alt="Host platí u stolu telefonem přes QR kód nalepený na desce stolu" loading="lazy" decoding="async" />
+        <Img src="/images/koho-platba-qr.webp" alt="Host platí u stolu telefonem přes QR kód nalepený na desce stolu" width={812} height={542} sizes="(min-width: 861px) 300px, calc(100vw - 48px)" loading="lazy" decoding="async" />
       </figure>
       <Text size="label" color="accent">Koho se to týká</Text>
       <Heading as="h2" size="h2">Týká se prakticky <em>celé gastronomie</em></Heading>
@@ -335,7 +336,7 @@ const faqSchema = {
     <div class="rail">
     <div class="rail__aside reveal reveal--from-left">
       <figure class="rail__figure">
-        <img src="/img/priprava-terminal.webp" width="760" height="507" alt="Bezkontaktní platba telefonem na platebním terminálu" loading="lazy" decoding="async" />
+        <Img src="/images/priprava-terminal.webp" alt="Bezkontaktní platba telefonem na platebním terminálu" width={812} height={542} sizes="(min-width: 861px) 300px, calc(100vw - 48px)" loading="lazy" decoding="async" />
       </figure>
       <Text size="label" color="accent">Jak se připravit</Text>
       <Heading as="h2" size="h2">Čtyři kroky ke <em>klidnému</em> startu</Heading>

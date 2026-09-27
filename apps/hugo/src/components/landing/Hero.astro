@@ -2,6 +2,7 @@
 /* Hero: sekce landing page Hugo, port 1:1 z hugopos.eu. Texty jsou v src/i18n/landing.ts. */
 import type { Lang } from '../../i18n/landing';
 import { dict } from '../../i18n/landing';
+import Img from '@piano/ui/components/Img.astro';
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const t = dict[lang];
@@ -34,7 +35,16 @@ const t = dict[lang];
     <div class="hero-stage">
       <div class="blob"></div>
 
-      <img class="hero-terminal-image" src="/assets/terminal-hugo-prazdroj.webp" alt={lang === 'en' ? 'Piano Terminál with the Hugo POS and a card payment' : 'Piano Terminál s pokladnou Hugo a platbou kartou'}>
+      <Img
+        class="hero-terminal-image"
+        src="/images/terminal-hugo-prazdroj.webp"
+        alt={lang === 'en' ? 'Piano Terminál with the Hugo POS and a card payment' : 'Piano Terminál s pokladnou Hugo a platbou kartou'}
+        width={740}
+        height={660}
+        sizes="(min-width: 981px) 603px, (min-width: 561px) 740px, calc(100vw - 36px)"
+        loading="eager"
+        fetchpriority="high"
+      />
     </div>
   </div>
 </section>

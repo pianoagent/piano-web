@@ -2,6 +2,7 @@
 /* Product: sekce landing page Hugo, port 1:1 z hugopos.eu. Texty jsou v src/i18n/landing.ts. */
 import type { Lang } from '../../i18n/landing';
 import { dict } from '../../i18n/landing';
+import Img from '@piano/ui/components/Img.astro';
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const t = dict[lang];
@@ -22,7 +23,7 @@ const t = dict[lang];
             <h3>iPhone</h3>
             <p set:html={t['dev-iphone-p']}></p>
             <div class="art">
-              <div class="scr"><img src="/assets/screen-platba.png" alt=""></div>
+              <div class="scr"><Img src="/images/screen-platba.png" alt="" width={124} height={268} sizes="124px" /></div>
             </div>
           </div>
 
@@ -31,7 +32,7 @@ const t = dict[lang];
             <h3>Android</h3>
             <p set:html={t['dev-android-p']}></p>
             <div class="art">
-              <div class="scr"><img src="/assets/screen-objednat.png" alt=""></div>
+              <div class="scr"><Img src="/images/screen-objednat.png" alt="" width={124} height={264} sizes="124px" /></div>
             </div>
           </div>
 

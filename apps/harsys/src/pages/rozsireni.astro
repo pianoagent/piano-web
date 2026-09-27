@@ -13,6 +13,7 @@ import Text from '@piano/ui/components/Text.astro';
 import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
+import Img from '@piano/ui/components/Img.astro';
 import { harsysNav, harsysCta, harsysFooter } from '../config/nav';
 
 const modules = [
@@ -76,7 +77,7 @@ const leadProofs = [
     <div class="pillars">
       {modules.map((m) => (
         <article class="pillar">
-          <div class="pillar__media"><img src={m.img} alt={m.title} loading="lazy" /></div>
+          <div class="pillar__media"><Img src={m.img} alt={m.title} width={352} loading="lazy" /></div>
           <div class="pillar__body">
             <Heading as="h2" size="h3">{m.title}</Heading>
             <Text size="small" color="muted">{m.text}</Text>

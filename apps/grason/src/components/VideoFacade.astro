@@ -5,16 +5,18 @@
  * Proč fasáda a ne rovnou <iframe>: embed YouTube stáhne skoro megabajt
  * skriptů a kontaktuje třetí stranu ještě dřív, než návštěvník o video
  * projeví zájem. To sype LCP a znamená cookies třetí strany bez souhlasu.
- * Do kliknutí se tady servíruje jen lokální WebP z public/images.
+ * Do kliknutí se tady servíruje jen lokální WebP optimalizovaný přes Img.
  *
  * Doména je youtube-nocookie.com, stejně jako na live grason.cz.
  * Komponenta je zatím lokální (používá ji jen /pro-firmy). Až ji bude
  * chtít další web, patří do packages/ui, ne zkopírovat.
  *
  *   id: ID videa na YouTube
- *   poster: cesta k náhledu v public/
+ *   poster: cesta k náhledu v src/assets/images (jako '/images/…')
  *   title: titulek pro <iframe> a aria-label tlačítka
  */
+import Img from '@piano/ui/components/Img.astro';
+
 interface Props {
   id: string;
   poster: string;
@@ -26,7 +28,7 @@ const src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&modes
 
 <div class="vf" data-video-src={src} data-video-title={title}>
   <button class="vf__btn" type="button" aria-label={`Přehrát video: ${title}`}>
-    <img class="vf__poster" src={poster} alt="" width="1280" height="720" loading="lazy" />
+    <Img class="vf__poster" src={poster} alt="" width={580} sizes="(min-width: 881px) 580px, 100vw" loading="lazy" />
     <span class="vf__play" aria-hidden="true">
       <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
     </span>

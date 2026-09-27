@@ -14,6 +14,7 @@ import LeadForm from '@piano/ui/components/LeadForm.astro';
 import StatsBand from '../components/StatsBand.astro';
 import LogoWall from '../components/LogoWall.astro';
 import { pecostaLeadProofs } from '../config/leadProofs';
+import Img from '@piano/ui/components/Img.astro';
 
 const testimonials = [
   { initials: 'CPI', headline: 'Šetříme miliony ročně', quote: 'Díky automatickému naskladňování v každém z našich hotelů, každý den, ušetříme svým lidem minimálně hodinu práce. Již řadu let využíváme také Aukční nákupy, kdy 80 % nákupu realizujeme přes jednotný nákupní portál a šetříme tak několik miliónů ročně.', author: 'Maroš Šivec', photo: '/images/ref/maros-sivec.webp', role: 'Executive F&B Director, CPI Hotels' },
@@ -60,7 +61,7 @@ const clients = [
         <Button href="#poptavka">Chci analýzu zdarma</Button>
       </Fragment>
       <figure slot="media" class="hero-pic">
-        <img src="/images/reference-hero.webp" alt="Banketní sál Chuchle Arény Praha, klienta Pecosty" width="960" height="540" loading="eager" decoding="async" />
+        <Img src="/images/reference-hero.webp" alt="Banketní sál Chuchle Arény Praha, klienta Pecosty" width={880} sizes="(min-width: 881px) 560px, 100vw" loading="eager" decoding="async" />
       </figure>
     </Hero>
 

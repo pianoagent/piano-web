@@ -18,6 +18,7 @@ import Section from './Section.astro';
 import Heading from './Heading.astro';
 import Text from './Text.astro';
 import Icon from './Icon.astro';
+import Img from './Img.astro';
 
 interface Item { quote: string; author: string; role: string; initials?: string; headline?: string; michelin?: boolean; photo?: string; }
 interface Props {
@@ -73,7 +74,7 @@ const onDark = background === 'invert' || background === 'primary';
               <span class="quote__role">{t.role}{t.michelin && <span class="quote__michelin"> · Michelin ★</span>}</span>
             </div>
             {t.photo
-              ? <span class="quote__avatar quote__avatar--photo"><img src={t.photo} alt="" width="84" height="84" loading="lazy" decoding="async" /></span>
+              ? <span class="quote__avatar quote__avatar--photo"><Img src={t.photo} alt="" width={84} height={84} sizes="84px" /></span>
               : <span class="quote__avatar" aria-hidden="true">{t.initials}</span>}
           </div>
         )}
@@ -83,7 +84,7 @@ const onDark = background === 'invert' || background === 'primary';
         {attribution === 'bottom' && (
           <figcaption class="quote__foot">
             {t.photo
-              ? <img class="quote__photo" src={t.photo} alt="" width="52" height="52" loading="lazy" decoding="async" />
+              ? <Img class="quote__photo" src={t.photo} alt="" width={52} height={52} sizes="52px" />
               : <span class="quote__avatar" aria-hidden="true">{t.initials}</span>}
             <span class="quote__id">
               <strong class="quote__name">{t.author}</strong>

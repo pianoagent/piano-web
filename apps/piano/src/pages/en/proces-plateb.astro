@@ -8,6 +8,7 @@ import Section from '@piano/ui/components/Section.astro';
 import Heading from '@piano/ui/components/Heading.astro';
 import Text from '@piano/ui/components/Text.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
+import Img from '@piano/ui/components/Img.astro';
 import { pianoLeadProofsEn } from '../../config/leadProofs';
 
 const steps = [
@@ -38,7 +39,7 @@ const steps = [
     <ol class="pp-steps">
       {steps.map((s) => (
         <li class="pp-step">
-          <figure class="pp-step__img"><img src={s.img} alt={s.title} width="360" height="354" loading="lazy" /></figure>
+          <figure class="pp-step__img"><Img src={s.img} alt={s.title} width={260} height={256} loading="lazy" /></figure>
           <div class="pp-step__body">
             <Text size="label" color="accent">{s.label}</Text>
             <Heading as="h2" size="h3">{s.title}</Heading>

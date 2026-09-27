@@ -17,6 +17,7 @@ import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
 import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import { protelLeadProofs } from '../../config/leadProofs';
+import Img from '@piano/ui/components/Img.astro';
 
 const features = [
   {
@@ -82,7 +83,7 @@ const related = [
         <Button href="/produkty" variant="secondary" onDark>Všechny produkty</Button>
       </Fragment>
       <figure slot="media" class="hero-pic">
-        <img src="/images/platebni-reseni.webp" alt="Platba kartou na recepci hotelu" width="960" height="875" loading="eager" decoding="async" />
+        <Img src="/images/platebni-reseni.webp" alt="Platba kartou na recepci hotelu" width={880} sizes="(min-width: 881px) 560px, 100vw" loading="eager" decoding="async" />
       </figure>
     </Hero>
 

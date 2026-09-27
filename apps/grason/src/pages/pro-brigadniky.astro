@@ -15,6 +15,7 @@ import Heading from '@piano/ui/components/Heading.astro';
 import Text from '@piano/ui/components/Text.astro';
 import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
+import Img from '@piano/ui/components/Img.astro';
 import Faq from '@piano/ui/components/Faq.astro';
 import { grasonNav, grasonCta, grasonFooter, grasonLogin } from '../config/nav';
 import { brigadniciFaqs } from '../config/faq';
@@ -77,7 +78,8 @@ const perks = [
       <Button href="https://www.grason.cz/stahnout">Stáhnout aplikaci</Button>
     </Fragment>
     <figure slot="media" class="hero-figure">
-      <img src="/images/hp-hero.webp" alt="Grason, aplikace s nabídkami směn pro brigádníky" width="720" height="560" loading="eager" />
+      <Img src="/images/hp-hero.webp" alt="Grason, aplikace s nabídkami směn pro brigádníky"
+           width={560} sizes="(min-width: 881px) 560px, 100vw" loading="eager" fetchpriority="high" />
     </figure>
   </Hero>
 
@@ -109,7 +111,7 @@ const perks = [
     </div>
     <ul class="jobs">
       {jobs.map((j) => (
-        <li class="job"><img class="job__art" src={j.img} alt="" width="32" height="32" loading="lazy" />{j.label}</li>
+        <li class="job"><Img class="job__art" src={j.img} alt="" width={32} sizes="32px" loading="lazy" />{j.label}</li>
       ))}
     </ul>
   </Section>
@@ -170,10 +172,10 @@ const perks = [
       </Text>
       <div class="store">
         <a class="store__badge" href={STORE_IOS} target="_blank" rel="noopener" aria-label="Stáhnout Grason v App Store">
-          <img src="/images/badge-app-store.webp" alt="" width="400" height="134" loading="lazy" />
+          <Img src="/images/badge-app-store.webp" alt="" width={180} sizes="180px" loading="lazy" />
         </a>
         <a class="store__badge" href={STORE_ANDROID} target="_blank" rel="noopener" aria-label="Stáhnout Grason na Google Play">
-          <img src="/images/badge-google-play.webp" alt="" width="400" height="134" loading="lazy" />
+          <Img src="/images/badge-google-play.webp" alt="" width={180} sizes="180px" loading="lazy" />
         </a>
       </div>
     </div>

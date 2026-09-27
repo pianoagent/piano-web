@@ -15,6 +15,7 @@ import StatsBand from '../../components/StatsBand.astro';
 import LogoWall from '../../components/LogoWall.astro';
 import Faq from '@piano/ui/components/Faq.astro';
 import { pecostaLeadProofs } from '../../config/leadProofs';
+import Img from '@piano/ui/components/Img.astro';
 
 const features = [
   'E-aukce od ověřených dodavatelů', 'Ceny srovnané u stovek dodavatelů najednou',
@@ -46,7 +47,7 @@ const faqs = [
         <Button href="/jak-to-funguje" variant="secondary">Jak to funguje</Button>
       </Fragment>
       <figure slot="media" class="hero-pic">
-        <img src="/images/sluzby-aukcni-nakupy.webp" alt="Maso a zelenina připravené na kuchyňském prkénku" width="960" height="495" loading="eager" decoding="async" />
+        <Img src="/images/sluzby-aukcni-nakupy.webp" alt="Maso a zelenina připravené na kuchyňském prkénku" width={880} sizes="(min-width: 881px) 560px, 100vw" loading="eager" decoding="async" />
       </figure>
     </Hero>
 

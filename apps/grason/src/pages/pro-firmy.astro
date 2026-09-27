@@ -13,6 +13,7 @@ import Heading from '@piano/ui/components/Heading.astro';
 import Text from '@piano/ui/components/Text.astro';
 import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
+import Img from '@piano/ui/components/Img.astro';
 import VideoFacade from '../components/VideoFacade.astro';
 import { homeQuotes } from '../config/reference';
 import { grasonNav, grasonCta, grasonFooter, grasonLogin } from '../config/nav';
@@ -59,7 +60,8 @@ const products = [
       <Button href="#cenik" variant="secondary" onDark>Ukázat ceník</Button>
     </Fragment>
     <figure slot="media" class="hero-figure">
-      <img src="/images/for-companies-hero.webp" alt="Grason pro firmy, výběr kandidátů na směnu" width="720" height="560" loading="eager" />
+      <Img src="/images/for-companies-hero.webp" alt="Grason pro firmy, výběr kandidátů na směnu"
+           width={560} sizes="(min-width: 881px) 560px, 100vw" loading="eager" fetchpriority="high" />
     </figure>
   </Hero>
 
@@ -91,7 +93,7 @@ const products = [
         <a class="pillar" href={p.href}>
           {p.badge && <span class="pillar__badge">{p.badge}</span>}
           <div class="pillar__media">
-            <img src={p.img} alt="" loading="lazy" />
+            <Img src={p.img} alt="" width={320} loading="lazy" />
           </div>
           <div class="pillar__body">
             <span class="pillar__tag">{p.tag}</span>

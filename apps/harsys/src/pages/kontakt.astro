@@ -13,6 +13,7 @@ import Text from '@piano/ui/components/Text.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
+import Img from '@piano/ui/components/Img.astro';
 import { harsysNav, harsysCta, harsysFooter } from '../config/nav';
 
 const offices = [
@@ -46,7 +47,8 @@ const leadProofs = [
         lead="Naši lidé čekají na vaše zavolání. Ozvěte se nám - poradíme s výběrem, předvedením i instalací pokladního systému Harsys.">
     <Heading slot="title" as="h1" size="display" color="on-dark">Spojte se s <span class="accent">ABX software</span></Heading>
     <figure slot="media" class="hero-pic">
-      <img src="/images/sidlo-karlovy-vary.webp" alt="Sídlo společnosti ABX software v Karlových Varech" width="760" height="783" loading="eager" decoding="async" />
+      <Img src="/images/sidlo-karlovy-vary.webp" alt="Sídlo společnosti ABX software v Karlových Varech"
+           width={503} sizes="(min-width: 881px) 503px, 100vw" loading="eager" fetchpriority="high" />
     </figure>
   </Hero>
 

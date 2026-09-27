@@ -7,6 +7,7 @@ import Base from '../../layouts/Base.astro';
 import Heading from '@piano/ui/components/Heading.astro';
 import Text from '@piano/ui/components/Text.astro';
 import Button from '@piano/ui/components/Button.astro';
+import Img from '@piano/ui/components/Img.astro';
 import { locPath } from '../../i18n';
 ---
 
@@ -18,8 +19,8 @@ import { locPath } from '../../i18n';
 
   <section class="nf">
     <div class="nf__inner">
-      <img class="nf__img" src="/images/404-piano.webp"
-           alt="Broken piano" width="885" height="851" loading="eager" />
+      <Img class="nf__img" src="/images/404-piano.webp"
+           alt="Broken piano" width={333} height={320} sizes="(min-width: 561px) 333px, 240px" loading="eager" />
 
       <Heading as="h1" size="display" class="nf__title">Something's <em>out of tune</em></Heading>
 

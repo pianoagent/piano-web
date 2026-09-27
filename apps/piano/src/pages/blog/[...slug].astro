@@ -2,10 +2,12 @@
 /**
  * Blog - detail článku (piano.cz/blog/<slug>).
  */
-import { getCollection, render } from 'astro:content';
+import { getCollection } from 'astro:content';
+import { getImage } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
 import ArticleDetail from '@piano/ui/components/ArticleDetail.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
+import { findImage, optimizeHtmlImages } from '@piano/ui/lib/images';
 import { slugForCategory } from '../../blog-categories';
 
 export async function getStaticPaths() {
@@ -14,7 +16,8 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
-const { Content } = await render(post);
+// Article body width: matches ArticleDetail's .prose { max-width: 720px }
+const content = await optimizeHtmlImages(post.rendered?.html ?? '', 720);
 const fmtDate = (d: Date) => d.toLocaleDateString('cs-CZ', { day: 'numeric', month: 'long', year: 'numeric' });
 
 const primaryCat = post.data.categories?.[0];
@@ -26,18 +29,23 @@ const crumbs = [
   { label: post.data.title },
 ];
 
+// og:image / JSON-LD need an absolute URL; getImage produces an optimized JPG, unlike the plain <img> path.
+const blogImage = post.data.image ? findImage(post.data.image) : undefined;
+const ogImage = blogImage ? await getImage({ src: blogImage, width: 1200, format: 'jpg' }) : undefined;
+const ogImageUrl = ogImage ? new URL(ogImage.src, Astro.site).href : undefined;
+
 const articleSchema = {
   '@context': 'https://schema.org',
   '@type': 'Article',
   headline: post.data.title,
   datePublished: post.data.pubDate.toISOString(),
   ...(post.data.description ? { description: post.data.description } : {}),
-  ...(post.data.image ? { image: `https://piano.cz${post.data.image}` } : {}),
+  ...(ogImageUrl ? { image: ogImageUrl } : {}),
   author: { '@type': 'Organization', name: 'Piano Solutions' },
 };
 ---
 
-<Base title={post.data.seoTitle ?? `${post.data.title} | Piano blog`} description={post.data.description} type="article" image={post.data.image} schema={articleSchema}>
+<Base title={post.data.seoTitle ?? `${post.data.title} | Piano blog`} description={post.data.description} type="article" image={ogImageUrl} schema={articleSchema}>
   <ArticleDetail
     title={post.data.title}
     description={post.data.description}
@@ -47,7 +55,7 @@ const articleSchema = {
     categoryHref={catSlug ? `/blog/kategorie/${catSlug}` : undefined}
     cta={{ label: 'Prozkoumat nástroje Piano', href: '/#ekosystem' }}>
     <Breadcrumb slot="breadcrumb" items={crumbs} />
-    <Content />
+    <Fragment set:html={content} />
   </ArticleDetail>
 </Base>
 

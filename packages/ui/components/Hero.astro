@@ -19,6 +19,7 @@ import Section from './Section.astro';
 import Heading from './Heading.astro';
 import Text from './Text.astro';
 import Icon from './Icon.astro';
+import Img from './Img.astro';
 
 interface HeroSlide {
   eyebrow?: string;
@@ -183,9 +184,10 @@ const rv = (delay?: 'd1' | 'd2') => ['reveal', from, delay && `reveal--${delay}`
         {useSlides ? (
           <div class="hero__rot hero__media-rot">
             {slides.map((s, i) => s.image && (
-              <img class={`hero__slide${i === 0 ? ' is-active' : ''}`} data-hero-mslide={i}
+              <Img class={`hero__slide${i === 0 ? ' is-active' : ''}`} data-hero-mslide={i}
                    src={s.image} alt={s.imageAlt ?? ''}
-                   width={s.imageWidth ?? 1100} height={s.imageHeight ?? 733}
+                   width={560} height={Math.round(560 * (s.imageHeight ?? 733) / (s.imageWidth ?? 1100))}
+                   sizes="(min-width: 881px) 560px, 100vw"
                    loading={i === 0 ? 'eager' : 'lazy'} fetchpriority={i === 0 ? 'high' : undefined} />
             ))}
           </div>
@@ -332,7 +334,8 @@ const rv = (delay?: 'd1' | 'd2') => ['reveal', from, delay && `reveal--${delay}`
 
   /* Rotace (carousel): slidy se stackují přes sebe a prolínají */
   .hero__rot { display: grid; }
-  .hero__rot > .hero__slide { grid-area: 1 / 1; }
+  .hero__rot > .hero__slide,
+  .hero__media-rot > :global(picture) { grid-area: 1 / 1; }
   .hero__slide {
     opacity: 0;
     visibility: hidden;
@@ -345,7 +348,7 @@ const rv = (delay?: 'd1' | 'd2') => ['reveal', from, delay && `reveal--${delay}`
   .hero__slide :global(.heading--display) { font-size: clamp(30px, 3.6vw, 46px); }
   /* Média v carouselu: srovnaná na stejnou výšku a vystředěná */
   .hero__media-rot { align-items: center; justify-items: center; }
-  .hero__media-rot > img { width: auto; height: auto; max-width: 100%; max-height: 460px; }
+  .hero__media-rot :global(img) { display: block; width: auto; height: auto; max-width: 100%; max-height: 460px; }
 
   /* Tečky */
   .hero__dots { display: flex; gap: 0; margin-top: var(--space-6); }

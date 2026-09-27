@@ -10,6 +10,7 @@ import Text from '@piano/ui/components/Text.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import { pecostaLeadProofs } from '../config/leadProofs';
+import Img from '@piano/ui/components/Img.astro';
 
 const contacts = [
   { icon: 'lucide:mail', label: 'E-mail', value: 'pecosta@pecosta.cz', href: 'mailto:pecosta@pecosta.cz' },
@@ -26,7 +27,7 @@ const contacts = [
           lead="Ozvěte se nám, nebo nechte kontakt a spojíme se s vámi. Začínáme vždy nezávaznou analýzou úspor zdarma.">
       <Heading slot="title" as="h1" size="display">Pojďme <em>počítat úspory</em></Heading>
       <figure slot="media" class="hero-pic">
-        <img src="/images/tym.webp" alt="Tým Pecosta" width="960" height="638" loading="eager" decoding="async" />
+        <Img src="/images/tym.webp" alt="Tým Pecosta" width={880} sizes="(min-width: 881px) 560px, 100vw" loading="eager" decoding="async" />
       </figure>
     </Hero>
 

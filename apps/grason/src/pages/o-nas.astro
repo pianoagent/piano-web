@@ -12,6 +12,7 @@ import Heading from '@piano/ui/components/Heading.astro';
 import Text from '@piano/ui/components/Text.astro';
 import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
+import Img from '@piano/ui/components/Img.astro';
 import { grasonNav, grasonCta, grasonFooter, grasonLogin } from '../config/nav';
 
 const values = ['Spolehlivost', 'Respekt', 'Slušnost', 'Důvěryhodnost', 'Férovost'];
@@ -42,7 +43,8 @@ const team = [
         lead="Grason jsme zakládali s vizí dostupné flexibilní práce pro všechny, kteří hledají v pracovním životě svobodu i jistotu. Vytvořili jsme místo, které pomáhá lidem pružně pracovat a podnikům obsazovat směny podle aktuální potřeby.">
     <Heading slot="title" as="h1" size="display" color="on-dark" align="center">Tvoříme svět, kde lidé mohou pracovat <span class="accent">kdykoliv a kdekoliv chtějí</span></Heading>
     <figure slot="media" class="hero-pic">
-      <img src="/images/o-nas-hero.webp" alt="Ilustrace platformy Grason pro hledání personálu" width="900" height="638" loading="eager" decoding="async" />
+      <Img src="/images/o-nas-hero.webp" alt="Ilustrace platformy Grason pro hledání personálu"
+           width={560} sizes="(min-width: 881px) 560px, 100vw" loading="eager" fetchpriority="high" decoding="async" />
     </figure>
   </Hero>
 
@@ -90,7 +92,7 @@ const team = [
       {team.map((m) => (
         <li class="member">
           {m.photo
-            ? <img class={`member__avatar member__avatar--photo member__avatar--${m.color}`} src={m.photo} alt="" width="256" height="256" loading="lazy" />
+            ? <Img class={`member__avatar member__avatar--photo member__avatar--${m.color}`} src={m.photo} alt="" width={96} sizes="96px" loading="lazy" />
             : <span class={`member__avatar member__avatar--${m.color}`} aria-hidden="true">{m.initials}</span>}
           <strong class="member__name">{m.name}</strong>
           <span class="member__role">{m.position}</span>
@@ -142,7 +144,8 @@ const team = [
   .member__avatar--yellow { background: var(--member-grad-yellow); color: var(--color-text-on-yellow); }
   /* U fotky zůstává barevný gradient jako prstenec kolem, aby si tým udržel
      barevné kódování i po výměně iniciál za portréty. */
-  .member__avatar--photo { object-fit: cover; padding: 3px; }
+  /* display: block: bez toho <picture> obalující Img nechá pod fotkou mezeru na descender řádku. */
+  .member__avatar--photo { object-fit: cover; padding: 3px; display: block; }
   .member__name { font-size: var(--font-size-lead); font-weight: var(--font-weight-bold); color: var(--color-secondary); }
   .member__role { font-size: var(--font-size-small); color: var(--color-text-muted); }
 

@@ -15,6 +15,7 @@ import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
+import Img from '@piano/ui/components/Img.astro';
 import { savarinNav, savarinCta } from '../config/nav';
 import { savarinLeadProofs } from '../config/leadProofs';
 
@@ -68,7 +69,7 @@ const schema = {
       <Button href="/pokladni-komponenty" variant="secondary" onDark>Vhodná zařízení</Button>
     </Fragment>
     <figure slot="media" class="hero-pic">
-      <img src="/images/mobilni-hlavni.webp" alt="Mobilní číšník Savarin na telefonu s otevřenými účty" width="384" height="683" loading="eager" decoding="async" />
+      <Img src="/images/mobilni-hlavni.webp" alt="Mobilní číšník Savarin na telefonu s otevřenými účty" width={540} height={683} sizes="(min-width: 881px) 540px, 100vw" loading="eager" fetchpriority="high" decoding="async" />
     </figure>
   </Hero>
 

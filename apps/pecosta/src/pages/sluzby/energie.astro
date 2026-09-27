@@ -14,6 +14,7 @@ import LeadForm from '@piano/ui/components/LeadForm.astro';
 import StatsBand from '../../components/StatsBand.astro';
 import Faq from '@piano/ui/components/Faq.astro';
 import { pecostaLeadProofs } from '../../config/leadProofs';
+import Img from '@piano/ui/components/Img.astro';
 
 const features = [
   'Sdružení poptávky stovek provozů', 'Úspora až 25 % na energiích',
@@ -50,7 +51,7 @@ const energyStats = [
         <Button href="/jak-to-funguje" variant="secondary">Jak to funguje</Button>
       </Fragment>
       <figure slot="media" class="hero-pic">
-        <img src="/images/sluzby-energie.webp" alt="Šéfkuchař v restauraci, které Pecosta zajišťuje výhodnější energie" width="960" height="640" loading="eager" decoding="async" />
+        <Img src="/images/sluzby-energie.webp" alt="Šéfkuchař v restauraci, které Pecosta zajišťuje výhodnější energie" width={880} sizes="(min-width: 881px) 560px, 100vw" loading="eager" decoding="async" />
       </figure>
     </Hero>
 
