@@ -592,10 +592,10 @@ const faqSchema = {
 
 <script>
   // Odber novinek: odeslani pres fetch (progressive enhancement)
-  document.querySelectorAll('[data-subscribe]').forEach((subForm) => {
-    const subBtn = subForm.querySelector('[data-sub-submit]');
-    const subOk = subForm.querySelector('[data-sub-ok]');
-    const subErr = subForm.querySelector('[data-sub-err]');
+  document.querySelectorAll<HTMLFormElement>('[data-subscribe]').forEach((subForm) => {
+    const subBtn = subForm.querySelector<HTMLButtonElement>('[data-sub-submit]');
+    const subOk = subForm.querySelector<HTMLElement>('[data-sub-ok]');
+    const subErr = subForm.querySelector<HTMLElement>('[data-sub-err]');
 
     subForm.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -603,10 +603,10 @@ const faqSchema = {
       if (subErr) subErr.hidden = true;
       if (!subForm.checkValidity()) { subForm.reportValidity(); return; }
 
-      const pageField = subForm.querySelector('input[name="page"]');
+      const pageField = subForm.querySelector<HTMLInputElement>('input[name="page"]');
       if (pageField) pageField.value = window.location.href;
 
-      const hp = subForm.querySelector('input[name="website"]');
+      const hp = subForm.querySelector<HTMLInputElement>('input[name="website"]');
       if (hp && hp.value) { subForm.reset(); if (subOk) subOk.hidden = false; return; }
 
       const original = subBtn ? subBtn.textContent : '';
