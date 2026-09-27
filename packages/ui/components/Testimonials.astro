@@ -5,7 +5,7 @@
  * v theme.css daného webu lze definovat --testimonial-grad-1/2/3;
  * bez nich se použije gradient z --color-primary → --color-secondary.
  *
- *   items: [{ quote, author, role, initials?, headline?, michelin?, photo? }]
+ *   items: [{ quote, author, role?, initials?, headline?, michelin?, photo? }]
  *   title, lead, eyebrow, background, id, decor, hlavička sekce
  *
  *   attribution: "top" (default) podpis a avatar nad citátem
@@ -20,7 +20,7 @@ import Text from './Text.astro';
 import Icon from './Icon.astro';
 import Img from './Img.astro';
 
-interface Item { quote: string; author: string; role: string; initials?: string; headline?: string; michelin?: boolean; photo?: string; }
+interface Item { quote: string; author: string; role?: string; initials?: string; headline?: string; michelin?: boolean; photo?: string; }
 interface Props {
   items: Item[];
   title?: string;

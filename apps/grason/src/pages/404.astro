@@ -1,0 +1,63 @@
+---
+/**
+ * 404: stránka nenalezena. Statický build vygeneruje dist/404.html,
+ * Cloudflare Pages ji servíruje sám (a vypne tím SPA fallback na homepage).
+ * Staré krátké odkazy grason.cz/f/<slug> mají libovolný slug, takže je nejde
+ * vygenerovat jako redirect v astro.config.mjs: pošle je dál skript níže.
+ */
+import Base from '../layouts/Base.astro';
+import Header from '@piano/ui/components/Header.astro';
+import Footer from '@piano/ui/components/Footer.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import { grasonNav, grasonCta, grasonFooter, grasonLogin } from '../config/nav';
+---
+
+<Base title="Stránka nenalezena | Grason"
+      description="Tuto stránku se nepodařilo najít. Vraťte se na hlavní stránku Grasonu."
+      noindex>
+  <script is:inline>
+    if (location.pathname.indexOf('/f/') === 0) location.replace('https://www.grsn.cz' + location.pathname);
+  </script>
+  <Header brand="Grason" logoSrc="/logos/grason_logo.svg" logoHeight="28px" homeHref="/" nav={grasonNav} cta={grasonCta} login={grasonLogin} />
+
+  <main class="nf">
+    <div class="nf__inner">
+      <Text size="label" color="default" align="center">Chyba 404</Text>
+      <Heading as="h1" size="display" align="center" class="nf__title">Tahle směna <span class="accent">není obsazená</span></Heading>
+
+      <Text size="lead" color="muted" align="center" balance class="nf__text">
+        Stránku, kterou hledáte, jsme nenašli. Možná se přesunula, nebo v odkazu je překlep.
+      </Text>
+
+      <div class="nf__actions">
+        <Button href="/">Pro firmy</Button>
+        <Button href="/pro-brigadniky/" variant="secondary">Pro brigádníky</Button>
+      </div>
+    </div>
+  </main>
+
+  <Footer {...grasonFooter} />
+</Base>
+
+<style>
+  .nf {
+    display: grid;
+    place-items: center;
+    padding: clamp(72px, 11vh, 140px) var(--space-4);
+    min-height: 60vh;
+  }
+  .nf__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 640px;
+  }
+  .nf__title { margin-top: var(--space-3); }
+  .nf__text { margin-top: var(--space-4); max-width: 560px; }
+  .nf__actions {
+    margin-top: var(--space-7);
+    display: flex; flex-wrap: wrap; gap: var(--space-3); justify-content: center;
+  }
+</style>
