@@ -94,7 +94,7 @@ const refLogos = [
 
 <Base title="Personalista pro váš podnik | Grason"
       description="Grason je ekosystém pro řízení personálu v gastru: brigádníci na poslední chvíli, plánování směn, digitální píchačky a podklady pro mzdy.">
-  <Header brand="Grason" logoSrc="/logos/grason_logo.svg" logoHeight="28px" homeHref="/" nav={grasonNav} cta={grasonCta} login={grasonLogin} />
+  <Header brand="Grason" logoSrc="/logos/grason_by_piano.svg" logoHeight="40px" homeHref="/" nav={grasonNav} cta={grasonCta} login={grasonLogin} />
 
   <main>
 
@@ -216,7 +216,7 @@ const refLogos = [
   }
   .pillar { color: inherit; text-decoration: none; }
   /* Per-produktové odstíny karet */
-  .pillar--flexi { --tone-fill: #F24D83; --tone-ink: #D63A70; }
+  .pillar--flexi { --tone-fill: #3CC1C8; --tone-ink: #2A9CA2; }
   .pillar--plan  { --tone-fill: #FAD531; --tone-ink: #8A6D00; }
   .pillar--jobs  { --tone-fill: #343160; --tone-ink: #343160; }
   .pillar:hover { border-color: var(--tone-fill, var(--color-primary)); box-shadow: var(--shadow-md); }
@@ -233,7 +233,9 @@ const refLogos = [
     box-shadow: 0 4px 12px rgba(32, 29, 61, 0.18);
   }
   .pillar__badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; opacity: 0.9; }
-  .pillar--plan .pillar__badge { color: var(--color-secondary); }  /* žlutá → tmavě modrý text */
+  /* Světlé výplně (Flexi tyrkys, Plan žlutá) → tmavě modrý text */
+  .pillar--flexi .pillar__badge,
+  .pillar--plan .pillar__badge { color: var(--color-secondary); }
   .pillar__body { flex: 1; padding: var(--space-6); display: flex; flex-direction: column; gap: var(--space-3); }
   .pillar__tag {
     align-self: flex-start; font-size: var(--font-size-caption); font-weight: var(--font-weight-semibold);
