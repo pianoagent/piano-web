@@ -3,8 +3,8 @@
  * PricingTable: SDÍLENÁ srovnávací tabulka ceníku.
  * Varianty ve sloupcích, funkce v řádcích, jeden sloupec může být zvýrazněný.
  *
- * Vzniklo sloučením dvou ručních tabulek Grasonu: .ptable na /grasonflexi
- * (s přepínačem délky předplatného) a .jtable na /grasonjobs (bez něj).
+ * Vzniklo sloučením dvou ručních tabulek Grasonu: .ptable na /flexi
+ * (s přepínačem délky předplatného) a .jtable na /jobs (bez něj).
  * Struktura byla shodná, lišil se jen prefix tříd a ten přepínač.
  *
  * POZOR, tohle NENÍ komponenta pro každou srovnávací tabulku. Septim /index má
@@ -54,7 +54,7 @@ interface Props {
   lead?: string;
   footnote?: string;
   /* Když je vyplněné, ceny se nevykreslí v hlavičce, ale jako spodní řádek
-     s tímhle popiskem (Grason /grasonjobs to má jako „Cena bez DPH"). */
+     s tímhle popiskem (Grason /jobs to má jako „Cena bez DPH"). */
   priceRow?: string;
   background?: 'default' | 'alt';
   space?: 'sm' | 'md' | 'lg';
@@ -184,7 +184,7 @@ const showPriceInHead = !priceRow;
     </table>
   </div>
 
-  {/* Obsah pod tabulkou: doplňkový ceník, poznámky, CTA. Grason /grasonjobs
+  {/* Obsah pod tabulkou: doplňkový ceník, poznámky, CTA. Grason /jobs
       má pod tabulkou seznam příplatků a vlastní CTA. */}
   <slot />
 

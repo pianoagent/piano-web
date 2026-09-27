@@ -1,0 +1,170 @@
+---
+/**
+ * Nabídky zaměstnání: výpis inzerátů GrasonJobs (dříve jobs.grason.cz).
+ * Inzeráty se načítají v prohlížeči z API, viz src/lib/jobs.ts.
+ */
+import Base from '../../layouts/Base.astro';
+import Header from '@piano/ui/components/Header.astro';
+import Footer from '@piano/ui/components/Footer.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Select from '../../components/Select.astro';
+import '../../styles/skeleton.css';
+import { grasonNav, grasonCta, grasonFooter, grasonLogin } from '../../config/nav';
+
+/* Město = okruh 50 km kolem středu, stejně jako na jobs.grason.cz. */
+const cities = [
+  { name: 'Praha', lat: 50.06495, lon: 14.46561 },
+  { name: 'Brno', lat: 49.20481, lon: 16.57791 },
+  { name: 'Ostrava', lat: 49.83464, lon: 18.28204 },
+  { name: 'Plzeň', lat: 49.74778, lon: 13.37834 },
+  { name: 'Liberec', lat: 50.76999, lon: 15.05844 },
+  { name: 'Olomouc', lat: 49.59386, lon: 17.25087 },
+  { name: 'Ústí nad Labem', lat: 50.66048, lon: 14.04069 },
+  { name: 'Hradec Králové', lat: 50.20922, lon: 15.83276 },
+  { name: 'Pardubice', lat: 50.0378, lon: 15.77729 },
+  { name: 'České Budějovice', lat: 48.97446, lon: 14.47434 },
+  { name: 'Jihlava', lat: 49.3961, lon: 15.59124 },
+  { name: 'Karlovy Vary', lat: 50.23393, lon: 12.86044 },
+];
+---
+
+<Base title="Nabídky zaměstnání v gastru | Grason"
+      description="Aktuální nabídky stálé práce v restauracích, hotelech a kavárnách po celé ČR. Odpovězte na inzerát přímo z webu.">
+  <Header brand="Grason" logoSrc="/logos/grason_logo.svg" logoHeight="28px" homeHref="/" nav={grasonNav} cta={grasonCta} login={grasonLogin} />
+
+  <main>
+    <Section background="alt" space="md" container="narrow">
+      <Text size="label" color="accent">GrasonJobs</Text>
+      <Heading as="h1" size="h1">Nabídky zaměstnání</Heading>
+      <Text size="lead" color="muted" class="jl__lead">Stálé pozice v gastru od podniků, které s Grasonem pracují.</Text>
+
+      <div class="jl__filters">
+        <div class="jl__filter">
+          <span class="jl__filter-label">Město</span>
+          <Select label="Město" data-filter-city>
+            <option value="">Všechna města</option>
+            {cities.map((city) => <option value={`${city.lat},${city.lon}`}>{city.name}</option>)}
+          </Select>
+        </div>
+        <div class="jl__filter">
+          <span class="jl__filter-label">Pozice</span>
+          <Select label="Pozice" data-filter-category>
+            <option value="">Všechny pozice</option>
+          </Select>
+        </div>
+      </div>
+    </Section>
+
+    <Section background="default" space="lg" container="narrow">
+      <p class="jl__status" data-status hidden></p>
+      <ul class="jl__list" aria-busy="true" data-list>
+        {[1, 2, 3, 4].map(() => (
+          <li class="jl__link jl__link--skel" aria-hidden="true">
+            <span class="jl__body">
+              <span class="skel skel--line" style="width: 70%; height: 1.2em"></span>
+              <span class="skel skel--line" style="width: 45%"></span>
+              <span class="skel skel--line" style="width: 35%"></span>
+            </span>
+            <span class="skel skel--round jl__avatar"></span>
+          </li>
+        ))}
+      </ul>
+      <noscript><p class="jl__status">Pro zobrazení inzerátů zapněte JavaScript.</p></noscript>
+    </Section>
+
+    <Section background="invert" space="md" container="narrow">
+      <div class="jl__cta">
+        <Heading as="h2" size="h3" color="on-dark">Hledáte kolegu do týmu?</Heading>
+        <Button href="/jobs/">Chci inzerovat</Button>
+      </div>
+    </Section>
+  </main>
+
+  <Footer {...grasonFooter} />
+</Base>
+
+<script>
+  import { api, adTitle, adSalary, isExpired, escapeHtml, JOBS_PATH, type Ad } from '../../lib/jobs';
+
+  const RADIUS_KM = 50;
+  const list = document.querySelector<HTMLUListElement>('[data-list]')!;
+  const status = document.querySelector<HTMLParagraphElement>('[data-status]')!;
+  const citySelect = document.querySelector<HTMLSelectElement>('[data-filter-city]')!;
+  const categorySelect = document.querySelector<HTMLSelectElement>('[data-filter-category]')!;
+  let ads: Ad[] = [];
+
+  function distanceKm(lat1: number, lon1: number, lat2: number, lon2: number): number {
+    const rad = Math.PI / 180;
+    const a = Math.sin((lat2 - lat1) * rad / 2) ** 2
+      + Math.cos(lat1 * rad) * Math.cos(lat2 * rad) * Math.sin((lon2 - lon1) * rad / 2) ** 2;
+    return 12742 * Math.asin(Math.sqrt(a));
+  }
+
+  function render(): void {
+    const [cityLat, cityLon] = citySelect.value.split(',').map(Number);
+    const categoryId = Number(categorySelect.value);
+    const filtered = ads.filter((ad) =>
+      (!citySelect.value || distanceKm(ad.business.address.latitude, ad.business.address.longitude, cityLat, cityLon) <= RADIUS_KM)
+      && (!categoryId || ad.category.id === categoryId));
+
+    list.removeAttribute('aria-busy');
+    status.hidden = filtered.length > 0;
+    status.textContent = 'Pro vybraný filtr teď nejsou žádné inzeráty. Zkuste to prosím později.';
+    list.innerHTML = filtered.map((ad) => `
+      <li class="jl__item">
+        <a class="jl__link" href="${JOBS_PATH}${encodeURI(ad.slug)}">
+          <span class="jl__body">
+            <span class="jl__title">${escapeHtml(adTitle(ad))}</span>
+            <span class="jl__meta">${escapeHtml(ad.business.address.name)}${ad.business.rating ? ` · ★ ${ad.business.rating}` : ''}</span>
+            <span class="jl__meta">${escapeHtml(ad.type.name)} · ${escapeHtml(adSalary(ad))}</span>
+          </span>
+          ${ad.business.avatar ? `<img class="jl__avatar" src="${escapeHtml(ad.business.avatar)}" alt="" width="64" height="64" loading="lazy">` : ''}
+        </a>
+      </li>`).join('');
+  }
+
+  api<Ad[]>('employments')
+    .then((data) => {
+      ads = data.filter((ad) => !isExpired(ad));
+      const categories = new Map(ads.map((ad) => [ad.category.id, ad.category.name]));
+      categorySelect.insertAdjacentHTML('beforeend', [...categories]
+        .sort((a, b) => a[1].localeCompare(b[1], 'cs'))
+        .map(([id, name]) => `<option value="${id}">${escapeHtml(name)}</option>`).join(''));
+      render();
+    })
+    .catch(() => {
+      list.replaceChildren();
+      status.textContent = 'Inzeráty se nepodařilo načíst. Zkuste to prosím později.';
+      status.hidden = false;
+    });
+
+  citySelect.addEventListener('change', render);
+  categorySelect.addEventListener('change', render);
+</script>
+
+<style>
+  .jl__lead { margin-top: var(--space-3); }
+  .jl__filters { display: flex; flex-wrap: wrap; gap: var(--space-4); margin-top: var(--space-6); }
+  .jl__filter { display: flex; flex-direction: column; gap: var(--space-2); flex: 1 1 220px; }
+  .jl__filter-label { font-size: var(--font-size-small); font-weight: var(--font-weight-medium); }
+  .jl__status { color: var(--color-text-muted); text-align: center; }
+
+  .jl__list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-3); }
+  :global(.jl__link) {
+    display: flex; align-items: center; gap: var(--space-4);
+    padding: var(--space-5); border: 1px solid var(--color-border); border-radius: var(--radius-md);
+    background: var(--color-bg); color: inherit; text-decoration: none;
+    transition: border-color var(--duration-fast) var(--easing), box-shadow var(--duration-fast) var(--easing);
+  }
+  .jl__link--skel { pointer-events: none; }
+  :global(.jl__link:hover) { border-color: var(--color-primary); box-shadow: var(--shadow-md); }
+  :global(.jl__body) { display: flex; flex-direction: column; gap: var(--space-1); flex: 1; min-width: 0; }
+  :global(.jl__title) { font-weight: var(--font-weight-semibold); font-size: var(--font-size-lead); color: var(--color-text); }
+  :global(.jl__meta) { font-size: var(--font-size-small); color: var(--color-text-muted); }
+  :global(.jl__avatar) { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+
+  .jl__cta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-4); }
+</style>

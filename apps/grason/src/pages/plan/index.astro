@@ -4,7 +4,7 @@
  * Obsah + vizuály dle mirroru grasonplan.cz (podklady-migrace/grasonplan-mirror).
  * Brand GrasonPlanu: žlutá + tmavě modrá + bílá (page-scoped akcenty).
  */
-import Base from '../layouts/Base.astro';
+import Base from '../../layouts/Base.astro';
 import Header from '@piano/ui/components/Header.astro';
 import StatsBand from '@piano/ui/components/StatsBand.astro';
 import Footer from '@piano/ui/components/Footer.astro';
@@ -16,11 +16,11 @@ import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import Img from '@piano/ui/components/Img.astro';
 import Faq from '@piano/ui/components/Faq.astro';
-import { grasonNav, grasonCta, grasonFooter, grasonLogin, grasonPlanRegister } from '../config/nav';
-import { planFaqs } from '../config/faq';
-import { planQuotes } from '../config/reference';
+import { grasonNav, grasonCta, grasonFooter, grasonLogin, grasonPlanRegister } from '../../config/nav';
+import { planFaqs } from '../../config/faq';
+import { planQuotes } from '../../config/reference';
 import Testimonials from '@piano/ui/components/Testimonials.astro';
-import PersonCard from '../components/PersonCard.astro';
+import PersonCard from '../../components/PersonCard.astro';
 
 const PHONE = '739 877 799';
 
@@ -204,7 +204,7 @@ const moreFeatures = [
     <div class="person-wrap">
       <PersonCard
         name="Kristýna Gottfrídová"
-        role="Customer Success Specialist"
+        role="Customer Success Manager"
         photo="/images/team/kristyna-gottfridova.webp"
         phone={'+420 ' + PHONE}
         email="info@grason.cz" />

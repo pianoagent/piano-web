@@ -18,12 +18,12 @@ export default defineConfig({
     '/plan/pravidla-ochrany-osobnich-udaju': '/plan/gdpr/',
     '/nejcastejsi-dotazy-pracovnici': '/faq-grason/',
     '/nejcastejsi-dotazy-podniky': '/faq-companies/',
-    '/volna-mista': '/kariera/',
+    '/volna-mista': '/nabidky-zamestnani/',
     '/pravidla-souteze': '/pro-brigadniky/',
     '/download': '/stahnout/',
     // Legacy redirects carried over from grason-web config/redirects.js
     '/pro-restaurace': '/pro-firmy/',
-    '/grason-plan': '/grasonplan/',
+    '/grason-plan': '/plan/',
     '/cenik': '/pro-firmy/',
     '/hledam-personal': '/pro-firmy/',
     '/nejcastejsi-dotazy-pro-zamestnavatele': '/faq-companies/',
@@ -38,7 +38,7 @@ export default defineConfig({
     '/p': 'https://www.grsn.cz/p',
   },
   integrations: [
-    sitemap({ filter: (page) => !page.endsWith('/stahnout/') }),
+    sitemap({ filter: (page) => !page.endsWith('/stahnout/') && !page.endsWith('/nabidky-zamestnani/detail/') }),
     icon({ iconDir: 'src/icons' }),
   ],
 });

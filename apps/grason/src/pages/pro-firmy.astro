@@ -1,7 +1,7 @@
 ---
 /**
  * Pro firmy, rozcestník tří produktů + společný ceník.
- * Detaily žijí na dedikovaných stránkách: /grasonflexi, /grasonplan, /grasonjobs.
+ * Detaily žijí na dedikovaných stránkách: /flexi, /plan, /jobs.
  */
 import Base from '../layouts/Base.astro';
 import Header from '@piano/ui/components/Header.astro';
@@ -25,7 +25,7 @@ const products = [
     title: 'Brigádníci na směnu',
     text: 'Vypíšete směnu, ověření brigádníci se přihlásí a vy vyberete. Zaměstnavatelem zůstáváte vy, Grason lidi zprostředkuje a připraví podklady.',
     points: ['5 500 ověřených pracovníků', 'Obsazení směny během minut', 'Podpis DPP i přes appku (příplatek)'],
-    href: '/grasonflexi',
+    href: '/flexi',
   },
   {
     img: '/images/illustration-calendar.webp',
@@ -33,7 +33,7 @@ const products = [
     title: 'Plánování směn vlastního týmu',
     text: 'Vypíšete směny a buď je přidělíte, nebo je necháte přihlásit. K tomu úkoly, mzdové podklady a docházka jako doplňkový modul.',
     points: ['Plán na PC i v mobilu', 'Přidělení i samopřihlášení', 'od 990 Kč/měs, 1. měsíc zdarma'],
-    href: '/grasonplan',
+    href: '/plan',
   },
   {
     img: '/images/for-companies-choose-favourite-workers.webp',
@@ -41,7 +41,7 @@ const products = [
     title: 'Inzerce a nábor stálých míst',
     text: 'Hledáte stálého kolegu? Vystavíte inzerát, my ho zveřejníme v aplikaci i na webu a oslovíme vhodné kandidáty notifikacemi.',
     points: ['Inzerát v appce i na webu (30 dní)', 'Cílené oslovení notifikacemi', 'Balíčky Basic až Gold'],
-    href: '/grasonjobs',
+    href: '/jobs',
   },
 ];
 
@@ -127,7 +127,7 @@ const products = [
           <li><Icon name="lucide:check" size="sm" class="hl-check" />Od základního po prémiový tarif</li>
           <li><Icon name="lucide:check" size="sm" class="hl-check" />Enterprise: neomezené směny + account manager</li>
         </ul>
-        <div class="price__cta"><Button href="/grasonflexi">Více o GrasonFlexi</Button></div>
+        <div class="price__cta"><Button href="/flexi">Více o GrasonFlexi</Button></div>
       </article>
       <article class="price price--featured">
         <span class="price__badge">1. měsíc zdarma</span>
@@ -139,7 +139,7 @@ const products = [
           <li><Icon name="lucide:check" size="sm" class="hl-check" />Úkoly, checklisty, mzdové podklady</li>
           <li><Icon name="lucide:check" size="sm" class="hl-check" />Docházka jako doplněk (+490 Kč/měs)</li>
         </ul>
-        <div class="price__cta"><Button href="/grasonplan">Více o GrasonPlanu</Button></div>
+        <div class="price__cta"><Button href="/plan">Více o GrasonPlanu</Button></div>
       </article>
       <article class="price">
         <span class="price__tag">GrasonJobs</span>
@@ -150,7 +150,7 @@ const products = [
           <li><Icon name="lucide:check" size="sm" class="hl-check" />Automatická propagace inzerátů</li>
           <li><Icon name="lucide:check" size="sm" class="hl-check" />Platíte jen za běžící kampaň</li>
         </ul>
-        <div class="price__cta"><Button href="/grasonjobs">Více o GrasonJobs</Button></div>
+        <div class="price__cta"><Button href="/jobs">Více o GrasonJobs</Button></div>
       </article>
     </div>
   </Section>

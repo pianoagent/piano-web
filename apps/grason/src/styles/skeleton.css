@@ -1,0 +1,19 @@
+/* Skeleton: šedé bloky s přelivem na místě obsahu, který se teprve načítá
+   z API (nabídky zaměstnání). Rozměry dávají bloky samy přes width/height. */
+.skel {
+  display: block;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(90deg, var(--color-neutral-100) 25%, var(--color-neutral-50) 50%, var(--color-neutral-100) 75%);
+  background-size: 200% 100%;
+  animation: skel-shimmer 1.4s ease-in-out infinite;
+}
+.skel--round { border-radius: 50%; }
+.skel--line { height: 0.9em; margin-block: 0.35em; }
+
+@keyframes skel-shimmer {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .skel { animation: none; }
+}

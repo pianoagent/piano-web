@@ -3,7 +3,7 @@
  * GrasonFlexi, dedikovaná produktová stránka (brigádníci na směnu).
  * Obsah z for-companies.vue / page_for-companies_* (cs.json) + grason-context.md.
  */
-import Base from '../layouts/Base.astro';
+import Base from '../../layouts/Base.astro';
 import Header from '@piano/ui/components/Header.astro';
 import PricingTable from '@piano/ui/components/PricingTable.astro';
 import Testimonials from '@piano/ui/components/Testimonials.astro';
@@ -16,9 +16,9 @@ import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import Img from '@piano/ui/components/Img.astro';
 import Faq from '@piano/ui/components/Faq.astro';
-import { flexiQuotes } from '../config/reference';
-import { grasonNav, grasonCta, grasonFooter, grasonLogin, grasonFlexiRegister } from '../config/nav';
-import { flexiFaqs } from '../config/faq';
+import { flexiQuotes } from '../../config/reference';
+import { grasonNav, grasonCta, grasonFooter, grasonLogin, grasonFlexiRegister } from '../../config/nav';
+import { flexiFaqs } from '../../config/faq';
 
 const rows = [
   { img: '/images/for-companies-choose-candidates.webp', title: 'Vybírejte si podle zkušeností a hodnocení', text: 'Vždycky víte, kdo k vám přijde pracovat. Pracovníky vybíráte podle jejich profilů, zkušeností a hodnocení od jiných firem.' },

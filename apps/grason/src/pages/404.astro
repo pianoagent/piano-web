@@ -4,6 +4,9 @@
  * Cloudflare Pages ji servíruje sám (a vypne tím SPA fallback na homepage).
  * Staré krátké odkazy grason.cz/f/<slug> mají libovolný slug, takže je nejde
  * vygenerovat jako redirect v astro.config.mjs: pošle je dál skript níže.
+ * Stejně tak detail inzerátu /nabidky-zamestnani/{ID}-{slug} na hostingu bez
+ * přepisu URL (_redirects, .htaccess): skript otevře stránku detailu a ta si
+ * adresu v prohlížeči vrátí zpět.
  */
 import Base from '../layouts/Base.astro';
 import Header from '@piano/ui/components/Header.astro';
@@ -19,6 +22,9 @@ import { grasonNav, grasonCta, grasonFooter, grasonLogin } from '../config/nav';
       noindex>
   <script is:inline>
     if (location.pathname.indexOf('/f/') === 0) location.replace('https://www.grsn.cz' + location.pathname);
+    if (/^\/nabidky-zamestnani\/\d+(-[^/]*)?\/?$/.test(location.pathname)) {
+      location.replace('/nabidky-zamestnani/detail/?ad=' + encodeURIComponent(location.pathname) + location.hash);
+    }
   </script>
   <Header brand="Grason" logoSrc="/logos/grason_logo.svg" logoHeight="28px" homeHref="/" nav={grasonNav} cta={grasonCta} login={grasonLogin} />
 

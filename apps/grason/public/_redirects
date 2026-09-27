@@ -1,0 +1,3 @@
+# Detail inzerátu /nabidky-zamestnani/{ID}-{slug}: statická stránka detail/
+# si inzerát načte z API podle ID v URL (stejné pravidlo je v .htaccess).
+/nabidky-zamestnani/:ad  /nabidky-zamestnani/detail/  200
