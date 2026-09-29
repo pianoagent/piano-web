@@ -6,6 +6,8 @@ image: "/images/blog/eet-2-0-a-co-z-toho-pro-vas-skutecne-plyne-ocima-lukase-urb
 categories: ["EET", "Legislativa a povinnosti"]
 ---
 
+> **Aktualizace 18. 9. 2026:** Od vydání rozhovoru prošel zákon celým legislativním procesem a 17. září jej podepsal prezident. Zákonný rámec EET 2.0 je tedy schválen; nadále se mohou zpřesňovat praktické metodické a technické postupy.
+
 Lukáš Urban sleduje české gastro z první linie přes dvacet pět let. EET 2.0 nepovažuje za katastrofu, ale netvrdí ani, že se jeho zavedení obejde bez třecích ploch. Co můžou provozovatelé restaurací tentokrát udělat jinak?
 
 Během první vlny EET v roce 2016 sledoval, jak většina malých provozů sáhla po nejlevnějším řešení, jen aby splnila zákon. Místo nástroje pro řízení podniku si pořídily pouhou kalkulačku, kterou vyžadoval finanční úřad. Když EET v roce 2023 skončila, mnozí ji bez váhání vyhodili. Digitalizaci, která jim mohla ušetřit hodiny práce týdně, některé z nich odkládají dodnes.
