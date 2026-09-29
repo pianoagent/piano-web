@@ -33,7 +33,7 @@ const stats = [
 
 // Bento „Prozkoumejte všechny špičkové funkce" (dle mirroru)
 const bento = [
-  { icon: 'lucide:clock', title: 'Docházka', text: 'U každého pracovníka zaznamenáte přesný čas příchodu a odchodu. Volitelný modul s ověřením přes GPS (30–300 m) nebo WiFi.', variant: 'navy' },
+  { icon: 'lucide:clock', title: 'Docházka', text: 'U každého pracovníka zaznamenáte přesný čas příchodu a odchodu. Volitelný modul s ověřením přes GPS (30–300 m) nebo Wi-Fi.', variant: 'navy' },
   { icon: 'lucide:layers', title: 'Více druhů plánování', text: 'Přiřazení směn zaměstnancům, nebo burza směn pro brigádníky.', variant: 'navy' },
   { icon: 'lucide:file-spreadsheet', title: 'Reporty pro účetní', text: 'Vygenerujte report s odpracovanými hodinami pro mzdovou účetní jedním kliknutím. Ihned máte spočítané hodiny v daném období i příplatkových časech.', variant: 'yellow' },
   { icon: 'lucide:trending-up', title: 'Přehled mzdových nákladů', text: 'Mzdové náklady a vytížení zaměstnanců vidíte v reálném čase i pro nadcházející období.', variant: 'wide' },
@@ -45,7 +45,7 @@ const moreFeatures = [
   { icon: 'lucide:message-square', label: 'Chytré notifikace na vše upozorní' },
   { icon: 'lucide:copy', label: 'Šablony směn snadno zkopírujete na další týdny' },
   { icon: 'lucide:construction', label: 'Pohlídá kolizní směny pracovníků' },
-  { icon: 'lucide:building-2', label: 'Sdílení personálu mezi svými podniky' },
+  { icon: 'lucide:building-2', label: 'Sdílení personálu mezi vašimi podniky' },
   { icon: 'lucide:refresh-cw', label: 'Najde náhradu za nemocného kolegu' },
 ];
 ---
@@ -57,7 +57,7 @@ const moreFeatures = [
   <main class="plan">
   <!-- HERO -->
   <Hero eyebrow="GrasonPlan" background="gradient"
-        lead="Vše na jednom místě: naplánujete směny, rozdělíte i zkontrolujete úkoly, schválíte docházku a report pro účetní vygenerujete na dvě kliknutí. Dejte sbohem zmatkům ve WhatsAppech, Messengerech a přečmáraných tabulích.">
+        lead="Vše na jednom místě: naplánujete směny, rozdělíte i zkontrolujete úkoly, schválíte docházku a report pro účetní vygenerujete jedním kliknutím.">
     <Heading slot="title" as="h1" size="display" color="on-dark">Změňte způsob, jak <span class="accent">řídíte svůj tým</span></Heading>
     <Fragment slot="actions">
       <Button href={grasonPlanRegister}>Vyzkoušet zdarma</Button>
@@ -80,7 +80,7 @@ const moreFeatures = [
       <div class="split__text">
         <Heading as="h2" size="h2">Mějte vždy <span class="accent">přehled</span></Heading>
         <Text size="lead" color="muted" balance>
-          Kdo a kdy pracuje vidíte na počítači i v mobilní aplikaci. Dejte sbohem zmatkům ve WhatsAppech, Messengerech a přečmáraných tabulích.
+          Kdo a kdy pracuje, vidíte na počítači i v mobilní aplikaci. Dejte sbohem zmatkům ve WhatsAppech, Messengerech a přečmáraných tabulích.
         </Text>
         <div class="split__cta"><Button href={grasonPlanRegister}>Vyzkoušet zdarma</Button></div>
       </div>
@@ -92,7 +92,7 @@ const moreFeatures = [
     <div class="split split--reverse">
       <figure class="split__media split__media--phone"><Img src="/images/plan-mobil-upozorneni.webp" alt="Upozornění a notifikace v aplikaci GrasonPlan" width={300} sizes="300px" loading="lazy" /></figure>
       <div class="split__text">
-        <Heading as="h2" size="h2">Neztrácejte čas voláním, <span class="accent">kdo má kdy čas</span></Heading>
+        <Heading as="h2" size="h2">Neztrácejte čas obvoláváním, <span class="accent">kdo může kdy přijít</span></Heading>
         <Text size="lead" color="muted" balance>
           Lidé si sami navolí, kdy nemohou pracovat. Chytré notifikace navíc připomenou směnu i najdou náhradníka, když někdo onemocní.
         </Text>
