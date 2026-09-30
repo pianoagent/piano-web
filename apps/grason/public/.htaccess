@@ -1,0 +1,6 @@
+ErrorDocument 404 /404.html
+
+# Detail inzerátu /nabidky-zamestnani/{ID}-{slug}: statická stránka detail/
+# si inzerát načte z API podle ID v URL (stejné pravidlo je v _redirects).
+RewriteEngine On
+RewriteRule ^nabidky-zamestnani/[0-9]+-[^/]*/?$ nabidky-zamestnani/detail/index.html [L]

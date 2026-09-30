@@ -1,0 +1,336 @@
+---
+/**
+ * Detail inzerátu: /nabidky-zamestnani/{ID}-{slug}.
+ * Statická stránka neví, který inzerát zobrazí: hosting na ni přepisuje
+ * všechny cesty /nabidky-zamestnani/* (public/_redirects pro Cloudflare,
+ * public/.htaccess pro Apache) a skript si ID vezme z URL a inzerát načte z API.
+ * Hosting bez přepisu vrátí 404.astro, která sem přesměruje s ?ad=<cesta>.
+ */
+import Base from '../../layouts/Base.astro';
+import Header from '@piano/ui/components/Header.astro';
+import Footer from '@piano/ui/components/Footer.astro';
+import Section from '@piano/ui/components/Section.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Field from '@piano/ui/components/Field.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import Select from '../../components/Select.astro';
+import '../../styles/skeleton.css';
+import { grasonNav, grasonCta, grasonFooter, grasonLogin } from '../../config/nav';
+import { JOBS_PATH } from '../../lib/jobs';
+
+/* Předvolby, které API přijímá (stejné jako na jobs.grason.cz). */
+const dialCodes = [
+  { code: '+420', flag: '🇨🇿', country: 'Česko' },
+  { code: '+421', flag: '🇸🇰', country: 'Slovensko' },
+  { code: '+380', flag: '🇺🇦', country: 'Ukrajina' },
+];
+---
+
+<Base title="Nabídka zaměstnání | Grason"
+      description="Nabídka stálé práce v gastru přes GrasonJobs. Odpovězte na inzerát přímo z webu.">
+  <Header brand="Grason" logoSrc="/logos/grason_logo.svg" logoHeight="28px" homeHref="/" nav={grasonNav} cta={grasonCta} login={grasonLogin} />
+
+  <main>
+    <Section background="default" space="md" container="narrow">
+      <a class="jd__back" href={JOBS_PATH}>← Zpět na nabídky zaměstnání</a>
+
+      <div class="jd jd--skel" aria-busy="true" aria-label="Načítám inzerát" data-skeleton>
+        <span class="skel jd__skel-cover"></span>
+        <div class="jd__head">
+          <span class="skel skel--round jd__skel-avatar"></span>
+          <div class="jd__skel-grow"><span class="skel skel--line" style="width: 80%; height: 1.6em"></span><span class="skel skel--line" style="width: 50%; height: 1.6em"></span></div>
+        </div>
+        <div class="jd__facts"><span class="skel jd__skel-fact"></span><span class="skel jd__skel-fact"></span></div>
+        <div>{[100, 96, 100, 88, 100, 60].map((width) => <span class="skel skel--line" style={`width: ${width}%`}></span>)}</div>
+      </div>
+      <p class="jd__status" data-status hidden></p>
+      <noscript><p class="jd__status">Pro zobrazení inzerátu zapněte JavaScript.</p></noscript>
+
+      <article class="jd" data-ad hidden>
+        <img class="jd__cover" data-cover alt="" hidden />
+
+        <header class="jd__head">
+          <img class="jd__avatar" data-avatar alt="" width="72" height="72" hidden />
+          <Heading as="h1" size="h2"><span data-title></span></Heading>
+        </header>
+
+        <dl class="jd__facts">
+          <div class="jd__fact">
+            <span class="jd__fact-icon"><Icon name="lucide:briefcase" size="sm" /></span>
+            <dt>Typ úvazku</dt><dd data-type></dd>
+          </div>
+          <div class="jd__fact">
+            <span class="jd__fact-icon"><Icon name="lucide:wallet" size="sm" /></span>
+            <dt>Odměna</dt><dd data-salary></dd>
+          </div>
+        </dl>
+
+        <p class="jd__text" data-description></p>
+
+        <div class="jd__actions">
+          <Button href="#odpoved">Odpovědět na inzerát</Button>
+        </div>
+
+        <section class="jd__business">
+          <Heading as="h2" size="h3"><span data-business></span></Heading>
+          <Text color="muted"><span data-address></span></Text>
+          <p class="jd__text" data-bio></p>
+          <a class="jd__map" data-map target="_blank" rel="noopener">
+            <Icon name="lucide:map-pin" size="sm" /><span>Zobrazit na mapě</span>
+          </a>
+        </section>
+
+        <section class="jd__share">
+          <div>
+            <Text size="label">Sdílet inzerát</Text>
+            <Text color="muted" size="small">Znáte někoho, komu by se tahle práce hodila? Pošlete mu ji.</Text>
+          </div>
+          <div class="jd__share-actions">
+            <button type="button" class="jd__pill" data-share hidden><Icon name="lucide:share-2" size="sm" /><span>Sdílet</span></button>
+            <button type="button" class="jd__pill" data-copy>
+              <Icon name="lucide:link" size="sm" /><span data-copy-label>Kopírovat odkaz</span>
+            </button>
+            <a class="jd__pill" data-whatsapp target="_blank" rel="noopener"><Icon name="whatsapp" size="sm" /><span>WhatsApp</span></a>
+            <a class="jd__pill" data-facebook target="_blank" rel="noopener"><Icon name="lucide:facebook" size="sm" /><span>Facebook</span></a>
+          </div>
+        </section>
+      </article>
+    </Section>
+
+    <Section background="alt" space="lg" container="narrow" id="odpoved">
+      <div data-apply hidden>
+        <Heading as="h2" size="h2">Máte zájem? Odpovězte na inzerát</Heading>
+        <form class="jf" data-form novalidate>
+          <div class="jf__row">
+            <Field label="Jméno" name="firstName" autocomplete="given-name" required />
+            <Field label="Příjmení" name="lastName" autocomplete="family-name" required />
+          </div>
+          <div class="jf__phone">
+            <label class="jf__label" for="field-phone">Telefon<span class="jf__req" aria-hidden="true">*</span></label>
+            <div class="jf__control">
+              <Select label="Předvolba" variant="inline" name="countryCode">
+                {dialCodes.map((dial) => (
+                  <option value={dial.code} data-short={`${dial.flag} ${dial.code}`} data-hint={dial.code}>{`${dial.flag} ${dial.country}`}</option>
+                ))}
+              </Select>
+              <input class="jf__input" id="field-phone" name="phone" type="tel" inputmode="numeric" autocomplete="tel-national"
+                     placeholder="123 456 789" required />
+            </div>
+          </div>
+          <Field label="O vás" name="bio" multiline rows={5} required
+                 placeholder="Něco o vás, vaší praxi a zkušenostech, nebo proč by si podnik měl vybrat právě vás." />
+          <label class="jf__photo">
+            <input class="jf__photo-input" name="avatar" type="file" accept="image/*" data-photo />
+            <span class="jf__photo-btn"><Icon name="lucide:camera" size="sm" /><span>Přidat fotku</span></span>
+            <span class="jf__photo-name" data-photo-name>nepovinné</span>
+          </label>
+          <p class="jf__error" data-error hidden></p>
+          <p class="jf__consent">
+            Odesláním formuláře souhlasíte s <a href="/flexi/obchodni-podminky/">obchodními podmínkami</a>
+            a <a href="/flexi/gdpr/">zpracováním osobních údajů</a>.
+          </p>
+          <Button type="submit">Odeslat</Button>
+        </form>
+        <div class="jf__sent" data-sent hidden>
+          <Heading as="h3" size="h3">Odesláno, děkujeme!</Heading>
+          <Text color="muted">Podnik dostal vaši přihlášku. Když projeví zájem, předáme mu na vás kontakt. Když si vás nevybere nebo nezareaguje, dáme vám vědět.</Text>
+        </div>
+      </div>
+    </Section>
+  </main>
+
+  <Footer {...grasonFooter} />
+</Base>
+
+<script>
+  import { api, adTitle, adSalary, isExpired, JOBS_PATH, type Ad } from '../../lib/jobs';
+
+  const $ = <T extends Element = HTMLElement>(selector: string) => document.querySelector<T>(selector)!;
+  const status = $('[data-status]');
+  const path = new URLSearchParams(location.search).get('ad') ?? location.pathname;
+  const id = path.slice(JOBS_PATH.length).match(/^(\d+)/)?.[1];
+
+  function unavailable(): void {
+    $('[data-skeleton]').hidden = true;
+    status.textContent = 'Tento inzerát už není dostupný.';
+    status.hidden = false;
+  }
+
+  function show(ad: Ad): void {
+    const title = adTitle(ad);
+    const url = `${location.origin}${JOBS_PATH}${ad.slug}`;
+    const { latitude, longitude, name: address } = ad.business.address;
+
+    document.title = `${title} | Grason`;
+    if (location.pathname !== `${JOBS_PATH}${ad.slug}` || location.search) history.replaceState(null, '', url + location.hash);
+
+    $('[data-title]').textContent = title;
+    $('[data-type]').textContent = ad.type.name;
+    $('[data-salary]').textContent = adSalary(ad);
+    $('[data-description]').textContent = ad.description;
+    $('[data-business]').textContent = ad.business.name;
+    $('[data-address]').textContent = ad.business.rating ? `${address} · ★ ${ad.business.rating}` : address;
+    $('[data-bio]').textContent = ad.business.bio ?? '';
+    $<HTMLAnchorElement>('[data-map]').href = `https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`;
+    $<HTMLAnchorElement>('[data-whatsapp]').href = `https://wa.me/?text=${encodeURIComponent(`${title} ${url}`)}`;
+    $<HTMLAnchorElement>('[data-facebook]').href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+    $('[data-copy]').addEventListener('click', () => {
+      navigator.clipboard.writeText(url).then(() => { $('[data-copy-label]').textContent = 'Zkopírováno'; });
+    });
+    if (navigator.share) {
+      const share = $('[data-share]');
+      share.hidden = false;
+      share.addEventListener('click', () => navigator.share({ title, url }).catch(() => {}));
+    }
+
+    for (const [selector, src] of [['[data-cover]', ad.cover], ['[data-avatar]', ad.business.avatar]] as const) {
+      if (src) Object.assign($<HTMLImageElement>(selector), { src, hidden: false });
+    }
+
+    $('[data-skeleton]').hidden = true;
+    $('[data-ad]').hidden = false;
+    $('[data-apply]').hidden = false;
+    if (location.hash === '#odpoved') $('#odpoved').scrollIntoView();
+  }
+
+  if (id) {
+    api<Ad>(`employments/${id}`)
+      .then((ad) => (isExpired(ad) ? unavailable() : show(ad)))
+      .catch(unavailable);
+  } else {
+    unavailable();
+  }
+
+  const form = $<HTMLFormElement>('[data-form]');
+  const error = $('[data-error]');
+  const submit = form.querySelector<HTMLButtonElement>('[type="submit"]')!;
+
+  const photoInput = $<HTMLInputElement>('[data-photo]');
+  photoInput.addEventListener('change', () => {
+    $('[data-photo-name]').textContent = photoInput.files?.[0]?.name ?? 'nepovinné';
+  });
+
+  function fail(message: string): void {
+    error.textContent = message;
+    error.hidden = false;
+    submit.disabled = false;
+  }
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const data = new FormData(form);
+    const photo = data.get('avatar') as File;
+    const phone = String(data.get('phone')).replace(/[\s-]/g, '');
+    error.hidden = true;
+    submit.disabled = true;
+    if (!form.checkValidity()) return fail('Vyplňte prosím jméno, příjmení, telefon a něco o sobě.');
+    if (!/^\d{9}$/.test(phone)) return fail('Telefon zadejte jako 9 číslic, předvolbu vyberte vlevo.');
+    try {
+      let avatar: string | undefined;
+      if (photo.size > 0) {
+        const upload = new FormData();
+        upload.append('file', photo);
+        avatar = (await api<{ uuid: string }>('file', { method: 'POST', body: upload })).uuid;
+      }
+      await api(`employments/${id}/apply`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json; charset=utf-8' },
+        body: JSON.stringify({
+          firstName: data.get('firstName'),
+          lastName: data.get('lastName'),
+          countryCode: data.get('countryCode'),
+          phone,
+          bio: data.get('bio'),
+          avatar,
+        }),
+      });
+      form.hidden = true;
+      $('[data-sent]').hidden = false;
+    } catch (exception) {
+      fail((exception as Error).message);
+    }
+  });
+</script>
+
+<style>
+  /* hidden musí vyhrát nad display: flex níže */
+  .jd[hidden], .jf__sent[hidden] { display: none; }
+  .jd__skel-cover { width: 100%; aspect-ratio: 16 / 9; border-radius: var(--radius-md); }
+  .jd__skel-avatar { width: 72px; height: 72px; flex-shrink: 0; }
+  .jd__skel-grow { flex: 1; }
+  .jd__back { display: inline-block; margin-bottom: var(--space-6); color: var(--color-text-accent); }
+  .jd__status { color: var(--color-text-muted); text-align: center; padding-block: var(--space-7); }
+
+  .jd { display: flex; flex-direction: column; gap: var(--space-6); }
+  .jd__cover { width: 100%; border-radius: var(--radius-md); }
+  .jd__head { display: flex; align-items: center; gap: var(--space-4); }
+  .jd__avatar { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+  .jd__facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-3); margin: 0; }
+  .jd__fact {
+    display: grid; grid-template-columns: auto 1fr; column-gap: var(--space-3); align-items: center;
+    padding: var(--space-4) var(--space-5); background: var(--color-bg-alt); border-radius: var(--radius-md);
+  }
+  .jd__fact-icon {
+    grid-row: span 2; display: inline-flex; align-items: center; justify-content: center;
+    width: 40px; height: 40px; border-radius: 50%; background: var(--color-bg); color: var(--color-text-accent);
+  }
+  .jd__fact dt { font-size: var(--font-size-small); color: var(--color-text-muted); }
+  .jd__fact dd { margin: 0; font-size: var(--font-size-lead); font-weight: var(--font-weight-semibold); color: var(--color-text); }
+  .jd__skel-fact { height: 76px; border-radius: var(--radius-md); }
+  .jd__text { white-space: pre-line; margin: 0; }
+  .jd__text:empty { display: none; }
+  .jd__business { display: flex; flex-direction: column; gap: var(--space-3); padding-top: var(--space-6); border-top: 1px solid var(--color-border); }
+  .jd__map { display: inline-flex; align-items: center; gap: var(--space-2); align-self: flex-start; color: var(--color-text-accent); font-weight: var(--font-weight-semibold); }
+  .jd__share {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-4);
+    padding: var(--space-5) var(--space-6); background: var(--color-bg-alt); border-radius: var(--radius-lg);
+  }
+  .jd__share-actions { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+  .jd__pill {
+    display: inline-flex; align-items: center; gap: var(--space-2); min-height: 40px; padding: 0 var(--space-4);
+    font: inherit; font-size: var(--font-size-small); font-weight: var(--font-weight-semibold); color: var(--color-text);
+    background: var(--color-bg); border: 1.5px solid var(--color-border); border-radius: var(--btn-radius, 0);
+    text-decoration: none; cursor: pointer; transition: border-color var(--duration-fast) var(--easing);
+  }
+  .jd__pill[hidden] { display: none; }
+  /* Neue Plak má text v řádku posazený níž, bez oříznutí na verzálky by
+     nebyl svisle ve středu s ikonou. */
+  .jd__pill > span, .jd__map > span, .jf__photo-btn > span { text-box: trim-both cap alphabetic; }
+  @supports not (text-box: trim-both cap alphabetic) {
+    .jd__pill > span, .jd__map > span, .jf__photo-btn > span { transform: translateY(-0.11em); }
+  }
+  .jd__pill:hover { border-color: var(--color-primary); }
+
+  .jf { display: flex; flex-direction: column; gap: var(--space-5); margin-top: var(--space-6); }
+  .jf__row { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-5); }
+  .jf__phone { display: flex; flex-direction: column; gap: var(--space-2); }
+  .jf__label { font-size: var(--font-size-small); font-weight: var(--font-weight-medium); color: var(--color-text); }
+  .jf__req { color: var(--color-text-accent); margin-left: 2px; }
+  .jf__control {
+    position: relative; display: flex; align-items: center;
+    background: var(--color-bg); border: 1.5px solid var(--color-border); border-radius: var(--field-radius, 0);
+    transition: border-color var(--duration-fast) var(--easing), box-shadow var(--duration-fast) var(--easing);
+  }
+  .jf__control:focus-within { border-color: var(--color-primary); box-shadow: var(--shadow-focus); }
+  .jf__input {
+    flex: 1; min-width: 0; min-height: 44px; padding: var(--space-3) var(--space-4);
+    font: inherit; font-size: 16px; color: var(--color-text); background: transparent; border: 0; outline: none;
+  }
+  .jf__input::placeholder { color: var(--color-neutral-300); }
+  .jf__photo { display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap; cursor: pointer; }
+  .jf__photo-input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+  .jf__photo-btn {
+    display: inline-flex; align-items: center; gap: var(--space-2);
+    padding: var(--space-2) var(--space-5); min-height: 44px;
+    border: 1.5px solid var(--color-border-strong); border-radius: var(--btn-radius, 0);
+    font-size: var(--font-size-small); font-weight: var(--font-weight-semibold); color: var(--color-text); background: var(--color-bg);
+  }
+  .jf__photo:hover .jf__photo-btn, .jf__photo-input:focus-visible + .jf__photo-btn { border-color: var(--color-primary); }
+  .jf__photo-name { font-size: var(--font-size-small); color: var(--color-text-muted); }
+  .jf__error { color: var(--color-danger, #c0392b); margin: 0; }
+  .jf__consent { font-size: var(--font-size-small); color: var(--color-text-muted); margin: 0; }
+  .jf__consent a { color: var(--color-text-accent); }
+  .jf__sent { display: flex; flex-direction: column; gap: var(--space-3); margin-top: var(--space-6); }
+</style>

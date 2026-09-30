@@ -1,0 +1,157 @@
+---
+/**
+ * Select: vlastní rozbalovací výběr místo systémového.
+ *
+ * Hodnotu i událost change dál nese nativní <select> (formuláře i filtry
+ * s ním pracují jako obvykle), skript nad ním jen postaví tlačítko a seznam.
+ * Bez JS zůstane vidět nativní select. Options přidané později skriptem
+ * stránky se do seznamu propíšou samy.
+ *
+ *   <Select label="Město" name="city">
+ *     <option value="">Všechna města</option>
+ *   </Select>
+ *
+ * Na <option> jde volitelně dát data-short (text v tlačítku, když má být
+ * kratší než v seznamu) a data-hint (šedý text vpravo v seznamu).
+ *
+ *   variant: "field"  (default) samostatné pole ve stylu Field
+ *            "inline" bez rámečku, uvnitř jiného pole (předvolba u telefonu)
+ */
+import Icon from '@piano/ui/components/Icon.astro';
+
+interface Props {
+  label: string;
+  variant?: 'field' | 'inline';
+  [key: string]: any;
+}
+
+const { label, variant = 'field', ...rest } = Astro.props;
+---
+
+<div class:list={['sel', `sel--${variant}`]} data-select>
+  <select class="sel__native" aria-label={label} {...rest}><slot /></select>
+  <button type="button" class="sel__toggle" aria-haspopup="listbox" aria-expanded="false" aria-label={label} hidden>
+    <span class="sel__value"></span>
+    <Icon name="lucide:chevron-down" size="sm" />
+  </button>
+  <ul class="sel__list" role="listbox" aria-label={label} hidden></ul>
+</div>
+
+<script>
+  for (const root of document.querySelectorAll<HTMLElement>('[data-select]')) {
+    const select = root.querySelector('select')!;
+    const toggle = root.querySelector<HTMLButtonElement>('.sel__toggle')!;
+    const list = root.querySelector<HTMLUListElement>('.sel__list')!;
+    const value = root.querySelector<HTMLSpanElement>('.sel__value')!;
+    const items = (): HTMLLIElement[] => [...list.querySelectorAll<HTMLLIElement>('li')];
+
+    const render = (): void => {
+      const selected = select.selectedOptions[0];
+      value.textContent = selected ? (selected.dataset.short ?? selected.text) : '';
+      list.replaceChildren(...[...select.options].map((option) => {
+        const item = document.createElement('li');
+        item.role = 'option';
+        item.tabIndex = -1;
+        item.dataset.value = option.value;
+        item.ariaSelected = String(option.selected);
+        item.append(option.text);
+        if (option.dataset.hint) {
+          const hint = document.createElement('span');
+          hint.className = 'sel__hint';
+          hint.textContent = option.dataset.hint;
+          item.append(hint);
+        }
+        return item;
+      }));
+    };
+
+    const open = (show: boolean): void => {
+      list.hidden = !show;
+      toggle.ariaExpanded = String(show);
+      if (show) (items().find((item) => item.ariaSelected === 'true') ?? items()[0])?.focus();
+    };
+
+    const pick = (item: HTMLLIElement): void => {
+      select.value = item.dataset.value!;
+      select.dispatchEvent(new Event('change', { bubbles: true }));
+      render();
+      open(false);
+      toggle.focus();
+    };
+
+    toggle.addEventListener('click', () => open(toggle.ariaExpanded !== 'true'));
+    list.addEventListener('click', (event) => {
+      const item = (event.target as Element).closest('li');
+      if (item) pick(item);
+    });
+    list.addEventListener('keydown', (event) => {
+      const all = items();
+      const index = all.indexOf(document.activeElement as HTMLLIElement);
+      if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+        event.preventDefault();
+        all[(index + (event.key === 'ArrowDown' ? 1 : all.length - 1)) % all.length].focus();
+      } else if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        pick(all[index]);
+      } else if (event.key === 'Escape' || event.key === 'Tab') {
+        open(false);
+        toggle.focus();
+      }
+    });
+    document.addEventListener('click', (event) => {
+      if (!list.hidden && !root.contains(event.target as Node)) open(false);
+    });
+    new MutationObserver(render).observe(select, { childList: true });
+
+    render();
+    select.hidden = true;
+    toggle.hidden = false;
+  }
+</script>
+
+<style>
+  .sel { position: relative; }
+  .sel__native, .sel__toggle { font: inherit; font-size: 16px; color: var(--color-text); cursor: pointer; }
+  .sel__native { width: 100%; }
+  .sel__native[hidden], .sel__toggle[hidden] { display: none; }
+
+  .sel__toggle {
+    display: flex; align-items: center; justify-content: space-between; gap: var(--space-2);
+    width: 100%; min-height: 44px; text-align: left; background: var(--color-bg);
+  }
+  .sel--field .sel__native,
+  .sel--field .sel__toggle {
+    padding: var(--space-3) var(--space-4);
+    border: 1.5px solid var(--color-border); border-radius: var(--field-radius, 0);
+    transition: border-color var(--duration-fast) var(--easing), box-shadow var(--duration-fast) var(--easing);
+  }
+  .sel--field .sel__toggle:hover { border-color: var(--color-border-strong); }
+  .sel--field .sel__toggle[aria-expanded="true"],
+  .sel--field .sel__toggle:focus-visible { border-color: var(--color-primary); box-shadow: var(--shadow-focus); outline: none; }
+
+  .sel--inline { flex-shrink: 0; align-self: stretch; }
+  .sel--inline .sel__native,
+  .sel--inline .sel__toggle {
+    height: 100%; padding: 0 var(--space-3) 0 var(--space-4);
+    font-weight: var(--font-weight-semibold); background: none;
+    border: 0; border-right: 1px solid var(--color-border); border-radius: 0;
+  }
+  .sel--inline .sel__toggle:focus-visible { outline: none; }
+
+  .sel__list {
+    position: absolute; top: calc(100% + var(--space-2)); left: 0; z-index: 20;
+    min-width: max(100%, 220px); max-height: 320px; overflow-y: auto;
+    margin: 0; padding: var(--space-2); list-style: none;
+    background: var(--color-bg); border: 1px solid var(--color-border);
+    border-radius: var(--radius-md); box-shadow: var(--shadow-md);
+  }
+  .sel__list[hidden] { display: none; }
+  .sel__list :global(li) {
+    display: flex; align-items: center; gap: var(--space-3);
+    padding: var(--space-2) var(--space-3); border-radius: var(--radius-sm); cursor: pointer;
+  }
+  .sel__list :global(li:hover),
+  .sel__list :global(li:focus) { background: var(--color-neutral-50); outline: none; }
+  .sel__list :global(li[aria-selected="true"]) { font-weight: var(--font-weight-semibold); color: var(--color-text-accent); }
+  .sel__list :global(.sel__hint) { margin-left: auto; color: var(--color-text-muted); font-weight: normal; }
+</style>

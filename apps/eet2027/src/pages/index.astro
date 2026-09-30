@@ -21,7 +21,7 @@ import Img from '@piano/ui/components/Img.astro';
 
 // Co odberatel ziska (duvody pro prihlaseni)
 const odberBody = [
-  { icon: 'lucide:bell', text: 'Zprávy o schválení, termínech a technických detailech' },
+  { icon: 'lucide:bell', text: 'Zprávy o termínech, metodických pokynech a technických detailech' },
   { icon: 'lucide:list-checks', text: 'Praktický checklist přípravy, ať na nic nezapomenete' },
   { icon: 'lucide:sparkles', text: 'Tipy, jak z povinnosti udělat náskok pro váš provoz' },
   { icon: 'lucide:mail-x', text: 'Žádný spam, odhlásíte se jedním kliknutím' },
@@ -61,7 +61,7 @@ const zitra = [
 // Co se meni
 const zmeny = [
   { icon: 'lucide:receipt', title: 'Účtenka jen na vyžádání', text: 'Konec povinného tisku. Účtenku vydáte, jen když ji zákazník chce, klidně i digitálně.' },
-  { icon: 'lucide:credit-card', title: 'Eviduje se osobní platba', text: 'Hotovost, karta, QR kód i stravenky přijaté při osobním kontaktu se zákazníkem. Evidence karet se ještě dojednává.' },
+  { icon: 'lucide:credit-card', title: 'Eviduje se osobní platba', text: 'Hotovost, karta, QR kód i stravenky přijaté při osobním kontaktu se zákazníkem.' },
   { icon: 'lucide:cpu', title: 'Stačí softwarový update', text: 'Moderní pokladní systém zvládne nová pravidla aktualizací. Nové vybavení obvykle není potřeba.' },
   { icon: 'lucide:file-text', title: 'Minimum údajů', text: 'Stát po vás chce méně dat než u prvního EET. Evidence je jednodušší.' },
   { icon: 'lucide:hand-coins', title: 'Výhodnější spropitné', text: 'Dobrovolné spropitné do 7 % tržeb bude osvobozeno od daní i odvodů.' },
@@ -75,7 +75,10 @@ const timeline = [
   { date: 'Květen 2026', title: 'Návrh prošel prvním čtením', state: 'done' },
   { date: 'Červen 2026', title: 'Zveřejnění technické specifikace', state: 'done' },
   { date: '15. července 2026', title: 'EET 2.0 schváleno Sněmovnou, zpřístupnění testovacího prostředí', state: 'done' },
-  { date: '19. srpna 2026', title: 'Senát vrátil návrh Sněmovně s pozměňovacími návrhy', state: 'current' },
+  { date: '19. srpna 2026', title: 'Senát vrátil návrh Sněmovně s pozměňovacími návrhy', state: 'done' },
+  { date: '9. září 2026', title: 'Sněmovna setrvala na původním znění', state: 'done' },
+  { date: '17. září 2026', title: 'Prezident zákon podepsal', state: 'done' },
+  { title: 'Čeká na vyhlášení ve Sbírce zákonů', state: 'current' },
   { date: '1. listopadu 2026', title: 'Generování certifikátů v prostředí DIS+', state: 'future' },
   { date: '1. prosince 2026', title: 'Spuštění aplikace MOJE EET', state: 'future' },
   { date: 'Leden 2027', title: 'Pilotní provoz, metodická podpora bez kontrol', state: 'future' },
@@ -109,7 +112,7 @@ const faqs = [
   { q: 'Potřebuji na EET novou pokladnu? Kolik stojí a existuje EET pokladna zdarma?',
     a: 'Záleží na tom, co dnes používáte. Moderní pokladní systémy zvládnou EET 2.0 běžnou aktualizací a nové vybavení kupovat nemusíte. Starší nebo nevhodný systém může znamenat upgrade za příplatek, nebo výměnu. Levné pokladny i aplikace zdarma existují, vždy si ale ověřte, že skutečně umí online evidenci a elektronickou účtenku.' },
   { q: 'Koho se EET 2.0 týká? Platí i pro OSVČ, živnostníky a e-shopy?',
-    a: 'Týká se prakticky každého, kdo přijímá platby při osobním kontaktu se zákazníkem, tedy hotovost, kartu, QR kód i stravenky. Platí pro firmy, OSVČ, živnostníky i řemeslníky bez ohledu na obor. Platby na dálku, například v e-shopu, se neevidují. Výjimku mají také OSVČ v prvním pásmu paušálního režimu s příjmy do 1 milionu Kč ročně. Evidence bezhotovostních plateb se ještě dojednává, Senát je v srpnu 2026 navrhl z evidence vyjmout.' },
+    a: 'Týká se prakticky každého, kdo přijímá platby při osobním kontaktu se zákazníkem, tedy hotovost, kartu, QR kód i stravenky. Platí pro firmy, OSVČ, živnostníky i řemeslníky bez ohledu na obor. Platby na dálku, například v e-shopu, se neevidují. Výjimku mají také OSVČ v prvním pásmu paušálního režimu s příjmy do 1 milionu Kč ročně.' },
   { q: 'EET bylo zrušené. Proč se vrací a dá se evidenci vyhnout?',
     a: 'První EET stát zrušil na konci roku 2022 kvůli administrativní zátěži. Vrací se od roku 2027 v jednodušší podobě: jen online, s menším rozsahem údajů a účtenkou na vyžádání. Vyhnout se dá jen výjimkami, například režimem EET OFF pro OSVČ v prvním pásmu paušální daně, kde místo evidence platíte vyšší paušál.' },
   { q: 'Musím tisknout účtenky a vyvěsit informační ceduli?',
@@ -117,7 +120,7 @@ const faqs = [
   { q: 'Co mi hrozí, když nebudu tržby evidovat?',
     a: 'Pokuta až 500 000 Kč. Finanční správa navíc bude porovnávat tržby podnikatelů ve stejném oboru a regionu, takže výrazné odchylky samy přitáhnou pozornost kontrolorů.' },
   { q: 'Co se u EET 2.0 mění u spropitného a DPH na nealko?',
-    a: 'Dobrovolné spropitné bude osvobozeno od daně i odvodů až do výše 7 % měsíčních tržeb. Zároveň klesá DPH u nealkoholických nápojů z 21 % na 12 %. Detailní pravidla pro evidenci spropitného v pokladně se zatím upřesňují.' },
+    a: 'Dobrovolné spropitné bude osvobozeno od daně i odvodů až do výše 7 % měsíčních tržeb. Zároveň klesá DPH u nealkoholických nápojů z 21 % na 12 %. Praktický postup pro nastavení spropitného v pokladním systému budeme průběžně doplňovat podle metodických a technických pokynů.' },
 ];
 
 
@@ -264,9 +267,8 @@ const faqSchema = {
       </div>
       <div class="zmeny-note">
         <Text size="small" color="muted">
-          Evidence plateb kartou se ještě dojednává, Senát v srpnu 2026 navrhl
-          bezhotovostní platby z evidence vyjmout. Sledujeme to za vás a stránku
-          aktualizujeme.
+          Evidují se i bezhotovostní platby uskutečněné při osobním kontaktu se zákazníkem,
+          například kartou nebo QR kódem.
         </Text>
       </div>
     </div>
@@ -285,18 +287,12 @@ const faqSchema = {
         <div class:list={['tl__item', `tl__item--${m.state}`]}>
           <span class="tl__dot" aria-hidden="true"></span>
           <div class="tl__card">
-            <span class="tl__date">{m.date}</span>
+            {m.date && <span class="tl__date">{m.date}</span>}
             <p class="tl__title">{m.title}</p>
             {m.state === 'current' && <span class="tl__badge">Aktuálně</span>}
           </div>
         </div>
       ))}
-    </div>
-    <div class="tl-note">
-      <Text size="small" color="muted">
-        O konečné podobě zákona bude znovu hlasovat Sněmovna. Budoucí termíny vycházejí
-        z návrhu schváleného 15. července 2026.
-      </Text>
     </div>
   </Section>
 
@@ -556,6 +552,8 @@ const faqSchema = {
   .tl__date { font-size: var(--font-size-caption); font-weight: var(--font-weight-semibold); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide); color: var(--color-text-accent); }
   .tl__item--future .tl__date { color: var(--color-text-muted); }
   .tl__title { margin: var(--space-1) 0 0; font-size: var(--font-size-body); font-weight: var(--font-weight-semibold); line-height: var(--line-height-tight); }
+  /* Milnik bez data (napr. aktualni stav) zacina rovnou titulkem. */
+  .tl__title:first-child { margin-top: 0; }
   .tl__badge { display: inline-block; margin-top: var(--space-2); font-size: var(--font-size-caption); font-weight: var(--font-weight-medium); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide); color: #fff; background: var(--color-primary); padding: 1px var(--space-2); border-radius: var(--radius-sm); }
 
   /* Harmonogram na tmavem pasu. Hotove a aktualni milniky drzi bila karta,
@@ -573,9 +571,6 @@ const faqSchema = {
   .tl--on-dark .tl__item--future .tl__card { border-color: var(--color-border-on-dark); }
   .tl--on-dark .tl__item--future .tl__date { color: var(--color-text-on-dark-muted); }
   .tl--on-dark .tl__item--future .tl__title { color: var(--color-text-on-dark); }
-  /* Poznamka pod osou lezi na tmavem pasu, proto bila karta jako u milniku:
-     Text color="muted" je tmava sed a na navy by se necetla. */
-  .tl-note { max-width: 620px; margin: var(--space-5) auto 0; padding: var(--space-4) var(--space-5); background: var(--color-bg); border-left: 3px solid var(--color-secondary-gold); border-radius: var(--radius-sm); }
 
   /* JAK SE PRIPRAVIT - cislo kroku v rohu karty */
   .step__num { position: absolute; top: var(--space-4); right: var(--space-5); font-size: var(--font-size-h2); font-weight: var(--font-weight-bold); color: var(--color-neutral-200); line-height: 1; }

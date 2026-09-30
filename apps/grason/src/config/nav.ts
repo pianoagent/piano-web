@@ -10,9 +10,9 @@ export const grasonNav: NavItem[] = [
     label: 'Pro firmy',
     href: '/pro-firmy',
     children: [
-      { label: 'GrasonFlexi', href: '/grasonflexi', description: 'Brigádníci na směnu na jedno kliknutí', icon: 'lucide:users' },
-      { label: 'GrasonPlan', href: '/grasonplan', description: 'Plánování směn, docházka a mzdové podklady', icon: 'lucide:calendar-days' },
-      { label: 'GrasonJobs', href: '/grasonjobs', description: 'Inzerce a nábor stálých zaměstnanců', icon: 'lucide:megaphone' },
+      { label: 'GrasonFlexi', href: '/flexi', description: 'Brigádníci na směnu na jedno kliknutí', icon: 'lucide:users' },
+      { label: 'GrasonPlan', href: '/plan', description: 'Plánování směn, docházka a mzdové podklady', icon: 'lucide:calendar-days' },
+      { label: 'GrasonJobs', href: '/jobs', description: 'Inzerce a nábor stálých zaměstnanců', icon: 'lucide:megaphone' },
     ],
   },
   {
@@ -20,7 +20,7 @@ export const grasonNav: NavItem[] = [
     href: '/pro-brigadniky',
     children: [
       { label: 'Flexibilní práce', href: '/pro-brigadniky', description: 'Pracujte na směny, kdy a kde chcete', icon: 'lucide:smartphone' },
-      { label: 'Nabídky zaměstnání', href: 'https://jobs.grason.cz/', description: 'Stálé pozice v gastru', icon: 'lucide:briefcase', external: true },
+      { label: 'Nabídky zaměstnání', href: '/nabidky-zamestnani/', description: 'Stálé pozice v gastru', icon: 'lucide:briefcase' },
     ],
   },
   { label: 'O nás', href: '/o-nas' },
@@ -57,6 +57,7 @@ export const grasonFooter = {
       links: [
         { label: 'Pro firmy', href: '/pro-firmy' },
         { label: 'Pro brigádníky', href: '/pro-brigadniky' },
+        { label: 'Nabídky zaměstnání', href: '/nabidky-zamestnani' },
         { label: 'O nás', href: '/o-nas' },
         { label: 'Kontakt', href: '/kontakt' },
       ] as NavLink[],
@@ -65,14 +66,25 @@ export const grasonFooter = {
       heading: 'Podpora',
       links: [
         { label: 'FAQ pro podniky', href: '/faq-companies' },
-        { label: 'FAQ pro pracovníky', href: '/faq-grason' },
-        { label: 'Volná místa', href: '/kariera' },
-        { label: 'Obchodní podmínky', href: '/obchodni-podminky' },
-        { label: 'Ochrana osobních údajů', href: '/ochrana-osobnich-udaju' },
-        { label: 'Podmínky GrasonPlan', href: '/plan/obchodni-podminky' },
-        { label: 'Osobní údaje GrasonPlan', href: '/plan/ochrana-osobnich-udaju' },
+        { label: 'FAQ pro brigádníky', href: '/faq-grason' },
       ] as NavLink[],
     },
+    [
+      {
+        heading: 'GrasonFlexi',
+        links: [
+          { label: 'Obchodní podmínky', href: '/flexi/obchodni-podminky' },
+          { label: 'Osobní údaje', href: '/flexi/gdpr' },
+        ] as NavLink[],
+      },
+      {
+        heading: 'GrasonPlan',
+        links: [
+          { label: 'Obchodní podmínky', href: '/plan/obchodni-podminky' },
+          { label: 'Osobní údaje', href: '/plan/gdpr' },
+        ] as NavLink[],
+      },
+    ],
   ],
   contact: {
     heading: 'Kontakt',

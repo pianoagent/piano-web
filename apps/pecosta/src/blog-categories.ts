@@ -23,8 +23,8 @@ export const BLOG_CATEGORIES: BlogCategory[] = [
     name: 'Případové studie',
     slug: 'pripadove-studie',
     title: 'Případové studie: komu Pecosta šetří náklady',
-    description: 'Reálné příběhy hotelů, restaurací a institucí, které s Pecostou šetří na surovinách, energiích i čase. Konkrétní čísla a zkušenosti.',
-    intro: 'Reálné příběhy z provozů: hotelové sítě, restaurace i instituce, které s Pecostou snížily náklady na suroviny a energie a ušetřily hodiny práce. Konkrétní čísla, konkrétní lidé.',
+    description: 'Reálné příběhy hotelů, restaurací a institucí, které s Pecostou šetří na potravinách, energiích i čase. Konkrétní čísla a zkušenosti.',
+    intro: 'Reálné příběhy z provozů: hotelové sítě, restaurace i instituce, které s Pecostou snížily náklady na potraviny a energie a ušetřily hodiny práce. Konkrétní čísla, konkrétní lidé.',
   },
   {
     name: 'Z médií',

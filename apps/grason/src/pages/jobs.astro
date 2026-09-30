@@ -31,7 +31,7 @@ const steps = [
   { title: 'Vystavíte inzerát', text: 'Zadáte pozici, podnik, lokalitu a text inzerátu. S textací vám rádi pomůžeme (copywriting jako příplatek).' },
   { title: 'Zveřejníme a oslovíme', text: 'Inzerát zveřejníme v mobilní aplikaci i na webu na 30 dní a vhodné kandidáty upozorníme cílenými notifikacemi. U vyšších balíčků inzerát podpoříme i placenou reklamou na sítích.' },
   { title: 'Kandidáti se hlásí', text: 'Zájemci se přihlásí na pohovor nebo zkoušku přímo v aplikaci. Vy si vybíráte ty správné.' },
-  { title: 'Vyberete a domluvíte nástup', text: 'Z přihlášených si vyberete a domluvíte nástup.' },
+  { title: 'Vyberete a domluvíte nástup', text: 'Z přihlášených si vyberete toho pravého a domluvíte se na termínu nástupu.' },
 ];
 
 const benefits = [
@@ -136,15 +136,15 @@ const jobsAddons = [
   <!-- INZERTNÍ PORTÁL -->
   <Section background="invert" space="lg">
     <div class="portal">
-      <Text size="label" color="accent" align="center">jobs.grason.cz</Text>
+      <Text size="label" color="accent" align="center">Nabídky zaměstnání</Text>
       <Heading as="h2" size="h2" align="center" color="on-dark">Inzertní portál <span class="accent">pro gastronomii</span></Heading>
       <Text size="lead" color="on-dark-muted" align="center" balance>
-        Cílí na naše Grasony z aplikace Flexi i na širokou gastro veřejnost. Zvolíte si z několika možností inzerátů i zvýraznění a vyberete si nového kolegu do týmu.
+        Cílí na naše grasony z aplikace Flexi i na širokou gastro veřejnost. Zvolíte si z několika možností inzerátů i zvýraznění a vyberete si nového kolegu do týmu.
       </Text>
       <Text color="on-dark-muted" align="center">Máte otázky? Napište na info@grason.cz nebo volejte 739 877 799.</Text>
       <div class="portal__cta">
         <Button href="#poptavka">Inzerujte ještě dnes</Button>
-        <Button href="https://jobs.grason.cz/" variant="secondary" onDark>Prohlédnout portál</Button>
+        <Button href="/nabidky-zamestnani/" variant="secondary" onDark>Prohlédnout portál</Button>
       </div>
     </div>
   </Section>
@@ -154,7 +154,7 @@ const jobsAddons = [
   <LeadForm id="poptavka" variant="full" background="default"
             title="Chci inzerovat pozici"
             lead="Nechte nám kontakt, pomůžeme vystavit inzerát a rozjedeme nábor přes GrasonJobs."
-            proofs={leadProofs} successUrl="/dekujeme" />
+            proofs={leadProofs} successUrl="/dekujeme" consentHref="/flexi/gdpr/" />
   </main>
 
   <Footer {...grasonFooter} />

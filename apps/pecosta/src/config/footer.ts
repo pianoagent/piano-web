@@ -8,7 +8,7 @@ export const pecostaFooter = {
   brand: 'Pecosta',
   logoSrc: '/logos/pecosta_by_piano.svg',  // "by Piano" lockup; v patičce bíle (filtr), šířka 68px
   logoAlt: 'Pecosta by Piano',
-  tagline: 'Chytrý nákup surovin a energií pro gastro provozy, hotely a instituce. Aukční nákupy, úspora času i nákladů a automatické naskladňování.',
+  tagline: 'Chytrý nákup potravin a energií pro gastro provozy, hotely a instituce. Aukční nákupy, úspora času i nákladů a automatické naskladňování.',
   parentNote: { text: 'Pecosta je součástí skupiny Piano', href: 'https://piano.cz' },
   columns: [
     {
@@ -26,8 +26,8 @@ export const pecostaFooter = {
         { label: 'Restaurace a sítě', href: '/pro-koho/restaurace-a-site' },
         { label: 'Hotely a resorty', href: '/pro-koho/hotely-a-resorty' },
         { label: 'Kavárny a bistra', href: '/pro-koho/kavarny-a-bistra' },
-        { label: 'Jídelny a kantýny', href: '/pro-koho/jidelny-a-kantyny' },
-        { label: 'Školy a nemocnice', href: '/pro-koho/skoly-a-nemocnice' },
+        { label: 'Jídelny, kantýny a školy', href: '/pro-koho/jidelny-kantyny-a-skoly' },
+        { label: 'Sociální služby a nemocnice', href: '/pro-koho/socialni-sluzby-a-nemocnice' },
       ],
     },
     {

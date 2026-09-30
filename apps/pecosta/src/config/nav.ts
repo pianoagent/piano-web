@@ -11,7 +11,7 @@ const sluzbyMega = {
     {
       label: 'Co Pecosta umí',
       links: [
-        { label: 'Aukční nákupy surovin', href: '/sluzby/aukcni-nakupy', icon: 'lucide:gavel' },
+        { label: 'Aukční nákupy potravin', href: '/sluzby/aukcni-nakupy', icon: 'lucide:gavel' },
         { label: 'Energie pro gastro', href: '/sluzby/energie', icon: 'lucide:zap' },
         { label: 'Autset: naskladnění', href: '/sluzby/autset', icon: 'lucide:package' },
         { label: 'Burzovní obchody', href: '/sluzby/burzovni-obchody', icon: 'lucide:landmark' },
@@ -23,8 +23,8 @@ const sluzbyMega = {
         { label: 'Restaurace a sítě', href: '/pro-koho/restaurace-a-site', icon: 'lucide:utensils-crossed' },
         { label: 'Hotely a resorty', href: '/pro-koho/hotely-a-resorty', icon: 'lucide:bed-double' },
         { label: 'Kavárny a bistra', href: '/pro-koho/kavarny-a-bistra', icon: 'lucide:coffee' },
-        { label: 'Jídelny a kantýny', href: '/pro-koho/jidelny-a-kantyny', icon: 'lucide:soup' },
-        { label: 'Školy a nemocnice', href: '/pro-koho/skoly-a-nemocnice', icon: 'lucide:building' },
+        { label: 'Jídelny, kantýny a školy', href: '/pro-koho/jidelny-kantyny-a-skoly', icon: 'lucide:soup' },
+        { label: 'Sociální služby a nemocnice', href: '/pro-koho/socialni-sluzby-a-nemocnice', icon: 'lucide:building' },
       ],
     },
   ],

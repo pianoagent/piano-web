@@ -6,6 +6,10 @@ RewriteEngine On
 RewriteCond %{HTTP_HOST} ^www\.pecosta\.cz$ [NC]
 RewriteRule ^ https://pecosta.cz%{REQUEST_URI} [R=301,L]
 
+# Segmentové stránky přeskládané 30. 9. 2026
+RewriteRule ^pro-koho/jidelny-a-kantyny/?$ /pro-koho/jidelny-kantyny-a-skoly/ [R=301,L]
+RewriteRule ^pro-koho/skoly-a-nemocnice/?$ /pro-koho/socialni-sluzby-a-nemocnice/ [R=301,L]
+
 # ── Cache statických assetů (efektivní doba platnosti mezipaměti) ──
 <IfModule mod_expires.c>
   ExpiresActive On

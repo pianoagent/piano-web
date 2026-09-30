@@ -22,7 +22,7 @@ import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import LogoWall from '@piano/ui/components/LogoWall.astro';
 import { pecostaLeadProofs } from '../config/leadProofs';
-import { klientiGastro } from '../config/klienti';
+import { klientiGastro, klientiVerejnySektorPas, verejnySektorPasDuration } from '../config/klienti';
 
 
 const steps = [
@@ -33,7 +33,7 @@ const steps = [
 ];
 
 const features = [
-  { icon: 'lucide:gavel', title: 'Aukční nákupy surovin', text: 'E-aukce od ověřených dodavatelů. Ceny srovnané u stovek dodavatelů najednou.' },
+  { icon: 'lucide:gavel', title: 'Aukční nákupy potravin', text: 'E-aukce od ověřených dodavatelů. Ceny srovnané u stovek dodavatelů najednou.' },
   { icon: 'lucide:zap', title: 'Energie pro gastro', text: 'Úspora až 25 % na elektřině a plynu. Energie sdružíme a vyjednáme lepší ceny.' },
   { icon: 'lucide:package', title: 'Autset: automatické naskladnění', text: 'Dodací listy od 450+ dodavatelů se automaticky přenesou do vašeho skladového systému.' },
   { icon: 'lucide:bar-chart-3', title: 'Přehled nákladů', text: 'Vidíte, kde utrácíte, kde šetříte a od koho nakupujete.' },
@@ -56,24 +56,24 @@ const testimonials = [
 
 const faqs = [
   { q: 'Jak funguje aukční nákup?', a: 'Dodavatelé soutěží, vy šetříte. Pecosta pravidelně sdružuje poptávku stovek provozů a dodavatelé o ni soupeří v e-aukci. Na portálu pak nakupujete za vysoutěžené ceny při zachování stejné kvality.' },
-  { q: 'Kolik reálně ušetřím?', a: 'V průměru až 16 % na surovinách a 25 % na energiích. Konkrétní číslo pro váš provoz spočítáme v bezplatné analýze.' },
+  { q: 'Kolik reálně ušetřím?', a: 'V průměru až 16 % na potravinách a 25 % na energiích. Konkrétní číslo pro váš provoz spočítáme v bezplatné analýze.' },
   { q: 'Musím měnit dodavatele?', a: 'Není třeba. Nákupy řešíte z jednoho místa a Pecosta vám nabízí nejlepší ceny od ověřených dodavatelů. S největší pravděpodobností zde najdete i 90 % těch svých. Nakupovat však můžete i nadále od svých lokálních dodavatelů a na nákupní portál je dodatečně zařadit.' },
   { q: 'Co je automatické naskladnění?', a: 'Dodací listy se naskladní automaticky, bez ručního přepisování, ušetříte hodiny administrativy každý měsíc.' },
-  { q: 'Hodí se Pecosta i pro menší provoz?', a: 'Ano. Automatické naskladňování šetří čas menší kavárně stejně jako hotelovým sítím. Aukční nákupy doporučujeme provozům s ročním objemem nákupů nad 5 mil. Kč, u sítí se objemy jednotlivých provozů sčítají. Když se pod tuhle hranici nevejdete, projdeme to individuálně a nabídneme služby bez objemové podmínky, Autset Katalog nebo energie.' },
+  { q: 'Hodí se Pecosta i pro menší provoz?', a: 'Ano. Automatické naskladňování šetří čas menší kavárně stejně jako hotelovým sítím. Aukční nákupy doporučujeme provozům s ročním objemem nákupů nad 6 mil. Kč, u sítí se objemy jednotlivých provozů sčítají. Když se pod tuhle hranici nevejdete, projdeme to individuálně a nabídneme služby bez objemové podmínky, Autset Katalog nebo energie. Pro veřejný sektor tahle hranice neplatí.' },
 ];
 
 ---
 
 <Base title="Nákupčí pro váš podnik | Pecosta"
-      description="Pecosta vám díky aukčním nákupům ušetří až 16 % na surovinách a 25 % na energiích a Autset zvládne zboží automaticky naskladnit.">
+      description="Pecosta vám díky aukčním nákupům ušetří až 16 % na potravinách a 25 % na energiích a Autset zvládne zboží automaticky naskladnit.">
   <SiteHeader transparent />
 
   <main>
 
   <!-- HERO -->
   <Hero eyebrow="Jednoduše chytrý nákup" background="invert" variant="cover"
-        lead="Nabízíme nástroje, se kterými ušetříte až 16 % nákladů na suroviny, 25 % na energie a až 30 hodin práce spojené s naskladňováním zboží."
-        usp={[{ text: '-16 % na surovinách', icon: 'lucide:badge-percent' }, { text: '-25 % na energiích', icon: 'lucide:zap' }, { text: '-30 hodin měsíčně', icon: 'lucide:clock' }]}>
+        lead="Nabízíme nástroje, se kterými ušetříte až 16 % nákladů na potraviny, 25 % na energie a až 30 hodin práce spojené s naskladňováním zboží."
+        usp={[{ text: '-16 % na potravinách', icon: 'lucide:badge-percent' }, { text: '-25 % na energiích', icon: 'lucide:zap' }, { text: '-30 hodin měsíčně', icon: 'lucide:clock' }]}>
     <Heading slot="title" as="h1" size="display" color="on-dark">Šetříme náklady vašemu provozu</Heading>
     <Fragment slot="actions">
       <Button href="#poptavka">Chci aukční nákupy</Button>
@@ -85,6 +85,7 @@ const faqs = [
 
   <!-- LOGA KLIENTŮ: hned pod hero -->
   <LogoWall id="zakaznici" background="default" label="Naši klienti" logos={klientiGastro} ext="webp" logoHeight="60px" />
+  <LogoWall background="default" label="Veřejný sektor, nemocnice a sociální služby" logos={klientiVerejnySektorPas} ext="webp" logoHeight="60px" duration={verejnySektorPasDuration} />
 
   <!-- JAK TO FUNGUJE -->
   <Section id="jak-to-funguje" background="default" space="lg">
@@ -111,7 +112,7 @@ const faqs = [
   <!-- FUNKCE (USPGrid neforwarduje id → kotva na wrapperu) -->
   <div id="funkce">
     <USPGrid eyebrow="Co Pecosta umí" title="Nakupujte chytřeji. Nakupujte za míň."
-             lead="Suroviny, energie i naskladnění na jednom portálu. A jasno v tom, kolik vás který nákup stojí."
+             lead="Potraviny, energie i naskladnění na jednom portálu. A jasno v tom, kolik vás který nákup stojí."
              items={features} minItemWidth="280px" background="alt" space="lg" />
   </div>
 
@@ -122,10 +123,10 @@ const faqs = [
       <Heading as="h2" size="h2" align="center" color="on-dark">Pecosta + Autset = <em>nákup bez práce</em></Heading>
       <Text size="lead" color="on-dark-muted" align="center">Od objednávky po naskladnění bez ručního přepisování.</Text>
       <Text color="on-dark-muted" align="center" balance>
-        Naše řešení je propojeno s 15 skladovými systémy na českém a slovenském trhu a s více než 450 dodavateli potravin a nápojů.
+        Naše řešení je propojeno s hlavními skladovými systémy na českém a slovenském trhu a s více než 450 dodavateli potravin a nápojů.
       </Text>
       <Text size="small" color="on-dark-muted" align="center" balance>
-        Napojujeme mimo jiné Septim, Savarin, ABX Harsys, POS Experts, Agnis, Fusion, Vento, Vectron, Dotykačku, HotelTime i MemberPro.
+        Napojujeme mimo jiné Septim, Savarin, ABX Harsys, POS Experts, Agnis, Fusion, Vento, Vectron, Dotykačku, HotelTime, MemberPro, STAPRO, IRESOFT, Enjoy, Papaya i Sophis.
       </Text>
     </div>
     <ul class="chips">

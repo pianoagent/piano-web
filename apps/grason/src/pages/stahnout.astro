@@ -1,0 +1,29 @@
+---
+/**
+ * Stáhnout: stará URL z grason-web, odkazuje na ni grsn.cz/m, e-maily i tištěné
+ * materiály. Mobil pošle rovnou do obchodu, desktop na sekci aplikace
+ * na stránce pro brigádníky.
+ */
+const STORE_IOS = 'https://apps.apple.com/cz/app/grason/id1367384162';
+const STORE_ANDROID = 'https://play.google.com/store/apps/details?id=com.thefuntasty.grason';
+const FALLBACK = '/pro-brigadniky/#stahnout';
+---
+
+<!doctype html>
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Stáhnout aplikaci | Grason</title>
+    <script is:inline define:vars={{ STORE_IOS, STORE_ANDROID, FALLBACK }}>
+      var ua = navigator.userAgent || '';
+      var isIos = /iPhone|iPad|iPod/i.test(ua)
+        || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+      location.replace(/android/i.test(ua) ? STORE_ANDROID : isIos ? STORE_IOS : FALLBACK);
+    </script>
+  </head>
+  <body>
+    <p>Přesměrování… <a href={FALLBACK}>Stáhnout aplikaci Grason</a></p>
+  </body>
+</html>

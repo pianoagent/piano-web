@@ -1,7 +1,7 @@
 ---
 /**
  * Pro firmy, rozcestník tří produktů + společný ceník.
- * Detaily žijí na dedikovaných stránkách: /grasonflexi, /grasonplan, /grasonjobs.
+ * Detaily žijí na dedikovaných stránkách: /flexi, /plan, /jobs.
  */
 import Base from '../layouts/Base.astro';
 import Header from '@piano/ui/components/Header.astro';
@@ -25,7 +25,7 @@ const products = [
     title: 'Brigádníci na směnu',
     text: 'Vypíšete směnu, ověření brigádníci se přihlásí a vy vyberete. Zaměstnavatelem zůstáváte vy, Grason lidi zprostředkuje a připraví podklady.',
     points: ['5 500 ověřených pracovníků', 'Obsazení směny během minut', 'Podpis DPP i přes appku (příplatek)'],
-    href: '/grasonflexi',
+    href: '/flexi',
   },
   {
     img: '/images/illustration-calendar.webp',
@@ -33,15 +33,15 @@ const products = [
     title: 'Plánování směn vlastního týmu',
     text: 'Vypíšete směny a buď je přidělíte, nebo je necháte přihlásit. K tomu úkoly, mzdové podklady a docházka jako doplňkový modul.',
     points: ['Plán na PC i v mobilu', 'Přidělení i samopřihlášení', 'od 990 Kč/měs, 1. měsíc zdarma'],
-    href: '/grasonplan',
+    href: '/plan',
   },
   {
     img: '/images/for-companies-choose-favourite-workers.webp',
     tag: 'GrasonJobs',
-    title: 'Inzerce a nábor stálých míst',
+    title: 'Inzerce a nábor stálých zaměstnanců',
     text: 'Hledáte stálého kolegu? Vystavíte inzerát, my ho zveřejníme v aplikaci i na webu a oslovíme vhodné kandidáty notifikacemi.',
     points: ['Inzerát v appce i na webu (30 dní)', 'Cílené oslovení notifikacemi', 'Balíčky Basic až Gold'],
-    href: '/grasonjobs',
+    href: '/jobs',
   },
 ];
 
@@ -53,7 +53,7 @@ const products = [
 
   <main>
   <Hero eyebrow="Pro firmy" background="gradient"
-        lead="Tři samostatná řešení pro celý váš personál, brigádníci na směnu, plánování vlastního týmu i nábor stálých lidí. Vyberete si, co zrovna potřebujete.">
+        lead="Tři samostatná řešení pro celý váš personál: brigádníci na směnu, plánování vlastního týmu i nábor stálých lidí. Vyberete si, co zrovna potřebujete.">
     <Heading slot="title" as="h1" size="display" color="on-dark">Chybí vám lidi? <span class="accent">S námi je máte</span> zítra na směně</Heading>
     <Fragment slot="actions">
       <Button href="/kontakt">Konzultace zdarma</Button>
@@ -72,7 +72,7 @@ const products = [
         <Text size="label" color="accent">Za dvě minuty</Text>
         <Heading as="h2" size="h2">Podívejte se, <span class="accent">jak to funguje</span></Heading>
         <Text size="lead" color="muted">
-          Od vypsání směny po člověka, který v ní stojí. Celý koloběh Grasonu na jednom videu.
+          Od vypsání směny po člověka, který ji odpracuje. Celý koloběh Grasonu na jednom videu.
         </Text>
       </div>
       <VideoFacade id="nhVECzSEVoY" poster="/images/video-jak-to-funguje.webp" title="Jak Grason funguje" />
@@ -91,7 +91,6 @@ const products = [
     <div class="pillars">
       {products.map((p) => (
         <a class="pillar" href={p.href}>
-          {p.badge && <span class="pillar__badge">{p.badge}</span>}
           <div class="pillar__media">
             <Img src={p.img} alt="" width={320} loading="lazy" />
           </div>
@@ -128,7 +127,7 @@ const products = [
           <li><Icon name="lucide:check" size="sm" class="hl-check" />Od základního po prémiový tarif</li>
           <li><Icon name="lucide:check" size="sm" class="hl-check" />Enterprise: neomezené směny + account manager</li>
         </ul>
-        <div class="price__cta"><Button href="/grasonflexi">Více o GrasonFlexi</Button></div>
+        <div class="price__cta"><Button href="/flexi">Více o GrasonFlexi</Button></div>
       </article>
       <article class="price price--featured">
         <span class="price__badge">1. měsíc zdarma</span>
@@ -140,7 +139,7 @@ const products = [
           <li><Icon name="lucide:check" size="sm" class="hl-check" />Úkoly, checklisty, mzdové podklady</li>
           <li><Icon name="lucide:check" size="sm" class="hl-check" />Docházka jako doplněk (+490 Kč/měs)</li>
         </ul>
-        <div class="price__cta"><Button href="/grasonplan">Více o GrasonPlanu</Button></div>
+        <div class="price__cta"><Button href="/plan">Více o GrasonPlanu</Button></div>
       </article>
       <article class="price">
         <span class="price__tag">GrasonJobs</span>
@@ -151,7 +150,7 @@ const products = [
           <li><Icon name="lucide:check" size="sm" class="hl-check" />Automatická propagace inzerátů</li>
           <li><Icon name="lucide:check" size="sm" class="hl-check" />Platíte jen za běžící kampaň</li>
         </ul>
-        <div class="price__cta"><Button href="/grasonjobs">Více o GrasonJobs</Button></div>
+        <div class="price__cta"><Button href="/jobs">Více o GrasonJobs</Button></div>
       </article>
     </div>
   </Section>
@@ -189,8 +188,6 @@ const products = [
   .pillar:hover { border-color: var(--color-primary); box-shadow: var(--shadow-md); }
   .pillar__media { position: relative; background: var(--color-bg-alt); line-height: 0; overflow: hidden; border-top-left-radius: var(--radius-lg); border-top-right-radius: var(--radius-lg); }
   .pillar__media img { width: 100%; height: 200px; object-fit: contain; display: block; padding: var(--space-5); }
-  .pillar__badge { position: absolute; top: -12px; right: -10px; z-index: 3; display: inline-flex; align-items: center; gap: 5px; background: var(--color-secondary-terracotta); color: #fff; font-size: 11px; font-weight: var(--font-weight-bold); line-height: 1; text-transform: uppercase; letter-spacing: 0.05em; padding: 6px 12px; border-radius: var(--radius-full); box-shadow: 0 4px 12px rgba(32, 29, 61, 0.18); }
-  .pillar__badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; opacity: 0.9; }
   .pillar__body { flex: 1; padding: var(--space-6); display: flex; flex-direction: column; gap: var(--space-3); border-bottom-left-radius: var(--radius-lg); border-bottom-right-radius: var(--radius-lg); }
   .pillar__tag { align-self: flex-start; font-size: var(--font-size-caption); font-weight: var(--font-weight-semibold); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide); color: var(--color-text-accent); background: color-mix(in srgb, var(--color-secondary-azure) 14%, #fff); padding: var(--space-1) var(--space-3); border-radius: var(--radius-full); }
   .pillar__points { list-style: none; display: flex; flex-direction: column; gap: var(--space-2); margin-top: var(--space-2); }

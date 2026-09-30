@@ -7,11 +7,11 @@ image: "/images/blog/eet-je-zpatky-co-to-znamena.webp"
 categories: ["EET", "Legislativa a povinnosti", "Platby a hosté"]
 ---
 
+> **Aktualizace 18. 9. 2026:** Tento článek vznikl v době, kdy ještě probíhal legislativní proces, a popisuje stav platný k datu jeho vydání. Poslanecká sněmovna následně 9. září 2026 odmítla změny navržené Senátem a setrvala na původním znění zákona. Prezident republiky zákon 17. září 2026 podepsal. EET 2.0 má být spuštěna od 1. ledna 2027.
+
 Elektronická evidence tržeb se po několika letech vrací do českých obchodů, restaurací i provozoven služeb. Sněmovna 15. července 2026 schválila zákon, který zavádí takzvanou EET 2.0. Nová verze má být oproti té z let 2016 až 2020 jednodušší a méně nákladná.
 
 Zákon zatím není definitivní. Senát ho 19. srpna 2026 vrátil Sněmovně s pozměňovacími návrhy, chce z evidence vyjmout bezhotovostní platby. Sněmovna o konečné podobě znovu nehlasovala a chybí i podpis prezidenta. Teprve pak se potvrdí, že evidence naběhne v navrhované podobě, tedy leden 2027 jako pilotní provoz a od 1. února 2027 plošná povinnost. I tak se ale vyplatí připravit se dopředu, ne narychlo po Novém roce.
-
-![Časová osa schvalování EET 2.0 od hlasování Sněmovny 15. 7. 2026 po povinný provoz od 1. 2. 2027](/images/blog/eet-2-0-casova-osa.webp)
 
 ## Evidovat se bude jen to, co zaplatíte na místě
 
@@ -45,7 +45,7 @@ Zvlášť se vyplatí zmínit spropitné: bude osvobozeno od daně z příjmů a
 
 ## Co dělat už teď
 
-Ověřte si, zda a jak se vás nová evidence bude týkat. Zvažte, zda pro vás dává smysl režim EET OFF. A sledujte, jak se zákonem naloží Sněmovna, protože definitivní podoba se v detailech ještě může posunout.
+Ověřte si, jak se vás nová evidence bude týkat, a připravte svůj pokladní systém na pravidla schválené EET 2.0. Sledujte také praktické a technické pokyny Finanční správy k jejímu spuštění. Zvažte, zda pro vás dává smysl režim EET OFF.
 
 Pokud si nejste jistí, jak se změny dotknou konkrétně vašeho podnikání nebo pokladního systému, rádi vám s přípravou pomůžeme.
 

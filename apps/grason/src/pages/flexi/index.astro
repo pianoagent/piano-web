@@ -3,7 +3,7 @@
  * GrasonFlexi, dedikovaná produktová stránka (brigádníci na směnu).
  * Obsah z for-companies.vue / page_for-companies_* (cs.json) + grason-context.md.
  */
-import Base from '../layouts/Base.astro';
+import Base from '../../layouts/Base.astro';
 import Header from '@piano/ui/components/Header.astro';
 import PricingTable from '@piano/ui/components/PricingTable.astro';
 import Testimonials from '@piano/ui/components/Testimonials.astro';
@@ -16,9 +16,9 @@ import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import Img from '@piano/ui/components/Img.astro';
 import Faq from '@piano/ui/components/Faq.astro';
-import { flexiQuotes } from '../config/reference';
-import { grasonNav, grasonCta, grasonFooter, grasonLogin, grasonFlexiRegister } from '../config/nav';
-import { flexiFaqs } from '../config/faq';
+import { flexiQuotes } from '../../config/reference';
+import { grasonNav, grasonCta, grasonFooter, grasonLogin, grasonFlexiRegister } from '../../config/nav';
+import { flexiFaqs } from '../../config/faq';
 
 const rows = [
   { img: '/images/for-companies-choose-candidates.webp', title: 'Vybírejte si podle zkušeností a hodnocení', text: 'Vždycky víte, kdo k vám přijde pracovat. Pracovníky vybíráte podle jejich profilů, zkušeností a hodnocení od jiných firem.' },
@@ -35,7 +35,7 @@ const steps = [
 
 // Ceník GrasonFlexi, přepínač délky předplatného (3/6/12 měsíců)
 const pricePeriods = [
-  { id: '3', label: '3 měsíců' },
+  { id: '3', label: '3 měsíce' },
   { id: '6', label: '6 měsíců' },
   { id: '12', label: '12 měsíců' },
 ];
@@ -128,7 +128,7 @@ const priceFeatures = [
   <Testimonials
     eyebrow="Reference"
     eyebrowColor="default"
-    background="pink"
+    background="cyan"
     items={flexiQuotes}
     titleHtml={'Co říkají <span class="accent">naši klienti</span>'} />
   <Faq items={flexiFaqs} title="Časté dotazy ke GrasonFlexi" background="default" />
@@ -138,15 +138,16 @@ const priceFeatures = [
 </Base>
 
 <style>
-  /* GrasonFlexi brand: růžová jako akcent (sekundární), navy primární */
-  .pa-flexi { --color-secondary-azure: #F24D83; --color-text-accent: #D63A70; }
-  .pa-flexi :global(.heading--on-dark) .accent { color: #FA80A8; }
+  /* GrasonFlexi brand: světle modrá jako ikona aplikace (tyrkys z tématu
+     zůstává akcentem), tlačítka tyrkysová s navy textem jako „G“ v ikoně. */
+  .pa-flexi { --color-primary: #3CC1C8; --color-primary-hover: #7CD6DA; --color-primary-active: #2A9CA2; }
+  .pa-flexi :global(.heading--on-dark) .accent { color: #7CD6DA; }
+  .pa-flexi :global(.ptb__cta) { color: var(--color-secondary); }
   .pa-flexi .step__num { color: #fff; }
-  /* Primární tlačítka růžová (brand Flexi) */
-  .pa-flexi :global(.btn--primary) { background: #F24D83; border-color: #F24D83; color: #fff; }
-  .pa-flexi :global(.btn--primary:hover) { background: #D63A70; border-color: #D63A70; }
-  .pa-flexi .ptier__cta { background: #F24D83; }
-  .pa-flexi .ptier__cta:hover { background: #D63A70; }
+  .pa-flexi :global(.btn--primary) { background: #3CC1C8; border-color: #3CC1C8; color: var(--color-secondary); }
+  .pa-flexi :global(.btn--primary:hover) { background: #7CD6DA; border-color: #7CD6DA; }
+  .pa-flexi .ptier__cta { background: #3CC1C8; color: var(--color-secondary); }
+  .pa-flexi .ptier__cta:hover { background: #7CD6DA; }
 
   .hero-figure { margin: 0; width: 100%; line-height: 0; }
   .hero-figure img { width: 100%; height: auto; display: block; filter: drop-shadow(0 24px 48px rgba(7, 7, 7, 0.22)); }

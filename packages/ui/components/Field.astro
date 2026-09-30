@@ -119,6 +119,11 @@ const hasAdornment = Boolean(prefix || icon);
     padding-inline: var(--space-4);
     transition: border-color var(--duration-fast) var(--easing), box-shadow var(--duration-fast) var(--easing);
   }
+  /* Pilulkové pole (Grason --field-radius: 999px) by z víceřádkové textarey
+     udělalo ovál, ta proto dostane nejvýš --radius-lg. */
+  .field__control:has(.field__input--textarea) {
+    border-radius: min(var(--field-radius, 0px), var(--radius-lg, 16px));
+  }
   .field__control:focus-within {
     border-color: var(--color-primary);
     box-shadow: var(--shadow-focus);

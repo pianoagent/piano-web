@@ -1,0 +1,51 @@
+---
+/** Pecosta: Pro koho: Sociální služby a nemocnice. Obsah: pecosta-context.md (segmenty, legislativní
+    argument, 200+ organizací MSK, Domov Jistoty), znalostni-baze.md (burzovní obchody, KBP,
+    zákon 229/1992 Sb.). DPS a sociální služby, cena (1/3 úspory, na web se neuvádí), implementace
+    cca měsíc a VES bez objemového limitu: připomínky Petry Šimčákové, 25. 9. 2026.
+    Segmenty přeskládané 30. 9. 2026 (Kryštof): školy jsou na /pro-koho/jidelny-kantyny-a-skoly.
+    Pozn.: v bance referencí NENÍ k tomuhle segmentu jediná jmenná citace, proto blok referencí
+    zůstává prázdný a stránka stojí na legislativním argumentu a logu veřejného sektoru. */
+import SegmentPage from '../../components/SegmentPage.astro';
+import { klientiVerejnySektor } from '../../config/klienti';
+
+const benefits = [
+  { icon: 'lucide:gavel', title: 'V souladu se zákonem', text: 'Celý systém nákupů odpovídá zákonu č. 166/2023 Sb., kterým se mění zákon č. 134/2016 Sb. o zadávání veřejných zakázek.' },
+  { icon: 'lucide:landmark', title: 'Energie přes Komoditní burzu Praha', text: 'Obchodujeme na burze zřízené podle zákona č. 229/1992 Sb. pod dozorem Ministerstva zemědělství a Ministerstva průmyslu a obchodu.' },
+  { icon: 'lucide:users', title: 'Soutěž vede někdo jiný', text: 'Nákupní oddělení ani vlastní tendr k tomu nepotřebujete. Soutěž i nastavení zákonných podmínek běží na pozadí portálu.' },
+  { icon: 'lucide:trending-down', title: '90 % potravin přes portál', text: 'Domov Jistoty pořizuje přes nákupní portál zhruba 90 % všech potravin. Klienti snížili ceny v průměru o 16 %, aniž by pocítili rozdíl v kvalitě.' },
+];
+
+/* Bez náhledů: k burzovním obchodům nemá Pecosta fotku veřejné správy
+   a karta s prázdným místem vedle dvou s obrázkem vypadá jako chyba. */
+const services = [
+  { title: 'Burzovní obchody', href: '/sluzby/burzovni-obchody', text: 'Nákup energií přes Komoditní burzu Praha pro nemocnice, domovy seniorů a další sociální služby i jejich zřizovatele. Vlastní znalost burzy nepotřebujete.' },
+  { title: 'Aukční nákupy potravin', href: '/sluzby/aukcni-nakupy', text: 'Vysoutěžené potraviny pro stravovací provoz. Pro veřejný sektor bez objemové podmínky.' },
+  { title: 'Autset: automatické naskladnění', href: '/sluzby/autset', text: 'Dodací listy se naskladní do vašeho skladového systému bez ručního přepisování položek.' },
+];
+
+const faqs = [
+  { q: 'Můžeme začít jen potravinami, nebo jen energiemi?', a: 'Ano, služby jdou vzít po částech. Stravovací provoz obvykle začíná potravinami na nákupním portálu, zřizovatel energiemi na Komoditní burze Praha. Dohromady vycházejí líp, protože je to jedna poptávka a jeden přehled.' },
+  { q: 'Kolik nákupu přes portál má smysl dělat?', a: 'Doporučujeme realizovat přes portál minimálně 60 % nákupního objemu a úspory vykazujeme měsíčně. Domov Jistoty se dostal zhruba na 90 % nákupu všech potravin.' },
+  { q: 'Kolik to stojí a kdy začneme nakupovat?', a: 'Platíte z dosažené úspory a nezačínáte žádnou vstupní investicí. Cenové porovnání, konzultace, kalkulace úspor i zaškolení jsou zdarma, implementace trvá zhruba měsíc.' },
+  { q: 'Odpovídá nákup pravidlům veřejných zakázek?', a: 'Ano. Celý systém nákupů je v souladu se zákonem č. 166/2023 Sb., kterým se mění zákon č. 134/2016 Sb. o zadávání veřejných zakázek. U energií nakupujeme na Komoditní burze Praha, instituci zřízené podle zákona č. 229/1992 Sb. pod dozorem Ministerstva zemědělství a Ministerstva průmyslu a obchodu.' },
+];
+---
+<SegmentPage
+  title="Nákup pro nemocnice, domovy seniorů a DPS | Pecosta"
+  description="Vysoutěžené potraviny a nákup energií přes Komoditní burzu Praha pro nemocnice, domovy seniorů, DPS a další sociální služby. Podle zákona o zakázkách."
+  eyebrow="Pro koho · veřejný sektor"
+  titleHtml="Nákup pro <em>sociální služby a&nbsp;nemocnice</em>"
+  lead="Řešení prověřené více než 200 organizacemi Moravskoslezského kraje, Fakultní nemocnicí Ostrava a Ústavem pro péči o matku a dítě. Energie nakupujeme na Komoditní burze Praha."
+  logos={klientiVerejnySektor}
+  logoLabel="Nemocnice a organizace veřejné správy, které nakupují s Pecostou"
+  proseTitle="Nakupujte podle pravidel, ale bez papírování navíc"
+  proseText="Nemocnice, domovy seniorů, domy s pečovatelskou službou a další sociální služby musí nakupovat podle pravidel veřejné správy, jenže kapacitu na vlastní soutěže většinou nemají. Pecosta pro ně soutěží potraviny na nákupním portálu a energie obchoduje na Komoditní burze Praha, kde rozhoduje objem a načasování. Kontrola a nastavování zákonných podmínek probíhají na pozadí systému. Vy dostanete cenu, přehled o tom, co a od koho se nakupuje, a doklad, že nákup proběhl podle pravidel."
+  benefitsTitle="Proč Pecosta pro sociální služby a nemocnice"
+  benefits={benefits}
+  services={services}
+  relatedLabel="Podívejte se také na"
+  related={[{ label: "Jídelny, kantýny a školy", href: "/pro-koho/jidelny-kantyny-a-skoly" }, { label: "Autset v sociálních službách", href: "/novinky/autset-v-socialnich-sluzbach" }, { label: "Reference Pecosty", href: "/reference" }]}
+  faqs={faqs}
+  faqTitle="Časté otázky sociálních služeb a nemocnic"
+/>

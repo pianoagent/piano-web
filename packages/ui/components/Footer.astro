@@ -9,6 +9,8 @@ import type { NavLink } from '../config/nav';
 
 interface ContactItem { label?: string; value: string; href?: string; }
 interface FooterColumn { heading: string; links: NavLink[]; }
+// Pole skupin = víc nadpisů pod sebou v jednom sloupci (Grason: dokumenty Flexi a Plan).
+type FooterColumnSlot = FooterColumn | FooterColumn[];
 interface Social { label: string; href: string; icon: string; }
 
 interface Props {
@@ -19,7 +21,7 @@ interface Props {
   mark?: boolean;                          // zobrazit piano-mark ikonu (default true)
   tagline?: string;
   parentNote?: { text: string; href: string };  // "<produkt> je součástí skupiny Piano"
-  columns?: FooterColumn[];
+  columns?: FooterColumnSlot[];
   offices?: { heading?: string; items: ContactItem[] };  // textový sloupec s adresami poboček
   contact?: { heading?: string; items: ContactItem[] };
   social?: Social[];
@@ -105,15 +107,19 @@ const topStyle = `--footer-cols: ${columns.length + (hasOffices ? 1 : 0) + 1};`;
       </div>
 
       <!-- Sloupce odkazů -->
-      {columns.map((col) => (
-        <nav class="footer__col" aria-label={col.heading}>
-          <h2 class="footer__heading">{col.heading}</h2>
-          <ul class="footer__list">
-            {col.links.map((l) => (
-              <li><a href={l.href} class="footer__link" target={l.external ? '_blank' : undefined} rel={l.external ? 'noopener noreferrer' : undefined}>{l.label}</a></li>
-            ))}
-          </ul>
-        </nav>
+      {columns.map((slot) => (
+        <div class="footer__col">
+          {(Array.isArray(slot) ? slot : [slot]).map((col) => (
+            <nav class="footer__group" aria-label={col.heading}>
+              <h2 class="footer__heading">{col.heading}</h2>
+              <ul class="footer__list">
+                {col.links.map((l) => (
+                  <li><a href={l.href} class="footer__link" target={l.external ? '_blank' : undefined} rel={l.external ? 'noopener noreferrer' : undefined}>{l.label}</a></li>
+                ))}
+              </ul>
+            </nav>
+          ))}
+        </div>
       ))}
 
       <!-- Pobočky (textový sloupec) -->
@@ -181,6 +187,7 @@ const topStyle = `--footer-cols: ${columns.length + (hasOffices ? 1 : 0) + 1};`;
 
   /* Sloupce */
   .footer__heading { font-family: var(--font-sans); font-size: var(--font-size-label); font-weight: var(--font-weight-semibold); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide); color: var(--color-text-on-dark-muted); margin-bottom: var(--space-4); }
+  .footer__group + .footer__group { margin-top: var(--space-7); }
   .footer__list { list-style: none; display: flex; flex-direction: column; gap: var(--space-3); }
   /* overflow-wrap: anywhere kvůli dlouhým doménám a mailům. Hugo má v patičce
      „Přihlášení: pos.unlikeotherai.com", což je jeden nezlomitelný řetězec

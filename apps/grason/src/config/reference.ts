@@ -36,7 +36,7 @@ export const flexiQuotes: Quote[] = [
   },
   {
     initials: 'MP',
-    quote: 'Pracovníci, které jsme v zimní špičce nalezli skrze aplikaci Grason, byli sice dražší, ale mnohem motivovanější a ochotní makat, než pracovníci z jiných kanálů.',
+    quote: 'Pracovníci, které jsme v zimní špičce nalezli skrze aplikaci Grason, byli sice dražší, ale mnohem motivovanější a ochotní makat než pracovníci z jiných kanálů.',
     author: 'Michal Prádl',
     role: 'Vedoucí skladu, Datart Jirny',
   },
