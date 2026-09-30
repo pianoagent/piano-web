@@ -7,15 +7,15 @@ declare(strict_types=1);
  * Odeslání e-mailu na poptavky@piano.cz přes nativní PHP mail() (FTP/PHP hosting).
  * Stejná adresa jako piano.cz: odtud poptávku bere štítek Leady v Gmailu → Sheet → Odoo.
  *
- * Doručitelnost stojí na SPF: From je na doméně pecosta.cz a envelope sender (-f)
- * je web@pecosta.cz, takže pokud DNS pecosta.cz autorizuje tenhle hosting, projde to.
+ * Odesílatel je web@piano.cz, ne adresa na pecosta.cz: pecosta.cz má DMARC p=reject
+ * a mail() z Webglobe není podepsaný DKIM, takže Google by poptávku odmítl.
  * Když by maily padaly do spamu, přejít na SMTP (PHPMailer) přes reálnou schránku.
  *
  * Formulář posílá přímo sem (action="/api/lead.php"), stejně jako na piano.cz.
  */
 
 const LEAD_TO = 'poptavky@piano.cz';
-const LEAD_FROM = 'web@pecosta.cz';
+const LEAD_FROM = 'web@piano.cz';
 const LEAD_FROM_NAME = 'Pecosta web';
 
 function json(array $body, int $status = 200): never
