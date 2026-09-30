@@ -22,7 +22,7 @@ import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import LogoWall from '@piano/ui/components/LogoWall.astro';
 import { pecostaLeadProofs } from '../config/leadProofs';
-import { klientiGastro, klientiVerejnySektorPas, verejnySektorPasDuration } from '../config/klienti';
+import { klientiGastro } from '../config/klienti';
 
 
 const steps = [
@@ -85,7 +85,6 @@ const faqs = [
 
   <!-- LOGA KLIENTŮ: hned pod hero -->
   <LogoWall id="zakaznici" background="default" label="Naši klienti" logos={klientiGastro} ext="webp" logoHeight="60px" />
-  <LogoWall background="default" label="Veřejný sektor, nemocnice a sociální služby" logos={klientiVerejnySektorPas} ext="webp" logoHeight="60px" duration={verejnySektorPasDuration} />
 
   <!-- JAK TO FUNGUJE -->
   <Section id="jak-to-funguje" background="default" space="lg">
