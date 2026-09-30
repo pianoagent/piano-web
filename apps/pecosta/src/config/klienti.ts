@@ -41,7 +41,6 @@ export const klientiGastro: Klient[] = [
   { name: 'reference/gastro/u-zlate-psenice', alt: 'U Zlaté pšenice' },
   { name: 'reference/gastro/dolni-pocernice', alt: 'Dolní Počernice' },
   { name: 'reference/gastro/heipark', alt: 'HEIPARK' },
-  { name: 'reference/gastro/cervenohorske-sedlo', alt: 'Červenohorské sedlo' },
   { name: 'reference/gastro/hotel-freud', alt: 'Hotel Freud' },
   { name: 'reference/gastro/hotel-orlik', alt: 'Hotel Orlík' },
   { name: 'reference/gastro/hotel-praded', alt: 'Hotel Praděd' },
@@ -55,17 +54,21 @@ export const klientiGastro: Klient[] = [
 // Veřejný sektor (burzovní obchody / veřejné zakázky)
 export const klientiVerejnySektor: Klient[] = [
   { name: 'reference/verejny-sektor/moravskoslezsky-kraj', alt: 'Moravskoslezský kraj' },
-  { name: 'reference/verejny-sektor/mesto-ostrava', alt: 'Město Ostrava' },
-  { name: 'reference/verejny-sektor/mesto-ricany', alt: 'Město Říčany' },
-  { name: 'reference/verejny-sektor/mesto-dobris', alt: 'Město Dobříš' },
-  { name: 'reference/verejny-sektor/mesto-semily', alt: 'Město Semily' },
   { name: 'reference/verejny-sektor/fakultni-nemocnice-ostrava', alt: 'Fakultní nemocnice Ostrava' },
   { name: 'reference/verejny-sektor/nemocnice-frydek-mistek', alt: 'Nemocnice Frýdek-Místek' },
   { name: 'reference/verejny-sektor/nemocnice-nymburk', alt: 'Nemocnice Nymburk' },
   { name: 'reference/verejny-sektor/nemocnice-trinec', alt: 'Nemocnice Třinec' },
-  { name: 'reference/verejny-sektor/lazne-karlova-studanka', alt: 'Lázně Karlova Studánka' },
   { name: 'reference/verejny-sektor/upmd', alt: 'ÚPMD' },
 ];
+
+/* Pás veřejného sektoru pro marquee: log je málo, takže se sada 3× opakuje (kopie bez altu,
+   aby je čtečka nečetla znovu). Rychlost ladí s gastro pásem na homepage (cca 210 px/s). */
+export const klientiVerejnySektorPas: Klient[] = [
+  ...klientiVerejnySektor,
+  ...klientiVerejnySektor.map((l) => ({ ...l, alt: '' })),
+  ...klientiVerejnySektor.map((l) => ({ ...l, alt: '' })),
+];
+export const verejnySektorPasDuration = '22s';
 
 /* Podmnožiny pro segmentové stránky /pro-koho/*. Jen výběry z polí výš, žádná nová loga.
    Zařazení podle názvu provozu; kde by bylo zařazení dohad (kavárny, jídelny),
@@ -74,7 +77,7 @@ export const klientiHotely = klientiGastro.filter((l) => [
   'cpi-hotels', 'pytloun-hotels', 'grandhotel-pupp', 'hotel-maximus', 'grandhotel-brno',
   'avanti-hotel', 'jan-hotels', 'hh-hotels', 'hotel-freud', 'hotel-orlik', 'hotel-praded',
   'hotel-radun', 'hotel-rott', 'hotel-rustikal', 'hotel-duo', 'hotel-obzor',
-  'cervenohorske-sedlo', 'hp-tronic',
+  'hp-tronic',
 ].some((slug) => l.name.endsWith(`/${slug}`)));
 
 export const klientiRestaurace = klientiGastro.filter((l) => [

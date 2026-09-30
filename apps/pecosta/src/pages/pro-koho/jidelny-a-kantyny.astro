@@ -9,11 +9,11 @@ const benefits = [
   { icon: 'lucide:scale', title: 'Soutěž proběhne na portálu za vás', text: 'Vysoutěžené potraviny máte na portálu připravené. Nepotřebujete na to vlastní kapacitu ani personál.' },
   { icon: 'lucide:gavel', title: 'V souladu se zákonem o veřejných zakázkách', text: 'Celý systém nákupů je v souladu se zákonem č. 166/2023 Sb., kterým se mění zákon č. 134/2016 Sb.' },
   { icon: 'lucide:clock', title: 'Úspora až 1 hodiny denně', text: 'Dodací listy se naskladní automaticky a skladová účetní dostane přesnější podklady.' },
-  { icon: 'lucide:shield-check', title: 'Kvalita zůstává', text: 'Soutěží se podle přesné specifikace položky. Klienti snížili ceny v průměru o 16 %, aniž by pocítili kvalitativní rozdíl surovin.' },
+  { icon: 'lucide:shield-check', title: 'Kvalita zůstává', text: 'Soutěží se podle přesné specifikace položky. Klienti snížili ceny v průměru o 16 %, aniž by pocítili rozdíl v kvalitě.' },
 ];
 
 const services = [
-  { title: 'Aukční nákupy surovin', href: '/sluzby/aukcni-nakupy', text: 'Pravidelné e-aukce potravin. Domov Jistoty realizuje přes portál zhruba 90 % nákupu všech potravin.', image: '/images/karta-aukcni-nakupy.webp' },
+  { title: 'Aukční nákupy potravin', href: '/sluzby/aukcni-nakupy', text: 'Pravidelné e-aukce. Domov Jistoty realizuje přes portál zhruba 90 % nákupu všech potravin.', image: '/images/karta-aukcni-nakupy.webp' },
   { title: 'Autset: automatické naskladnění', href: '/sluzby/autset', text: 'Perfect Canteen nasadil Autset na všech provozovaných kantýnách a restauracích. Dodací listy jdou do skladu bez přepisu.', image: '/images/karta-autset.webp' },
   { title: 'Energie pro gastro', href: '/sluzby/energie', text: 'Úspora až 25 % na elektřině a plynu, bez objemové podmínky. Pro zřizované organizace řešíme energie i přes burzu.', image: '/images/karta-energie.webp' },
 ];
@@ -25,7 +25,7 @@ const testimonials = [
 const faqs = [
   { q: 'Jsme příspěvková organizace, sedí to na naše pravidla?', a: 'Ano. Celý systém nákupů je v souladu se zákonem č. 166/2023 Sb., kterým se mění zákon č. 134/2016 Sb. o zadávání veřejných zakázek. Soutěž a nastavení zákonných podmínek probíhají na pozadí portálu.' },
   { q: 'Kolik nákupu přes portál má smysl dělat?', a: 'Doporučujeme realizovat přes portál minimálně 60 % nákupního objemu a úspory vykazujeme měsíčně. Domov Jistoty se dostal zhruba na 90 % nákupu všech potravin.' },
-  { q: 'Napojíte se na software, který používáme?', a: 'Autset je propojen s 15 skladovými systémy v ČR a SR a zbytek řešíme přes univerzální rozhraní, včetně EDI dokladů. Podmínkou je identifikace dodavatelů a napojený pokladní systém, příprava trvá zhruba měsíc.' },
+  { q: 'Napojíte se na software, který používáme?', a: 'Autset je propojen s hlavními skladovými systémy v ČR a SR a zbytek řešíme přes univerzální rozhraní, včetně EDI dokladů. Podmínkou je identifikace dodavatelů a napojený pokladní systém, příprava trvá zhruba měsíc.' },
 ];
 ---
 <SegmentPage
@@ -44,7 +44,7 @@ const faqs = [
   benefits={benefits}
   services={services}
   relatedLabel="Podívejte se také na"
-  related={[{ label: "Školy a nemocnice", href: "/pro-koho/skoly-a-nemocnice" }, { label: "Reference Pecosty", href: "/reference" }]}
+  related={[{ label: "Školy, nemocnice a sociální služby", href: "/pro-koho/skoly-a-nemocnice" }, { label: "Reference Pecosty", href: "/reference" }]}
   testimonials={testimonials}
   faqs={faqs}
   faqTitle="Časté otázky jídelen a kantýn"

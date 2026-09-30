@@ -11,7 +11,7 @@ const sluzbyMega = {
     {
       label: 'Co Pecosta umí',
       links: [
-        { label: 'Aukční nákupy surovin', href: '/sluzby/aukcni-nakupy', icon: 'lucide:gavel' },
+        { label: 'Aukční nákupy potravin', href: '/sluzby/aukcni-nakupy', icon: 'lucide:gavel' },
         { label: 'Energie pro gastro', href: '/sluzby/energie', icon: 'lucide:zap' },
         { label: 'Autset: naskladnění', href: '/sluzby/autset', icon: 'lucide:package' },
         { label: 'Burzovní obchody', href: '/sluzby/burzovni-obchody', icon: 'lucide:landmark' },
@@ -24,7 +24,7 @@ const sluzbyMega = {
         { label: 'Hotely a resorty', href: '/pro-koho/hotely-a-resorty', icon: 'lucide:bed-double' },
         { label: 'Kavárny a bistra', href: '/pro-koho/kavarny-a-bistra', icon: 'lucide:coffee' },
         { label: 'Jídelny a kantýny', href: '/pro-koho/jidelny-a-kantyny', icon: 'lucide:soup' },
-        { label: 'Školy a nemocnice', href: '/pro-koho/skoly-a-nemocnice', icon: 'lucide:building' },
+        { label: 'Školy, nemocnice a sociální služby', href: '/pro-koho/skoly-a-nemocnice', icon: 'lucide:building' },
       ],
     },
   ],

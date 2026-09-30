@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 /**
  * POST /api/lead: příjem poptávky z <LeadForm>.
- * Odeslání e-mailu na pecosta@pecosta.cz přes nativní PHP mail() (FTP/PHP hosting).
+ * Odeslání e-mailu na poptavky@piano.cz přes nativní PHP mail() (FTP/PHP hosting).
+ * Stejná adresa jako piano.cz: odtud poptávku bere štítek Leady v Gmailu → Sheet → Odoo.
  *
  * Doručitelnost stojí na SPF: From je na doméně pecosta.cz a envelope sender (-f)
  * je web@pecosta.cz, takže pokud DNS pecosta.cz autorizuje tenhle hosting, projde to.
@@ -13,7 +14,7 @@ declare(strict_types=1);
  * Formulář posílá přímo sem (action="/api/lead.php"), stejně jako na piano.cz.
  */
 
-const LEAD_TO = 'pecosta@pecosta.cz';
+const LEAD_TO = 'poptavky@piano.cz';
 const LEAD_FROM = 'web@pecosta.cz';
 const LEAD_FROM_NAME = 'Pecosta web';
 
@@ -66,7 +67,7 @@ $lines = array_filter([
 ], static fn ($line): bool => $line !== null);
 $body = implode("\r\n", $lines);
 
-$subject = sprintf('Nová poptávka z webu (%s)', $lead['variant']);
+$subject = sprintf('Nová poptávka z webu pecosta.cz (%s)', $lead['variant']);
 $encodedSubject = sprintf('=?UTF-8?B?%s?=', base64_encode($subject));
 
 $headers = [

@@ -3,7 +3,7 @@
  * Bez tohoto by LeadForm použil výchozí (Septimí) hodnoty z @piano/ui.
  */
 export const pecostaLeadProofs = [
-  { icon: 'lucide:badge-percent', title: 'Úspora až 16 %', text: 'Na surovinách, v průměru každý měsíc.' },
+  { icon: 'lucide:badge-percent', title: 'Úspora až 16 %', text: 'Na potravinách, v průměru každý měsíc.' },
   { icon: 'lucide:store', title: '960+ provozů', text: 'Restaurace, hotely i instituce v celé ČR.' },
   { icon: 'lucide:calendar-check', title: 'Zkušený tým', text: 'Náš tým se nákupu věnuje od roku 2006.' },
   { icon: 'lucide:gift', title: 'Analýza zdarma', text: 'Kalkulaci úspor máte do 48 hodin.' },

@@ -38,7 +38,7 @@ Názvy Cloudflare projektů výše jsou ty skutečné, ověřené proti živým 
 ## Stack
 - **Astro 7**, statický generátor, obsah jako `.md`, sdílené komponenty a témata per web
 - **GitHub**, zdroj pravdy: vývoj na `develop`, produkce `main`
-- **Formuláře**, `LeadForm` posílá POST na `/api/lead.php`. Na Webglobe to obslouží PHP `mail()` (adresát v konstantě `LEAD_TO`). Na Cloudflare preview se PHP nespustí, takže tam formuláře nefungují. **Napojení na Odoo `crm.lead` zatím neexistuje**, je to TODO v `lead.php`.
+- **Formuláře**, `LeadForm` posílá POST na `/api/lead.php`. Na Webglobe to obslouží PHP `mail()` (adresát v konstantě `LEAD_TO`, u piano.cz i pecosta.cz je to `poptavky@piano.cz`, odkud poptávku bere štítek Leady v Gmailu → Sheet → Odoo). Na Cloudflare preview se PHP nespustí, takže tam formuláře nefungují. **Napojení na Odoo `crm.lead` zatím neexistuje**, je to TODO v `lead.php`.
 
 ## Septim: kopie živého webu 1:1
 `apps/septim` je od 24. 9. 2026 věrná kopie živého www.septim.cz (Solid Pixels), aby šel web přepnout bez přesměrování: **stejné URL** (bez lomítka a bez `.html`, `build.format: 'file'`), stejný obsah i vzhled. Předchozí redesign (nová IA) je v tagu `septim-redesign-2026-09` a větvi `septim-redesign`.
