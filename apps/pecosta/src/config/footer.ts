@@ -26,8 +26,8 @@ export const pecostaFooter = {
         { label: 'Restaurace a sítě', href: '/pro-koho/restaurace-a-site' },
         { label: 'Hotely a resorty', href: '/pro-koho/hotely-a-resorty' },
         { label: 'Kavárny a bistra', href: '/pro-koho/kavarny-a-bistra' },
-        { label: 'Jídelny a kantýny', href: '/pro-koho/jidelny-a-kantyny' },
-        { label: 'Školy, nemocnice a sociální služby', href: '/pro-koho/skoly-a-nemocnice' },
+        { label: 'Jídelny, kantýny a školy', href: '/pro-koho/jidelny-kantyny-a-skoly' },
+        { label: 'Sociální služby a nemocnice', href: '/pro-koho/socialni-sluzby-a-nemocnice' },
       ],
     },
     {

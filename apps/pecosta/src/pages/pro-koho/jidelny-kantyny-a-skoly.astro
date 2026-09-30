@@ -1,0 +1,53 @@
+---
+/** Pecosta: Pro koho: Jídelny, kantýny a školy. Obsah: pecosta-context.md (segmenty, legislativní
+    argument, limit 6 mil. KOS / VES bez limitu), autset-context.md, banka referencí část 7 (Sajler).
+    Segmenty přeskládané 30. 9. 2026 (Kryštof): školy sem, nemocnice a sociální služby zvlášť.
+    Pozn.: v bance je k tomuhle segmentu jediná jmenná citace. */
+import SegmentPage from '../../components/SegmentPage.astro';
+import { klientiGastro } from '../../config/klienti';
+
+const benefits = [
+  { icon: 'lucide:scale', title: 'Soutěž proběhne na portálu za vás', text: 'Vysoutěžené potraviny máte na portálu připravené. Nepotřebujete na to vlastní kapacitu ani personál.' },
+  { icon: 'lucide:gavel', title: 'Pro školy v souladu se zákonem', text: 'Celý systém nákupů je v souladu se zákonem č. 166/2023 Sb., kterým se mění zákon č. 134/2016 Sb. o zadávání veřejných zakázek.' },
+  { icon: 'lucide:clock', title: 'Úspora až 1 hodiny denně', text: 'Dodací listy se naskladní automaticky a skladová účetní dostane přesnější podklady.' },
+  { icon: 'lucide:shield-check', title: 'Kvalita zůstává', text: 'Soutěží se podle přesné specifikace položky. Klienti snížili ceny v průměru o 16 %, aniž by pocítili rozdíl v kvalitě.' },
+];
+
+const services = [
+  { title: 'Aukční nákupy potravin', href: '/sluzby/aukcni-nakupy', text: 'Pravidelné e-aukce. Školy a další veřejné organizace bez objemové podmínky, firemní kantýny od ročního objemu nákupů nad 6 mil. Kč.', image: '/images/karta-aukcni-nakupy.webp' },
+  { title: 'Autset: automatické naskladnění', href: '/sluzby/autset', text: 'Perfect Canteen nasadil Autset na všech provozovaných kantýnách a restauracích. Dodací listy jdou do skladu bez přepisu.', image: '/images/karta-autset.webp' },
+  { title: 'Energie pro gastro', href: '/sluzby/energie', text: 'Úspora až 25 % na elektřině a plynu, bez objemové podmínky. Pro školy a jejich zřizovatele řešíme energie i přes Komoditní burzu Praha.', image: '/images/karta-energie.webp' },
+];
+
+const testimonials = [
+  { initials: 'PC', headline: 'Nasadili jsme to všude', quote: 'Se systémem AUTSET šetříme čas provozním managerům našich restaurací. Způsob zpracování naskladnění a dodacích listů pomáhá i skladové účetní, podklady jsou přesnější, nemusí je kontrolovat položkově. Tento systém jsme díky jeho efektivnosti nasadili již na všech provozovaných kantýnách a restauracích.', author: 'Filip Sajler', photo: '/images/ref/filip-sajler.webp', role: 'CEO a Chef, Perfect Canteen a Perfect Catering' },
+];
+
+const faqs = [
+  { q: 'Jsme školní jídelna, sedí to na naše pravidla?', a: 'Ano. Celý systém nákupů je v souladu se zákonem č. 166/2023 Sb., kterým se mění zákon č. 134/2016 Sb. o zadávání veřejných zakázek. Soutěž a nastavení zákonných podmínek probíhají na pozadí portálu.' },
+  { q: 'Vyplatí se to i menší jídelně?', a: 'Školy a další organizace veřejného sektoru žádnou objemovou podmínku nemají. U firemních kantýn doporučujeme aukční nákupy od ročního objemu nákupů nad 6 mil. Kč, u sítí se objemy provozů sčítají.' },
+  { q: 'Můžeme zůstat jen u potravin, nebo jen u energií?', a: 'Ano, služby jdou vzít po částech. Školní jídelna obvykle začíná potravinami na nákupním portálu, zřizovatel energiemi na Komoditní burze Praha. Dohromady vycházejí líp, protože je to jedna poptávka a jeden přehled.' },
+  { q: 'Napojíte se na software, který používáme?', a: 'Autset je propojen s hlavními skladovými systémy v ČR a SR a zbytek řešíme přes univerzální rozhraní, včetně EDI dokladů. Podmínkou je identifikace dodavatelů a napojený pokladní systém, příprava trvá zhruba měsíc.' },
+];
+---
+<SegmentPage
+  title="Nákup potravin pro jídelny, kantýny a školy | Pecosta"
+  description="Vysoutěžené potraviny a automatické naskladnění pro školní jídelny, firemní kantýny a školy. V souladu se zákonem o veřejných zakázkách, úspora v průměru 16 %."
+  eyebrow="Pro koho · jídelny, kantýny a školy"
+  titleHtml="Nákup pro <em>jídelny, kantýny a&nbsp;školy</em>"
+  lead="Klienti Pecosty snížili nákupní ceny potravin v průměru o 16 %. Soutěžit je vlastními silami stojí čas a kapacitu, kterou stravovací provoz nemá, tak ji necháme na portálu."
+  logos={klientiGastro}
+  heroImage="/images/pro-koho-jidelny.webp"
+  heroImageAlt="Filip Sajler, CEO a Chef Perfect Canteen"
+  logoLabel="Provozy, které nakupují s Pecostou"
+  proseTitle="Soutěž proběhne za vás, vy jen nakupujete"
+  proseText="Školní jídelny i firemní kantýny nakoupí velké objemy potravin, ale málokdy mají vlastní nákupní oddělení. Pecosta sdružuje poptávku stovek provozů a pravidelně soutěží ceny u dodavatelů, vy pak objednáváte z portálu za výsledné ceny. U škol a příspěvkových organizací běží celý proces v souladu se zákonem o zadávání veřejných zakázek, takže soulad s pravidly neřešíte vy."
+  benefitsTitle="Proč Pecosta pro jídelny a školy"
+  benefits={benefits}
+  services={services}
+  relatedLabel="Podívejte se také na"
+  related={[{ label: "Sociální služby a nemocnice", href: "/pro-koho/socialni-sluzby-a-nemocnice" }, { label: "Burzovní obchody", href: "/sluzby/burzovni-obchody" }, { label: "Reference Pecosty", href: "/reference" }]}
+  testimonials={testimonials}
+  faqs={faqs}
+  faqTitle="Časté otázky jídelen, kantýn a škol"
+/>
