@@ -61,15 +61,6 @@ export const klientiVerejnySektor: Klient[] = [
   { name: 'reference/verejny-sektor/upmd', alt: 'ÚPMD' },
 ];
 
-/* Pás veřejného sektoru pro marquee: log je málo, takže se sada 3× opakuje (kopie bez altu,
-   aby je čtečka nečetla znovu). Rychlost ladí s gastro pásem na homepage (cca 210 px/s). */
-export const klientiVerejnySektorPas: Klient[] = [
-  ...klientiVerejnySektor,
-  ...klientiVerejnySektor.map((l) => ({ ...l, alt: '' })),
-  ...klientiVerejnySektor.map((l) => ({ ...l, alt: '' })),
-];
-export const verejnySektorPasDuration = '22s';
-
 /* Podmnožiny pro segmentové stránky /pro-koho/*. Jen výběry z polí výš, žádná nová loga.
    Zařazení podle názvu provozu; kde by bylo zařazení dohad (kavárny, jídelny),
    se na stránce použije celý klientiGastro. */

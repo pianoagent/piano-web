@@ -14,7 +14,6 @@ import LeadForm from '@piano/ui/components/LeadForm.astro';
 import StatsBand from '../components/StatsBand.astro';
 import LogoWall from '../components/LogoWall.astro';
 import { pecostaLeadProofs } from '../config/leadProofs';
-import { klientiVerejnySektorPas, verejnySektorPasDuration } from '../config/klienti';
 import Img from '@piano/ui/components/Img.astro';
 
 const testimonials = [
@@ -98,7 +97,6 @@ const clients = [
     </Section>
 
     <LogoWall label="Naši klienti" background="alt" />
-    <LogoWall label="Veřejný sektor, nemocnice a sociální služby" logos={klientiVerejnySektorPas} duration={verejnySektorPasDuration} background="alt" />
     <LeadForm id="poptavka" variant="full" background="default"
               title="Chcete být další referencí?"
               lead="Začněte analýzou zdarma, připravíme cenové porovnání a kalkulaci úspor pro váš provoz."
