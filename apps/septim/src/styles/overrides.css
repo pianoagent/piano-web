@@ -228,3 +228,50 @@ form[data-lead-form] .visually-hidden {
 @media (min-width: 1151px) {
   .is-homepage:not(.is-after-menu) #header .nav--primary > .nav__list > .nav__item > .nav__link.nav__link--badge .nav__label { color: #06038d; }
 }
+
+/* Menu (2. 10. 2026, v2): plovoucí karta místo bílého pruhu přes celou šířku */
+@media (min-width: 1151px) {
+  #header .mega.submenu--level-0 {
+    background: transparent; box-shadow: none; clip-path: none;
+    padding: 10px 24px 0;
+  }
+  /* ztmavení a rozostření stránky pod menu; nechytá myš, takže odjetí z karty menu zavře */
+  #header .mega.submenu--level-0::before {
+    content: ''; position: fixed; left: 0; right: 0; bottom: 0; top: var(--header-height, 90px);
+    background: rgba(6, 3, 141, .28); -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px);
+    pointer-events: none; z-index: -1;
+  }
+  .mega__inner {
+    position: relative; max-width: 1200px; margin: 0 auto; padding: 0;
+    display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 0;
+    background: #fff; border-radius: 20px; overflow: hidden;
+    box-shadow: 0 30px 70px rgba(6, 3, 141, .22), 0 2px 6px rgba(6, 3, 141, .06);
+    transform: translateY(-8px); transition: transform .25s ease;
+  }
+  #header .nav__item:hover > .mega .mega__inner,
+  #header .nav__item:focus-within > .mega .mega__inner,
+  #header .nav__item.is-opened > .mega .mega__inner { transform: none; }
+  .mega__main { padding: 36px 40px 32px; }
+  .mega__heading { display: flex; align-items: center; gap: 8px; color: #06038d; }
+  .mega__heading::before { content: ''; width: 14px; height: 3px; border-radius: 2px; background: #00adef; flex: 0 0 auto; }
+  .mega__heading--blank::before { display: none; }
+  .mega__link { padding: 6px 10px; margin: 0 -10px; border-radius: 10px; transition: background-color .15s ease; }
+  .mega__link:hover, .mega__link:focus-visible { background: #ebfcff; }
+  .mega__link:hover .mega__label, .mega__link:focus-visible .mega__label { text-decoration: none; }
+  .mega__more { margin-top: 20px; padding-top: 18px; border-top: 1px solid rgba(6, 3, 141, .08); display: block; }
+  /* boční panel: tmavý, s výzvou */
+  .mega__aside {
+    border-radius: 0; align-self: stretch; padding: 36px 32px;
+    background: linear-gradient(160deg, #06038d 0%, #1d1ab0 100%); color: #fff;
+  }
+  .mega__aside-title { color: #fff; font-size: 19px; }
+  .mega__aside-text { color: rgba(255, 255, 255, .85); }
+  .mega__aside-label { color: rgba(255, 255, 255, .75); }
+  .mega__aside-contact a { color: #fff; }
+  .mega__aside-contact a:hover { color: #00adef; }
+  .mega__aside .btn.mega__aside-btn { --button-background: #fff; --button-color: #06038d; --button-border-color: #fff; --button-background-hover: #00adef; --button-color-hover: #fff; --button-border-hover: #00adef; font-weight: 700; }
+}
+@media (min-width: 1151px) {
+  /* při přejetí na jinou položku se předchozí panel schová hned (převzaté CSS zavírá se zpožděním) */
+  #header .nav--primary > .nav__list:hover > .nav__item:not(:hover) > .mega.submenu--level-0 { opacity: 0 !important; left: -9999px !important; transition: none !important; }
+}

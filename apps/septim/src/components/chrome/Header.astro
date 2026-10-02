@@ -42,7 +42,7 @@ const { path, locale } = Astro.props;
           <div class="mega__groups" style={`--mega-cols:${item.panel.groups.length}`}>
             {item.panel.groups.map((g) => (
               <div class="mega__group">
-                <p class="mega__heading">{g.heading}</p>
+                <p class:list={['mega__heading', { 'mega__heading--blank': !g.heading.trim() }]} aria-hidden={!g.heading.trim() ? 'true' : undefined}>{g.heading}</p>
                 <ul class="mega__list">
                   {g.links.map((l) => (
                     <li><a class:list={['mega__link', { 'mega__link--desc': l.desc }]} href={l.href} target={l.external ? '_blank' : undefined} rel={l.external ? 'noopener' : undefined}><span class="mega__label">{l.label}</span>{l.desc && <span class="mega__desc">{l.desc}</span>}</a></li>
