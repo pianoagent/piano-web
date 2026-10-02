@@ -5,6 +5,7 @@ import { dict } from '../../i18n/landing';
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const t = dict[lang];
+const leadEndpoint = import.meta.env.PUBLIC_LEAD_ENDPOINT || 'https://databridge.pianopos.cz/api/web-lead';
 ---
 <section class="waitlist" id="waitlist" hidden="">
   <div class="container">
@@ -20,7 +21,7 @@ const t = dict[lang];
         </ul>
       </div>
 
-      <form class="waitlist-form" id="waitlistForm" action="/api/lead.php" method="post"><input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
+      <form class="waitlist-form" id="waitlistForm" data-endpoint={leadEndpoint}><input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
         <input type="hidden" name="form_variant" value="hugo-waitlist" />
         <input type="hidden" name="lang" value={lang} />
         <span class="waitlist-counter" set:html={t['waitlist-counter']}></span>
