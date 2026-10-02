@@ -75,10 +75,19 @@ form[data-lead-form] .visually-hidden {
 .lead-cta .lead-cta__gdpr a { color: #06038d; }
 
 /* Homepage: statické hero (2. 10. 2026), text na plném tmavém pozadí vlevo, fotka vpravo */
-.home-hero { min-height: clamp(560px, 76vh, 760px); }
-.home-hero .section-background::after {
-  content: ''; position: absolute; inset: 0;
-  background: linear-gradient(90deg, #06038d 0%, #06038d 38%, rgba(6, 3, 141, .55) 58%, rgba(6, 3, 141, 0) 78%);
+.home-hero { min-height: clamp(560px, 72vh, 720px); }
+/* fotka jen v pravé části vedle textu, aby ji cover nepřibližoval (vidět stůl, terminál i ruka);
+   levý okraj se rozpouští do tmavého pozadí sekce */
+@media (min-width: 993px) {
+  .home-hero .section-background > img {
+    left: auto; right: 0; width: max(60%, calc(100% - 820px));
+    object-position: 62% 55%;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 32%);
+    mask-image: linear-gradient(90deg, transparent 0, #000 32%);
+  }
+}
+@media (min-width: 993px) and (max-width: 1279px) {
+  .home-hero .section-background > img { width: 48%; object-position: 64% 55%; }
 }
 .section.home-hero > .section-body { position: relative; z-index: 30; }
 .home-hero h1 { color: #fff; max-width: 20ch; margin-bottom: 20px; }
@@ -90,7 +99,7 @@ form[data-lead-form] .visually-hidden {
 .home-hero__trust li::before { display: none; }
 .home-hero__trust strong { display: block; font-size: 28px; line-height: 1.2; color: #fff; }
 @media (max-width: 992px) {
-  .home-hero .section-background::after { background: linear-gradient(180deg, rgba(6, 3, 141, .88) 0%, rgba(6, 3, 141, .95) 100%); }
+  .home-hero .section-background::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(6, 3, 141, .88) 0%, rgba(6, 3, 141, .95) 100%); }
 }
 @media (max-width: 719px) {
   .home-hero { min-height: 0; }
