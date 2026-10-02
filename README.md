@@ -38,7 +38,7 @@ Názvy Cloudflare projektů výše jsou ty skutečné, ověřené proti živým 
 ## Stack
 - **Astro 7**, statický generátor, obsah jako `.md`, sdílené komponenty a témata per web
 - **GitHub**, zdroj pravdy: vývoj na `develop`, produkce `main`
-- **Formuláře**, `LeadForm` posílá POST na `/api/lead.php`. Na Webglobe to obslouží PHP `mail()` (adresát v konstantě `LEAD_TO`, u piano.cz i pecosta.cz je to `poptavky@piano.cz`, odkud poptávku bere štítek Leady v Gmailu → Sheet → Odoo). Na Cloudflare preview se PHP nespustí, takže tam formuláře nefungují. **Napojení na Odoo `crm.lead` zatím neexistuje**, je to TODO v `lead.php`.
+- **Formuláře**, `LeadForm` posílá JSON z prohlížeče na Databridge `https://databridge.pianopos.cz/api/web-lead`, který podle hlavičky `Origin` pozná web a založí prospekt v Odoo (zdroj _Web, médium Webový formulář CZ). PHP na hostingu už není potřeba. Formuláře vždy volají produkční Databridge, který přijme jakýkoli origin, takže i odeslání z Cloudflare preview nebo lokálního dev serveru založí skutečný prospekt. Hugo (formulář „Ozvi se mi“ v `hugo.js`) posílá na stejný endpoint. Ostatní appky s `LeadForm` (harsys, protel, savarin, qerko, grason) posílají taky, v Odoo dostanou službu podle domény. První návštěva (URL s UTM a referrer) se ukládá do `sessionStorage['leadLanding']` v `BaseHead` a posílá se s formulářem.
 
 ## Septim: kopie živého webu 1:1
 `apps/septim` je od 24. 9. 2026 věrná kopie živého www.septim.cz (Solid Pixels), aby šel web přepnout bez přesměrování: **stejné URL** (bez lomítka a bez `.html`, `build.format: 'file'`), stejný obsah i vzhled. Předchozí redesign (nová IA) je v tagu `septim-redesign-2026-09` a větvi `septim-redesign`.

@@ -14,15 +14,17 @@
  *   title?:       string
  *   lead?:        string
  *   proofs?:      Proof[]  → body důvěry vedle formuláře (icon? / title / text?)
- *   action?:      string  → endpoint pro odeslání; default "/api/lead.php" (PHP hosting → e-mail)
+ *   action?:      string  → endpoint pro odeslání; default "https://databridge.pianopos.cz/api/web-lead"
+ *                           (produkční Databridge → prospekt v CRM)
  *   consentHref?: string  → odkaz na zásady ochrany údajů; default "/gdpr"
  *   submitLabel?: string
  *   background?:  "default" | "alt" | "invert" | "primary"   (default "alt")
  *   space?:       "sm" | "md" | "lg"
  *   id?:          string
  *
- * Odesílá se přes fetch (progressive enhancement), skryté pole `form_variant`
- * rozliší zdroj v CRM, honeypot `website` filtruje boty.
+ * Odesílá se přes fetch jako JSON přímo z prohlížeče do Databridge, web se pozná
+ * podle hlavičky Origin. Honeypot `website` filtruje boty. První návštěvu
+ * (URL s UTM + referrer) ukládá BaseHead do sessionStorage `leadLanding`.
  */
 import Section from './Section.astro';
 import Heading from './Heading.astro';
@@ -94,7 +96,7 @@ const {
   title,
   lead,
   proofs,
-  action = '/api/lead.php',
+  action = 'https://databridge.pianopos.cz/api/web-lead',
   consentHref,
   successUrl,
   submitLabel,
@@ -148,14 +150,11 @@ const submitText = submitLabel ?? (isCallback ? L.submitCallback : L.submitFull)
     <!-- Pravý sloupec: úzký formulář -->
     <form
       class:list={['leadform', `leadform--${variant}`]}
-      action={action}
-      method="POST"
+      data-endpoint={action}
       data-leadform
       data-success-url={successUrlResolved}
       novalidate
     >
-      <input type="hidden" name="form_variant" value={variant} />
-      <input type="hidden" name="page" data-page />
       <div class="leadform__hp" aria-hidden="true">
         <label>Web<input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
       </div>
@@ -326,6 +325,7 @@ const submitText = submitLabel ?? (isCallback ? L.submitCallback : L.submitFull)
     const ok = form.querySelector<HTMLElement>('[data-success]');
     const err = form.querySelector<HTMLElement>('[data-error]');
     const successUrl = form.getAttribute('data-success-url') || '';
+    const endpoint = form.getAttribute('data-endpoint') || '';
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -334,10 +334,6 @@ const submitText = submitLabel ?? (isCallback ? L.submitCallback : L.submitFull)
 
       if (!form.checkValidity()) { form.reportValidity(); return; }
 
-      // URL stránky, odkud poptávka přišla (kvůli určení produktu v mailu)
-      const pageField = form.querySelector<HTMLInputElement>('input[name="page"]');
-      if (pageField) pageField.value = window.location.href;
-
       const hp = form.querySelector<HTMLInputElement>('input[name="website"]');
       if (hp && hp.value) { form.reset(); if (ok) ok.hidden = false; return; }
 
@@ -345,10 +341,25 @@ const submitText = submitLabel ?? (isCallback ? L.submitCallback : L.submitFull)
       if (submit) { submit.disabled = true; submit.textContent = 'Odesílám…'; }
 
       try {
-        const res = await fetch(form.action, {
+        const value = (name: string) => (form.elements.namedItem(name) as HTMLInputElement | null)?.value ?? '';
+        let landing: { url?: string; referrer?: string } = {};
+        try { landing = JSON.parse(sessionStorage.getItem('leadLanding') || '{}'); } catch { /* sessionStorage nedostupné */ }
+        const payload = {
+          name: value('name'),
+          email: value('email'),
+          phone: value('phone'),
+          company: value('company'),
+          city: value('city'),
+          message: value('message'),
+          pageUrl: window.location.href,
+          landingUrl: landing.url || window.location.href,
+          referrer: landing.referrer ?? document.referrer,
+          website: value('website'),
+        };
+        const res = await fetch(endpoint, {
           method: 'POST',
-          headers: { Accept: 'application/json' },
-          body: new FormData(form),
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify(payload),
         });
         if (!res.ok) throw new Error(String(res.status));
         form.reset();

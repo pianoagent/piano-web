@@ -71,3 +71,12 @@ const ogImage = image ? new URL(image, siteUrl).href : undefined;
 ))}
 
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+<script is:inline>
+  // První dotyk v rámci session (UTM, referrer) pro LeadForm
+  try {
+    if (!sessionStorage.getItem('leadLanding')) {
+      sessionStorage.setItem('leadLanding', JSON.stringify({ url: location.href, referrer: document.referrer }));
+    }
+  } catch (e) {}
+</script>
