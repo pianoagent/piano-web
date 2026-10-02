@@ -23,9 +23,8 @@
  *   id?:          string
  *
  * Odesílá se přes fetch jako JSON přímo z prohlížeče do Databridge, web se pozná
- * podle hlavičky Origin. Skryté pole `form_variant` rozliší variantu formuláře,
- * honeypot `website` filtruje boty. První návštěvu (URL s UTM + referrer) ukládá
- * BaseHead do sessionStorage `leadLanding`.
+ * podle hlavičky Origin. Honeypot `website` filtruje boty. První návštěvu
+ * (URL s UTM + referrer) ukládá BaseHead do sessionStorage `leadLanding`.
  */
 import Section from './Section.astro';
 import Heading from './Heading.astro';
@@ -156,7 +155,6 @@ const submitText = submitLabel ?? (isCallback ? L.submitCallback : L.submitFull)
       data-success-url={successUrlResolved}
       novalidate
     >
-      <input type="hidden" name="form_variant" value={variant} />
       <div class="leadform__hp" aria-hidden="true">
         <label>Web<input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
       </div>
@@ -353,7 +351,6 @@ const submitText = submitLabel ?? (isCallback ? L.submitCallback : L.submitFull)
           company: value('company'),
           city: value('city'),
           message: value('message'),
-          formVariant: value('form_variant'),
           pageUrl: window.location.href,
           landingUrl: landing.url || window.location.href,
           referrer: landing.referrer ?? document.referrer,

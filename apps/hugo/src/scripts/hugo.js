@@ -85,7 +85,6 @@ window.HUGO_LANG = document.documentElement.lang === 'en' ? 'en' : 'cs';
     var payload = {
       name: form.elements.name.value,
       email: form.elements.email.value,
-      formVariant: form.elements.form_variant.value,
       pageUrl: location.href,
       landingUrl: landing.url || location.href,
       referrer: landing.referrer != null ? landing.referrer : document.referrer,
