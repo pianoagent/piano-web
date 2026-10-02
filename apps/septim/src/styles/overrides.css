@@ -154,3 +154,77 @@ form[data-lead-form] .visually-hidden {
 
 /* Homepage: na tmavém hero bílé logo (logo-invers1 ze živého webu je pro světlé fotky) */
 .is-homepage.header-inverse:not(.is-after-menu):not(.is-after-start) .logo__element { background-image: url(/files/logo-invers2.svg); }
+
+/* ---------------------------------------------------------------
+   Menu (2. 10. 2026): jednotné mega panely z config/menu.ts
+   --------------------------------------------------------------- */
+.mega__list { list-style: none; margin: 0; padding: 0; }
+.mega__list li { margin: 0; padding: 0; }
+.mega__list li::before { display: none; }
+.mega__heading { margin: 0 0 12px; font-size: 12px; line-height: 1.4; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #555478; }
+.mega__link { display: block; padding: 7px 0; color: #06038d; font-size: 15px; font-weight: 600; line-height: 1.35; text-transform: none; text-decoration: none; background-image: none; }
+.mega__link:hover .mega__label, .mega__link:focus-visible .mega__label { color: #0073a6; text-decoration: underline; }
+.mega__link.active .mega__label { color: #0073a6; }
+.mega__desc { display: block; margin-top: 2px; font-size: 13px; font-weight: 400; color: #555478; }
+.mega__more { display: inline-block; margin-top: 18px; font-size: 14px; font-weight: 700; color: #0073a6; text-transform: none; text-decoration: none; background-image: none; }
+.mega__more:hover { text-decoration: underline; }
+.mega__aside { background: #ebfcff; border-radius: 16px; padding: 24px; align-self: start; }
+.mega__aside-title { margin: 0 0 8px; font-size: 17px; font-weight: 700; color: #06038d; line-height: 1.3; text-transform: none; }
+.mega__aside-text { margin: 0 0 16px; font-size: 14px; line-height: 1.5; color: #555478; text-transform: none; }
+.mega__aside-btn { margin-bottom: 14px; }
+.mega__aside-contact { margin: 0 0 10px; font-size: 14px; line-height: 1.6; text-transform: none; }
+.mega__aside-contact a { color: #06038d; font-weight: 700; text-decoration: none; background-image: none; }
+.mega__aside-label { display: block; font-size: 12px; color: #555478; font-weight: 400; }
+.nav__link--badge .nav__label { display: inline-block; padding: 3px 10px; border-radius: 50px; background: #ebfcff; color: #06038d; }
+
+@media (min-width: 1151px) {
+  /* panel: bílé pozadí, stín a ztmavení stránky pod ním (nic neprosvítá) */
+  #header .mega.submenu--level-0 {
+    padding: 0; background: #fff;
+    box-shadow: 0 24px 40px rgba(6, 3, 141, .10), 0 0 0 100vmax rgba(6, 3, 141, .22);
+    clip-path: inset(0 -100vmax -100vmax -100vmax);
+  }
+  #header .nav__item.mega-item:focus-within > .mega.submenu--level-0 { left: 0; opacity: 1; }
+  .mega__inner { max-width: 1240px; margin: 0 auto; padding: 36px 40px 40px; display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 48px; }
+  .mega__groups { display: grid; grid-template-columns: repeat(var(--mega-cols, 2), minmax(0, 1fr)); gap: 32px; }
+  /* aktivní položka: azurová linka místo plné pilulky */
+  #header .nav--primary > .nav__list > .nav__item.active > .nav__link { background: transparent; color: #06038d; border-radius: 0; box-shadow: inset 0 -3px 0 #00adef; }
+  #header .nav--primary > .nav__list > .nav__item.active > .nav__link .nav__label { color: inherit; }
+  .nav__item--phone .nav__link { font-weight: 700; white-space: nowrap; color: #06038d; text-transform: none; }
+  .nav__item--phone .nav__link:hover .nav__label { color: #0073a6; }
+  .is-homepage:not(.is-after-menu) #header .nav__item--phone .nav__link .nav__label { color: #fff; }
+  .is-homepage:not(.is-after-menu) #header .nav--primary > .nav__list > .nav__item.active > .nav__link .nav__label { color: #fff; }
+}
+@media (max-width: 1150px) {
+  #header .nav__item--phone { display: none; }
+  .mega__inner { padding: 4px 0 16px 16px; }
+  .mega__group + .mega__group { margin-top: 16px; }
+  .mega__heading { margin-bottom: 4px; }
+  .mega__link { padding: 9px 0; font-size: 16px; }
+  .mega__desc { display: none; }
+  .mega__aside { display: none; }
+}
+/* Menu: 8 položek + telefon + CTA se musí vejít do jednoho řádku; telefon až na širokých obrazovkách */
+@media (min-width: 1151px) {
+  #header .nav--primary > .nav__list > .nav__item > .nav__link { padding-left: 8px; padding-right: 8px; }
+}
+@media (min-width: 1151px) and (max-width: 1699px) {
+  #header .nav__item--phone { display: none; }
+}
+@media (min-width: 1151px) and (max-width: 1599px) {
+  #header .nav--primary > .nav__list > .nav__item > .nav__link { font-size: 14px; padding-left: 6px; padding-right: 6px; }
+}
+@media (min-width: 1151px) and (max-width: 1365px) {
+  #header .nav--primary > .nav__list > .nav__item > .nav__link { font-size: 13px; padding-left: 4px; padding-right: 4px; }
+  #header .nav__link--badge .nav__label { padding: 2px 8px; }
+}
+@media (min-width: 1151px) and (max-width: 1279px) {
+  #header .nav--primary > .nav__list > .nav__item > .nav__link { font-size: 12px; padding-left: 3px; padding-right: 3px; }
+}
+@media (min-width: 1151px) {
+  /* panel s jedinou skupinou (Piano): odkazy ve dvou sloupcích */
+  .mega__groups[style="--mega-cols:1"] .mega__list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 32px; }
+}
+@media (min-width: 1151px) {
+  .is-homepage:not(.is-after-menu) #header .nav--primary > .nav__list > .nav__item > .nav__link.nav__link--badge .nav__label { color: #06038d; }
+}

@@ -22,7 +22,7 @@ const SAFELIST = {
     'gallery-slider-initialized', 'gallery-slider-horizontal', 'gallery-slider-item-active',
     'slider-pager', 'slider-btn-prev', 'slider-btn-next', 'swiper-pagination-bullets',
     'swiper-pagination-clickable', 'swiper-pagination-bullet', 'swiper-pagination-bullet-active',
-    'cssicon--chevron-left', 'cssicon--chevron-right', 'is-hidden',
+    'cssicon--chevron-left', 'cssicon--chevron-right', 'is-hidden', 'mega-item',
   ],
 };
 

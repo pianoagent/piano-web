@@ -119,18 +119,52 @@
 
     /* aktivní položka podle URL (na živém webu ji doplňoval CMS) */
     var path = location.pathname.replace(/\/$/, '').replace(/\.html$/, '') || '/';
-    $$('#header .nav__link[href]').forEach(function (a) {
-      var href = a.getAttribute('href');
-      if (href === path) {
-        a.classList.add('active');
-        var li = a.closest('.nav__item');
-        while (li) {
-          li.classList.add('active');
-          var own = li.querySelector(':scope > .nav__link');
-          if (own) own.classList.add('active');
-          li = li.parentNode && li.parentNode.closest ? li.parentNode.closest('.nav__item') : null;
-        }
+    $$('#header a[href]').forEach(function (a) {
+      if (a.getAttribute('href') !== path) return;
+      a.classList.add('active');
+      var li = a.closest('.nav__item');
+      while (li) {
+        li.classList.add('active');
+        var own = li.querySelector(':scope > .nav__link');
+        if (own) own.classList.add('active');
+        li = li.parentNode && li.parentNode.closest ? li.parentNode.closest('.nav__item') : null;
       }
+    });
+
+    /* mega panely: klávesnice (Enter / mezerník rozbalí), Escape zavře, aria-expanded */
+    var megaItems = $$('#header .mega-item');
+    function closeMega(except) {
+      megaItems.forEach(function (li) {
+        if (li === except) return;
+        li.classList.remove('is-opened');
+        if (isMobileNav()) li.classList.add('is-collapsed');
+        var t = li.querySelector(':scope > .nav__link');
+        if (t) t.setAttribute('aria-expanded', 'false');
+      });
+    }
+    megaItems.forEach(function (li) {
+      var t = li.querySelector(':scope > .nav__link');
+      if (!t) return;
+      t.addEventListener('keydown', function (e) {
+        if (e.key !== 'Enter' && e.key !== ' ') return;
+        e.preventDefault();
+        var opening = !li.classList.contains('is-opened');
+        closeMega(li);
+        li.classList.toggle('is-opened', opening);
+        li.classList.toggle('is-collapsed', isMobileNav() && !opening);
+        t.setAttribute('aria-expanded', opening ? 'true' : 'false');
+      });
+      /* na mobilu přepíná šipka / klik; aria-expanded drží krok */
+      new MutationObserver(function () {
+        t.setAttribute('aria-expanded', li.classList.contains('is-opened') ? 'true' : 'false');
+      }).observe(li, { attributes: true, attributeFilter: ['class'] });
+    });
+    doc.addEventListener('keydown', function (e) {
+      if (e.key !== 'Escape') return;
+      var focused = doc.activeElement && doc.activeElement.closest ? doc.activeElement.closest('.mega-item') : null;
+      closeMega();
+      if (open) { setOpen(false); if (toggle) toggle.focus(); }
+      else if (focused) { var t = focused.querySelector(':scope > .nav__link'); if (t) { t.focus(); t.blur(); } }
     });
   }
 
