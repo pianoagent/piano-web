@@ -1,10 +1,9 @@
 ---
 // https://www.septim.cz/produkty/objednavky-vydej-pro-jidelny (Solid Pixels), port 1:1 skriptem port-septim.py
+import DomluvitUkazku from '../../components/blocks/DomluvitUkazku.astro';
 import Base from '../../layouts/Base.astro';
-import PojdmeToProbrat from '../../components/blocks/PojdmeToProbrat.astro';
 import BlokPodivejteSeJakSystem_0204 from '../../components/blocks/BlokPodivejteSeJakSystem_0204.astro';
 import Blok30Let_9e65 from '../../components/blocks/Blok30Let_9e65.astro';
-import KontaktniFormularB from '../../components/blocks/KontaktniFormularB.astro';
 import Novinky from '../../components/blocks/Novinky.astro';
 ---
 <Base
@@ -19,7 +18,6 @@ import Novinky from '../../components/blocks/Novinky.astro';
 <div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h1>Objednávky a výdej pro jídelny<span class="text-highlight">.</span></h1>
 <p class="text-large">V některých typech závodního stravování je klíčové i výhodné objednávání jídel zaměstnanci předem. Přímo osobně v podniku nebo na dálku pomocí svého počítače. Toto řeší právě Septim modul Objednávání a výdej pro jídelny.</p>
 </div></div></div></div><div class="section-background container-fit container-fit--cover" style="background-color:rgb(235, 252, 255)"><img alt="" decoding="async" sizes="(orientation: portrait) 416.47vw, 100vw" src="/files/r/1280/hdr-tapeta-septim-blue.webp" srcset="/files/r/720/hdr-tapeta-septim-blue.webp 720w, /files/r/1280/hdr-tapeta-septim-blue.webp 1280w, /files/r/1920/hdr-tapeta-septim-blue.webp 1920w" style="object-position:50% 0%" width="1280" height="544"/></div></div>
-<PojdmeToProbrat />
 <div class="section height--normal align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div><div><div><div><div class="flexcard flexcard-card flexcard-size--normal flexcard-media-right valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><a class="image image-mask ratio-original" href="#septim-funkce" style="padding-bottom:76.92307692307693%"><img alt="" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/funkce-objednavky-vydej-hdr.webp" srcset="/files/r/720/funkce-objednavky-vydej-hdr.webp 720w, /files/r/1280/funkce-objednavky-vydej-hdr.webp 1280w, /files/r/1920/funkce-objednavky-vydej-hdr.webp 1920w" width="1280" height="985"/></a></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2>Co je Objednávání a výdej pro jídelny v systému Septim?</h2>
 <p></p>
 <p>Modul Objednávání a výdej pro jídelny umožní zaměstnancům přímo v podniku i na dálku ze svého počítače objednávat a měnit objednávku stravování na následující dny.</p>
@@ -57,6 +55,6 @@ import Novinky from '../../components/blocks/Novinky.astro';
 </div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
 <Blok30Let_9e65 />
 <div class="section height--low align--middle color--default section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><div><div><div><div><div><div><hr class="divider divider--normal divider--align-left"/></div></div></div></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(235, 252, 255)"></div></div>
-<KontaktniFormularB />
+<DomluvitUkazku />
 <Novinky />
 </Base>

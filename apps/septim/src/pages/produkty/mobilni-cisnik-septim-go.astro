@@ -1,5 +1,6 @@
 ---
 // https://www.septim.cz/produkty/mobilni-cisnik-septim-go (Solid Pixels), port 1:1 skriptem port-septim.py
+import DomluvitUkazku from '../../components/blocks/DomluvitUkazku.astro';
 import Base from '../../layouts/Base.astro';
 import NovinkyB from '../../components/blocks/NovinkyB.astro';
 ---
@@ -67,69 +68,7 @@ import NovinkyB from '../../components/blocks/NovinkyB.astro';
 <div class="section height--low align--middle color--default section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image block-image--3-1"><div><div><div class="flexcard flexcard-card flexcard-size--normal flexcard-media-left valign-middle align-left"><div class="flexcard-media"><div class="image-wrapper"><a class="image image-mask ratio-original" href="/chci-septim" style="padding-bottom:104.71428571428572%"><img alt="" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/mobilni-cisnik-v-akci.webp" srcset="/files/r/720/mobilni-cisnik-v-akci.webp 720w, /files/r/1280/mobilni-cisnik-v-akci.webp 1280w, /files/r/1920/mobilni-cisnik-v-akci.webp 1920w" width="700" height="733"/></a></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2>Jak funguje mobilní číšník Septim<span class="text-highlight">.</span>Go v akci?</h2>
 <p>Kontaktujte nás a domluvme si prezentaci!</p>
 </div><div class="image-btn"><a class="btn btn-primary" href="/chci-septim"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">SPOJME SE</span></a></div></div></div></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
-<div class="section height--medium align--middle color--default section-has-background" id="mam-zajem"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Mám zájem o systém Septim<span class="text-highlight">.</span></h2>
-</div></div></div>
-<div class="row-main"><div class="col col-3-12 grid-8-12"><div class="block block-inline"><p class="center">Kontaktujte nás pomocí formuláře níže, rádi se Vám ozveme!</p>
-</div></div></div>
-<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:30px"></div></div></div></div>
-<div class="row-main"><div class="col col-5-12 grid-4-12">
-<form action="/api/lead.php" autocomplete="off" class="block block-form form-background" data-lead-form="formular-field_form_2_4_0_0" id="formular-field_form_2_4_0_0" method="post">
-<div class="row">
-<div class="col col-1-12 grid-12-12">
-<div class="field field-form_input_email" id="field-wrapper-email">
-<div class="field-wrapper">
-<label for="field-email" id="label-email">
-            E-mail <span>*</span>
-</label>
-<input class="field-control" id="field-email" name="formular-field_form_2_4_0_0[email]" required="" type="email" value=""/>
-</div>
-</div>
-</div>
-</div>
-<div class="row">
-<div class="col col-1-12 grid-12-12">
-<div class="field field-form_input_tel" id="field-wrapper-phone">
-<div class="field-wrapper">
-<label for="field-phone" id="label-phone">
-            Telefon
-          </label>
-<input class="field-control" id="field-phone" name="formular-field_form_2_4_0_0[phone]" type="tel" value=""/>
-</div>
-</div>
-</div>
-</div>
-<div class="row">
-<div class="col col-1-12 grid-12-12">
-<div class="field field-form_textarea" id="field-wrapper-vase-zprava">
-<div class="field-wrapper">
-<label for="field-vase-zprava" id="label-vase-zprava">
-            Vaše zpráva
-          </label>
-<textarea class="field-control" id="field-vase-zprava" name="formular-field_form_2_4_0_0[vase-zprava]"></textarea>
-</div>
-</div>
-</div>
-</div>
-<div class="row">
-<div class="col col-1-12 grid-12-12">
-<div class="block block-inline"><p>Vaše osobní údaje budou zpracovány podle <a href="/informace-o-zpracovani-osobnich-udaju-formular">Podmínek zpracování osobních údajů</a>.</p>
-</div>
-</div>
-</div>
-<div class="row">
-<div class="col col-1-12 grid-12-12">
-<div class="field field-form_button" id="field-wrapper-field_form_2_4_0_0">
-<div class="field-wrapper">
-<div class="left">
-<button class="btn btn-a btn-primary" id="field-field_form_2_4_0_0" name="formular-field_form_2_4_0_0[field_form_2_4_0_0]" type="submit" value="submit"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">Odeslat</span></button>
-</div>
-</div>
-</div>
-</div>
-</div>
-
-<input name="form_variant" type="hidden" value="formular-field_form_2_4_0_0"/><input name="page" type="hidden" value=""/><div aria-hidden="true" class="visually-hidden"><label>Web <input autocomplete="off" name="website" tabindex="-1" type="text"/></label></div></form>
-</div></div></div><div class="section-background" style="background-color:#fff"></div></div>
+<DomluvitUkazku />
 <div class="section height--low align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-4-12"><div class="block block-inline"><h3>Často kladené dotazy k Septim<span class="text-highlight">.</span>Go</h3>
 </div></div> <div class="col col-5-12 grid-8-12"><div class="block block-accordion">
 <div class="accordion"><div class="accordion__title"><span class="accordion__title-label">Kolik stojí mobilní číšník Septim.Go?</span><span class="accordion__title-arrow"><div class="cssicon cssicon--chevron cssicon--size-parent"></div></span></div><div class="container accordion__content"><div class="container-body">

@@ -1,11 +1,10 @@
 ---
 // https://www.septim.cz/pokladni-provozni-system-pro-lazne-resorty (Solid Pixels), port 1:1 skriptem port-septim.py
+import DomluvitUkazku from './../components/blocks/DomluvitUkazku.astro';
 import Base from './../layouts/Base.astro';
-import PojdmeToProbrat from './../components/blocks/PojdmeToProbrat.astro';
 import Mezera_fd60 from './../components/blocks/Mezera_fd60.astro';
 import Blok30Let_9e65 from './../components/blocks/Blok30Let_9e65.astro';
 import Mezera_bb6d from './../components/blocks/Mezera_bb6d.astro';
-import KontaktniFormular from './../components/blocks/KontaktniFormular.astro';
 import Novinky from './../components/blocks/Novinky.astro';
 ---
 <Base
@@ -28,7 +27,6 @@ import Novinky from './../components/blocks/Novinky.astro';
 </div></div></div>
 <div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-gallery grid-sm-2"><div><div><div class="grid gallery-container" style="--gap:40px"><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Mamaison" decoding="async" loading="lazy" src="/files/ref-mamaison.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Vista" decoding="async" loading="lazy" src="/files/ref-vista.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Starý Smokovec" decoding="async" loading="lazy" src="/files/ref-stary-smokovec.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Clarion Hotel" decoding="async" loading="lazy" src="/files/ref-clarion-hotel.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Tatry Mountain Resorts" decoding="async" loading="lazy" src="/files/ref-tmr.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><a class="image image-mask ratio-square image-width-stretch" href="/chci-septim"><img alt="Vaše logo" decoding="async" loading="lazy" src="/files/ref-vase.svg"/></a></div></div></div></div></div></div></div></div>
 <div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><div><div><hr class="divider divider--normal divider--align-left"/></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(240, 252, 255)"></div></div>
-<PojdmeToProbrat />
 <div class="section height--low align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div><div><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div></div>
 <div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3 class="center text-large">Které produkty obsahuje řešení systému Septim pro lázně a resorty?</h3>
 <p class="center">Z našich zkušeností vyplývá, že tyto funkční celky pokryjí většinu potřeb lázní a resortů:</p>
@@ -71,6 +69,6 @@ import Novinky from './../components/blocks/Novinky.astro';
 <div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div><div><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
 <Blok30Let_9e65 />
 <Mezera_bb6d />
-<KontaktniFormular />
+<DomluvitUkazku />
 <Novinky />
 </Base>

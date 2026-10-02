@@ -1,12 +1,11 @@
 ---
 // https://www.septim.cz/produkty/eshop-restaurace (Solid Pixels), port 1:1 skriptem port-septim.py
+import DomluvitUkazku from '../../components/blocks/DomluvitUkazku.astro';
 import Base from '../../layouts/Base.astro';
-import PojdmeToProbrat from '../../components/blocks/PojdmeToProbrat.astro';
 import Mezera_fd60 from '../../components/blocks/Mezera_fd60.astro';
 import BlokPodivejteSeJakSystem_0204 from '../../components/blocks/BlokPodivejteSeJakSystem_0204.astro';
 import Blok30Let_9e65 from '../../components/blocks/Blok30Let_9e65.astro';
 import Mezera_bb6d from '../../components/blocks/Mezera_bb6d.astro';
-import KontaktniFormularB from '../../components/blocks/KontaktniFormularB.astro';
 import Novinky from '../../components/blocks/Novinky.astro';
 ---
 <Base
@@ -21,7 +20,6 @@ import Novinky from '../../components/blocks/Novinky.astro';
 <div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h1>E-shop restaurace<span class="text-highlight">.</span></h1>
 <p class="text-large">Modul E-shop systému vám umožní propojit váš provoz online přímo se zákazníkem. </p>
 </div></div></div></div><div class="section-background container-fit container-fit--cover" style="background-color:rgb(235, 252, 255)"><img alt="" decoding="async" sizes="(orientation: portrait) 416.47vw, 100vw" src="/files/r/1280/hdr-tapeta-septim-blue.webp" srcset="/files/r/720/hdr-tapeta-septim-blue.webp 720w, /files/r/1280/hdr-tapeta-septim-blue.webp 1280w, /files/r/1920/hdr-tapeta-septim-blue.webp 1920w" style="object-position:51% 0%" width="1280" height="544"/></div></div>
-<PojdmeToProbrat />
 <div class="section height--normal align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-card flexcard-size--normal flexcard-media-right valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><a class="image image-mask ratio-original" href="#septim-funkce" style="padding-bottom:76.92307692307693%"><img alt="" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/funkce-eshop-hdr.webp" srcset="/files/r/720/funkce-eshop-hdr.webp 720w, /files/r/1280/funkce-eshop-hdr.webp 1280w, /files/r/1920/funkce-eshop-hdr.webp 1920w" width="1280" height="985"/></a></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2>Co je E-shop v systému Septim?</h2>
 <p></p>
 <p>E-shop je řešení, které zobrazí online nabídku, kterou načte přímo z vašeho pokladního systému Septim. Zákazník si do košíku může vložit jídlo a pití, které po zaplacení kartou putuje přímo do kuchyně, která jej připraví a vydá.</p>
@@ -60,6 +58,6 @@ import Novinky from '../../components/blocks/Novinky.astro';
 </div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
 <Blok30Let_9e65 />
 <Mezera_bb6d />
-<KontaktniFormularB />
+<DomluvitUkazku />
 <Novinky />
 </Base>

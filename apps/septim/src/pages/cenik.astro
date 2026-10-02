@@ -1,8 +1,7 @@
 ---
 // https://www.septim.cz/cenik (Solid Pixels), port 1:1 skriptem port-septim.py
+import DomluvitUkazku from './../components/blocks/DomluvitUkazku.astro';
 import Base from './../layouts/Base.astro';
-import BlokDemoZdarma_4546 from './../components/blocks/BlokDemoZdarma_4546.astro';
-import PojdmeToProbrat from './../components/blocks/PojdmeToProbrat.astro';
 ---
 <Base
   title="Ceník pokladního systému Septim | Septim"
@@ -17,87 +16,53 @@ import PojdmeToProbrat from './../components/blocks/PojdmeToProbrat.astro';
 </div></div></div>
 <div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div class="center"><a class="btn btn-default btn-sm" href="/cenik-sluzeb-septim"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">CENÍK SERVISNÍCH SLUŽEB</span></a></div></div></div></div>
 <div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:30px"></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
-<div class="section height--low align--middle color--default section-width-boxed no-pb section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="container tab-links"><div class="container-body flex flex--justify-center flex--wrap">
-<div class="flex__item"><div class="block block-inline"><p><a href="#tab-flex">FLEX<span class="text-highlight">.</span></a></p>
-</div></div>
-<div class="flex__item"><div class="block block-inline"><p><a href="#tab-prime">PRIME<span class="text-highlight">.</span></a></p>
-</div></div>
-<div class="flex__item"><div class="block block-inline"><p><a href="#tab-elite">ELITE<span class="text-highlight">.</span></a></p>
-</div></div>
-</div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
-<div class="section height--low align--middle color--default tab-content tab-flex active"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline tab-link"><p><a href="#tab-flex"><font color="#555478">FLEX</font>.</a></p>
-</div></div></div>
-<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:50px"></div></div></div></div>
-<div class="row-main"><div class="col col-1-12 grid-6-12"><div class="block block-box box box--default"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2>Flex<span class="text-highlight">.licence</span></h2>
-<p><strong>obsahuje:</strong></p>
-</div></div></div>
-<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-icon flexcard-horizontal valign-middle size-sm"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/ico-check-univerzal.svg" width="90" height="90"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p>Skvělou pokladní aplikaci</p>
-</div></div></div></div></div></div></div>
-<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-icon flexcard-horizontal valign-middle size-sm"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/ico-check-univerzal.svg" width="90" height="90"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p>Pokročilé skladové hospodářství</p>
-</div></div></div></div></div></div></div>
-<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-icon flexcard-horizontal valign-middle size-sm"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/ico-check-univerzal.svg" width="90" height="90"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p>Moderního mobilního číšníka s platbou</p>
-</div></div></div></div></div></div></div>
-<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-icon flexcard-horizontal valign-middle size-sm"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/ico-check-univerzal.svg" width="90" height="90"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p>Integraci s hotelovým systémem Protel</p>
-</div></div></div></div></div></div></div>
-<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-icon flexcard-horizontal valign-middle size-sm"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/ico-check-univerzal.svg" width="90" height="90"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p>Integraci s Qerko</p>
-</div></div></div></div></div></div></div>
-<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-icon flexcard-horizontal valign-middle size-sm"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/ico-check-univerzal.svg" width="90" height="90"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p>Integraci s Autset (import dodacích listů)</p>
-</div></div></div></div></div></div></div>
-<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-icon flexcard-horizontal valign-middle size-sm"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/ico-check-univerzal.svg" width="90" height="90"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p>Online přístup k datům</p>
-</div></div></div></div></div></div></div></div></div> <div class="col col-7-12 grid-6-12"><div class="block block-box box box--secondary"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p><strong><span class="text-highlight"><font color="#555478"><span style="caret-color: rgb(85, 84, 120);">FLEX</span></font>.LICENCE</span></strong></p>
-</div></div></div>
-<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="text-large">2.990 Kč / měsíc</h2>
-</div></div></div>
-<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p><strong>cena za pokladnu, 10% sleva při roční platbě, druhá a další pokladna s 50% slevou</strong></p>
-<p>(provozy s 1 až 5 pokladnami)</p>
-</div></div></div>
-<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div class="left"><a class="btn btn-default" href="/chci-septim"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">ZJISTIT VÍCE</span></a></div></div></div></div></div></div></div></div></div>
-<div class="section height--low align--middle color--default tab-content tab-prime"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline tab-link"><p><a href="#tab-prime"><font color="#555478">PRIME</font>.</a></p>
-</div></div></div>
-<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:50px"></div></div></div></div>
-<div class="row-main"><div class="col col-1-12 grid-6-12"><div class="block block-box box box--default"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2><span class="text-highlight"><font color="#06038d">Prime</font>.licence</span></h2>
-<p><strong>obsahuje:</strong></p>
-</div></div></div>
-<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-icon flexcard-horizontal valign-middle size-sm"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/ico-check-barva.svg" width="90" height="90"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p><strong>všechny položky Flex<span class="text-highlight">.licence</span></strong></p>
-</div></div></div></div></div></div></div>
-<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-icon flexcard-horizontal valign-middle size-sm"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/ico-plus-univerzal.svg" width="90" height="90"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p>Integraci na kuchyňské displeje</p>
-</div></div></div></div></div></div></div>
-<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-icon flexcard-horizontal valign-middle size-sm"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/ico-plus-univerzal.svg" width="90" height="90"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p>VIP podporu</p>
-</div></div></div></div></div></div></div>
-<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-icon flexcard-horizontal valign-middle size-sm"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/ico-plus-univerzal.svg" width="90" height="90"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p>Septim WebCare, rozhraní pro zákazníky</p>
-</div></div></div></div></div></div></div>
-<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-icon flexcard-horizontal valign-middle size-sm"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/ico-plus-univerzal.svg" width="90" height="90"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p>Hromadnou výrobu jídel</p>
-</div></div></div></div></div></div></div>
-<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-icon flexcard-horizontal valign-middle size-sm"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/ico-plus-univerzal.svg" width="90" height="90"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p>Více středisek a offline / provoz / replikace</p>
-</div></div></div></div></div></div></div>
-<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-icon flexcard-horizontal valign-middle size-sm"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/ico-plus-univerzal.svg" width="90" height="90"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p>Zakázkový reporting</p>
-</div></div></div></div></div></div></div>
-<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-icon flexcard-horizontal valign-middle size-sm"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/ico-plus-univerzal.svg" width="90" height="90"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p>Integraci na účetnictví</p>
-</div></div></div></div></div></div></div></div></div> <div class="col col-7-12 grid-6-12"><div class="block block-box box box--secondary"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p><strong><span class="text-highlight"><font color="#555478"><span style="caret-color: rgb(85, 84, 120);">PRIME</span></font>.LICENCE</span></strong></p>
-</div></div></div>
-<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="text-large">3.990 Kč / měsíc</h2>
-</div></div></div>
-<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p><strong>cena za pokladnu, 10% sleva při roční platbě, druhá a další pokladna s 50% slevou</strong></p>
-<p>(provozy s 1 až 5 pokladnami)</p>
-</div></div></div>
-<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div class="left"><a class="btn btn-default" href="/chci-septim"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">ZJISTIT VÍCE</span></a></div></div></div></div></div></div></div></div></div>
-<div class="section height--low align--middle color--default tab-content tab-elite"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline tab-link"><p><a href="#tab-elite">ELITE.</a></p>
-</div></div></div>
-<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:50px"></div></div></div></div>
-<div class="row-main"><div class="col col-1-12 grid-6-12"><div class="block block-box box box--default"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2><span class="text-highlight"><font color="#06038d">Elite</font>.licence</span></h2>
-<p><strong>obsahuje:</strong></p>
-</div></div></div>
-<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-icon flexcard-horizontal valign-middle size-sm"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/ico-check-barva.svg" width="90" height="90"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p><strong>všechny položky Prime<span class="text-highlight">.licence</span></strong></p>
-</div></div></div></div></div></div></div>
-<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-icon flexcard-horizontal valign-middle size-sm"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/ico-plus-univerzal.svg" width="90" height="90"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p>Ostatní existující integrace</p>
-</div></div></div></div></div></div></div>
-<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-icon flexcard-horizontal valign-middle size-sm"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/ico-plus-univerzal.svg" width="90" height="90"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p>Zakázkový vývoj</p>
-</div></div></div></div></div></div></div></div></div> <div class="col col-7-12 grid-6-12"><div class="block block-box box box--secondary"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p><strong><span class="text-highlight"><font color="#555478"><span style="caret-color: rgb(85, 84, 120);">ELITE</span></font>.LICENCE</span></strong></p>
-</div></div></div>
-<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="text-large">na vyžádání</h2>
-</div></div></div>
-<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div class="left"><a class="btn btn-default" href="/chci-septim"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">ZJISTIT VÍCE</span></a></div></div></div></div>
-<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline">(provozy s více než 5 pokladnami)</div></div></div></div></div></div></div></div>
-<BlokDemoZdarma_4546 />
-<PojdmeToProbrat />
+<!-- Ceník (2. 10. 2026): tarify vedle sebe místo záložek; texty a ceny beze změny z původních záložek -->
+<div class="section height--low align--middle color--default price-compare"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12">
+<div class="price-compare__grid">
+<article class="price-card">
+<h2 class="price-card__name">Flex<span class="text-highlight">.</span>licence</h2>
+<p class="price-card__scope">provozy s 1 až 5 pokladnami</p>
+<p class="price-card__price"><strong>2 990 Kč</strong> / měsíc</p>
+<p class="price-card__note">cena za pokladnu, 10% sleva při roční platbě, druhá a další pokladna s 50% slevou</p>
+<ul class="price-card__list">
+<li><img alt="" class="price-card__ico" src="/files/ico-check-univerzal.svg" width="20" height="20" loading="lazy"/>Skvělou pokladní aplikaci</li>
+<li><img alt="" class="price-card__ico" src="/files/ico-check-univerzal.svg" width="20" height="20" loading="lazy"/>Pokročilé skladové hospodářství</li>
+<li><img alt="" class="price-card__ico" src="/files/ico-check-univerzal.svg" width="20" height="20" loading="lazy"/>Moderního mobilního číšníka s platbou</li>
+<li><img alt="" class="price-card__ico" src="/files/ico-check-univerzal.svg" width="20" height="20" loading="lazy"/>Integraci s hotelovým systémem Protel</li>
+<li><img alt="" class="price-card__ico" src="/files/ico-check-univerzal.svg" width="20" height="20" loading="lazy"/>Integraci s Qerko</li>
+<li><img alt="" class="price-card__ico" src="/files/ico-check-univerzal.svg" width="20" height="20" loading="lazy"/>Integraci s Autset (import dodacích listů)</li>
+<li><img alt="" class="price-card__ico" src="/files/ico-check-univerzal.svg" width="20" height="20" loading="lazy"/>Online přístup k datům</li>
+</ul>
+<div class="price-card__cta"><a class="btn btn-primary" href="#domluvit-ukazku"><span class="btn__icon" aria-hidden="true"></span><span class="btn__label">MÁM ZÁJEM</span></a></div>
+</article>
+<article class="price-card">
+<h2 class="price-card__name">Prime<span class="text-highlight">.</span>licence</h2>
+<p class="price-card__scope">provozy s 1 až 5 pokladnami</p>
+<p class="price-card__price"><strong>3 990 Kč</strong> / měsíc</p>
+<p class="price-card__note">cena za pokladnu, 10% sleva při roční platbě, druhá a další pokladna s 50% slevou</p>
+<p class="price-card__intro">Všechny položky Flex.licence a navíc:</p><ul class="price-card__list">
+<li><img alt="" class="price-card__ico" src="/files/ico-plus-univerzal.svg" width="20" height="20" loading="lazy"/>Integraci na kuchyňské displeje</li>
+<li><img alt="" class="price-card__ico" src="/files/ico-plus-univerzal.svg" width="20" height="20" loading="lazy"/>VIP podporu</li>
+<li><img alt="" class="price-card__ico" src="/files/ico-plus-univerzal.svg" width="20" height="20" loading="lazy"/>Septim WebCare, rozhraní pro zákazníky</li>
+<li><img alt="" class="price-card__ico" src="/files/ico-plus-univerzal.svg" width="20" height="20" loading="lazy"/>Hromadnou výrobu jídel</li>
+<li><img alt="" class="price-card__ico" src="/files/ico-plus-univerzal.svg" width="20" height="20" loading="lazy"/>Více středisek a offline provoz / replikace</li>
+<li><img alt="" class="price-card__ico" src="/files/ico-plus-univerzal.svg" width="20" height="20" loading="lazy"/>Zakázkový reporting</li>
+<li><img alt="" class="price-card__ico" src="/files/ico-plus-univerzal.svg" width="20" height="20" loading="lazy"/>Integraci na účetnictví</li>
+</ul>
+<div class="price-card__cta"><a class="btn btn-primary" href="#domluvit-ukazku"><span class="btn__icon" aria-hidden="true"></span><span class="btn__label">MÁM ZÁJEM</span></a></div>
+</article>
+<article class="price-card">
+<h2 class="price-card__name">Elite<span class="text-highlight">.</span>licence</h2>
+<p class="price-card__scope">provozy s více než 5 pokladnami</p>
+<p class="price-card__price"><strong>na vyžádání</strong></p>
+<p class="price-card__note"></p>
+<p class="price-card__intro">Všechny položky Prime.licence a navíc:</p><ul class="price-card__list">
+<li><img alt="" class="price-card__ico" src="/files/ico-plus-univerzal.svg" width="20" height="20" loading="lazy"/>Ostatní existující integrace</li>
+<li><img alt="" class="price-card__ico" src="/files/ico-plus-univerzal.svg" width="20" height="20" loading="lazy"/>Zakázkový vývoj</li>
+</ul>
+<div class="price-card__cta"><a class="btn btn-primary" href="#domluvit-ukazku"><span class="btn__icon" aria-hidden="true"></span><span class="btn__label">MÁM ZÁJEM</span></a></div>
+</article>
+</div>
+</div></div></div></div>
+<DomluvitUkazku />
 </Base>

@@ -1,0 +1,79 @@
+---
+// Jediná poptávková výzva na stránce (2. 10. 2026, nahrazuje „Pojďme to probrat“,
+// kontaktní formuláře a „Ukážeme Vám Septim v praxi“). Typ provozu a počet pokladen
+// dávají obchodu kontext, takže z webu nechodí „holé kontakty“.
+// Markup používá třídy formulářů živého webu, aby seděl styl.
+const id = 'domluvit-ukazku';
+const typy = ['Restaurace', 'Síť restaurací', 'Kavárna, bistro, bar', 'Jídelna, závodní stravování', 'Hotel', 'Lázně, resort', 'Catering', 'Street food', 'Jiný provoz'];
+const pokladny = ['1 pokladna', '2 až 5 pokladen', '6 a více pokladen', 'Zatím nevím'];
+const field = (name: string) => `${id}[${name}]`;
+---
+<div class="section height--medium align--middle color--inverse section-width-boxed section-has-background lead-cta" id={id}>
+  <div class="section-body">
+    <div class="row-main">
+      <div class="col col-1-12 grid-5-12">
+        <div class="block block-image">
+          <div class="flexcard flexcard-icon flexcard-vertical size-lg align-left">
+            <div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/septim-v-praxi.webp" width="250" height="250" /></div></div></div>
+            <div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block">
+              <h2>Ukážeme vám Septim v praxi<span class="text-highlight">.</span></h2>
+              <p>Domluvme si rychlou nezávaznou ukázku, ať vidíte, jak Septim funguje. Ozve se vám konzultant, který zná gastro provoz.</p>
+              <p class="lead-cta__contact">Raději voláte? <a href="tel:+420257011100">+420&nbsp;257 011 100</a></p>
+            </div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="col col-6-12 grid-7-12">
+        <form action="/api/lead.php" autocomplete="on" class="block block-form form-background" data-lead-form={id} id={`${id}-form`} method="post">
+          <div class="row">
+            <div class="col col-1-12 grid-6-12"><div class="field field-form_input_text"><div class="field-wrapper">
+              <label class="visually-hidden" for={`${id}-jmeno`}>Jméno a příjmení</label>
+              <input class="field-control" id={`${id}-jmeno`} name={field('jmeno')} placeholder="Jméno a příjmení *" required type="text" autocomplete="name" />
+            </div></div></div>
+            <div class="col col-7-12 grid-6-12"><div class="field field-form_input_tel"><div class="field-wrapper">
+              <label class="visually-hidden" for={`${id}-telefon`}>Telefon</label>
+              <input class="field-control" id={`${id}-telefon`} name={field('telefon')} placeholder="Telefon *" required type="tel" autocomplete="tel" />
+            </div></div></div>
+          </div>
+          <div class="row">
+            <div class="col col-1-12 grid-6-12"><div class="field field-form_input_email"><div class="field-wrapper">
+              <label class="visually-hidden" for={`${id}-email`}>E-mail</label>
+              <input class="field-control" id={`${id}-email`} name={field('email')} placeholder="E-mail" type="email" autocomplete="email" />
+            </div></div></div>
+            <div class="col col-7-12 grid-6-12"><div class="field field-form_input_text"><div class="field-wrapper">
+              <label class="visually-hidden" for={`${id}-provoz`}>Název provozu</label>
+              <input class="field-control" id={`${id}-provoz`} name={field('nazev-provozu')} placeholder="Název provozu" type="text" autocomplete="organization" />
+            </div></div></div>
+          </div>
+          <div class="row">
+            <div class="col col-1-12 grid-6-12"><div class="field field-form_input_text lead-cta__select"><div class="field-wrapper">
+              <label class="visually-hidden" for={`${id}-typ`}>Typ provozu</label>
+              <select class="field-control" id={`${id}-typ`} name={field('typ-provozu')} required>
+                <option value="" disabled selected>Typ provozu *</option>
+                {typy.map((t) => <option>{t}</option>)}
+              </select>
+            </div></div></div>
+            <div class="col col-7-12 grid-6-12"><div class="field field-form_input_text lead-cta__select"><div class="field-wrapper">
+              <label class="visually-hidden" for={`${id}-pokladny`}>Počet pokladen</label>
+              <select class="field-control" id={`${id}-pokladny`} name={field('pocet-pokladen')}>
+                <option value="" disabled selected>Počet pokladen</option>
+                {pokladny.map((t) => <option>{t}</option>)}
+              </select>
+            </div></div></div>
+          </div>
+          <div class="row">
+            <div class="col col-1-12 grid-12-12"><div class="field field-form_button"><div class="field-wrapper"><div class="left">
+              <button class="btn btn-primary" type="submit"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">DOMLUVIT UKÁZKU</span></button>
+            </div></div></div></div>
+          </div>
+          <p class="lead-cta__gdpr">Vaše osobní údaje budou zpracovány podle <a href="/informace-o-zpracovani-osobnich-udaju-formular">Podmínek zpracování osobních údajů</a>.</p>
+          <input name="form_variant" type="hidden" value={id} /><input name="page" type="hidden" value="" />
+          <div aria-hidden="true" class="visually-hidden"><label>Web <input autocomplete="off" name="website" tabindex="-1" type="text" /></label></div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="section-background container-fit container-fit--cover fx-background-none" style="background-color:rgb(0, 173, 238)">
+    <img alt="" decoding="async" loading="lazy" sizes="100vw" src="/files/r/1280/septim-demo-zdarma.webp" srcset="/files/r/720/septim-demo-zdarma.webp 720w, /files/r/1280/septim-demo-zdarma.webp 1280w, /files/r/1920/septim-demo-zdarma.webp 1920w" width="1280" height="720" />
+  </div>
+</div>

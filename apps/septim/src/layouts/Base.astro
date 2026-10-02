@@ -119,6 +119,11 @@ const clientUi = { sending: ui[locale]['form.sending'], error: ui[locale]['form.
         <slot />
       </div>
       <Footer />
+      <!-- Mobil: spodní lišta se dvěma akcemi místo plovoucího „Chci Septim“ (2. 10. 2026); chování v septim.js -->
+      <nav class="mobile-cta" aria-label="Rychlý kontakt">
+        <a class="mobile-cta__call" href="tel:+420257011100">Zavolat</a>
+        <a class="mobile-cta__demo" href="/chci-septim" data-demo-link>Domluvit ukázku</a>
+      </nav>
     </div>
     <script is:inline define:vars={{ clientUi }}>window.SEPTIM_UI = clientUi;</script>
     <script is:inline src={septimUrl} defer></script>

@@ -1,7 +1,7 @@
 ---
 // https://www.septim.cz/produkty/septim-4-system-pro-restaurace (Solid Pixels), port 1:1 skriptem port-septim.py
+import DomluvitUkazku from '../../components/blocks/DomluvitUkazku.astro';
 import Base from '../../layouts/Base.astro';
-import PojdmeToProbrat from '../../components/blocks/PojdmeToProbrat.astro';
 import Mezera_4b78 from '../../components/blocks/Mezera_4b78.astro';
 import Blok30Let_9e65 from '../../components/blocks/Blok30Let_9e65.astro';
 import Novinky from '../../components/blocks/Novinky.astro';
@@ -21,7 +21,6 @@ import Novinky from '../../components/blocks/Novinky.astro';
 <div class="section height--normal align--middle color--default no-pb section-has-background" id="podrobne"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Důvěřují nám ti nejlepší<span class="text-highlight">.</span></h2>
 </div></div></div>
 <div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-gallery grid-sm-2"><div><div><div><div class="grid gallery-container" style="--gap:40px"><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Grandhotel Pupp" decoding="async" loading="lazy" src="/files/ref-grandhotel-pupp.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Ambiente" decoding="async" loading="lazy" src="/files/ref-ambiente.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Entrée" decoding="async" loading="lazy" src="/files/ref-entree-michelin.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Zátiší Group" decoding="async" loading="lazy" src="/files/ref-zatisi-group.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Kolkovna" decoding="async" loading="lazy" src="/files/ref-kolkovna.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><a class="image image-mask ratio-square image-width-stretch" href="/chci-septim"><img alt="Vaše logo" decoding="async" loading="lazy" src="/files/ref-vase.svg"/></a></div></div></div></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
-<PojdmeToProbrat />
 <div class="section height--low align--middle color--default col-gaps-bigger section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-6-12"><div class="block block-quote"><div><div><div><div class="has-icon left block-quote-figure"><div class="block-quote-image"><div class="image-wrapper"><div class="image image-mask ratio-square shape-square"><img alt="Tomáš Karpíšek" decoding="async" loading="lazy" sizes="auto" src="/files/r/1280/ref-karpisek.webp" srcset="/files/r/720/ref-karpisek.webp 720w, /files/r/1280/ref-karpisek.webp 1280w, /files/r/1920/ref-karpisek.webp 1920w" style="object-position:100% 0%" width="800" height="600"/></div></div></div><i class="icon icon-quote-right"></i><blockquote class="block-quote-text"><b>Výborný systém!</b><br/>
 Pokladní systém Septim a služba WebCare nám pomáhá být blíž našim zákazníkům.</blockquote><div class="block-quote-author"><span class="quote-decor">–</span> Tomáš Karpíšek <span class="quote-decor">–</span><span class="block-quote-info">Šéf restaurací Ambiente</span></div></div></div></div></div></div></div> <div class="col col-7-12 grid-6-12"><div class="block block-quote"><div><div><div><div class="has-icon left block-quote-figure"><div class="block-quote-image"><div class="image-wrapper"><div class="image image-mask ratio-square shape-square"><img alt="Radek Kašpárek" decoding="async" loading="lazy" sizes="auto" src="/files/r/1280/ref-kasparek.webp" srcset="/files/r/720/ref-kasparek.webp 720w, /files/r/1280/ref-kasparek.webp 1280w, /files/r/1920/ref-kasparek.webp 1920w" style="object-position:94% 0%" width="800" height="600"/></div></div></div><i class="icon icon-quote-right"></i><blockquote class="block-quote-text"><b>Stabilita a efektivita</b><br/>
 Provozní systém Septim je zásadní součástí restaurace FIELD. Díky němu mám jistotu, že celý provoz běží stabilně a efektivně.</blockquote><div class="block-quote-author"><span class="quote-decor">–</span> Radek Kašpárek <span class="quote-decor">–</span><span class="block-quote-info">Šéfkuchař a zakladatel FIELD</span></div></div></div></div></div></div></div></div>
@@ -75,7 +74,7 @@ Provozní systém Septim je zásadní součástí restaurace FIELD. Díky němu 
 </div></div></div></div></div></div></div></div></div></div></div></div> <div class="col col-9-12 grid-4-12"><div class="block block-box box box--default box--full-height"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div><div class="flexcard flexcard-icon flexcard-vertical size-md align-center"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/chytre-nastaveni.svg" width="90" height="90"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h4>Chytré nastavení</h4>
 <p>Ještě důležitější než pokročilé funkce celého systému je chytré nastavení. Všichni naši konzultanti jsou lidé s bohatými zkušenostmi z gastra a umějí se vžít do vaší situace. Podle toho jaký máte koncept restaurace, jak funguje kuchyň a jak je zorganizovaný plac vám pomohou co nejlépe nastavit pokladny i manažera Septimu.</p>
 </div></div></div></div></div></div></div></div></div></div></div></div></div>
-<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div><div><div><div class="center"><a class="btn btn-default" href="/produkty/septim-4-system-pro-restaurace#mam-zajem"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">Mám zájem</span></a></div></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(235, 252, 255)"></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div><div><div><div class="center"><a class="btn btn-default" href="/produkty/septim-4-system-pro-restaurace#domluvit-ukazku"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">Mám zájem</span></a></div></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(235, 252, 255)"></div></div>
 <div class="section height--low align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image offset-top no-edge-mobile block-image--light-blue mobile-order-reverse"><div><div><div><div class="flexcard flexcard-card flexcard-size--normal flexcard-media-right valign-center align-left flexcard-media--stretch"><div class="flexcard-media"><div class="image-wrapper"><a class="image image-mask ratio-original" href="/produkty/myseptim" style="padding-bottom:55.55555555555556%"><img alt="Celý Váš provoz po ruce. Odkudkoli!" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/btn-myseptim-odkudkoli-1.webp" srcset="/files/r/720/btn-myseptim-odkudkoli-1.webp 720w, /files/r/1280/btn-myseptim-odkudkoli-1.webp 1280w, /files/r/1920/btn-myseptim-odkudkoli-1.webp 1920w" width="1280" height="711"/></a></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2>Celý Váš provoz po ruce<span class="text-highlight">. Odkudkoli!</span></h2>
 <p>MySeptim je speciálně navržená aplikace pro majitele, manažery a provozní restauračních zařízení využívajících restaurační systém Septim. Poskytuje rychlý, přehledný a efektivní přístup k nejdůležitějším provozním ukazatelům. Díky přímému propojení s databází systému Septim máte veškerá klíčová data svého provozu vždy po ruce a odkudkoliv!</p>
 </div><div class="image-btn"><a class="btn btn-primary" href="/produkty/myseptim"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">Více o MySeptim</span></a></div></div></div></div></div></div></div></div></div></div></div></div>
@@ -136,67 +135,5 @@ Provozní systém Septim je zásadní součástí restaurace FIELD. Díky němu 
 <Blok30Let_9e65 />
 <Novinky />
 <Mezera_4b78 />
-<div class="section height--medium align--middle color--default section-has-background" id="mam-zajem"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Mám zájem o systém Septim<span class="text-highlight">.</span></h2>
-</div></div></div>
-<div class="row-main"><div class="col col-3-12 grid-8-12"><div class="block block-inline"><p class="center">Kontaktujte nás pomocí formuláře níže, rádi se Vám ozveme!</p>
-</div></div></div>
-<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:30px"></div></div></div></div>
-<div class="row-main"><div class="col col-5-12 grid-4-12">
-<form action="/api/lead.php" autocomplete="off" class="block block-form form-background" data-lead-form="formular-field_form_3_4_0_0" id="formular-field_form_3_4_0_0" method="post">
-<div class="row">
-<div class="col col-1-12 grid-12-12">
-<div class="field field-form_input_email" id="field-wrapper-email">
-<div class="field-wrapper">
-<label for="field-email" id="label-email">
-            E-mail <span>*</span>
-</label>
-<input class="field-control" id="field-email" name="formular-field_form_3_4_0_0[email]" required="" type="email" value=""/>
-</div>
-</div>
-</div>
-</div>
-<div class="row">
-<div class="col col-1-12 grid-12-12">
-<div class="field field-form_input_tel" id="field-wrapper-phone">
-<div class="field-wrapper">
-<label for="field-phone" id="label-phone">
-            Telefon
-          </label>
-<input class="field-control" id="field-phone" name="formular-field_form_3_4_0_0[phone]" type="tel" value=""/>
-</div>
-</div>
-</div>
-</div>
-<div class="row">
-<div class="col col-1-12 grid-12-12">
-<div class="field field-form_textarea" id="field-wrapper-vase-zprava">
-<div class="field-wrapper">
-<label for="field-vase-zprava" id="label-vase-zprava">
-            Vaše zpráva
-          </label>
-<textarea class="field-control" id="field-vase-zprava" name="formular-field_form_3_4_0_0[vase-zprava]"></textarea>
-</div>
-</div>
-</div>
-</div>
-<div class="row">
-<div class="col col-1-12 grid-12-12">
-<div class="block block-inline"><p>Vaše osobní údaje budou zpracovány podle <a href="/informace-o-zpracovani-osobnich-udaju-formular">Podmínek zpracování osobních údajů</a>.</p>
-</div>
-</div>
-</div>
-<div class="row">
-<div class="col col-1-12 grid-12-12">
-<div class="field field-form_button" id="field-wrapper-field_form_3_4_0_0">
-<div class="field-wrapper">
-<div class="left">
-<button class="btn btn-a btn-primary" id="field-field_form_3_4_0_0" name="formular-field_form_3_4_0_0[field_form_3_4_0_0]" type="submit" value="submit"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">Odeslat</span></button>
-</div>
-</div>
-</div>
-</div>
-</div>
-
-<input name="form_variant" type="hidden" value="formular-field_form_3_4_0_0"/><input name="page" type="hidden" value=""/><div aria-hidden="true" class="visually-hidden"><label>Web <input autocomplete="off" name="website" tabindex="-1" type="text"/></label></div></form>
-</div></div></div><div class="section-background" style="background-color:#fff"></div></div>
+<DomluvitUkazku />
 </Base>

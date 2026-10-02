@@ -1,11 +1,10 @@
 ---
 // https://www.septim.cz/pokladni-provozni-system-pro-sit-restauraci (Solid Pixels), port 1:1 skriptem port-septim.py
+import DomluvitUkazku from './../components/blocks/DomluvitUkazku.astro';
 import Base from './../layouts/Base.astro';
-import PojdmeToProbrat from './../components/blocks/PojdmeToProbrat.astro';
 import Mezera_fd60 from './../components/blocks/Mezera_fd60.astro';
 import Blok30Let_9e65 from './../components/blocks/Blok30Let_9e65.astro';
 import Mezera_bb6d from './../components/blocks/Mezera_bb6d.astro';
-import KontaktniFormularB from './../components/blocks/KontaktniFormularB.astro';
 import Novinky from './../components/blocks/Novinky.astro';
 ---
 <Base
@@ -56,7 +55,6 @@ import Novinky from './../components/blocks/Novinky.astro';
 </div></div></div></div></div></div></div></div></div></div> <div class="block block-box box box--default"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-vertical size-md align-center"><a class="flexcard-media" href="/produkty/platby-objednavky-qr-kodem"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Placení a objednání přes QR" decoding="async" loading="lazy" src="/files/modul-qr.svg" width="90" height="90"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h3>Placení a objednání přes QR</h3>
 </div></div></div></div></div></div></div></div></div></div> <div class="block block-box box box--default"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-vertical size-md align-center"><a class="flexcard-media" href="/produkty/eshop-restaurace"><div class="image-icon-wrapper"><div class="image-icon"><img alt="E-shop restaurace" decoding="async" loading="lazy" src="/files/modul-eshop.svg" width="90" height="90"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h3>E-shop restaurace</h3>
 </div></div></div></div></div></div></div></div></div></div></div></div></div><div class="section-background" style="background-color:#ffffff"></div></div>
-<PojdmeToProbrat />
 <div class="section height--low align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-7-12"><div class="block block-inline"><h3 class="text-large">Servis a podpora pro síť restaurací<span class="text-highlight">.</span></h3>
 </div> <div class="block block-image has-half-bg light-blue"><div><div><div class="flexcard flexcard-icon flexcard-horizontal valign-middle size-sm"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/zpetna-vazba.svg" width="90" height="90"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p>Podpora 24/7 vzdálená i osobní</p>
 </div></div></div></div></div></div></div> <div class="block block-image has-half-bg light-blue"><div><div><div class="flexcard flexcard-icon flexcard-horizontal valign-middle size-sm"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/mam-septim.svg" width="90" height="90"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block">Dostupné náhradní díly a technická podpora</div></div></div></div></div></div></div> <div class="block block-image has-half-bg light-blue"><div><div><div class="flexcard flexcard-icon flexcard-horizontal valign-middle size-sm"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/inovace.svg" width="90" height="90"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block">Poradenství ohledně používání softwaru a jeho nastavení</div></div></div></div></div></div></div></div> <div class="col col-8-12 grid-5-12"><div class="block block-image shrinked-large"><div><div><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="" decoding="async" loading="lazy" sizes="(min-width:1390px) 579px, (min-width:720px) 41.67vw, 100.00vw" src="/files/r/1280/servis-podpora-septim.webp" srcset="/files/r/720/servis-podpora-septim.webp 720w, /files/r/1280/servis-podpora-septim.webp 1280w, /files/r/1920/servis-podpora-septim.webp 1920w" width="800" height="800"/></div></div></div></div></div></div>
@@ -86,6 +84,6 @@ import Novinky from './../components/blocks/Novinky.astro';
 <div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div><div><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
 <Blok30Let_9e65 />
 <Mezera_bb6d />
-<KontaktniFormularB />
+<DomluvitUkazku />
 <Novinky />
 </Base>

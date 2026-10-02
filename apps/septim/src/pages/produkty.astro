@@ -1,8 +1,7 @@
 ---
 // https://www.septim.cz/produkty (Solid Pixels), port 1:1 skriptem port-septim.py
+import DomluvitUkazku from './../components/blocks/DomluvitUkazku.astro';
 import Base from './../layouts/Base.astro';
-import PojdmeToProbrat from './../components/blocks/PojdmeToProbrat.astro';
-import BlokDemoZdarma_4546 from './../components/blocks/BlokDemoZdarma_4546.astro';
 ---
 <Base
   title="Produkty a moduly pokladního systému | Septim"
@@ -16,7 +15,6 @@ import BlokDemoZdarma_4546 from './../components/blocks/BlokDemoZdarma_4546.astr
 <div class="row-main"><div class="col col-3-12 grid-8-12"><div class="block block-inline"><p class="center text-large">Přemýšlíte, jestli je Septim pro váš podnik ideální a nevíte si rady? Pokusili jsme se naši nabídku produktů strukturovat tak, abychom vám výběr co nejvíce usnadnili.</p>
 </div></div></div>
 <div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div><div class="section-background container-fit container-fit--cover" style="background-color:rgb(255, 255, 255)"><img alt="" decoding="async" sizes="(orientation: portrait) 416.47vw, 100vw" src="/files/r/1280/hdr-tapeta-septim-white.webp" srcset="/files/r/720/hdr-tapeta-septim-white.webp 720w, /files/r/1280/hdr-tapeta-septim-white.webp 1280w, /files/r/1920/hdr-tapeta-septim-white.webp 1920w" style="object-position:50% 0%" width="1280" height="544"/></div></div>
-<PojdmeToProbrat />
 <div class="section height--low align--middle color--default section-width-boxed no-pb section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:30px"></div></div></div></div>
 <div class="row-main"><div class="col col-1-12 grid-12-12"><div class="container tab-links"><div class="container-body flex flex--justify-center flex--wrap">
 <div class="flex__item"><div class="block block-inline active"><p><a href="#tab-septim">systém Septim</a></p>
@@ -149,5 +147,5 @@ import BlokDemoZdarma_4546 from './../components/blocks/BlokDemoZdarma_4546.astr
 </div></div></div>
 <div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div class="center"><a class="btn btn-default btn-sm" href="/produkty/hardware-do-restaurace"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">VÍCE O HARDWARE</span></a></div></div></div></div></div></div></div>
 <div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div></div>
-<BlokDemoZdarma_4546 />
+<DomluvitUkazku />
 </Base>

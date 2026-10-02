@@ -375,6 +375,24 @@
     });
   });
 
+  /* ------------------------------------------------ mobil: spodní lišta (Zavolat / Domluvit ukázku) */
+  function mobileCta() {
+    var bar = doc.querySelector('.mobile-cta');
+    if (!bar) return;
+    var target = doc.getElementById('domluvit-ukazku');
+    var demo = bar.querySelector('[data-demo-link]');
+    /* na stránce s formulářem vede tlačítko rovnou na něj, jinde na /chci-septim */
+    if (target && demo) demo.setAttribute('href', '#domluvit-ukazku');
+    var forms = $$('#main form[data-lead-form]');
+    if (!('IntersectionObserver' in window) || !forms.length) return;
+    var visible = new Set();
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) visible.add(e.target); else visible.delete(e.target); });
+      bar.classList.toggle('is-hidden', visible.size > 0);
+    }, { rootMargin: '0px 0px -10% 0px' });
+    forms.forEach(function (f) { io.observe(f); });
+  }
+
   /* ------------------------------------------------ start */
   headerHeight();
   firstSectionIndent();
@@ -385,6 +403,7 @@
   sliders();
   anchors();
   forms();
+  mobileCta();
   images();
   waypoints();
   window.addEventListener('resize', function () { headerHeight(); waypoints(); });
