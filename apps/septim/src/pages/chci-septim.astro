@@ -19,7 +19,7 @@ import Base from './../layouts/Base.astro';
 <label class="visually-hidden" for="field-jmeno" id="label-jmeno">
             Jméno
           </label>
-<input class="field-control" id="field-jmeno" name="chci-ziskat-vyhody-septimu[jmeno]" placeholder="Jméno" type="text" value=""/>
+<input class="field-control" id="field-jmeno" name="chci-ziskat-vyhody-septimu[jmeno]" placeholder="Jméno a příjmení *" type="text" value="" required=""/>
 </div>
 </div>
 </div>
@@ -31,7 +31,7 @@ import Base from './../layouts/Base.astro';
 <label class="visually-hidden" for="field-email" id="label-email">
             Email <span>*</span>
 </label>
-<input class="field-control" id="field-email" name="chci-ziskat-vyhody-septimu[email]" placeholder="E-mail" required="" type="email" value=""/>
+<input class="field-control" id="field-email" name="chci-ziskat-vyhody-septimu[email]" placeholder="E-mail *" required="" type="email" value=""/>
 </div>
 </div>
 </div>
@@ -43,31 +43,7 @@ import Base from './../layouts/Base.astro';
 <label class="visually-hidden" for="field-telefon" id="label-telefon">
             Telefon
           </label>
-<input class="field-control" id="field-telefon" name="chci-ziskat-vyhody-septimu[telefon]" placeholder="Telefon" type="tel" value=""/>
-</div>
-</div>
-</div>
-</div>
-<div class="row">
-<div class="col col-1-12 grid-12-12">
-<div class="field field-form_input_text" id="field-wrapper-nazev-podniku">
-<div class="field-wrapper">
-<label class="visually-hidden" for="field-nazev-podniku" id="label-nazev-podniku">
-            Název podniku
-          </label>
-<input class="field-control" id="field-nazev-podniku" name="chci-ziskat-vyhody-septimu[nazev-podniku]" placeholder="Název podniku" type="text" value=""/>
-</div>
-</div>
-</div>
-</div>
-<div class="row">
-<div class="col col-1-12 grid-12-12">
-<div class="field field-form_input_text" id="field-wrapper-mesto">
-<div class="field-wrapper">
-<label class="visually-hidden" for="field-mesto" id="label-mesto">
-            Město
-          </label>
-<input class="field-control" id="field-mesto" name="chci-ziskat-vyhody-septimu[mesto]" placeholder="Město" type="text" value=""/>
+<input class="field-control" id="field-telefon" name="chci-ziskat-vyhody-septimu[telefon]" placeholder="Telefon *" type="tel" value="" required=""/>
 </div>
 </div>
 </div>
