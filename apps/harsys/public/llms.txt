@@ -4,12 +4,11 @@
 
 ## Piano ekosystém
 
-- [Septim](https://septim-web.pages.dev): Pokladní a provozní systém
-- [Qerko](https://qerko-web.pages.dev): QR platby a komunikace s hosty
-- [Pecosta](https://pecosta-web.pages.dev): Aukční nákupy surovin
-- [Grason](https://grason-web.pages.dev): Personál, směny a docházka
-- [Protel](https://protel-web.pages.dev): Hotelový PMS
-- [Savarin](https://savarin-web.pages.dev): Software pro gastro a ubytování
+- [Qerko](https://www.qerko.com): QR platby, tipy, Google recenze
+- [Pecosta](https://pecosta.cz): aukční nákupy
+- [Grason](https://www.grason.cz): brigádníci, směny, píchačky
+- [Protel](https://www.protelsystems.cz): hotelový PMS systém
+- [Autset](https://autset.com): automatické naskladňování
 
 ## Více
-- [Piano - celý ekosystém](https://piano.cz): všechny nástroje pro pohostinství pod jednou střechou
+- [Piano](https://piano.cz): všechny nástroje pro pohostinství pod jednou střechou

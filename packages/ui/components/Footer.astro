@@ -5,6 +5,7 @@
  */
 import Icon from './Icon.astro';
 import { companyNav, legalNav, socialLinks, contact as defaultContact, products } from '../config/nav';
+import { hiddenRivalHrefs } from '../config/piano-ecosystem';
 import type { NavLink } from '../config/nav';
 
 interface ContactItem { label?: string; value: string; href?: string; }
@@ -28,6 +29,8 @@ interface Props {
   legal?: NavLink[];
   copyright?: string;
   locale?: 'cs' | 'en';
+  /** id webu (jako u pianoNavItem): na webu pokladny skryje ostatní pokladny skupiny ve sloupci Produkty */
+  currentId?: string;
 }
 
 const year = new Date().getFullYear();
@@ -63,7 +66,15 @@ const {
   legal = legalNav,
   copyright = `© ${year} Piano Solutions s.r.o.`,
   locale = 'cs',
+  currentId,
 } = Astro.props;
+
+const hidden = hiddenRivalHrefs(currentId);
+const isHidden = (href: string) => hidden.some((h) => href.includes(h));
+const filterCol = (c: FooterColumn): FooterColumn => ({ ...c, links: c.links.filter((l) => !isHidden(l.href)) });
+const visibleColumns: FooterColumnSlot[] = hidden.length
+  ? columns.map((slot) => (Array.isArray(slot) ? slot.map(filterCol) : filterCol(slot)))
+  : columns;
 
 const homeLabel = locale === 'en' ? 'home' : 'domů';
 const hasOffices = !!(offices && offices.items.length > 0);
@@ -107,7 +118,7 @@ const topStyle = `--footer-cols: ${columns.length + (hasOffices ? 1 : 0) + 1};`;
       </div>
 
       <!-- Sloupce odkazů -->
-      {columns.map((slot) => (
+      {visibleColumns.map((slot) => (
         <div class="footer__col">
           {(Array.isArray(slot) ? slot : [slot]).map((col) => (
             <nav class="footer__group" aria-label={col.heading}>

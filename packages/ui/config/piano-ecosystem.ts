@@ -57,8 +57,22 @@ const toLink = (p: PianoProduct, onPiano: boolean): NavLink => {
 };
 
 /** Sestaví Piano mega panel pro daný web; `currentId` se vynechá. `onPiano`=true jen na webu piano.cz. */
+/**
+ * Pokladní systémy skupiny, které si navzájem konkurují. Na webu jednoho z nich se
+ * v menu Piano ostatní nezobrazují (Kryštof 2. 10. 2026). Na piano.cz (bez currentId)
+ * jsou vidět všechny.
+ */
+export const RIVAL_POS = ['septim', 'savarin', 'posexperts', 'harsys'];
+
+/** Domény konkurenčních pokladen, které se na webu `currentId` nemají zobrazit (prázdné mimo skupinu). */
+export function hiddenRivalHrefs(currentId?: string): string[] {
+  if (!currentId || !RIVAL_POS.includes(currentId)) return [];
+  return PIANO_PRODUCTS.filter((p) => p.id !== currentId && RIVAL_POS.includes(p.id)).map((p) => new URL(p.href).hostname.replace(/^www\./, ''));
+}
+
 export function buildPianoMega(currentId?: string, onPiano = false): MegaPanel {
-  const items = PIANO_PRODUCTS.filter((p) => p.id !== currentId);
+  const hideRivals = !!currentId && RIVAL_POS.includes(currentId);
+  const items = PIANO_PRODUCTS.filter((p) => p.id !== currentId && !(hideRivals && RIVAL_POS.includes(p.id)));
   const byGroup = (g: Group) => items.filter((p) => p.group === g).map((p) => toLink(p, onPiano));
 
   const columns = [
