@@ -71,6 +71,7 @@ export const harsysCta: NavLink = { label: 'Konzultace zdarma', href: '/#poptavk
  * Kontakty dle obsah/kontakty-abx-software.md.
  */
 export const harsysFooter = {
+  currentId: 'harsys',   // pravidlo: na webu pokladny se ostatní pokladny skupiny nezobrazují
   brand: 'ABX HARSYS',
   logoSrc: '/logos/abx_by_piano.svg',
   logoAlt: 'ABX HARSYS by Piano',

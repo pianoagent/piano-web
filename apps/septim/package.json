@@ -12,5 +12,8 @@
     "@astrojs/sitemap": "^3.7.4",
     "@piano/ui": "*",
     "astro": "^7.3.5"
+  },
+  "devDependencies": {
+    "purgecss": "^7.0.2"
   }
 }

@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+import purgeLiveCss from './integrations/purge-live-css.mjs';
 
 /* Septim: kopie živého www.septim.cz 1:1 (URL, obsah, vzhled).
    URL bez koncového lomítka a bez .html, stejně jako na Solid Pixels:
@@ -23,5 +24,7 @@ export default defineConfig({
       filter: (page) => !/\/(dekujeme|404|kolkovna\/1x-jidelna|kolkovna\/2x-bistro)(\.html)?$/.test(page),
       serialize: (item) => ({ ...item, url: item.url.replace(/\.html$/, '').replace(/\/$/, '') || item.url }),
     }),
+    // zmenšení převzatého CSS Solid Pixels na pravidla, která stránky opravdu používají
+    purgeLiveCss(),
   ],
 });

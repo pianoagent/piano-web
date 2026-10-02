@@ -1,5 +1,5 @@
 /* Hugo landing: chovani stranky, prevzate 1:1 z inline skriptu hugopos.eu.
-   Jazyk urcuje stranka (/ = cs, /en/ = en). Formular jde na /api/lead.php jako na ostatnich webech Piana. */
+   Jazyk urcuje stranka (/ = cs, /en/ = en). Formular jde na Databridge /api/web-lead jako na ostatnich webech Piana. */
 window.HUGO_LANG = document.documentElement.lang === 'en' ? 'en' : 'cs';
 
 /* Prepinac CZ / EN: vede na druhou jazykovou verzi, zachova ?v= a kotvu */
@@ -64,7 +64,7 @@ window.HUGO_LANG = document.documentElement.lang === 'en' ? 'en' : 'cs';
     });
   }
 
-/* Formular "Ozvi se mi" -> /api/lead.php (PHP hosting), po uspechu na dekovaci stranku */
+/* Formular "Ozvi se mi" -> Databridge (JSON, web pozna podle Origin), po uspechu na dekovaci stranku */
 (function () {
   var form = document.getElementById('waitlistForm');
   if (!form) return;
@@ -80,12 +80,23 @@ window.HUGO_LANG = document.documentElement.lang === 'en' ? 'en' : 'cs';
     if (busy) return;
     busy = true;
     if (btn) { btn.disabled = true; btn.textContent = MSG.sending; }
-    var data = new FormData(form);
-    data.append('page', location.href);
-    fetch(form.action, { method: 'POST', body: data, headers: { Accept: 'application/json' } })
-      .then(function (r) { return r.json().catch(function () { return { ok: false }; }); })
-      .then(function (res) {
-        if (!res || !res.ok) throw new Error('lead');
+    var landing = {};
+    try { landing = JSON.parse(sessionStorage.getItem('leadLanding') || '{}'); } catch (e) {}
+    var payload = {
+      name: form.elements.name.value,
+      email: form.elements.email.value,
+      pageUrl: location.href,
+      landingUrl: landing.url || location.href,
+      referrer: landing.referrer != null ? landing.referrer : document.referrer,
+      website: form.elements.website.value
+    };
+    fetch(form.getAttribute('data-endpoint'), {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify(payload)
+    })
+      .then(function (r) {
+        if (!r.ok) throw new Error('lead');
         location.href = window.HUGO_LANG === 'en' ? '/en/dekujeme/' : '/dekujeme/';
       })
       .catch(function () {

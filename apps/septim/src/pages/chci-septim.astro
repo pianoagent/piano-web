@@ -1,7 +1,6 @@
 ---
 // https://www.septim.cz/chci-septim (Solid Pixels), port 1:1 skriptem port-septim.py
 import Base from './../layouts/Base.astro';
-import BlokDemoZdarma_4546 from './../components/blocks/BlokDemoZdarma_4546.astro';
 ---
 <Base
   title="Chci Septim: nezávazná konzultace zdarma | Septim"
@@ -20,7 +19,7 @@ import BlokDemoZdarma_4546 from './../components/blocks/BlokDemoZdarma_4546.astr
 <label class="visually-hidden" for="field-jmeno" id="label-jmeno">
             Jméno
           </label>
-<input class="field-control" id="field-jmeno" name="chci-ziskat-vyhody-septimu[jmeno]" placeholder="Jméno" type="text" value=""/>
+<input class="field-control" id="field-jmeno" name="chci-ziskat-vyhody-septimu[jmeno]" placeholder="Jméno a příjmení *" type="text" value="" required=""/>
 </div>
 </div>
 </div>
@@ -32,7 +31,7 @@ import BlokDemoZdarma_4546 from './../components/blocks/BlokDemoZdarma_4546.astr
 <label class="visually-hidden" for="field-email" id="label-email">
             Email <span>*</span>
 </label>
-<input class="field-control" id="field-email" name="chci-ziskat-vyhody-septimu[email]" placeholder="E-mail" required="" type="email" value=""/>
+<input class="field-control" id="field-email" name="chci-ziskat-vyhody-septimu[email]" placeholder="E-mail *" required="" type="email" value=""/>
 </div>
 </div>
 </div>
@@ -44,7 +43,7 @@ import BlokDemoZdarma_4546 from './../components/blocks/BlokDemoZdarma_4546.astr
 <label class="visually-hidden" for="field-telefon" id="label-telefon">
             Telefon
           </label>
-<input class="field-control" id="field-telefon" name="chci-ziskat-vyhody-septimu[telefon]" placeholder="Telefon" type="tel" value=""/>
+<input class="field-control" id="field-telefon" name="chci-ziskat-vyhody-septimu[telefon]" placeholder="Telefon *" type="tel" value="" required=""/>
 </div>
 </div>
 </div>
@@ -92,6 +91,5 @@ import BlokDemoZdarma_4546 from './../components/blocks/BlokDemoZdarma_4546.astr
 </div>
 
 <input name="form_variant" type="hidden" value="chci-ziskat-vyhody-septimu"/><input name="page" type="hidden" value=""/><div aria-hidden="true" class="visually-hidden"><label>Web <input autocomplete="off" name="website" tabindex="-1" type="text"/></label></div></form>
-</div> <div class="col col-6-12 grid-1-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:50px"></div></div></div> <div class="col col-7-12 grid-6-12"><div class="block block-image"><div class="image image-mask ratio-original" style="padding-bottom:121.95121951219512%"><img alt="" decoding="async" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/chci-septim-audrey-piano-30-let.webp" srcset="/files/r/720/chci-septim-audrey-piano-30-let.webp 720w, /files/r/1280/chci-septim-audrey-piano-30-let.webp 1280w, /files/r/1920/chci-septim-audrey-piano-30-let.webp 1920w"/></div></div></div></div></div><div class="section-background" style="background-color:#fff"></div></div>
-<BlokDemoZdarma_4546 />
+</div> <div class="col col-6-12 grid-1-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:50px"></div></div></div> <div class="col col-7-12 grid-6-12"><div class="block block-image"><div class="image image-mask ratio-original" style="padding-bottom:121.95121951219512%"><img alt="" decoding="async" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/chci-septim-audrey-piano-30-let.webp" srcset="/files/r/720/chci-septim-audrey-piano-30-let.webp 720w, /files/r/1280/chci-septim-audrey-piano-30-let.webp 1280w, /files/r/1920/chci-septim-audrey-piano-30-let.webp 1920w" width="820" height="1000"/></div></div></div></div></div><div class="section-background" style="background-color:#fff"></div></div>
 </Base>

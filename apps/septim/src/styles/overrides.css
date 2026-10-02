@@ -51,3 +51,235 @@ form[data-lead-form] .visually-hidden {
 @media (max-width: 1150px) {
   #header .nav__item--box { display: none; }
 }
+
+/* Patička: lockup „Septim by Piano“ bíle, stejně jako sdílený Footer na ostatních webech */
+.footer .footer-logo img { height: 42px; width: auto; max-width: none; filter: brightness(0) invert(1); }
+
+/* Blok „Domluvit ukázku“ (jediná poptávková výzva na stránce) */
+.lead-cta .lead-cta__contact { margin-top: 12px; }
+.lead-cta .lead-cta__contact a { color: #fff; font-weight: 700; }
+.lead-cta .block-form .row + .row { margin-top: 12px; }
+.lead-cta .lead-cta__select select.field-control {
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 44px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2306038d' stroke-width='2.5'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 16px;
+  cursor: pointer;
+}
+.lead-cta .lead-cta__select select.field-control:invalid { color: #555478; }
+.lead-cta .lead-cta__gdpr { margin: 12px 0 0; font-size: 13px; line-height: 1.5; color: #555478; }
+.lead-cta .lead-cta__gdpr a { color: #06038d; }
+
+/* Homepage: statické hero (2. 10. 2026), text na plném tmavém pozadí vlevo, fotka vpravo */
+.home-hero { min-height: clamp(560px, 72vh, 720px); }
+/* fotka jen v pravé části vedle textu, aby ji cover nepřibližoval (vidět stůl, terminál i ruka);
+   levý okraj se rozpouští do tmavého pozadí sekce */
+@media (min-width: 993px) {
+  .home-hero .section-background > img {
+    left: auto; right: 0; width: max(60%, calc(100% - 820px));
+    object-position: 62% 55%;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 32%);
+    mask-image: linear-gradient(90deg, transparent 0, #000 32%);
+  }
+}
+@media (min-width: 993px) and (max-width: 1279px) {
+  .home-hero .section-background > img { width: 48%; object-position: 64% 55%; }
+}
+.section.home-hero > .section-body { position: relative; z-index: 30; }
+.home-hero h1 { color: #fff; max-width: 20ch; margin-bottom: 20px; }
+.home-hero h1 .home-hero__accent { color: #00adef; }
+.home-hero .text-large { color: #fff; max-width: 46ch; margin-bottom: 32px; }
+.home-hero__ctas .btn { margin: 0 12px 12px 0; }
+.home-hero__trust { list-style: none; margin: 36px 0 0; padding: 24px 0 0; display: flex; flex-wrap: wrap; gap: 16px 40px; color: #fff; border-top: 1px solid rgba(255, 255, 255, .2); max-width: 620px; }
+.home-hero__trust li { padding: 0; margin: 0; font-size: 14px; line-height: 1.4; opacity: .9; }
+.home-hero__trust li::before { display: none; }
+.home-hero__trust strong { display: block; font-size: 28px; line-height: 1.2; color: #fff; }
+@media (max-width: 992px) {
+  .home-hero .section-background::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(6, 3, 141, .88) 0%, rgba(6, 3, 141, .95) 100%); }
+}
+@media (max-width: 719px) {
+  .home-hero { min-height: 0; }
+  .home-hero__trust { gap: 16px 24px; }
+  .home-hero__trust li { flex: 1 1 40%; }
+}
+/* Ceník: tarify vedle sebe (2. 10. 2026), vzdušnější rozvržení */
+.price-compare { padding-top: 40px; padding-bottom: 80px; }
+.price-compare__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; align-items: stretch; max-width: 1240px; margin: 0 auto; }
+.price-card { display: flex; flex-direction: column; background: #ebfcff; border-radius: 20px; padding: 48px 40px 44px; }
+.price-card:nth-child(2) { background: #fff; box-shadow: 0 0 0 2px #00adef inset, 0 16px 40px rgba(6, 3, 141, .08); }
+.price-card__name { margin: 0 0 8px; }
+.price-card__scope { margin: 0 0 32px; font-size: 14px; color: #555478; }
+.price-card__price { margin: 0; color: #06038d; font-size: 18px; }
+.price-card__price strong { font-size: 40px; line-height: 1.15; }
+.price-card__note { margin: 12px 0 0; font-size: 13px; line-height: 1.6; color: #555478; min-height: 3.2em; }
+.price-card__note:empty { visibility: hidden; }
+.price-card__intro { margin: 32px 0 12px; font-weight: 700; color: #06038d; font-size: 15px; }
+.price-card__list { list-style: none; margin: 32px 0 40px; padding: 32px 0 0; border-top: 1px solid rgba(6, 3, 141, .1); flex: 1; }
+.price-card__intro + .price-card__list { margin-top: 0; padding-top: 0; border-top: 0; }
+.price-card__intro { padding-top: 32px; border-top: 1px solid rgba(6, 3, 141, .1); }
+.price-card__list li { display: flex; gap: 12px; align-items: flex-start; margin: 0 0 16px; padding: 0; font-size: 16px; line-height: 1.5; }
+.price-card__list li::before { display: none; }
+.price-card__ico { flex: 0 0 20px; width: 20px; height: 20px; margin-top: 3px; }
+.price-card__cta { margin-top: auto; }
+@media (max-width: 1200px) { .price-compare__grid { gap: 24px; } .price-card { padding: 40px 28px 36px; } }
+@media (max-width: 992px) { .price-compare__grid { grid-template-columns: 1fr; max-width: 560px; gap: 32px; } .price-card__note { min-height: 0; } }
+
+/* Mobil: spodní lišta místo plovoucího tlačítka „Chci Septim“ (2. 10. 2026) */
+.mobile-cta { display: none; }
+@media (max-width: 1150px) {
+  html:not(.is-menu-open) #header .nav__item--btn { display: none; }
+  .mobile-cta {
+    display: grid; grid-template-columns: 1fr 1.4fr; gap: 8px;
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 900;
+    padding: 8px 12px calc(8px + env(safe-area-inset-bottom));
+    background: #fff; box-shadow: 0 -4px 16px rgba(6, 3, 141, .12);
+    transition: transform .25s ease;
+  }
+  .mobile-cta.is-hidden, .is-menu-open .mobile-cta { transform: translateY(110%); }
+  .mobile-cta a {
+    display: flex; align-items: center; justify-content: center; min-height: 48px;
+    border-radius: 50px; font-weight: 700; font-size: 15px; text-decoration: none; background-image: none;
+  }
+  .mobile-cta__call { color: #06038d; box-shadow: 0 0 0 2px #06038d inset; }
+  .mobile-cta__demo { color: #fff; background-color: #0073a6; }
+  .page { padding-bottom: calc(64px + env(safe-area-inset-bottom)); }
+}
+@media (max-width: 719px) { .lead-cta .block-form .row > .col { flex: 0 0 100%; max-width: 100%; width: 100%; } }
+/* Homepage: tmavé hero → menu v průhledné hlavičce bílé, dokud se neodroluje */
+@media (min-width: 1151px) {
+  .is-homepage:not(.is-after-menu) #header .nav--primary > .nav__list > .nav__item > .nav__link,
+  .is-homepage:not(.is-after-menu) #header .nav--primary > .nav__list > .nav__item > .nav__link .nav__label { color: #fff; }
+  .is-homepage:not(.is-after-menu) #header .nav--primary > .nav__list > .nav__item:hover > .nav__link .nav__label { color: #00adef; }
+}
+
+/* Kontrast (předcommit review 2. 10. 2026) */
+.home-hero .btn.home-hero__primary { --button-background: #fff; --button-color: #06038d; --button-border-color: #fff; --button-background-hover: #00adef; --button-color-hover: #fff; --button-border-hover: #00adef; font-weight: 700; }
+.lead-cta .section-background::after { content: ''; position: absolute; inset: 0; background: rgba(6, 3, 141, .72); }
+.section.lead-cta > .section-body { z-index: 30; }
+
+/* Homepage: na tmavém hero bílé logo (logo-invers1 ze živého webu je pro světlé fotky) */
+.is-homepage.header-inverse:not(.is-after-menu):not(.is-after-start) .logo__element { background-image: url(/files/logo-invers2.svg); }
+
+/* ---------------------------------------------------------------
+   Menu (2. 10. 2026): jednotné mega panely z config/menu.ts
+   --------------------------------------------------------------- */
+.mega__list { list-style: none; margin: 0; padding: 0; }
+.mega__list li { margin: 0; padding: 0; }
+.mega__list li::before { display: none; }
+.mega__heading { margin: 0 0 12px; font-size: 12px; line-height: 1.4; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #555478; }
+.mega__link { display: block; padding: 7px 0; color: #06038d; font-size: 15px; font-weight: 600; line-height: 1.35; text-transform: none; text-decoration: none; background-image: none; }
+.mega__link:hover .mega__label, .mega__link:focus-visible .mega__label { color: #0073a6; text-decoration: underline; }
+.mega__link.active .mega__label { color: #0073a6; }
+.mega__desc { display: block; margin-top: 2px; font-size: 13px; font-weight: 400; color: #555478; }
+.mega__more { display: inline-block; margin-top: 18px; font-size: 14px; font-weight: 700; color: #0073a6; text-transform: none; text-decoration: none; background-image: none; }
+.mega__more:hover { text-decoration: underline; }
+.mega__aside { background: #ebfcff; border-radius: 16px; padding: 24px; align-self: start; }
+.mega__aside-title { margin: 0 0 8px; font-size: 17px; font-weight: 700; color: #06038d; line-height: 1.3; text-transform: none; }
+.mega__aside-text { margin: 0 0 16px; font-size: 14px; line-height: 1.5; color: #555478; text-transform: none; }
+.mega__aside-btn { margin-bottom: 14px; }
+.mega__aside-contact { margin: 0 0 10px; font-size: 14px; line-height: 1.6; text-transform: none; }
+.mega__aside-contact a { color: #06038d; font-weight: 700; text-decoration: none; background-image: none; }
+.mega__aside-label { display: block; font-size: 12px; color: #555478; font-weight: 400; }
+.nav__link--badge .nav__label { display: inline-block; padding: 3px 10px; border-radius: 50px; background: #ebfcff; color: #06038d; }
+
+@media (min-width: 1151px) {
+  /* panel: bílé pozadí, stín a ztmavení stránky pod ním (nic neprosvítá) */
+  .mega__groups { display: grid; grid-template-columns: repeat(var(--mega-cols, 2), minmax(0, 1fr)); gap: 32px; }
+  /* aktivní položka: azurová linka místo plné pilulky */
+  #header .nav--primary > .nav__list > .nav__item.active > .nav__link { background: transparent; color: #06038d; border-radius: 0; box-shadow: inset 0 -3px 0 #00adef; }
+  #header .nav--primary > .nav__list > .nav__item.active > .nav__link .nav__label { color: inherit; }
+  .nav__item--phone .nav__link { font-weight: 700; white-space: nowrap; color: #06038d; text-transform: none; }
+  .nav__item--phone .nav__link:hover .nav__label { color: #0073a6; }
+  .is-homepage:not(.is-after-menu) #header .nav__item--phone .nav__link .nav__label { color: #fff; }
+  .is-homepage:not(.is-after-menu) #header .nav--primary > .nav__list > .nav__item.active > .nav__link .nav__label { color: #fff; }
+}
+@media (max-width: 1150px) {
+  #header .nav__item--phone { display: none; }
+  .mega__inner { padding: 4px 0 16px 16px; }
+  .mega__group + .mega__group { margin-top: 16px; }
+  .mega__heading { margin-bottom: 4px; }
+  .mega__link { padding: 9px 0; font-size: 16px; }
+  .mega__desc { display: none; }
+  .mega__aside { display: none; }
+}
+/* Menu: 8 položek + telefon + CTA se musí vejít do jednoho řádku; telefon až na širokých obrazovkách */
+@media (min-width: 1151px) {
+  #header .nav--primary > .nav__list > .nav__item > .nav__link { padding-left: 8px; padding-right: 8px; }
+}
+@media (min-width: 1151px) and (max-width: 1699px) {
+  #header .nav__item--phone { display: none; }
+}
+@media (min-width: 1151px) and (max-width: 1599px) {
+  #header .nav--primary > .nav__list > .nav__item > .nav__link { font-size: 14px; padding-left: 6px; padding-right: 6px; }
+}
+@media (min-width: 1151px) and (max-width: 1365px) {
+  #header .nav--primary > .nav__list > .nav__item > .nav__link { font-size: 13px; padding-left: 4px; padding-right: 4px; }
+  #header .nav__link--badge .nav__label { padding: 2px 8px; }
+}
+@media (min-width: 1151px) and (max-width: 1279px) {
+  #header .nav--primary > .nav__list > .nav__item > .nav__link { font-size: 12px; padding-left: 3px; padding-right: 3px; }
+}
+@media (min-width: 1151px) {
+  /* panel s jedinou skupinou (Piano): odkazy ve dvou sloupcích */
+  .mega__groups[style="--mega-cols:1"] .mega__list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 32px; }
+}
+@media (min-width: 1151px) {
+  .is-homepage:not(.is-after-menu) #header .nav--primary > .nav__list > .nav__item > .nav__link.nav__link--badge .nav__label { color: #06038d; }
+}
+
+/* Menu (2. 10. 2026, v3): jeden blok. Karta, stín a ztmavení stránky jsou sdílené
+   (.mega-shell, .mega-backdrop v Header.astro) a při přejíždění mezi položkami zůstávají;
+   uvnitř se jen prolne obsah a výška karty se plynule přizpůsobí. Řídí src/scripts/septim.js. */
+@media (min-width: 1151px) {
+  .js #header .mega-item > .mega.submenu--level-0 {
+    position: fixed; top: calc(var(--header-height, 90px) + 10px); left: 50% !important; right: auto;
+    width: min(1200px, calc(100vw - 48px)); max-height: none; margin: 0; padding: 0;
+    transform: translateX(-50%); background: transparent; box-shadow: none; clip-path: none;
+    opacity: 0 !important; visibility: hidden; pointer-events: none; z-index: 3;
+    transition: opacity .16s ease, visibility 0s linear .16s !important;
+  }
+  .js #header .mega-item.is-mega-active > .mega.submenu--level-0 {
+    opacity: 1 !important; visibility: visible; pointer-events: auto;
+    transition: opacity .2s ease .06s, visibility 0s !important;
+  }
+  .mega-shell {
+    position: fixed; top: calc(var(--header-height, 90px) + 10px); left: 50%;
+    width: min(1200px, calc(100vw - 48px)); height: var(--mega-h, 0px);
+    transform: translateX(-50%) translateY(-6px);
+    border-radius: 20px; overflow: hidden; z-index: 2;
+    background: linear-gradient(90deg, #fff calc(100% - 320px), #06038d calc(100% - 320px));
+    box-shadow: 0 30px 70px rgba(6, 3, 141, .22), 0 2px 6px rgba(6, 3, 141, .06);
+    opacity: 0; visibility: hidden; pointer-events: none;
+    transition: opacity .18s ease, transform .18s ease, height .25s cubic-bezier(.2, .7, .2, 1), visibility 0s linear .18s;
+  }
+  .mega-backdrop {
+    position: fixed; left: 0; right: 0; bottom: 0; top: var(--header-height, 90px); z-index: 1;
+    background: rgba(6, 3, 141, .28); -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px);
+    opacity: 0; visibility: hidden; pointer-events: none;
+    transition: opacity .2s ease, visibility 0s linear .2s;
+  }
+  #header.has-mega .mega-shell { opacity: 1; visibility: visible; transform: translateX(-50%); transition: opacity .18s ease, transform .18s ease, height .25s cubic-bezier(.2, .7, .2, 1), visibility 0s; }
+  #header.has-mega .mega-backdrop { opacity: 1; visibility: visible; transition: opacity .2s ease, visibility 0s; }
+  .mega__inner { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 0; max-width: none; margin: 0; padding: 0; background: transparent; }
+  .mega__main { padding: 36px 40px 32px; }
+  .mega__heading { display: flex; align-items: center; gap: 8px; color: #06038d; }
+  .mega__heading::before { content: ''; width: 14px; height: 3px; border-radius: 2px; background: #00adef; flex: 0 0 auto; }
+  .mega__heading--blank::before { display: none; }
+  .mega__link { padding: 6px 10px; margin: 0 -10px; border-radius: 10px; transition: background-color .15s ease; }
+  .mega__link:hover, .mega__link:focus-visible { background: #ebfcff; }
+  .mega__link:hover .mega__label, .mega__link:focus-visible .mega__label { text-decoration: none; }
+  .mega__more { margin-top: 20px; padding-top: 18px; border-top: 1px solid rgba(6, 3, 141, .08); display: block; }
+  /* boční panel: tmavé pozadí kreslí sdílená karta, panel jen nese text */
+  .mega__aside { background: transparent; border-radius: 0; align-self: stretch; padding: 36px 32px; color: #fff; }
+  .mega__aside-title { color: #fff; font-size: 19px; }
+  .mega__aside-text { color: rgba(255, 255, 255, .85); }
+  .mega__aside-label { color: rgba(255, 255, 255, .75); }
+  .mega__aside-contact a { color: #fff; }
+  .mega__aside-contact a:hover { color: #00adef; }
+  .mega__aside .btn.mega__aside-btn { --button-background: #fff; --button-color: #06038d; --button-border-color: #fff; --button-background-hover: #00adef; --button-color-hover: #fff; --button-border-hover: #00adef; font-weight: 700; }
+}
+@media (max-width: 1150px) { .mega-shell, .mega-backdrop { display: none; } }

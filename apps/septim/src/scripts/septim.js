@@ -119,18 +119,91 @@
 
     /* aktivní položka podle URL (na živém webu ji doplňoval CMS) */
     var path = location.pathname.replace(/\/$/, '').replace(/\.html$/, '') || '/';
-    $$('#header .nav__link[href]').forEach(function (a) {
-      var href = a.getAttribute('href');
-      if (href === path) {
-        a.classList.add('active');
-        var li = a.closest('.nav__item');
-        while (li) {
-          li.classList.add('active');
-          var own = li.querySelector(':scope > .nav__link');
-          if (own) own.classList.add('active');
-          li = li.parentNode && li.parentNode.closest ? li.parentNode.closest('.nav__item') : null;
-        }
+    $$('#header a[href]').forEach(function (a) {
+      if (a.getAttribute('href') !== path) return;
+      a.classList.add('active');
+      var li = a.closest('.nav__item');
+      while (li) {
+        li.classList.add('active');
+        var own = li.querySelector(':scope > .nav__link');
+        if (own) own.classList.add('active');
+        li = li.parentNode && li.parentNode.closest ? li.parentNode.closest('.nav__item') : null;
       }
+    });
+
+    /* desktop: mega menu jako jeden blok. Sdílená karta (.mega-shell) zůstává otevřená,
+       při přejetí na jinou položku se jen prolne obsah a výška karty se plynule změní. */
+    var shell = header && header.querySelector('.mega-shell');
+    var activeLi = null, closeTimer = null;
+    function megaOpen(li) {
+      if (isMobileNav() || !shell) return;
+      clearTimeout(closeTimer);
+      if (activeLi === li) return;
+      if (activeLi) activeLi.classList.remove('is-mega-active');
+      activeLi = li;
+      li.classList.add('is-mega-active');
+      var panel = li.querySelector(':scope > .mega');
+      shell.style.setProperty('--mega-h', (panel ? panel.offsetHeight : 0) + 'px');
+      header.classList.add('has-mega');
+    }
+    function megaClose(delay) {
+      clearTimeout(closeTimer);
+      closeTimer = setTimeout(function () {
+        if (activeLi) activeLi.classList.remove('is-mega-active');
+        activeLi = null;
+        header.classList.remove('has-mega');
+      }, delay || 0);
+    }
+    $$('#header .mega-item').forEach(function (li) {
+      li.addEventListener('mouseenter', function () { megaOpen(li); });
+      li.addEventListener('mouseleave', function () { megaClose(140); });
+      li.addEventListener('focusin', function () { megaOpen(li); });
+      li.addEventListener('focusout', function (e) { if (!li.contains(e.relatedTarget)) megaClose(140); });
+    });
+    /* najetí na položku bez panelu (Ceník, Naši zákazníci…) kartu zavře */
+    $$('#header .nav--primary > .nav__list > .nav__item:not(.mega-item)').forEach(function (li) {
+      li.addEventListener('mouseenter', function () { megaClose(0); });
+    });
+    window.addEventListener('resize', function () {
+      if (isMobileNav()) megaClose(0);
+      else if (activeLi) { var p = activeLi.querySelector(':scope > .mega'); if (p) shell.style.setProperty('--mega-h', p.offsetHeight + 'px'); }
+    });
+
+    /* mega panely: klávesnice (Enter / mezerník rozbalí), Escape zavře, aria-expanded */
+    var megaItems = $$('#header .mega-item');
+    function closeMega(except) {
+      megaItems.forEach(function (li) {
+        if (li === except) return;
+        li.classList.remove('is-opened');
+        if (isMobileNav()) li.classList.add('is-collapsed');
+        var t = li.querySelector(':scope > .nav__link');
+        if (t) t.setAttribute('aria-expanded', 'false');
+      });
+    }
+    megaItems.forEach(function (li) {
+      var t = li.querySelector(':scope > .nav__link');
+      if (!t) return;
+      t.addEventListener('keydown', function (e) {
+        if (e.key !== 'Enter' && e.key !== ' ') return;
+        e.preventDefault();
+        var opening = !li.classList.contains('is-opened');
+        closeMega(li);
+        li.classList.toggle('is-opened', opening);
+        li.classList.toggle('is-collapsed', isMobileNav() && !opening);
+        t.setAttribute('aria-expanded', opening ? 'true' : 'false');
+      });
+      /* na mobilu přepíná šipka / klik; aria-expanded drží krok */
+      new MutationObserver(function () {
+        t.setAttribute('aria-expanded', li.classList.contains('is-opened') ? 'true' : 'false');
+      }).observe(li, { attributes: true, attributeFilter: ['class'] });
+    });
+    doc.addEventListener('keydown', function (e) {
+      if (e.key !== 'Escape') return;
+      megaClose(0);
+      var focused = doc.activeElement && doc.activeElement.closest ? doc.activeElement.closest('.mega-item') : null;
+      closeMega();
+      if (open) { setOpen(false); if (toggle) toggle.focus(); }
+      else if (focused) { var t = focused.querySelector(':scope > .nav__link'); if (t) { t.focus(); t.blur(); } }
     });
   }
 
@@ -375,6 +448,24 @@
     });
   });
 
+  /* ------------------------------------------------ mobil: spodní lišta (Zavolat / Domluvit ukázku) */
+  function mobileCta() {
+    var bar = doc.querySelector('.mobile-cta');
+    if (!bar) return;
+    var target = doc.getElementById('domluvit-ukazku');
+    var demo = bar.querySelector('[data-demo-link]');
+    /* na stránce s formulářem vede tlačítko rovnou na něj, jinde na /chci-septim */
+    if (target && demo) demo.setAttribute('href', '#domluvit-ukazku');
+    var forms = $$('#main form[data-lead-form]');
+    if (!('IntersectionObserver' in window) || !forms.length) return;
+    var visible = new Set();
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) visible.add(e.target); else visible.delete(e.target); });
+      bar.classList.toggle('is-hidden', visible.size > 0);
+    }, { rootMargin: '0px 0px -10% 0px' });
+    forms.forEach(function (f) { io.observe(f); });
+  }
+
   /* ------------------------------------------------ start */
   headerHeight();
   firstSectionIndent();
@@ -385,6 +476,7 @@
   sliders();
   anchors();
   forms();
+  mobileCta();
   images();
   waypoints();
   window.addEventListener('resize', function () { headerHeight(); waypoints(); });
