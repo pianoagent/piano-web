@@ -131,6 +131,44 @@
       }
     });
 
+    /* desktop: mega menu jako jeden blok. Sdílená karta (.mega-shell) zůstává otevřená,
+       při přejetí na jinou položku se jen prolne obsah a výška karty se plynule změní. */
+    var shell = header && header.querySelector('.mega-shell');
+    var activeLi = null, closeTimer = null;
+    function megaOpen(li) {
+      if (isMobileNav() || !shell) return;
+      clearTimeout(closeTimer);
+      if (activeLi === li) return;
+      if (activeLi) activeLi.classList.remove('is-mega-active');
+      activeLi = li;
+      li.classList.add('is-mega-active');
+      var panel = li.querySelector(':scope > .mega');
+      shell.style.setProperty('--mega-h', (panel ? panel.offsetHeight : 0) + 'px');
+      header.classList.add('has-mega');
+    }
+    function megaClose(delay) {
+      clearTimeout(closeTimer);
+      closeTimer = setTimeout(function () {
+        if (activeLi) activeLi.classList.remove('is-mega-active');
+        activeLi = null;
+        header.classList.remove('has-mega');
+      }, delay || 0);
+    }
+    $$('#header .mega-item').forEach(function (li) {
+      li.addEventListener('mouseenter', function () { megaOpen(li); });
+      li.addEventListener('mouseleave', function () { megaClose(140); });
+      li.addEventListener('focusin', function () { megaOpen(li); });
+      li.addEventListener('focusout', function (e) { if (!li.contains(e.relatedTarget)) megaClose(140); });
+    });
+    /* najetí na položku bez panelu (Ceník, Naši zákazníci…) kartu zavře */
+    $$('#header .nav--primary > .nav__list > .nav__item:not(.mega-item)').forEach(function (li) {
+      li.addEventListener('mouseenter', function () { megaClose(0); });
+    });
+    window.addEventListener('resize', function () {
+      if (isMobileNav()) megaClose(0);
+      else if (activeLi) { var p = activeLi.querySelector(':scope > .mega'); if (p) shell.style.setProperty('--mega-h', p.offsetHeight + 'px'); }
+    });
+
     /* mega panely: klávesnice (Enter / mezerník rozbalí), Escape zavře, aria-expanded */
     var megaItems = $$('#header .mega-item');
     function closeMega(except) {
@@ -161,6 +199,7 @@
     });
     doc.addEventListener('keydown', function (e) {
       if (e.key !== 'Escape') return;
+      megaClose(0);
       var focused = doc.activeElement && doc.activeElement.closest ? doc.activeElement.closest('.mega-item') : null;
       closeMega();
       if (open) { setOpen(false); if (toggle) toggle.focus(); }

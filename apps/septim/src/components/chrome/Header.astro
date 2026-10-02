@@ -8,6 +8,8 @@ interface Props { path: string; locale: Locale }
 const { path, locale } = Astro.props;
 ---
 <div class="header" id="header" role="banner">
+<div class="mega-backdrop" aria-hidden="true"></div>
+<div class="mega-shell" aria-hidden="true"></div>
 <div class="row-main">
 <div class="menu menu--with-language menu--bar menu--sm-nav-primary-left menu--bar-logo-left menu--bar-primary-center menu--bar-secondary-right menu--bar-misc-right submenu--fullrow menu--sm-logo-left menu--sm-toggle-right menu--sm-misc-bottom menu--sm-nav-primary-left menu--sm-nav-secondary-left menu--sm-overlay menu--lg-priority">
 <div class="menu__region menu__toggle">
