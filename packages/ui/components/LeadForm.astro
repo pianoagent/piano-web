@@ -14,8 +14,8 @@
  *   title?:       string
  *   lead?:        string
  *   proofs?:      Proof[]  → body důvěry vedle formuláře (icon? / title / text?)
- *   action?:      string  → endpoint pro odeslání; default PUBLIC_LEAD_ENDPOINT, jinak
- *                           "https://databridge.pianopos.cz/api/web-lead" (Databridge → prospekt v CRM)
+ *   action?:      string  → endpoint pro odeslání; default "https://databridge.pianopos.cz/api/web-lead"
+ *                           (produkční Databridge → prospekt v CRM)
  *   consentHref?: string  → odkaz na zásady ochrany údajů; default "/gdpr"
  *   submitLabel?: string
  *   background?:  "default" | "alt" | "invert" | "primary"   (default "alt")
@@ -97,7 +97,7 @@ const {
   title,
   lead,
   proofs,
-  action = import.meta.env.PUBLIC_LEAD_ENDPOINT || 'https://databridge.pianopos.cz/api/web-lead',
+  action = 'https://databridge.pianopos.cz/api/web-lead',
   consentHref,
   successUrl,
   submitLabel,
