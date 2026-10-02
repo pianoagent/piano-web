@@ -1,7 +1,7 @@
 ---
 // Jediná poptávková výzva na stránce (2. 10. 2026, nahrazuje „Pojďme to probrat“,
-// kontaktní formuláře a „Ukážeme Vám Septim v praxi“). Jen 3 povinná pole jako na
-// /chci-septim: jméno, e-mail, telefon (Kryštof 2. 10. 2026: čím méně polí, tím lépe).
+// kontaktní formuláře a „Ukážeme Vám Septim v praxi“). Pole jako na /chci-septim:
+// povinné jméno, e-mail, telefon; nepovinný název podniku a město (Kryštof 2. 10. 2026).
 // Markup používá třídy formulářů živého webu, aby seděl styl.
 const id = 'domluvit-ukazku';
 const field = (name: string) => `${id}[${name}]`;
@@ -37,6 +37,16 @@ const field = (name: string) => `${id}[${name}]`;
             <div class="col col-7-12 grid-6-12"><div class="field field-form_input_tel"><div class="field-wrapper">
               <label class="visually-hidden" for={`${id}-telefon`}>Telefon</label>
               <input class="field-control" id={`${id}-telefon`} name={field('telefon')} placeholder="Telefon *" required type="tel" autocomplete="tel" />
+            </div></div></div>
+          </div>
+          <div class="row">
+            <div class="col col-1-12 grid-6-12"><div class="field field-form_input_text"><div class="field-wrapper">
+              <label class="visually-hidden" for={`${id}-podnik`}>Název podniku</label>
+              <input class="field-control" id={`${id}-podnik`} name={field('nazev-podniku')} placeholder="Název podniku" type="text" autocomplete="organization" />
+            </div></div></div>
+            <div class="col col-7-12 grid-6-12"><div class="field field-form_input_text"><div class="field-wrapper">
+              <label class="visually-hidden" for={`${id}-mesto`}>Město</label>
+              <input class="field-control" id={`${id}-mesto`} name={field('mesto')} placeholder="Město" type="text" autocomplete="address-level2" />
             </div></div></div>
           </div>
           <div class="row">
