@@ -1,126 +1,36 @@
 ---
-/**
- * Protel: Naši zákazníci (reference). Obsah z nasi-zakaznici.html starého
- * protelsystems.cz. Vše ze sdílených komponent @piano/ui (Testimonials, LogoWall).
- */
-import Base from '../layouts/Base.astro';
-import SiteHeader from '../components/SiteHeader.astro';
-import SiteFooter from '../components/SiteFooter.astro';
-import Section from '@piano/ui/components/Section.astro';
-import Hero from '@piano/ui/components/Hero.astro';
-import Heading from '@piano/ui/components/Heading.astro';
-import Text from '@piano/ui/components/Text.astro';
-import Button from '@piano/ui/components/Button.astro';
-import Icon from '@piano/ui/components/Icon.astro';
-import Card from '@piano/ui/components/Card.astro';
-import Badge from '@piano/ui/components/Badge.astro';
-import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
-import Testimonials from '@piano/ui/components/Testimonials.astro';
-import LogoWall from '@piano/ui/components/LogoWall.astro';
-import LeadForm from '@piano/ui/components/LeadForm.astro';
-import { protelLeadProofs } from '../config/leadProofs';
-
-const caseStudies = [
-  { badge: 'Case study · 3 minuty čtení', title: 'Hotel SAVOY Prague', text: 'Jak Protel pomohl luxusnímu hotelu SAVOY zvýšit obsazenost a tržby o 37 % ve specifické lokalitě.', icon: 'lucide:trending-up' },
-  { badge: 'Case study · 2 minuty čtení', title: 'VILLA SANDY', text: 'Využití hotelové AI ve VILLA SANDY poskytuje automatické odpovědi hostům bez nutnosti zapojení personálu.', icon: 'lucide:bot' },
-];
-
-const testimonials = [
-  { initials: 'MB', headline: 'Vynikající volba', quote: 'Protel je pro CPI Hotels vynikající volba. Jeho intuitivní rozhraní, spolehlivost a efektivita nám umožňují snadno řídit rezervace, spravovat hosty a sledovat statistiky. Integrace moderních technologií nám pomohla zlepšit guest journey a poskytovat personalizované služby.', author: 'Michaela Bieliková', role: 'CPI Hotels' },
-  { initials: 'IM', headline: 'Profesionální support', quote: 'Ďakujem firme Protel za profesionálny support a inštaláciu!', author: 'Ivona Meissner', role: 'BWH Group' },
-  { initials: 'ŠCH', headline: 'Připraveni na praxi', quote: 'Díky Protelu jsou naši studenti připraveni na moderní technologie v hotelnictví.', author: 'Štěpán Chalupa', role: 'UCP: škola hotelnictví' },
-];
-
-const zakaznici = [
-  'Grandhotel Pupp', 'Hotel SAVOY Prague', 'CPI Hotels', 'Aquapalace Hotel Prague',
-  'Mamaison', 'Old Town Hotels', 'Hotel Imperial', 'Hotel Perla Praha',
-  'Hotel Perk', 'Vista Hotel', 'Grandhotel Starý Smokovec', 'TMR Hotels',
-  'Buddha-Bar Hotel', 'Comfort Hotel Prague City East', 'Hotel Clement Prague',
-  'Nouveau Palace Hotel Prague', 'Hotel Yasmin', 'Resort Sobotín',
-  'U Salzmannů', 'Blue Orange Resort', 'Chuchle Arena Praha',
-  'Chata Hradečanka', 'Amarilis Hotel Prague', 'VILLA SANDY',
-];
+// https://www.protelsystems.cz/nasi-zakaznici (Solid Pixels), port 1:1 skriptem port-protel.py
+import Base from './../layouts/Base.astro';
+import PojdmeToProbrat from './../components/blocks/PojdmeToProbrat.astro';
+import VyzkousetZdarma from './../components/blocks/VyzkousetZdarma.astro';
+import Novinky from './../components/blocks/Novinky.astro';
+import KontaktniFormular from './../components/blocks/KontaktniFormular.astro';
 ---
-
-<Base title="Naši zákazníci a reference | Protel"
-      description="Hotelový systém Protel používají špičky českého a slovenského hotelnictví: Grandhotel Pupp, CPI Hotels, Hotel SAVOY Prague, Aquapalace i Imperial.">
-  <SiteHeader />
-
-  <main>
-    <Breadcrumb items={[{ label: 'Úvod', href: '/' }, { label: 'Naši zákazníci' }]} />
-
-    <Hero eyebrow="Reference" background="gradient"
-          lead="Protel je respektovaný hotelový systém, který používají špičky v českém a slovenském hotelovém byznysu. Důvěřují nám ti nejlepší.">
-      <Heading slot="title" as="h1" size="display" color="on-dark">Naši <em>zákazníci</em></Heading>
-      <Fragment slot="actions">
-        <Button href="#poptavka">Přidat se k nim</Button>
-        <Button href="/produkty" variant="secondary" onDark>Prohlédnout produkty</Button>
-      </Fragment>
-    </Hero>
-
-    <LogoWall background="default" label="Protel používají hotelové špičky"
-      logos={['ref-clarion-hotel', 'ref-field-michelin-restaurant', 'ref-cafe-savoy', 'ref-kolkovna', 'ref-sasazu', 'ref-O2-arena', 'ref-zatisi-group', 'ref-420-restaurant', 'ref-pizza-coloseum', 'ref-entree', 'ref-100-chuti-brna', 'ref-sisters-bistro']} />
-
-    <Section background="alt" space="lg">
-      <div class="head head--center">
-        <Text size="label" color="accent" align="center">Case studies</Text>
-        <Heading as="h2" size="h2" align="center">Výsledky, které jdou <em>vyčíslit</em></Heading>
-      </div>
-      <div class="cases">
-        {caseStudies.map((c) => (
-          <Card variant="elevated" padding="lg" as="article">
-            <div class="case">
-              <span class="case__icon"><Icon name={c.icon} size="lg" /></span>
-              <Badge variant="primary">{c.badge}</Badge>
-              <Heading as="h3" size="h3">{c.title}</Heading>
-              <Text size="small" color="muted">{c.text}</Text>
-            </div>
-          </Card>
-        ))}
-      </div>
-    </Section>
-
-    <Testimonials items={testimonials} eyebrow="Co o nás říkají" title="Slovy našich zákazníků" background="default" />
-
-    <Section background="invert" space="lg">
-      <div class="head head--center">
-        <Text size="label" color="accent" align="center">Vybraní zákazníci</Text>
-        <Heading as="h2" size="h2" align="center" color="on-dark">Kdo všechno na Protel <em>spoléhá</em></Heading>
-      </div>
-      <ul class="chips">
-        {zakaznici.map((z) => (
-          <li class="chip"><span class="chip__dot"></span>{z}</li>
-        ))}
-      </ul>
-    </Section>
-
-    <LeadForm proofs={protelLeadProofs} id="poptavka" variant="full" background="default"
-              title="Přidejte se k nejlepším"
-              lead="Co byste u Vás v hotelu rádi zlepšili? Pojďme to probrat, ozveme se a ukážeme Protel přímo ve Vašem hotelu." />
-  </main>
-
-  <SiteFooter />
+<Base
+  title="Naši zákazníci | Hotel PMS Protel"
+  description="Hotelový systém Protel je nejrespektovanější hotelový systém, který používají špičky v českém a slovenském hotelovém byznysu. Důvěřují nám ti nejlepší. CPI Hotels, Aquapalace Hotel Prague, Mamaison, Old Town Hotels, Imperial, Savoy, Perla, Hotel Perk, Resort Sobotín,..."
+  path="/nasi-zakaznici"
+  bodyClass="use-header-transparent use-menu-secondary-uppercase use-menu-button-uppercase use-headings-link-plain search-panel-hide-submit-label search-panel-hide-close-label search-panel-hide-open-label use-menu-bar use-header-fixed use-header-fixed-mobile use-header-priority use-header-boxed"
+  image="/files/nahled-homepage.jpg"
+>
+<div class="section height--low align--middle color--default section-width-boxed section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h1 class="center">Naši zákazníci<span class="text-highlight">.</span></h1>
+</div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<div class="section height--low align--middle color--default section-width-boxed section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image no-edge-mobile block-image--light-blue mobile-order-reverse"><div class="flexcard flexcard-card flexcard-size--normal flexcard-media-right valign-middle align-left flexcard-media--stretch"><div class="flexcard-media"><div class="image-wrapper"><a class="image image-mask ratio-original" href="/case/hotel-savoy-prague" style="padding-bottom:50%"><img alt="Hotel SAVOY Prague" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/case-study-hotel-savoy-prague-hdr-zvyseni-trzeb.webp" srcset="/files/r/720/case-study-hotel-savoy-prague-hdr-zvyseni-trzeb.webp 720w, /files/r/1280/case-study-hotel-savoy-prague-hdr-zvyseni-trzeb.webp 1280w, /files/r/1920/case-study-hotel-savoy-prague-hdr-zvyseni-trzeb.webp 1920w"/></a></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2>Hotel SAVOY Prague<span class="text-highlight">.</span></h2>
+<p><span style="font-size: var(--text-size-base-large); font-family: var(--base-font-family);">Jak Protel pomohl luxusnímu hotelu SAVOY zvýšit obsazenost a tržby o 37 % ve specifické lokalitě.</span></p>
+<p><strong style="font-family: var(--base-font-family); font-size: 16px;">CASE STUDY → 3 MINUTY ČTENÍ</strong></p>
+</div><div class="image-btn"><a class="btn btn-default btn-sm" href="/case/hotel-savoy-prague"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">PŘEČÍST CASE STUDY</span></a></div></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<PojdmeToProbrat />
+<div class="section height--low align--middle color--default" id="nase-reference"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-gallery grid-sm-2"><div class="grid gallery-container" style="--gap:40px"><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Hotel Perk" decoding="async" loading="lazy" src="/files/ref-hotel-perk-michelin-key-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Grandhotel Pupp" decoding="async" loading="lazy" src="/files/ref-grandhotel-pupp-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Imperial" decoding="async" loading="lazy" src="/files/ref-imperial-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Vista" decoding="async" loading="lazy" src="/files/ref-vista-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Mamaison" decoding="async" loading="lazy" src="/files/ref-mamaison-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="CPI Hotels" decoding="async" loading="lazy" src="/files/ref-cpi-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Aquapalace Hotel Prague" decoding="async" loading="lazy" src="/files/ref-aguapalace-hotel-prague-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Old Town Hotels" decoding="async" loading="lazy" src="/files/ref-old-town-hotel-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Hotel Savoy Prague" decoding="async" loading="lazy" src="/files/ref-savoy-hotel-prague-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Hotel Perla Praha" decoding="async" loading="lazy" src="/files/ref-hotel-perla-praha-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Grandhotel Starý Smokovec" decoding="async" loading="lazy" src="/files/ref-grandhotel-stary-smokovec-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo TMR Hotels" decoding="async" loading="lazy" src="/files/ref-tmr-hotels-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Buddha-Bar" decoding="async" loading="lazy" src="/files/ref-buddha-bar-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Comfort Hotel Prague City East" decoding="async" loading="lazy" src="/files/ref-comfort-hotel-prague-city-east-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Hotel Clement Prague" decoding="async" loading="lazy" src="/files/ref-hotel-clement-prague-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo hotelu" decoding="async" loading="lazy" src="/files/ref-rt-nouveau-palace-hotel-prague-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Hotel Yasmin" decoding="async" loading="lazy" src="/files/ref-hotel-yasmin-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Hotel Clement Prague" decoding="async" loading="lazy" src="/files/ref-hotel-clement-prague-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Resort Sobotín" decoding="async" loading="lazy" src="/files/ref-resort-sobotin-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo U Salzmannů" decoding="async" loading="lazy" src="/files/ref-u-salzmannu-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Blue Orange Resort" decoding="async" loading="lazy" src="/files/ref-blue-orange-resort-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Chuchle Arena Praha" decoding="async" loading="lazy" src="/files/ref-chuchle-arena-praha-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Chata Hradečanka" decoding="async" loading="lazy" src="/files/ref-chata-hradecanka-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Artevini" decoding="async" loading="lazy" src="/files/ref-artevini-black.svg"/></div></div></div></div></div></div></div></div></div>
+<div class="section height--low align--middle color--default section-width-boxed section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image no-edge-mobile block-image--light-blue mobile-order-reverse"><div class="flexcard flexcard-card flexcard-size--normal flexcard-media-right valign-middle align-left flexcard-media--stretch"><div class="flexcard-media"><div class="image-wrapper"><a class="image image-mask ratio-original" href="/case/villa-sandy-resort" style="padding-bottom:50%"><img alt="VILLA SANDY" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/case-study-villa-sandy-resort-hdr.webp" srcset="/files/r/720/case-study-villa-sandy-resort-hdr.webp 720w, /files/r/1280/case-study-villa-sandy-resort-hdr.webp 1280w, /files/r/1920/case-study-villa-sandy-resort-hdr.webp 1920w"/></a></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2>VILLA SANDY<span class="text-highlight">.</span></h2>
+<p><span style="font-size: var(--text-size-base-large); font-family: var(--base-font-family);">Využití hotelové AI ve VILLA SANDY poskytuje automatické odpovědi hostům bez nutnosti zapojení personálu.</span></p>
+<p><strong style="font-family: var(--base-font-family); font-size: 16px;">CASE STUDY → 2 MINUTY ČTENÍ</strong></p>
+</div><div class="image-btn"><a class="btn btn-default btn-sm" href="/case/villa-sandy-resort"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">PŘEČÍST CASE STUDY</span></a></div></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<div class="section height--low align--middle color--default col-gaps-bigger section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-4-12"><div class="block block-quote"><div class="has-icon left block-quote-figure"><div class="block-quote-image"><div class="image-wrapper"><div class="image image-mask ratio-square shape-circle"><img alt="Miroslav Bukva" decoding="async" loading="lazy" sizes="auto" src="/files/r/1280/miroslav-bukva.webp" srcset="/files/r/720/miroslav-bukva.webp 720w, /files/r/1280/miroslav-bukva.webp 1280w, /files/r/1920/miroslav-bukva.webp 1920w"/></div></div></div><i class="icon icon-quote-right"></i><blockquote class="block-quote-text">Vybrat do hotelu vhodný software není jednoduché, protože různé typy hotelů mají odlišné potřeby. Pro velký hotel s konferenčním centrem je robustní řešení PMS PROTEL naprosto ideální. PROTEL je výborný jak z hlediska výkonu, tak ceny a důležitou samozřejmostí je velmi kvalitní podpora.</blockquote><div class="block-quote-author"><span class="quote-decor">–</span> Miroslav Bukva <span class="quote-decor">–</span><span class="block-quote-info">Aquapalace Hotel Prague, generální manažer hotelu</span></div></div></div></div> <div class="col col-5-12 grid-4-12"><div class="block block-quote"><div class="has-icon left block-quote-figure"><div class="block-quote-image"><div class="image-wrapper"><div class="image image-mask ratio-square shape-circle"><img alt="Ivona Meissner" decoding="async" loading="lazy" sizes="auto" src="/files/r/1280/ivona-meissner.webp" srcset="/files/r/720/ivona-meissner.webp 720w, /files/r/1280/ivona-meissner.webp 1280w, /files/r/1920/ivona-meissner.webp 1920w"/></div></div></div><i class="icon icon-quote-right"></i><blockquote class="block-quote-text">Ďakujem firme Protel za profesionálny support a inštaláciu!</blockquote><div class="block-quote-author"><span class="quote-decor">–</span> Ivona Meissner <span class="quote-decor">–</span><span class="block-quote-info">BWH Hotel Group, Area Director Austria &amp; Central Eastern Europe </span></div></div></div></div> <div class="col col-9-12 grid-4-12"><div class="block block-quote"><div class="has-icon left block-quote-figure"><div class="block-quote-image"><div class="image-wrapper"><div class="image image-mask ratio-square shape-circle"><img alt="Jan Dubský" decoding="async" loading="lazy" sizes="auto" src="/files/r/1280/jan-dubsky.webp" srcset="/files/r/720/jan-dubsky.webp 720w, /files/r/1280/jan-dubsky.webp 1280w, /files/r/1920/jan-dubsky.webp 1920w"/></div></div></div><i class="icon icon-quote-right"></i><blockquote class="block-quote-text">U protelu je poměr cena-výkon skvělý a podpora prvotřídní.</blockquote><div class="block-quote-author"><span class="quote-decor">–</span> Jan Dubský <span class="quote-decor">–</span><span class="block-quote-info">Old Town Hotels, CEO</span></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<div class="section height--low align--middle color--default col-gaps-bigger section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-6-12"><div class="block block-image"><div class="image image-mask ratio-original" style="padding-bottom:91.14583333333334%"><img alt="" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/fantasticky-hotel-cpi-tym.webp" srcset="/files/r/720/fantasticky-hotel-cpi-tym.webp 720w, /files/r/1280/fantasticky-hotel-cpi-tym.webp 1280w, /files/r/1920/fantasticky-hotel-cpi-tym.webp 1920w"/></div></div></div> <div class="col col-7-12 grid-6-12"><div class="block block-inline"><h2><span class="text-highlight">"</span> Protel je pro CPI Hotels vynikající volba. Jeho intuitivní rozhraní, spolehlivost a efektivita nám umožňují snadno řídit rezervace, spravovat hosty a sledovat statistiky. Integrace moderních technologií nám pomohla zlepšit naši guest journey a poskytovat personalizované služby.</h2>
+</div> <div class="block block-inline"><p><a href="https://www.linkedin.com/in/tiborbielik" target="_blank">Tibor Bielik</a> + <a href="https://www.linkedin.com/in/michaelabielikova" target="_blank">Michaela Bieliková</a> + <a href="https://www.linkedin.com/in/zuzana-georgi%C3%A1nov%C3%A1-a0aa911a8/" target="_blank">Zuzana Georgiánová</a> + <a href="https://www.linkedin.com/in/jiri-princ-28a3a71a2/" target="_blank">Jiří Princ</a></p>
+</div> <div class="block block-inline"><b>CPI HOTELS DEVELOPMENT TECH TEAM</b></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<VyzkousetZdarma />
+<Novinky />
+<KontaktniFormular />
 </Base>
-
-<style>
-  .head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-7); }
-  .head--center { text-align: center; }
-  .head > * + * { margin-top: var(--space-3); }
-
-  .cases { display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); max-width: 900px; margin-inline: auto; }
-  .case { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-3); }
-  .case__icon {
-    display: inline-flex; align-items: center; justify-content: center;
-    width: 56px; height: 56px; border-radius: var(--radius-md);
-    background: color-mix(in srgb, var(--color-primary) 10%, #fff); color: var(--color-primary);
-  }
-
-  .chips { list-style: none; display: flex; flex-wrap: wrap; gap: var(--space-3); justify-content: center; }
-  .chip {
-    display: inline-flex; align-items: center; gap: var(--space-2);
-    padding: var(--space-3) var(--space-5); border-radius: var(--radius-full);
-    background: rgba(255, 255, 255, 0.06); border: 1px solid var(--color-border-on-dark);
-    color: var(--color-text-on-dark); font-size: var(--font-size-small);
-  }
-  .chip__dot { width: 8px; height: 8px; border-radius: 50%; background: var(--color-primary); flex-shrink: 0; }
-</style>

@@ -53,6 +53,16 @@ Názvy Cloudflare projektů výše jsou ty skutečné, ověřené proti živým 
 - **Jazyky.** Zatím jen CZ. EN a SK se doplní během skriptu s `--locale en|sk` a zapnutím v `src/i18n/config.ts` (`enabledLocales`). Mapa přeložených URL ze živého přepínače jazyků je v `src/i18n/routes.cs.json`.
 - **Měření.** GTM `GTM-NC3PW2KC`, Cookiebot se načítá přes GTM jako na živém webu.
 
+## Protel: kopie živého webu 1:1
+`apps/protel` je od 5. 10. 2026 věrná kopie živého www.protelsystems.cz (Solid Pixels), CZ i SK, stejným postupem jako Septim: **stejné URL** (SK pod `/sk/…`, bez lomítka a bez `.html`, `build.format: 'file'`), stejný obsah i vzhled. Předchozí redesign je v tagu `protel-redesign-2026-09` a větvi `protel-redesign`.
+
+- **Jak vzniká.** Stránky, bloky, hlavičku a patičku (CZ i `…Sk`) a `src/styles/live.css` generuje `weby/podklady-migrace/port-protel.py` (`--locale cs`, pak `--locale sk`) ze scrapu `podklady-migrace/scrapy-starych-webu/protel-2026-09/`. Opravy proti živému webu (překlepy CZ a SK zvlášť, 404 odkazy, jedna H1, alt texty, meta) jsou v tabulkách na začátku skriptu. **Po ručních úpravách stránek skript znovu nepouštěj**, přepsal by je (`404`, `dekujeme`, `sk/404`, `sk/dakujeme` negeneruje).
+- **Vzhled.** `live.css` needituj, úpravy do `src/styles/overrides.css`. Písmo TT Commons je v `public/fonts`. PurgeCSS po buildu (`integrations/purge-live-css.mjs`), stavové třídy z JS v safelistu.
+- **Chování.** `src/scripts/protel.js` (menu, taby, slider, akordeony, parallax, klikací karty novinek, kotvy, formuláře).
+- **Formuláře.** Na `public/api/lead.php` (PHP `mail()` na poptavky@piano.cz), pak `/dekujeme` (SK `/sk/dakujeme`). Na Cloudflare preview PHP neběží, formuláře tam vrátí chybu.
+- **Jazyky.** CZ + SK. Mapa překladů z přepínače živého webu je v `src/i18n/routes.cs.json` a `routes.sk.json`; hreflang jen pro vzájemné dvojice, přepínač u stránky bez překladu vede na úvodní stránku druhého jazyka (jako živý web).
+- **Měření.** Jako živý web: GA4 `G-J7GKK58GZ3` (gtag) + GTM `GTM-NC3PW2KC`, Cookiebot přes GTM, Consent Mode v2.
+
 ## Lokální vývoj
 ```bash
 npm install

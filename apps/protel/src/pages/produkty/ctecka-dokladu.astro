@@ -1,130 +1,66 @@
 ---
-/**
- * Protel: produkt „Čtečka dokladů“. Obsah vytěžen z produkty/ctecka-dokladu.html
- * starého protelsystems.cz (jazykově uhlazeno, fakta zachována).
- * Vše ze sdílených komponent @piano/ui.
- */
+// https://www.protelsystems.cz/produkty/ctecka-dokladu (Solid Pixels), port 1:1 skriptem port-protel.py
 import Base from '../../layouts/Base.astro';
-import SiteHeader from '../../components/SiteHeader.astro';
-import SiteFooter from '../../components/SiteFooter.astro';
-import Section from '@piano/ui/components/Section.astro';
-import Hero from '@piano/ui/components/Hero.astro';
-import Heading from '@piano/ui/components/Heading.astro';
-import Text from '@piano/ui/components/Text.astro';
-import Button from '@piano/ui/components/Button.astro';
-import Icon from '@piano/ui/components/Icon.astro';
-import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
-import USPGrid from '@piano/ui/components/USPGrid.astro';
-import LeadForm from '@piano/ui/components/LeadForm.astro';
-import { protelLeadProofs } from '../../config/leadProofs';
-import Img from '@piano/ui/components/Img.astro';
-
-const features = [
-  {
-    id: "rychlost", icon: "lucide:zap", title: "Rychlost",
-    paras: [
-      "Zaznamenání všech údajů z hostova dokladu trvá jen několik sekund. Check-in se tím výrazně zrychluje a hosté tráví u recepce minimum času.",
-    ],
-  },
-  {
-    id: "bezchybnost", icon: "lucide:check-check", title: "Bezchybnost",
-    paras: [
-      "Automatické načítání údajů z dokladů eliminuje ruční opisování čísel a dalších informací. Odpadají chyby způsobené lidským faktorem a evidence údajů je přesná a spolehlivá.",
-    ],
-  },
-  {
-    id: "ctecka-jako-hardware", icon: "lucide:scan-line", title: "Čtečka jako hardware",
-    paras: [
-      "Hardware umožňuje využít celostránkový skener, nebo načítání ze strojově čitelné zóny dokladů. Evidence informací o hostech je rychlá a spolehlivá.",
-    ],
-  },
-];
-
-const related = [
-  { icon: "lucide:file-signature", title: "Digitální registrační karta", text: "Registrace hosta digitálně: konec papírování.", href: "/produkty/digitalni-registracni-karta" },
-  { icon: "lucide:monitor-smartphone", title: "Kiosek", text: "Samoobslužný check-in/out terminál přímo v hotelu.", href: "/produkty/kiosek" },
-  { icon: "lucide:smartphone", title: "Online check-in/out", text: "Host vyřídí check-in i check-out přes mobil, bez fronty na recepci.", href: "/produkty/online-check-in-out" },
-  { icon: "lucide:layout-dashboard", title: "Hotelový systém", text: "Správa pokojů, rezervací, hostů a statistik: snadné používání a pokročilé funkce pro kompletní přehled o provozu.", href: "/produkty/hotelovy-system-protel" },
-];
+import Mezera from '../../components/blocks/Mezera.astro';
+import PojdmeToProbrat from '../../components/blocks/PojdmeToProbrat.astro';
+import KolikMeToBudeStat from '../../components/blocks/KolikMeToBudeStat.astro';
+import ProtelVPraxi from '../../components/blocks/ProtelVPraxi.astro';
+import MezeraC from '../../components/blocks/MezeraC.astro';
+import DaleByVasMohloZajimat from '../../components/blocks/DaleByVasMohloZajimat.astro';
+import VyzkousetZdarma from '../../components/blocks/VyzkousetZdarma.astro';
+import Novinky from '../../components/blocks/Novinky.astro';
+import KontaktniFormular from '../../components/blocks/KontaktniFormular.astro';
 ---
-
-<Base title="Čtečka dokladů a karet | Protel"
-      description="Údaje o hostech načtete do hotelového systému rychle přímo z jejich dokladů. Stejná čtečka zvládne i platební karty.">
-  <SiteHeader />
-
-  <main>
-    <Breadcrumb items={[{ label: 'Úvod', href: '/' }, { label: 'Produkty', href: '/produkty' }, { label: "Čtečka dokladů" }]} />
-
-    <Hero eyebrow="Produkty" background="gradient"
-          lead="Údaje o svých hotelových hostech načtete do hotelového systému rychle přímo z jejich dokladů pomocí čtečky. Stejná čtečka zvládne načíst i údaje o platebních kartách.">
-      <Heading slot="title" as="h1" size="display" color="on-dark">Čtečka <em>dokladů</em></Heading>
-      <Fragment slot="actions">
-        <Button href="#poptavka">Vyzkoušet Protel zdarma</Button>
-        <Button href="/produkty" variant="secondary" onDark>Všechny produkty</Button>
-      </Fragment>
-      <figure slot="media" class="hero-pic">
-        <Img src="/images/ctecka-dokladu.webp" alt="Čtečka dokladů na recepci hotelu" width={880} sizes="(min-width: 881px) 560px, 100vw" loading="eager" decoding="async" />
-      </figure>
-    </Hero>
-
-    <Section background="default" space="lg">
-      <nav class="jump" aria-label="Funkce produktu">
-        {features.map((f) => (
-          <a class="jump__chip" href={`#${f.id}`}>{f.title}</a>
-        ))}
-      </nav>
-      <div class="features">
-        {features.map((f) => (
-          <article class="feature" id={f.id}>
-            <span class="feature__icon"><Icon name={f.icon} size="lg" /></span>
-            <Heading as="h2" size="h3">{f.title}</Heading>
-            {f.paras.map((p) => (
-              <Text color="muted">{p}</Text>
-            ))}
-          </article>
-        ))}
-      </div>
-    </Section>
-
-    <Section background="primary" space="lg">
-      <figure class="quoteband">
-        <span class="quoteband__mark"><Icon name="lucide:quote" size="lg" /></span>
-        <blockquote>
-          <Heading as="p" size="h3" color="on-dark" align="center">Čtečka dokladů je nezbytný nástroj, který umí číst nejen cestovní doklady, ale i platební karty. Zvyšuje efektivitu a bezpečnost registrace hostů.</Heading>
-        </blockquote>
-      </figure>
-    </Section>
-
-    <USPGrid eyebrow="Dále by Vás mohlo zajímat" title="Související produkty"
-             items={related} minItemWidth="260px" background="alt" space="lg" />
-
-    <LeadForm proofs={protelLeadProofs} id="poptavka" variant="full" background="default"
-              title="Vyzkoušejte Protel zdarma"
-              lead="Co byste u Vás v hotelu rádi zlepšili? Nechte nám kontakt, ozveme se a ukážeme Protel přímo ve Vašem hotelu." />
-  </main>
-
-  <SiteFooter />
+<Base
+  title="Čtečka dokladů | Hotel PMS Protel"
+  description="Údaje o svých hotelových hostech můžete do hotelového systému rychle načítat přímo z jejich dokladů pomocí čtečky. Pomocí stejné čtečky pak můžete načítat i údaje o platebních kartách."
+  path="/produkty/ctecka-dokladu"
+  bodyClass="use-header-transparent use-menu-secondary-uppercase use-menu-button-uppercase use-headings-link-plain search-panel-hide-submit-label search-panel-hide-close-label search-panel-hide-open-label use-menu-bar use-header-fixed use-header-fixed-mobile use-header-priority use-header-boxed"
+  image="/files/nahled-produkt-ctecka-dokladu.jpg"
+>
+<div class="section height--low align--middle color--default section-width-wide section-has-background" id="uvod"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-card flexcard-size--normal flexcard-media-right valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><a class="image image-mask ratio-original" href="/vyzkouset-zdarma" style="padding-bottom:91.14583333333334%"><img alt="Čtečka dokladů" decoding="async" sizes="(min-width:1459px) 50vw, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/hdr-top-ctecka-dokladu.webp" srcset="/files/r/720/hdr-top-ctecka-dokladu.webp 720w, /files/r/1280/hdr-top-ctecka-dokladu.webp 1280w, /files/r/1920/hdr-top-ctecka-dokladu.webp 1920w"/></a></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p><a href="/produkty"><strong><span class="text-highlight"><span style="font-family: var(--headings-font-family); font-style: var(--headings-text-italic); text-transform: var(--headings-text-transform); text-decoration: var(--headings-text-underline); caret-color: rgb(255, 0, 150);"><font color="#ff0096" size="3">VŠECHNY PRODUKTY</font></span></span></strong></a></p>
+<h1>Čtečka dokladů</h1>
+<p class="text-large">Údaje o svých hotelových hostech můžete do hotelového systému rychle načítat přímo z jejich dokladů pomocí čtečky. Pomocí stejné čtečky pak můžete načítat i údaje o platebních kartách. </p>
+<p class="text-large"><a href="#funkce"><strong><span class="text-highlight"><span style="font-family: var(--headings-font-family); font-style: var(--headings-text-italic); text-transform: var(--headings-text-transform); text-decoration: var(--headings-text-underline); caret-color: rgb(255, 0, 150);"><font color="#ff0096" size="3">ZJISTIT VÍCE →</font></span></span></strong></a></p>
+</div><div class="image-btn"><a class="btn btn-default" href="/vyzkouset-zdarma"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">VYZKOUŠET ZDARMA</span></a></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-gallery grid-sm-2"><div class="grid gallery-container" style="--gap:40px"><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Hotel Perk" decoding="async" src="/files/ref-hotel-perk-michelin-key-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Mamaison" decoding="async" src="/files/ref-mamaison-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo CPI Hotels" decoding="async" src="/files/ref-cpi-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Fantastický hotel" decoding="async" src="/files/ref-fantasticky-hotel-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo TMR Hotels" decoding="async" src="/files/ref-tmr-hotels-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><a class="image image-mask ratio-square image-width-stretch" href="/nasi-zakaznici"><img alt="Vaše logo" decoding="async" src="/files/ref-vase-2025.svg"/></a></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<Mezera />
+<PojdmeToProbrat />
+<Mezera />
+<div class="section height--low align--middle color--default section-has-background" id="funkce"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="container height--low color--auto container-width-boxed box--benefits"><div class="container-body flex flex--justify-start flex--wrap">
+<div class="flex__item flex__item--grow-1 grid-col-3"><div class="block block-image block-image--icon"><div class="flexcard flexcard-icon flexcard-horizontal flexcard-media-right valign-middle size-lg"><a class="flexcard-media" href="/produkty/ctecka-dokladu#rychlost"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Rychlost" decoding="async" loading="lazy" src="/files/produkt-rychlost.svg"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h4>Rychlost<span class="text-highlight">.</span></h4>
+</div><div class="image-btn"><a class="btn btn-inverse btn-sm" href="/produkty/ctecka-dokladu#rychlost"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">To mě zajímá</span></a></div></div></div></div></div></div>
+<div class="flex__item flex__item--grow-1 grid-col-3"><div class="block block-image block-image--icon"><div class="flexcard flexcard-icon flexcard-horizontal flexcard-media-right valign-middle size-lg"><a class="flexcard-media" href="/produkty/ctecka-dokladu#bezchybnost"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Bezchybnost" decoding="async" loading="lazy" src="/files/produkt-bezchybnost.svg"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h4>Bezchybnost<span class="text-highlight">.</span></h4>
+</div><div class="image-btn"><a class="btn btn-inverse btn-sm" href="/produkty/ctecka-dokladu#bezchybnost"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">To mě zajímá</span></a></div></div></div></div></div></div>
+<div class="flex__item flex__item--grow-1 grid-col-3"><div class="block block-image block-image--icon"><div class="flexcard flexcard-icon flexcard-horizontal flexcard-media-right valign-middle size-lg"><a class="flexcard-media" href="/produkty/ctecka-dokladu#ctecka-jako-hardware"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Čtečka jako hardware" decoding="async" loading="lazy" src="/files/produkt-ctecka-jako-hardware.svg"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h4>Čtečka jako hardware<span class="text-highlight">.</span></h4>
+</div><div class="image-btn"><a class="btn btn-inverse btn-sm" href="/produkty/ctecka-dokladu#ctecka-jako-hardware"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">To mě zajímá</span></a></div></div></div></div></div></div>
+</div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<KolikMeToBudeStat />
+<div class="section height--normal align--middle color--default section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image" id="rychlost"><div class="flexcard flexcard-card flexcard-size--small flexcard-media-right valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Rychlost" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/produkt-rychlost.webp" srcset="/files/r/720/produkt-rychlost.webp 720w, /files/r/1280/produkt-rychlost.webp 1280w, /files/r/1920/produkt-rychlost.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2>Rychlost<span class="text-highlight">.</span></h2>
+<p><br/>
+Čtečka dokladů v hotelu je rychlým a efektivním řešením pro registraci hostů. Zaznamenání všech údajů z hostova dokladu trvá pouze několik sekund, což usnadňuje <a href="/produkty/kiosek#rychla-identifikace-hosta">proces check-inu</a> a zkracuje dobu čekání.</p>
+</div></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<Mezera />
+<div class="section height--normal align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image" id="bezchybnost"><div class="flexcard flexcard-card flexcard-size--small flexcard-media-left valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Bezchybnost" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/produkt-bezchybnost.webp" srcset="/files/r/720/produkt-bezchybnost.webp 720w, /files/r/1280/produkt-bezchybnost.webp 1280w, /files/r/1920/produkt-bezchybnost.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2>Bezchybnost<span class="text-highlight">.</span></h2>
+<p>Čtečka dokladů do hotelu je bezchybným zařízením, které výrazně snižuje riziko chyb při registraci hostů. Díky automatickému načítání údajů z dokladů již recepční nemusí ručně opisovat čísla či jiné informace, což eliminuje případné chyby způsobené lidským faktorem a zajišťuje přesnou a spolehlivou evidenci údajů.</p>
+</div></div></div></div></div></div></div></div></div>
+<Mezera />
+<div class="section height--normal align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image" id="ctecka-jako-hardware"><div class="flexcard flexcard-card flexcard-size--small flexcard-media-right valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Čtečka jako hardware" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/produkt-ctecka-jako-hardware.webp" srcset="/files/r/720/produkt-ctecka-jako-hardware.webp 720w, /files/r/1280/produkt-ctecka-jako-hardware.webp 1280w, /files/r/1920/produkt-ctecka-jako-hardware.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2><span class="text-highlight"><font color="#000000"><span style="caret-color: rgb(0, 0, 0);">Čtečka jako hardware</span></font>.</span></h2>
+<p>V hotelovém provozu je čtečka dokladů klíčovým prvkem, který usnadňuje proces registrace hostů. Tento hardware umožňuje využití celostránkového skeneru nebo načítání údajů ze strojově čitelné zóny dokladů, což zajišťuje rychlou a spolehlivou evidenci informací o hostech.</p>
+</div></div></div></div></div></div></div></div></div>
+<Mezera />
+<div class="section height--normal align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-card flexcard-size--small flexcard-media-right valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><a class="image image-mask ratio-original" href="/produkty/ctecka-dokladu#kontaktni-formular" style="padding-bottom:100%"><img alt="" decoding="async" loading="lazy" src="/files/vyhoda-hoteloveho-systemu-protel.svg"/></a></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2><span class="text-highlight">"</span> Čtečka dokladů v hotelovém systému je nezbytným nástrojem, který umí číst nejen cestovní doklady, ale i platební karty, čímž zvyšuje efektivitu a bezpečnost procesu registrace hostů.</h2>
+</div><div class="image-btn"><a class="btn btn-default btn-sm" href="/produkty/ctecka-dokladu#kontaktni-formular"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">SPOJTE SE S NÁMI</span></a></div></div></div></div></div></div></div></div></div>
+<ProtelVPraxi />
+<div class="section height--normal align--middle color--default col-gaps-bigger section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Hotelový systém Protel již využívají<span class="text-highlight">...</span></h2>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:50px"></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-4-12"><div class="block block-quote"><div class="has-icon left block-quote-figure"><div class="block-quote-image"><div class="image-wrapper"><div class="image image-mask ratio-square shape-circle"><img alt="Michaela Bieliková" decoding="async" loading="lazy" sizes="auto" src="/files/r/1280/michaela-bielikova.webp" srcset="/files/r/720/michaela-bielikova.webp 720w, /files/r/1280/michaela-bielikova.webp 1280w, /files/r/1920/michaela-bielikova.webp 1920w"/></div></div></div><i class="icon icon-quote-right"></i><blockquote class="block-quote-text">Protel je pro CPI Hotels vynikající volba. Jeho intuitivní rozhraní, spolehlivost a efektivita nám umožňují snadno řídit rezervace, spravovat hosty a sledovat statistiky.</blockquote><div class="block-quote-author"><span class="quote-decor">–</span> Michaela Bieliková <span class="quote-decor">–</span><span class="block-quote-info">CPI Hotels, Director Of Training and Development</span></div></div></div></div> <div class="col col-5-12 grid-4-12"><div class="block block-quote"><div class="has-icon left block-quote-figure"><div class="block-quote-image"><div class="image-wrapper"><div class="image image-mask ratio-square shape-circle"><img alt="František Sedlák" decoding="async" loading="lazy" sizes="auto" src="/files/r/1280/frantisek-sedlak.webp" srcset="/files/r/720/frantisek-sedlak.webp 720w, /files/r/1280/frantisek-sedlak.webp 1280w, /files/r/1920/frantisek-sedlak.webp 1920w"/></div></div></div><i class="icon icon-quote-right"></i><blockquote class="block-quote-text">Na Protelu si cením především jeho spolehlivosti, podpory a množství nabízených reportů.</blockquote><div class="block-quote-author"><span class="quote-decor">–</span> František Sedlák <span class="quote-decor">–</span><span class="block-quote-info">Grandhotel Brno, General Manager</span></div></div></div></div> <div class="col col-9-12 grid-4-12"><div class="block block-quote"><div class="has-icon left block-quote-figure"><div class="block-quote-image"><div class="image-wrapper"><div class="image image-mask ratio-square shape-circle"><img alt="Eliška Škubalová" decoding="async" loading="lazy" sizes="auto" src="/files/r/1280/eliska-skubalova.webp" srcset="/files/r/720/eliska-skubalova.webp 720w, /files/r/1280/eliska-skubalova.webp 1280w, /files/r/1920/eliska-skubalova.webp 1920w"/></div></div></div><i class="icon icon-quote-right"></i><blockquote class="block-quote-text">Protel v našem hotelu využíváme již mnoho let a za tu dobu nám byl vždy oporou v každodenním fungování hotelu. Velmi vstřícný support je velkým bonusem.</blockquote><div class="block-quote-author"><span class="quote-decor">–</span> Eliška Škubalová <span class="quote-decor">–</span><span class="block-quote-info">GRAND HOTEL BOHEMIA, Director of Sales</span></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:50px"></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div class="center"><a class="btn btn-inverse btn-sm" href="/nasi-zakaznici"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">NAŠI ZÁKAZNÍCI</span></a></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<MezeraC />
+<DaleByVasMohloZajimat />
+<VyzkousetZdarma />
+<Novinky />
+<KontaktniFormular />
 </Base>
-
-<style>
-  .jump { display: flex; flex-wrap: wrap; gap: var(--space-2); justify-content: center; margin-bottom: var(--space-8); }
-  .jump__chip {
-    display: inline-flex; padding: var(--space-2) var(--space-4);
-    border: 1px solid var(--color-border); border-radius: var(--radius-full);
-    background: var(--color-bg-alt); color: var(--color-text);
-    font-size: var(--font-size-small); font-weight: var(--font-weight-semibold);
-    text-decoration: none; transition: border-color var(--duration-base) var(--easing);
-  }
-  .jump__chip:hover { border-color: var(--color-primary); color: var(--color-text-accent); }
-  .features { max-width: 800px; margin-inline: auto; display: flex; flex-direction: column; gap: var(--space-9); }
-  .feature { scroll-margin-top: var(--space-9); }
-  .feature > :global(* + *) { margin-top: var(--space-3); }
-  .feature__icon {
-    display: inline-flex; align-items: center; justify-content: center;
-    width: 56px; height: 56px; border-radius: var(--radius-md);
-    background: color-mix(in srgb, var(--color-primary) 10%, #fff); color: var(--color-primary);
-  }
-  .quoteband { margin: 0; max-width: 840px; margin-inline: auto; display: flex; flex-direction: column; align-items: center; gap: var(--space-4); text-align: center; }
-  .quoteband__mark { color: var(--color-text-on-dark); opacity: 0.7; }
-  .quoteband blockquote { margin: 0; }
-</style>

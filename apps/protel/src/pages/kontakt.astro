@@ -1,46 +1,56 @@
 ---
-/**
- * Protel: Kontakt. Údaje ze starého webu protelsystems.cz / protel-context.md.
- */
-import Base from '../layouts/Base.astro';
-import SiteHeader from '../components/SiteHeader.astro';
-import SiteFooter from '../components/SiteFooter.astro';
-import Section from '@piano/ui/components/Section.astro';
-import ContactCards from '@piano/ui/components/ContactCards.astro';
-import Heading from '@piano/ui/components/Heading.astro';
-import Text from '@piano/ui/components/Text.astro';
-import Icon from '@piano/ui/components/Icon.astro';
-import LeadForm from '@piano/ui/components/LeadForm.astro';
-import { protelLeadProofs } from '../config/leadProofs';
-
-const contacts = [
-  { icon: 'lucide:briefcase', label: 'Obchod', value: 'sales@protelsystems.cz', href: 'mailto:sales@protelsystems.cz' },
-  { icon: 'lucide:phone', label: 'Obchod: telefon', value: '+420 257 011 107', href: 'tel:+420257011107' },
-  { icon: 'lucide:life-buoy', label: 'Hotline', value: 'help@protelsystems.cz', href: 'mailto:help@protelsystems.cz' },
-  { icon: 'lucide:phone-call', label: 'Hotline: telefon', value: '+420 778 776 835', href: 'tel:+420778776835' },
-  { icon: 'lucide:map-pin', label: 'Sídlo', value: 'protel systems s.r.o., Thámova 166/18, 186 00 Praha 8 – Karlín' },
-];
+// https://www.protelsystems.cz/kontakt (Solid Pixels), port 1:1 skriptem port-protel.py
+import Base from './../layouts/Base.astro';
+import PojdmeToProbrat from './../components/blocks/PojdmeToProbrat.astro';
+import KolikMeToBudeStat from './../components/blocks/KolikMeToBudeStat.astro';
+import VyzkousetZdarma from './../components/blocks/VyzkousetZdarma.astro';
+import KontaktniFormular from './../components/blocks/KontaktniFormular.astro';
 ---
-
-<Base title="Kontakt | Protel" description="Spojte se s týmem Protel. Obchodní kontakty, hotline pro zákazníky i adresa sídla společnosti protel systems s.r.o.">
-  <SiteHeader />
-
-  <main>
-    <ContactCards items={contacts} variant="boxed" background="alt" space="lg"
-      eyebrow="Kontakt" headingAs="h1"
-      titleHtml={'Pojďme to <em>probrat</em>'}
-      lead="Co byste u Vás v hotelu rádi zlepšili? Ozvěte se nám, připravíme řešení na míru." />
-
-    <LeadForm proofs={protelLeadProofs} id="poptavka" variant="full" background="default"
-              title="Napište nám"
-              lead="Nechte nám kontakt, ozveme se a ukážeme Protel přímo ve Vašem hotelu." />
-  </main>
-
-  <SiteFooter />
+<Base
+  title="Kontakt | Hotel PMS Protel"
+  description="Promluvme si o Vašem hotelovém provozu. Popište nám jej, zanechte svůj kontakt a my se Vám co nejdříve ozveme. Jsme tu pro Vás!"
+  path="/kontakt"
+  bodyClass="use-header-transparent use-menu-secondary-uppercase use-menu-button-uppercase use-headings-link-plain search-panel-hide-submit-label search-panel-hide-close-label search-panel-hide-open-label use-menu-bar use-header-fixed use-header-fixed-mobile use-header-priority use-header-boxed"
+  image="/files/nahled-kontakt.jpg"
+>
+<div class="section height--low align--middle color--default section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h1 class="center">Kontakt<span class="text-highlight">.</span></h1>
+</div></div></div>
+<div class="row-main"><div class="col col-3-12 grid-8-12"><div class="block block-inline"><p class="center text-large">Promluvme si o Vašem hotelovém provozu. Popište nám jej, zanechte svůj kontakt a my se Vám co nejdříve ozveme. Jsme tu pro Vás!</p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div class="center"><a class="btn btn-default btn-sm" href="/podpora"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">JIŽ PATŘÍM DO PROTEL RODINY</span></a></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:30px"></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-6-12"><div class="block block-box box box--default"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p class="center"><span class="text-highlight"><strong style="font-family: var(--base-font-family); font-size: 16px;">KDYKOLIV</strong></span></p>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-icon flexcard-none size-lg align-center"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" src="/files/ico-kontakt-email.svg"/></div></div></div></div></div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center"><a href="mailto:sales@protelsystems.cz"><u>sales@protelsystems.cz</u></a></h2>
+<p class="center"><span style="color: var(--box-color); font-size: var(--text-size-base); background-color: var(--box-background); font-family: var(--base-font-family);">E-mailový kontakt</span></p>
+</div></div></div></div></div> <div class="col col-7-12 grid-6-12"><div class="block block-box box box--default"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p class="center"><span class="text-highlight"><strong style="font-family: var(--base-font-family); font-size: 16px;">V PRACOVNÍ DOBU: PO – PÁ 8:30 - 17:00</strong></span></p>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-icon flexcard-none size-lg align-center"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" src="/files/ico-kontakt-telefon.svg"/></div></div></div></div></div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center"><a href="tel:+420257011107"><u>+420 257 011 107</u></a></h2>
+<p class="center">Telefon na konzultanty</p>
+</div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:30px"></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p class="center text-large">Nebo nás navštivte osobně! Jak se k nám dostanete?</p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Thámova 166/18, 186 00, Praha 8 – Karlín</h2>
+<p class="center"><a href="https://www.google.com/maps/place/protel+systems+s.r.o./@50.0922497,14.4500286,17z/data=!3m1!4b1!4m6!3m5!1s0x470bbf005eea73f7:0x4e4f91dd2a495e60!8m2!3d50.0922497!4d14.4526035!16s%2Fg%2F11vp_dyyt5?authuser=0&amp;entry=ttu&amp;g_ep=EgoyMDI1MTIwOS4wIKXMDSoASAFQAw%3D%3D" target="_blank"><span style="color: var(--box-color); font-size: var(--text-size-base); background-color: var(--box-background); font-family: var(--base-font-family);">Zobrazit na mapě</span></a></p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p class="center">protel systems s.r.o., Thámova 166/18, Karlín, 186 00 Praha 8, IČ: 17288045, DIČ: CZ17288045, DUNS: 986850938,</p>
+<p class="center">společnost je vedená u Městského soudu v Praze,  C 369432</p>
+</div></div></div></div><div class="section-background" style="background-color:rgb(242, 242, 242)"></div></div>
+<div class="section height--normal align--middle color--default section-has-fullrow"><div class="section-body"><div class="row fullrow"><div class="col col-1-12 grid-12-12"><div class="block block-map"><div class="block-map-element embed-container embed-container-low" data-map><iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=50.0572727,14.3238876&amp;z=14&amp;output=embed" style="border:0;position:absolute;inset:0;width:100%;height:100%" title="Mapa: 00, K Hájům 2671/8, 155 00 Praha 13-Stodůlky, Česko"></iframe></div></div></div></div></div></div>
+<PojdmeToProbrat />
+<KolikMeToBudeStat />
+<VyzkousetZdarma />
+<div class="section height--medium align--middle color--default section-width-narrow grid-only-ml section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-4-12"><div class="block block-image"><div class="flexcard flexcard-icon flexcard-vertical size-lg align-center"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/ico-hotelovy-system.svg"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2 class="center">15 let</h2>
+<p class="center">na českém trhu</p>
+</div></div></div></div></div></div> <div class="col col-5-12 grid-4-12"><div class="block block-image"><div class="flexcard flexcard-icon flexcard-vertical size-lg align-center"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/ico-hotelove-retezce.svg"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2 class="center">120 +</h2>
+<p class="center">hotelů pod Protel</p>
+</div></div></div></div></div></div> <div class="col col-9-12 grid-4-12"><div class="block block-image"><div class="flexcard flexcard-icon flexcard-vertical size-lg align-center"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/ico-hotelove-pokoje.svg"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2 class="center">20 000 +</h2>
+<p class="center">hotelových pokojů pod Protel</p>
+</div></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(242, 242, 242)"></div></div>
+<div class="section height--normal align--middle color--default section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-card flexcard-size--small flexcard-media-right valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><a class="image image-mask ratio-original" href="/kontakt#kontaktni-formular" style="padding-bottom:100%"><img alt="" decoding="async" loading="lazy" src="/files/vyhoda-hoteloveho-systemu-protel.svg"/></a></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2><span class="text-highlight">" </span>Hotelový systém Protel je nejrespektovanější hotelový systém, který používají špičky v českém a slovenském hotelovém byznysu. Pojďme probrat detaily...</h2>
+</div><div class="image-btn"><a class="btn btn-default btn-sm" href="/kontakt#kontaktni-formular"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">SPOJTE SE S NÁMI</span></a></div></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<KontaktniFormular />
 </Base>
-
-<style>
-  .head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-7); }
-  .head--center { text-align: center; }
-  .head > * + * { margin-top: var(--space-3); }
-</style>

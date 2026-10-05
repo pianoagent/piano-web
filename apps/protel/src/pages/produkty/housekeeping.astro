@@ -1,151 +1,89 @@
 ---
-/**
- * Protel: produkt „Housekeeping“. Obsah vytěžen z produkty/housekeeping.html
- * starého protelsystems.cz (jazykově uhlazeno, fakta zachována).
- * Vše ze sdílených komponent @piano/ui.
- */
+// https://www.protelsystems.cz/produkty/housekeeping (Solid Pixels), port 1:1 skriptem port-protel.py
 import Base from '../../layouts/Base.astro';
-import SiteHeader from '../../components/SiteHeader.astro';
-import SiteFooter from '../../components/SiteFooter.astro';
-import Section from '@piano/ui/components/Section.astro';
-import Hero from '@piano/ui/components/Hero.astro';
-import Heading from '@piano/ui/components/Heading.astro';
-import Text from '@piano/ui/components/Text.astro';
-import Button from '@piano/ui/components/Button.astro';
-import Icon from '@piano/ui/components/Icon.astro';
-import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
-import USPGrid from '@piano/ui/components/USPGrid.astro';
-import LeadForm from '@piano/ui/components/LeadForm.astro';
-import { protelLeadProofs } from '../../config/leadProofs';
-import Img from '@piano/ui/components/Img.astro';
-
-const features = [
-  {
-    id: "aplikace-pro-housekeeping", icon: "lucide:smartphone", title: "Aplikace pro housekeeping",
-    paras: [
-      "Personál housekeepingu vidí stav uklizenosti jednotlivých pokojů přímo na svém mobilním zařízení: zda byl pokoj uklizen, zda je připraven pro nové hosty, nebo zda vyžaduje další úkony.",
-      "Do aplikace lze zaznamenávat i poznámky ke stavu pokoje, speciální požadavky hostů nebo potřebu výměny povlečení či ručníků. Tým tak efektivně komunikuje a pokoje jsou vždy v perfektním stavu.",
-    ],
-  },
-  {
-    id: "reporting", icon: "lucide:line-chart", title: "Reporting",
-    paras: [
-      "Zaměstnanci snadno sdílejí informace o splněných úkolech mezi sebou i směrem k vedení. Systém umí automaticky generovat plány úklidu podle počtu pokojů, počtu zaměstnanců a času potřebného na úklid, pracovní síly tak využíváte optimálně.",
-    ],
-  },
-  {
-    id: "udrzba", icon: "lucide:wrench", title: "Údržba",
-    paras: [
-      "Všechny závady a jejich opravy evidujete online přímo v aplikaci, včetně fotodokumentace a reportování z hotelového systému. Údržbu tak řešíte rychle, přehledně a bez zdržování provozu.",
-    ],
-  },
-  {
-    id: "ztraty-a-nalezy", icon: "lucide:search", title: "Ztráty a nálezy",
-    paras: [
-      "Nalezené předměty se okamžitě zaznamenávají do systému, včetně jména hosta, čísla pokoje, popisu položky a místa nálezu. Ztracené věci se tak rychle vracejí majitelům, což přispívá k pozitivní zkušenosti hostů.",
-    ],
-  },
-  {
-    id: "traces", icon: "lucide:list-checks", title: "Traces",
-    paras: [
-      "Traces jsou úlohy a připomínky navázané na rezervaci, hosta či pokoj, nebo zcela samostatné. Slouží jako univerzální nástroj pro předávání úkolů mezi pracovníky a odděleními hotelu.",
-      "U každé stopy je na první pohled vidět, pro který den a čas platí, kdo a kdy ji zadal, pro které oddělení a zda už byla dokončena. Úloha se zobrazí příslušnému uživateli v definovaný čas, jednorázově, denně, nebo s nastavenou frekvencí.",
-    ],
-  },
-  {
-    id: "rozpis-ukladu", icon: "lucide:calendar-check", title: "Rozpis úklidů",
-    paras: [
-      "Vedoucí sestavují denní i týdenní plány úklidů pokojů a veřejných prostor, přiřazují úkoly jednotlivým zaměstnancům a sledují průběh v reálném čase.",
-      "Systém rozpisy automaticky optimalizuje podle aktuální obsazenosti a plánovaných příjezdů a odjezdů. Zaměstnanci dostávají upozornění na nové nebo urgentní úkoly přímo na mobilní zařízení.",
-    ],
-  },
-];
-
-const related = [
-  { icon: "lucide:layout-dashboard", title: "Hotelový systém", text: "Správa pokojů, rezervací, hostů a statistik: snadné používání a pokročilé funkce pro kompletní přehled o provozu.", href: "/produkty/hotelovy-system-protel" },
-  { icon: "lucide:smartphone", title: "Online check-in/out", text: "Host vyřídí check-in i check-out přes mobil, bez fronty na recepci.", href: "/produkty/online-check-in-out" },
-  { icon: "lucide:book-open", title: "Digitální hotelová kniha", text: "Hotelová kniha elektronicky, vždy aktuální a po ruce.", href: "/produkty/digitalni-hotelova-kniha" },
-  { icon: "lucide:mail", title: "Automatický mailing", text: "Personalizované e-maily hostům bez zásahu recepčního.", href: "/produkty/automaticky-mailing" },
-];
+import Mezera from '../../components/blocks/Mezera.astro';
+import PojdmeToProbrat from '../../components/blocks/PojdmeToProbrat.astro';
+import KolikMeToBudeStat from '../../components/blocks/KolikMeToBudeStat.astro';
+import ProtelVPraxi from '../../components/blocks/ProtelVPraxi.astro';
+import DaleByVasMohloZajimat from '../../components/blocks/DaleByVasMohloZajimat.astro';
+import VyzkousetZdarma from '../../components/blocks/VyzkousetZdarma.astro';
+import Novinky from '../../components/blocks/Novinky.astro';
+import KontaktniFormular from '../../components/blocks/KontaktniFormular.astro';
 ---
-
-<Base title="Digitální housekeeping | Protel"
-      description="Digitální řešení pro housekeeping: přidělování úkolů, kontrola stavu pokojů a komunikace mezi zaměstnanci. Úklid ve Vašem hotelu bez papírů.">
-  <SiteHeader />
-
-  <main>
-    <Breadcrumb items={[{ label: 'Úvod', href: '/' }, { label: 'Produkty', href: '/produkty' }, { label: "Housekeeping" }]} />
-
-    <Hero eyebrow="Produkty" background="gradient"
-          lead="Digitální řešení pro housekeeping přináší efektivitu a transparentnost do úklidu a údržby hotelových pokojů. Snadné sledování a přidělování úkolů, kontrola stavu pokojů a komunikace mezi zaměstnanci i housekeeping ve Vašem hotelu může být kompletně digitální!">
-      <Heading slot="title" as="h1" size="display" color="on-dark">Digitální <em>housekeeping</em></Heading>
-      <Fragment slot="actions">
-        <Button href="#poptavka">Vyzkoušet Protel zdarma</Button>
-        <Button href="/produkty" variant="secondary" onDark>Všechny produkty</Button>
-      </Fragment>
-      <figure slot="media" class="hero-pic">
-        <Img src="/images/housekeeping.webp" alt="Pokojská při úklidu hotelového pokoje" width={880} sizes="(min-width: 881px) 560px, 100vw" loading="eager" decoding="async" />
-      </figure>
-    </Hero>
-
-    <Section background="default" space="lg">
-      <nav class="jump" aria-label="Funkce produktu">
-        {features.map((f) => (
-          <a class="jump__chip" href={`#${f.id}`}>{f.title}</a>
-        ))}
-      </nav>
-      <div class="features">
-        {features.map((f) => (
-          <article class="feature" id={f.id}>
-            <span class="feature__icon"><Icon name={f.icon} size="lg" /></span>
-            <Heading as="h2" size="h3">{f.title}</Heading>
-            {f.paras.map((p) => (
-              <Text color="muted">{p}</Text>
-            ))}
-          </article>
-        ))}
-      </div>
-    </Section>
-
-    <Section background="primary" space="lg">
-      <figure class="quoteband">
-        <span class="quoteband__mark"><Icon name="lucide:quote" size="lg" /></span>
-        <blockquote>
-          <Heading as="p" size="h3" color="on-dark" align="center">Housekeeping v Protelu znamená efektivní správu úklidu a údržby pokojů, plánování, sledování stavu i reportování závad. Výsledkem je plynulý a efektivní provoz Vašeho hotelu.</Heading>
-        </blockquote>
-      </figure>
-    </Section>
-
-    <USPGrid eyebrow="Dále by Vás mohlo zajímat" title="Související produkty"
-             items={related} minItemWidth="260px" background="alt" space="lg" />
-
-    <LeadForm proofs={protelLeadProofs} id="poptavka" variant="full" background="default"
-              title="Vyzkoušejte Protel zdarma"
-              lead="Co byste u Vás v hotelu rádi zlepšili? Nechte nám kontakt, ozveme se a ukážeme Protel přímo ve Vašem hotelu." />
-  </main>
-
-  <SiteFooter />
+<Base
+  title="Housekeeping | Hotel PMS Protel"
+  description="Digitální řešení pro housekeeping přináší efektivitu a transparentnost do procesů úklidu a údržby hotelových pokojů. Systém umožňuje snadné sledování a přidělování úkolů, kontrolu stavu pokojů a komunikaci mezi zaměstnanci. I housekeeping ve Vašem hotelu může být kompletně digitální!"
+  path="/produkty/housekeeping"
+  bodyClass="use-header-transparent use-menu-secondary-uppercase use-menu-button-uppercase use-headings-link-plain search-panel-hide-submit-label search-panel-hide-close-label search-panel-hide-open-label use-menu-bar use-header-fixed use-header-fixed-mobile use-header-priority use-header-boxed"
+  image="/files/nahled-produkt-housekeeping.jpg"
+>
+<div class="section height--low align--middle color--default section-width-wide section-has-background" id="uvod"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-card flexcard-size--normal flexcard-media-right valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><a class="image image-mask ratio-original" href="/vyzkouset-zdarma" style="padding-bottom:91.14583333333334%"><img alt="Housekeeping" decoding="async" sizes="(min-width:1459px) 50vw, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/hdr-top-housekeeping.webp" srcset="/files/r/720/hdr-top-housekeeping.webp 720w, /files/r/1280/hdr-top-housekeeping.webp 1280w, /files/r/1920/hdr-top-housekeeping.webp 1920w"/></a></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p><a href="/produkty"><strong><span class="text-highlight"><span style="font-family: var(--headings-font-family); font-style: var(--headings-text-italic); text-transform: var(--headings-text-transform); text-decoration: var(--headings-text-underline); caret-color: rgb(255, 0, 150);"><font color="#ff0096" size="3">VŠECHNY PRODUKTY</font></span></span></strong></a></p>
+<h1>Housekeeping</h1>
+<p class="text-large">Digitální řešení pro housekeeping přináší efektivitu a transparentnost do procesů úklidu a údržby hotelových pokojů. Systém umožňuje snadné sledování a přidělování úkolů, kontrolu stavu pokojů a komunikaci mezi zaměstnanci. I housekeeping ve Vašem hotelu může být kompletně digitální! </p>
+<p class="text-large"><a href="#funkce"><strong><span class="text-highlight"><span style="font-family: var(--headings-font-family); font-style: var(--headings-text-italic); text-transform: var(--headings-text-transform); text-decoration: var(--headings-text-underline); caret-color: rgb(255, 0, 150);"><font color="#ff0096" size="3">ZJISTIT VÍCE →</font></span></span></strong></a></p>
+</div><div class="image-btn"><a class="btn btn-default" href="/vyzkouset-zdarma"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">VYZKOUŠET ZDARMA</span></a></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-gallery grid-sm-2"><div class="grid gallery-container" style="--gap:40px"><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Mamaison" decoding="async" src="/files/ref-mamaison-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Old Town Hotels" decoding="async" src="/files/ref-old-town-hotel-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Imperial" decoding="async" src="/files/ref-imperial-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo CPI Hotels" decoding="async" src="/files/ref-cpi-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Buddha-Bar" decoding="async" src="/files/ref-buddha-bar-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><a class="image image-mask ratio-square image-width-stretch" href="/nasi-zakaznici"><img alt="Vaše logo" decoding="async" src="/files/ref-vase-2025.svg"/></a></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<Mezera />
+<PojdmeToProbrat />
+<Mezera />
+<div class="section height--low align--middle color--default section-has-background" id="funkce"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="container height--low color--auto container-width-boxed box--benefits"><div class="container-body flex flex--justify-start flex--wrap">
+<div class="flex__item flex__item--grow-1 grid-col-3"><div class="block block-image block-image--icon"><div class="flexcard flexcard-icon flexcard-horizontal flexcard-media-right valign-middle size-lg"><a class="flexcard-media" href="/produkty/housekeeping#aplikace-pro-housekeeping"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Aplikace pro housekeeping" decoding="async" loading="lazy" src="/files/produkt-aplikace-pro-housekeeping.svg"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h4>Aplikace pro housekeeping<span class="text-highlight">.</span></h4>
+</div><div class="image-btn"><a class="btn btn-inverse btn-sm" href="/produkty/housekeeping#aplikace-pro-housekeeping"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">To mě zajímá</span></a></div></div></div></div></div></div>
+<div class="flex__item flex__item--grow-1 grid-col-3"><div class="block block-image block-image--icon"><div class="flexcard flexcard-icon flexcard-horizontal flexcard-media-right valign-middle size-lg"><a class="flexcard-media" href="/produkty/housekeeping#reporting"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Reporting" decoding="async" loading="lazy" src="/files/produkt-reporting.svg"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h4>Reporting<span class="text-highlight">.</span></h4>
+</div><div class="image-btn"><a class="btn btn-inverse btn-sm" href="/produkty/housekeeping#reporting"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">To mě zajímá</span></a></div></div></div></div></div></div>
+<div class="flex__item flex__item--grow-1 grid-col-3"><div class="block block-image block-image--icon"><div class="flexcard flexcard-icon flexcard-horizontal flexcard-media-right valign-middle size-lg"><a class="flexcard-media" href="/produkty/housekeeping#udrzba"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Údržba" decoding="async" loading="lazy" src="/files/produkt-udrzba.svg"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h4>Údržba<span class="text-highlight">.</span></h4>
+</div><div class="image-btn"><a class="btn btn-inverse btn-sm" href="/produkty/housekeeping#udrzba"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">To mě zajímá</span></a></div></div></div></div></div></div>
+<div class="flex__item flex__item--grow-1 grid-col-3"><div class="block block-image block-image--icon"><div class="flexcard flexcard-icon flexcard-horizontal flexcard-media-right valign-middle size-lg"><a class="flexcard-media" href="/produkty/housekeeping#ztraty-a-nalezy"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Ztráty a nálezy" decoding="async" loading="lazy" src="/files/produkt-ztraty-a-nalezy.svg"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h4>Ztráty a nálezy<span class="text-highlight">.</span></h4>
+</div><div class="image-btn"><a class="btn btn-inverse btn-sm" href="/produkty/housekeeping#ztraty-a-nalezy"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">To mě zajímá</span></a></div></div></div></div></div></div>
+<div class="flex__item flex__item--grow-1 grid-col-3"><div class="block block-image block-image--icon"><div class="flexcard flexcard-icon flexcard-horizontal flexcard-media-right valign-middle size-lg"><a class="flexcard-media" href="#traces"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Traces" decoding="async" loading="lazy" src="/files/produkt-traces.svg"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h4>Traces<span class="text-highlight">.</span></h4>
+</div><div class="image-btn"><a class="btn btn-inverse btn-sm" href="#traces"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">To mě zajímá</span></a></div></div></div></div></div></div>
+<div class="flex__item flex__item--grow-1 grid-col-3"><div class="block block-image block-image--icon"><div class="flexcard flexcard-icon flexcard-horizontal flexcard-media-right valign-middle size-lg"><a class="flexcard-media" href="#rozpis-uklidu"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Rozpis úklidů" decoding="async" loading="lazy" src="/files/produkt-rozpis-uklidu.svg"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h4>Rozpis úklidů<span class="text-highlight">.</span></h4>
+</div><div class="image-btn"><a class="btn btn-inverse btn-sm" href="#rozpis-uklidu"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">To mě zajímá</span></a></div></div></div></div></div></div>
+</div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<KolikMeToBudeStat />
+<div class="section height--normal align--middle color--default section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image" id="aplikace-pro-housekeeping"><div class="flexcard flexcard-card flexcard-size--small flexcard-media-right valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Aplikace pro housekeeping" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/produkt-aplikace-pro-housekeeping.webp" srcset="/files/r/720/produkt-aplikace-pro-housekeeping.webp 720w, /files/r/1280/produkt-aplikace-pro-housekeeping.webp 1280w, /files/r/1920/produkt-aplikace-pro-housekeeping.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2>Aplikace pro housekeeping<span class="text-highlight">.</span></h2>
+<p>Aplikace pro housekeeping v rámci hotelového systému Protel umožňuje housekeeping personálu získat přístup k důležitým informacím o stavu uklizenosti jednotlivých pokojů přímo prostřednictvím svých mobilních zařízení.</p>
+<p>Tato aplikace poskytuje detailní přehled o tom, zda byl pokoj uklizen, zda je připraven k ubytování nových hostů nebo zda vyžaduje další úklidové úkony. Díky této aplikaci může housekeeping personál také zaznamenávat poznámky o stavu pokoje, například o jakýchkoli speciálních požadavcích hostů nebo o potřebě výměny povlečení či ručníků.</p>
+<p>Tímto způsobem může housekeeping tým efektivně komunikovat a spolupracovat, aby zajistil, že pokoje jsou vždy v perfektním stavu a splňují očekávání hostů.</p>
+</div></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<Mezera />
+<div class="section height--normal align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image" id="reporting"><div class="flexcard flexcard-card flexcard-size--small flexcard-media-left valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Reporting" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/produkt-reporting.webp" srcset="/files/r/720/produkt-reporting.webp 720w, /files/r/1280/produkt-reporting.webp 1280w, /files/r/1920/produkt-reporting.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2>Reporting<span class="text-highlight">.</span></h2>
+<p><a href="/produkty/hotelovy-system">Hotelový systém Protel</a> nabízí pokročilé řešení pro housekeeping správu. Díky funkci Reporting mohou zaměstnanci snadno komunikovat a sdílet informace o splněných úkolech jak mezi sebou navzájem, tak i směrem k vedení.</p>
+<p>Tato funkce umožňuje automatické generování plánů úklidu na základě různých faktorů, jako je počet pokojů, počet zaměstnanců a potřebný čas pro úklid každého pokoje, což přispívá k efektivnímu provozu a optimálnímu využití pracovních sil.</p>
+</div></div></div></div></div></div></div></div></div>
+<Mezera />
+<div class="section height--normal align--middle color--default section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image" id="udrzba"><div class="flexcard flexcard-card flexcard-size--small flexcard-media-right valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Údržba" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/produkt-udrzba.webp" srcset="/files/r/720/produkt-udrzba.webp 720w, /files/r/1280/produkt-udrzba.webp 1280w, /files/r/1920/produkt-udrzba.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2><span class="text-highlight"><font color="#000000"><span style="caret-color: rgb(0, 0, 0);">Údržba</span></font>.</span></h2>
+<p>Housekeeping a údržba v hotelu dosahují nové úrovně efektivity díky možnosti evidování všech závad a jejich oprav přímo online v aplikaci. S fotodokumentací a možností reportování z hotelového systému Protel je řízení údržby jednoduché a přehledné. Tato funkce poskytuje hotelu možnost řešit údržbu rychle a efektivně, což přispívá k plynulému provozu celého hotelového provozu.</p>
+</div></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<Mezera />
+<div class="section height--normal align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image" id="ztraty-a-nalezy"><div class="flexcard flexcard-card flexcard-size--small flexcard-media-left valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Ztráty a nálezy" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/produkt-ztraty-a-nalezy.webp" srcset="/files/r/720/produkt-ztraty-a-nalezy.webp 720w, /files/r/1280/produkt-ztraty-a-nalezy.webp 1280w, /files/r/1920/produkt-ztraty-a-nalezy.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2><span class="text-highlight"><font color="#000000"><span style="caret-color: rgb(0, 0, 0);">Ztráty a nálezy</span></font>.</span></h2>
+<p>Hotelový systém Protel klade velký důraz na pohodlí a spokojenost Vašich hostů. Součástí našich služeb je také efektivní systém ztrát a nálezů, který zajišťuje, že ztracené předměty jsou co nejrychleji vráceny svým majitelům.</p>
+<p>Jakmile je nalezena jakákoli ztracená položka, je okamžitě zaznamenána do našeho hotelového systému. Tento systém automaticky ukládá důležité informace o nalezeném předmětu, včetně jména hosta, čísla pokoje, detailního popisu položky a místa, kde byla nalezena.</p>
+<p>Jsme tak schopni rychle a efektivně identifikovat a vrátit nalezené předměty jejich právoplatným majitelům, což přispívá k celkové pozitivní zkušenosti hostů při pobytu ve Vašem hotelu.</p>
+</div></div></div></div></div></div></div></div></div>
+<Mezera />
+<div class="section height--normal align--middle color--default section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image" id="traces"><div class="flexcard flexcard-card flexcard-size--small flexcard-media-right valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Traces" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/produkt-traces.webp" srcset="/files/r/720/produkt-traces.webp 720w, /files/r/1280/produkt-traces.webp 1280w, /files/r/1920/produkt-traces.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2><span class="text-highlight"><font color="#000000"><span style="caret-color: rgb(0, 0, 0);">Traces</span></font>.</span></h2>
+<p>Traces jsou úlohy nebo připomínky, které mohou být spojeny s konkrétní rezervací či hostem, s číslem pokoje, nebo nemusí mít žádnou specifickou vazbu. Tento nástroj slouží jako univerzální prostředek pro komunikaci úkolů mezi pracovníky a odděleními hotelu. Flexibilita a možnosti komunikace a notifikací, zejména při integraci s externími systémy, jako jsou mobilní aplikace, činí tento nástroj zvláště užitečným pro efektivní řízení hotelových operací.</p>
+<p>Každá stopa přiřazená k otevřené rezervaci se zobrazí – včetně stop vzniklých před příjezdem nebo po odjezdu. Typickými příklady jsou nevyřízené úkoly, jako je například denní výměna prádla apod. Na první pohled je zřejmé, pro který den a čas jsou stopy platné, který uživatel je zadal, kdy byly zadány a pro které oddělení byly zadány. Rovněž je jasné, o jaké úkoly se jedná a zda již byly dokončeny, a pokud ano, kterým uživatelem. Úloha se zobrazí příslušnému uživateli v definovaný čas, a to buď jednorázově, denně, nebo s definovanou frekvencí.</p>
+</div></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<Mezera />
+<div class="section height--normal align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image" id="rozpis-uklidu"><div class="flexcard flexcard-card flexcard-size--small flexcard-media-left valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Rozpis úklidů" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/produkt-rozpis-uklidu.webp" srcset="/files/r/720/produkt-rozpis-uklidu.webp 720w, /files/r/1280/produkt-rozpis-uklidu.webp 1280w, /files/r/1920/produkt-rozpis-uklidu.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2><span class="text-highlight"><font color="#000000"><span style="caret-color: rgb(0, 0, 0);">Rozpis úklidů</span></font>.</span></h2>
+<p>Rozpis úklidů v hotelovém systému Protel je efektivním nástrojem pro plánování a řízení úklidových prací v hotelu. Umožňuje vedoucím pracovníkům sestavovat denní nebo týdenní plány úklidů pro pokoje a veřejné prostory, přiřazovat úkoly jednotlivým zaměstnancům a sledovat jejich průběh a dokončení v reálném čase.</p>
+<p>Hotelový systém Protel automatizuje a optimalizuje úklidové rozpisy na základě aktuální obsazenosti a plánovaných příjezdů a odjezdů hostů, což zajišťuje efektivní a včasné provedení úklidových prací. Díky možnostem komunikace a notifikací mohou zaměstnanci dostávat upozornění na svá mobilní zařízení o nových nebo urgentních úkolech.</p>
+</div></div></div></div></div></div></div></div></div>
+<Mezera />
+<div class="section height--normal align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-card flexcard-size--small flexcard-media-right valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><a class="image image-mask ratio-original" href="/produkty/housekeeping#kontaktni-formular" style="padding-bottom:100%"><img alt="" decoding="async" loading="lazy" src="/files/vyhoda-hoteloveho-systemu-protel.svg"/></a></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2><span class="text-highlight">"</span> Housekeeping v hotelovém systému Protel umožňuje efektivní správu úklidu a údržby pokojů včetně plánování, sledování stavu, a reportování závad a úkolů, což vede k plynulému a efektivnímu provozu Vašeho hotelu.</h2>
+</div><div class="image-btn"><a class="btn btn-default btn-sm" href="/produkty/housekeeping#kontaktni-formular"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">SPOJTE SE S NÁMI</span></a></div></div></div></div></div></div></div></div></div>
+<ProtelVPraxi />
+<div class="section height--normal align--middle color--default col-gaps-bigger section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Housekeeping od Protel již využívají<span class="text-highlight">...</span></h2>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:50px"></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-4-12"><div class="block block-quote"><div class="has-icon left block-quote-figure"><div class="block-quote-image"><div class="image-wrapper"><div class="image image-mask ratio-square shape-circle"><img alt="Zuzana Georgiánová" decoding="async" loading="lazy" sizes="auto" src="/files/r/1280/zuzana-georgianova.webp" srcset="/files/r/720/zuzana-georgianova.webp 720w, /files/r/1280/zuzana-georgianova.webp 1280w, /files/r/1920/zuzana-georgianova.webp 1920w"/></div></div></div><i class="icon icon-quote-right"></i><blockquote class="block-quote-text">Protel je pro CPI Hotels vynikající volba. Jeho intuitivní rozhraní, spolehlivost a efektivita nám umožňují snadno řídit rezervace, spravovat hosty a sledovat statistiky. Integrace moderních technologií nám pomohla zlepšit naši guest journey a poskytovat personalizované služby.</blockquote><div class="block-quote-author"><span class="quote-decor">–</span> Zuzana Georgiánová <span class="quote-decor">–</span><span class="block-quote-info">CPI Hotels, Hotel Systems Specialist CPI Hotels</span></div></div></div></div> <div class="col col-5-12 grid-4-12"><div class="block block-quote"><div class="has-icon left block-quote-figure"><div class="block-quote-image"><div class="image-wrapper"><div class="image image-mask ratio-square shape-circle"><img alt="František Sedlák" decoding="async" loading="lazy" sizes="auto" src="/files/r/1280/frantisek-sedlak.webp" srcset="/files/r/720/frantisek-sedlak.webp 720w, /files/r/1280/frantisek-sedlak.webp 1280w, /files/r/1920/frantisek-sedlak.webp 1920w"/></div></div></div><i class="icon icon-quote-right"></i><blockquote class="block-quote-text">Na Protelu si cením především jeho spolehlivosti, podpory a množství nabízených reportů.</blockquote><div class="block-quote-author"><span class="quote-decor">–</span> František Sedlák <span class="quote-decor">–</span><span class="block-quote-info">Grandhotel Brno, General Manager</span></div></div></div></div> <div class="col col-9-12 grid-4-12"><div class="block block-quote"><div class="has-icon left block-quote-figure"><div class="block-quote-image"><div class="image-wrapper"><div class="image image-mask ratio-square shape-circle"><img alt="Eliška Škubalová" decoding="async" loading="lazy" sizes="auto" src="/files/r/1280/eliska-skubalova.webp" srcset="/files/r/720/eliska-skubalova.webp 720w, /files/r/1280/eliska-skubalova.webp 1280w, /files/r/1920/eliska-skubalova.webp 1920w"/></div></div></div><i class="icon icon-quote-right"></i><blockquote class="block-quote-text">Protel v našem hotelu využíváme již mnoho let a za tu dobu nám byl vždy oporou v každodenním fungování hotelu. Velmi vstřícný support je velkým bonusem.</blockquote><div class="block-quote-author"><span class="quote-decor">–</span> Eliška Škubalová <span class="quote-decor">–</span><span class="block-quote-info">GRAND HOTEL BOHEMIA, Director of Sales</span></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:50px"></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div class="center"><a class="btn btn-inverse btn-sm" href="/nasi-zakaznici"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">NAŠI ZÁKAZNÍCI</span></a></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<Mezera />
+<DaleByVasMohloZajimat />
+<VyzkousetZdarma />
+<Novinky />
+<KontaktniFormular />
 </Base>
-
-<style>
-  .jump { display: flex; flex-wrap: wrap; gap: var(--space-2); justify-content: center; margin-bottom: var(--space-8); }
-  .jump__chip {
-    display: inline-flex; padding: var(--space-2) var(--space-4);
-    border: 1px solid var(--color-border); border-radius: var(--radius-full);
-    background: var(--color-bg-alt); color: var(--color-text);
-    font-size: var(--font-size-small); font-weight: var(--font-weight-semibold);
-    text-decoration: none; transition: border-color var(--duration-base) var(--easing);
-  }
-  .jump__chip:hover { border-color: var(--color-primary); color: var(--color-text-accent); }
-  .features { max-width: 800px; margin-inline: auto; display: flex; flex-direction: column; gap: var(--space-9); }
-  .feature { scroll-margin-top: var(--space-9); }
-  .feature > :global(* + *) { margin-top: var(--space-3); }
-  .feature__icon {
-    display: inline-flex; align-items: center; justify-content: center;
-    width: 56px; height: 56px; border-radius: var(--radius-md);
-    background: color-mix(in srgb, var(--color-primary) 10%, #fff); color: var(--color-primary);
-  }
-  .quoteband { margin: 0; max-width: 840px; margin-inline: auto; display: flex; flex-direction: column; align-items: center; gap: var(--space-4); text-align: center; }
-  .quoteband__mark { color: var(--color-text-on-dark); opacity: 0.7; }
-  .quoteband blockquote { margin: 0; }
-</style>

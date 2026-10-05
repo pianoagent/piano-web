@@ -1,0 +1,10 @@
+# Adresy živého Solid Pixels webu, které v kopii nejsou.
+# (URL obsahových stránek jsou 1:1, přesměrování nepotřebují.)
+/cs                                 /                          301
+/cs/*                               /:splat                    301
+/cenik-licenci                      /cenik                     301
+/produkty/hotelovy-system-protel    /produkty/hotelovy-system  301
+/produkty/hotel-pms                 /produkty/hotelovy-system  301
+/sk/kariera                         /novinky-kariera           301
+/sitemap.xml.gz                     /sitemap-index.xml         301
+/sitemap.xml                        /sitemap-index.xml         301

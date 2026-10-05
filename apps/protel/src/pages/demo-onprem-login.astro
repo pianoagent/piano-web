@@ -1,0 +1,106 @@
+---
+// https://www.protelsystems.cz/demo-onprem-login (Solid Pixels), port 1:1 skriptem port-protel.py
+import Base from './../layouts/Base.astro';
+import FormularPodpora from './../components/blocks/FormularPodpora.astro';
+import ZnalostniDatabaze from './../components/blocks/ZnalostniDatabaze.astro';
+---
+<Base
+  title="Demo OnPrem login | Hotel PMS Protel"
+  description="Návod, jak se připojit na server Protel Demo pomocí vzdálené plochy (RDP) a přihlásit se do souvisejících aplikací a systémů."
+  path="/demo-onprem-login"
+  bodyClass="use-header-transparent use-menu-secondary-uppercase use-menu-button-uppercase use-headings-link-plain search-panel-hide-submit-label search-panel-hide-close-label search-panel-hide-open-label use-menu-bar use-header-fixed use-header-fixed-mobile use-header-priority use-header-boxed"
+  image="/files/nahled-kontakt.jpg"
+>
+<div class="section height--low align--middle color--default section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h1 class="center">Připojení na Demo Protel OnPremise<span class="text-highlight">.</span></h1>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Tento návod vám pomůže připojit se na server Protel Demo pomocí vzdálené plochy (RDP) a následně se přihlásit do dalších souvisejících aplikací a systémů. Celý postup je vysvětlen tak, abyste mohli rychle a jednoduše začít, i pokud s těmito systémy pracujete poprvé.</p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3>Připojení na server </h3>
+<p>Pro připojení na demo server je nutné si nastavit VPN ve Windows a následně se připojit pomocí vzdálené plochy (Remote Desktop Protocol, RDP). Údaje k nastavení VPN budou zaslány na vyžádání (z bezpečnostních důvodů). </p>
+<p>Samotné nastavení vzdáleného přístupu je pak následovné:</p>
+<ol>
+<li>Otevřete nabídku Start ve vašem počítači (levý dolní roh obrazovky).</li>
+<li>Do vyhledávacího pole napište "Vzdálená plocha" (anglicky "Remote Desktop").</li>
+<li>Klikněte na aplikaci s názvem "Připojení ke vzdálené ploše" (anglicky "Remote Desktop Connection").</li>
+<li>Do pole pro počítač zadejte adresu serveru: <strong>protel-demo.hanko.it</strong></li>
+<li>Klikněte na "Připojit" a zadejte své přihlašovací údaje.</li>
+</ol>
+<ul>
+<li><strong>Username</strong>: demo</li>
+<li><strong>Heslo</strong>: Promo2025</li>
+</ul>
+<h3>Přihlášení do Protelu</h3>
+<p>Po úspěšném připojení pomocí RDP si na ploše spusťte ikonu '<strong>Protel Front Office</strong>'.</p>
+<p>Po spuštění aplikace Protel zadejte přihlašovací údaje.</p>
+<ul>
+<li><strong>Username</strong>: protel</li>
+<li><strong>Heslo</strong>: protel</li>
+</ul>
+<p><a href="https://www.youtube.com/playlist?list=PL9j0iI0vMFVGq9LzsoE7xyrgihHD8tgY3">Video návody k Protel OnPremise</a></p>
+<p><span class="text-highlight"><strong>Upozornění</strong></span>: V demo systému prosíme neponechávejte žádné skutečné osobní údaje nebo kontakty.</p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><hr class="divider divider--normal divider--align-left"/></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3>Systémové požadavky pro Protel OnPremise</h3>
+<p>Aktuální systémové požadavky pro instalaci a fungování serverové verze Protelu naleznete na stránce online nápovědy (pouze v AJ nebo NJ):  <a href="https://protel.helpjuice.com/en_US/onprem-system-requirements">Online Help</a></p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><hr class="divider divider--normal divider--align-left"/></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3>HSK Aplikace (Housekeeping)</h3>
+<p>Tato aplikace je určena pro správu úklidu pokojů a je dostupná ke stažení pro Android na Google Play nebo Apple na App Store.</p>
+<ul>
+<li>Stáhnout zde (iPhone): <a href="https://apps.apple.com/us/app/protel-housekeeping/id646335510">App Store - Housekeeping App</a></li>
+<li>Stáhnout zde (Android): <a href="https://play.google.com/store/apps/details?id=net.protel.phone.housekeeping2.prod&amp;hl=en&amp;gl=US">Google Play - Housekeeping App</a></li>
+</ul>
+<p><strong>Návod pro připojení</strong></p>
+<p>Po stažení aplikace:</p>
+<ol>
+<li>Zadejte do pole "server" IP adresu a port: 37.27.183.133:8000</li>
+<li>V dalším kroku vyberte hotel: Hotel 1 ASW Systems</li>
+<li>Následně zadejte přihlašovací údaje:</li>
+</ol>
+<ul>
+<li><strong>Username:</strong> hsk</li>
+<li><strong>Heslo:</strong> hsk2022</li>
+</ul>
+<p><strong>Nápověda:</strong> <a href="https://help.protel.net/housekeeping/en_US/web/#t=Startseite.htm">Odkaz na nápovědu</a></p>
+<p></p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><hr class="divider divider--normal divider--align-left"/></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3>Planet WBE (Web Booking Engine)</h3>
+<p>Pro vyzkoušení našeho Booking engine je k dispozici funkční online rezervační formulář. Do rezervace zadejte reálnou emailovou adresu, aby Vám přišlo i potvrzení. </p>
+<ul>
+<li><strong>Rezervační URL</strong>: <a href="https://bookprem.protelcz.online/reserve">https://bookprem.protelcz.online/reserve</a></li>
+</ul>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><hr class="divider divider--normal divider--align-left"/></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3>Bookolo Booking Engine</h3>
+<p>Bookolo je náš obchodní partner, se kterým úzce spolupracujeme. Web Booking Engine (WBE) od Bookolo nabízíme jako alternativní řešení pro případ, že se rozhodnete využít Bookolo jako Channel Manager (CHM). Vyzkoušejte si ho na následujícím odkazu nebo využít ikony na ploše Demo serveru:</p>
+<ul>
+<li><strong>Booking Engine URL</strong>: <a href="https://bookoloengine.com/v3/book/hotel-1145/?currency=EUR&amp;loaded=1">https://bookoloengine.com/v3/book/hotel-1145/?currency=EUR&amp;loaded=1</a></li>
+</ul>
+<p><strong>Poznámka</strong>: Do Web Booking Engine (WBE) máme možnost nasadit i naši <span class="text-highlight"><strong>platební bránu</strong></span>. Můžete si tuto funkcionalitu vyzkoušet, pokud při rezervaci zvolíte ceník typu "non-refundable".</p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><hr class="divider divider--normal divider--align-left"/></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3>Online check-in přes Straiv</h3>
+<p>Abyste si mohli vyzkoušet online check-in pomocí modulu Straiv, postupujte podle následujících kroků:</p>
+<ol>
+<li><strong>Vytvoření rezervace</strong>: Vytvořte si rezervaci do budoucna a do profilu zadejte reálnou emailovou adresu.</li>
+<li><strong>Potvrzení rezervace</strong>: Po dokončení rezervace obdržíte potvrzení, ve kterém bude odkaz na možnost provést pre-checkin.</li>
+<li><strong>Pre-checkin</strong>: Klikněte na odkaz v potvrzení a dokončete pre-checkin.</li>
+<li><strong>Testovací platební karta</strong>: Pro dokončení online precheckinu je nutné zadat testovací platební kartu:</li>
+</ol>
+<ul>
+<li>Číslo karty: 4000 0010 0000 0018</li>
+<li>Platnost: 06/25</li>
+<li>OTP kód (dvoufaktorové ověření) : 4000</li>
+<li>CVC kód: 123</li>
+</ul>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><hr class="divider divider--normal divider--align-left"/></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3>ChatBot DialogShift</h3>
+<p>Vyzkoušejte si fungování demo chatbota od firmy DialogShift, který dokáže zodpovědět dotazy týkající se hotelu, rezervací atd. Při dotazu na rezervaci v konkrétním termínu Vás rovnou přesměruje na WBE</p>
+<p><strong>Odkaz na demo hotelu</strong>:  <a href="/fantasticky-hotel-1893">https://www.protelsystems.cz/fantasticky-hotel-1893</a></p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div><div class="section-background" style="background-color:rgb(242, 242, 242)"></div></div>
+<FormularPodpora />
+<ZnalostniDatabaze />
+</Base>

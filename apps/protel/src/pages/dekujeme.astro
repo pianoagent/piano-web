@@ -1,0 +1,25 @@
+---
+// Děkovací stránka po odeslání formuláře (na živém webu není, přidaná kvůli měření: konverze v GTM = pageview /dekujeme). Noindex, mimo sitemapu.
+import Base from './../layouts/Base.astro';
+---
+<Base
+  title="Děkujeme | Hotel PMS Protel"
+  description="Děkujeme za zprávu. Ozveme se Vám co nejdříve."
+  path="/dekujeme"
+  locale="cs"
+  noindex
+>
+<div class="section height--normal align--middle color--default">
+  <div class="section-body">
+    <div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline">
+      <h1 class="center">Děkujeme<span class="text-highlight">.</span></h1>
+      <p class="text-large center">Zpráva k nám dorazila. Ozveme se Vám co nejdříve.</p>
+    </div></div></div>
+    <div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:30px"></div></div></div></div>
+    <div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div class="center">
+      <p class="center">Spěcháte? Zavolejte nám na <a href="tel:+420257011107">+420&nbsp;257 011 107</a>.</p>
+      <a class="btn btn-default" href="/"><span class="btn__icon" aria-hidden="true"></span><span class="btn__label">Zpět na hlavní stránku</span></a>
+    </div></div></div></div>
+  </div>
+</div>
+</Base>

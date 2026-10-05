@@ -1,0 +1,26 @@
+---
+// SK stránka 404. Cloudflare Pages ji pod /sk/ použije přednostně (nejbližší 404.html). Noindex, mimo sitemapu.
+import Base from '../../layouts/Base.astro';
+---
+<Base
+  title="Stránka sa nenašla | Hotel PMS Protel"
+  description="Táto stránka neexistuje. Skúste hlavnú stránku, produkty alebo kontakt."
+  path="/sk/404"
+  locale="sk"
+  noindex
+>
+<div class="section height--normal align--middle color--default">
+  <div class="section-body">
+    <div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline">
+      <h1 class="center">Stránka sa nenašla<span class="text-highlight">.</span></h1>
+      <p class="text-large center">Táto adresa neexistuje alebo sa presunula.</p>
+    </div></div></div>
+    <div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:30px"></div></div></div></div>
+    <div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div class="center">
+      <a class="btn btn-default" href="/sk"><span class="btn__icon" aria-hidden="true"></span><span class="btn__label">Hlavná stránka</span></a>
+      <a class="btn btn-inverse" href="/sk/produkty"><span class="btn__icon" aria-hidden="true"></span><span class="btn__label">Produkty</span></a>
+      <a class="btn btn-inverse" href="/sk/kontakt"><span class="btn__icon" aria-hidden="true"></span><span class="btn__label">Kontakt</span></a>
+    </div></div></div></div>
+  </div>
+</div>
+</Base>

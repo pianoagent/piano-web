@@ -1,0 +1,76 @@
+---
+// https://www.protelsystems.cz/vyzkouset-zdarma (Solid Pixels), port 1:1 skriptem port-protel.py
+import Base from './../layouts/Base.astro';
+import KolikMeToBudeStat from './../components/blocks/KolikMeToBudeStat.astro';
+---
+<Base
+  title="VYZKOUŠET ZDARMA | Hotel PMS Protel"
+  description="Nabízíme konzultace v oblasti identifikace potřeb vašeho hotelového provozu a následnou přípravu ideálního komplexního řešení. Kontaktujte naše konzultanty a zjistěte, jak vám může společnost Protel pomoci."
+  path="/vyzkouset-zdarma"
+  bodyClass="use-header-transparent use-menu-secondary-uppercase use-menu-button-uppercase use-headings-link-plain search-panel-hide-submit-label search-panel-hide-close-label search-panel-hide-open-label use-menu-bar use-header-fixed use-header-fixed-mobile use-header-priority use-header-boxed i-want-protel"
+  image="/files/4317-nahled-chci-protel.jpg"
+>
+<div class="section height--low align--middle color--default section-has-background" id="lead-form"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-5-12"><div class="block block-inline"><span style="font-family: var(--headings-font-family); font-style: var(--headings-text-italic); text-transform: var(--headings-text-transform); text-decoration: var(--headings-text-underline); caret-color: rgb(255, 0, 150);"><font color="#ff0096" size="3"><b>🇨🇿  JSME ČESKÝ TÝM S ČESKOU PODPOROU</b></font></span></div> <div class="block block-inline"><h1 class="h2-style"><span style="caret-color: rgb(0, 0, 0);">Během krátké nezávazné online ukázky Vám představíme, jak Protel zjednoduší chod vašeho hotelu.</span></h1>
+</div> <div class="block block-spacer"><div class="block-spacer-element" style="--height:30px"></div></div>
+<form action="https://databridge.pianopos.cz/api/web-lead" autocomplete="off" class="block block-form form-background" data-lead-form="napiste-nam" id="napiste-nam" method="post">
+<div class="row">
+<div class="col col-1-12 grid-12-12">
+<div class="field field-form_input_text" id="napiste-nam-field-wrapper-co-chcete-ve-svem-hotelu-zlepsit">
+<div class="field-wrapper">
+<label for="napiste-nam-field-co-chcete-ve-svem-hotelu-zlepsit" id="napiste-nam-label-co-chcete-ve-svem-hotelu-zlepsit">
+            Co chcete ve svém hotelu zlepšit?
+          </label>
+<input class="field-control" id="napiste-nam-field-co-chcete-ve-svem-hotelu-zlepsit" name="napiste-nam[co-chcete-ve-svem-hotelu-zlepsit]" type="text" value=""/>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col col-1-12 grid-12-12">
+<div class="field field-form_input_email" id="napiste-nam-field-wrapper-vas-e-mail">
+<div class="field-wrapper">
+<label for="napiste-nam-field-vas-e-mail" id="napiste-nam-label-vas-e-mail">
+            Váš e-mail <span>*</span>
+</label>
+<input class="field-control" id="napiste-nam-field-vas-e-mail" name="napiste-nam[vas-e-mail]" required="" type="email" value=""/>
+</div>
+</div>
+<div class="field field-form_input_tel" id="napiste-nam-field-wrapper-vas-telefon">
+<div class="field-wrapper">
+<label for="napiste-nam-field-vas-telefon" id="napiste-nam-label-vas-telefon">
+            Váš telefon
+          </label>
+<input class="field-control" id="napiste-nam-field-vas-telefon" name="napiste-nam[vas-telefon]" type="tel" value=""/>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col col-1-12 grid-12-12">
+<div class="field-form_agreement-text" id="napiste-nam-field-wrapper-field_napiste-nam_2_0_0">
+<div class="field-wrapper">
+<div class="block block-inline">
+<p>Vaše osobní údaje budou zpracovány podle <a href="/podminky-o-zpracovani-osobnich-udaju-formular">Podmínek zpracování osobních údajů</a>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col col-1-12 grid-12-12">
+<div class="field field-form_button" id="napiste-nam-field-wrapper-chci-zdarma-vyzkouset-protel">
+<div class="field-wrapper">
+<div class="left">
+<button class="btn btn-a btn-default" id="napiste-nam-field-chci-zdarma-vyzkouset-protel" name="napiste-nam[chci-zdarma-vyzkouset-protel]" type="submit" value="submit"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">CHCI ZDARMA VYZKOUŠET PROTEL</span></button>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<input name="form_variant" type="hidden" value="napiste-nam"/><input name="page" type="hidden" value=""/><div aria-hidden="true" class="visually-hidden"><label>Web <input autocomplete="off" name="website" tabindex="-1" type="text"/></label></div></form>
+</div> <div class="col col-6-12 grid-7-12"><div class="row"><div class="col col-1-12 grid-6-12"><div class="block block-inline"><p><span class="text-highlight"><span style="font-family: var(--headings-font-family); font-style: var(--headings-text-italic); text-transform: var(--headings-text-transform); text-decoration: var(--headings-text-underline); caret-color: rgb(255, 0, 150);"><font color="#ff0096" size="3"><b>PROTELU VĚŘÍ</b></font></span></span></p>
+</div></div> <div class="col col-7-12 grid-6-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:50px"></div></div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-gallery grid-sm-2"><div class="grid gallery-container" style="--gap:75px"><div class="gallery-item grid-col-3"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Grandhotel Pupp" decoding="async" src="/files/ref-grandhotel-pupp-black.svg"/></div></div></div><div class="gallery-item grid-col-3"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Hotel Perk" decoding="async" src="/files/ref-hotel-perk-michelin-key-black.svg"/></div></div></div><div class="gallery-item grid-col-3"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Imperial" decoding="async" src="/files/ref-imperial-black.svg"/></div></div></div><div class="gallery-item grid-col-3"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Vista" decoding="async" src="/files/ref-vista-black.svg"/></div></div></div><div class="gallery-item grid-col-3"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Mamaison" decoding="async" src="/files/ref-mamaison-black.svg"/></div></div></div><div class="gallery-item grid-col-3"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Hotel Savoy Prague" decoding="async" src="/files/ref-savoy-hotel-prague-black.svg"/></div></div></div><div class="gallery-item grid-col-3"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Aquapalace Hotel Prague" decoding="async" src="/files/ref-aguapalace-hotel-prague-black.svg"/></div></div></div><div class="gallery-item grid-col-3"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Vinice Hnanice" decoding="async" src="/files/ref-vinice-hnanice-black.svg"/></div></div></div><div class="gallery-item grid-col-3"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Clarion Hotel" decoding="async" src="/files/ref-clarion-black.svg"/></div></div></div></div></div></div></div></div></div></div><div class="section-background" style="background-color:#fff"></div></div>
+<KolikMeToBudeStat />
+</Base>

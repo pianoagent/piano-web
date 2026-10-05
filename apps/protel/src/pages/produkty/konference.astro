@@ -1,131 +1,68 @@
 ---
-/**
- * Protel: produkt „Konference“. Obsah vytěžen z produkty/konference.html
- * starého protelsystems.cz (jazykově uhlazeno, fakta zachována).
- * Vše ze sdílených komponent @piano/ui.
- */
+// https://www.protelsystems.cz/produkty/konference (Solid Pixels), port 1:1 skriptem port-protel.py
 import Base from '../../layouts/Base.astro';
-import SiteHeader from '../../components/SiteHeader.astro';
-import SiteFooter from '../../components/SiteFooter.astro';
-import Section from '@piano/ui/components/Section.astro';
-import Hero from '@piano/ui/components/Hero.astro';
-import Heading from '@piano/ui/components/Heading.astro';
-import Text from '@piano/ui/components/Text.astro';
-import Button from '@piano/ui/components/Button.astro';
-import Icon from '@piano/ui/components/Icon.astro';
-import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
-import USPGrid from '@piano/ui/components/USPGrid.astro';
-import LeadForm from '@piano/ui/components/LeadForm.astro';
-import { protelLeadProofs } from '../../config/leadProofs';
-import Img from '@piano/ui/components/Img.astro';
-
-const features = [
-  {
-    id: "rezervace-mistnosti", icon: "lucide:calendar-days", title: "Rezervace místností",
-    paras: [
-      "Konferenční modul je automatickou součástí hotelového systému. Konferenční místnosti rezervujete přímo z přehledného plánu, který zobrazuje dostupnost jednotlivých prostor i jejich kombinací.",
-      "Systém automaticky sleduje obsazenost a dostupnost místností, takže využití prostor snadno optimalizujete a konferenční rezervace řídíte efektivně.",
-    ],
-  },
-  {
-    id: "evidence-detailu-akce", icon: "lucide:clipboard-list", title: "Evidence detailů akce",
-    paras: [
-      "Všechny dohodnuté detaily akce, požadavky na stravování, technické vybavení nebo uspořádání prostor, evidujete na jednom místě. Smlouvu nebo function sheet pak vygenerujete jediným kliknutím, vždy s aktuálními údaji.",
-    ],
-  },
-  {
-    id: "navaznost-na-rezervace-ubytovani", icon: "lucide:bed-double", title: "Návaznost na rezervace ubytování",
-    paras: [
-      "Konference se úzce propojují s rezervacemi ubytování. Organizátoři banketů snadno synchronizují skupinové rezervace s ubytováním účastníků, celý pobyt včetně účasti na konferenci proběhne hladce a z jednoho systému.",
-    ],
-  },
-];
-
-const related = [
-  { icon: "lucide:layout-dashboard", title: "Hotelový systém", text: "Správa pokojů, rezervací, hostů a statistik: snadné používání a pokročilé funkce pro kompletní přehled o provozu.", href: "/produkty/hotelovy-system-protel" },
-  { icon: "lucide:soup", title: "MealPlan", text: "Digitální evidence snídaní, obědů a večeří bez papírů a Excelu.", href: "/produkty/meal-plan" },
-  { icon: "lucide:mail", title: "Automatický mailing", text: "Personalizované e-maily hostům bez zásahu recepčního.", href: "/produkty/automaticky-mailing" },
-  { icon: "lucide:network", title: "Hotelové řetězce", text: "Centrální správa více hotelů z jednoho místa.", href: "/produkty/hotelove-retezce" },
-];
+import Mezera from '../../components/blocks/Mezera.astro';
+import PojdmeToProbrat from '../../components/blocks/PojdmeToProbrat.astro';
+import KolikMeToBudeStat from '../../components/blocks/KolikMeToBudeStat.astro';
+import ProtelVPraxi from '../../components/blocks/ProtelVPraxi.astro';
+import DaleByVasMohloZajimat from '../../components/blocks/DaleByVasMohloZajimat.astro';
+import VyzkousetZdarma from '../../components/blocks/VyzkousetZdarma.astro';
+import Novinky from '../../components/blocks/Novinky.astro';
+import KontaktniFormular from '../../components/blocks/KontaktniFormular.astro';
 ---
-
-<Base title="Konferenční modul hotelu | Protel"
-      description="Konferenční modul je součástí Protelu: rezervace místností, sledování dostupnosti a vybavení, správa stravování i fakturace za pronájem.">
-  <SiteHeader />
-
-  <main>
-    <Breadcrumb items={[{ label: 'Úvod', href: '/' }, { label: 'Produkty', href: '/produkty' }, { label: "Konference" }]} />
-
-    <Hero eyebrow="Produkty" background="gradient"
-          lead="Konferenční modul, který je automatickou součástí hotelového systému Protel, nabízí rezervace konferenčních místností, sledování dostupnosti a vybavení, správu stravování a občerstvení, fakturaci za pronájem, správu účastníků, generování reportů a další úkony spojené s pořádáním událostí ve Vašem hotelu.">
-      <Heading slot="title" as="h1" size="display" color="on-dark">Konference <em>bez starostí</em></Heading>
-      <Fragment slot="actions">
-        <Button href="#poptavka">Vyzkoušet Protel zdarma</Button>
-        <Button href="/produkty" variant="secondary" onDark>Všechny produkty</Button>
-      </Fragment>
-      <figure slot="media" class="hero-pic">
-        <Img src="/images/konference.webp" alt="Konferenční sál hotelu připravený na jednání" width={880} sizes="(min-width: 881px) 560px, 100vw" loading="eager" decoding="async" />
-      </figure>
-    </Hero>
-
-    <Section background="default" space="lg">
-      <nav class="jump" aria-label="Funkce produktu">
-        {features.map((f) => (
-          <a class="jump__chip" href={`#${f.id}`}>{f.title}</a>
-        ))}
-      </nav>
-      <div class="features">
-        {features.map((f) => (
-          <article class="feature" id={f.id}>
-            <span class="feature__icon"><Icon name={f.icon} size="lg" /></span>
-            <Heading as="h2" size="h3">{f.title}</Heading>
-            {f.paras.map((p) => (
-              <Text color="muted">{p}</Text>
-            ))}
-          </article>
-        ))}
-      </div>
-    </Section>
-
-    <Section background="primary" space="lg">
-      <figure class="quoteband">
-        <span class="quoteband__mark"><Icon name="lucide:quote" size="lg" /></span>
-        <blockquote>
-          <Heading as="p" size="h3" color="on-dark" align="center">Efektivní organizace a propojení konferenčních akcí s banketními rezervacemi a ubytováním zlepšuje servis hostům a Vašemu hotelu přináší ohromnou úsporu času a financí!</Heading>
-        </blockquote>
-      </figure>
-    </Section>
-
-    <USPGrid eyebrow="Dále by Vás mohlo zajímat" title="Související produkty"
-             items={related} minItemWidth="260px" background="alt" space="lg" />
-
-    <LeadForm proofs={protelLeadProofs} id="poptavka" variant="full" background="default"
-              title="Vyzkoušejte Protel zdarma"
-              lead="Co byste u Vás v hotelu rádi zlepšili? Nechte nám kontakt, ozveme se a ukážeme Protel přímo ve Vašem hotelu." />
-  </main>
-
-  <SiteFooter />
+<Base
+  title="Konference | Hotel PMS Protel"
+  description="Konferenční modul, který je automatickou součástí hotelového systému Protel, Vám nabízí spoustu výhod: rezervace konferenčních místností, sledování dostupnosti místností, vybavení, správa stravování a občerstvení, fakturace za pronájem místností a služeb, správa účastníků a jejich požadavků,..."
+  path="/produkty/konference"
+  bodyClass="use-header-transparent use-menu-secondary-uppercase use-menu-button-uppercase use-headings-link-plain search-panel-hide-submit-label search-panel-hide-close-label search-panel-hide-open-label use-menu-bar use-header-fixed use-header-fixed-mobile use-header-priority use-header-boxed"
+  image="/files/nahled-produkt-konference.jpg"
+>
+<div class="section height--low align--middle color--default section-width-wide section-has-background" id="uvod"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-card flexcard-size--normal flexcard-media-right valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><a class="image image-mask ratio-original" href="/vyzkouset-zdarma" rel="noopener" style="padding-bottom:91.14583333333334%" target="_blank"><img alt="Konference" decoding="async" sizes="(min-width:1459px) 50vw, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/hdr-top-konference.webp" srcset="/files/r/720/hdr-top-konference.webp 720w, /files/r/1280/hdr-top-konference.webp 1280w, /files/r/1920/hdr-top-konference.webp 1920w"/></a></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p><a href="/produkty"><strong><span class="text-highlight"><span style="font-family: var(--headings-font-family); font-style: var(--headings-text-italic); text-transform: var(--headings-text-transform); text-decoration: var(--headings-text-underline); caret-color: rgb(255, 0, 150);"><font color="#ff0096" size="3">VŠECHNY PRODUKTY</font></span></span></strong></a></p>
+<h1>Konference</h1>
+<p class="text-large">Konferenční modul, který je automatickou součástí hotelového systému Protel, Vám nabízí spoustu výhod: rezervace konferenčních místností, sledování dostupnosti místností, vybavení, správa stravování a občerstvení, fakturace za pronájem místností a služeb, správa účastníků a jejich požadavků, generování reportů a další administrativní úkony spojené s pořádáním událostí ve Vašem hotelu. </p>
+<p class="text-large"><a href="#funkce"><strong><span class="text-highlight"><span style="font-family: var(--headings-font-family); font-style: var(--headings-text-italic); text-transform: var(--headings-text-transform); text-decoration: var(--headings-text-underline); caret-color: rgb(255, 0, 150);"><font color="#ff0096" size="3">ZJISTIT VÍCE →</font></span></span></strong></a></p>
+</div><div class="image-btn"><a class="btn btn-default" href="/vyzkouset-zdarma" rel="noopener" target="_blank"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">VYZKOUŠET ZDARMA</span></a></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-gallery grid-sm-2"><div class="grid gallery-container" style="--gap:40px"><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Aquapalace Hotel Prague" decoding="async" src="/files/ref-aguapalace-hotel-prague-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Clarion Hotel" decoding="async" src="/files/ref-clarion-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Imperial" decoding="async" src="/files/ref-imperial-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Resort Sobotín" decoding="async" src="/files/ref-resort-sobotin-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Cubex" decoding="async" src="/files/ref-cubex-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><a class="image image-mask ratio-square image-width-stretch" href="/nasi-zakaznici"><img alt="Vaše logo" decoding="async" src="/files/ref-vase-2025.svg"/></a></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<Mezera />
+<PojdmeToProbrat />
+<Mezera />
+<div class="section height--low align--middle color--default section-has-background" id="funkce"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="container height--low color--auto container-width-boxed box--benefits"><div class="container-body flex flex--justify-start flex--wrap">
+<div class="flex__item flex__item--grow-1 grid-col-3"><div class="block block-image block-image--icon"><div class="flexcard flexcard-icon flexcard-horizontal flexcard-media-right valign-middle size-lg"><a class="flexcard-media" href="/produkty/konference#rezervace-mistnosti"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Rezervace místností" decoding="async" loading="lazy" src="/files/produkt-rezervace-mistnosti.svg"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h4>Rezervace místností<span class="text-highlight">.</span></h4>
+</div><div class="image-btn"><a class="btn btn-inverse btn-sm" href="/produkty/konference#rezervace-mistnosti"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">To mě zajímá</span></a></div></div></div></div></div></div>
+<div class="flex__item flex__item--grow-1 grid-col-3"><div class="block block-image block-image--icon"><div class="flexcard flexcard-icon flexcard-horizontal flexcard-media-right valign-middle size-lg"><a class="flexcard-media" href="/produkty/konference#evidence-detailu-akce"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Evidence detailů akce" decoding="async" loading="lazy" src="/files/produkt-evidence-detailu-akce.svg"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h4>Evidence detailů akce<span class="text-highlight">.</span></h4>
+</div><div class="image-btn"><a class="btn btn-inverse btn-sm" href="/produkty/konference#evidence-detailu-akce"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">To mě zajímá</span></a></div></div></div></div></div></div>
+<div class="flex__item flex__item--grow-1 grid-col-3"><div class="block block-image block-image--icon"><div class="flexcard flexcard-icon flexcard-horizontal flexcard-media-right valign-middle size-lg"><a class="flexcard-media" href="/produkty/konference#navazanost-na-rezervace-ubytovani"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Návaznost na rezervace ubytování" decoding="async" loading="lazy" src="/files/produkt-navaznost-na-rezervace-ubytovani.svg"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h4>Návaznost na rezervace ubytování<span class="text-highlight">.</span></h4>
+</div><div class="image-btn"><a class="btn btn-inverse btn-sm" href="/produkty/konference#navazanost-na-rezervace-ubytovani"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">To mě zajímá</span></a></div></div></div></div></div></div>
+</div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<KolikMeToBudeStat />
+<div class="section height--normal align--middle color--default section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image" id="rezervace-mistnosti"><div class="flexcard flexcard-card flexcard-size--small flexcard-media-right valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Rezervace místností" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/produkt-rezervace-mistnosti.webp" srcset="/files/r/720/produkt-rezervace-mistnosti.webp 720w, /files/r/1280/produkt-rezervace-mistnosti.webp 1280w, /files/r/1920/produkt-rezervace-mistnosti.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2>Rezervace místností<span class="text-highlight">.</span></h2>
+<p>Pro usnadnění správy konferencí v hotelu slouží speciální konferenční modul Protel, který je automatickou součástí <a href="/produkty/hotelovy-system">hotelového systému</a>. Tento modul umožňuje jednoduchou rezervaci konferenčních místností přímo prostřednictvím přehledného plánu, který zobrazuje dostupnost jednotlivých prostor.</p>
+<p>Díky tomu máte přehled o obsazenosti místností a jejich kombinací, což Vám usnadňuje plánování a organizaci konferenčních akcí. Systém automaticky sleduje obsazenost a dostupnost místností, abyste mohli optimalizovat využití prostor a efektivně řídit konferenční rezervace.</p>
+</div></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<div class="section height--normal align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image" id="evidence-detailu-akce"><div class="flexcard flexcard-card flexcard-size--small flexcard-media-left valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Evidence detailů akce" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/produkt-evidence-detailu-akce.webp" srcset="/files/r/720/produkt-evidence-detailu-akce.webp 720w, /files/r/1280/produkt-evidence-detailu-akce.webp 1280w, /files/r/1920/produkt-evidence-detailu-akce.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2>Evidence detailů akce<span class="text-highlight">.</span></h2>
+<p>Konferenční modul v hotelovém systému Protel zajišťuje efektivní evidenci detailů akce, což je klíčové pro správné plánování a organizaci konferenčních událostí. Tento modul poskytuje jedno místo pro zaznamenání dohodnutých detailů akce, jako jsou požadavky na stravování, technické vybavení nebo uspořádání prostor. Díky tomu máte všechny informace přehledně k dispozici a můžete jednoduše vygenerovat smlouvu nebo funkční list s jediným kliknutím.</p>
+</div></div></div></div></div></div></div></div></div>
+<Mezera />
+<div class="section height--normal align--middle color--default section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image" id="navazanost-na-rezervace-ubytovani"><div class="flexcard flexcard-card flexcard-size--small flexcard-media-right valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Návaznost na rezervace ubytování" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/produkt-navaznost-na-rezervace-ubytovani.webp" srcset="/files/r/720/produkt-navaznost-na-rezervace-ubytovani.webp 720w, /files/r/1280/produkt-navaznost-na-rezervace-ubytovani.webp 1280w, /files/r/1920/produkt-navaznost-na-rezervace-ubytovani.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2>Návaznost na rezervace ubytování<span class="text-highlight">.</span></h2>
+<p>Konference v hotelu se úzce propojují s rezervacemi ubytování, což přináší komplexní a pohodlné řešení pro pořádání jakýchkoliv akcí. Díky této integraci mohou organizátoři banketů snadno synchronizovat skupinové rezervace s ubytováním pro účastníky konference. Tento integrovaný přístup zajišťuje <a href="/produkty/hotelove-retezce#centralni-rezervace">efektivní správu akcí</a> a umožňuje hladký průběh celého pobytu hostů včetně ubytování a účasti na konferenci.</p>
+</div></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<Mezera />
+<div class="section height--normal align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-card flexcard-size--small flexcard-media-right valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><a class="image image-mask ratio-original" href="/produkty/konference#kontaktni-formular" style="padding-bottom:100%"><img alt="" decoding="async" loading="lazy" src="/files/vyhoda-hoteloveho-systemu-protel.svg"/></a></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2><span class="text-highlight">"</span> Efektivní organizace a propojení konferenčních akcí s banketními rezervacemi a ubytováním v hotelu zlepšuje servis a poskytované služby hostům. Vašemu hotelu pak ohromnou úsporu času a financí!</h2>
+</div><div class="image-btn"><a class="btn btn-default btn-sm" href="/produkty/konference#kontaktni-formular"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">SPOJTE SE S NÁMI</span></a></div></div></div></div></div></div></div></div></div>
+<ProtelVPraxi />
+<div class="section height--normal align--middle color--default col-gaps-bigger section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Konference od Protel využívají<span class="text-highlight">...</span></h2>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:50px"></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:50px"></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><hr class="divider divider--normal divider--align-left"/></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:50px"></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-4-12"><div class="block block-quote"><div class="has-icon left block-quote-figure"><div class="block-quote-image"><div class="image-wrapper"><div class="image image-mask ratio-square shape-circle"><img alt="Marián Madara" decoding="async" loading="lazy" sizes="auto" src="/files/r/1280/marian-madara.webp" srcset="/files/r/720/marian-madara.webp 720w, /files/r/1280/marian-madara.webp 1280w, /files/r/1920/marian-madara.webp 1920w"/></div></div></div><i class="icon icon-quote-right"></i><blockquote class="block-quote-text">Podiel priameho online predaja neustále zvyšujeme aj vďaka možnostiam dynamickej cenotvorby a prepojenia s CRM, ktoré systém protel umožňuje.
+</blockquote><div class="block-quote-author"><span class="quote-decor">–</span> Marián Madara <span class="quote-decor">–</span><span class="block-quote-info">TMR Hotels, PMS Master User | Department management </span></div></div></div></div> <div class="col col-5-12 grid-4-12"><div class="block block-quote"><div class="has-icon left block-quote-figure"><div class="block-quote-image"><div class="image-wrapper"><div class="image image-mask ratio-square shape-circle"><img alt="Eliška Škubalová" decoding="async" loading="lazy" sizes="auto" src="/files/r/1280/eliska-skubalova.webp" srcset="/files/r/720/eliska-skubalova.webp 720w, /files/r/1280/eliska-skubalova.webp 1280w, /files/r/1920/eliska-skubalova.webp 1920w"/></div></div></div><i class="icon icon-quote-right"></i><blockquote class="block-quote-text">Protel v našem hotelu využíváme již mnoho let a za tu dobu nám byl vždy oporou v každodenním fungování hotelu. Velmi vstřícný support je velkým bonusem. </blockquote><div class="block-quote-author"><span class="quote-decor">–</span> Eliška Škubalová <span class="quote-decor">–</span><span class="block-quote-info">GRAND HOTEL BOHEMIA, Director of Sales</span></div></div></div></div> <div class="col col-9-12 grid-4-12"><div class="block block-quote"><div class="has-icon left block-quote-figure"><div class="block-quote-image"><div class="image-wrapper"><div class="image image-mask ratio-square shape-circle"><img alt="Miroslav Bukva" decoding="async" loading="lazy" sizes="auto" src="/files/r/1280/miroslav-bukva.webp" srcset="/files/r/720/miroslav-bukva.webp 720w, /files/r/1280/miroslav-bukva.webp 1280w, /files/r/1920/miroslav-bukva.webp 1920w"/></div></div></div><i class="icon icon-quote-right"></i><blockquote class="block-quote-text">Vybrat do hotelu vhodný software není jednoduché, protože různé typy hotelů mají odlišné potřeby. Pro velký hotel s konferenčním centrem je robustní řešení PMS PROTEL naprosto ideální. PROTEL je výborný jak z hlediska výkonu, tak ceny a důležitou samozřejmostí je velmi kvalitní podpora.</blockquote><div class="block-quote-author"><span class="quote-decor">–</span> Miroslav Bukva <span class="quote-decor">–</span><span class="block-quote-info">Aquapalace Hotel Prague, General Manager</span></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:50px"></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div class="center"><a class="btn btn-inverse btn-sm" href="/nasi-zakaznici"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">NAŠI ZÁKAZNÍCI</span></a></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<Mezera />
+<DaleByVasMohloZajimat />
+<VyzkousetZdarma />
+<Novinky />
+<KontaktniFormular />
 </Base>
-
-<style>
-  .jump { display: flex; flex-wrap: wrap; gap: var(--space-2); justify-content: center; margin-bottom: var(--space-8); }
-  .jump__chip {
-    display: inline-flex; padding: var(--space-2) var(--space-4);
-    border: 1px solid var(--color-border); border-radius: var(--radius-full);
-    background: var(--color-bg-alt); color: var(--color-text);
-    font-size: var(--font-size-small); font-weight: var(--font-weight-semibold);
-    text-decoration: none; transition: border-color var(--duration-base) var(--easing);
-  }
-  .jump__chip:hover { border-color: var(--color-primary); color: var(--color-text-accent); }
-  .features { max-width: 800px; margin-inline: auto; display: flex; flex-direction: column; gap: var(--space-9); }
-  .feature { scroll-margin-top: var(--space-9); }
-  .feature > :global(* + *) { margin-top: var(--space-3); }
-  .feature__icon {
-    display: inline-flex; align-items: center; justify-content: center;
-    width: 56px; height: 56px; border-radius: var(--radius-md);
-    background: color-mix(in srgb, var(--color-primary) 10%, #fff); color: var(--color-primary);
-  }
-  .quoteband { margin: 0; max-width: 840px; margin-inline: auto; display: flex; flex-direction: column; align-items: center; gap: var(--space-4); text-align: center; }
-  .quoteband__mark { color: var(--color-text-on-dark); opacity: 0.7; }
-  .quoteband blockquote { margin: 0; }
-</style>

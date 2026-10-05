@@ -1,154 +1,90 @@
 ---
-/**
- * Protel: produkt „Hotelové řetězce“. Obsah vytěžen z produkty/hotelove-retezce.html
- * starého protelsystems.cz (jazykově uhlazeno, fakta zachována).
- * Vše ze sdílených komponent @piano/ui.
- */
+// https://www.protelsystems.cz/produkty/hotelove-retezce (Solid Pixels), port 1:1 skriptem port-protel.py
 import Base from '../../layouts/Base.astro';
-import SiteHeader from '../../components/SiteHeader.astro';
-import SiteFooter from '../../components/SiteFooter.astro';
-import Section from '@piano/ui/components/Section.astro';
-import Hero from '@piano/ui/components/Hero.astro';
-import Heading from '@piano/ui/components/Heading.astro';
-import Text from '@piano/ui/components/Text.astro';
-import Button from '@piano/ui/components/Button.astro';
-import Icon from '@piano/ui/components/Icon.astro';
-import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
-import USPGrid from '@piano/ui/components/USPGrid.astro';
-import LeadForm from '@piano/ui/components/LeadForm.astro';
-import { protelLeadProofs } from '../../config/leadProofs';
-import Img from '@piano/ui/components/Img.astro';
-
-const features = [
-  {
-    id: "konfigurace", icon: "lucide:settings", title: "Konfigurace",
-    paras: [
-      "Veškerá nastavení a provozní procesy řídíte a monitorujete z centrálního místa, typy pokojů, cenovou politiku, dostupnost, marketingové aktivity a další aspekty provozu v celém řetězci.",
-      "Změny a aktualizace provedete napříč všemi hotely bez ručního zásahu na každém místě zvlášť. Minimalizujete chyby a udržíte konzistentní standardy a díky aktuálním datům se rozhodujete rychle.",
-    ],
-  },
-  {
-    id: "profily-hostu", icon: "lucide:users", title: "Profily hostů",
-    paras: [
-      "Profily hostů se sdílejí napříč celým řetězcem. Informace o hostech, kteří se ubytovávají v různých hotelech, spravujete centrálně.",
-      "Manažeři lépe rozumí chování a preferencím hostů a mohou cílit marketing: znalost toho, co host preferuje v jednom hotelu, využijete pro personalizované nabídky ostatních hotelů v řetězci.",
-    ],
-  },
-  {
-    id: "centralni-rezervace", icon: "lucide:calendar-days", title: "Centrální rezervace",
-    paras: [
-      "Rezervace provozujete z jednoho centrálního místa: sledujete dostupnost pokojů a rezervujete napříč celým řetězcem. Rezervace lze navíc jednoduše přesouvat mezi hotely.",
-      "Centralizace minimalizuje duplicitní práci, umožňuje koordinovat obsazenost a optimálně využít kapacitu všech hotelů.",
-    ],
-  },
-  {
-    id: "reporting", icon: "lucide:line-chart", title: "Reporting",
-    paras: [
-      "Management vidí všechna důležitá čísla napříč všemi provozy na jedné obrazovce. Dashboardy graficky zobrazují klíčové ukazatele, manažerské sestavy poskytují detail o obsazenosti, obratu a výsledcích dle segmentace.",
-      "Provozní sestavy si přizpůsobíte volbou sloupců a filtrů a uložíte pro opakované použití. Všechny reporty se mohou automaticky zasílat e-mailem ve zvolených formátech.",
-    ],
-  },
-  {
-    id: "segmentace", icon: "lucide:pie-chart", title: "Segmentace",
-    paras: [
-      "Trh rozdělíte na skupiny hostů s podobnými potřebami, preferencemi a chováním, podle demografických, geografických, psychografických i behaviorálních kritérií.",
-      "Cílená komunikace a přizpůsobené služby zvyšují spokojenost a loajalitu hostů, efektivitu marketingových rozpočtů i celkové výnosy řetězce.",
-    ],
-  },
-  {
-    id: "eventy", icon: "lucide:party-popper", title: "Eventy",
-    paras: [
-      "Konference, svatby, firemní školení, gala večery i kulturní a sportovní události, organizace akcí vyžaduje precizní plánování a koordinaci prostor, vybavení a cateringu.",
-      "Speciální balíčky s ubytováním, stravováním a dalšími službami vytvářejí komplexní zážitek, přitahují nové hosty a firmy a posilují pověst hotelu jako místa pro významné akce.",
-    ],
-  },
-];
-
-const related = [
-  { icon: "lucide:layout-dashboard", title: "Hotelový systém", text: "Správa pokojů, rezervací, hostů a statistik: snadné používání a pokročilé funkce pro kompletní přehled o provozu.", href: "/produkty/hotelovy-system-protel" },
-  { icon: "lucide:presentation", title: "Konference", text: "Rezervace konferenčních místností, správa stravování, fakturace i účastníci akcí.", href: "/produkty/konference" },
-  { icon: "lucide:mail", title: "Automatický mailing", text: "Personalizované e-maily hostům bez zásahu recepčního.", href: "/produkty/automaticky-mailing" },
-  { icon: "lucide:credit-card", title: "Platební řešení hotelu", text: "Plně integrované platby přímo v Protelu. Méně chyb a nižší riziko vracení transakcí.", href: "/produkty/platebni-reseni-hotelu" },
-];
+import Mezera from '../../components/blocks/Mezera.astro';
+import PojdmeToProbrat from '../../components/blocks/PojdmeToProbrat.astro';
+import KolikMeToBudeStat from '../../components/blocks/KolikMeToBudeStat.astro';
+import ProtelVPraxi from '../../components/blocks/ProtelVPraxi.astro';
+import DaleByVasMohloZajimat from '../../components/blocks/DaleByVasMohloZajimat.astro';
+import VyzkousetZdarma from '../../components/blocks/VyzkousetZdarma.astro';
+import Novinky from '../../components/blocks/Novinky.astro';
+import KontaktniFormular from '../../components/blocks/KontaktniFormular.astro';
 ---
-
-<Base title="Systém pro hotelové řetězce | Protel"
-      description="Řídíte dva a více hotelů? Řešení navržené přímo pro hotelové řetězce: efektivnější řízení, nižší náklady a lepší zážitek hostů. Z jednoho místa!">
-  <SiteHeader />
-
-  <main>
-    <Breadcrumb items={[{ label: 'Úvod', href: '/' }, { label: 'Produkty', href: '/produkty' }, { label: "Hotelové řetězce" }]} />
-
-    <Hero eyebrow="Produkty" background="gradient"
-          lead="Pokud řídíte dva nebo více hotelů a toužíte po efektivitě, zvolte řešení navržené přímo pro hotelové řetězce. Budete řídit své hotely efektivněji, snižovat náklady a zlepšovat zážitky hostů. Z jednoho místa!">
-      <Heading slot="title" as="h1" size="display" color="on-dark">Hotelové <em>řetězce</em></Heading>
-      <Fragment slot="actions">
-        <Button href="#poptavka">Vyzkoušet Protel zdarma</Button>
-        <Button href="/produkty" variant="secondary" onDark>Všechny produkty</Button>
-      </Fragment>
-      <figure slot="media" class="hero-pic">
-        <Img src="/images/hotelove-retezce.webp" alt="Centrální správa více hotelů jednoho řetězce" width={880} sizes="(min-width: 881px) 560px, 100vw" loading="eager" decoding="async" />
-      </figure>
-    </Hero>
-
-    <Section background="default" space="lg">
-      <nav class="jump" aria-label="Funkce produktu">
-        {features.map((f) => (
-          <a class="jump__chip" href={`#${f.id}`}>{f.title}</a>
-        ))}
-      </nav>
-      <div class="features">
-        {features.map((f) => (
-          <article class="feature" id={f.id}>
-            <span class="feature__icon"><Icon name={f.icon} size="lg" /></span>
-            <Heading as="h2" size="h3">{f.title}</Heading>
-            {f.paras.map((p) => (
-              <Text color="muted">{p}</Text>
-            ))}
-          </article>
-        ))}
-      </div>
-    </Section>
-
-    <Section background="primary" space="lg">
-      <figure class="quoteband">
-        <span class="quoteband__mark"><Icon name="lucide:quote" size="lg" /></span>
-        <blockquote>
-          <Heading as="p" size="h3" color="on-dark" align="center">Díky hotelovému systému Protel efektivně řídíte a koordinujete provoz všech hotelů v řetězci. Kompletní řízení hotelů z jednoho místa!</Heading>
-        </blockquote>
-      </figure>
-    </Section>
-
-    <USPGrid eyebrow="Dále by Vás mohlo zajímat" title="Související produkty"
-             items={related} minItemWidth="260px" background="alt" space="lg" />
-
-    <LeadForm proofs={protelLeadProofs} id="poptavka" variant="full" background="default"
-              title="Vyzkoušejte Protel zdarma"
-              lead="Co byste u Vás v hotelu rádi zlepšili? Nechte nám kontakt, ozveme se a ukážeme Protel přímo ve Vašem hotelu." />
-  </main>
-
-  <SiteFooter />
+<Base
+  title="Hotelové řetězce | Hotel PMS Protel"
+  description="Pokud řídíte dva nebo více hotelů a toužíte po efektivitě, můžete zvolit řešení navržené přímo pro hotelové řetězce. Tento způsob Vám zaručí řídit své hotelové řetězce efektivněji, snižovat náklady a zlepšovat zážitky hostů. Z jednoho místa!"
+  path="/produkty/hotelove-retezce"
+  bodyClass="use-header-transparent use-menu-secondary-uppercase use-menu-button-uppercase use-headings-link-plain search-panel-hide-submit-label search-panel-hide-close-label search-panel-hide-open-label use-menu-bar use-header-fixed use-header-fixed-mobile use-header-priority use-header-boxed"
+  image="/files/nahled-produkt-hotelove-retezce.jpg"
+>
+<div class="section height--low align--middle color--default section-width-wide section-has-background" id="uvod"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-card flexcard-size--normal flexcard-media-right valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><a class="image image-mask ratio-original" href="/vyzkouset-zdarma" style="padding-bottom:91.14583333333334%"><img alt="Hotelové řetězce" decoding="async" sizes="(min-width:1459px) 50vw, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/hdr-top-hotelove-retezce.webp" srcset="/files/r/720/hdr-top-hotelove-retezce.webp 720w, /files/r/1280/hdr-top-hotelove-retezce.webp 1280w, /files/r/1920/hdr-top-hotelove-retezce.webp 1920w"/></a></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p><a href="/produkty"><strong><span class="text-highlight"><span style="font-family: var(--headings-font-family); font-style: var(--headings-text-italic); text-transform: var(--headings-text-transform); text-decoration: var(--headings-text-underline); caret-color: rgb(255, 0, 150);"><font color="#ff0096" size="3">VŠECHNY PRODUKTY</font></span></span></strong></a></p>
+<h1>Hotelové řetězce</h1>
+<p class="text-large">Pokud řídíte dva nebo více hotelů a toužíte po efektivitě, můžete zvolit řešení navržené přímo pro hotelové řetězce. Tento způsob Vám zaručí řídit své hotelové řetězce efektivněji, snižovat náklady a zlepšovat zážitky hostů. Z jednoho místa! </p>
+<p class="text-large"><a href="#funkce"><strong><span class="text-highlight"><span style="font-family: var(--headings-font-family); font-style: var(--headings-text-italic); text-transform: var(--headings-text-transform); text-decoration: var(--headings-text-underline); caret-color: rgb(255, 0, 150);"><font color="#ff0096" size="3">ZJISTIT VÍCE →</font></span></span></strong></a></p>
+</div><div class="image-btn"><a class="btn btn-default" href="/vyzkouset-zdarma"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">VYZKOUŠET ZDARMA</span></a></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-gallery grid-sm-2"><div class="grid gallery-container" style="--gap:40px"><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Hotel Clement Prague" decoding="async" src="/files/ref-hotel-clement-prague-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo CPI Hotels" decoding="async" src="/files/ref-cpi-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Old Town Hotels" decoding="async" src="/files/ref-old-town-hotel-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo TMR Hotels" decoding="async" src="/files/ref-tmr-hotels-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Fantastický hotel" decoding="async" src="/files/ref-fantasticky-hotel-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><a class="image image-mask ratio-square image-width-stretch" href="/nasi-zakaznici"><img alt="Vaše logo" decoding="async" src="/files/ref-vase-2025.svg"/></a></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<Mezera />
+<PojdmeToProbrat />
+<Mezera />
+<div class="section height--low align--middle color--default section-has-background" id="funkce"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="container height--low color--auto container-width-boxed box--benefits"><div class="container-body flex flex--justify-start flex--wrap">
+<div class="flex__item flex__item--grow-1 grid-col-3"><div class="block block-image block-image--icon"><div class="flexcard flexcard-icon flexcard-horizontal flexcard-media-right valign-middle size-lg"><a class="flexcard-media" href="/produkty/hotelove-retezce#konfigurace"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Konfigurace" decoding="async" loading="lazy" src="/files/produkt-konfigurace.svg"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h4>Konfigurace<span class="text-highlight">.</span></h4>
+</div><div class="image-btn"><a class="btn btn-inverse btn-sm" href="/produkty/hotelove-retezce#konfigurace"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">To mě zajímá</span></a></div></div></div></div></div></div>
+<div class="flex__item flex__item--grow-1 grid-col-3"><div class="block block-image block-image--icon"><div class="flexcard flexcard-icon flexcard-horizontal flexcard-media-right valign-middle size-lg"><a class="flexcard-media" href="/produkty/hotelove-retezce#profily-hostu"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Profily hostů" decoding="async" loading="lazy" src="/files/produkt-profily-hostu.svg"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h4>Profily hostů<span class="text-highlight">.</span></h4>
+</div><div class="image-btn"><a class="btn btn-inverse btn-sm" href="/produkty/hotelove-retezce#profily-hostu"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">To mě zajímá</span></a></div></div></div></div></div></div>
+<div class="flex__item flex__item--grow-1 grid-col-3"><div class="block block-image block-image--icon"><div class="flexcard flexcard-icon flexcard-horizontal flexcard-media-right valign-middle size-lg"><a class="flexcard-media" href="/produkty/hotelove-retezce#centralni-rezervace"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Centrální rezervace" decoding="async" loading="lazy" src="/files/produkt-centralni-rezervace.svg"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h4>Centrální rezervace<span class="text-highlight">.</span></h4>
+</div><div class="image-btn"><a class="btn btn-inverse btn-sm" href="/produkty/hotelove-retezce#centralni-rezervace"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">To mě zajímá</span></a></div></div></div></div></div></div>
+<div class="flex__item flex__item--grow-1 grid-col-3"><div class="block block-image block-image--icon"><div class="flexcard flexcard-icon flexcard-horizontal flexcard-media-right valign-middle size-lg"><a class="flexcard-media" href="/produkty/hotelove-retezce#reporting"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Reporting" decoding="async" loading="lazy" src="/files/produkt-reporting.svg"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h4>Reporting<span class="text-highlight">.</span></h4>
+</div><div class="image-btn"><a class="btn btn-inverse btn-sm" href="/produkty/hotelove-retezce#reporting"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">To mě zajímá</span></a></div></div></div></div></div></div>
+<div class="flex__item flex__item--grow-1 grid-col-3"><div class="block block-image block-image--icon"><div class="flexcard flexcard-icon flexcard-horizontal flexcard-media-right valign-middle size-lg"><a class="flexcard-media" href="#segmentace"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Segmentace" decoding="async" loading="lazy" src="/files/produkt-segmentace.svg"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h4>Segmentace<span class="text-highlight">.</span></h4>
+</div><div class="image-btn"><a class="btn btn-inverse btn-sm" href="#segmentace"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">To mě zajímá</span></a></div></div></div></div></div></div>
+<div class="flex__item flex__item--grow-1 grid-col-3"><div class="block block-image block-image--icon"><div class="flexcard flexcard-icon flexcard-horizontal flexcard-media-right valign-middle size-lg"><a class="flexcard-media" href="#eventy"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Eventy" decoding="async" loading="lazy" src="/files/produkt-eventy.svg"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h4>Eventy<span class="text-highlight">.</span></h4>
+</div><div class="image-btn"><a class="btn btn-inverse btn-sm" href="#eventy"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">To mě zajímá</span></a></div></div></div></div></div></div>
+</div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<KolikMeToBudeStat />
+<div class="section height--normal align--middle color--default section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image" id="konfigurace"><div class="flexcard flexcard-card flexcard-size--small flexcard-media-right valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Konfigurace" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/produkt-konfigurace.webp" srcset="/files/r/720/produkt-konfigurace.webp 720w, /files/r/1280/produkt-konfigurace.webp 1280w, /files/r/1920/produkt-konfigurace.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2>Konfigurace<span class="text-highlight">.</span></h2>
+<p>Hotelové řetězce mohou využívat jednotnou konfiguraci, což znamená, že veškerá nastavení a provozní procesy lze <a href="/produkty/hotelove-retezce#centralni-rezervace">řídit a monitorovat z centrálního místa</a>. To zahrnuje správu pokojových typů, cenovou politiku, dostupnost pokojů, marketingové aktivity a další aspekty provozu hotelů v rámci celého řetězce.</p>
+<p>Díky jednotné konfiguraci mají manažeři možnost reagovat na změny a provádět aktualizace napříč všemi hotely bez potřeby ručního zásahu na každém místě zvlášť. Tím se minimalizuje riziko chyb a zajišťuje se konzistence provozních postupů a standardů napříč celým řetězcem.</p>
+<p>Centrální řízení umožňuje manažerům mít <a href="/produkty/hotelove-retezce#reporting">přehled o všech provozních aspektech hotelů</a>, což zvyšuje efektivitu a umožňuje rychlé rozhodování na základě aktuálních dat a analýz. To vede ke zlepšení celkového výkonu a konkurenceschopnosti celého hotelového řetězce.</p>
+</div></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<Mezera />
+<div class="section height--normal align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image" id="profily-hostu"><div class="flexcard flexcard-card flexcard-size--small flexcard-media-left valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Profily hostů" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/produkt-profily-hostu.webp" srcset="/files/r/720/produkt-profily-hostu.webp 720w, /files/r/1280/produkt-profily-hostu.webp 1280w, /files/r/1920/produkt-profily-hostu.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2>Profily hostů<span class="text-highlight">.</span></h2>
+<p>Pro hotelové řetězce je klíčové mít účinné nástroje pro řízení více hotelů. Jedním z důležitých prvků je sdílení profilů hostů napříč celým řetězcem. Tento přístup umožňuje centrálně spravovat informace o hostech, kteří se ubytovávají v různých hotelech řetězce.</p>
+<p>Díky tomu mohou manažeři lépe porozumět chování a preferencím hostů a lépe cílit své marketingové aktivity a nabídky. Jeden hotel může využít informace o tom, co hosté preferují nebo jaké služby využívají, a tuto znalost využít k posílání personalizovaných nabídek pro ostatní hotely v řetězci. Tím se zvyšuje pravděpodobnost, že hosté využijí služeb dalších hotelů v řetězci, což přispívá k celkovému růstu a úspěchu celého řetězce hotelů.</p>
+</div></div></div></div></div></div></div></div></div>
+<Mezera />
+<div class="section height--normal align--middle color--default section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image" id="centralni-rezervace"><div class="flexcard flexcard-card flexcard-size--small flexcard-media-right valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Centrální rezervace" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/produkt-centralni-rezervace.webp" srcset="/files/r/720/produkt-centralni-rezervace.webp 720w, /files/r/1280/produkt-centralni-rezervace.webp 1280w, /files/r/1920/produkt-centralni-rezervace.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2>Centrální rezervace<span class="text-highlight">.</span></h2>
+<p>Pro řízení více hotelů v rámci hotelového řetězce je klíčová centrální rezervace, která umožňuje provozovat rezervace z jednoho centrálního místa. Tento systém umožňuje manažerům jednoduše sledovat dostupnost pokojů a provádět rezervace napříč celým řetězcem hotelů.</p>
+<p>Díky centralizovanému přístupu k rezervacím se minimalizuje duplicitní práce a zvyšuje se efektivita provozu. Manažeři mohou lépe koordinovat obsazenost pokojů a optimalizovat využití kapacity všech hotelů v řetězci. Tím se zlepšuje celková správa a využití zdrojů, což přináší konkurenční výhodu na trhu.</p>
+</div></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<Mezera />
+<div class="section height--normal align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image" id="reporting"><div class="flexcard flexcard-card flexcard-size--small flexcard-media-left valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Reporting" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/produkt-reporting.webp" srcset="/files/r/720/produkt-reporting.webp 720w, /files/r/1280/produkt-reporting.webp 1280w, /files/r/1920/produkt-reporting.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2>Reporting<span class="text-highlight">.</span></h2>
+<p>Pro rychlé zjištění obsazenosti nebo průměrné ceny na určitý den můžete využít Dashboardy, kde jsou klíčové ukazatele přehledně a graficky zobrazeny, umožňující okamžitý přehled o situaci.</p>
+<p>Dále jsou k dispozici manažerské sestavy, které poskytují detailní informace o obsazenosti, obratu nebo výsledcích dle vaší segmentace. Tyto reporty lze přizpůsobit vašim potřebám nastavením vlastních parametrů, například zobrazením výstupů za celý hotel nebo pouze za určité typy pokojů.</p>
+<p>Pro provozní sestavy máte možnost vybrat sloupce a filtry, které chcete zobrazit a použít. Po připravení takovéto sestavy si ji můžete uložit pro budoucí použití, což usnadňuje opakované generování požadovaných reportů.</p>
+<p>Všechny reporty lze nastavit tak, aby se Vám automaticky zasílaly ve zvolených formátech prostřednictvím e-mailu, což zajišťuje pravidelný a pohodlný přístup k aktuálním informacím o provozu hotelu.</p>
+</div></div></div></div></div></div></div></div></div>
+<Mezera />
+<div class="section height--normal align--middle color--default section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image" id="segmentace"><div class="flexcard flexcard-card flexcard-size--small flexcard-media-right valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Segmentace" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/produkt-segmentace.webp" srcset="/files/r/720/produkt-segmentace.webp 720w, /files/r/1280/produkt-segmentace.webp 1280w, /files/r/1920/produkt-segmentace.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2>Segmentace<span class="text-highlight">.</span></h2>
+<p>Segmentace v hotelových řetězcích je strategický proces, který spočívá v rozdělení trhu na specifické skupiny hostů s podobnými potřebami, preferencemi a chováním. Tento přístup umožňuje hotelům lépe porozumět svým zákazníkům a cíleně nabízet produkty a služby, které odpovídají jednotlivým segmentům. Kritéria pro segmentaci mohou zahrnovat demografické faktory, jako je věk a příjem, geografické faktory, jako jsou města a regiony, psychografické faktory, jako jsou životní styl a zájmy, a behaviorální faktory, jako je frekvence pobytů a loajalita.</p>
+<p>Díky segmentaci mohou hotelové řetězce efektivněji využívat své marketingové rozpočty a zvyšovat návratnost investic. Cílená marketingová komunikace a přizpůsobené služby vedou ke zvýšení spokojenosti hostů a jejich loajality, což pozitivně ovlivňuje celkové výnosy a úspěšnost hotelu. Tento proces umožňuje hotelům nabízet personalizované a hodnotné zážitky, které zvyšují konkurenceschopnost na trhu a lépe vyhovují potřebám různých skupin hostů.</p>
+</div></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<Mezera />
+<div class="section height--normal align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image" id="eventy"><div class="flexcard flexcard-card flexcard-size--small flexcard-media-left valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Eventy" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/produkt-eventy.webp" srcset="/files/r/720/produkt-eventy.webp 720w, /files/r/1280/produkt-eventy.webp 1280w, /files/r/1920/produkt-eventy.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2>Eventy<span class="text-highlight">.</span></h2>
+<p>Eventy v hotelových řetězcích představují zásadní prvek pro rozšíření nabídky služeb a zajištění nezapomenutelných zážitků pro hosty. Hotely často pořádají různé typy akcí, jako jsou konference, svatby, firemní školení, gala večery, tematické večery či kulturní a sportovní události. Organizace těchto eventů vyžaduje precizní plánování a koordinaci, včetně zajištění moderních konferenčních prostor, špičkového audiovizuálního vybavení a profesionálních cateringových služeb.</p>
+<p>Eventy nejen zvyšují prestiž hotelu, ale také posilují jeho pověst jako místa pro významné a pečlivě organizované akce. Hotely často nabízejí speciální balíčky zahrnující ubytování, stravování a další služby pro účastníky, čímž vytvářejí komplexní zážitek a zvyšují komfort hostů. Tím přitahují další hosty a firmy hledající vhodné místo pro své události. Celkově eventy přispívají k růstu a úspěchu hotelových řetězců tím, že diverzifikují nabídku služeb a posilují vztahy s hosty a obchodními partnery.</p>
+</div></div></div></div></div></div></div></div></div>
+<Mezera />
+<div class="section height--normal align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-card flexcard-size--small flexcard-media-right valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><a class="image image-mask ratio-original" href="/produkty/hotelove-retezce#kontaktni-formular" style="padding-bottom:100%"><img alt="" decoding="async" loading="lazy" src="/files/vyhoda-hoteloveho-systemu-protel.svg"/></a></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2><span class="text-highlight">"</span> Díky hotelovému systému Protel můžete efektivně řídit a koordinovat provoz všech hotelů v řetězci. Kompletní řízení hotelů z jednoho místa!</h2>
+</div><div class="image-btn"><a class="btn btn-default btn-sm" href="/produkty/hotelove-retezce#kontaktni-formular"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">SPOJTE SE S NÁMI</span></a></div></div></div></div></div></div></div></div></div>
+<ProtelVPraxi />
+<div class="section height--normal align--middle color--default col-gaps-bigger section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Systém řízení hotelových řetězců od Protel již využívají<span class="text-highlight">...</span></h2>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-4-12"><div class="block block-quote"><div class="has-icon left block-quote-figure"><div class="block-quote-image"><div class="image-wrapper"><div class="image image-mask ratio-square shape-circle"><img alt="Jan Dubský" decoding="async" loading="lazy" sizes="auto" src="/files/r/1280/jan-dubsky.webp" srcset="/files/r/720/jan-dubsky.webp 720w, /files/r/1280/jan-dubsky.webp 1280w, /files/r/1920/jan-dubsky.webp 1920w"/></div></div></div><i class="icon icon-quote-right"></i><blockquote class="block-quote-text">U Protelu je poměr cena-výkon skvělý a podpora prvotřídní.</blockquote><div class="block-quote-author"><span class="quote-decor">–</span> Jan Dubský <span class="quote-decor">–</span><span class="block-quote-info">Old Town Hotels, CEO</span></div></div></div></div> <div class="col col-5-12 grid-4-12"><div class="block block-quote"><div class="has-icon left block-quote-figure"><div class="block-quote-image"><div class="image-wrapper"><div class="image image-mask ratio-square shape-circle"><img alt="Ivona Meissner" decoding="async" loading="lazy" sizes="auto" src="/files/r/1280/ivona-meissner.webp" srcset="/files/r/720/ivona-meissner.webp 720w, /files/r/1280/ivona-meissner.webp 1280w, /files/r/1920/ivona-meissner.webp 1920w"/></div></div></div><i class="icon icon-quote-right"></i><blockquote class="block-quote-text">Ďakujem firme Protel za profesionálny support a inštaláciu!</blockquote><div class="block-quote-author"><span class="quote-decor">–</span> Ivona Meissner <span class="quote-decor">–</span><span class="block-quote-info">BWH Hotel Group, Area Director Austria &amp; Central Eastern Europe</span></div></div></div></div> <div class="col col-9-12 grid-4-12"><div class="block block-quote"><div class="has-icon left block-quote-figure"><div class="block-quote-image"><div class="image-wrapper"><div class="image image-mask ratio-square shape-circle"><img alt="Tibor Bielik" decoding="async" loading="lazy" sizes="auto" src="/files/r/1280/tibor-bielik.webp" srcset="/files/r/720/tibor-bielik.webp 720w, /files/r/1280/tibor-bielik.webp 1280w, /files/r/1920/tibor-bielik.webp 1920w"/></div></div></div><i class="icon icon-quote-right"></i><blockquote class="block-quote-text">Jsme nadšení, že jsme první hotelovou sítí v České republice vůbec, která používá nástroj Protel Voyager!</blockquote><div class="block-quote-author"><span class="quote-decor">–</span> Tibor Bielik <span class="quote-decor">–</span><span class="block-quote-info">CPI Hotels, General Manager at Clarion Congress Hotel Prague</span></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:50px"></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div class="center"><a class="btn btn-inverse btn-sm" href="/nasi-zakaznici"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">NAŠI ZÁKAZNÍCI</span></a></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<div class="section height--low align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><hr class="divider divider--normal divider--align-left"/></div></div></div></div><div class="section-background" style="background-color:#fff"></div></div>
+<DaleByVasMohloZajimat />
+<VyzkousetZdarma />
+<Novinky />
+<KontaktniFormular />
 </Base>
-
-<style>
-  .jump { display: flex; flex-wrap: wrap; gap: var(--space-2); justify-content: center; margin-bottom: var(--space-8); }
-  .jump__chip {
-    display: inline-flex; padding: var(--space-2) var(--space-4);
-    border: 1px solid var(--color-border); border-radius: var(--radius-full);
-    background: var(--color-bg-alt); color: var(--color-text);
-    font-size: var(--font-size-small); font-weight: var(--font-weight-semibold);
-    text-decoration: none; transition: border-color var(--duration-base) var(--easing);
-  }
-  .jump__chip:hover { border-color: var(--color-primary); color: var(--color-text-accent); }
-  .features { max-width: 800px; margin-inline: auto; display: flex; flex-direction: column; gap: var(--space-9); }
-  .feature { scroll-margin-top: var(--space-9); }
-  .feature > :global(* + *) { margin-top: var(--space-3); }
-  .feature__icon {
-    display: inline-flex; align-items: center; justify-content: center;
-    width: 56px; height: 56px; border-radius: var(--radius-md);
-    background: color-mix(in srgb, var(--color-primary) 10%, #fff); color: var(--color-primary);
-  }
-  .quoteband { margin: 0; max-width: 840px; margin-inline: auto; display: flex; flex-direction: column; align-items: center; gap: var(--space-4); text-align: center; }
-  .quoteband__mark { color: var(--color-text-on-dark); opacity: 0.7; }
-  .quoteband blockquote { margin: 0; }
-</style>

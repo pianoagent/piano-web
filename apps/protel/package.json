@@ -9,10 +9,11 @@
     "preview": "astro preview"
   },
   "dependencies": {
-    "@piano/ui": "*",
     "@astrojs/sitemap": "^3.7.4",
-    "@iconify-json/lucide": "^1.2.114",
-    "astro": "^7.3.5",
-    "astro-icon": "^1.2.0"
+    "@piano/ui": "*",
+    "astro": "^7.3.5"
+  },
+  "devDependencies": {
+    "purgecss": "^7.0.2"
   }
 }

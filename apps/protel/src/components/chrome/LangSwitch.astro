@@ -1,0 +1,18 @@
+---
+/**
+ * Přepínač jazyka ve stejném markupu jako na živém webu (CZ | SK v hlavičce).
+ * Stránka bez překladu odkazuje na úvodní stránku druhého jazyka (stejně jako živý web).
+ */
+import { enabledLocales, localeLabels, translations, type Locale } from '../../i18n/config';
+import { ui } from '../../i18n/ui';
+
+interface Props { path: string; locale: Locale }
+const { path, locale } = Astro.props;
+const t = translations(path, locale);
+const items = enabledLocales.map((l) => ({ l, href: t[l]!, ...localeLabels[l] }));
+---
+{enabledLocales.length > 1 && (
+  <nav aria-label={ui[locale]['nav.language']} class="nav switcher"><ul class="nav__list">{items.map((i) => (
+    <li class:list={['nav__item', { 'is-active': i.l === locale }]}><a class="nav__link switcher__item" href={i.href} hreflang={i.l} lang={i.l}><abbr title={i.title}>{i.short}</abbr></a></li>
+  ))}</ul></nav>
+)}

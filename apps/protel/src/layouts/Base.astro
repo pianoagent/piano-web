@@ -1,66 +1,139 @@
 ---
 /**
- * Base: layout webu Protel.
- * Načte téma Protel + sdílenou SEO hlavičku. Definuje Organization schema.
+ * Base: layout webu Protel (www.protelsystems.cz), kopie živého webu na Solid Pixels 1:1.
+ *
+ * Struktura stránky (#page > #header, #main, #footer) i třídy na <body> jsou
+ * převzaté ze živého webu, protože na nich stojí převzaté CSS (styles/live.css).
+ * Chování, které na živém webu dělal JavaScript CMS (menu, taby, slider,
+ * akordeony, parallax, formuláře), dělá src/scripts/protel.js.
+ *
+ * Měření jako na živém webu: GA4 G-J7GKK58GZ3 (gtag) + GTM-NC3PW2KC, souhlas
+ * s cookies řeší Cookiebot načítaný přes GTM. Consent Mode v2: výchozí stav denied.
+ * Konverze = pageview /dekujeme (SK /sk/dakujeme).
  */
-/* reveal.css MUSI byt pred tematem: ma v :root fallback hodnoty
-   (--reveal-shift a spol.), ktere by jinak prebily tokeny produktu. */
-import '@piano/ui/styles/reveal.css';
-import '../styles/theme.css';
-import revealUrl from '@piano/ui/scripts/reveal.js?url';
 import BaseHead from '@piano/ui/layouts/BaseHead.astro';
+import Header from '../components/chrome/Header.astro';
+import HeaderSk from '../components/chrome/HeaderSk.astro';
+import Footer from '../components/chrome/Footer.astro';
+import FooterSk from '../components/chrome/FooterSk.astro';
+import { alternates, localeLabels, SITE_URL, type Locale } from '../i18n/config';
+import { ui } from '../i18n/ui';
+import '../styles/fonts.css';
+import '../styles/live.css';
+import '../styles/overrides.css';
+import protelUrl from '../scripts/protel.js?url';
 
 interface Props {
   title: string;
   description?: string;
+  /** cesta stránky bez domény, např. /produkty/kiosek (canonical, hreflang, přepínač jazyka) */
+  path: string;
+  /** třídy <body> ze živého webu (hlavička průhledná/inverzní apod.) */
+  bodyClass?: string;
   image?: string;
   type?: 'website' | 'article';
   noindex?: boolean;
-  schema?: object;
+  locale?: Locale;
 }
-
-const SITE_NAME = 'Protel';
-const SITE_URL = 'https://protelsystems.cz';
 
 const {
   title,
-  description = 'Protel: hotelový systém (PMS) pro kompletní řízení hotelu. Mezinárodní standard s českou podporou.',
-  image = '/og-default.jpg',
+  description = '',
+  path,
+  bodyClass = 'use-header-transparent use-menu-secondary-uppercase use-menu-button-uppercase use-headings-link-plain use-menu-bar use-header-fixed use-header-fixed-mobile use-header-priority use-header-boxed',
+  image = '/files/nahled-homepage.jpg',
   type = 'website',
   noindex = false,
-  schema,
+  locale = 'cs',
 } = Astro.props;
 
-const organizationSchema = {
+const organization = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  name: 'Protel',
+  name: 'protel systems s.r.o.',
+  alternateName: 'Protel',
   url: SITE_URL,
-  logo: `${SITE_URL}/logos/protel_logo.svg`,
+  logo: `${SITE_URL}/files/2247-logo-original.svg`,
+  telephone: '+420 257 011 107',
+  email: 'sales@protelsystems.cz',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Thámova 166/18',
+    addressLocality: 'Praha 8',
+    postalCode: '186 00',
+    addressCountry: 'CZ',
+  },
+  sameAs: [
+    'https://www.linkedin.com/company/septim-protel',
+    'https://www.instagram.com/protel_cz',
+    'https://www.facebook.com/protelcz',
+    'https://www.youtube.com/@protelsystems/videos',
+  ],
   parentOrganization: { '@type': 'Organization', name: 'Piano Solutions', url: 'https://piano.cz' },
 };
 
-const schemas = [organizationSchema, ...(schema ? [schema] : [])];
+const isHome = path === '/' || path === '/sk';
+const SiteHeader = locale === 'sk' ? HeaderSk : Header;
+const SiteFooter = locale === 'sk' ? FooterSk : Footer;
+const clientUi = {
+  sending: ui[locale]['form.sending'], error: ui[locale]['form.error'], thanks: ui[locale]['form.thanks'],
+  prev: ui[locale]['slider.prev'], next: ui[locale]['slider.next'], slide: ui[locale]['slider.slide'],
+};
 ---
 
 <!doctype html>
-<html lang="cs">
+<html lang={locale} class="html no-js">
   <head>
     <meta charset="utf-8" />
-    <!-- Scroll reveal: bez defer, trida .js musi byt na <html> driv nez obsah -->
-    <script is:inline src={revealUrl}></script>
+    <script is:inline>document.documentElement.className = 'html js ' + ('ontouchstart' in window ? 'touch' : 'no-touch') + ' menu-type-lg-priority menu-type-overlay';</script>
+    <!-- Google Consent Mode v2: výchozí stav jako na živém webu, souhlas nastavuje Cookiebot (přes GTM) -->
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied', wait_for_update: 500 });
+      gtag('js', new Date());
+      gtag('config', 'G-J7GKK58GZ3');
+    </script>
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-J7GKK58GZ3"></script>
+    <!-- Preconnect: GTM a Cookiebot (načítá se přes GTM) -->
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <link rel="preconnect" href="https://consent.cookiebot.com" />
+    <!-- Google Tag Manager -->
+    <script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NC3PW2KC');</script>
+    <!-- End Google Tag Manager -->
     <BaseHead
       title={title}
       description={description}
       image={image}
       type={type}
       noindex={noindex}
-      siteName={SITE_NAME}
+      siteName="Protel"
       siteUrl={SITE_URL}
-      schemas={schemas}
+      locale={localeLabels[locale].og}
+      alternates={alternates(path, locale)}
+      schemas={isHome ? [organization] : []}
     />
+    <meta name="google-site-verification" content="Cb-Y0bOmK4JXIUkCm6QSUzuFtykgAojNThJXxgU0ZgY" />
+    <meta property="fb:app_id" content="518936135263185" />
+    <link rel="preload" href="/fonts/TTCommons-DemiBold.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/TTCommons-Bold.woff2" as="font" type="font/woff2" crossorigin />
   </head>
-  <body>
-    <slot />
+  <body class={bodyClass}>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NC3PW2KC" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <div id="page" class="page">
+      {/* stránky s is-header-hidden (landing pages) nemají hlavičku ani na živém webu */}
+      {!bodyClass.split(' ').includes('is-header-hidden') && <SiteHeader path={path} locale={locale} />}
+      <div id="main" class="main" role="main">
+        <slot />
+      </div>
+      <SiteFooter />
+    </div>
+    <script is:inline define:vars={{ clientUi }}>window.PROTEL_UI = clientUi;</script>
+    <script is:inline src={protelUrl} defer></script>
   </body>
 </html>
