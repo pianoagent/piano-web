@@ -2,6 +2,10 @@
 /**
  * SiteHeader: Pecosta wrapper nad sdíleným @piano/ui Header.
  * Drží na jednom místě brand, logo a Pecosta navigaci (per-web data z config/nav).
+ *
+ * Logo je lockup „by Piano", stejný jako v patičce. Wordmark PECOSTA v něm zabírá
+ * 45 % výšky (viewBox 1500x369, horní blok 1486x167), podpis „by piano" je vpravo dole.
+ * logoHeight se proto nastavuje na celý lockup, ne na wordmark.
  */
 import Header from '@piano/ui/components/Header.astro';
 import { pecostaNav, pecostaCta } from '../config/nav';
@@ -9,5 +13,5 @@ import { pecostaNav, pecostaCta } from '../config/nav';
 interface Props { transparent?: boolean; }
 const { transparent = false } = Astro.props;
 ---
-<Header brand="Pecosta" logoSrc="/logos/pecosta_logo.svg" logoHeight="24px" homeHref="/"
+<Header brand="Pecosta" logoSrc="/logos/pecosta_by_piano.svg" logoHeight="44px" homeHref="/"
         nav={pecostaNav} cta={pecostaCta} transparent={transparent} />
