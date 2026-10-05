@@ -1,15 +1,20 @@
 # Protel
 
-> Protel je hotelový PMS pro efektivní řízení rezervací, pokojů a personálu.
+> Protel je hotelový systém (PMS) pro řízení rezervací, recepce, plateb a provozu hotelu od společnosti protel systems s.r.o. (skupina Piano). Web je česky a slovensky.
+
+## Hlavní stránky
+
+- [Hotelový systém Protel](https://www.protelsystems.cz/produkty/hotelovy-system)
+- [Produkty](https://www.protelsystems.cz/produkty)
+- [Napojení na další systémy](https://www.protelsystems.cz/napojeni)
+- [Ceník](https://www.protelsystems.cz/cenik)
+- [Naši zákazníci](https://www.protelsystems.cz/nasi-zakaznici)
+- [Podpora](https://www.protelsystems.cz/podpora)
+- [Kontakt](https://www.protelsystems.cz/kontakt)
+- [Slovenská verze](https://www.protelsystems.cz/sk)
 
 ## Piano ekosystém
 
-- [Septim](https://septim-web.pages.dev): Pokladní a provozní systém
-- [Qerko](https://qerko-web.pages.dev): QR platby a komunikace s hosty
-- [Pecosta](https://pecosta-web.pages.dev): Aukční nákupy surovin
-- [Grason](https://grason-web.pages.dev): Personál, směny a docházka
-- [ABX Harsys](https://harsys-web.pages.dev): Multifunkční pokladní systémy
-- [Savarin](https://savarin-web.pages.dev): Software pro gastro a ubytování
-
-## Více
-- [Piano — celý ekosystém](https://piano.cz): všechny nástroje pro pohostinství pod jednou střechou
+- [Piano](https://piano.cz): všechny nástroje pro pohostinství pod jednou střechou
+- [Septim](https://www.septim.cz): pokladní a provozní systém
+- [Qerko](https://www.qerko.com): QR platby a komunikace s hosty

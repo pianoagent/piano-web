@@ -1,0 +1,26 @@
+---
+// Stránka 404 (na živém webu ji řešil CMS). Noindex, mimo sitemapu. Bez ní by Cloudflare Pages na neexistující URL vracel úvodní stránku se stavem 200.
+import Base from './../layouts/Base.astro';
+---
+<Base
+  title="Stránka nenalezena | Hotel PMS Protel"
+  description="Tato stránka neexistuje. Zkuste hlavní stránku, produkty nebo kontakt."
+  path="/404"
+  locale="cs"
+  noindex
+>
+<div class="section height--normal align--middle color--default">
+  <div class="section-body">
+    <div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline">
+      <h1 class="center">Stránka nenalezena<span class="text-highlight">.</span></h1>
+      <p class="text-large center">Tato adresa neexistuje nebo se přesunula.</p>
+    </div></div></div>
+    <div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:30px"></div></div></div></div>
+    <div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div class="center">
+      <a class="btn btn-default" href="/"><span class="btn__icon" aria-hidden="true"></span><span class="btn__label">Hlavní stránka</span></a>
+      <a class="btn btn-inverse" href="/produkty"><span class="btn__icon" aria-hidden="true"></span><span class="btn__label">Produkty</span></a>
+      <a class="btn btn-inverse" href="/kontakt"><span class="btn__icon" aria-hidden="true"></span><span class="btn__label">Kontakt</span></a>
+    </div></div></div></div>
+  </div>
+</div>
+</Base>

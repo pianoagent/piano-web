@@ -1,0 +1,112 @@
+---
+// https://www.protelsystems.cz/support-komunikacni-matice (Solid Pixels), port 1:1 skriptem port-protel.py
+import Base from './../layouts/Base.astro';
+import ZnalostniDatabaze from './../components/blocks/ZnalostniDatabaze.astro';
+---
+<Base
+  title="Support komunikační matice | Hotel PMS Protel"
+  description="Komunikační matice pro kontaktování technické podpory Protel: hlavní servisní kontakt, e-mail a kontakty podle tématu dotazu."
+  path="/support-komunikacni-matice"
+  bodyClass="use-header-transparent use-menu-secondary-uppercase use-menu-button-uppercase use-headings-link-plain search-panel-hide-submit-label search-panel-hide-close-label search-panel-hide-open-label use-menu-bar use-header-fixed use-header-fixed-mobile use-header-priority use-header-boxed"
+  image="/files/nahled-kontakt.jpg"
+>
+<div class="section height--low align--middle color--default section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h1 class="center">Komunikační matice pro kontaktování technické podpory<span class="text-highlight">.</span></h1>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h4 class="center"><span class="text-highlight">Hlavní servisní kontakt pro hotel: +420 778 776 835</span></h4>
+<h4 class="center"><span class="text-highlight">Email technické podpory: help@protelsystems.cz</span></h4>
+<p class="center">Emailová adresa je monitorována v pracovní době (po-pá) od 8:30 do 17 hodin. </p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><hr class="divider divider--normal divider--align-left"/></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3><span class="text-highlight">Chcete mluvit rovnou k tématu:</span></h3>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Týká se Váš dotaz <strong>PMS Protel / Straiv / RevControl / DialogShift</strong>? Kontaktujte:</p>
+<ul>
+<li>Telefon: +420 778 776 835</li>
+<li>Email:  help@protelsystems.cz</li>
+</ul>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><hr class="divider divider--normal divider--align-left"/></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Využíváte i naše <strong>platební řešení Planet</strong> a Váš dotaz se týká <strong>terminálů</strong> nebo <strong>napojení na PMS</strong>? Kontaktujte:</p>
+<ul>
+<li>Telefon: +420 778 776 835</li>
+<li>Email:  help@protelsystems.cz</li>
+</ul>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><hr class="divider divider--normal divider--align-left"/></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Využíváte i náš restaurační systém a týká se Váš dotaz <strong>Pokladního systému Septim</strong>? Kontaktujte:</p>
+<ul>
+<li>Email v pracovní době: servis@septim.cz</li>
+<li>Telefon v pracovní době: +420 257 011 101</li>
+<li>Telefon mimo pracovní dobu: +420 777 737 846</li>
+</ul>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><hr class="divider divider--normal divider--align-left"/></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div><div class="section-background" style="background-color:rgb(242, 242, 242)"></div></div>
+<div class="section height--normal align--middle color--default" id="kontaktni-formular"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Nebo napište formulář přímo na naši podporu<span class="text-highlight">.</span></h2>
+</div></div></div>
+<div class="row-main"><div class="col col-5-12 grid-4-12">
+<form action="https://databridge.pianopos.cz/api/web-lead" autocomplete="off" class="block block-form" data-lead-form="formular-odeslat-formular" id="formular-odeslat-formular" method="post">
+<div class="row">
+<div class="col col-1-12 grid-12-12">
+<div class="field field-form_input_email" id="formular-odeslat-formular-field-wrapper-email">
+<div class="field-wrapper">
+<label for="formular-odeslat-formular-field-email" id="formular-odeslat-formular-label-email">
+            E-mail <span>*</span>
+</label>
+<input class="field-control" id="formular-odeslat-formular-field-email" name="formular-odeslat-formular[email]" required="" type="email" value=""/>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col col-1-12 grid-12-12">
+<div class="field field-form_input_tel" id="formular-odeslat-formular-field-wrapper-field_formular-odeslat-formular_1_0_0">
+<div class="field-wrapper">
+<label for="formular-odeslat-formular-field-field_formular-odeslat-formular_1_0_0" id="formular-odeslat-formular-label-field_formular-odeslat-formular_1_0_0">
+            Telefon
+          </label>
+<input class="field-control" id="formular-odeslat-formular-field-field_formular-odeslat-formular_1_0_0" name="formular-odeslat-formular[field_form_1_1_0_0]" type="tel" value=""/>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col col-1-12 grid-12-12">
+<div class="field field-form_input_text" id="formular-odeslat-formular-field-wrapper-nazev-hotelu">
+<div class="field-wrapper">
+<label for="formular-odeslat-formular-field-nazev-hotelu" id="formular-odeslat-formular-label-nazev-hotelu">
+            Název hotelu <span>*</span>
+</label>
+<input class="field-control" id="formular-odeslat-formular-field-nazev-hotelu" name="formular-odeslat-formular[nazev-hotelu]" required="" type="text" value=""/>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col col-1-12 grid-12-12">
+<div class="field field-form_textarea" id="formular-odeslat-formular-field-wrapper-s-cim-potrebujete-pomoci">
+<div class="field-wrapper">
+<label for="formular-odeslat-formular-field-s-cim-potrebujete-pomoci" id="formular-odeslat-formular-label-s-cim-potrebujete-pomoci">
+            S čím potřebujete pomoci?
+          </label>
+<textarea class="field-control" id="formular-odeslat-formular-field-s-cim-potrebujete-pomoci" name="formular-odeslat-formular[s-cim-potrebujete-pomoci]"></textarea>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col col-1-12 grid-12-12">
+<div class="field field-form_button" id="formular-odeslat-formular-field-wrapper-odeslat-formular">
+<div class="field-wrapper">
+<div class="center">
+<button class="btn btn-a btn-default" id="formular-odeslat-formular-field-odeslat-formular" name="formular-odeslat-formular[odeslat-formular]" type="submit" value="submit"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">ODESLAT FORMULÁŘ</span></button>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<input name="form_variant" type="hidden" value="formular-odeslat-formular"/><input name="page" type="hidden" value=""/><div aria-hidden="true" class="visually-hidden"><label>Web <input autocomplete="off" name="website" tabindex="-1" type="text"/></label></div></form>
+</div></div></div></div>
+<ZnalostniDatabaze />
+</Base>

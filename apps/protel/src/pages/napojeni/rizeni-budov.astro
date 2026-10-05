@@ -1,0 +1,93 @@
+---
+// https://www.protelsystems.cz/napojeni/rizeni-budov (Solid Pixels), port 1:1 skriptem port-protel.py
+import Base from '../../layouts/Base.astro';
+import PojdmeToProbrat from '../../components/blocks/PojdmeToProbrat.astro';
+import KolikMeToBudeStat from '../../components/blocks/KolikMeToBudeStat.astro';
+import NapojeniPartneri from '../../components/blocks/NapojeniPartneri.astro';
+import NapojeniVypis from '../../components/blocks/NapojeniVypis.astro';
+import CitaceProtel from '../../components/blocks/CitaceProtel.astro';
+import DaleByVasMohloZajimat from '../../components/blocks/DaleByVasMohloZajimat.astro';
+import VyzkousetZdarma from '../../components/blocks/VyzkousetZdarma.astro';
+import Novinky from '../../components/blocks/Novinky.astro';
+import KontaktniFormular from '../../components/blocks/KontaktniFormular.astro';
+---
+<Base
+  title="Řízení budov | Hotel PMS Protel"
+  description="Nejčastěji napojovaní partneři pro Řízení budov do hotelového systému Protel."
+  path="/napojeni/rizeni-budov"
+  bodyClass="use-header-transparent use-menu-secondary-uppercase use-menu-button-uppercase use-headings-link-plain search-panel-hide-submit-label search-panel-hide-close-label search-panel-hide-open-label use-menu-bar use-header-fixed use-header-fixed-mobile use-header-priority use-header-boxed header-inverse"
+  image="/files/nahled-napojeni.jpg"
+>
+<div class="section height--low align--middle color--inverse section-width-boxed section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-6-12"><div class="block block-button"><div class="left"><a class="btn btn-inverse btn-sm" href="/napojeni"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">NAPOJENÍ</span></a></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-6-12"><div class="block block-inline"><h1>Řízení budov.</h1>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div><div class="section-background" style="background-color:rgb(0, 0, 0)"></div></div>
+<div class="section height--low align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:50px"></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2>Nejčastěji napojovaní partneři pro Řízení budov do hotelového systému Protel<span class="text-highlight">.</span></h2>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-4-12"><div class="block block-box box box--default box-inherit-color" id="honeywell"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Logo Honeywell" decoding="async" loading="lazy" src="/files/napojeni-honeywell.svg"/></div></div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3 class="text-large">Honeywell<span class="text-highlight">.</span></h3>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p><strong style="font-family: var(--base-font-family); font-size: 16px;">FUNKCE A VLASTNOSTI:</strong></p>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Zaslání informace zdali je host ubytovaný či již odjel. Podpora předpovědi obsazenosti pokojů. Návazný systém podle těchto informací následně efektivně reguluje teplotu v pokoji.</p>
+</div></div></div></div></div> <div class="col col-5-12 grid-4-12"><div class="block block-box box box--default box-inherit-color" id="siemens-hars"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Logo Siemens" decoding="async" loading="lazy" src="/files/napojeni-siemens.svg"/></div></div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3 class="text-large">Siemens / HARS<span class="text-highlight">.</span></h3>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><strong>FUNKCE A VLASTNOSTI</strong><strong style="font-family: var(--base-font-family); font-size: 16px;">:</strong></div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Zaslání informace zdali je host ubytovaný či již odjel. Návazný systém podle těchto informací následně efektivně reguluje teplotu v pokoji.</p>
+</div></div></div></div></div> <div class="col col-9-12 grid-4-12"><div class="block block-box box box--default box-inherit-color" id="schneider-electric"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Logo Schneider Electric" decoding="async" loading="lazy" src="/files/napojeni-schneider-electric.svg"/></div></div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3 class="text-large">Schneider Electric<span class="text-highlight">.</span></h3>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><strong>FUNKCE A VLASTNOSTI</strong><strong style="font-family: var(--base-font-family); font-size: 16px;">:</strong></div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Zaslání informace zdali je host ubytovaný či již odjel. Návazný systém podle těchto informací následně efektivně reguluje teplotu v pokoji.</p>
+</div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><hr class="divider divider--normal divider--align-left"/></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-4-12"><div class="block block-box box box--default box-inherit-color" id="johnson-controls"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Logo Johnson Controls" decoding="async" loading="lazy" src="/files/napojeni-johnson-controls.svg"/></div></div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3 class="text-large">Johnson Controls<span class="text-highlight">.</span></h3>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:30px"></div></div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p><strong style="font-family: var(--base-font-family); font-size: 16px;">FUNKCE A VLASTNOSTI:</strong></p>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Zaslání informace zdali je host ubytovaný či již odjel. Návazný systém podle těchto informací následně efektivně reguluje teplotu v pokoji.</p>
+</div></div></div></div></div> <div class="col col-5-12 grid-4-12"><div class="block block-box box box--default box-inherit-color" id="better-energy-betterspace"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Logo Betterspace" decoding="async" loading="lazy" src="/files/napojeni-betterspace.svg"/></div></div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3 class="text-large">Better.energy (Betterspace)<span class="text-highlight">.</span></h3>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><strong>FUNKCE A VLASTNOSTI</strong><strong style="font-family: var(--base-font-family); font-size: 16px;">:</strong></div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Zaslání informace zdali je host ubytovaný či již odjel. Návazný systém podle těchto informací následně efektivně reguluje teplotu v pokoji.</p>
+</div></div></div></div></div> <div class="col col-9-12 grid-4-12"><div class="block block-box box box--default box-inherit-color" id="flexkeeping"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Logo Flexkeeping" decoding="async" loading="lazy" src="/files/napojeni-flexkeeping.svg"/></div></div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3 class="text-large">Flexkeeping<span class="text-highlight">.</span></h3>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:30px"></div></div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><strong>FUNKCE A VLASTNOSTI</strong><strong style="font-family: var(--base-font-family); font-size: 16px;">:</strong></div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Zaslání informace zdali je host ubytovaný či již odjel. Návazný systém podle těchto informací následně efektivně reguluje teplotu v pokoji.</p>
+</div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><hr class="divider divider--normal divider--align-left"/></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-4-12"><div class="block block-box box box--default box-inherit-color" id="procom-system"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Logo Procom" decoding="async" loading="lazy" src="/files/napojeni-procom.svg"/></div></div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3 class="text-large"><span class="text-highlight"><font color="#000000"><span style="caret-color: rgb(0, 0, 0);">Procom system</span></font>.</span></h3>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p><strong style="font-family: var(--base-font-family); font-size: 16px;">FUNKCE A VLASTNOSTI:</strong></p>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Zaslání informace zdali je host ubytovaný či již odjel. Návazný systém podle těchto informací následně efektivně reguluje teplotu v pokoji.</p>
+</div></div></div></div></div> <div class="col col-5-12 grid-4-12"><div class="block block-box box box--default box-inherit-color" id="desigo-cc-siemens"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Logo Desigo CC" decoding="async" loading="lazy" src="/files/napojeni-desigo-cc.svg"/></div></div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3 class="text-large"><span class="text-highlight"><font color="#000000"><span style="caret-color: rgb(0, 0, 0);">Desigo CC (Siemens)</span></font>.</span></h3>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><strong>FUNKCE A VLASTNOSTI:</strong></div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Zaslání informace zdali je host ubytovaný či již odjel. Návazný systém podle těchto informací následně efektivně reguluje teplotu v pokoji.</p>
+</div></div></div></div></div> <div class="col col-9-12 grid-4-12"><div class="block block-box box box--primary box-inherit-color box--full-height"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Logo protel Store" decoding="async" loading="lazy" src="/files/napojeni-store-protel.svg"/></div></div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3 class="text-large">A mnoho dalších partnerů<span class="text-highlight">.</span></h3>
+<p>Díky každodenní důvěře více než 14000 zákazníků po celém světě je Protel PMS jedním z nejlepších poskytovatelů hotelových řešení s ohromným počtem systémových napojení! Kompletní výpis všech napojovaných partnerů pro Řízení budov do hotelového systému Protel najdete na Protel Market Place.</p>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div class="left"><a class="btn btn-default btn-sm" href="https://store.protel.io/#/service-store/sort/category/BMS" target="_blank"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">PŘEJÍT NA PROTEL MARKET PLACE</span></a></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><hr class="divider divider--normal divider--align-left"/></div></div></div></div></div>
+<PojdmeToProbrat />
+<KolikMeToBudeStat />
+<NapojeniPartneri />
+<NapojeniVypis />
+<CitaceProtel />
+<KolikMeToBudeStat />
+<DaleByVasMohloZajimat />
+<VyzkousetZdarma />
+<Novinky />
+<KontaktniFormular />
+</Base>

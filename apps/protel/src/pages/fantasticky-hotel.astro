@@ -1,108 +1,143 @@
 ---
-/**
- * Protel: Fantastický hotel (koncept Protel + Straiv). Obsah
- * z fantasticky-hotel.html starého protelsystems.cz.
- * Vše ze sdílených komponent @piano/ui.
- */
-import Base from '../layouts/Base.astro';
-import SiteHeader from '../components/SiteHeader.astro';
-import SiteFooter from '../components/SiteFooter.astro';
-import Section from '@piano/ui/components/Section.astro';
-import Hero from '@piano/ui/components/Hero.astro';
-import Heading from '@piano/ui/components/Heading.astro';
-import Text from '@piano/ui/components/Text.astro';
-import Button from '@piano/ui/components/Button.astro';
-import Icon from '@piano/ui/components/Icon.astro';
-import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
-import USPGrid from '@piano/ui/components/USPGrid.astro';
-import Testimonials from '@piano/ui/components/Testimonials.astro';
-import LeadForm from '@piano/ui/components/LeadForm.astro';
-import { protelLeadProofs } from '../config/leadProofs';
-import Img from '@piano/ui/components/Img.astro';
-
-const zaklady = [
-  { icon: 'lucide:layout-dashboard', title: 'Protel PMS', text: 'Komplexní řešení pro vedení hotelu a platební řešení, které každý den využívá více než 14 000 zákazníků po celém světě.', href: '/produkty/hotelovy-system-protel' },
-  { icon: 'lucide:smartphone', title: 'Straiv', text: 'Nadstavbové moduly: online check-in, chytré odemykání, digitální hotelová kniha, optimalizace úklidu, hodnocení napřímo od hostů i online check-out, bez nutnosti třetích stran.', href: '/produkty/online-check-in-out' },
-];
-
-const prvky = [
-  { icon: 'lucide:share-2', title: 'Napojení na OTA a channel managery', text: 'Rezervace z Booking.com, Expedia.com a všech respektovaných channel managerů se zapisují do Protelu automaticky a v reálném čase. Vždy aktuální obsazenost, méně chyb, nižší náklady na lidské zdroje.' },
-  { icon: 'lucide:trending-up', title: 'Vydělávejte chytře', text: 'Omezte lidské zdroje a soustřeďte se na zcela automatizovaný provoz, který budou hosté milovat a budou se k Vám vracet.' },
-  { icon: 'lucide:piggy-bank', title: 'Neskutečná úspora', text: 'Šetřete peníze i čas. Protel se automaticky postará o veškerý provoz spojený s vedením hotelové agendy.' },
-  { icon: 'lucide:mouse-pointer-click', title: 'Snadné užívání', text: 'Přehlednost a srozumitelnost na obou stranách hotelového byznysu, pro Vás i Vaše hosty.' },
-  { icon: 'lucide:log-in', title: 'Online check-in', text: 'Ušetří hotelu ohromné množství času i peněz. Lidský zdroj na straně recepce už není potřeba.' },
-  { icon: 'lucide:key-round', title: 'Chytré odemykání', text: 'Žádné klíče, karty ani zbytečně drahý personál. Vše elektronicky, jednoduše a levně.' },
-  { icon: 'lucide:book-open', title: 'Digitální hotelová kniha', text: 'Žádné stahování aplikace a ohromná úspora papíru. Hosté mají všechny informace na dosah ruky a služby si rezervují přes chytrý telefon.' },
-  { icon: 'lucide:sparkles', title: 'Zvyšte další prodeje', text: 'Vytvářejte příjmy pomocí personalizovaných nabídek a služeb pro hotelové hosty. Opečovaní hosté budou Vaše nadstavbové služby milovat.' },
-  { icon: 'lucide:brush-cleaning', title: 'Optimalizace úklidu', text: 'S možností „Zrušit úklid pokoje“ Vás hosté jednoduše informují, že další den úklid nepotřebují. Šetříte náklady i zdroje.' },
-  { icon: 'lucide:star', title: 'Hodnocení napřímo a online check-out', text: 'Feedback od hostů ještě před koncem pobytu, hodnocení ovlivníte dřív, než host odjede. Bez podpůrných nástrojů třetích stran držíte svůj byznys pevně ve svých rukách.' },
-];
-
-const reference = [
-  { initials: 'MB', headline: 'Vynikající volba', quote: 'Protel je pro CPI Hotels vynikající volba. Jeho intuitivní rozhraní, spolehlivost a efektivita nám umožňují snadno řídit rezervace, spravovat hosty a sledovat statistiky. Integrace moderních technologií nám pomohla zlepšit guest journey a poskytovat personalizované služby.', author: 'Michaela Bieliková', role: 'CPI Hotels' },
-];
+// https://www.protelsystems.cz/fantasticky-hotel (Solid Pixels), port 1:1 skriptem port-protel.py
+import Base from './../layouts/Base.astro';
+import Mezera from './../components/blocks/Mezera.astro';
+import DaleByVasMohloZajimat from './../components/blocks/DaleByVasMohloZajimat.astro';
+import PojdmeToProbrat from './../components/blocks/PojdmeToProbrat.astro';
+import VyzkousetZdarma from './../components/blocks/VyzkousetZdarma.astro';
+import Novinky from './../components/blocks/Novinky.astro';
+import KontaktniFormular from './../components/blocks/KontaktniFormular.astro';
 ---
+<Base
+  title="FANTASTICKÝ HOTEL | Hotel PMS Protel"
+  description="Představujeme nejmodernější způsob provozování hotelu a hotelových služeb díky spojení toho nejlepšího z Protel a Straiv. Bezkonkurenční koncept řízení hotelu, který využívají špičky v českém a slovenském hotelovém byznysu. Představujeme FANTASTICKÝ HOTEL."
+  path="/fantasticky-hotel"
+  bodyClass="use-header-transparent use-menu-secondary-uppercase use-menu-button-uppercase use-headings-link-plain search-panel-hide-submit-label search-panel-hide-close-label search-panel-hide-open-label use-menu-bar use-header-fixed use-header-fixed-mobile use-header-priority use-header-boxed header-inverse"
+  image="/files/nahled-fantasticky-hotel.jpg"
+>
+<div class="section height--normal align--middle color--default section-has-fullrow"><div class="section-body"><div class="row fullrow"><div class="col col-1-12 grid-12-12"><div class="block block-video"><div class="embed-container ratio-widescreen"><video autoplay="" loop="" muted="" playsinline="" src="/files/fantasticky-hotel-header-new.mp4" type="video/mp4"></video></div></div></div></div></div></div>
+<div class="section height--low align--middle color--default section-has-background" id="hledam-novy-system-do-hotelu"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:30px"></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-6-12"><div class="block block-image"><div class="flexcard flexcard-icon flexcard-horizontal valign-center size-lg"><a class="flexcard-media" href="#pojdme-to-probrat"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Hedvika Trunečková" decoding="async" loading="lazy" src="/files/protel-hedvika-truneckova-volejte-piste.webp"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h1 class="h2-style"><span class="text-highlight">Co byste u vás v hotelu rádi zlepšili? Pojďme to probrat... </span>Raději si píšete nebo voláte?</h1>
+<p><strong>Hedvika Trunečková</strong>, ředitelka protel systems</p>
+</div></div></div></div></div></div> <div class="col col-7-12 grid-6-12">
+<form action="https://databridge.pianopos.cz/api/web-lead" autocomplete="off" class="block block-form" data-lead-form="pojdme-to-probrat" id="pojdme-to-probrat" method="post">
+<div class="row">
+<div class="col col-1-12 grid-6-12">
+<div class="field field-form_input_email" id="pojdme-to-probrat-field-wrapper-vas-e-mail">
+<div class="field-wrapper">
+<label class="visually-hidden" for="pojdme-to-probrat-field-vas-e-mail" id="pojdme-to-probrat-label-vas-e-mail">
+            Váš e-mail <span>*</span>
+</label>
+<input class="field-control" id="pojdme-to-probrat-field-vas-e-mail" name="pojdme-to-probrat[vas-e-mail]" placeholder="Váš e-mail" required="" type="email" value=""/>
+</div>
+</div>
+</div>
+<div class="col col-7-12 grid-6-12">
+<div class="field field-form_button" id="pojdme-to-probrat-field-wrapper-napiste-mi">
+<div class="field-wrapper">
+<div class="left">
+<button class="btn btn-s btn-default" id="pojdme-to-probrat-field-napiste-mi" name="pojdme-to-probrat[napiste-mi]" type="submit" value="submit"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">NAPIŠTE MI</span></button>
+</div>
+</div>
+</div>
+</div>
+</div>
 
-<Base title="Koncept Fantastický hotel | Protel"
-      description="Nejmodernější způsob provozování hotelu spojením toho nejlepšího z Protelu a Straiv. Koncept, který využívají špičky českého hotelnictví.">
-  <SiteHeader />
+<input name="form_variant" type="hidden" value="pojdme-to-probrat"/><input name="page" type="hidden" value=""/><div aria-hidden="true" class="visually-hidden"><label>Web <input autocomplete="off" name="website" tabindex="-1" type="text"/></label></div></form>
+<form action="https://databridge.pianopos.cz/api/web-lead" autocomplete="off" class="block block-form" data-lead-form="formular-zavolejte-mi" id="formular-zavolejte-mi" method="post">
+<div class="row">
+<div class="col col-1-12 grid-6-12">
+<div class="field field-form_input_tel" id="formular-zavolejte-mi-field-wrapper-vas-telefon">
+<div class="field-wrapper">
+<label class="visually-hidden" for="formular-zavolejte-mi-field-vas-telefon" id="formular-zavolejte-mi-label-vas-telefon">
+            Váš telefon <span>*</span>
+</label>
+<input class="field-control" id="formular-zavolejte-mi-field-vas-telefon" name="formular-zavolejte-mi[vas-telefon]" placeholder="Váš telefon" required="" type="tel" value=""/>
+</div>
+</div>
+</div>
+<div class="col col-7-12 grid-6-12">
+<div class="field field-form_button" id="formular-zavolejte-mi-field-wrapper-zavolejte-mi">
+<div class="field-wrapper">
+<div class="left">
+<button class="btn btn-s btn-default" id="formular-zavolejte-mi-field-zavolejte-mi" name="formular-zavolejte-mi[zavolejte-mi]" type="submit" value="submit"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">ZAVOLEJTE MI</span></button>
+</div>
+</div>
+</div>
+</div>
+</div>
 
-  <main>
-    <Breadcrumb items={[{ label: 'Úvod', href: '/' }, { label: 'Fantastický hotel' }]} />
-
-    <Hero eyebrow="Koncept Protel + Straiv" background="gradient"
-          lead="Představujeme nejmodernější způsob provozování hotelu a hotelových služeb díky spojení toho nejlepšího z Protelu a Straiv. Bezkonkurenční koncept řízení hotelu, který využívají špičky v českém a slovenském hotelovém byznysu."
-          usp={[{ text: 'Plně automatizovaný provoz', icon: 'lucide:refresh-cw' }, { text: 'Úspora financí i lidí', icon: 'lucide:piggy-bank' }, { text: 'Feedback ještě během pobytu', icon: 'lucide:star' }]}>
-      <Heading slot="title" as="h1" size="display" color="on-dark">Fantastický <em>hotel</em></Heading>
-      <Fragment slot="actions">
-        <Button href="#poptavka">Chci fantastický hotel</Button>
-        <Button href="#koncept" variant="secondary" onDark>Jak to funguje</Button>
-      </Fragment>
-      <figure slot="media" class="hero-pic">
-        <Img src="/images/fantasticky-hotel.webp" alt="Konference Fantastický hotel pro hoteliéry" width={880} sizes="(min-width: 881px) 560px, 100vw" loading="eager" decoding="async" />
-      </figure>
-    </Hero>
-
-    <Section id="koncept" background="default" space="lg">
-      <div class="head head--center">
-        <Text size="label" color="accent" align="center">Co je Fantastický hotel</Text>
-        <Heading as="h2" size="h2" align="center">Hotel, který <em>vydělává a neplýtvá</em></Heading>
-        <Text size="lead" color="muted" align="center" balance>
-          Každý chce mít svůj fantastický hotel: vydělává, neplýtvá finančními ani lidskými zdroji, má naprostý přehled o dění i v nejodlehlejších koutech hotelu a feedback od hostů dostává ještě v průběhu pobytu. Zkrátka plně automatizovaný efektivní hotel.
-        </Text>
-      </div>
-    </Section>
-
-    <USPGrid eyebrow="Dva pilíře" title="Protel PMS + Straiv"
-             items={zaklady} minItemWidth="320px" background="alt" space="lg" />
-
-    <USPGrid eyebrow="Co získáte" title="Stavební kameny fantastického hotelu"
-             items={prvky} minItemWidth="280px" background="default" space="lg" />
-
-    <Section background="primary" space="lg">
-      <figure class="quoteband">
-        <span class="quoteband__mark"><Icon name="lucide:quote" size="lg" /></span>
-        <blockquote>
-          <Heading as="p" size="h3" color="on-dark" align="center">Nezní to celé skvěle? Nejenže zní: ono to i funguje! Právě proto Fantastický hotel používají špičky v českém a slovenském hotelovém byznysu.</Heading>
-        </blockquote>
-      </figure>
-    </Section>
-
-    <Testimonials items={reference} eyebrow="Reference" title="Co říkají zákazníci" background="alt" />
-
-    <LeadForm proofs={protelLeadProofs} id="poptavka" variant="full" background="default"
-              title="Chci svůj fantastický hotel"
-              lead="Nechte nám kontakt, ukážeme Vám, jak koncept Protel + Straiv funguje přímo ve Vašem hotelu." />
-  </main>
-
-  <SiteFooter />
+<input name="form_variant" type="hidden" value="formular-zavolejte-mi"/><input name="page" type="hidden" value=""/><div aria-hidden="true" class="visually-hidden"><label>Web <input autocomplete="off" name="website" tabindex="-1" type="text"/></label></div></form>
+</div></div>
+<div class="row-main"><div class="col col-7-12 grid-6-12"><div class="block block-inline"><p>Vaše osobní údaje budou zpracovány podle <a href="/podminky-o-zpracovani-osobnich-udaju-formular">Podmínek zpracování osobních údajů</a>.</p>
+</div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<div class="section height--high align--middle color--default section-width-boxed section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-6-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:150px"></div></div> <div class="block block-inline"><h2>Představujeme nejmodernější způsob provozování hotelu a hotelových služeb díky spojení toho nejlepšího z Protel a Straiv. Bezkonkurenční koncept řízení hotelu, který využívají špičky v českém a slovenském hotelovém byznysu.</h2>
+</div> <div class="block block-button"><div class="left"><a class="btn btn-default btn-sm" href="/fantasticky-hotel#jak-to-funguje"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">JAK TO FUNGUJE?</span></a></div></div></div> <div class="col col-7-12 grid-6-12"><div class="block block-image"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/hdr-fantasticky-hotel-info.webp" srcset="/files/r/720/hdr-fantasticky-hotel-info.webp 720w, /files/r/1280/hdr-fantasticky-hotel-info.webp 1280w, /files/r/1920/hdr-fantasticky-hotel-info.webp 1920w"/></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-gallery grid-sm-2"><div class="grid gallery-container" style="--gap:40px"><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo CPI Hotels" decoding="async" loading="lazy" src="/files/ref-cpi.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Mamaison" decoding="async" loading="lazy" src="/files/ref-mamaison.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Imperial" decoding="async" loading="lazy" src="/files/ref-imperial.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Old Town Hotels" decoding="async" loading="lazy" src="/files/ref-old-town-hotel.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Clarion Hotel" decoding="async" loading="lazy" src="/files/ref-clarion.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><a class="image image-mask ratio-square image-width-stretch" href="/vyzkouset-zdarma"><img alt="Vaše logo" decoding="async" loading="lazy" src="/files/ref-vase.svg"/></a></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<div class="section height--fullscreen align--middle color--inverse section-width-boxed section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-icon flexcard-none size-lg align-left"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Protel" decoding="async" loading="lazy" src="/files/fantasticky-hotel-logo-protel-bublina.svg"/></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2>Protel PMS přináší do Fantastického hotelu komplexní řešení pro vedení hotelu a platební řešení hotelu, které využívá každý den více než 14000 zákazníků po celém světě.</h2>
+</div></div></div></div><div class="section-background" style="background-color:rgb(255, 0, 150)"></div></div>
+<div class="section height--fullscreen align--middle color--inverse section-width-boxed section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-icon flexcard-none size-lg align-left"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Straiv" decoding="async" loading="lazy" src="/files/fantasticky-hotel-logo-straiv-bublina-new.svg"/></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2>Straiv přináší do Fantastického hotelu nadstavbové moduly jako jsou online check-in, chytré odemykání, digitální elektronická kniha, optimalizace úklidu, hodnocení napřímo od hostů, promyšlený zákaznický systém bez nutnosti třetích stran a online check-out.</h2>
+</div></div></div></div><div class="section-background" style="background-color:rgb(0, 218, 195)"></div></div>
+<div class="section height--normal align--middle color--default section-width-boxed section-has-background" id="jak-to-funguje"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2>Každý chce mít svůj FANTASTICKÝ HOTEL, který vydělává, neplýtvá finančními ani lidskými zdroji, má naprostý přehled o tom, co se děje i v těch nejodlehlejších koutech jeho hotelu a může kdykoliv obdržet feedback od svých hostů ještě v průběhu pobytu. Zkrátka plně automatizovaný efektivní hotel.</h2>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:50px"></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-6-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:125px"></div></div> <div class="block block-inline"><strong>FANTASTICKÝ HOTEL</strong></div> <div class="block block-inline"><h2>Zajistíme napojení našeho PMS Protel na on-line prodejní kanály (OTA) jako Booking.com, Expedia.com...</h2>
+</div> <div class="block block-inline"><p>...a všechny respektované <a href="/napojeni/channel-manager-crs">Channel Managery</a>. S naším řešením se Vám budou on-line rezervace zapisovat do hotelového rezervačního systému Protel automaticky a v reálném čase! Budete tak mít vždy aktuální informace o obsazenosti hotelu, volných pokojích k prodeji, snížíte náklady na lidské zdroje a omezíte chybovost. Váš hotel nebude mít nouzi o nové hosty díky nejmodernějším technologiím.</p>
+</div> <div class="block block-button"><div class="left"><a class="btn btn-inverse btn-sm" href="/automatizace-rezervaci"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">ZJISTIT VÍCE</span></a></div></div></div> <div class="col col-7-12 grid-6-12"><div class="block block-video"><div class="embed-container ratio-square"><video autoplay="" loop="" muted="" playsinline="" src="/files/fh-01.mp4" type="video/mp4"></video></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<Mezera />
+<div class="section height--normal align--middle color--default section-width-boxed section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-6-12"><div class="block block-video"><div class="embed-container ratio-square"><video autoplay="" loop="" muted="" playsinline="" src="/files/fh-02.mp4" type="video/mp4"></video></div></div></div> <div class="col col-7-12 grid-6-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:200px"></div></div> <div class="block block-inline"><strong>FANTASTICKÝ HOTEL</strong></div> <div class="block block-inline"><h2>Vydělávejte chytře!</h2>
+</div> <div class="block block-inline"><p>Omezte lidské zdroje a soustřeďte se na zcela automatizovaný provoz, který budou Vaši hosté milovat! A vracet se k Vám…</p>
+</div> <div class="block block-button"><div class="left"><a class="btn btn-inverse btn-sm" href="/produkty/hotelovy-system#individualni-rezervace"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">ZJISTIT VÍCE</span></a></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<Mezera />
+<div class="section height--normal align--middle color--default section-width-boxed section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-6-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:200px"></div></div> <div class="block block-inline"><strong>FANTASTICKÝ HOTEL</strong></div> <div class="block block-inline"><h2>Plně automatizovaný provoz nabízí neskutečnou úsporu!</h2>
+</div> <div class="block block-inline"><p>Šetřete peníze i čas! Protel se automaticky postará o veškerý provoz spojený s vedením hotelové agendy.</p>
+</div> <div class="block block-button"><div class="left"><a class="btn btn-inverse btn-sm" href="/automatizace-rezervaci"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">ZJISTIT VÍCE</span></a></div></div></div> <div class="col col-7-12 grid-6-12"><div class="block block-video"><div class="embed-container ratio-square"><video autoplay="" loop="" muted="" playsinline="" src="/files/fh-03.mp4" type="video/mp4"></video></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<Mezera />
+<div class="section height--normal align--middle color--default section-width-boxed section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-6-12"><div class="block block-video"><div class="embed-container ratio-square"><video autoplay="" loop="" muted="" playsinline="" src="/files/fh-04.mp4" type="video/mp4"></video></div></div></div> <div class="col col-7-12 grid-6-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:200px"></div></div> <div class="block block-inline"><strong>FANTASTICKÝ HOTEL</strong></div> <div class="block block-inline"><h2>Snadné užívání systému pro Vás i Vaše hosty!</h2>
+</div> <div class="block block-inline"><p>Přehlednost a srozumitelnost na obou stranách hotelového byznysu je pro nás prioritou.</p>
+</div> <div class="block block-button"><div class="left"><a class="btn btn-inverse btn-sm" href="/produkty/hotelovy-system#recepce"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">ZJISTIT VÍCE</span></a></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<Mezera />
+<div class="section height--normal align--middle color--default section-width-boxed section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-6-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:200px"></div></div> <div class="block block-inline"><strong>FANTASTICKÝ HOTEL</strong></div> <div class="block block-inline"><h2>Online check-in ušetří Vašemu hotelu ohromné množství času. A peněz…</h2>
+</div> <div class="block block-inline"><p>Lidský zdroj na straně recepce již není třeba.</p>
+</div> <div class="block block-button"><div class="left"><a class="btn btn-inverse btn-sm" href="/produkty/online-check-in-out"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">ZJISTIT VÍCE</span></a></div></div></div> <div class="col col-7-12 grid-6-12"><div class="block block-video"><div class="embed-container ratio-square"><video autoplay="" loop="" muted="" playsinline="" src="/files/fh-05.mp4" type="video/mp4"></video></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<Mezera />
+<div class="section height--normal align--middle color--default section-width-boxed section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-6-12"><div class="block block-video"><div class="embed-container ratio-square"><video autoplay="" loop="" muted="" playsinline="" src="/files/fh-06-new.mp4" type="video/mp4"></video></div></div></div> <div class="col col-7-12 grid-6-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:200px"></div></div> <div class="block block-inline"><strong>FANTASTICKÝ HOTEL</strong></div> <div class="block block-inline"><h2>Nadstavbový modul zefektivní Vaše hotelové podnikání!</h2>
+</div> <div class="block block-inline"><p>Žádné klíče, karty, ani zbytečně drahý personál. Vše elektronicky, jednoduše, lacině.</p>
+</div> <div class="block block-button"><div class="left"><a class="btn btn-inverse btn-sm" href="/produkty/online-check-in-out#vstup-do-pokoje"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">ZJISTIT VÍCE</span></a></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<Mezera />
+<div class="section height--normal align--middle color--default section-width-boxed section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-6-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:200px"></div></div> <div class="block block-inline"><strong>FANTASTICKÝ HOTEL</strong></div> <div class="block block-inline"><h2>Žádné stahování aplikace!</h2>
+</div> <div class="block block-inline"><p>Ohromná úspora papírů a zdrojů pro konvenčně tištěné složky. Hosté mají všechny informace o hotelu na dosah ruky a mohou si rezervovat služby prostřednictvím svého chytrého telefonu. Vy ještě nemáte svou digitální hotelovou knihu?</p>
+</div> <div class="block block-button"><div class="left"><a class="btn btn-inverse btn-sm" href="/produkty/digitalni-hotelova-kniha#bez-nutnosti-stahovat-aplikaci"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">ZJISTIT VÍCE</span></a></div></div></div> <div class="col col-7-12 grid-6-12"><div class="block block-video"><div class="embed-container ratio-square"><video autoplay="" loop="" muted="" playsinline="" src="/files/fh-07.mp4" type="video/mp4"></video></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<Mezera />
+<div class="section height--normal align--middle color--default section-width-boxed section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-6-12"><div class="block block-video"><div class="embed-container ratio-square"><video autoplay="" loop="" muted="" playsinline="" src="/files/fh-08.mp4" type="video/mp4"></video></div></div></div> <div class="col col-7-12 grid-6-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:200px"></div></div> <div class="block block-inline"><strong>FANTASTICKÝ HOTEL</strong></div> <div class="block block-inline"><h2>Zvyšte další prodeje!</h2>
+</div> <div class="block block-inline"><p>Vytvářejte příjmy pomocí personalizovaných nabídek a služeb pro Vaše hotelové hosty. Vydělávejte chytře! Opečovaní hosté budou Vaše nadstavbové služby milovat!</p>
+</div> <div class="block block-button"><div class="left"><a class="btn btn-inverse btn-sm" href="/produkty/digitalni-hotelova-kniha#vyssi-vynosy-pomoci-primych-rezervaci"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">ZJISTIT VÍCE</span></a></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<Mezera />
+<div class="section height--normal align--middle color--default section-width-boxed section-has-background" id="zrusit-uklid-pokoje"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-6-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:200px"></div></div> <div class="block block-inline"><strong>FANTASTICKÝ HOTEL</strong></div> <div class="block block-inline"><h2>Optimalizujte úklid pokojů, šetřete náklady!</h2>
+</div> <div class="block block-inline"><p>S možností „Zrušit úklid pokoje“ mají Vaši hosté jednoduchou možnost vás informovat, že na další den nepotřebují úklid.</p>
+</div> <div class="block block-button"><div class="left"><a class="btn btn-inverse btn-sm" href="/produkty/housekeeping#aplikace-pro-housekeeping"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">ZJISTIT VÍCE</span></a></div></div></div> <div class="col col-7-12 grid-6-12"><div class="block block-video"><div class="embed-container ratio-square"><video autoplay="" loop="" muted="" playsinline="" src="/files/fh-09.mp4" type="video/mp4"></video></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<Mezera />
+<div class="section height--normal align--middle color--default section-width-boxed section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-6-12"><div class="block block-video"><div class="embed-container ratio-square"><video autoplay="" loop="" muted="" playsinline="" src="/files/fh-010.mp4" type="video/mp4"></video></div></div></div> <div class="col col-7-12 grid-6-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:200px"></div></div> <div class="block block-inline"><strong>FANTASTICKÝ HOTEL</strong></div> <div class="block block-inline"><h2>Hodnocení napřímo, online check-out i slevy na příště!</h2>
+</div> <div class="block block-inline"><p>Feedback od hotelových hostů ještě před koncem pobytu. Mějte možnost ovlivnit hodnocení ještě než Vám host odjede. Zapomeňte na lidské zdroje na recepci. Nepotřebujete ani další podpůrné nástroje třetích stran pro zachování loajality mezi Vámi a Vašimi hosty. Držíte svůj hotelový byznys pevně ve svých rukách.</p>
+</div> <div class="block block-button"><div class="left"><a class="btn btn-inverse btn-sm" href="/produkty/digitalni-hotelova-kniha#hodnoceni-naprimo"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">ZJISTIT VÍCE</span></a></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<Mezera />
+<div class="section height--low align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:50px"></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-card flexcard-size--small flexcard-media-right valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><a class="image image-mask ratio-original" href="/fantasticky-hotel#slovo-cpi-hotels" style="padding-bottom:100%"><img alt="" decoding="async" loading="lazy" src="/files/vyhoda-fantastickeho-hotelu.svg"/></a></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2><span class="text-highlight">"</span> Nezní to celé skvěle? Nejenže zní, ono to i funguje! Je to ten důvod, proč FANTASTICKÝ HOTEL používají špičky v českém a slovenském hotelovém byznysu.</h2>
+</div><div class="image-btn"><a class="btn btn-default btn-sm" href="/fantasticky-hotel#slovo-cpi-hotels"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">SLOVO CPI HOTELS</span></a></div></div></div></div></div></div></div></div></div>
+<div class="section height--low align--middle color--default col-gaps-bigger section-has-background" id="slovo-cpi-hotels"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="image image-mask ratio-original" style="padding-bottom:91.14583333333334%"><img alt="" decoding="async" loading="lazy" sizes="(min-width:1390px) 1390px, (min-width:720px) 100.00vw, 100.00vw" src="/files/r/1280/fantasticky-hotel-cpi-tym.webp" srcset="/files/r/720/fantasticky-hotel-cpi-tym.webp 720w, /files/r/1280/fantasticky-hotel-cpi-tym.webp 1280w, /files/r/1920/fantasticky-hotel-cpi-tym.webp 1920w"/></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2><span class="text-highlight">"</span> Protel je pro CPI Hotels vynikající volba. Jeho intuitivní rozhraní, spolehlivost a efektivita nám umožňují snadno řídit rezervace, spravovat hosty a sledovat statistiky. Integrace moderních technologií nám pomohla zlepšit naši guest journey a poskytovat personalizované služby.</h2>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p><a href="https://www.linkedin.com/in/tiborbielik" target="_blank">Tibor Bielik</a> + <a href="https://www.linkedin.com/in/michaelabielikova" target="_blank">Michaela Bieliková</a> + <a href="https://www.linkedin.com/in/zuzana-georgi%C3%A1nov%C3%A1-a0aa911a8/" target="_blank">Zuzana Georgiánová</a> + <a href="https://www.linkedin.com/in/jiri-princ-28a3a71a2/" target="_blank">Jiří Princ</a></p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><b>CPI HOTELS DEVELOPMENT TECH TEAM</b></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div class="center"><a class="btn btn-inverse btn-sm" href="/nasi-zakaznici"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">NAŠI ZÁKAZNÍCI</span></a></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<Mezera />
+<DaleByVasMohloZajimat />
+<PojdmeToProbrat />
+<VyzkousetZdarma />
+<Novinky />
+<KontaktniFormular />
 </Base>
-
-<style>
-  .head { max-width: 800px; margin-inline: auto; }
-  .head--center { text-align: center; }
-  .head > * + * { margin-top: var(--space-3); }
-  .quoteband { margin: 0; max-width: 840px; margin-inline: auto; display: flex; flex-direction: column; align-items: center; gap: var(--space-4); text-align: center; }
-  .quoteband__mark { color: var(--color-text-on-dark); opacity: 0.7; }
-  .quoteband blockquote { margin: 0; }
-</style>

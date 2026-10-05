@@ -1,0 +1,65 @@
+---
+// Hlavička živého protelsystems.cz 1:1 (port-protel.py). Chování menu a aktivní položky: public/js/protel.js
+import LangSwitch from './LangSwitch.astro';
+import type { Locale } from '../../i18n/config';
+interface Props { path: string; locale: Locale }
+const { path, locale } = Astro.props;
+---
+<div class="header" id="header" role="banner">
+<div class="row-main">
+<div class="menu menu--with-language menu--bar menu--sm-nav-primary-left menu--bar-logo-left menu--bar-primary-right submenu--fullrow menu--sm-logo-left menu--sm-toggle-right menu--sm-misc-bottom menu--sm-overlay menu--lg-priority">
+<div class="menu__region menu__toggle">
+<button aria-expanded="false" class="nav-toggle nav-toggle--cross" data-lg-type="priority" data-sm-type="overlay" data-target="#menu-main" data-toggle="nav" id="nav-toggle" type="button">
+<span class="nav-toggle-icon cssicon cssicon--size-parent cssicon--hamburger"><span></span></span>
+<span class="nav-toggle-label">Ponuka</span>
+</button>
+</div>
+<div class="menu__region menu__header">
+<div class="logo logo--image">
+<a class="logo__element" href="/sk" title="Protel">
+<img alt="Protel" class="logo__image logo__image--primary" decoding="async" src="/files/2247-logo-original.svg"/>
+</a>
+</div>
+</div>
+
+<div class="menu__region menu__special">
+
+<LangSwitch path={path} locale={locale} />
+</div>
+<div class="menu__wrapper">
+<div class="menu__region menu__inner">
+<div class="menu__region menu__primary" data-nav="priority" data-submenu="doubleTap">
+<nav aria-label="Hlavná" class="nav nav--primary" id="menu-main">
+<ul class="nav__list nav__list--level-0" id="menu-1"><li class="nav__item box-contacts has-children active"><a class="nav__link active" href="/sk/produkty"><span class="nav__label">PRODUKTY</span><span class="cssicon cssicon--chevron-down submenu-trigger"></span></a><div class="submenu submenu--level-0"><ul class="nav__list nav__list--level-1 box-contacts" id="menu-429"><li class="nav__item has-children active"><a aria-current="page" class="nav__link active" href="/sk"><span class="nav__label">Systém Protel</span><span class="cssicon cssicon--chevron-down submenu-trigger"></span></a><div class="submenu submenu--level-1"><ul class="nav__list nav__list--level-2" id="menu-261"><li class="nav__item"><a class="nav__link" href="/sk/produkty/hotelovy-system-protel"><span class="nav__label">Hotelový systém Protel</span></a></li> <li class="nav__item"><a class="nav__link" href="/sk/produkty/riesenie-platieb-v-hoteli"><span class="nav__label">Riešenie platieb v hoteli</span></a></li> <li class="nav__item"><a class="nav__link" href="/sk/produkty/konferencie"><span class="nav__label">Konferencie</span></a></li> <li class="nav__item"><a class="nav__link" href="/sk/produkty/housekeeping"><span class="nav__label">Housekeeping</span></a></li></ul></div></li> <li class="nav__item has-children"><a class="nav__link" href="/sk/produkty/online-check-in-out#uvod"><span class="nav__label">Online check-in/out</span><span class="cssicon cssicon--chevron-down submenu-trigger"></span></a><div class="submenu submenu--level-1"><ul class="nav__list nav__list--level-2" id="menu-267"><li class="nav__item"><a class="nav__link" href="/sk/produkty/online-check-in-out"><span class="nav__label">Online check-in/out</span></a></li> <li class="nav__item"><a class="nav__link" href="/sk/produkty/kiosk"><span class="nav__label">Kiosk</span></a></li> <li class="nav__item"><a class="nav__link" href="/sk/produkty/digitalna-registracna-karta"><span class="nav__label">Digitálna registračná karta</span></a></li> <li class="nav__item"><a class="nav__link" href="/sk/produkty/digitalna-hotelova-kniha"><span class="nav__label">Digitálna hotelová kniha</span></a></li></ul></div></li> <li class="nav__item has-children"><a class="nav__link" href="/sk/produkty/webove-rezervacie#uvod"><span class="nav__label">Príslušenstvo</span><span class="cssicon cssicon--chevron-down submenu-trigger"></span></a><div class="submenu submenu--level-1"><ul class="nav__list nav__list--level-2" id="menu-840"><li class="nav__item"><a class="nav__link" href="/sk/produkty/webove-rezervacie"><span class="nav__label">Webové rezervácie</span></a></li> <li class="nav__item"><a class="nav__link" href="/sk/produkty/automaticky-mailing"><span class="nav__label">Automatický mailing</span></a></li> <li class="nav__item"><a class="nav__link" href="/sk/produkty/citacka-dokumentov"><span class="nav__label">Čítačka dokumentov</span></a></li> <li class="nav__item"><a class="nav__link" href="/sk/produkty/hotelove-retazce"><span class="nav__label">Hotelové reťazce</span></a></li></ul></div></li><li class="nav__item nav__item--box"><div class="block block-box box box--default box--submenu only-desktop"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline color-main"><p><strong>KONTAKTUJTE PROTEL KONZULTANTA</strong></p>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-icon flexcard-horizontal valign-middle size-sm"><a class="flexcard-media" href="tel:+420257011107"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/2289-submenu-konzultanti.svg"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p><a href="tel:+420257011107">+420 257 011 107</a></p>
+<p class="text-large"><a href="mailto:sales@protelsystems.cz">sales@protelsystems.cz</a></p>
+</div></div></div></div></div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline color-main"><p><strong>KONTAKTUJTE PROTEL HOTLINE</strong></p>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-icon flexcard-horizontal valign-middle size-sm"><a class="flexcard-media" href="tel:+420778776835"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/2286-submenu-helpdesk.svg"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p><a href="tel:+420778776835">+420 778 776 835</a></p>
+<p><a href="mailto:help@protelsystems.cz">help@protelsystems.cz</a></p>
+</div></div></div></div></div></div></div></div></li></ul></div></li> <li class="nav__item"><a class="nav__link" href="/sk/napojenie"><span class="nav__label">NAPOJENIE</span></a></li> <li class="nav__item"><a class="nav__link" href="/sk/nasi-zakaznici"><span class="nav__label">NAŠI ZÁKAZNÍCI</span></a></li> <li class="nav__item"><a class="nav__link" href="/sk/cennik-licencii"><span class="nav__label">CENNÍK</span></a></li> <li class="nav__item box-contacts has-children"><a class="nav__link" href="/sk/o-protel"><span class="nav__label">O PROTEL</span><span class="cssicon cssicon--chevron-down submenu-trigger"></span></a><div class="submenu submenu--level-0"><ul class="nav__list nav__list--level-1 box-contacts" id="menu-1077"><li class="nav__item"><a class="nav__link" href="/sk/novinky"><span class="nav__label">Novinky</span></a></li> <li class="nav__item"><a class="nav__link" href="/sk/komplexna-sprava-hotela-alebo-penzionu"><span class="nav__label">Komplexná správa hotela alebo penziónu</span></a></li> <li class="nav__item"><a class="nav__link" href="/sk/protel-pre-skoly"><span class="nav__label">Protel pre školy</span></a></li> <li class="nav__item"><a class="nav__link" href="/sk/kontakt"><span class="nav__label">Kontakt</span></a></li> <li class="nav__item"><a class="nav__link" href="/sk/bezpecnost"><span class="nav__label">Bezpečnosť</span></a></li><li class="nav__item nav__item--box"><div class="block block-box box box--default box--submenu only-desktop"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline color-main"><p><strong>KONTAKTUJTE PROTEL KONZULTANTA</strong></p>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-icon flexcard-horizontal valign-middle size-sm"><a class="flexcard-media" href="tel:+420257011107"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/2289-submenu-konzultanti.svg"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p><a href="tel:+420257011107">+420 257 011 107</a></p>
+<p class="text-large"><a href="mailto:sales@protelsystems.cz">sales@protelsystems.cz</a></p>
+</div></div></div></div></div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline color-main"><p><strong>KONTAKTUJTE PROTEL HOTLINE</strong></p>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-icon flexcard-horizontal valign-middle size-sm"><a class="flexcard-media" href="tel:+420778776835"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/2286-submenu-helpdesk.svg"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p><a href="tel:+420778776835">+420 778 776 835</a></p>
+<p><a href="mailto:help@protelsystems.cz">help@protelsystems.cz</a></p>
+</div></div></div></div></div></div></div></div></li></ul></div></li> <li class="nav__item"><a class="nav__link" href="/sk/podpora"><span class="nav__label">PODPORA</span></a></li></ul>
+</nav>
+</div>
+<div class="menu__region menu__secondary">
+<nav class="nav nav--secondary" id="menu-secondary"><ul class="nav__list nav__list--level-0" id="menu-33"><li class="nav__item nav__item--btn"><a class="nav__link nav__link--btn" href="/sk/demo-zadarmo"><span class="nav__label">DEMO ZADARMO</span></a></li></ul></nav>
+
+</div>
+<div class="menu__region menu__misc">
+<LangSwitch path={path} locale={locale} />
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>

@@ -1,0 +1,98 @@
+---
+// https://www.protelsystems.cz/cenik-servisnich-sluzeb (Solid Pixels), port 1:1 skriptem port-protel.py
+import Base from './../layouts/Base.astro';
+import PojdmeToProbrat from './../components/blocks/PojdmeToProbrat.astro';
+import KolikMeToBudeStat from './../components/blocks/KolikMeToBudeStat.astro';
+import VyzkousetZdarma from './../components/blocks/VyzkousetZdarma.astro';
+import Novinky from './../components/blocks/Novinky.astro';
+import KontaktniFormular from './../components/blocks/KontaktniFormular.astro';
+---
+<Base
+  title="Ceník servisních služeb | Hotel PMS Protel"
+  description="Nabízíme kvalitní a profesionální péči pro Váš maximální hotelový komfort."
+  path="/cenik-servisnich-sluzeb"
+  bodyClass="use-header-transparent use-menu-secondary-uppercase use-menu-button-uppercase use-headings-link-plain search-panel-hide-submit-label search-panel-hide-close-label search-panel-hide-open-label use-menu-bar use-header-fixed use-header-fixed-mobile use-header-priority use-header-boxed"
+  image="/files/nahled-produkty.jpg"
+>
+<div class="section height--low align--middle color--default section-width-boxed section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h1 class="center">Ceník servisních služeb<span class="text-highlight">.</span></h1>
+</div></div></div>
+<div class="row-main"><div class="col col-3-12 grid-8-12"><div class="block block-inline"><p class="text-large center">Nabízíme kvalitní a profesionální péči pro Váš maximální komfort. Nebo Vás zajímá ceník licencí?</p>
+</div></div></div>
+<div class="row-main"><div class="col col-3-12 grid-8-12"><div class="block block-button"><div class="center"><a class="btn btn-default btn-sm" href="/cenik"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">CENÍK LICENCÍ</span></a></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<PojdmeToProbrat />
+<div class="section height--low align--middle color--default section-width-boxed"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><table class="table table-bordered">
+<tbody>
+<tr>
+<td><strong>Popis servisní služby</strong></td>
+<td class="right"><strong>Jednotka</strong></td>
+<td class="right"><strong>Cenové podmínky v CZK</strong></td>
+<td class="right"><strong>Cenové podmínky v €</strong></td>
+</tr>
+<tr>
+<td>Vzdálený servisní zásah v pracovní době</td>
+<td class="right">započatá hodina</td>
+<td class="right">1 500 CZK</td>
+<td class="right"><span style="font-size: var(--text-size-base); font-family: var(--base-font-family);">60 €</span></td>
+</tr>
+<tr>
+<td><span class="text-highlight">Vzdálený servisní zásah mimo pracovní dobu /expres (100% příplatek)</span></td>
+<td class="right"><span class="text-highlight">započatá hodina</span></td>
+<td class="right"><span class="text-highlight">3 000 CZK</span></td>
+<td class="right"><span class="text-highlight"><span style="font-size: var(--text-size-base); font-family: var(--base-font-family);">120 €</span></span></td>
+</tr>
+<tr>
+<td>Školení a autorský dozor u zákazníka</td>
+<td class="right">započatá hodina</td>
+<td class="right">
+<p>2 000 CZK</p>
+</td>
+<td class="right"><span style="font-size: var(--text-size-base); font-family: var(--base-font-family);">80 €</span></td>
+</tr>
+<tr>
+<td class="text-large"><span class="text-highlight">Školení a autorský dozor u zákazníka mimo pracovní dobu (50% příplatek)</span></td>
+<td class="right"><span class="text-highlight">započatá hodina</span></td>
+<td class="right"><span class="text-highlight">3 000 CZK</span></td>
+<td class="right text-large"><span class="text-highlight"><span style="font-size: var(--text-size-base); font-family: var(--base-font-family);">120 €</span></span></td>
+</tr>
+<tr>
+<td>Vývoj na míru</td>
+<td class="right">1 hod</td>
+<td class="right">2 000 CZK</td>
+<td class="right"><span style="font-size: var(--text-size-base); font-family: var(--base-font-family);">80 €</span></td>
+</tr>
+<tr>
+<td>Napojení návazného systému (API) nebo modulu</td>
+<td class="right">1 kus</td>
+<td class="right">12 500 CZK</td>
+<td class="right"><span style="font-size: var(--text-size-base); font-family: var(--base-font-family);">500 €</span></td>
+</tr>
+<tr>
+<td>Cestovné</td>
+<td class="right">1 km</td>
+<td class="right">15 CZK</td>
+<td class="right"><span style="font-size: var(--text-size-base); font-family: var(--base-font-family);">0,6 €</span></td>
+</tr>
+<tr>
+<td>Cesta po Praze</td>
+<td class="right">cesta</td>
+<td class="right">1 000 CZK</td>
+<td class="right"><span style="font-size: var(--text-size-base); font-family: var(--base-font-family);">40 €</span></td>
+</tr>
+<tr>
+<td>Cestovní výlohy (odvoz zákazníkem, čas na cestě) </td>
+<td class="right">započatá hodina</td>
+<td class="right">500 CZK</td>
+<td class="right"><span style="font-size: var(--text-size-base); font-family: var(--base-font-family);">20 €</span></td>
+</tr>
+</tbody>
+</table>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Náklady na ubytování, jízdenky, letenky nebo půjčení vozu jsou účtovány dle skutečnosti.</p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-5-12"><div class="block block-inline">Všechny ceny jsou uvedeny bez DPH. Uvedené ceny zahrnují slevy pro zákazníky, kteří mají uzavřenou servisní smlouvu s protel systems s.r.o. V ostatních případech jsou uvedené hodinové sazby a cestovné o 50 % vyšší. Ceníky jednotlivých obchodních partnerů se mohou lišit.</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div class="center"><a class="btn btn-default btn-sm" href="/cenik"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">CENÍK LICENCÍ</span></a></div></div></div></div></div></div>
+<KolikMeToBudeStat />
+<VyzkousetZdarma />
+<Novinky />
+<KontaktniFormular />
+</Base>

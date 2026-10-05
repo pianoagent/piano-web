@@ -1,152 +1,90 @@
 ---
-/**
- * Protel: produkt „Digitální hotelová kniha“. Obsah vytěžen z produkty/digitalni-hotelova-kniha.html
- * starého protelsystems.cz (jazykově uhlazeno, fakta zachována).
- * Vše ze sdílených komponent @piano/ui.
- */
+// https://www.protelsystems.cz/produkty/digitalni-hotelova-kniha (Solid Pixels), port 1:1 skriptem port-protel.py
 import Base from '../../layouts/Base.astro';
-import SiteHeader from '../../components/SiteHeader.astro';
-import SiteFooter from '../../components/SiteFooter.astro';
-import Section from '@piano/ui/components/Section.astro';
-import Hero from '@piano/ui/components/Hero.astro';
-import Heading from '@piano/ui/components/Heading.astro';
-import Text from '@piano/ui/components/Text.astro';
-import Button from '@piano/ui/components/Button.astro';
-import Icon from '@piano/ui/components/Icon.astro';
-import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
-import USPGrid from '@piano/ui/components/USPGrid.astro';
-import LeadForm from '@piano/ui/components/LeadForm.astro';
-import { protelLeadProofs } from '../../config/leadProofs';
-import Img from '@piano/ui/components/Img.astro';
-
-const features = [
-  {
-    id: "bez-nutnosti-stahovat-aplikaci", icon: "lucide:qr-code", title: "Bez nutnosti stahovat aplikaci",
-    paras: [
-      "Digitální hotelová kniha (Digital Guest Directory) dává hostům veškeré informace o hotelu a jeho službách, bez instalace jakékoli aplikace. Stačí načíst QR kód, který můžete mít umístěný kdekoli po hotelu, a vše se otevře v běžném webovém prohlížeči.",
-    ],
-  },
-  {
-    id: "nejlevnejsi-hotelova-kniha", icon: "lucide:piggy-bank", title: "Nejlevnější hotelová kniha",
-    paras: [
-      "Oproti tištěným knihám odpadají náklady na tisk nových stránek, aktualizace digitální knihy jsou levné a šetrné k životnímu prostředí. V Protelu ji proto označujeme za nejlevnější hotelovou knihu na světě!",
-      "Hostům stačí načíst QR kód a v reálném čase vidí aktuální údaje a nabídky Vašeho hotelu.",
-    ],
-  },
-  {
-    id: "hodnoceni-naprimo", icon: "lucide:star", title: "Hodnocení napřímo",
-    paras: [
-      "Zpětnou vazbu získáváte ještě během pobytu hosta. Recepce či management na ni mohou okamžitě reagovat a ovlivnit hodnocení dřív, než host odjede.",
-      "Hosté mohou využít i funkci „Zrušit úklid pokoje“, jednoduše dají vědět, že další den úklid nepotřebují. Zvyšuje se komfort na obou stranách a šetří se zdroje.",
-    ],
-  },
-  {
-    id: "vyssi-vynosy-pomoci-primych-rezervaci", icon: "lucide:trending-up", title: "Vyšší výnosy pomocí přímých rezervací",
-    paras: [
-      "Kompletní řešení pro udržení loajality mezi hotelem a hosty, bez podpůrných nástrojů třetích stran. Snadno vytváříte personalizované nabídky: jídlo na pokoj, wellness procedury, další pobyt se slevou a mnoho dalšího.",
-      "Držíte svůj hotelový byznys pevně ve svých rukách a efektivně zvyšujete příjmy nabídkami, které odpovídají preferencím Vašich hostů.",
-    ],
-  },
-  {
-    id: "roomservis", icon: "lucide:concierge-bell", title: "Roomservis",
-    paras: [
-      "Hosté si přes digitální hotelovou knihu procházejí nabídku jídel a nápojů včetně cen a objednávají přímo z mobilu nebo tabletu, kdykoli během dne i noci, bez čekání na spojení s recepcí či restaurací.",
-      "Pro personál znamená digitalizace objednávek méně telefonátů a snazší správu, provoz je efektivnější a servis lepší.",
-    ],
-  },
-  {
-    id: "bez-nutnosti-napojeni-na-pms", icon: "lucide:unplug", title: "Bez nutnosti napojení na PMS",
-    paras: [
-      "Digitální hotelová kniha nemusí být napojena na hotelový systém (PMS). I bez integrace hosté rezervují, objednávají služby jako pokojovou službu nebo úklid, zadávají požadavky a zpětnou vazbu, nebo se informují o hotelu a akcích.",
-    ],
-  },
-];
-
-const related = [
-  { icon: "lucide:smartphone", title: "Online check-in/out", text: "Host vyřídí check-in i check-out přes mobil, bez fronty na recepci.", href: "/produkty/online-check-in-out" },
-  { icon: "lucide:concierge-bell", title: "Room Service", text: "Host načte QR kód a objednávka jde přímo do Septimu v kuchyni či baru. Plně automatizované.", href: "/produkty/room-service" },
-  { icon: "lucide:mail", title: "Automatický mailing", text: "Personalizované e-maily hostům bez zásahu recepčního.", href: "/produkty/automaticky-mailing" },
-  { icon: "lucide:file-signature", title: "Digitální registrační karta", text: "Registrace hosta digitálně: konec papírování.", href: "/produkty/digitalni-registracni-karta" },
-];
+import Mezera from '../../components/blocks/Mezera.astro';
+import PojdmeToProbrat from '../../components/blocks/PojdmeToProbrat.astro';
+import KolikMeToBudeStat from '../../components/blocks/KolikMeToBudeStat.astro';
+import ProtelVPraxi from '../../components/blocks/ProtelVPraxi.astro';
+import DaleByVasMohloZajimat from '../../components/blocks/DaleByVasMohloZajimat.astro';
+import VyzkousetZdarma from '../../components/blocks/VyzkousetZdarma.astro';
+import Novinky from '../../components/blocks/Novinky.astro';
+import KontaktniFormular from '../../components/blocks/KontaktniFormular.astro';
 ---
-
-<Base title="Digitální hotelová kniha | Protel"
-      description="Digitální hotelová kniha (Digital Guest Directory) nahradí tištěnou verzi. Šetří náklady na tisk, umožní flexibilní aktualizace a zvyšuje prodej služeb.">
-  <SiteHeader />
-
-  <main>
-    <Breadcrumb items={[{ label: 'Úvod', href: '/' }, { label: 'Produkty', href: '/produkty' }, { label: "Digitální hotelová kniha" }]} />
-
-    <Hero eyebrow="Produkty" background="gradient"
-          lead="Společně s partnerem Straiv představujeme digitální informační hotelovou knihu, která úplně nahrazuje tištěnou verzi. Šetří náklady na tisk, umožňuje flexibilní aktualizace a funguje jako účinný nástroj pro zvyšování prodeje služeb přímo v hotelu.">
-      <Heading slot="title" as="h1" size="display" color="on-dark">Digitální <em>hotelová kniha</em></Heading>
-      <Fragment slot="actions">
-        <Button href="#poptavka">Vyzkoušet Protel zdarma</Button>
-        <Button href="/produkty" variant="secondary" onDark>Všechny produkty</Button>
-      </Fragment>
-      <figure slot="media" class="hero-pic">
-        <Img src="/images/hotelova-kniha.webp" alt="Digitální hotelová kniha v systému Protel" width={880} sizes="(min-width: 881px) 560px, 100vw" loading="eager" decoding="async" />
-      </figure>
-    </Hero>
-
-    <Section background="default" space="lg">
-      <nav class="jump" aria-label="Funkce produktu">
-        {features.map((f) => (
-          <a class="jump__chip" href={`#${f.id}`}>{f.title}</a>
-        ))}
-      </nav>
-      <div class="features">
-        {features.map((f) => (
-          <article class="feature" id={f.id}>
-            <span class="feature__icon"><Icon name={f.icon} size="lg" /></span>
-            <Heading as="h2" size="h3">{f.title}</Heading>
-            {f.paras.map((p) => (
-              <Text color="muted">{p}</Text>
-            ))}
-          </article>
-        ))}
-      </div>
-    </Section>
-
-    <Section background="primary" space="lg">
-      <figure class="quoteband">
-        <span class="quoteband__mark"><Icon name="lucide:quote" size="lg" /></span>
-        <blockquote>
-          <Heading as="p" size="h3" color="on-dark" align="center">Digitální hotelová kniha výrazně snižuje náklady na tisk a umožňuje snadné aktualizace. Navíc slouží jako účinný nástroj pro prodej dalších služeb a přímou komunikaci s hosty.</Heading>
-        </blockquote>
-      </figure>
-    </Section>
-
-    <USPGrid eyebrow="Dále by Vás mohlo zajímat" title="Související produkty"
-             items={related} minItemWidth="260px" background="alt" space="lg" />
-
-    <LeadForm proofs={protelLeadProofs} id="poptavka" variant="full" background="default"
-              title="Vyzkoušejte Protel zdarma"
-              lead="Co byste u Vás v hotelu rádi zlepšili? Nechte nám kontakt, ozveme se a ukážeme Protel přímo ve Vašem hotelu." />
-  </main>
-
-  <SiteFooter />
+<Base
+  title="Digitální hotelová kniha | Hotel PMS Protel"
+  description="Společně s partnerem Straiv představujeme digitální informační hotelovou knihu, která úplně nahrazuje její tištěnou verzi. Tento digitální nástroj nejen šetří náklady na tisk a umožňuje flexibilní aktualizace, ale také funguje jako účinný prostředek pro zvyšování prodeje vybraných služeb napřímo."
+  path="/produkty/digitalni-hotelova-kniha"
+  bodyClass="use-header-transparent use-menu-secondary-uppercase use-menu-button-uppercase use-headings-link-plain search-panel-hide-submit-label search-panel-hide-close-label search-panel-hide-open-label use-menu-bar use-header-fixed use-header-fixed-mobile use-header-priority use-header-boxed"
+  image="/files/nahled-produkt-digitalni-hotelova-kniha.jpg"
+>
+<div class="section height--low align--middle color--default section-width-wide section-has-background" id="uvod"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-card flexcard-size--normal flexcard-media-right valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><a class="image image-mask ratio-original" href="/vyzkouset-zdarma" style="padding-bottom:91.14583333333334%"><img alt="Digitální hotelová kniha" decoding="async" sizes="(min-width:1459px) 50vw, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/hdr-top-digitalni-hotelova-kniha.webp" srcset="/files/r/720/hdr-top-digitalni-hotelova-kniha.webp 720w, /files/r/1280/hdr-top-digitalni-hotelova-kniha.webp 1280w, /files/r/1920/hdr-top-digitalni-hotelova-kniha.webp 1920w"/></a></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p><a href="/produkty"><strong><span class="text-highlight"><span style="font-family: var(--headings-font-family); font-style: var(--headings-text-italic); text-transform: var(--headings-text-transform); text-decoration: var(--headings-text-underline); caret-color: rgb(255, 0, 150);"><font color="#ff0096" size="3">VŠECHNY PRODUKTY</font></span></span></strong></a></p>
+<h1>Digitální hotelová kniha</h1>
+<p class="text-large">Společně s partnerem <a href="https://straiv.io/" target="_blank">Straiv</a> představujeme digitální informační hotelovou knihu, která úplně nahrazuje její tištěnou verzi. Tento digitální nástroj nejen šetří náklady na tisk a umožňuje flexibilní aktualizace, ale také funguje jako účinný prostředek pro zvyšování prodeje vybraných služeb přímo v hotelu. </p>
+<p class="text-large"><a href="#funkce"><strong><span class="text-highlight"><span style="font-family: var(--headings-font-family); font-style: var(--headings-text-italic); text-transform: var(--headings-text-transform); text-decoration: var(--headings-text-underline); caret-color: rgb(255, 0, 150);"><font color="#ff0096" size="3">ZJISTIT VÍCE →</font></span></span></strong></a></p>
+</div><div class="image-btn"><a class="btn btn-default" href="/vyzkouset-zdarma"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">VYZKOUŠET ZDARMA</span></a></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-gallery grid-sm-2"><div class="grid gallery-container" style="--gap:40px"><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Mamaison" decoding="async" src="/files/ref-mamaison-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Clarion Hotel" decoding="async" src="/files/ref-clarion-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Comfort Hotel Prague City East" decoding="async" src="/files/ref-comfort-hotel-prague-city-east-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo CPI Hotels" decoding="async" src="/files/ref-cpi-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Buddha-Bar" decoding="async" src="/files/ref-buddha-bar-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><a class="image image-mask ratio-square image-width-stretch" href="/nasi-zakaznici"><img alt="Vaše logo" decoding="async" src="/files/ref-vase-2025.svg"/></a></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<Mezera />
+<PojdmeToProbrat />
+<Mezera />
+<div class="section height--low align--middle color--default section-has-background" id="funkce"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="container height--low color--auto container-width-boxed box--benefits"><div class="container-body flex flex--justify-start flex--wrap">
+<div class="flex__item flex__item--grow-1 grid-col-3"><div class="block block-image block-image--icon"><div class="flexcard flexcard-icon flexcard-horizontal flexcard-media-right valign-middle size-lg"><a class="flexcard-media" href="/produkty/digitalni-hotelova-kniha#bez-nutnosti-stahovat-aplikaci"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Bez nutnosti stahovat aplikaci" decoding="async" loading="lazy" src="/files/produkt-bez-nutnosti-stahovat-aplikaci.svg"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h4>Bez nutnosti stahovat aplikaci<span class="text-highlight">.</span></h4>
+</div><div class="image-btn"><a class="btn btn-inverse btn-sm" href="/produkty/digitalni-hotelova-kniha#bez-nutnosti-stahovat-aplikaci"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">To mě zajímá</span></a></div></div></div></div></div></div>
+<div class="flex__item flex__item--grow-1 grid-col-3"><div class="block block-image block-image--icon"><div class="flexcard flexcard-icon flexcard-horizontal flexcard-media-right valign-middle size-lg"><a class="flexcard-media" href="/produkty/digitalni-hotelova-kniha#nejlevnejsi-hotelova-kniha"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Nejlevnější hotelová kniha" decoding="async" loading="lazy" src="/files/produkt-nejlevnejsi-hotelova-kniha.svg"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h4>Nejlevnější hotelová kniha<span class="text-highlight">.</span></h4>
+</div><div class="image-btn"><a class="btn btn-inverse btn-sm" href="/produkty/digitalni-hotelova-kniha#nejlevnejsi-hotelova-kniha"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">To mě zajímá</span></a></div></div></div></div></div></div>
+<div class="flex__item flex__item--grow-1 grid-col-3"><div class="block block-image block-image--icon"><div class="flexcard flexcard-icon flexcard-horizontal flexcard-media-right valign-middle size-lg"><a class="flexcard-media" href="/produkty/digitalni-hotelova-kniha#hodnoceni-naprimo"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Hodnocení napřímo" decoding="async" loading="lazy" src="/files/produkt-hodnoceni-naprimo.svg"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h4>Hodnocení napřímo<span class="text-highlight">.</span></h4>
+</div><div class="image-btn"><a class="btn btn-inverse btn-sm" href="/produkty/digitalni-hotelova-kniha#hodnoceni-naprimo"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">To mě zajímá</span></a></div></div></div></div></div></div>
+<div class="flex__item flex__item--grow-1 grid-col-3"><div class="block block-image block-image--icon"><div class="flexcard flexcard-icon flexcard-horizontal flexcard-media-right valign-middle size-lg"><a class="flexcard-media" href="/produkty/digitalni-hotelova-kniha#vyssi-vynosy-pomoci-primych-rezervaci"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Vyšší výnosy pomocí přímých rezervací" decoding="async" loading="lazy" src="/files/produkt-upselling.svg"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h4>Vyšší výnosy pomocí přímých rezervací<span class="text-highlight">.</span></h4>
+</div><div class="image-btn"><a class="btn btn-inverse btn-sm" href="/produkty/digitalni-hotelova-kniha#vyssi-vynosy-pomoci-primych-rezervaci"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">To mě zajímá</span></a></div></div></div></div></div></div>
+<div class="flex__item flex__item--grow-1 grid-col-3"><div class="block block-image block-image--icon"><div class="flexcard flexcard-icon flexcard-horizontal flexcard-media-right valign-middle size-lg"><a class="flexcard-media" href="#roomservis"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Roomservis" decoding="async" loading="lazy" src="/files/produkt-roomservis.svg"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h4>Roomservis<span class="text-highlight">.</span></h4>
+</div><div class="image-btn"><a class="btn btn-inverse btn-sm" href="#roomservis"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">To mě zajímá</span></a></div></div></div></div></div></div>
+<div class="flex__item flex__item--grow-1 grid-col-3"><div class="block block-image block-image--icon"><div class="flexcard flexcard-icon flexcard-horizontal flexcard-media-right valign-middle size-lg"><a class="flexcard-media" href="#bez-nutnosti-napojeni-na-pms"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Bez nutnosti napojení na PMS" decoding="async" loading="lazy" src="/files/produkt-bez-nutnosti-napojeni-na-pms.svg"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h4>Bez nutnosti napojení na PMS<span class="text-highlight">.</span></h4>
+</div><div class="image-btn"><a class="btn btn-inverse btn-sm" href="#bez-nutnosti-napojeni-na-pms"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">To mě zajímá</span></a></div></div></div></div></div></div>
+</div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<KolikMeToBudeStat />
+<div class="section height--normal align--middle color--default section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image" id="bez-nutnosti-stahovat-aplikaci"><div class="flexcard flexcard-card flexcard-size--small flexcard-media-right valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Bez nutnosti stahovat aplikaci" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/produkt-bez-nutnosti-stahovat-aplikaci.webp" srcset="/files/r/720/produkt-bez-nutnosti-stahovat-aplikaci.webp 720w, /files/r/1280/produkt-bez-nutnosti-stahovat-aplikaci.webp 1280w, /files/r/1920/produkt-bez-nutnosti-stahovat-aplikaci.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2>Bez nutnosti stahovat aplikaci<span class="text-highlight">.</span></h2>
+<p>Digitální hotelová kniha, známá také jako Digital Guest Directory, je inovativní způsob, jak poskytnout hostům veškeré potřebné informace o hotelu a jeho službách. Co je na tomto řešení skvělé, je to, že hosté nemusí instalovat žádnou další aplikaci na svůj telefon či tablet. Stačí jim pouze otevřít běžný webový prohlížeč a získají okamžitý přístup ke všem relevantním informacím.</p>
+<p>Tímto způsobem není nutné, aby hosté ztráceli čas stahováním a instalací aplikace, což zvyšuje jejich spokojenost a usnadňuje jim interakci s hotelovými službami. Stačí přiložit své mobilní zařízení ke QR kódu, který můžete mít umístěný kdekoliv po svém hotelu.</p>
+</div></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<Mezera />
+<div class="section height--normal align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image" id="nejlevnejsi-hotelova-kniha"><div class="flexcard flexcard-card flexcard-size--small flexcard-media-left valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Nejlevnější hotelová kniha" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/produkt-nejlevnejsi-hotelova-kniha.webp" srcset="/files/r/720/produkt-nejlevnejsi-hotelova-kniha.webp 720w, /files/r/1280/produkt-nejlevnejsi-hotelova-kniha.webp 1280w, /files/r/1920/produkt-nejlevnejsi-hotelova-kniha.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2>Nejlevnější hotelová kniha<span class="text-highlight">.</span></h2>
+<p>Digitální hotelová kniha není jen cenově efektivní z hlediska počáteční investice, ale také minimalizuje náklady spojené s aktualizacemi. Ve srovnání s klasickými knihami, kde musí být vytištěny nové stránky, jsou aktualizace digitální knihy <a href="/uspory-v-hotelu">mnohem cenově dostupnější a šetrnější k životnímu prostředí</a>.</p>
+<p>Digitální hotelovou knihu tak v Protelu označujeme za nejlevnější hotelovou knihu na světě! Hotelovým hostům stačí nasvítit QR kód do svého chytrého telefonu a jsou v reálném čase připojeni k údajům a nabídkám Vašeho hotelu.</p>
+</div></div></div></div></div></div></div></div></div>
+<Mezera />
+<div class="section height--normal align--middle color--default section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image" id="hodnoceni-naprimo"><div class="flexcard flexcard-card flexcard-size--small flexcard-media-right valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Hodnocení napřímo" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/produkt-hodnoceni-naprimo.webp" srcset="/files/r/720/produkt-hodnoceni-naprimo.webp 720w, /files/r/1280/produkt-hodnoceni-naprimo.webp 1280w, /files/r/1920/produkt-hodnoceni-naprimo.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2>Hodnocení napřímo<span class="text-highlight">.</span></h2>
+<p>Digitální hotelová kniha představuje inovativní způsob, jak získávat zpětnou vazbu od hostů ještě během jejich pobytu ve Vašem hotelu. Díky této technologii mohou hosté snadno a rychle vyjádřit své hodnocení a názory, což umožňuje hotelům okamžitě reagovat na případné problémy a zlepšit hostitelský zážitek. Tímto způsobem mají hotely možnost aktivně ovlivnit hodnocení ještě před odjezdem hostů.</p>
+<p>Díky digitální hotelové knize může recepční nebo management hotelu přijímat zpětnou vazbu a komunikovat s hosty přímo a okamžitě, což zvyšuje efektivitu a umožňuje rychlé řešení případných problémů.</p>
+<p>Hosté mohou také využít funkci <a href="/fantasticky-hotel#zrusit-uklid-pokoje">"Zrušit úklid pokoje"</a>, což je další forma komunikace s hotelem, která zvyšuje jejich pohodlí na obou stranách a šetří zdroje, neboť umožňuje snadno informovat hotel, že na další den nepotřebuje host úklid svého pokoje.</p>
+</div></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<Mezera />
+<div class="section height--normal align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image" id="vyssi-vynosy-pomoci-primych-rezervaci"><div class="flexcard flexcard-card flexcard-size--small flexcard-media-left valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Vyšší výnosy pomocí přímých rezervací" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/produkt-upselling-l.webp" srcset="/files/r/720/produkt-upselling-l.webp 720w, /files/r/1280/produkt-upselling-l.webp 1280w, /files/r/1920/produkt-upselling-l.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2><span class="text-highlight"><font color="#000000"><span style="caret-color: rgb(0, 0, 0);">Vyšší výnosy pomocí přímých rezervací</span></font>.</span></h2>
+<p>Digitální hotelová kniha přináší kompletní řešení pro udržení loajality mezi hotelem a hosty bez potřeby dalších podpůrných nástrojů třetích stran!</p>
+<p>Díky ní můžete snadno vytvářet personalizované nabídky a služby přímo pro Vaše hosty, což zahrnuje možnosti jako jídlo na pokoj, wellness procedury, další pobyt se slevou a mnoho dalšího. Tímto způsobem máte kontrolu nad všemi aspekty svého hotelového byznysu a můžete efektivně zvyšovat příjmy prostřednictvím nabídek, které odpovídají potřebám a preferencím Vašich hostů.</p>
+<p>Celkově přináší digitální hotelová kniha moderní a interaktivní způsob komunikace mezi hotelem a hosty, což vede k vyšší spokojenosti hostů a efektivnějšímu provozu hotelu. Držte svůj hotelový byznys pevně ve svých rukách!</p>
+</div></div></div></div></div></div></div></div></div>
+<Mezera />
+<div class="section height--normal align--middle color--default section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image" id="roomservis"><div class="flexcard flexcard-card flexcard-size--small flexcard-media-right valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Roomservis" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/produkt-roomservis.webp" srcset="/files/r/720/produkt-roomservis.webp 720w, /files/r/1280/produkt-roomservis.webp 1280w, /files/r/1920/produkt-roomservis.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2>Roomservis<span class="text-highlight">.</span></h2>
+<p>Roomservis je služba, která umožňuje hostům objednat si jídlo a nápoje přímo do svého hotelového pokoje, čímž poskytuje maximální pohodlí a soukromí. Hosté mohou prostřednictvím digitální hotelové knihy procházet nabídku jídel a nápojů, zjišťovat podrobnosti o jednotlivých pokrmech, jejich cenách a následně objednávat jednoduše přímo přes svůj mobilní telefon nebo tablet. Tato moderní forma komunikace a objednávání nejen zvyšuje komfort hostů, ale také urychluje celý proces a minimalizuje riziko nedorozumění.</p>
+<p>Navíc mohou hosté objednávat kdykoli během dne nebo noci, aniž by museli čekat na spojení s recepcí nebo restaurací. Pro hotelový personál znamená digitalizace objednávek méně telefonátů a snazší správu objednávek, což vede k efektivnějšímu provozu a lepšímu servisu. Celkově digitální hotelová kniha s možností roomservisu zvyšuje spokojenost hostů a zlepšuje efektivitu hotelového provozu.</p>
+</div></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<Mezera />
+<div class="section height--normal align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image" id="bez-nutnosti-napojeni-na-pms"><div class="flexcard flexcard-card flexcard-size--small flexcard-media-left valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Bez nutnosti napojení na PMS" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/produkt-bez-nutnosti-napojeni-na-pms.webp" srcset="/files/r/720/produkt-bez-nutnosti-napojeni-na-pms.webp 720w, /files/r/1280/produkt-bez-nutnosti-napojeni-na-pms.webp 1280w, /files/r/1920/produkt-bez-nutnosti-napojeni-na-pms.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2><span class="text-highlight"><font color="#000000"><span style="caret-color: rgb(0, 0, 0);">Bez nutnosti napojení na PMS</span></font>.</span></h2>
+<p>Digitální hotelová kniha nemusí být nutně napojena na PMS (Property Management System) hotelový systém.</p>
+<p><span style="font-size: var(--text-size-base); font-family: var(--base-font-family);">Bez napojení na PMS může digitální hotelová kniha stále poskytovat širokou škálu funkcí a služeb pro hosty. Hosté mohou snadno provádět rezervace, objednávat služby jako je pokojová služba nebo úklid, zadávat požadavky a zpětnou vazbu, nebo se informovat o hotelových zařízeních a akcích.</span></p>
+<p>Tato flexibilita umožňuje hotelům efektivnější komunikaci s hosty, aniž by byla nutná kompletní integrace s existujícím hotelovým systémem.</p>
+</div></div></div></div></div></div></div></div></div>
+<Mezera />
+<div class="section height--normal align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-card flexcard-size--small flexcard-media-right valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><a class="image image-mask ratio-original" href="/produkty/digitalni-hotelova-kniha#kontaktni-formular" style="padding-bottom:100%"><img alt="" decoding="async" loading="lazy" src="/files/vyhoda-hoteloveho-systemu-protel.svg"/></a></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2><span class="text-highlight">"</span> Digitální hotelová kniha výrazně snižuje náklady na tisk a umožňuje snadné aktualizace. Navíc slouží jako účinný prostředek pro zlepšení prodeje dalších služeb a přímou komunikaci s hosty.</h2>
+</div><div class="image-btn"><a class="btn btn-default btn-sm" href="/produkty/digitalni-hotelova-kniha#kontaktni-formular"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">SPOJTE SE S NÁMI</span></a></div></div></div></div></div></div></div></div></div>
+<ProtelVPraxi />
+<div class="section height--normal align--middle color--default col-gaps-bigger section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Digitální hotelové knihy od Protel již využívají<span class="text-highlight">...</span></h2>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-4-12"><div class="block block-quote"><div class="has-icon left block-quote-figure"><div class="block-quote-image"><div class="image-wrapper"><div class="image image-mask ratio-square shape-circle"><img alt="Ivona Meissner" decoding="async" loading="lazy" sizes="auto" src="/files/r/1280/ivona-meissner.webp" srcset="/files/r/720/ivona-meissner.webp 720w, /files/r/1280/ivona-meissner.webp 1280w, /files/r/1920/ivona-meissner.webp 1920w"/></div></div></div><i class="icon icon-quote-right"></i><blockquote class="block-quote-text">Ďakujem firme Protel za profesionálny support a inštaláciu!</blockquote><div class="block-quote-author"><span class="quote-decor">–</span> Ivona Meissner <span class="quote-decor">–</span><span class="block-quote-info">BWH Hotel Group, Area Director Austria &amp; Central Eastern Europe</span></div></div></div></div> <div class="col col-5-12 grid-4-12"><div class="block block-quote"><div class="has-icon left block-quote-figure"><div class="block-quote-image"><div class="image-wrapper"><div class="image image-mask ratio-square shape-circle"><img alt="Štěpán Chalupa" decoding="async" loading="lazy" sizes="auto" src="/files/r/1280/stepan-chalupa.webp" srcset="/files/r/720/stepan-chalupa.webp 720w, /files/r/1280/stepan-chalupa.webp 1280w, /files/r/1920/stepan-chalupa.webp 1920w"/></div></div></div><i class="icon icon-quote-right"></i><blockquote class="block-quote-text">Díky protelu jsou naši studenti připraveni na moderní technologie v hotelnictví a lépe zvládají přechod do praxe!</blockquote><div class="block-quote-author"><span class="quote-decor">–</span> Štěpán Chalupa <span class="quote-decor">–</span><span class="block-quote-info">University College Prague, Prorektor pro spolupráci s praxí na UCP</span></div></div></div></div> <div class="col col-9-12 grid-4-12"><div class="block block-quote"><div class="has-icon left block-quote-figure"><div class="block-quote-image"><div class="image-wrapper"><div class="image image-mask ratio-square shape-circle"><img alt="Michaela Bieliková" decoding="async" loading="lazy" sizes="auto" src="/files/r/1280/michaela-bielikova.webp" srcset="/files/r/720/michaela-bielikova.webp 720w, /files/r/1280/michaela-bielikova.webp 1280w, /files/r/1920/michaela-bielikova.webp 1920w"/></div></div></div><i class="icon icon-quote-right"></i><blockquote class="block-quote-text">Protel je pro CPI Hotels vynikající volba. Jeho intuitivní rozhraní, spolehlivost a efektivita nám umožňují snadno řídit rezervace, spravovat hosty a sledovat statistiky.</blockquote><div class="block-quote-author"><span class="quote-decor">–</span> Michaela Bieliková <span class="quote-decor">–</span><span class="block-quote-info">CPI Hotels, Director Of Training and Development</span></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:50px"></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div class="center"><a class="btn btn-inverse btn-sm" href="/nasi-zakaznici"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">NAŠI ZÁKAZNÍCI</span></a></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<Mezera />
+<DaleByVasMohloZajimat />
+<VyzkousetZdarma />
+<Novinky />
+<KontaktniFormular />
 </Base>
-
-<style>
-  .jump { display: flex; flex-wrap: wrap; gap: var(--space-2); justify-content: center; margin-bottom: var(--space-8); }
-  .jump__chip {
-    display: inline-flex; padding: var(--space-2) var(--space-4);
-    border: 1px solid var(--color-border); border-radius: var(--radius-full);
-    background: var(--color-bg-alt); color: var(--color-text);
-    font-size: var(--font-size-small); font-weight: var(--font-weight-semibold);
-    text-decoration: none; transition: border-color var(--duration-base) var(--easing);
-  }
-  .jump__chip:hover { border-color: var(--color-primary); color: var(--color-text-accent); }
-  .features { max-width: 800px; margin-inline: auto; display: flex; flex-direction: column; gap: var(--space-9); }
-  .feature { scroll-margin-top: var(--space-9); }
-  .feature > :global(* + *) { margin-top: var(--space-3); }
-  .feature__icon {
-    display: inline-flex; align-items: center; justify-content: center;
-    width: 56px; height: 56px; border-radius: var(--radius-md);
-    background: color-mix(in srgb, var(--color-primary) 10%, #fff); color: var(--color-primary);
-  }
-  .quoteband { margin: 0; max-width: 840px; margin-inline: auto; display: flex; flex-direction: column; align-items: center; gap: var(--space-4); text-align: center; }
-  .quoteband__mark { color: var(--color-text-on-dark); opacity: 0.7; }
-  .quoteband blockquote { margin: 0; }
-</style>

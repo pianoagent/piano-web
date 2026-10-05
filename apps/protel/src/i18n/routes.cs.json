@@ -1,0 +1,251 @@
+{
+  "/": {
+    "sk": "/sk"
+  },
+  "/automatizace-rezervaci": {
+    "sk": "/sk/automatizacia-rezervacii"
+  },
+  "/bezpecnost": {
+    "sk": "/sk"
+  },
+  "/blog/chatbot-ai-ve-villa-sandy": {
+    "sk": "/sk/blog/chatbot-ai-ve-villa-sandy"
+  },
+  "/blog/dulezite-oznameni-zmena-sidla-spolecnosti": {
+    "sk": "/sk"
+  },
+  "/blog/grandhotel-pupp-pouziva-protel-pms": {
+    "sk": "/sk"
+  },
+  "/blog/hotel-perk-a-horsky-resort-dolni-morava-digitalizace-diky-protel": {
+    "sk": "/sk"
+  },
+  "/blog/hotelova-snidane-zvysuje-obrat": {
+    "sk": "/sk"
+  },
+  "/blog/import-rooming-listu-pro-skupiny-do-hoteloveho-systemu": {
+    "sk": "/sk/blog/importovanie-zoznamov-izieb-pre-skupiny-do-hoteloveho-systemu"
+  },
+  "/blog/jak-resite-bezpecnost-platebnich-udaju-karet-svych-zakazniku": {
+    "sk": "/sk/blog/ako-zabezpecujete-udaje-o-platbach-kartou-svojich-zakaznikov"
+  },
+  "/blog/jak-zvysit-trzby-v-hotelu-diky-chytre-optimalizaci-cen": {
+    "sk": "/sk"
+  },
+  "/blog/mfa-zabezpeceny-hotel": {
+    "sk": "/sk/blog/mfa-zabezpeceny-hotel"
+  },
+  "/blog/michelin-v-rodine-protel": {
+    "sk": "/sk"
+  },
+  "/blog/propojeni-pms-a-golfoveho-systemu-zjednodusuje-provoz-hotelovych-resortu": {
+    "sk": "/sk"
+  },
+  "/blog/protel-zvysil-trzby-hotelu-savoy": {
+    "sk": "/sk"
+  },
+  "/blog/rychly-check-in-v-aquapalace-hotel-prague": {
+    "sk": "/sk"
+  },
+  "/blog/server-nebo-cloud-pro-hotelovy-system-co-vybrat": {
+    "sk": "/sk/blog/server-alebo-cloud-pre-hotelovy-system-co-si-vybrat"
+  },
+  "/blog/tajemstvi-vsech-tajemstvi": {
+    "sk": "/sk"
+  },
+  "/blog/transparentni-cenova-politika-a-snadne-napojeni-systemu-tretich-stran": {
+    "sk": "/sk/blog/transparentne-ceny-a-jednoduche-pripojenie-k-systemom-tretich-stran"
+  },
+  "/case/aquapalace-hotel-prague": {
+    "sk": "/sk"
+  },
+  "/case/hotel-savoy-prague": {
+    "sk": "/sk"
+  },
+  "/case/villa-sandy-resort": {
+    "sk": "/sk/blog/villa-sandy-resort"
+  },
+  "/cenik": {
+    "sk": "/sk"
+  },
+  "/cenik-servisnich-sluzeb": {
+    "sk": "/sk/cennik-sluzieb"
+  },
+  "/cisla-pod-kontrolou": {
+    "sk": "/sk/cisla-pod-kontrolou"
+  },
+  "/demo-cloud-login-free": {
+    "sk": "/sk"
+  },
+  "/demo-onprem-login": {
+    "sk": "/sk"
+  },
+  "/demo-protel-cloud": {
+    "sk": "/sk"
+  },
+  "/digitalni-recepce": {
+    "sk": "/sk/digitalna-recepcia"
+  },
+  "/fantasticky-hotel": {
+    "sk": "/sk/fantasticky-hotel"
+  },
+  "/fantasticky-hotel-1893": {},
+  "/fantasticky-hotel-chm": {},
+  "/hotelovy-a-rezervacni-system": {
+    "sk": "/sk"
+  },
+  "/informace-o-zpracovani-cookies": {
+    "sk": "/sk/informacie-o-spracovani-cookies"
+  },
+  "/inteligentni-platby": {
+    "sk": "/sk/inteligentne-platby"
+  },
+  "/kontakt": {
+    "sk": "/sk/kontakt"
+  },
+  "/legislativa-hotelu": {
+    "sk": "/sk/legislativa-hotela"
+  },
+  "/mfa-nastaveni-onpremise": {
+    "sk": "/sk"
+  },
+  "/nabidky-skoleni": {
+    "sk": "/sk"
+  },
+  "/napojeni": {
+    "sk": "/sk/napojenie"
+  },
+  "/napojeni/automatizace-provozu": {
+    "sk": "/sk/napojenie/automatizacia-prevadzky"
+  },
+  "/napojeni/business-intelligence-a-revenue-management": {
+    "sk": "/sk/napojenie/business-intelligence-a-revenue-management"
+  },
+  "/napojeni/cenova-optimalizace-revcontrol": {
+    "sk": "/sk/napojenie/cenova-optimalizacia-revcontrol"
+  },
+  "/napojeni/channel-manager-crs": {
+    "sk": "/sk/napojenie/channel-manager-crs"
+  },
+  "/napojeni/chatbot-dialogshift": {
+    "sk": "/sk/napojenie/chatbot-dialogshift"
+  },
+  "/napojeni/online-check-in-out-a-kiosek-straiv": {
+    "sk": "/sk/napojenie/online-check-in-out-a-kiosk-straiv"
+  },
+  "/napojeni/ostatni-napojeni": {
+    "sk": "/sk/napojenie/ostatne-napojenie"
+  },
+  "/napojeni/platebni-reseni-planet": {
+    "sk": "/sk/napojenie/platobne-riesenie-planet"
+  },
+  "/napojeni/restauracni-system-septim": {
+    "sk": "/sk/napojenie/restauracny-system-septim"
+  },
+  "/napojeni/rizeni-budov": {
+    "sk": "/sk/napojenie/sprava-budov"
+  },
+  "/napojeni/televizni-systemy": {
+    "sk": "/sk/napojenie/televizne-systemy"
+  },
+  "/napojeni/ucetni-programy": {
+    "sk": "/sk/napojenie/uctovne-programy"
+  },
+  "/napojeni/vernostni-programy-crm": {
+    "sk": "/sk/napojenie/vernostne-programy-crm"
+  },
+  "/napojeni/wellness-a-sportovni-systemy": {
+    "sk": "/sk/napojenie/wellness-a-sportove-systemy"
+  },
+  "/napojeni/zamkove-systemy": {
+    "sk": "/sk/napojenie/uzamykacie-systemy"
+  },
+  "/nasi-zakaznici": {
+    "sk": "/sk/nasi-zakaznici"
+  },
+  "/novinky": {
+    "sk": "/sk/novinky"
+  },
+  "/novinky-kariera": {
+    "sk": "/sk"
+  },
+  "/o-protelu": {
+    "sk": "/sk/o-protel"
+  },
+  "/podminky-o-zpracovani-osobnich-udaju-formular": {
+    "sk": "/sk/podmienky-spracovania-osobnych-udajov-formular"
+  },
+  "/podpora": {
+    "sk": "/sk/podpora"
+  },
+  "/prehledny-provoz-hotelu": {
+    "sk": "/sk/prehladna-prevadzka-hotela"
+  },
+  "/produkty": {
+    "sk": "/sk/produkty"
+  },
+  "/produkty/automaticky-mailing": {
+    "sk": "/sk/produkty/automaticky-mailing"
+  },
+  "/produkty/ctecka-dokladu": {
+    "sk": "/sk/produkty/citacka-dokumentov"
+  },
+  "/produkty/digitalni-hotelova-kniha": {
+    "sk": "/sk/produkty/digitalna-hotelova-kniha"
+  },
+  "/produkty/digitalni-registracni-karta": {
+    "sk": "/sk/produkty/digitalna-registracna-karta"
+  },
+  "/produkty/hotelove-retezce": {
+    "sk": "/sk/produkty/hotelove-retazce"
+  },
+  "/produkty/hotelovy-system": {
+    "sk": "/sk/produkty/hotelovy-system-protel"
+  },
+  "/produkty/housekeeping": {
+    "sk": "/sk/produkty/housekeeping"
+  },
+  "/produkty/kiosek": {
+    "sk": "/sk/produkty/kiosk"
+  },
+  "/produkty/konference": {
+    "sk": "/sk/produkty/konferencie"
+  },
+  "/produkty/meal-plan": {
+    "sk": "/sk"
+  },
+  "/produkty/online-check-in-out": {
+    "sk": "/sk/produkty/online-check-in-out"
+  },
+  "/produkty/platebni-reseni-hotelu": {
+    "sk": "/sk/produkty/riesenie-platieb-v-hoteli"
+  },
+  "/produkty/room-service": {
+    "sk": "/sk"
+  },
+  "/produkty/webove-rezervace": {
+    "sk": "/sk/produkty/webove-rezervacie"
+  },
+  "/protel-cloud-mfa": {
+    "sk": "/sk"
+  },
+  "/protel-pro-skoly": {
+    "sk": "/sk/protel-pre-skoly"
+  },
+  "/rizeni-vice-hotelu": {
+    "sk": "/sk/sprava-viacerych-hotelov"
+  },
+  "/support-komunikacni-matice": {
+    "sk": "/sk"
+  },
+  "/uspory-v-hotelu": {
+    "sk": "/sk/uspory-v-hoteli"
+  },
+  "/virtualni-platebni-terminal": {},
+  "/vyzkouset-zdarma": {
+    "sk": "/sk/demo-zadarmo"
+  },
+  "/ziskovy-hotel": {
+    "sk": "/sk/co-vas-zaujima"
+  }
+}

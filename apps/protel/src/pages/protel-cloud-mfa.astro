@@ -1,0 +1,117 @@
+---
+// https://www.protelsystems.cz/protel-cloud-mfa (Solid Pixels), port 1:1 skriptem port-protel.py
+import Base from './../layouts/Base.astro';
+import FormularPodpora from './../components/blocks/FormularPodpora.astro';
+import ZnalostniDatabaze from './../components/blocks/ZnalostniDatabaze.astro';
+---
+<Base
+  title="Nastavení vícefaktorového ověření | Hotel PMS Protel"
+  description="Vícefaktorové ověřování (MFA) pro uživatele Protel Cloud PMS: co je MFA, jak vám pomůže a proč ho aktivovat."
+  path="/protel-cloud-mfa"
+  bodyClass="use-header-transparent use-menu-secondary-uppercase use-menu-button-uppercase use-headings-link-plain search-panel-hide-submit-label search-panel-hide-close-label search-panel-hide-open-label use-menu-bar use-header-fixed use-header-fixed-mobile use-header-priority use-header-boxed"
+  image="/files/nahled-kontakt.jpg"
+>
+<div class="section height--low align--middle color--default section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h1 class="center">Protel Cloud - vícefaktorové ověřování<span class="text-highlight">.</span></h1>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Protel zavádí bezpečnostní prvek Multi-Factor Authentication (MFA) pro uživatele Cloud PMS.</p>
+<p>Vícefaktorové ověřování (dále jen MFA) bylo přidáno jako možnost pro všechny zákazníky protel Cloud PMS dne 30. září 2024. <strong>Od poloviny února 2025 bude MFA povinně aktivováno pro všechny uživatele, kteří mají přístup k citlivým datům v Protelu (viz níže).</strong></p>
+<p>V tomto článku se dozvíte, co je MFA, jak vám může pomoci a proč byste jej měli aktivovat, když bude přidáno jako volitelná nová funkce do protel Cloud PMS.</p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3>Co je MFA</h3>
+<p>MFA přidává druhou vrstvu zabezpečení k jednofaktorovému ověřování (1FA), které je při samostatném použití slabší formou autentizace, protože vyžaduje pouze jeden důkaz identity, například heslo.</p>
+<h3>MFA má různé podoby</h3>
+<p>Technologie MFA se již dlouho používá ve finančním průmyslu. Například když používáte bankomat k výběru peněz, používáte MFA, protože potřebujete kartu (něco, co máte) a PIN (něco, co znáte), abyste měli přístup ke svému bankovnímu účtu. Další oblíbené metody MFA zahrnují hardwarové tokeny, push notifikace MFA, SMS ověření a autentizační aplikace.</p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><hr class="divider divider--normal divider--align-left"/></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3>Zvýšená odolnost proti kyberútokům</h3>
+<p>Žijeme v době, kdy jsou data hostů, včetně jména, adresy, telefonního čísla, data narození a údajů o platebních kartách, náchylná ke kyberútokům.</p>
+<p>V nesprávných rukou mohou být tato data prodána, použita k vydírání nebo k páchání jiných trestných činů, jako je krádež identity a phishingové útoky. A pokud jsou kyberzločinci úspěšní, škody mohou být významné.</p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><hr class="divider divider--normal divider--align-left"/></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3>Přidání větší bezpečnosti s MFA</h3>
+<p>Hlavní výhodou dvoufaktorové autentizace je, že přidává další stupeň zabezpečení. To pomáhá neutralizovat rizika spojená s kompromitovanými hesly.</p>
+<p>Pokud je heslo prolomeno, uhodnuto nebo odcizeno prostřednictvím phishingu, útočník stále potřebuje druhý faktor, aby získal přístup, což znamená, že samotné heslo je nepoužitelné. MFA je nyní natolik hladké, rychlé a široce používané, že jej mnoho lidí považuje za standard.</p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><hr class="divider divider--normal divider--align-left"/></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3>MFA v Protel Cloud</h3>
+<p>Ve společnosti protel jsme se rozhodli implementovat MFA do našeho cloudového PMS. Tím poskytujeme druhou vrstvu zabezpečení, chráníme data vašich hostů a po krátkém čase zvyknutí si na MFA se stane jeho používání snadnou součástí vašeho každodenního procesu.</p>
+<p><em><strong>MFA bude povinné pro uživatele, kteří mohou provádět následující akce:</strong></em></p>
+<ul>
+<li>Detokenizace údajů o kreditních kartách</li>
+<li>Správa uživatelů a jejich oprávnění</li>
+<li>Úpravy šablon</li>
+<li>Hromadný export dat profilů</li>
+</ul>
+<p><strong>Důrazně doporučujeme, abyste aktivovali MFA i pro všechny ostatní uživatele.</strong></p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><hr class="divider divider--normal divider--align-left"/></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3><span class="text-highlight">Jak řešit přihlašování pro uživatele na recepci? </span></h3>
+<p>Pro uživatele, kteří se potřebují často přihlašovat a nemají (nebo nebudou mít) vlastní telefon, navrhujeme následující řešení:</p>
+<p><strong>Služební telefon s aplikací Auth0 Guardian</strong></p>
+<ul>
+<li>Na recepci doporučujeme mít jeden služební telefon, na kterém bude nainstalována aplikace Auth0 Guardian.</li>
+<li>Do této aplikace lze přidat libovolný počet uživatelských účtů.</li>
+<li>Při přihlašování si uživatelé mohou zvolit svůj účet a jednoduše potvrdit přihlášení přímo v aplikaci, aniž by museli opisovat číselný kód.</li>
+</ul>
+<p><strong>Výhody tohoto řešení:</strong></p>
+<ul>
+<li>Rychlost a pohodlí: Recepční se mohou rychle přihlásit bez zdržování opisováním kódů.</li>
+<li>Centralizace: Jedno zařízení na recepci je snadné spravovat a minimalizuje komplikace.</li>
+<li>Flexibilita: Aplikace umožňuje přidání více uživatelů, což je ideální pro pracovní prostředí s více zaměstnanci.</li>
+</ul>
+<p>Toto řešení je pouze naším doporučením. Rozhodnutí o jeho zavedení závisí na preferencích a podmínkách konkrétního ubytovacího zařízení.</p>
+<p>Pro více informací nebo pomoc s nastavením se obraťte na naši technickou podporu.</p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center h1-style">Nastavení MFA a přihlašování<span class="text-highlight">.</span></h2>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3>Nastavení MFA</h3>
+<p>Pokud bylo MFA aktivováno, všichni dotčení uživatelé budou při příštím přihlášení vyzváni k nastavení MFA pro svůj účet. Nabízíme dvě možnosti, jak MFA používat:</p>
+<ul>
+<li><strong>Ověřování pomocí aplikace Auth0 Guardian  </strong>(tuto aplikaci doporučujeme zejména pro uživatele, kteří se potřebují přihlašovat velmi často)</li>
+<li><strong>Ověřování pomocí aplikace Google Authenticator nebo podobné aplikace</strong></li>
+</ul>
+</div></div></div>
+<div class="row-main"><div class="col col-5-12 grid-4-12"><div class="block block-image"><div class="image image-mask ratio-original" style="padding-bottom:113.51351351351352%"><img alt="" decoding="async" sizes="(min-width:1390px) 463px, (min-width:720px) 33.33vw, 100.00vw" src="/files/r/1280/screenshot-2024-09-23-183247.webp" srcset="/files/r/720/screenshot-2024-09-23-183247.webp 720w, /files/r/1280/screenshot-2024-09-23-183247.webp 1280w, /files/r/1920/screenshot-2024-09-23-183247.webp 1920w"/></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-accordion">
+<div class="accordion"><div class="accordion__title"><span class="accordion__title-label">Ověřování pomocí aplikace Auth0 Guardian</span><span class="accordion__title-arrow"><div class="cssicon cssicon--chevron cssicon--size-parent"></div></span></div><div class="container accordion__content"><div class="container-body">
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Klikněte na tlačítko pro aplikaci Auth0 Guardian.</p>
+</div></div></div>
+<div class="row-main"><div class="col col-5-12 grid-4-12"><div class="block block-image"><div class="image image-mask ratio-original" style="padding-bottom:123.24195470798568%"><img alt="" decoding="async" sizes="(min-width:1390px) 463px, (min-width:720px) 33.33vw, (min-width:480px) 33.33vw, (min-width:360px) 33.33vw, 100.00vw" src="/files/r/1280/screenshot-2024-09-23-183319.webp" srcset="/files/r/720/screenshot-2024-09-23-183319.webp 720w, /files/r/1280/screenshot-2024-09-23-183319.webp 1280w, /files/r/1920/screenshot-2024-09-23-183319.webp 1920w"/></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Nainstalujte aplikaci na svůj mobilní telefon. Aplikace je dostupná prostřednictvím následujících odkazů:</p>
+<ul>
+<li><a href="https://apps.apple.com/us/app/auth0-guardian/id1093447833">Auth0 Guardian App v Apple App Store</a></li>
+<li><a href="https://play.google.com/store/apps/details?id=com.auth0.guardian">Auth0 Guardian App v Google Play Store</a></li>
+</ul>
+<p>Alternativně můžete použít ikony zobrazené na přihlašovací stránce. </p>
+<p>Po instalaci aplikace klikněte na tlačítko <strong>Continue</strong>. Na nové stránce naskenujte zobrazený QR kód pomocí aplikace Auth0 Guardian.</p>
+</div></div></div>
+<div class="row-main"><div class="col col-5-12 grid-4-12"><div class="block block-image"><div class="image image-mask ratio-original" style="padding-bottom:128.23529411764707%"><img alt="" decoding="async" sizes="(min-width:1390px) 463px, (min-width:720px) 33.33vw, (min-width:480px) 33.33vw, (min-width:360px) 33.33vw, 100.00vw" src="/files/r/1280/image-2.webp" srcset="/files/r/720/image-2.webp 720w, /files/r/1280/image-2.webp 1280w, /files/r/1920/image-2.webp 1920w"/></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Pokud bylo skenování kódu úspěšné, může být vyžádáno, abyste udělili aplikaci protel offline přístup, stejně jako přístup k vašemu profilu a e-mailové adrese. Bez tohoto oprávnění se již nebudete moci přihlásit.</p>
+</div></div></div>
+<div class="row-main"><div class="col col-5-12 grid-4-12"><div class="block block-image"><div class="image image-mask ratio-original" style="padding-bottom:159.65346534653466%"><img alt="" decoding="async" sizes="(min-width:1390px) 463px, (min-width:720px) 33.33vw, (min-width:480px) 33.33vw, (min-width:360px) 33.33vw, 100.00vw" src="/files/r/1280/image-3.webp" srcset="/files/r/720/image-3.webp 720w, /files/r/1280/image-3.webp 1280w, /files/r/1920/image-3.webp 1920w"/></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Jakmile kliknete na tlačítko <strong>Accept</strong>, budete přihlášeni a nastavení MFA je dokončeno.</p>
+<p>Při příštím přihlášení se po zadání uživatelských údajů zobrazí následující dialog:</p>
+</div></div></div>
+<div class="row-main"><div class="col col-5-12 grid-4-12"><div class="block block-image"><div class="image image-mask ratio-original" style="padding-bottom:145.82132564841498%"><img alt="" decoding="async" sizes="(min-width:1390px) 463px, (min-width:720px) 33.33vw, (min-width:480px) 33.33vw, (min-width:360px) 33.33vw, 100.00vw" src="/files/r/1280/image-10.webp" srcset="/files/r/720/image-10.webp 720w, /files/r/1280/image-10.webp 1280w, /files/r/1920/image-10.webp 1920w"/></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Na spárovaném zařízení se objeví notifikace, která vás přesměruje do aplikace Auth0 Guardian.</p>
+</div></div></div>
+<div class="row-main"><div class="col col-5-12 grid-4-12"><div class="block block-image"><div class="image image-mask ratio-original" style="padding-bottom:216.5625%"><img alt="" decoding="async" sizes="(min-width:1390px) 463px, (min-width:720px) 33.33vw, (min-width:480px) 33.33vw, (min-width:360px) 33.33vw, 100.00vw" src="/files/r/1280/image-4.webp" srcset="/files/r/720/image-4.webp 720w, /files/r/1280/image-4.webp 1280w, /files/r/1920/image-4.webp 1920w"/></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>V aplikaci potvrďte svou identitu kliknutím na tlačítko <strong>Schválit</strong>.</p>
+<p><strong>Nyní jste přihlášeni.</strong></p>
+</div></div></div>
+</div></div></div>
+<div class="accordion"><div class="accordion__title"><span class="accordion__title-label">Ověřování pomocí aplikace Google Authenticator nebo podobné aplikace</span><span class="accordion__title-arrow"><div class="cssicon cssicon--chevron cssicon--size-parent"></div></span></div><div class="container accordion__content"><div class="container-body">
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Klikněte na tlačítko pro aplikaci Google Authenticator nebo podobnou aplikaci. Nainstalujte aplikaci na svůj mobilní telefon. Po instalaci postupujte podle pokynů na obrazovce mobilního telefonu. Nejprve naskenujte zobrazený QR kód pomocí aplikace na vašem telefonu.</p>
+</div></div></div>
+<div class="row-main"><div class="col col-5-12 grid-4-12"><div class="block block-image"><div class="image image-mask ratio-original" style="padding-bottom:171.69197396963122%"><img alt="" decoding="async" sizes="(min-width:1390px) 463px, (min-width:720px) 33.33vw, (min-width:480px) 33.33vw, (min-width:360px) 33.33vw, 100.00vw" src="/files/r/1280/image-5.webp" srcset="/files/r/720/image-5.webp 720w, /files/r/1280/image-5.webp 1280w, /files/r/1920/image-5.webp 1920w"/></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Pokud bylo skenování úspěšné, na vašem mobilním telefonu se zobrazí nově generovaný číselný kód. Tento kód se generuje v pravidelných intervalech, takže při zadávání může být potřeba jednat rychle nebo počkat na vygenerování nového kódu. Zadejte kód, který se zobrazuje, na webové stránce.</p>
+<p>Pokud bylo skenování úspěšné, může být vyžádáno, abyste udělili aplikaci protel offline přístup, stejně jako přístup k vašemu profilu a e-mailové adrese. Bez tohoto oprávnění se již nebudete moci přihlásit.</p>
+</div></div></div>
+<div class="row-main"><div class="col col-5-12 grid-4-12"><div class="block block-image"><div class="image image-mask ratio-original" style="padding-bottom:159.65346534653466%"><img alt="" decoding="async" sizes="(min-width:1390px) 463px, (min-width:720px) 33.33vw, (min-width:480px) 33.33vw, (min-width:360px) 33.33vw, 100.00vw" src="/files/r/1280/image-3.webp" srcset="/files/r/720/image-3.webp 720w, /files/r/1280/image-3.webp 1280w, /files/r/1920/image-3.webp 1920w"/></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Jakmile kliknete na tlačítko <strong>Přijmout</strong>, budete přihlášeni a nastavení MFA je dokončeno. Při každém budoucím přihlášení použijte aplikaci Authenticator a kód, který aplikace generuje, k ověření své identity a přístupu k systému.</p>
+</div></div></div>
+</div></div></div>
+</div></div></div></div><div class="section-background" style="background-color:rgb(242, 242, 242)"></div></div>
+<FormularPodpora />
+<ZnalostniDatabaze />
+</Base>

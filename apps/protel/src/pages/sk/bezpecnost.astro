@@ -1,0 +1,120 @@
+---
+// https://www.protelsystems.cz/sk/bezpecnost (Solid Pixels), port 1:1 skriptem port-protel.py
+import Base from '../../layouts/Base.astro';
+import KontaktniFormularSk from '../../components/blocks/KontaktniFormularSk.astro';
+---
+<Base
+  title="Bezpečnosť údajov v hotelovom systéme | Hotel PMS Protel"
+  description="Odporúčané postupy na ochranu údajov hostí v PMS. Segmentácia siete, MFA, správa prístupov, pravidlá pre údaje platobných kariet a obrana proti phishingu."
+  path="/sk/bezpecnost"
+  bodyClass="use-header-transparent use-menu-secondary-uppercase use-menu-button-uppercase use-headings-link-plain search-panel-hide-submit-label search-panel-hide-close-label search-panel-hide-open-label use-menu-bar use-header-fixed use-header-fixed-mobile use-header-priority use-header-boxed"
+  locale="sk"
+  image="/files/nahled-produkty.jpg"
+>
+<div class="section height--low align--middle color--default section-width-boxed section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h1 class="center">Ochrana údajov hostí vo Vašom PMS<span class="text-highlight">.</span></h1>
+</div></div></div>
+<div class="row-main"><div class="col col-2-12 grid-10-12"><div class="block block-inline"><p class="text-large center">Najbezpečnejšie údaje hostí sú tie, ktoré vôbec neukladáte. Obmedzte, čo Váš PMS drží, maskujte to, čo si ponechať musíte, a údaje platobných kariet držte mimo voľných textových polí.</p>
+</div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<div class="section height--low align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:50px"></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Nasledujúce odporúčania vychádzajú <a href="https://www.weareplanet.com/news/protecting-customer-data-in-your-pms" target="_blank">z materiálu nášho platobného partnera Planet</a> a zhŕňajú postupy, ktorými hotel chráni údaje svojich hostí. Odporúčame ich prejsť s Vaším IT správcom a postupne zaviesť.</p>
+<h3><strong>Prečo to riešiť práve teraz</strong></h3>
+<p>Podľa prehľadu Planet ukázali bezpečnostné incidenty posledných mesiacov slabé miesta v systémoch, ktoré hotely denne používajú. Phishingové kampane sa vydávali za rezervačné platformy a lákali prihlasovacie údaje. Útočníci cielili priamo na hotelových administrátorov, aby sa dostali k záznamom o hosťoch. Pri jednom z väčších únikov sa von dostali mená hostí a kontaktné údaje, ale nie platobné údaje, pretože tie sa v danom systéme vôbec neukladali. Presne v tom je sila minimalizácie údajov.</p>
+<h3><strong>Základný princíp: neukladajte to, čo nepotrebujete</strong></h3>
+<p>Skôr než do PMS uložíte ďalší údaj o hosťovi, položte si otázku, či ho systém naozaj potrebuje. Na spárovanie záznamov väčšinou stačí číslo rezervácie alebo číslo vernostnej karty. Tieto identifikátory patria do databáz a exportov namiesto citlivých údajov, ako sú čísla platobných kariet.</p>
+<h3><strong>Sieť a firewall</strong></h3>
+<ul>
+<li>Blokujte prichádzajúcu prevádzku v predvolenom nastavení. Povoľte len spojenia, ktoré prevádzka skutočne potrebuje.</li>
+<li>Pravidelne so svojím IT dodávateľom prechádzajte služby vystavené do internetu.</li>
+<li>Administrátorský prístup veďte cez VPN, nie priamo z internetu.</li>
+<li>Obmedzte prístup podľa zdrojovej IP adresy na dôveryhodné adresy.</li>
+<li>Kontrolujte aj odchádzajúcu prevádzku z kritických serverov.</li>
+<li>Sledujte logy firewallu a všímajte si neobvyklé pokusy o spojenie.</li>
+</ul>
+<h3><strong>Segmentácia siete</strong></h3>
+<ul>
+<li>Oddeľte hosťovskú Wi-Fi od firemných systémov.</li>
+<li>Izolujte od seba PMS, platobné systémy, administrátorské stanice a zariadenia IoT.</li>
+<li>Držte sa princípu najmenšej možnej konektivity. Systémy spolu majú komunikovať len tam, kde to prevádzka vyžaduje.</li>
+</ul>
+<h3><strong>Správa prístupov</strong></h3>
+<ul>
+<li>Prideľujte oprávnenia podľa rolí.</li>
+<li>Zapnite viacfaktorové overenie (MFA) pre všetky prihlásenia do PMS, nielen pre administrátorské účty.</li>
+<li>Vyžadujte silné heslá a jasne nastavené pravidlá zložitosti.</li>
+<li>Pravidelne revidujte prístupy a rušte nepoužívané účty.</li>
+<li>Účet zamestnanca, ktorý odchádza, deaktivujte okamžite.</li>
+<li>Veďte logy prístupov a pravidelne kontrolujte, kto a aké údaje exportoval.</li>
+</ul>
+<h3><strong>Softvér a aktualizácie</strong></h3>
+<ul>
+<li>Udržujte PMS aktualizovaný vrátane bezpečnostných záplat.</li>
+<li>Pravidelne aktualizujte aj operačné systémy, servery, pracovné stanice a firewally.</li>
+<li>Nepoužívajte systémy po konci podpory, ktoré už bezpečnostné opravy nedostávajú.</li>
+<li>Údaje platobných kariet: čo PMS nesmie nikdy ukladať</li>
+<li>Podľa štandardu PCI DSS platí:</li>
+</ul>
+<h3><strong>Údaje držiteľov kariet ukladajte výhradne v schválených platobných systémoch.</strong></h3>
+<ul>
+<li>Používajte tokenizované platobné metódy všade, kde je to možné.</li>
+<li>Nikdy neuchovávajte overovacie kódy kariet (CVV, CVC) po autorizácii platby.</li>
+<li>Nikdy neukladajte obsah magnetického prúžku ani čipu.</li>
+<li>Nikdy neuchovávajte PIN, za žiadnych okolností.</li>
+<li>Ak číslo karty zobrazujete na účtenke alebo v súhrne rezervácie, podľa PCI DSS uveďte najviac prvých šesť a posledné štyri číslice a zvyšok zamaskujte.</li>
+</ul>
+<p><strong>Údaje o platobnej karte nikdy neposielajte e-mailom.</strong></p>
+<h3><strong>Voľné textové polia sú miesto, kadiaľ údaje kariet unikajú</strong></h3>
+<p>Pravidlo je jednoduché: do poznámky ani do komentára nepíšte nič, čo by ste nechceli vidieť zverejnené.</p>
+<p>Podľa analýzy Planet väčšina únikov údajov platobných kariet nepochádza z platobných modulov. Pochádza z toho, že niekto z tímu zapísal číslo karty do poznámky. Voľné textové polia nemajú šifrovanie ani riadenie prístupu.</p>
+<h3><strong>Ako tomu predísť:</strong></h3>
+<ul>
+<li>
+<p>Preškoľte tím, že do poznámok a komentárov citlivé údaje nepatria.</p>
+</li>
+<li>
+<p>Na transakcie odkazujte maskovanými identifikátormi, typicky ID transakcie, nie číslom karty.</p>
+</li>
+<li>
+<p>Zapnite automatickú kontrolu, ktorá v komentároch označí alebo rovno zablokuje údaje vyzerajúce ako číslo karty.</p>
+</li>
+<li>
+<p>Prechádzajte aj staršie poznámky a citlivé údaje z nich odstráňte.</p>
+</li>
+</ul>
+<h3><strong>Phishing a informovanosť tímu</strong></h3>
+<ul>
+<li>Učte tím rozpoznať phishing, ktorý sa tvári ako známa platforma.</li>
+<li>Nečakané výzvy na platbu, reset hesla alebo urgentný zásah si vždy overte nezávisle.</li>
+<li>Zmenu bankových alebo platobných údajov potvrdzujte iným komunikačným kanálom, než ktorým prišla.</li>
+<li>Podozrivú aktivitu hláste okamžite.</li>
+<li>Školenia pravidelne opakujte. V hotelierstve sa tím obmieňa rýchlo.</li>
+</ul>
+<h3><strong>Zálohy a obnova</strong></h3>
+<ul>
+<li>Zálohujte denne kritické prevádzkové údaje aj údaje z PMS.</li>
+<li>Zálohy ukladajte oddelene, ideálne mimo hlavnej lokality alebo v nemennej (immutable) podobe.</li>
+<li>Pravidelne skúšajte, že obnova zo zálohy skutočne funguje.</li>
+</ul>
+<h3><strong>Bezpečnostný monitoring</strong></h3>
+<ul>
+<li>
+<h3>Preverujte neznáme používateľské účty a neobvyklé prihlásenia.</h3>
+</li>
+<li>Spúšťajte pravidelné skeny zraniteľností a udržujte aktuálnu antivírusovú ochranu.</li>
+<li>Sledujte platobné stránky pre neautorizované zmeny skriptov, ktoré signalizujú e-skimming.</li>
+<li>Majte pripravený postup na riešenie incidentu vrátane jasných kontaktov na eskaláciu.</li>
+</ul>
+<h3><strong>Čo pre bezpečnosť robí Protel</strong></h3>
+<p>Časť opatrení je na strane systému, časť na strane hotela. Rozdelenie je priamočiare:</p>
+<ul>
+<li>
+<p><strong>Na strane Protelu.</strong> Karty sú tokenizované podľa noriem PCI a celé číslo karty nie je nikdy uložené v hotelovom softvéri. Cloudová verzia beží na Amazon Web Services. Systém umožňuje prideľovať oprávnenia podľa rolí a vedie logy prístupov.</p>
+</li>
+<li><strong>Na strane hotela.</strong> Za nastavenie prístupov a hesiel, zabezpečenie siete, obsah voľných textových polí a preškolenie tímu zodpovedá hotel ako prevádzkovateľ osobných údajov hostí.</li>
+</ul>
+<h3><strong>Bezpečnosť ako spôsob uvažovania</strong></h3>
+<p>Účinná ochrana stojí na viacerých vrstvách, nie na jednom opatrení. Cieľom je minimalizovať expozíciu, znižovať počet privilegovaných účtov a nastavené opatrenia pravidelne revidovať, ako sa menia technológie aj hrozby.</p>
+<h3><strong>Zhrnutie</strong></h3>
+<p>Ochrana údajov hostí sa začína tým, že s informáciami zaobchádzate ako s niečím, čo je potrebné minimalizovať a chrániť, nielen zbierať. Hotely, ktoré majú segmentovanú sieť, prísne riadené prístupy, pravidelné aktualizácie, minimalizované a maskované údaje a preškolený tím, odchádzajú z pokusov o útok s výrazne menšími škodami.</p>
+</div></div></div></div><div class="section-background" style="background-color:#fff"></div></div>
+<KontaktniFormularSk />
+</Base>

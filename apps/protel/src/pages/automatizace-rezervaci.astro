@@ -1,82 +1,47 @@
 ---
-/**
- * Protel: landing „Automatizace rezervací“. Obsah vytěžen z automatizace-rezervaci.html starého
- * protelsystems.cz (jazykově uhlazeno). Vše ze sdílených komponent @piano/ui.
- */
-import Base from '../layouts/Base.astro';
-import SiteHeader from '../components/SiteHeader.astro';
-import SiteFooter from '../components/SiteFooter.astro';
-import Section from '@piano/ui/components/Section.astro';
-import Hero from '@piano/ui/components/Hero.astro';
-import Heading from '@piano/ui/components/Heading.astro';
-import Text from '@piano/ui/components/Text.astro';
-import Button from '@piano/ui/components/Button.astro';
-import Icon from '@piano/ui/components/Icon.astro';
-import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
-import USPGrid from '@piano/ui/components/USPGrid.astro';
-import LeadForm from '@piano/ui/components/LeadForm.astro';
-import { protelLeadProofs } from '../config/leadProofs';
-import Img from '@piano/ui/components/Img.astro';
-
-const related = [
-  { icon: "lucide:globe", title: "Webové rezervace", text: "Booking engine přímo na Vašem webu.", href: "/produkty/webove-rezervace" },
-  { icon: "lucide:calendar-check", title: "Individuální rezervace", text: "Rezervace krok za krokem, bez chyb.", href: "/produkty/hotelovy-system-protel#individualni-rezervace" },
-  { icon: "lucide:users", title: "Skupinové rezervace", text: "Až sto pokojů v jedné rezervaci.", href: "/produkty/hotelovy-system-protel#skupinove-rezervace" },
-  { icon: "lucide:tags", title: "Cenotvorba", text: "Aktuální prodejní ceny na všech kanálech.", href: "/produkty/hotelovy-system-protel#cenotvorba" },
-];
+// https://www.protelsystems.cz/automatizace-rezervaci (Solid Pixels), port 1:1 skriptem port-protel.py
+import Base from './../layouts/Base.astro';
+import PojdmeToProbrat from './../components/blocks/PojdmeToProbrat.astro';
+import KolikMeToBudeStat from './../components/blocks/KolikMeToBudeStat.astro';
+import Mezera from './../components/blocks/Mezera.astro';
+import DaleByVasMohloZajimat from './../components/blocks/DaleByVasMohloZajimat.astro';
+import VyzkousetZdarma from './../components/blocks/VyzkousetZdarma.astro';
+import Novinky from './../components/blocks/Novinky.astro';
+import KontaktniFormular from './../components/blocks/KontaktniFormular.astro';
 ---
-
-<Base title="Automatizace rezervací | Protel"
-      description="Zadáváte rezervace ručně a přicházíte o pokoje kvůli neaktuální dostupnosti na prodejních kanálech? Protel rezervace zapisuje sám, správně, včas a bez chyb.">
-  <SiteHeader />
-
-  <main>
-    <Breadcrumb items={[{ label: 'Úvod', href: '/' }, { label: 'Řešení', href: '/#reseni' }, { label: "Automatizace rezervací" }]} />
-
-    <Hero eyebrow="Řešení" background="gradient"
-          lead="Trápí Vás, že do hotelového systému zadáváte všechny rezervace ručně? Stojí Vás to mnoho času a občas uděláte chybu? Přicházíte o možnost prodat pokoj, protože nemáte na prodejních kanálech aktualizovanou dostupnost pokojů?">
-      <Heading slot="title" as="h1" size="display" color="on-dark">Automatizace <em>rezervací</em></Heading>
-      <Fragment slot="actions">
-        <Button href="#poptavka">Vyzkoušet Protel zdarma</Button>
-        <Button href="/produkty" variant="secondary" onDark>Prohlédnout produkty</Button>
-      </Fragment>
-      <figure slot="media" class="hero-pic">
-        <Img src="/images/automatizace-rezervaci.webp" alt="Automatizovaná správa hotelových rezervací" width={880} sizes="(min-width: 881px) 560px, 100vw" loading="eager" decoding="async" />
-      </figure>
-    </Hero>
-
-    <Section background="default" space="lg">
-      <div class="solution">
-        <Text size="label" color="accent">Protel má řešení</Text>
-        <Heading as="h2" size="h2">Automatizujte svůj hotel!</Heading>
-        <Text size="lead" color="muted">Hotelový systém Protel jednoduše napojíte na všechny dostupné channel managery, přímo na rezervační portály jako Booking.com, nebo využijete integrovaný formulář pro webové rezervace (booking engine). Díky těmto propojením se rezervace samy zaevidují do systému a zároveň se vždy aktualizuje dostupnost i prodejní ceny pokojů na mnoho měsíců dopředu. Automaticky zapsaná rezervace je vždy správně, včetně všech kontaktů na hosta, na správný termín a za správnou cenu.</Text>
-      </div>
-    </Section>
-
-    <Section background="primary" space="lg">
-      <figure class="quoteband">
-        <span class="quoteband__mark"><Icon name="lucide:quote" size="lg" /></span>
-        <blockquote>
-          <Heading as="p" size="h3" color="on-dark" align="center">Výhodou automatizace rezervací je zkrácení časových nároků, minimalizace chyb a lepší zážitek hostů.</Heading>
-        </blockquote>
-      </figure>
-    </Section>
-
-    <USPGrid eyebrow="Související" title="Související s automatizací rezervací"
-             items={related} minItemWidth="260px" background="alt" space="lg" />
-
-    <LeadForm proofs={protelLeadProofs} id="poptavka" variant="full" background="default"
-              title="Vyzkoušejte Protel zdarma"
-              lead="Co byste u Vás v hotelu rádi zlepšili? Nechte nám kontakt, ozveme se a ukážeme Protel přímo ve Vašem hotelu." />
-  </main>
-
-  <SiteFooter />
+<Base
+  title="Automatizace rezervací | Hotel PMS Protel"
+  description="Trápí Vás, že do hotelového systému zadáváte všechny rezervace ručně? Stojí Vás to mnoho času a občas uděláte chybu? Přicházíte o možnost prodat pokoj, protože nemáte na prodejních kanálech aktualizovanou dostupnost pokojů? Protel má řešení."
+  path="/automatizace-rezervaci"
+  bodyClass="use-header-transparent use-menu-secondary-uppercase use-menu-button-uppercase use-headings-link-plain search-panel-hide-submit-label search-panel-hide-close-label search-panel-hide-open-label use-menu-bar use-header-fixed use-header-fixed-mobile use-header-priority use-header-boxed"
+  image="/files/nahled-automatizace-rezervaci.jpg"
+>
+<div class="section height--low align--middle color--default no-pb col-gaps-bigger" id="provozni-funkce"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-5-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:30px"></div></div> <div class="block block-button"><div class="left"><a class="btn btn-inverse btn-sm" href="/ziskovy-hotel"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">CO VÁS ZAJÍMÁ?</span></a></div></div> <div class="block block-inline no-pb"><h1>Automatizace rezervací<span class="text-highlight">.</span></h1>
+</div> <div class="block block-inline"><p class="text-large">Trápí Vás, že do hotelového systému zadáváte všechny rezervace ručně? Stojí Vás to mnoho času a občas uděláte chybu? Přicházíte o možnost prodat pokoj, protože nemáte na prodejních kanálech aktualizovanou dostupnost pokojů?</p>
+</div> <div class="block block-button"><div class="left"><a class="btn btn-default btn-sm" href="/automatizace-rezervaci#automatizujte-svuj-hotel"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">PROTEL MÁ ŘEŠENÍ</span></a></div></div></div> <div class="col col-6-12 grid-7-12"><div class="block block-image no-pb"><div class="image image-mask ratio-original" style="padding-bottom:66.66666666666666%"><img alt="" decoding="async" sizes="(min-width:1390px) 811px, (min-width:720px) 58.33vw, 100.00vw" src="/files/r/1280/hdr-automatizace-rezervaci.webp" srcset="/files/r/720/hdr-automatizace-rezervaci.webp 720w, /files/r/1280/hdr-automatizace-rezervaci.webp 1280w, /files/r/1920/hdr-automatizace-rezervaci.webp 1920w"/></div></div></div></div></div></div>
+<PojdmeToProbrat />
+<div class="section height--normal align--middle color--default no-pb section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Automatizace rezervací od Protel využívají tito zákazníci<span class="text-highlight">.</span></h2>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-gallery grid-sm-2"><div class="grid gallery-container" style="--gap:40px"><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Mamaison" decoding="async" loading="lazy" src="/files/ref-mamaison.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Old Town Hotels" decoding="async" loading="lazy" src="/files/ref-old-town-hotel.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Imperial" decoding="async" loading="lazy" src="/files/ref-imperial.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo CPI Hotels" decoding="async" loading="lazy" src="/files/ref-cpi.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Buddha-Bar" decoding="async" loading="lazy" src="/files/ref-buddha-bar.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><a class="image image-mask ratio-square image-width-stretch" href="/vyzkouset-zdarma"><img alt="Vaše logo" decoding="async" loading="lazy" src="/files/ref-vase.svg"/></a></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(242, 242, 242)"></div></div>
+<KolikMeToBudeStat />
+<div class="section height--normal align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image" id="automatizujte-svuj-hotel"><div class="flexcard flexcard-card flexcard-size--normal flexcard-media-left valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><a class="image image-mask ratio-original" href="/automatizace-rezervaci#bez-chyb" style="padding-bottom:100%"><img alt="Řešení? Automatizujte svůj hotel!" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/2661-automatizace-rezervaci.webp" srcset="/files/r/720/2661-automatizace-rezervaci.webp 720w, /files/r/1280/2661-automatizace-rezervaci.webp 1280w, /files/r/1920/2661-automatizace-rezervaci.webp 1920w"/></a></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2>Řešení? Automatizujte svůj hotel!</h2>
+<p>Hotelový systém Protel jednoduše napojíte na všechny dostupné <a href="/napojeni/channel-manager-crs">Channel Managery</a>, přímo na rezervační portály jako je booking.com nebo využijte integrovaný formulář pro<a href="/produkty/webove-rezervace"> webové rezervace</a> (booking engine). Díky těmto propojením se rezervace samy zaevidují do hotelového systému Protel a zároveň se vždy aktualizuje dostupnost i <a href="/produkty/hotelovy-system#cenotvorba">prodejní ceny pokojů</a> na mnoho měsíců dopředu. Automaticky zapsaná rezervace je vždy správně, včetně všech kontaktů na Vašeho hosta, na správný termín, za správnou cenu.</p>
+</div><div class="image-btn"><a class="btn btn-inverse btn-sm" href="/automatizace-rezervaci#bez-chyb"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">VÝHODY AUTOMATIZACE REZERVACÍ</span></a></div></div></div></div></div></div></div></div></div>
+<Mezera />
+<div class="section height--normal align--middle color--default section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image" id="bez-chyb"><div class="flexcard flexcard-card flexcard-size--small flexcard-media-right valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><a class="image image-mask ratio-original" href="/automatizace-rezervaci#kontaktni-formular" style="padding-bottom:100%"><img alt="" decoding="async" loading="lazy" src="/files/vyhoda-hoteloveho-systemu-protel.svg"/></a></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2><span class="text-highlight">" </span>Výhodou automatizace rezervací v hotelu je zkrácení časových nároků, minimalizace chyb a zlepšení zážitku hostům.</h2>
+</div><div class="image-btn"><a class="btn btn-default btn-sm" href="/automatizace-rezervaci#kontaktni-formular"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">SPOJTE SE S NÁMI</span></a></div></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<Mezera />
+<div class="section height--normal align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Související s automatizací rezervací<span class="text-highlight">.</span></h2>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-6-12"><div class="block block-box box box--secondary box--image"><div class="row"><div class="col col-1-12 grid-6-12"><div class="block block-inline"><h3 class="text-large"><span class="text-highlight"><font color="#ffffff"><span style="caret-color: rgb(255, 255, 255);">Individuální rezervace</span></font>.</span></h3>
+</div> <div class="block block-button"><div class="left"><a class="btn btn-inverse btn-sm" href="/produkty/hotelovy-system#individualni-rezervace"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">VÍCE INFORMACÍ</span></a></div></div></div> <div class="col col-7-12 grid-6-12"><div class="block block-image"><div class="align-right"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="" decoding="async" loading="lazy" src="/files/link-individualni-rezervace.svg"/></div></div></div></div></div></div></div> <div class="col col-7-12 grid-6-12"><div class="block block-box box box--secondary box--image"><div class="row"><div class="col col-1-12 grid-6-12"><div class="block block-inline"><h3 class="text-large"><span class="text-highlight"><font color="#ffffff"><span style="caret-color: rgb(255, 255, 255);">Skupinové rezervace</span></font>.</span></h3>
+</div> <div class="block block-button"><div class="left"><a class="btn btn-inverse btn-sm" href="/produkty/hotelovy-system#skupinove-rezervace"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">VÍCE INFORMACÍ</span></a></div></div></div> <div class="col col-7-12 grid-6-12"><div class="block block-image"><div class="align-right"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="" decoding="async" loading="lazy" src="/files/link-skupinove-rezervace.svg"/></div></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-6-12"><div class="block block-box box box--secondary box--image"><div class="row"><div class="col col-1-12 grid-6-12"><div class="block block-inline"><h3 class="text-large">Evidence rezervace<span class="text-highlight">.</span></h3>
+</div> <div class="block block-button"><div class="left"><a class="btn btn-inverse btn-sm" href="/produkty/webove-rezervace#evidence-rezervace"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">VÍCE INFORMACÍ</span></a></div></div></div> <div class="col col-7-12 grid-6-12"><div class="block block-image"><div class="align-right"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="" decoding="async" loading="lazy" src="/files/link-evidence-rezervace.svg"/></div></div></div></div></div></div></div> <div class="col col-7-12 grid-6-12"><div class="block block-box box box--secondary box--image"><div class="row"><div class="col col-1-12 grid-6-12"><div class="block block-inline"><h3 class="text-large">Potvrzení rezervace<span class="text-highlight">.</span></h3>
+</div> <div class="block block-button"><div class="left"><a class="btn btn-inverse btn-sm" href="/produkty/webove-rezervace#potvrzeni-rezervace"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">VÍCE INFORMACÍ</span></a></div></div></div> <div class="col col-7-12 grid-6-12"><div class="block block-image"><div class="align-right"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="" decoding="async" loading="lazy" src="/files/link-potvrzeni-rezervace.svg"/></div></div></div></div></div></div></div></div></div></div>
+<Mezera />
+<DaleByVasMohloZajimat />
+<VyzkousetZdarma />
+<Novinky />
+<KontaktniFormular />
 </Base>
-
-<style>
-  .solution { max-width: 800px; margin-inline: auto; }
-  .solution > :global(* + *) { margin-top: var(--space-4); }
-  .quoteband { margin: 0; max-width: 840px; margin-inline: auto; display: flex; flex-direction: column; align-items: center; gap: var(--space-4); text-align: center; }
-  .quoteband__mark { color: var(--color-text-on-dark); opacity: 0.7; }
-  .quoteband blockquote { margin: 0; }
-</style>

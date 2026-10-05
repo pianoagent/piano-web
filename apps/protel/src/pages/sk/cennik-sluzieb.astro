@@ -1,0 +1,95 @@
+---
+// https://www.protelsystems.cz/sk/cennik-sluzieb (Solid Pixels), port 1:1 skriptem port-protel.py
+import Base from '../../layouts/Base.astro';
+import VyzkousetZdarmaSk from '../../components/blocks/VyzkousetZdarmaSk.astro';
+import NovinkySk from '../../components/blocks/NovinkySk.astro';
+import KontaktniFormularSk from '../../components/blocks/KontaktniFormularSk.astro';
+---
+<Base
+  title="Cenník služieb | Hotel PMS Protel"
+  description="Ponúkame kvalitnú a profesionálnu starostlivosť pre vaše maximálne hotelové pohodlie."
+  path="/sk/cennik-sluzieb"
+  bodyClass="use-header-transparent use-menu-secondary-uppercase use-menu-button-uppercase use-headings-link-plain search-panel-hide-submit-label search-panel-hide-close-label search-panel-hide-open-label use-menu-bar use-header-fixed use-header-fixed-mobile use-header-priority use-header-boxed"
+  locale="sk"
+  image="/files/nahled-produkty.jpg"
+>
+<div class="section height--low align--middle color--default section-width-boxed section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h1 class="center">Cenník služieb<span class="text-highlight">.</span></h1>
+</div></div></div>
+<div class="row-main"><div class="col col-3-12 grid-8-12"><div class="block block-inline"><p class="text-large center">Ponúkame kvalitnú a profesionálnu starostlivosť pre vaše maximálne pohodlie. Alebo vás zaujímajú ceny licencií?</p>
+</div></div></div>
+<div class="row-main"><div class="col col-3-12 grid-8-12"><div class="block block-button"><div class="center"><a class="btn btn-default btn-sm" href="/sk/cennik-licencii"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">CENNÍK LICENCIÍ</span></a></div></div></div></div></div><div class="section-background" style="background-color:rgb(242, 242, 242)"></div></div>
+<div class="section height--normal align--middle color--default section-width-boxed"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><table class="table table-bordered">
+<tbody>
+<tr>
+<td><strong>Popis služby</strong></td>
+<td class="right"><strong>Jednotka</strong></td>
+<td class="right"></td>
+<td class="right"><strong>Cenové podmienky</strong></td>
+</tr>
+<tr>
+<td>Servisný zásah na diaľku počas pracovného času</td>
+<td class="right">začatá hodina</td>
+<td class="right">&gt;</td>
+<td class="right"><span style="font-size: var(--text-size-base); font-family: var(--base-font-family);">60 €</span></td>
+</tr>
+<tr>
+<td><span class="text-highlight">Servisný zásah na diaľku mimo pracovnej doby /expres (100% príplatok)</span></td>
+<td class="right"><span class="text-highlight">začatá hodina</span></td>
+<td class="right"><span class="text-highlight">&gt;</span></td>
+<td class="right"><span class="text-highlight"><span style="font-size: var(--text-size-base); font-family: var(--base-font-family);">120 €</span></span></td>
+</tr>
+<tr>
+<td>Školenie a autorský dohľad u zákazníka</td>
+<td class="right">začatá hodina</td>
+<td class="right">
+<p>&gt;</p>
+</td>
+<td class="right"><span style="font-size: var(--text-size-base); font-family: var(--base-font-family);">80 €</span></td>
+</tr>
+<tr>
+<td class="text-large"><span class="text-highlight">Školenie a autorský dohľad na pracovisku zákazníka mimo pracovného času (50% príplatok)</span></td>
+<td class="right"><span class="text-highlight">začatá hodina</span></td>
+<td class="right"><span class="text-highlight">&gt;</span></td>
+<td class="right text-large"><span class="text-highlight"><span style="font-size: var(--text-size-base); font-family: var(--base-font-family);">120 €</span></span></td>
+</tr>
+<tr>
+<td>Vývoj na mieru</td>
+<td class="right">1 hod</td>
+<td class="right">&gt;</td>
+<td class="right"><span style="font-size: var(--text-size-base); font-family: var(--base-font-family);">80 €</span></td>
+</tr>
+<tr>
+<td>Pripojenie nadväzujúceho systému (API) alebo modulu</td>
+<td class="right">1 kus</td>
+<td class="right">&gt;</td>
+<td class="right"><span style="font-size: var(--text-size-base); font-family: var(--base-font-family);">500 €</span></td>
+</tr>
+<tr>
+<td>Cestovanie</td>
+<td class="right">1 km</td>
+<td class="right">&gt;</td>
+<td class="right"><span style="font-size: var(--text-size-base); font-family: var(--base-font-family);">0,6 €</span></td>
+</tr>
+<tr>
+<td>Cesta po Bratislave</td>
+<td class="right">cesta</td>
+<td class="right">&gt;</td>
+<td class="right"><span style="font-size: var(--text-size-base); font-family: var(--base-font-family);">40 €</span></td>
+</tr>
+<tr>
+<td>Cestovné náklady (vyzdvihnutie zákazníka, čas strávený na ceste) </td>
+<td class="right">začatá hodina</td>
+<td class="right">&gt;</td>
+<td class="right"><span style="font-size: var(--text-size-base); font-family: var(--base-font-family);">20 €</span></td>
+</tr>
+</tbody>
+</table>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Náklady na ubytovanie, letenky, lety alebo prenájom auta sa účtujú podľa skutočnosti.</p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-5-12"><div class="block block-inline">Všetky ceny sú uvedené bez DPH. Ceny zahŕňajú zľavy pre zákazníkov, ktorí majú uzatvorenú servisnú zmluvu so spoločnosťou protel systems s.r.o. V ostatných prípadoch sú uvedené hodinové sadzby a tarify o 50 % vyššie. Ceny jednotlivých obchodných partnerov sa môžu líšiť.</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div class="center"><a class="btn btn-default btn-sm" href="/sk/cennik-licencii"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">CENNÍK LICENCIÍ</span></a></div></div></div></div></div></div>
+<VyzkousetZdarmaSk />
+<NovinkySk />
+<KontaktniFormularSk />
+</Base>

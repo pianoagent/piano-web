@@ -1,0 +1,111 @@
+---
+// https://www.protelsystems.cz/demo-protel-cloud (Solid Pixels), port 1:1 skriptem port-protel.py
+import Base from './../layouts/Base.astro';
+import FormularPodpora from './../components/blocks/FormularPodpora.astro';
+import ZnalostniDatabaze from './../components/blocks/ZnalostniDatabaze.astro';
+---
+<Base
+  title="Demo Cloud Login | Hotel PMS Protel"
+  description="Návod, jak se připojit k demo databázi Protel Cloud a jak využít aplikace a systémy, které jsou s Protelem propojeny."
+  path="/demo-protel-cloud"
+  bodyClass="use-header-transparent use-menu-secondary-uppercase use-menu-button-uppercase use-headings-link-plain search-panel-hide-submit-label search-panel-hide-close-label search-panel-hide-open-label use-menu-bar use-header-fixed use-header-fixed-mobile use-header-priority use-header-boxed"
+  image="/files/nahled-kontakt.jpg"
+>
+<div class="section height--low align--middle color--default section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h1 class="center">Připojení na Demo Protel Cloud<span class="text-highlight">.</span></h1>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>V tomto návodu naleznete kroky, jak se připojit k demo databázi Protel a jak využít různé aplikace a systémy, které jsou s Protel propojeny. Pokud jste v těchto systémech noví, žádný strach! Všechny kroky jsou vysvětleny, abyste snadno pochopili, jak se přihlásit a začít.</p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3><span style="font-size: 25px;">Protel Cloud</span></h3>
+<p>Přihlášení do Protelu probíhá prostřednictvím webového prohlížeče. Pro dosažení nejlepšího výsledku doporučujeme použít prohlížeč Google Chrome.</p>
+<ul>
+<li><strong>URL pro přihlášení:</strong> <a href="http://app.protel.net">http://app.protel.net</a></li>
+<li><strong>Username</strong>: proteldemouser@gmail.com</li>
+<li><strong>Heslo</strong>: Protelsystems777!</li>
+<li>
+<p><strong>Přihlášení do pokladny</strong>:  pokladna č: 1, heslo: 1</p>
+</li>
+</ul>
+<p>Pokud se při přihlášení vyskytne problém, zkontrolujte, zda máte správně napsané přihlašovací údaje. Případně nás prosím kontaktujte. </p>
+<p><a href="https://www.youtube.com/playlist?list=PL9j0iI0vMFVGsesez8AfxcjGKloRofWvA">Video návody k Protel Cloud</a></p>
+<p><span class="text-highlight"><strong>Upozornění</strong></span>: V demo systému prosíme neponechávejte žádné skutečné osobní údaje nebo kontakty.</p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><hr class="divider divider--normal divider--align-left"/></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3>Open API Protel Cloud</h3>
+<p>Informace o Open API a dokumentaci naleznete na tomto odkazu <a href="https://openapi-docs.protel.io/docs/how-to-get-access-to-cloud-pms-api">https://openapi-docs.protel.io/docs/how-to-get-access-to-cloud-pms-api</a></p>
+<p>V případě zájmu o konzultaci ohledně Open API si můžete rezervovat schůzku s naším technikem: <a href="https://calendar.app.google/aeCdzTUyqLCax9LV9">Rezervační formulář</a></p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><hr class="divider divider--normal divider--align-left"/></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3>Mobilní přístup pro pokojské</h3>
+<p>Nově je možné s výše uvedeným loginem se přihlásit také v mobilním prohlížeči a vyzkoušet si správu pokojů bez nutnosti instalace aplikace:</p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-3-12"><div class="block block-image"><div class="image image-width-original"><img alt="" decoding="async" src="/files/hsk-sprava.webp"/></div></div></div> <div class="col col-4-12 grid-3-12"><div class="block block-image"><div class="image image-width-original"><img alt="" decoding="async" src="/files/hsk-uklid.webp"/></div></div></div> <div class="col col-7-12 grid-6-12"><div class="block block-box box box--default"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Stačí v hlavním menu otevřít Housekeeping - Stav pokojů a můžete zde např. měnit status pokojů, přečíst si interní pokyny nebo spravovat ztráty a nálezy. </p>
+</div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><hr class="divider divider--normal divider--align-left"/></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3>Snídaňová aplikace (Mealplan)</h3>
+<h3><span style="font-size: 20px;">Tato aplikace je určena pro kontrolu a přehled hostů ve Vašem restauračním zařízení, zda mají objednanou snídani případně večeři. </span></h3>
+<ul>
+<li>Aplikace k vyzkoušení: <a href="https://snidane.protelsystemsapp.cz/">Snídaňová aplikace</a></li>
+</ul>
+<p><strong>Přihlašovací údaje</strong>:</p>
+<ul>
+<li><strong>Username</strong>: test@hotel.cz</li>
+<li><strong>Heslo</strong>: Snidane2026!</li>
+</ul>
+<p><strong>Nápověda:</strong> <a href="https://www.protelsystemsapp.cz/stravovani-navod">https://www.protelsystemsapp.cz/stravovani-navod</a></p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><hr class="divider divider--normal divider--align-left"/></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3>Protel Assistant rozšíření do prohlížeče</h3>
+<p>Doplněk do prohlížeče přidává nové funkcionality do Protel Cloud, které usnadňují práci uživatelům. Např. vyhledávání firemních adres v ARES nebo VIES, Správa a uplatňování voucherů (napojených přes Septim nebo Bookolo), nebo nové uživatelsky přívětivější skenování dokladů přes fyzickou čtečku dokladů.</p>
+<p>Více informací naleznete na našem <a href="https://www.protelsystemsapp.cz">Rozcestníku</a></p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><hr class="divider divider--normal divider--align-left"/></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3>WBE (Web Booking Engine)</h3>
+<p>Pro online rezervace je k dispozici funkční online rezervační formulář. </p>
+<ul>
+<li><strong>Rezervační URL</strong>: <a href="https://book.protelcz.online">https://book.protelcz.online</a></li>
+<li><strong>Promo kód</strong>: PROMO10 – Můžete zadat do pole "Promo kód" pro zobrazení zlevněného ceníku</li>
+</ul>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><hr class="divider divider--normal divider--align-left"/></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3>Bookolo Booking Engine</h3>
+<p>Bookolo je náš obchodní partner, se kterým úzce spolupracujeme. Web Booking Engine (WBE) od Bookolo nabízíme jako alternativní řešení pro případ, že se rozhodnete využít Bookolo jako Channel Manager (CHM). Vyzkoušejte si ho na následujícím odkazu:</p>
+<ul>
+<li><strong>Booking Engine URL</strong>: <a href="https://bookoloengine.com/v3/book/hotel-1128/?currency=EUR&amp;loaded=1">https://bookoloengine.com/v3/book/hotel-1128/?currency=EUR&amp;loaded=1</a></li>
+</ul>
+<p><strong>Poznámka</strong>: Do Web Booking Engine (WBE) máme možnost nasadit i naši <span class="text-highlight"><strong>platební bránu</strong></span>. Můžete si tuto funkcionalitu vyzkoušet, pokud při rezervaci zvolíte ceník typu "non-refundable".</p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><hr class="divider divider--normal divider--align-left"/></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3>Online check-in přes Straiv</h3>
+<p>Abyste si mohli vyzkoušet online check-in pomocí modulu Straiv, postupujte podle následujících kroků:</p>
+<ol>
+<li><strong>Vytvoření rezervace</strong>: Vytvořte si rezervaci do budoucna a do profilu zadejte reálnou emailovou adresu.</li>
+<li><strong>Potvrzení rezervace</strong>: Po dokončení rezervace obdržíte potvrzení, ve kterém bude odkaz na možnost provést pre-checkin.</li>
+<li><strong>Pre-checkin</strong>: Klikněte na odkaz v potvrzení a dokončete pre-checkin.</li>
+<li><strong>Testovací platební karta</strong>: Pro dokončení online precheckinu je nutné zadat testovací platební kartu:</li>
+</ol>
+<ul>
+<li>Číslo karty: 4000 0010 0000 0018</li>
+<li>Platnost: 06/28</li>
+<li>OTP kód (dvoufaktorové ověření) : 4000</li>
+<li>CVC kód: 123</li>
+</ul>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><hr class="divider divider--normal divider--align-left"/></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3>ChatBot DialogShift</h3>
+<p>Vyzkoušejte si fungování demo chatbota od firmy DialogShift, který dokáže zodpovědět dotazy týkající se hotelu, rezervací atd. Při dotazu na rezervaci v konkrétním termínu Vás rovnou přesměruje na WBE nebo na Bookolo.</p>
+<p><strong>Odkaz na demo hotelu s WBE</strong>:  <a href="/fantasticky-hotel-1893">https://www.protelsystems.cz/fantasticky-hotel-1893</a></p>
+<p><strong>Odkaz na demo hotelu s Bookolo</strong>:  <a href="/fantasticky-hotel-chm">https://www.protelsystems.cz/fantasticky-hotel-chm</a></p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><hr class="divider divider--normal divider--align-left"/></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3>Spolehlivost a dostupnost systému</h3>
+<p>Protel Cloud transparentně zobrazuje aktuální i historický stav dostupnosti svých jednotlivých součástí.</p>
+<p>Online náhled si lze zobrazit na <a href="https://status.weareplanet.com/">Status page</a></p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><hr class="divider divider--normal divider--align-left"/></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3>Další možnosti napojení třetích stran</h3>
+<p>Protel má širokou integraci na systémy třetích stran, ať už se jedná o zámkové systémy, RMS, BCS, věrnostní programy atd. </p>
+<p>Přehled všech aktuálních napojení naleznete v <a href="https://store.protel.io/#/">Marketplace</a></p>
+</div></div></div></div><div class="section-background" style="background-color:rgb(242, 242, 242)"></div></div>
+<FormularPodpora />
+<ZnalostniDatabaze />
+</Base>

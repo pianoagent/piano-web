@@ -1,150 +1,90 @@
 ---
-/**
- * Protel: produkt „Platební řešení hotelu“. Obsah vytěžen z produkty/platebni-reseni-hotelu.html
- * starého protelsystems.cz (jazykově uhlazeno, fakta zachována).
- * Vše ze sdílených komponent @piano/ui.
- */
+// https://www.protelsystems.cz/produkty/platebni-reseni-hotelu (Solid Pixels), port 1:1 skriptem port-protel.py
 import Base from '../../layouts/Base.astro';
-import SiteHeader from '../../components/SiteHeader.astro';
-import SiteFooter from '../../components/SiteFooter.astro';
-import Section from '@piano/ui/components/Section.astro';
-import Hero from '@piano/ui/components/Hero.astro';
-import Heading from '@piano/ui/components/Heading.astro';
-import Text from '@piano/ui/components/Text.astro';
-import Button from '@piano/ui/components/Button.astro';
-import Icon from '@piano/ui/components/Icon.astro';
-import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
-import USPGrid from '@piano/ui/components/USPGrid.astro';
-import LeadForm from '@piano/ui/components/LeadForm.astro';
-import { protelLeadProofs } from '../../config/leadProofs';
-import Img from '@piano/ui/components/Img.astro';
-
-const features = [
-  {
-    id: "pay-by-link", icon: "lucide:link", title: "PayByLink",
-    paras: [
-      "Výzvy k úhradě (PayLinky) generujete přímo z rezervace, můžete požadovat platbu nebo souhlas s předautorizací. PayLinky se hostům zasílají automaticky podle předem nastavených pravidel.",
-      "Platba přes PayLink je zabezpečena technologií 3D Secure, takže banka nemá možnost nárokovat peníze zpět. Jakmile host zaplatí, úhrada se eviduje jako záloha přímo k rezervaci.",
-    ],
-  },
-  {
-    id: "napojeni-na-platebni-terminal", icon: "lucide:calculator", title: "Napojení na platební terminál",
-    paras: [
-      "S terminálem napojeným na Protel se částka zadaná k úhradě automaticky přenese na platební terminál, žádné ruční přepisování. Transakce se dokončí pouze v případě, že platba na terminálu proběhla úspěšně. Platby jsou tak bezpečné a spolehlivé.",
-    ],
-  },
-  {
-    id: "automaticke-stahovani-zalohovych-plateb", icon: "lucide:download", title: "Automatické stahování zálohových plateb",
-    paras: [
-      "Pokud host poskytne údaje platební karty, systém podle nastavených pravidel automaticky strhne dohodnutou zálohu. Součástí je evidence platby a vystavení daňového dokladu v reálném čase, správa financí je transparentní a efektivní.",
-    ],
-  },
-  {
-    id: "predautorizace-a-top-ups", icon: "lucide:trending-up", title: "Předautorizace a top-ups",
-    paras: [
-      "Když host překročí předautorizovanou částku, systém Vás okamžitě upozorní. Předautorizaci lze automaticky navýšit, takže minimalizujete riziko odmítnuté platby i nekomfortní situace pro hosta. Předautorizovanou částku lze využít i k platbě za služby během pobytu.",
-      "Po odjezdu hosta systém nevyužitou část předautorizace automaticky uvolní, prostředky nejsou zbytečně blokovány a nikoho nemusíte zdržovat ručním uvolňováním.",
-    ],
-  },
-  {
-    id: "bezpecnost", icon: "lucide:shield-check", title: "Bezpečnost",
-    paras: [
-      "Řešení odpovídá normám PCI (Payment Card Industry). Platební karty jsou tokenizovány, celé číslo karty není nikdy uloženo v hotelovém systému a platby probíhají přímo tokenizovanou kartou. Ochrana dat je pro nás absolutní priorita.",
-    ],
-  },
-  {
-    id: "nizke-poplatky", icon: "lucide:piggy-bank", title: "Nízké poplatky",
-    paras: [
-      "Většina hostů dnes platí kartou a Protel si za tyto transakce účtuje jen minimální poplatky. Provozní náklady hotelu tak zůstávají nízké a hostům přesto nabídnete pohodlné a bezpečné platební možnosti.",
-    ],
-  },
-];
-
-const related = [
-  { icon: "lucide:layout-dashboard", title: "Hotelový systém", text: "Správa pokojů, rezervací, hostů a statistik: snadné používání a pokročilé funkce pro kompletní přehled o provozu.", href: "/produkty/hotelovy-system-protel" },
-  { icon: "lucide:smartphone", title: "Online check-in/out", text: "Host vyřídí check-in i check-out přes mobil, bez fronty na recepci.", href: "/produkty/online-check-in-out" },
-  { icon: "lucide:monitor-smartphone", title: "Kiosek", text: "Samoobslužný check-in/out terminál přímo v hotelu.", href: "/produkty/kiosek" },
-  { icon: "lucide:globe", title: "Webové rezervace", text: "Přímé rezervace přes web hotelu, bez provizí třetích stran.", href: "/produkty/webove-rezervace" },
-];
+import Mezera from '../../components/blocks/Mezera.astro';
+import PojdmeToProbrat from '../../components/blocks/PojdmeToProbrat.astro';
+import KolikMeToBudeStat from '../../components/blocks/KolikMeToBudeStat.astro';
+import ProtelVPraxi from '../../components/blocks/ProtelVPraxi.astro';
+import DaleByVasMohloZajimat from '../../components/blocks/DaleByVasMohloZajimat.astro';
+import VyzkousetZdarma from '../../components/blocks/VyzkousetZdarma.astro';
+import Novinky from '../../components/blocks/Novinky.astro';
+import KontaktniFormular from '../../components/blocks/KontaktniFormular.astro';
 ---
-
-<Base title="Platební řešení hotelu | Protel"
-      description="Protel má vlastní plně integrované platební řešení. Zefektivněte práci s platbami, minimalizujte chybovost a snižte riziko vracení transakcí.">
-  <SiteHeader />
-
-  <main>
-    <Breadcrumb items={[{ label: 'Úvod', href: '/' }, { label: 'Produkty', href: '/produkty' }, { label: "Platební řešení hotelu" }]} />
-
-    <Hero eyebrow="Produkty" background="gradient"
-          lead="Protel má vlastní plně integrované platební řešení. Díky této integraci výrazně zefektivníte práci s platbami, minimalizujete chybovost a snížíte riziko vracení transakcí.">
-      <Heading slot="title" as="h1" size="display" color="on-dark">Platební <em>řešení</em> hotelu</Heading>
-      <Fragment slot="actions">
-        <Button href="#poptavka">Vyzkoušet Protel zdarma</Button>
-        <Button href="/produkty" variant="secondary" onDark>Všechny produkty</Button>
-      </Fragment>
-      <figure slot="media" class="hero-pic">
-        <Img src="/images/platebni-reseni.webp" alt="Platba kartou na recepci hotelu" width={880} sizes="(min-width: 881px) 560px, 100vw" loading="eager" decoding="async" />
-      </figure>
-    </Hero>
-
-    <Section background="default" space="lg">
-      <nav class="jump" aria-label="Funkce produktu">
-        {features.map((f) => (
-          <a class="jump__chip" href={`#${f.id}`}>{f.title}</a>
-        ))}
-      </nav>
-      <div class="features">
-        {features.map((f) => (
-          <article class="feature" id={f.id}>
-            <span class="feature__icon"><Icon name={f.icon} size="lg" /></span>
-            <Heading as="h2" size="h3">{f.title}</Heading>
-            {f.paras.map((p) => (
-              <Text color="muted">{p}</Text>
-            ))}
-          </article>
-        ))}
-      </div>
-    </Section>
-
-    <Section background="primary" space="lg">
-      <figure class="quoteband">
-        <span class="quoteband__mark"><Icon name="lucide:quote" size="lg" /></span>
-        <blockquote>
-          <Heading as="p" size="h3" color="on-dark" align="center">Protel disponuje vlastním komplexně propojeným platebním řešením. Integrace znamená výrazně efektivnější práci s platbami, méně chyb a minimální riziko vracení transakcí.</Heading>
-        </blockquote>
-      </figure>
-    </Section>
-
-    <USPGrid eyebrow="Dále by Vás mohlo zajímat" title="Související produkty"
-             items={related} minItemWidth="260px" background="alt" space="lg" />
-
-    <LeadForm proofs={protelLeadProofs} id="poptavka" variant="full" background="default"
-              title="Vyzkoušejte Protel zdarma"
-              lead="Co byste u Vás v hotelu rádi zlepšili? Nechte nám kontakt, ozveme se a ukážeme Protel přímo ve Vašem hotelu." />
-  </main>
-
-  <SiteFooter />
+<Base
+  title="Platební řešení hotelu | Hotel PMS Protel"
+  description="Protel má vlastní plně integrované platební řešení. Díky této integraci můžete výrazně zefektivnit práci s platbami, minimalizovat chybovost a snížit riziko vracení transakcí."
+  path="/produkty/platebni-reseni-hotelu"
+  bodyClass="use-header-transparent use-menu-secondary-uppercase use-menu-button-uppercase use-headings-link-plain search-panel-hide-submit-label search-panel-hide-close-label search-panel-hide-open-label use-menu-bar use-header-fixed use-header-fixed-mobile use-header-priority use-header-boxed"
+  image="/files/nahled-platebni-reseni-hotelu.jpg"
+>
+<div class="section height--low align--middle color--default section-width-wide section-has-background" id="uvod"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-card flexcard-size--normal flexcard-media-right valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><a class="image image-mask ratio-original" href="/vyzkouset-zdarma" style="padding-bottom:91.14583333333334%"><img alt="Platební řešení hotelu" decoding="async" sizes="(min-width:1459px) 50vw, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/hdr-top-platebni-reseni-hotelu.webp" srcset="/files/r/720/hdr-top-platebni-reseni-hotelu.webp 720w, /files/r/1280/hdr-top-platebni-reseni-hotelu.webp 1280w, /files/r/1920/hdr-top-platebni-reseni-hotelu.webp 1920w"/></a></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p><a href="/produkty"><strong><span class="text-highlight"><span style="font-family: var(--headings-font-family); font-style: var(--headings-text-italic); text-transform: var(--headings-text-transform); text-decoration: var(--headings-text-underline); caret-color: rgb(255, 0, 150);"><font color="#ff0096" size="3">VŠECHNY PRODUKTY</font></span></span></strong></a></p>
+<h1>Platební řešení hotelu</h1>
+<p class="text-large">Protel má vlastní plně integrované platební řešení. Díky této integraci můžete výrazně zefektivnit práci s platbami, minimalizovat chybovost a snížit riziko vracení transakcí. </p>
+<p class="text-large"><a href="#funkce"><strong><span class="text-highlight"><span style="font-family: var(--headings-font-family); font-style: var(--headings-text-italic); text-transform: var(--headings-text-transform); text-decoration: var(--headings-text-underline); caret-color: rgb(255, 0, 150);"><font color="#ff0096" size="3">ZJISTIT VÍCE →</font></span></span></strong></a></p>
+</div><div class="image-btn"><a class="btn btn-default" href="/vyzkouset-zdarma"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">VYZKOUŠET ZDARMA</span></a></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-gallery grid-sm-2"><div class="grid gallery-container" style="--gap:40px"><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Old Town Hotels" decoding="async" src="/files/ref-old-town-hotel-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo CPI Hotels" decoding="async" src="/files/ref-cpi-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Resort Sobotín" decoding="async" src="/files/ref-resort-sobotin-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Aquapalace Hotel Prague" decoding="async" src="/files/ref-aguapalace-hotel-prague-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Mamaison" decoding="async" src="/files/ref-mamaison-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><a class="image image-mask ratio-square image-width-stretch" href="/nasi-zakaznici"><img alt="Vaše logo" decoding="async" src="/files/ref-vase-2025.svg"/></a></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<Mezera />
+<PojdmeToProbrat />
+<Mezera />
+<div class="section height--low align--middle color--default section-has-background" id="funkce"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="container height--low color--auto container-width-boxed box--benefits"><div class="container-body flex flex--justify-start flex--wrap">
+<div class="flex__item flex__item--grow-1 grid-col-3"><div class="block block-image block-image--icon"><div class="flexcard flexcard-icon flexcard-horizontal flexcard-media-right valign-middle size-lg"><a class="flexcard-media" href="/produkty/platebni-reseni-hotelu#pay-by-link"><div class="image-icon-wrapper"><div class="image-icon"><img alt="PayByLink" decoding="async" loading="lazy" src="/files/produkt-paybylink.svg"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h4>PayByLink<span class="text-highlight">.</span></h4>
+</div><div class="image-btn"><a class="btn btn-inverse btn-sm" href="/produkty/platebni-reseni-hotelu#pay-by-link"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">To mě zajímá</span></a></div></div></div></div></div></div>
+<div class="flex__item flex__item--grow-1 grid-col-3"><div class="block block-image block-image--icon"><div class="flexcard flexcard-icon flexcard-horizontal flexcard-media-right valign-middle size-lg"><a class="flexcard-media" href="/produkty/platebni-reseni-hotelu#napojeni-na-platebni-terminal"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Napojení na platební terminál" decoding="async" loading="lazy" src="/files/produkt-napojeni-na-platebni-terminal.svg"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h4>Napojení na platební terminál<span class="text-highlight">.</span></h4>
+</div><div class="image-btn"><a class="btn btn-inverse btn-sm" href="/produkty/platebni-reseni-hotelu#napojeni-na-platebni-terminal"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">To mě zajímá</span></a></div></div></div></div></div></div>
+<div class="flex__item flex__item--grow-1 grid-col-3"><div class="block block-image block-image--icon"><div class="flexcard flexcard-icon flexcard-horizontal flexcard-media-right valign-middle size-lg"><a class="flexcard-media" href="/produkty/platebni-reseni-hotelu#automaticke-stahovani-zalohovych-plateb"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Automatické stahování zálohových plateb" decoding="async" loading="lazy" src="/files/produkt-automaticke-stahovani-zalohovych-plateb.svg"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h4>Automatické stahování zálohových plateb<span class="text-highlight">.</span></h4>
+</div><div class="image-btn"><a class="btn btn-inverse btn-sm" href="/produkty/platebni-reseni-hotelu#automaticke-stahovani-zalohovych-plateb"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">To mě zajímá</span></a></div></div></div></div></div></div>
+<div class="flex__item flex__item--grow-1 grid-col-3"><div class="block block-image block-image--icon"><div class="flexcard flexcard-icon flexcard-horizontal flexcard-media-right valign-middle size-lg"><a class="flexcard-media" href="/produkty/platebni-reseni-hotelu#predautorizace-a-top-ups"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Předautorizace a top-ups" decoding="async" loading="lazy" src="/files/produkt-predautorizace-a-top-ups.svg"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h4>Předautorizace a top-ups<span class="text-highlight">.</span></h4>
+</div><div class="image-btn"><a class="btn btn-inverse btn-sm" href="/produkty/platebni-reseni-hotelu#predautorizace-a-top-ups"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">To mě zajímá</span></a></div></div></div></div></div></div>
+<div class="flex__item flex__item--grow-1 grid-col-3"><div class="block block-image block-image--icon"><div class="flexcard flexcard-icon flexcard-horizontal flexcard-media-right valign-middle size-lg"><a class="flexcard-media" href="#bezpecnost"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Bezpečnost" decoding="async" loading="lazy" src="/files/produkt-bezpecnost.svg"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h4>Bezpečnost<span class="text-highlight">.</span></h4>
+</div><div class="image-btn"><a class="btn btn-inverse btn-sm" href="#bezpecnost"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">To mě zajímá</span></a></div></div></div></div></div></div>
+<div class="flex__item flex__item--grow-1 grid-col-3"><div class="block block-image block-image--icon"><div class="flexcard flexcard-icon flexcard-horizontal flexcard-media-right valign-middle size-lg"><a class="flexcard-media" href="#nizke-poplatky"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Nízké poplatky" decoding="async" loading="lazy" src="/files/produkt-nizke-poplatky.svg"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h4>Nízké poplatky<span class="text-highlight">.</span></h4>
+</div><div class="image-btn"><a class="btn btn-inverse btn-sm" href="#nizke-poplatky"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">To mě zajímá</span></a></div></div></div></div></div></div>
+</div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<KolikMeToBudeStat />
+<div class="section height--normal align--middle color--default section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image" id="pay-by-link"><div class="flexcard flexcard-card flexcard-size--small flexcard-media-right valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="PayByLink" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/produkt-paybylink.webp" srcset="/files/r/720/produkt-paybylink.webp 720w, /files/r/1280/produkt-paybylink.webp 1280w, /files/r/1920/produkt-paybylink.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2>PayByLink<span class="text-highlight">.</span></h2>
+<p>Výzvy k úhradě pomocí tzv. PayLinků můžete generovat přímo z rezervace. Máte možnost požadovat platbu nebo souhlas s předautorizací od svých hostů, což usnadňuje správu financí. PayLinky se pak automaticky zasílají hostům na základě předem nastavených pravidel, což zajišťuje rychlou a efektivní komunikaci a příjem plateb.</p>
+<p>Platba přes PayLink je zabezpečena technologií 3D Secure, což znamená, že je maximálně zvýšena bezpečnost transakce a banka nemá možnost nárokovat peníze zpět.</p>
+<p>Jakmile host provede platbu, úhrada je evidována jako záloha přímo k rezervaci, což umožňuje transparentní sledování finančních operací a správu rezervací.</p>
+</div></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<Mezera />
+<div class="section height--normal align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image" id="napojeni-na-platebni-terminal"><div class="flexcard flexcard-card flexcard-size--small flexcard-media-left valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Napojení na platební terminál" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/produkt-napojeni-na-platebni-terminal.webp" srcset="/files/r/720/produkt-napojeni-na-platebni-terminal.webp 720w, /files/r/1280/produkt-napojeni-na-platebni-terminal.webp 1280w, /files/r/1920/produkt-napojeni-na-platebni-terminal.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2>Napojení na platební terminál<span class="text-highlight">.</span></h2>
+<p>Pokud máte platební terminál napojený na systém Protel, částka, kterou zadáte k úhradě, se automaticky přenese na platební terminál. To znamená, že částka určená k úhradě v Protelu se zobrazí přímo na terminálu, který je propojen s Vaším systémem.</p>
+<p>Důležité je, že transakce je dokončena pouze v případě, že platba na platebním terminálu proběhla úspěšně. To zajišťuje, že platba je provedena bezpečně a spolehlivě a host tak může být bezpečně ubytován nebo hotelové služby mohou být poskytnuty po úspěšném provedení transakce.</p>
+</div></div></div></div></div></div></div></div></div>
+<Mezera />
+<div class="section height--normal align--middle color--default section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image" id="automaticke-stahovani-zalohovych-plateb"><div class="flexcard flexcard-card flexcard-size--small flexcard-media-right valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Automatické stahování zálohových plateb" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/produkt-automaticke-stahovani-zalohovych-plateb.webp" srcset="/files/r/720/produkt-automaticke-stahovani-zalohovych-plateb.webp 720w, /files/r/1280/produkt-automaticke-stahovani-zalohovych-plateb.webp 1280w, /files/r/1920/produkt-automaticke-stahovani-zalohovych-plateb.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2>Automatické stahování zálohových plateb<span class="text-highlight">.</span></h2>
+<p>Pokud Vaši hosté poskytnou údaje své platební karty, systém umožňuje automatické stahování zálohových plateb podle nastavených pravidel. To znamená, že předem dohodnutá částka je automaticky stržena z karty hosta v souladu s definovanými podmínkami a pravidly.</p>
+<p>Tento proces zahrnuje i evidenci platby a vystavení daňového dokladu v reálném čase. To znamená, že jakmile je platba provedena, systém automaticky zaznamená tuto transakci a vystaví odpovídající daňový doklad, což umožňuje transparentní a efektivní správu finančních operací.</p>
+</div></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<Mezera />
+<div class="section height--normal align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image" id="predautorizace-a-top-ups"><div class="flexcard flexcard-card flexcard-size--small flexcard-media-left valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Předautorizace a top-ups" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/produkt-predautorizace-a-top-ups.webp" srcset="/files/r/720/produkt-predautorizace-a-top-ups.webp 720w, /files/r/1280/produkt-predautorizace-a-top-ups.webp 1280w, /files/r/1920/produkt-predautorizace-a-top-ups.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2>Předautorizace a top-ups<span class="text-highlight">.</span></h2>
+<p>Předautorizace a top-ups jsou důležitými funkcemi systému, které Vám umožňují efektivně spravovat platby hostů. Když host překročí předautorizovanou částku, systém Vás okamžitě upozorní. Tento proces zajišťuje, že máte přehled o finanční situaci každého hosta a můžete podniknout vhodné kroky.</p>
+<p>Díky možnosti automatického navýšení předautorizace máte možnost rychle reagovat na případné nečekané výdaje hostů. Tím se minimalizuje riziko odmítnutí plateb nebo nekomfortní situace pro hosta. Předautorizace může být také využita k platbě za služby hosta. To znamená, že částka předautorizovaná na kartě hosta může být použita k pokrytí nákladů během pobytu.</p>
+<p>Po odjezdu hosta systém automaticky uvolní nevyužitou část předautorizace. Tento proces zajistí, že finanční prostředky nebudou zbytečně blokovány a hosta nemusíte zdržovat s ručním uvolňováním platby.</p>
+</div></div></div></div></div></div></div></div></div>
+<Mezera />
+<div class="section height--normal align--middle color--default section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image" id="bezpecnost"><div class="flexcard flexcard-card flexcard-size--small flexcard-media-right valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Bezpečnost" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/produkt-bezpecnost.webp" srcset="/files/r/720/produkt-bezpecnost.webp 720w, /files/r/1280/produkt-bezpecnost.webp 1280w, /files/r/1920/produkt-bezpecnost.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2>Bezpečnost<span class="text-highlight">.</span></h2>
+<p>Naše služby jsou vybaveny vlastnostmi odpovídajícími normám PCI (Payment Card Industry), které jsou plně integrovány do systému. To znamená, že platební karty jsou tokenizovány, čímž je zajištěna maximální ochrana proti možným útokům hackerů nebo internímu zneužití. Díky tomu není celé číslo karty nikdy uloženo v hotelovém systému. Pokud využíváte integrované platební řešení, nemusíte nikdy zobrazovat údaje o kartě a platba je prováděna přímo pomocí tokenizované karty. <a href="/produkty/hotelovy-system#ochrana-dat-a-bezpecnost">Ochrana dat a bezpečnost</a> v platebním systému a v hotelovém systému všeobecně je pro nás absolutní prioritou!</p>
+</div></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<Mezera />
+<div class="section height--normal align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image" id="nizke-poplatky"><div class="flexcard flexcard-card flexcard-size--small flexcard-media-left valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Nízké poplatky" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/produkt-nizke-poplatky.webp" srcset="/files/r/720/produkt-nizke-poplatky.webp 720w, /files/r/1280/produkt-nizke-poplatky.webp 1280w, /files/r/1920/produkt-nizke-poplatky.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2>Nízké poplatky<span class="text-highlight">.</span></h2>
+<p>Hotelový systém Protel je známý svými rozumnými poplatky, které jsou přívětivé pro všechny typy ubytovacích zařízení. </p>
+<p>V dnešní době, kdy většina hostů preferuje platbu kartou, je důležité mít hotelový systém, který nezatíží Vaše podnikání zbytečnými náklady. Protel si proto účtuje za tyto transakce jen minimální poplatky. Váš hotel si tak může udržet své provozní náklady velice nízko a zároveň můžete nabídnout svým hostům pohodlné a bezpečné platební možnosti.</p>
+<p>Výběrem <a href="/produkty/hotelovy-system">hotelového systému Protel</a> tak získáváte jistotu, že investujete do spolehlivého a bezpečného řešení. To Vám umožňuje se více soustředit na poskytování výjimečných služeb Vašim hostům, aniž byste se museli obávat o zbytečnou finanční zátěž spojenou s vysokými poplatky.</p>
+</div></div></div></div></div></div></div></div></div>
+<Mezera />
+<div class="section height--normal align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-card flexcard-size--small flexcard-media-right valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><a class="image image-mask ratio-original" href="/produkty/platebni-reseni-hotelu#kontaktni-formular" style="padding-bottom:100%"><img alt="" decoding="async" loading="lazy" src="/files/vyhoda-hoteloveho-systemu-protel.svg"/></a></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2><span class="text-highlight">"</span> Protel disponuje vlastním komplexně propojeným systémem platebních řešení. Tato integrace umožňuje významné zlepšení procesu práce s platbami, redukci chyb a minimalizaci rizika návratu transakcí.</h2>
+</div><div class="image-btn"><a class="btn btn-default btn-sm" href="/produkty/platebni-reseni-hotelu#kontaktni-formular"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">SPOJTE SE S NÁMI</span></a></div></div></div></div></div></div></div></div></div>
+<ProtelVPraxi />
+<div class="section height--normal align--middle color--default col-gaps-bigger section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Platební řešení hotelu od hotelového systému Protel již využívají<span class="text-highlight">...</span></h2>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:50px"></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-4-12"><div class="block block-quote"><div class="has-icon left block-quote-figure"><div class="block-quote-image"><div class="image-wrapper"><div class="image image-mask ratio-square shape-circle"><img alt="Ivona Meissner" decoding="async" loading="lazy" sizes="auto" src="/files/r/1280/ivona-meissner.webp" srcset="/files/r/720/ivona-meissner.webp 720w, /files/r/1280/ivona-meissner.webp 1280w, /files/r/1920/ivona-meissner.webp 1920w"/></div></div></div><i class="icon icon-quote-right"></i><blockquote class="block-quote-text">Ďakujem firme Protel za profesionálny support a inštaláciu!</blockquote><div class="block-quote-author"><span class="quote-decor">–</span> Ivona Meissner <span class="quote-decor">–</span><span class="block-quote-info">BWH Hotel Group, Area Director Austria &amp; Central Eastern Europe </span></div></div></div></div> <div class="col col-5-12 grid-4-12"><div class="block block-quote"><div class="has-icon left block-quote-figure"><div class="block-quote-image"><div class="image-wrapper"><div class="image image-mask ratio-square shape-circle"><img alt="Miroslav Bukva" decoding="async" loading="lazy" sizes="auto" src="/files/r/1280/miroslav-bukva.webp" srcset="/files/r/720/miroslav-bukva.webp 720w, /files/r/1280/miroslav-bukva.webp 1280w, /files/r/1920/miroslav-bukva.webp 1920w"/></div></div></div><i class="icon icon-quote-right"></i><blockquote class="block-quote-text">Vybrat do hotelu vhodný software není jednoduché, protože různé typy hotelů mají odlišné potřeby. Pro velký hotel s konferenčním centrem je robustní řešení PMS PROTEL naprosto ideální. PROTEL je výborný jak z hlediska výkonu, tak ceny a důležitou samozřejmostí je velmi kvalitní podpora.</blockquote><div class="block-quote-author"><span class="quote-decor">–</span> Miroslav Bukva <span class="quote-decor">–</span><span class="block-quote-info">Aquapalace Hotel Prague, General Manager</span></div></div></div></div> <div class="col col-9-12 grid-4-12"><div class="block block-quote"><div class="has-icon left block-quote-figure"><div class="block-quote-image"><div class="image-wrapper"><div class="image image-mask ratio-square shape-circle"><img alt="Michaela Bieliková" decoding="async" loading="lazy" sizes="auto" src="/files/r/1280/michaela-bielikova.webp" srcset="/files/r/720/michaela-bielikova.webp 720w, /files/r/1280/michaela-bielikova.webp 1280w, /files/r/1920/michaela-bielikova.webp 1920w"/></div></div></div><i class="icon icon-quote-right"></i><blockquote class="block-quote-text">Protel je pro CPI Hotels vynikající volba. Jeho intuitivní rozhraní, spolehlivost a efektivita nám umožňují snadno řídit rezervace, spravovat hosty a sledovat statistiky.</blockquote><div class="block-quote-author"><span class="quote-decor">–</span> Michaela Bieliková <span class="quote-decor">–</span><span class="block-quote-info">CPI Hotels, Director Of Training and Development</span></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:50px"></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div class="center"><a class="btn btn-inverse btn-sm" href="/nasi-zakaznici"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">NAŠI ZÁKAZNÍCI</span></a></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<Mezera />
+<DaleByVasMohloZajimat />
+<VyzkousetZdarma />
+<Novinky />
+<KontaktniFormular />
 </Base>
-
-<style>
-  .jump { display: flex; flex-wrap: wrap; gap: var(--space-2); justify-content: center; margin-bottom: var(--space-8); }
-  .jump__chip {
-    display: inline-flex; padding: var(--space-2) var(--space-4);
-    border: 1px solid var(--color-border); border-radius: var(--radius-full);
-    background: var(--color-bg-alt); color: var(--color-text);
-    font-size: var(--font-size-small); font-weight: var(--font-weight-semibold);
-    text-decoration: none; transition: border-color var(--duration-base) var(--easing);
-  }
-  .jump__chip:hover { border-color: var(--color-primary); color: var(--color-text-accent); }
-  .features { max-width: 800px; margin-inline: auto; display: flex; flex-direction: column; gap: var(--space-9); }
-  .feature { scroll-margin-top: var(--space-9); }
-  .feature > :global(* + *) { margin-top: var(--space-3); }
-  .feature__icon {
-    display: inline-flex; align-items: center; justify-content: center;
-    width: 56px; height: 56px; border-radius: var(--radius-md);
-    background: color-mix(in srgb, var(--color-primary) 10%, #fff); color: var(--color-primary);
-  }
-  .quoteband { margin: 0; max-width: 840px; margin-inline: auto; display: flex; flex-direction: column; align-items: center; gap: var(--space-4); text-align: center; }
-  .quoteband__mark { color: var(--color-text-on-dark); opacity: 0.7; }
-  .quoteband blockquote { margin: 0; }
-</style>

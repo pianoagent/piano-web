@@ -1,83 +1,131 @@
 ---
-/**
- * Protel: Produkty (rozcestník). Obsah z produkty.html starého protelsystems.cz.
- * Vše ze sdílených komponent @piano/ui: karty produktů řeší USPGrid (items s href).
- */
-import Base from '../layouts/Base.astro';
-import SiteHeader from '../components/SiteHeader.astro';
-import SiteFooter from '../components/SiteFooter.astro';
-import Hero from '@piano/ui/components/Hero.astro';
-import Heading from '@piano/ui/components/Heading.astro';
-import Button from '@piano/ui/components/Button.astro';
-import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
-import USPGrid from '@piano/ui/components/USPGrid.astro';
-import LeadForm from '@piano/ui/components/LeadForm.astro';
-
-const system = [
-  { icon: 'lucide:layout-dashboard', title: 'Hotelový systém', text: 'Globálně respektovaný hotelový systém s plnohodnotnou lokální podporou. I přes snadné používání a přehlednost překvapí množstvím pokročilých funkcí a schopností udržet pod kontrolou celý hotelový provoz.', href: '/produkty/hotelovy-system-protel' },
-  { icon: 'lucide:credit-card', title: 'Platební řešení hotelu', text: 'Protel má vlastní plně integrované platební řešení. Zefektivníte práci s platbami, minimalizujete chybovost a snížíte riziko vracení transakcí.', href: '/produkty/platebni-reseni-hotelu' },
-  { icon: 'lucide:concierge-bell', title: 'Room Service', text: 'Naprostá rarita! Host načte QR kód a má nabídku Room Service ve svém telefonu. Protel sám pozná, ze kterého pokoje host objednává, a napojený restaurační systém Septim se postará o vše v kuchyni i na baru.', href: '/produkty/room-service' },
-  { icon: 'lucide:presentation', title: 'Konference', text: 'Rezervace konferenčních místností, sledování dostupnosti a vybavení, správa stravování, fakturace za pronájem i správa účastníků: vše přímo v hotelovém systému.', href: '/produkty/konference' },
-  { icon: 'lucide:bed-double', title: 'Housekeeping', text: 'Digitální řešení pro úklid a údržbu pokojů. Snadné sledování a přidělování úkolů, kontrola stavu pokojů a komunikace mezi zaměstnanci.', href: '/produkty/housekeeping' },
-  { icon: 'lucide:soup', title: 'MealPlan', text: 'Kompletní digitalizace evidence snídaní, obědů a večeří. Obsluha má vše v mobilu nebo na tabletu, žádné papírové seznamy ani ruční sčítání.', href: '/produkty/meal-plan' },
-];
-
-const recepce = [
-  { icon: 'lucide:smartphone', title: 'Online check-in/out', text: 'Díky partnerství se Straiv zkrátíte hostům čekání u recepce, snížíte počet recepčních a zvýšíte prodej dodatečných služeb už před příjezdem. Check-in i check-out odkudkoliv.', href: '/produkty/online-check-in-out' },
-  { icon: 'lucide:monitor-smartphone', title: 'Kiosek', text: 'Pohodlné alternativní řešení pro hosty, kteří preferují rychlý check-in/out bez návštěvy recepce. Umožněte hostům komfort, který vyžadují.', href: '/produkty/kiosek' },
-  { icon: 'lucide:file-signature', title: 'Digitální registrační karta', text: 'Elegantní způsob, jak umožnit hostům vyplnit údaje pohodlně přes mobilní telefon a strávit u recepčního pultu minimum času.', href: '/produkty/digitalni-registracni-karta' },
-  { icon: 'lucide:book-open', title: 'Digitální hotelová kniha', text: 'Digitální informační kniha, která zcela nahrazuje tištěnou verzi. Šetří náklady na tisk, umožňuje flexibilní aktualizace a zvyšuje prodej služeb přímo v hotelu.', href: '/produkty/digitalni-hotelova-kniha' },
-];
-
-const doplnky = [
-  { icon: 'lucide:globe', title: 'Webové rezervace', text: 'Online formulář na Vašich stránkách umožní hostům kdykoli si rezervovat pobyt přímo u Vás.', href: '/produkty/webove-rezervace' },
-  { icon: 'lucide:mail', title: 'Automatický mailing', text: 'Důležité informace, potvrzení rezervací i upozornění odcházejí hostům včas a bez zásahu recepčního. Filtry zachovají personalizaci a přesné cílení.', href: '/produkty/automaticky-mailing' },
-  { icon: 'lucide:scan-line', title: 'Čtečka dokladů', text: 'Údaje o hostech načtete do systému rychle přímo z jejich dokladů. Stejná čtečka zvládne i platební karty.', href: '/produkty/ctecka-dokladu' },
-  { icon: 'lucide:network', title: 'Hotelové řetězce', text: 'Řídíte dva a více hotelů? Řešení navržené přímo pro hotelové řetězce, efektivnější řízení, nižší náklady a lepší zážitek hostů. Z jednoho místa!', href: '/produkty/hotelove-retezce' },
-  { icon: 'lucide:plug', title: 'Napojení a integrace', text: 'Channel managery, platby, zámkové a televizní systémy, účetní programy i POS Septim. Protel mluví s celým Vaším technologickým zázemím.', href: '/napojeni' },
-];
-
-const leadProofs = [
-  { icon: 'lucide:globe', title: 'Globální standard', text: 'Mezinárodně respektovaný hotelový PMS.' },
-  { icon: 'lucide:headset', title: 'CZ / SK podpora', text: 'Plnohodnotná lokální podpora.' },
-  { icon: 'lucide:badge-check', title: 'Best Western', text: 'Certifikovaný partner.' },
-  { icon: 'lucide:gift', title: 'Vyzkoušení zdarma', text: 'Nezávazně a bez rizika.' },
-];
+// https://www.protelsystems.cz/produkty (Solid Pixels), port 1:1 skriptem port-protel.py
+import Base from './../layouts/Base.astro';
+import Mezera from './../components/blocks/Mezera.astro';
+import PojdmeToProbrat from './../components/blocks/PojdmeToProbrat.astro';
+import KolikMeToBudeStat from './../components/blocks/KolikMeToBudeStat.astro';
+import VyzkousetZdarma from './../components/blocks/VyzkousetZdarma.astro';
+import Novinky from './../components/blocks/Novinky.astro';
+import KontaktniFormular from './../components/blocks/KontaktniFormular.astro';
 ---
-
-<Base title="Produkty hotelového systému | Protel"
-      description="Hotelové produkty pro Váš byznys. Přemýšlíte o systému Protel a nevíte si rady? Nabídku jsme strukturovali tak, aby byl výběr co nejjednodušší.">
-  <SiteHeader />
-
-  <main>
-    <Breadcrumb items={[{ label: 'Úvod', href: '/' }, { label: 'Produkty' }]} />
-
-    <Hero eyebrow="Produkty" background="gradient"
-          lead="Přemýšlíte o tom, jak zlepšit fungování ve svém hotelu, a nevíte si rady? Nabídku produktů jsme strukturovali tak, abychom Vám výběr co nejvíce usnadnili.">
-      <Heading slot="title" as="h1" size="display" color="on-dark">Zvyšujeme hotelům <em>ziskovost</em></Heading>
-      <Fragment slot="actions">
-        <Button href="#poptavka">Vyzkoušet Protel zdarma</Button>
-        <Button href="/cenik" variant="secondary" onDark>Zobrazit ceník</Button>
-      </Fragment>
-    </Hero>
-
-    <USPGrid id="system-protel" eyebrow="Systém Protel" title="Jádro hotelového provozu"
-             lead="Od rezervací a plateb po Room Service a konference, vše přímo v hotelovém systému."
-             items={system} minItemWidth="300px" background="default" space="lg" />
-
-    <USPGrid id="online-check-in-out" eyebrow="Digitální recepce" title="Online check-in/out"
-             lead="Recepční úkony vyřídí host přes mobil: bez fyzické asistence recepčního."
-             items={recepce} minItemWidth="280px" background="alt" space="lg" />
-
-    <USPGrid id="doplnky" eyebrow="Doplňky" title="Rozšiřte Protel podle potřeby"
-             lead="Doplňky a integrace, které dotáhnou automatizaci Vašeho hotelu do konce."
-             items={doplnky} minItemWidth="280px" background="default" space="lg" />
-
-    <LeadForm id="poptavka" variant="full" background="alt"
-              title="Vyzkoušejte Protel zdarma"
-              lead="Co byste u Vás v hotelu rádi zlepšili? Pojďme to probrat, ozveme se a ukážeme Protel přímo ve Vašem hotelu."
-              proofs={leadProofs} />
-  </main>
-
-  <SiteFooter />
+<Base
+  title="Produkty | Hotel PMS Protel"
+  description="Hotelové produkty pro Váš hotelový byznys. Přemýšlíte o zakoupení hotelového systému Protel pro Váš provoz a nevíte si rady? Pokusili jsme se naši nabídku produktů strukturovat tak, abychom Vám výběr co nejvíce usnadnili."
+  path="/produkty"
+  bodyClass="use-header-transparent use-menu-secondary-uppercase use-menu-button-uppercase use-headings-link-plain search-panel-hide-submit-label search-panel-hide-close-label search-panel-hide-open-label use-menu-bar use-header-fixed use-header-fixed-mobile use-header-priority use-header-boxed"
+  image="/files/nahled-produkty.jpg"
+>
+<div class="section height--low align--middle color--default section-width-boxed no-pb section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h1 class="center">Zvyšujeme hotelům ziskovost<span class="text-highlight">.</span></h1>
+</div></div></div>
+<div class="row-main"><div class="col col-3-12 grid-8-12"><div class="block block-inline"><p class="center text-large">Přemýšlíte o tom, jak zlepšit fungování ve svém hotelu a nevíte si rady? Pokusili jsme se naši nabídku produktů strukturovat tak, abychom Vám výběr co nejvíce usnadnili.</p>
+</div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<Mezera />
+<PojdmeToProbrat />
+<div class="section height--low align--middle color--inverse section-width-boxed no-pb section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="container color--default tab-links"><div class="container-body flex flex--justify-center flex--wrap">
+<div class="flex__item"><div class="block block-inline active"><p><a href="#tab-system-protel">SYSTém protel</a></p>
+</div></div>
+<div class="flex__item"><div class="block block-inline"><p><a href="#tab-online-check-in-out">online check-in/out</a></p>
+</div></div>
+<div class="flex__item"><div class="block block-inline"><p><a href="#tab-doplnky">doplňky</a></p>
+</div></div>
+</div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<div class="section height--normal align--middle color--default tab-content active tab-system-protel"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline tab-link active"><p><a href="#tab-system-protel">Systém protel</a></p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:30px"></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-6-12"><div class="block block-box box box--default box--full-height"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-icon flexcard-none size-lg align-center"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/hdr-produkt-hotelovy-system-protel.webp"/></div></div></div></div></div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3 class="center text-large">Hotelový systém<span class="text-highlight">.</span></h3>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Protel je globálně respektovaný hotelový systém s plnohodnotnou lokální podporou. I přes jeho snadné používání a přehlednost Vás překvapí množství pokročilých funkcí a schopnost mít pod kontrolou celý hotelový provoz. </p>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div class="center"><a class="btn btn-inverse btn-sm" href="/produkty/hotelovy-system"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">VÍCE O PRODUKTU</span></a></div></div></div></div></div></div> <div class="col col-7-12 grid-6-12"><div class="block block-box box box--default box--full-height"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-icon flexcard-none size-lg align-center"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/hdr-produkt-platebni-reseni-hotelu.webp"/></div></div></div></div></div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3 class="center text-large">Platební řešení hotelu<span class="text-highlight">.</span></h3>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Protel má vlastní plně integrované platební řešení. Díky této integraci můžete výrazně zefektivnit práci s platbami, minimalizovat chybovost a snížit riziko vracení transakcí.</p>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div class="center"><a class="btn btn-inverse btn-sm" href="/produkty/platebni-reseni-hotelu"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">VÍCE O PRODUKTU</span></a></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-6-12"><div class="block block-divider"><hr class="divider divider--normal divider--align-left"/></div></div> <div class="col col-7-12 grid-6-12"><div class="block block-divider"><hr class="divider divider--normal divider--align-left"/></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-6-12"><div class="block block-box box box--default box--full-height"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-icon flexcard-none size-lg align-center"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/hdr-produkt-room-service.webp"/></div></div></div></div></div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3 class="center text-large">Room Service<span class="text-highlight">.</span></h3>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Náš Room Service je naprostá rarita! Stačí načíst QR kód a host má ihned nabídku Room Service ve svém telefonu. Protel sám pozná, ze kterého pokoje host objednává a napojený restaurační systém Septim se postará o vše v kuchyni i na baru. Plně automatizovaně a jednoduše.</p>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div class="center"><a class="btn btn-inverse btn-sm" href="/produkty/room-service"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">VÍCE O PRODUKTU</span></a></div></div></div></div></div></div> <div class="col col-7-12 grid-6-12"><div class="block block-box box box--default box--full-height"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-icon flexcard-none size-lg align-center"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/hdr-produkt-konference.webp"/></div></div></div></div></div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3 class="center text-large">Konference<span class="text-highlight">.</span></h3>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Konferenční modul, který je automatickou součástí hotelového systému Protel, Vám nabízí spoustu výhod: rezervace konferenčních místností, sledování dostupnosti místností, vybavení, správa stravování a občerstvení, fakturace za pronájem místností a služeb, správa účastníků a jejich požadavků, generování reportů a další administrativní úkony spojené s pořádáním událostí ve Vašem hotelu.</p>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div class="center"><a class="btn btn-inverse btn-sm" href="/produkty/konference"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">VÍCE O PRODUKTU</span></a></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-6-12"><div class="block block-divider"><hr class="divider divider--normal divider--align-left"/></div></div> <div class="col col-7-12 grid-6-12"><div class="block block-divider"><hr class="divider divider--normal divider--align-left"/></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-6-12"><div class="block block-box box box--default box--full-height"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-icon flexcard-none size-lg align-center"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/hdr-produkt-housekeeping.webp"/></div></div></div></div></div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3 class="center text-large">Housekeeping<span class="text-highlight">.</span></h3>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Digitální řešení pro housekeeping přináší efektivitu a transparentnost do procesů úklidu a údržby hotelových pokojů. Systém umožňuje snadné sledování a přidělování úkolů, kontrolu stavu pokojů a komunikaci mezi zaměstnanci. I housekeeping ve Vašem hotelu může být kompletně digitální!</p>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div class="center"><a class="btn btn-inverse btn-sm" href="/produkty/housekeeping"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">VÍCE O PRODUKTU</span></a></div></div></div></div></div></div> <div class="col col-7-12 grid-6-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:50px"></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div></div>
+<div class="section height--normal align--middle color--default tab-content tab-online-check-in-out"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline tab-link active"><p><a href="#tab-online-check-in-out">ONLINE CHECK-IN/OUT</a></p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:30px"></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-6-12"><div class="block block-box box box--default box--full-height"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-icon flexcard-none size-lg align-center"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/hdr-produkt-online-check-in-out.webp"/></div></div></div></div></div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3 class="center text-large">Online check-in/out<span class="text-highlight">.</span></h3>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Nástroj online check-in/out pro digitální recepci může být přímo součástí hotelového systému Protel díky partnerství se <a href="https://straiv.io/" target="_blank">Straiv</a>. Pomocí vyspělých a promyšlených vlastností zkrátíte dobu čekání u recepce Vašim hostům, snížíte počet recepčních a zvýšíte prodej dodatečných služeb již před příjezdem. Check-in a check-out může host provést odkudkoliv...</p>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div class="center"><a class="btn btn-inverse btn-sm" href="/produkty/online-check-in-out"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">VÍCE O PRODUKTU</span></a></div></div></div></div></div></div> <div class="col col-7-12 grid-6-12"><div class="block block-box box box--default box--full-height"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-icon flexcard-none size-lg align-center"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/hdr-produkt-kiosek.webp"/></div></div></div></div></div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3 class="center text-large">Kiosek<span class="text-highlight">.</span></h3>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Kiosek poskytuje pohodlné alternativní řešení pro hosty, kteří preferují rychlý check-in/out bez návštěvy recepce. Umožněte hostům komfort, který vyžadují.</p>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div class="center"><a class="btn btn-inverse btn-sm" href="/produkty/kiosek"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">VÍCE O PRODUKTU</span></a></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-6-12"><div class="block block-divider"><hr class="divider divider--normal divider--align-left"/></div></div> <div class="col col-7-12 grid-6-12"><div class="block block-divider"><hr class="divider divider--normal divider--align-left"/></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-6-12"><div class="block block-box box box--default box--full-height"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-icon flexcard-none size-lg align-center"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/hdr-produkt-digitalni-registracni-karta.webp"/></div></div></div></div></div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3 class="center text-large">Digitální registrační karta<span class="text-highlight">.</span></h3>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Digitální registrační karta je elegantní způsob, jak umožnit Vašim hostům, aby své údaje vyplnili pohodlně a u recepčního pultu strávili minimum času. Vyplnění zcela jednoduše přes mobilní telefon hosta.</p>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div class="center"><a class="btn btn-inverse btn-sm" href="/produkty/digitalni-registracni-karta"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">VÍCE O PRODUKTU</span></a></div></div></div></div></div></div> <div class="col col-7-12 grid-6-12"><div class="block block-box box box--default box--full-height"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-icon flexcard-none size-lg align-center"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/hdr-produkt-digitalni-hotelova-kniha.webp"/></div></div></div></div></div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3 class="center text-large">Digitální hotelová kniha<span class="text-highlight">.</span></h3>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Společně s partnerem <a href="https://straiv.io/" target="_blank">Straiv</a> představujeme digitální informační hotelovou knihu, která úplně nahrazuje její tištěnou verzi. Tento digitální nástroj nejen šetří náklady na tisk a umožňuje flexibilní aktualizace, ale také funguje jako účinný prostředek pro zvyšování prodeje vybraných služeb přímo v hotelu.</p>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div class="center"><a class="btn btn-inverse btn-sm" href="/produkty/digitalni-hotelova-kniha"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">VÍCE O PRODUKTU</span></a></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div></div>
+<div class="section height--normal align--middle color--default tab-content tab-doplnky"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline tab-link active"><p><a href="#tab-online-check-in-out">Doplňky</a></p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:30px"></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-6-12"><div class="block block-box box box--default box--full-height"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-icon flexcard-none size-lg align-center"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/hdr-produkt-webove-rezervace.webp"/></div></div></div></div></div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3 class="center text-large">Webové rezervace<span class="text-highlight">.</span></h3>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Online webový formulář na Vašich stránkách umožní Vašim hostům, aby si u Vás kdykoli rezervovali svůj pobyt.</p>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div class="center"><a class="btn btn-inverse btn-sm" href="/produkty/webove-rezervace"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">VÍCE O PRODUKTU</span></a></div></div></div></div></div></div> <div class="col col-7-12 grid-6-12"><div class="block block-box box box--default box--full-height"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-icon flexcard-none size-lg align-center"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/hdr-produkt-automaticky-mailing.webp"/></div></div></div></div></div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3 class="center text-large">Automatický mailing<span class="text-highlight">.</span></h3>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Automatický mailing v hotelu zajišťuje, že důležité informace, potvrzení rezervací nebo upozornění jsou zasílány hostům včas a bez zásahu recepčního. S možností použití filtrů při tvorbě zpráv si zachováte personalizaci a můžete lépe cílit na potřeby jednotlivých hostů.</p>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div class="center"><a class="btn btn-inverse btn-sm" href="/produkty/automaticky-mailing"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">VÍCE O PRODUKTU</span></a></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-6-12"><div class="block block-divider"><hr class="divider divider--normal divider--align-left"/></div></div> <div class="col col-7-12 grid-6-12"><div class="block block-divider"><hr class="divider divider--normal divider--align-left"/></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-6-12"><div class="block block-box box box--default box--full-height"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-icon flexcard-none size-lg align-center"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/hdr-produkt-ctecka-dokladu.webp"/></div></div></div></div></div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3 class="center text-large"><span class="text-highlight"><font color="#000000"><span style="caret-color: rgb(0, 0, 0);">Čtečka dokladů</span></font>.</span></h3>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Údaje o svých hotelových hostech můžete do hotelového systému rychle načítat přímo z jejich dokladů pomocí čtečky. Pomocí stejné čtečky pak můžete načítat i údaje o platebních kartách.</p>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div class="center"><a class="btn btn-inverse btn-sm" href="/produkty/ctecka-dokladu"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">VÍCE O PRODUKTU</span></a></div></div></div></div></div></div> <div class="col col-7-12 grid-6-12"><div class="block block-box box box--default box--full-height"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-icon flexcard-none size-lg align-center"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/hdr-produkt-hotelove-retezce.webp"/></div></div></div></div></div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3 class="center text-large">Hotelové řetězce<span class="text-highlight">.</span></h3>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Pokud řídíte dva nebo více hotelů a toužíte po efektivitě, můžete zvolit řešení navržené přímo pro hotelové řetězce. Tento způsob Vám zaručí řídit své hotelové řetězce efektivněji, snižovat náklady a zlepšovat zážitky hostů. Z jednoho místa!</p>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div class="center"><a class="btn btn-inverse btn-sm" href="/produkty/hotelove-retezce"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">VÍCE O PRODUKTU</span></a></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-6-12"><div class="block block-divider"><hr class="divider divider--normal divider--align-left"/></div></div> <div class="col col-7-12 grid-6-12"><div class="block block-divider"><hr class="divider divider--normal divider--align-left"/></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-6-12"><div class="block block-box box box--default box--full-height"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-icon flexcard-none size-lg align-center"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/hdr-produkt-mealplan.webp"/></div></div></div></div></div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3 class="center text-large">MealPlan<span class="text-highlight">.</span></h3>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p>Meal Plan je chytrý nástroj pro hotely, který kompletně digitalizuje evidenci snídaní, obědů, večeří a stravování hostů všeobecně. Obsluha má vše v mobilu nebo na tabletu. Žádné papírové seznamy, žádné Excel tabulky ani ruční sčítání. V reálném čase vidíte, kdo už přišel, na koho ještě čekáte a kolik hostů zbývá odbavit.</p>
+</div></div></div>
+<div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div class="center"><a class="btn btn-inverse btn-sm" href="/produkty/meal-plan"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">VÍCE O PRODUKTU</span></a></div></div></div></div></div></div> <div class="col col-7-12 grid-6-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:50px"></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div></div>
+<KolikMeToBudeStat />
+<VyzkousetZdarma />
+<Novinky />
+<KontaktniFormular />
 </Base>

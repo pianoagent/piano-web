@@ -1,154 +1,96 @@
 ---
-/**
- * Protel: produkt „Automatický mailing“. Obsah vytěžen z produkty/automaticky-mailing.html
- * starého protelsystems.cz (jazykově uhlazeno, fakta zachována).
- * Vše ze sdílených komponent @piano/ui.
- */
+// https://www.protelsystems.cz/produkty/automaticky-mailing (Solid Pixels), port 1:1 skriptem port-protel.py
 import Base from '../../layouts/Base.astro';
-import SiteHeader from '../../components/SiteHeader.astro';
-import SiteFooter from '../../components/SiteFooter.astro';
-import Section from '@piano/ui/components/Section.astro';
-import Hero from '@piano/ui/components/Hero.astro';
-import Heading from '@piano/ui/components/Heading.astro';
-import Text from '@piano/ui/components/Text.astro';
-import Button from '@piano/ui/components/Button.astro';
-import Icon from '@piano/ui/components/Icon.astro';
-import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
-import USPGrid from '@piano/ui/components/USPGrid.astro';
-import LeadForm from '@piano/ui/components/LeadForm.astro';
-import { protelLeadProofs } from '../../config/leadProofs';
-import Img from '@piano/ui/components/Img.astro';
-
-const features = [
-  {
-    id: "potvrzeni-rezervace", icon: "lucide:mail-check", title: "Potvrzení rezervace",
-    paras: [
-      "Jakmile vznikne rezervace: automaticky, nebo ručně, systém hostovi okamžitě odešle potvrzení s termíny pobytu, typem pokoje, cenovými podmínkami a dalšími údaji.",
-      "Hosté mají jasné a přesné informace o rezervaci a na pobyt se mohou těšit s jistotou, že je vše zajištěno.",
-    ],
-  },
-  {
-    id: "pred-prijezdova-komunikace", icon: "lucide:calendar-clock", title: "Před-příjezdová komunikace",
-    paras: [
-      "Nastavíte, kolik dní před příjezdem se mají e-maily zasílat a s jakou frekvencí, komunikaci přizpůsobíte potřebám a preferencím hostů.",
-      "Před příjezdem tak hosty informujete o pokynech k příjezdu, možnostech dopravy, speciálních nabídkách nebo akcích během pobytu. Hosté se cítí vítáni ještě dřív, než dorazí.",
-    ],
-  },
-  {
-    id: "upselling", icon: "lucide:trending-up", title: "Upselling",
-    paras: [
-      "Díky filtrům a personalizovaným zprávám nabídnete hostům dodatečné služby přesně na míru, například hostům se základním typem pokoje upgrade do vyšší kategorie za příplatek.",
-      "Maximalizujete tak příjem hotelu, hosté si vylepší pobyt podle svých preferencí a hodnocení hotelu ovlivníte dřív, než host odjede.",
-    ],
-  },
-  {
-    id: "zustante-ve-spojeni", icon: "lucide:heart-handshake", title: "Zůstaňte ve spojení",
-    paras: [
-      "S hosty zůstanete v kontaktu i po odjezdu: automatická narozeninová přání posilují osobní vztah, pravidelné newslettery informují o novinkách, slevách, událostech v hotelu i zajímavých místech v okolí.",
-      "Udržujete zájem hostů o Váš hotel a motivujete je k opětovné návštěvě.",
-    ],
-  },
-  {
-    id: "interni-komunikace", icon: "lucide:messages-square", title: "Interní komunikace",
-    paras: [
-      "Automatický mailing usnadňuje i komunikaci uvnitř hotelu, třeba zadávání úklidu nebo hlášení závad. Systém automaticky vygeneruje upozornění a pošle je s podrobnostmi příslušnému oddělení.",
-      "Úkoly se řeší rychle a bez chyb z ručního zadávání, komunikace mezi odděleními se zlepšuje a produktivita roste.",
-    ],
-  },
-  {
-    id: "filtr-rezervaci", icon: "lucide:filter", title: "Filtr rezervací",
-    paras: [
-      "Filtry umožňují cílit e-maily podle data příjezdu, délky pobytu, typu pokoje nebo speciálních požadavků. Novým hostům pošlete uvítací e-mail, hostům s delším pobytem speciální akce, rodinám s dětmi tipy na aktivity.",
-      "Hosté dostávají relevantní a včasné informace, personál šetří čas a spokojenost i loajalita hostů roste.",
-    ],
-  },
-];
-
-const related = [
-  { icon: "lucide:layout-dashboard", title: "Hotelový systém", text: "Správa pokojů, rezervací, hostů a statistik: snadné používání a pokročilé funkce pro kompletní přehled o provozu.", href: "/produkty/hotelovy-system-protel" },
-  { icon: "lucide:globe", title: "Webové rezervace", text: "Přímé rezervace přes web hotelu, bez provizí třetích stran.", href: "/produkty/webove-rezervace" },
-  { icon: "lucide:book-open", title: "Digitální hotelová kniha", text: "Hotelová kniha elektronicky, vždy aktuální a po ruce.", href: "/produkty/digitalni-hotelova-kniha" },
-  { icon: "lucide:smartphone", title: "Online check-in/out", text: "Host vyřídí check-in i check-out přes mobil, bez fronty na recepci.", href: "/produkty/online-check-in-out" },
-];
+import Mezera from '../../components/blocks/Mezera.astro';
+import PojdmeToProbrat from '../../components/blocks/PojdmeToProbrat.astro';
+import KolikMeToBudeStat from '../../components/blocks/KolikMeToBudeStat.astro';
+import ProtelVPraxi from '../../components/blocks/ProtelVPraxi.astro';
+import DaleByVasMohloZajimat from '../../components/blocks/DaleByVasMohloZajimat.astro';
+import VyzkousetZdarma from '../../components/blocks/VyzkousetZdarma.astro';
+import Novinky from '../../components/blocks/Novinky.astro';
+import KontaktniFormular from '../../components/blocks/KontaktniFormular.astro';
 ---
-
-<Base title="Automatický mailing hostům | Protel"
-      description="Potvrzení rezervací i upozornění odcházejí hostům včas a bez zásahu recepčního. Filtry zachovají personalizaci a přesné cílení na potřeby hostů.">
-  <SiteHeader />
-
-  <main>
-    <Breadcrumb items={[{ label: 'Úvod', href: '/' }, { label: 'Produkty', href: '/produkty' }, { label: "Automatický mailing" }]} />
-
-    <Hero eyebrow="Produkty" background="gradient"
-          lead="Automatický mailing zajišťuje, že důležité informace, potvrzení rezervací nebo upozornění odcházejí hostům včas a bez zásahu recepčního. Díky filtrům při tvorbě zpráv si zachováte personalizaci a lépe zacílíte na potřeby jednotlivých hostů.">
-      <Heading slot="title" as="h1" size="display" color="on-dark">Automatický <em>mailing</em></Heading>
-      <Fragment slot="actions">
-        <Button href="#poptavka">Vyzkoušet Protel zdarma</Button>
-        <Button href="/produkty" variant="secondary" onDark>Všechny produkty</Button>
-      </Fragment>
-      <figure slot="media" class="hero-pic">
-        <Img src="/images/automaticky-mailing.webp" alt="Automatický e-mail hostovi před příjezdem do hotelu" width={880} sizes="(min-width: 881px) 560px, 100vw" loading="eager" decoding="async" />
-      </figure>
-    </Hero>
-
-    <Section background="default" space="lg">
-      <nav class="jump" aria-label="Funkce produktu">
-        {features.map((f) => (
-          <a class="jump__chip" href={`#${f.id}`}>{f.title}</a>
-        ))}
-      </nav>
-      <div class="features">
-        {features.map((f) => (
-          <article class="feature" id={f.id}>
-            <span class="feature__icon"><Icon name={f.icon} size="lg" /></span>
-            <Heading as="h2" size="h3">{f.title}</Heading>
-            {f.paras.map((p) => (
-              <Text color="muted">{p}</Text>
-            ))}
-          </article>
-        ))}
-      </div>
-    </Section>
-
-    <Section background="primary" space="lg">
-      <figure class="quoteband">
-        <span class="quoteband__mark"><Icon name="lucide:quote" size="lg" /></span>
-        <blockquote>
-          <Heading as="p" size="h3" color="on-dark" align="center">Automatický mailing je plně automatizovaný díky integraci s hotelovým systémem. Filtry umožňují personalizovanou komunikaci s hosty a Vám dávají možnost prodat více služeb.</Heading>
-        </blockquote>
-      </figure>
-    </Section>
-
-    <USPGrid eyebrow="Dále by Vás mohlo zajímat" title="Související produkty"
-             items={related} minItemWidth="260px" background="alt" space="lg" />
-
-    <LeadForm proofs={protelLeadProofs} id="poptavka" variant="full" background="default"
-              title="Vyzkoušejte Protel zdarma"
-              lead="Co byste u Vás v hotelu rádi zlepšili? Nechte nám kontakt, ozveme se a ukážeme Protel přímo ve Vašem hotelu." />
-  </main>
-
-  <SiteFooter />
+<Base
+  title="Automatický mailing | Hotel PMS Protel"
+  description="Automatický mailing v hotelu zajišťuje, že důležité informace, potvrzení rezervací nebo upozornění jsou zasílány hostům včas a bez zásahu recepčního. S možností použití filtrů při tvorbě zpráv si zachováte personalizaci a můžete lépe cílit na potřeby jednotlivých hostů."
+  path="/produkty/automaticky-mailing"
+  bodyClass="use-header-transparent use-menu-secondary-uppercase use-menu-button-uppercase use-headings-link-plain search-panel-hide-submit-label search-panel-hide-close-label search-panel-hide-open-label use-menu-bar use-header-fixed use-header-fixed-mobile use-header-priority use-header-boxed"
+  image="/files/nahled-produkt-automaticky-mailing.jpg"
+>
+<div class="section height--low align--middle color--default section-width-wide section-has-background" id="uvod"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-card flexcard-size--normal flexcard-media-right valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><a class="image image-mask ratio-original" href="/vyzkouset-zdarma" style="padding-bottom:91.14583333333334%"><img alt="Automatický mailing" decoding="async" sizes="(min-width:1459px) 50vw, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/hdr-top-automaticky-mailing.webp" srcset="/files/r/720/hdr-top-automaticky-mailing.webp 720w, /files/r/1280/hdr-top-automaticky-mailing.webp 1280w, /files/r/1920/hdr-top-automaticky-mailing.webp 1920w"/></a></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p><a href="/produkty"><strong><span class="text-highlight"><span style="font-family: var(--headings-font-family); font-style: var(--headings-text-italic); text-transform: var(--headings-text-transform); text-decoration: var(--headings-text-underline); caret-color: rgb(255, 0, 150);"><font color="#ff0096" size="3">VŠECHNY PRODUKTY</font></span></span></strong></a></p>
+<h1>Automatický mailing</h1>
+<p class="text-large">Automatický mailing v hotelu zajišťuje, že důležité informace, potvrzení rezervací nebo upozornění jsou zasílány hostům včas a bez zásahu recepčního. S možností použití filtrů při tvorbě zpráv si zachováte personalizaci a můžete lépe cílit na potřeby jednotlivých hostů. </p>
+<p class="text-large"><a href="#funkce"><strong><span class="text-highlight"><span style="font-family: var(--headings-font-family); font-style: var(--headings-text-italic); text-transform: var(--headings-text-transform); text-decoration: var(--headings-text-underline); caret-color: rgb(255, 0, 150);"><font color="#ff0096" size="3">ZJISTIT VÍCE →</font></span></span></strong></a></p>
+</div><div class="image-btn"><a class="btn btn-default" href="/vyzkouset-zdarma"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">VYZKOUŠET ZDARMA</span></a></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-gallery grid-sm-2"><div class="grid gallery-container" style="--gap:40px"><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Mamaison" decoding="async" src="/files/ref-mamaison-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Old Town Hotels" decoding="async" src="/files/ref-old-town-hotel-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Imperial" decoding="async" src="/files/ref-imperial-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo CPI Hotels" decoding="async" src="/files/ref-cpi-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Buddha-Bar" decoding="async" src="/files/ref-buddha-bar-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><a class="image image-mask ratio-square image-width-stretch" href="/nasi-zakaznici"><img alt="Vaše logo" decoding="async" src="/files/ref-vase-2025.svg"/></a></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<Mezera />
+<PojdmeToProbrat />
+<Mezera />
+<div class="section height--low align--middle color--default section-has-background" id="funkce"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="container height--low color--auto container-width-boxed box--benefits"><div class="container-body flex flex--justify-start flex--wrap">
+<div class="flex__item flex__item--grow-1 grid-col-3"><div class="block block-image block-image--icon"><div class="flexcard flexcard-icon flexcard-horizontal flexcard-media-right valign-middle size-lg"><a class="flexcard-media" href="/produkty/automaticky-mailing#potvrzeni-rezervace"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Potvrzení rezervace" decoding="async" loading="lazy" src="/files/produkt-potvrzeni-rezervace.svg"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h4>Potvrzení rezervace<span class="text-highlight">.</span></h4>
+</div><div class="image-btn"><a class="btn btn-inverse btn-sm" href="/produkty/automaticky-mailing#potvrzeni-rezervace"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">To mě zajímá</span></a></div></div></div></div></div></div>
+<div class="flex__item flex__item--grow-1 grid-col-3"><div class="block block-image block-image--icon"><div class="flexcard flexcard-icon flexcard-horizontal flexcard-media-right valign-middle size-lg"><a class="flexcard-media" href="/produkty/automaticky-mailing#pred-prijezdova-komunikace"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Před-příjezdová komunikace" decoding="async" loading="lazy" src="/files/produkt-pred-prijezdova-komunikace.svg"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h4>Před-příjezdová komunikace<span class="text-highlight">.</span></h4>
+</div><div class="image-btn"><a class="btn btn-inverse btn-sm" href="/produkty/automaticky-mailing#pred-prijezdova-komunikace"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">To mě zajímá</span></a></div></div></div></div></div></div>
+<div class="flex__item flex__item--grow-1 grid-col-3"><div class="block block-image block-image--icon"><div class="flexcard flexcard-icon flexcard-horizontal flexcard-media-right valign-middle size-lg"><a class="flexcard-media" href="/produkty/automaticky-mailing#upselling"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Upselling" decoding="async" loading="lazy" src="/files/produkt-upselling.svg"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h4>Upselling<span class="text-highlight">.</span></h4>
+</div><div class="image-btn"><a class="btn btn-inverse btn-sm" href="/produkty/automaticky-mailing#upselling"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">To mě zajímá</span></a></div></div></div></div></div></div>
+<div class="flex__item flex__item--grow-1 grid-col-3"><div class="block block-image block-image--icon"><div class="flexcard flexcard-icon flexcard-horizontal flexcard-media-right valign-middle size-lg"><a class="flexcard-media" href="/produkty/automaticky-mailing#zustante-ve-spojeni"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Zůstaňte ve spojení" decoding="async" loading="lazy" src="/files/produkt-zustante-ve-spojeni.svg"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h4>Zůstaňte ve spojení<span class="text-highlight">.</span></h4>
+</div><div class="image-btn"><a class="btn btn-inverse btn-sm" href="/produkty/automaticky-mailing#zustante-ve-spojeni"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">To mě zajímá</span></a></div></div></div></div></div></div>
+<div class="flex__item flex__item--grow-1 grid-col-3"><div class="block block-image block-image--icon"><div class="flexcard flexcard-icon flexcard-horizontal flexcard-media-right valign-middle size-lg"><a class="flexcard-media" href="/produkty/automaticky-mailing#interni-komunikace"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Interní komunikace" decoding="async" loading="lazy" src="/files/produkt-interni-komunikace.svg"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h4>Interní komunikace<span class="text-highlight">.</span></h4>
+</div><div class="image-btn"><a class="btn btn-inverse btn-sm" href="/produkty/automaticky-mailing#interni-komunikace"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">To mě zajímá</span></a></div></div></div></div></div></div>
+<div class="flex__item flex__item--grow-1 grid-col-3"><div class="block block-image block-image--icon"><div class="flexcard flexcard-icon flexcard-horizontal flexcard-media-right valign-middle size-lg"><a class="flexcard-media" href="#filtr-rezervaci"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Filtr rezervací" decoding="async" loading="lazy" src="/files/produkt-filtr-rezervaci.svg"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h4>Filtr rezervací<span class="text-highlight">.</span></h4>
+</div><div class="image-btn"><a class="btn btn-inverse btn-sm" href="#filtr-rezervaci"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">To mě zajímá</span></a></div></div></div></div></div></div>
+</div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<KolikMeToBudeStat />
+<div class="section height--normal align--middle color--default section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image" id="potvrzeni-rezervace"><div class="flexcard flexcard-card flexcard-size--small flexcard-media-right valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Potvrzení rezervace" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/produkt-potvrzeni-rezervace-mailing.webp" srcset="/files/r/720/produkt-potvrzeni-rezervace-mailing.webp 720w, /files/r/1280/produkt-potvrzeni-rezervace-mailing.webp 1280w, /files/r/1920/produkt-potvrzeni-rezervace-mailing.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2>Potvrzení rezervace<span class="text-highlight">.</span></h2>
+<p>Automatický mailing v hotelu je důležitou součástí procesu rezervace, která zajišťuje komunikaci s hosty a poskytuje jim potřebné informace o jejich pobytu. Jednou z nejčastějších forem automatického mailingu je zasílání <a href="/produkty/webove-rezervace#potvrzeni-rezervace">potvrzení rezervace</a>.</p>
+<p>Když je vytvořena rezervace, buď automaticky nebo manuálně, naším systémem je hostům okamžitě zasláno potvrzení. Tento e-mail obsahuje důležité informace o jejich rezervaci, jako jsou datumy pobytu, druh pokoje, cenové podmínky a další relevantní údaje.</p>
+<p>Tímto způsobem je zajištěno, že hosté mají jasné a přesné informace o své rezervaci a mohou se těšit na svůj pobyt v hotelu s jistotou, že vše je pečlivě zajištěno. Automatický mailing přispívá k lepší komunikaci s hosty a k celkově plynulému průběhu procesu rezervace a pobytu.</p>
+</div></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<Mezera />
+<div class="section height--normal align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image" id="pred-prijezdova-komunikace"><div class="flexcard flexcard-card flexcard-size--small flexcard-media-left valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Před-příjezdová komunikace" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/produkt-pred-prijezdova-komunikace.webp" srcset="/files/r/720/produkt-pred-prijezdova-komunikace.webp 720w, /files/r/1280/produkt-pred-prijezdova-komunikace.webp 1280w, /files/r/1920/produkt-pred-prijezdova-komunikace.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2>Před-příjezdová komunikace<span class="text-highlight">.</span></h2>
+<p>Automatický mailing v hotelu hraje klíčovou roli při před-příjezdové komunikaci s hosty, což je důležitá fáze v procesu jejich pobytu. Tato forma komunikace umožňuje hotelu posílat hostům důležité informace a upozornění před samotným příjezdem.</p>
+<p>Jednou z funkcí automatického mailingu je možnost nastavit, kolik dní před příjezdem hosta mají být e-maily zasílány a jakou frekvenci mají mít. Tato flexibilita umožňuje hotelu přizpůsobit komunikaci individuálním potřebám a preferencím hostů.</p>
+<p>Díky před-příjezdové komunikaci může hotel informovat hosty o různých aspektech jejich pobytu, jako jsou pokyny k příjezdu, možnosti dopravy do hotelu, speciální nabídky nebo akce, které mohou být dostupné během jejich pobytu, a další užitečné informace.</p>
+<p>Tímto způsobem je zajištěno, že hosté jsou dobře připraveni na svůj pobyt a cítí se vítaní již před samotným příjezdem do hotelu. Automatický mailing představuje efektivní a uživatelsky příjemný způsob komunikace, který přispívá k celkovému pozitivnímu zážitku z pobytu v hotelu.</p>
+</div></div></div></div></div></div></div></div></div>
+<Mezera />
+<div class="section height--normal align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image" id="upselling"><div class="flexcard flexcard-card flexcard-size--small flexcard-media-right valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Upselling" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/produkt-upselling.webp" srcset="/files/r/720/produkt-upselling.webp 720w, /files/r/1280/produkt-upselling.webp 1280w, /files/r/1920/produkt-upselling.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2><span class="text-highlight"><font color="#000000"><span style="caret-color: rgb(0, 0, 0);">Upselling</span></font>.</span></h2>
+<p>Automatický mailing v hotelu je účinný nástroj pro upselling, což znamená nabízení hostům dodatečných služeb nebo vylepšení za účelem zvýšení jejich zážitku z pobytu a zvýšení příjmu hotelu. Díky široké nabídce filtrů a personalizovaných zpráv můžete například hostům, kteří rezervovali základní typ pokoje, nabídnout upgrade do lepší kategorie.</p>
+<p>Automatický mailing umožňuje hotelu identifikovat vhodné příležitosti pro upselling na základě informací o rezervaci a preferencích hosta. Například pokud zjistíme, že host rezervoval základní typ pokoje, můžeme mu prostřednictvím automatického mailingu nabídnout možnost upgradu do vyšší kategorie za případný příplatek.</p>
+<p>Tímto způsobem může hotel efektivně využít automatický mailing k maximalizaci příjmu a zároveň poskytnout hostům možnost vylepšit si svůj pobyt podle jejich preferencí a potřeb. Upselling prostřednictvím automatického mailingu je tak výhodným řešením pro hotel i pro hosty, jelikož umožňuje personalizovaný a zároveň efektivní přístup k nabídce dalších služeb a díky tomu i <a href="/produkty/digitalni-hotelova-kniha#hodnoceni-naprimo">ovlivnění hodnocení Vašeho hotelu</a> dříve než Vám host odjede.</p>
+</div></div></div></div></div></div></div></div><div class="section-background"></div></div>
+<Mezera />
+<div class="section height--normal align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image" id="zustante-ve-spojeni"><div class="flexcard flexcard-card flexcard-size--small flexcard-media-left valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Zůstaňte ve spojení" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/produkt-zustante-ve-spojeni.webp" srcset="/files/r/720/produkt-zustante-ve-spojeni.webp 720w, /files/r/1280/produkt-zustante-ve-spojeni.webp 1280w, /files/r/1920/produkt-zustante-ve-spojeni.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2>Zůstaňte ve spojení<span class="text-highlight">.</span></h2>
+<p>Automatický mailing v hotelu je skvělým způsobem, jak zůstat ve spojení se svými hosty i po jejich odjezdu. Díky této funkcionalitě můžete udržovat trvalý vztah se svými hosty a udržovat je informované o novinkách, speciálních nabídkách a událostech Vašeho hotelu.</p>
+<p>Například, můžete automaticky zasílat narozeninová přání, což přispívá k osobnímu přístupu a posiluje vztah mezi hotelem a hosty. Toto gesto ukazuje, že si vážíte svých hostů i po jejich odjezdu a přispívá k pozitivnímu dojmu z pobytu v hotelu.</p>
+<p>Kromě toho můžete prostřednictvím automatického mailingu pravidelně zasílat newslettery, které informují hosty o nových nabídkách, speciálních slevách, událostech v hotelu nebo zajímavých místech v okolí. Tímto způsobem udržujete zájem hostů o Váš hotel a motivujete je k opětovné návštěvě.</p>
+<p>Automatický mailing je tak skvělým nástrojem pro udržení spojení se svými hosty i po jejich odjezdu, což přispívá k dlouhodobému úspěchu a rozvoji Vašeho hotelového podniku.</p>
+</div></div></div></div></div></div></div></div></div>
+<Mezera />
+<div class="section height--normal align--middle color--default section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image" id="interni-komunikace"><div class="flexcard flexcard-card flexcard-size--small flexcard-media-right valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Interní komunikace" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/produkt-interni-komunikace.webp" srcset="/files/r/720/produkt-interni-komunikace.webp 720w, /files/r/1280/produkt-interni-komunikace.webp 1280w, /files/r/1920/produkt-interni-komunikace.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2><span class="text-highlight"><font color="#000000"><span style="caret-color: rgb(0, 0, 0);">Interní komunikace</span></font>.</span></h2>
+<p>Automatický mailing v hotelu není jen o komunikaci s hosty, ale také o usnadnění interní komunikace v rámci hotelového personálu. Díky automatizaci můžete <a href="/produkty/housekeeping">efektivně řídit interní procesy</a>, jako je zadávání úklidu nebo hlášení závad.</p>
+<p>Například, pokud je potřeba provést úklid určitého pokoje, může systém <a href="/produkty/housekeeping#aplikace-pro-housekeeping">automaticky generovat upozornění</a> a zaslat informaci na příslušné oddělení úklidu s podrobnostmi o pokoji a požadovaném úkolu. Tímto způsobem se zajišťuje rychlé a efektivní řešení úkolů a minimalizuje se riziko chyb spojených s ručním zadáváním.</p>
+<p>Podobně může být automatický mailing využit pro <a href="/produkty/housekeeping#udrzba">hlášení závad</a>, jako je nefunkční zařízení v pokoji nebo potřeba opravy veřejných prostor hotelu. Systém může automaticky generovat upozornění a zaslat informaci na odpovědné oddělení údržby, což umožňuje rychlé a efektivní řešení problémů.</p>
+<p>Tímto způsobem automatizace interní komunikace prostřednictvím automatického mailingu přispívá k efektivnímu fungování hotelu a zlepšuje komunikaci mezi jednotlivými odděleními, což má za následek zvýšení produktivity a lepší zážitek z pobytu pro hosty.</p>
+</div></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<Mezera />
+<div class="section height--normal align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image" id="filtr-rezervaci"><div class="flexcard flexcard-card flexcard-size--small flexcard-media-left valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Filtr rezervací" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/produkt-filtr-rezervaci.webp" srcset="/files/r/720/produkt-filtr-rezervaci.webp 720w, /files/r/1280/produkt-filtr-rezervaci.webp 1280w, /files/r/1920/produkt-filtr-rezervaci.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2>Filtr rezervací<span class="text-highlight">.</span></h2>
+<p>Filtr rezervací v automatickém mailingu hotelového systému je nástroj, který umožňuje efektivně cílit a personalizovat komunikaci s hosty na základě jejich konkrétních rezervací. Tento filtr umožňuje hotelovému personálu automaticky vytvářet a odesílat e-maily hostům podle různých kritérií, jako jsou datum příjezdu, délka pobytu, typ pokoje, nebo speciální požadavky.</p>
+<p>Díky filtru rezervací mohou hotely zacílit své marketingové a informační e-maily přesně na ty hosty, kteří splňují určitá kritéria. Například mohou poslat uvítací e-mail novým hostům před jejich příjezdem, nabídnout speciální akce pro hosty, kteří si rezervovali delší pobyt, nebo poskytnout informace o dostupných službách a aktivitách pro rodiny s dětmi.</p>
+<p>Tento nástroj nejenže šetří čas a zvyšuje efektivitu hotelového personálu, ale také zlepšuje zážitek hostů tím, že poskytuje relevantní a včasné informace. Automatizace mailingu pomocí filtru rezervací zajišťuje, že hosté dostávají personalizovanou a přizpůsobenou komunikaci, což může vést ke zvýšení spokojenosti a loajality hostů.</p>
+</div></div></div></div></div></div></div></div></div>
+<Mezera />
+<div class="section height--normal align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-card flexcard-size--small flexcard-media-right valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><a class="image image-mask ratio-original" href="/produkty/automaticky-mailing#kontaktni-formular" style="padding-bottom:100%"><img alt="" decoding="async" loading="lazy" src="/files/vyhoda-hoteloveho-systemu-protel.svg"/></a></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2><span class="text-highlight">"</span> Automatický mailing v hotelu je plně automatizovaný díky integraci s hotelovým systémem. Filtry pak umožňují personalizovanou komunikaci s hosty a Vám tak možnost zvýšit další služby k prodeji.</h2>
+</div><div class="image-btn"><a class="btn btn-default btn-sm" href="/produkty/automaticky-mailing#kontaktni-formular"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">SPOJTE SE S NÁMI</span></a></div></div></div></div></div></div></div></div></div>
+<ProtelVPraxi />
+<div class="section height--normal align--middle color--default col-gaps-bigger section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Automatický mailing od Protel již využívají<span class="text-highlight">...</span></h2>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-4-12"><div class="block block-quote"><div class="has-icon left block-quote-figure"><div class="block-quote-image"><div class="image-wrapper"><div class="image image-mask ratio-square shape-circle"><img alt="Jan Dubský" decoding="async" loading="lazy" sizes="auto" src="/files/r/1280/jan-dubsky.webp" srcset="/files/r/720/jan-dubsky.webp 720w, /files/r/1280/jan-dubsky.webp 1280w, /files/r/1920/jan-dubsky.webp 1920w"/></div></div></div><i class="icon icon-quote-right"></i><blockquote class="block-quote-text">U Protelu je poměr cena-výkon skvělý a podpora prvotřídní.</blockquote><div class="block-quote-author"><span class="quote-decor">–</span> Jan Dubský <span class="quote-decor">–</span><span class="block-quote-info">Old Town Hotels, CEO</span></div></div></div></div> <div class="col col-5-12 grid-4-12"><div class="block block-quote"><div class="has-icon left block-quote-figure"><div class="block-quote-image"><div class="image-wrapper"><div class="image image-mask ratio-square shape-circle"><img alt="Ivona Meissner" decoding="async" loading="lazy" sizes="auto" src="/files/r/1280/ivona-meissner.webp" srcset="/files/r/720/ivona-meissner.webp 720w, /files/r/1280/ivona-meissner.webp 1280w, /files/r/1920/ivona-meissner.webp 1920w"/></div></div></div><i class="icon icon-quote-right"></i><blockquote class="block-quote-text">Ďakujem firme Protel za profesionálny support a inštaláciu!</blockquote><div class="block-quote-author"><span class="quote-decor">–</span> Ivona Meissner <span class="quote-decor">–</span><span class="block-quote-info">BWH Hotel Group, Area Director Austria &amp; Central Eastern Europe</span></div></div></div></div> <div class="col col-9-12 grid-4-12"><div class="block block-quote"><div class="has-icon left block-quote-figure"><div class="block-quote-image"><div class="image-wrapper"><div class="image image-mask ratio-square shape-circle"><img alt="Tibor Bielik" decoding="async" loading="lazy" sizes="auto" src="/files/r/1280/tibor-bielik.webp" srcset="/files/r/720/tibor-bielik.webp 720w, /files/r/1280/tibor-bielik.webp 1280w, /files/r/1920/tibor-bielik.webp 1920w"/></div></div></div><i class="icon icon-quote-right"></i><blockquote class="block-quote-text">Protel je pro CPI Hotels vynikající volba. Integrace moderních technologií nám pomohla zlepšit naši guest journey a poskytovat personalizované služby.</blockquote><div class="block-quote-author"><span class="quote-decor">–</span> Tibor Bielik <span class="quote-decor">–</span><span class="block-quote-info">CPI Hotels, General Manager at Clarion Congress Hotel Prague</span></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:50px"></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div class="center"><a class="btn btn-inverse btn-sm" href="/nasi-zakaznici"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">NAŠI ZÁKAZNÍCI</span></a></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<Mezera />
+<DaleByVasMohloZajimat />
+<VyzkousetZdarma />
+<Novinky />
+<KontaktniFormular />
 </Base>
-
-<style>
-  .jump { display: flex; flex-wrap: wrap; gap: var(--space-2); justify-content: center; margin-bottom: var(--space-8); }
-  .jump__chip {
-    display: inline-flex; padding: var(--space-2) var(--space-4);
-    border: 1px solid var(--color-border); border-radius: var(--radius-full);
-    background: var(--color-bg-alt); color: var(--color-text);
-    font-size: var(--font-size-small); font-weight: var(--font-weight-semibold);
-    text-decoration: none; transition: border-color var(--duration-base) var(--easing);
-  }
-  .jump__chip:hover { border-color: var(--color-primary); color: var(--color-text-accent); }
-  .features { max-width: 800px; margin-inline: auto; display: flex; flex-direction: column; gap: var(--space-9); }
-  .feature { scroll-margin-top: var(--space-9); }
-  .feature > :global(* + *) { margin-top: var(--space-3); }
-  .feature__icon {
-    display: inline-flex; align-items: center; justify-content: center;
-    width: 56px; height: 56px; border-radius: var(--radius-md);
-    background: color-mix(in srgb, var(--color-primary) 10%, #fff); color: var(--color-primary);
-  }
-  .quoteband { margin: 0; max-width: 840px; margin-inline: auto; display: flex; flex-direction: column; align-items: center; gap: var(--space-4); text-align: center; }
-  .quoteband__mark { color: var(--color-text-on-dark); opacity: 0.7; }
-  .quoteband blockquote { margin: 0; }
-</style>

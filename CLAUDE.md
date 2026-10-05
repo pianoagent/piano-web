@@ -26,4 +26,4 @@ Rastrové obrázky (webp/jpg/png) se optimalizují při buildu na AVIF + WebP se
 
 Kontrola po změně obrázků: build projde, `grep -rn 'src="/images/' apps/<web>/dist` nic nenajde (kromě souborů záměrně v `public/`) a v `dist/_astro` nejsou originály ve tvaru `jmeno.HASH.webp` bez `_` sufixu.
 
-Výjimka: Septim (`apps/septim`) je kopie živého webu 1:1 s vlastním srcsetem v `public/files`, tam `Img` nepoužívej.
+Výjimka: Septim (`apps/septim`) a Protel (`apps/protel`) jsou kopie živých webů 1:1 s vlastním srcsetem v `public/files`, tam `Img` nepoužívej.

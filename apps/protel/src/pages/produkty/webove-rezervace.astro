@@ -1,153 +1,92 @@
 ---
-/**
- * Protel: produkt „Webové rezervace“. Obsah vytěžen z produkty/webove-rezervace.html
- * starého protelsystems.cz (jazykově uhlazeno, fakta zachována).
- * Vše ze sdílených komponent @piano/ui.
- */
+// https://www.protelsystems.cz/produkty/webove-rezervace (Solid Pixels), port 1:1 skriptem port-protel.py
 import Base from '../../layouts/Base.astro';
-import SiteHeader from '../../components/SiteHeader.astro';
-import SiteFooter from '../../components/SiteFooter.astro';
-import Section from '@piano/ui/components/Section.astro';
-import Hero from '@piano/ui/components/Hero.astro';
-import Heading from '@piano/ui/components/Heading.astro';
-import Text from '@piano/ui/components/Text.astro';
-import Button from '@piano/ui/components/Button.astro';
-import Icon from '@piano/ui/components/Icon.astro';
-import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
-import USPGrid from '@piano/ui/components/USPGrid.astro';
-import LeadForm from '@piano/ui/components/LeadForm.astro';
-import { protelLeadProofs } from '../../config/leadProofs';
-import Img from '@piano/ui/components/Img.astro';
-
-const features = [
-  {
-    id: "aktualizace-dostupnosti-pokoju", icon: "lucide:calendar-sync", title: "Aktualizace dostupnosti pokojů",
-    paras: [
-      "Hosté si přes formulář na Vašem webu rezervují pobyt kdykoli a odkudkoli, jednoduše si vyberou termín a typ pokoje podle svých preferencí.",
-      "Online aktualizace dostupnosti zabraňuje přebookování a zajišťuje správné plánování kapacity. Nepřijdete o příležitost prodat volné pokoje a maximalizujete příjmy.",
-    ],
-  },
-  {
-    id: "dynamicke-ceny", icon: "lucide:tags", title: "Dynamické ceny",
-    paras: [
-      "Cenovou politiku nastavíte jednou správně v PMS a ceny se v reálném čase automaticky synchronizují s webovým rezervačním formulářem. Prodejní ceny jsou tak vždy aktuální.",
-      "Dynamický přístup umožňuje reagovat na změny na trhu, optimalizovat výnosy z ubytování a zůstat konkurenceschopní.",
-    ],
-  },
-  {
-    id: "garance", icon: "lucide:shield-check", title: "Garance",
-    paras: [
-      "Pro dokončení rezervace můžete vyžadovat platbu přes napojenou platební bránu, nebo zadání platebních údajů jako záruky. Údaje se do hotelového systému přenášejí v bezpečné formě chráněné proti zneužití.",
-      "Rezervace je potvrzena a chráněna proti nečekaným zrušením, jistota pro Vás i Vaše hosty.",
-    ],
-  },
-  {
-    id: "evidence-rezervace", icon: "lucide:clipboard-list", title: "Evidence rezervace",
-    paras: [
-      "Veškeré rezervace i jejich změny se okamžitě zaznamenávají do hotelového systému Protel. Recepce má vždy aktuální přehled o dostupnosti pokojů a stavu rezervací, provoz je efektivnější.",
-    ],
-  },
-  {
-    id: "potvrzeni-rezervace", icon: "lucide:mail-check", title: "Potvrzení rezervace",
-    paras: [
-      "Po dokončení rezervace se hostovi automaticky odešle potvrzení s termínem pobytu, typem pokoje a dalšími podrobnostmi. Host má jistotu, že je vše zajištěno.",
-      "Přes potvrzení host svou rezervaci také snadno spravuje, zkontroluje detaily, provede změny nebo rezervaci zruší.",
-    ],
-  },
-  {
-    id: "pobytove-balicky", icon: "lucide:gift", title: "Pobytové balíčky",
-    paras: [
-      "Hosté vybírají z balíčků kombinujících ubytování s doplňkovými službami a zážitky, wellness procedurami, kulturními aktivitami nebo romantickou večeří.",
-      "Pro hotel jsou balíčky ve webových rezervacích efektivní cestou, jak zvýšit obsazenost, optimalizovat tržby a nabídnout hostům osobnější zážitek.",
-    ],
-  },
-];
-
-const related = [
-  { icon: "lucide:layout-dashboard", title: "Hotelový systém", text: "Správa pokojů, rezervací, hostů a statistik: snadné používání a pokročilé funkce pro kompletní přehled o provozu.", href: "/produkty/hotelovy-system-protel" },
-  { icon: "lucide:credit-card", title: "Platební řešení hotelu", text: "Plně integrované platby přímo v Protelu. Méně chyb a nižší riziko vracení transakcí.", href: "/produkty/platebni-reseni-hotelu" },
-  { icon: "lucide:mail", title: "Automatický mailing", text: "Personalizované e-maily hostům bez zásahu recepčního.", href: "/produkty/automaticky-mailing" },
-  { icon: "lucide:smartphone", title: "Online check-in/out", text: "Host vyřídí check-in i check-out přes mobil, bez fronty na recepci.", href: "/produkty/online-check-in-out" },
-];
+import Mezera from '../../components/blocks/Mezera.astro';
+import PojdmeToProbrat from '../../components/blocks/PojdmeToProbrat.astro';
+import KolikMeToBudeStat from '../../components/blocks/KolikMeToBudeStat.astro';
+import ProtelVPraxi from '../../components/blocks/ProtelVPraxi.astro';
+import DaleByVasMohloZajimat from '../../components/blocks/DaleByVasMohloZajimat.astro';
+import VyzkousetZdarma from '../../components/blocks/VyzkousetZdarma.astro';
+import Novinky from '../../components/blocks/Novinky.astro';
+import KontaktniFormular from '../../components/blocks/KontaktniFormular.astro';
 ---
-
-<Base title="Webové rezervace hotelu | Protel"
-      description="Rezervační formulář na Vašich stránkách umožní hostům rezervovat pobyt přímo u Vás, s aktuální dostupností, dynamickými cenami a garancí platby.">
-  <SiteHeader />
-
-  <main>
-    <Breadcrumb items={[{ label: 'Úvod', href: '/' }, { label: 'Produkty', href: '/produkty' }, { label: "Webové rezervace" }]} />
-
-    <Hero eyebrow="Produkty" background="gradient"
-          lead="Online webový formulář na Vašich stránkách umožní hostům, aby si u Vás kdykoli rezervovali svůj pobyt, s aktuální dostupností pokojů a cenami přímo z hotelového systému.">
-      <Heading slot="title" as="h1" size="display" color="on-dark">Webové <em>rezervace</em></Heading>
-      <Fragment slot="actions">
-        <Button href="#poptavka">Vyzkoušet Protel zdarma</Button>
-        <Button href="/produkty" variant="secondary" onDark>Všechny produkty</Button>
-      </Fragment>
-      <figure slot="media" class="hero-pic">
-        <Img src="/images/webove-rezervace.webp" alt="Webový rezervační formulář hotelu" width={880} sizes="(min-width: 881px) 560px, 100vw" loading="eager" decoding="async" />
-      </figure>
-    </Hero>
-
-    <Section background="default" space="lg">
-      <nav class="jump" aria-label="Funkce produktu">
-        {features.map((f) => (
-          <a class="jump__chip" href={`#${f.id}`}>{f.title}</a>
-        ))}
-      </nav>
-      <div class="features">
-        {features.map((f) => (
-          <article class="feature" id={f.id}>
-            <span class="feature__icon"><Icon name={f.icon} size="lg" /></span>
-            <Heading as="h2" size="h3">{f.title}</Heading>
-            {f.paras.map((p) => (
-              <Text color="muted">{p}</Text>
-            ))}
-          </article>
-        ))}
-      </div>
-    </Section>
-
-    <Section background="primary" space="lg">
-      <figure class="quoteband">
-        <span class="quoteband__mark"><Icon name="lucide:quote" size="lg" /></span>
-        <blockquote>
-          <Heading as="p" size="h3" color="on-dark" align="center">Webová rezervace je klíčovou součástí každého moderního hotelového provozu. Protel je garancí dokončení úspěšné rezervace a bezpečnou ochranou pro Váš hotel i hosta.</Heading>
-        </blockquote>
-      </figure>
-    </Section>
-
-    <USPGrid eyebrow="Dále by Vás mohlo zajímat" title="Související produkty"
-             items={related} minItemWidth="260px" background="alt" space="lg" />
-
-    <LeadForm proofs={protelLeadProofs} id="poptavka" variant="full" background="default"
-              title="Vyzkoušejte Protel zdarma"
-              lead="Co byste u Vás v hotelu rádi zlepšili? Nechte nám kontakt, ozveme se a ukážeme Protel přímo ve Vašem hotelu." />
-  </main>
-
-  <SiteFooter />
+<Base
+  title="Webové rezervace | Hotel PMS Protel"
+  description="Online webový formulář na Vašich stránkách umožní Vašim hostům, aby si u Vás kdykoli rezervovali svůj pobyt."
+  path="/produkty/webove-rezervace"
+  bodyClass="use-header-transparent use-menu-secondary-uppercase use-menu-button-uppercase use-headings-link-plain search-panel-hide-submit-label search-panel-hide-close-label search-panel-hide-open-label use-menu-bar use-header-fixed use-header-fixed-mobile use-header-priority use-header-boxed"
+  image="/files/nahled-produkt-webove-rezervace.jpg"
+>
+<div class="section height--low align--middle color--default section-width-wide section-has-background" id="uvod"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-card flexcard-size--normal flexcard-media-right valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><a class="image image-mask ratio-original" href="/vyzkouset-zdarma" style="padding-bottom:91.14583333333334%"><img alt="Webové rezervace" decoding="async" sizes="(min-width:1459px) 50vw, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/hdr-top-webove-rezervace.webp" srcset="/files/r/720/hdr-top-webove-rezervace.webp 720w, /files/r/1280/hdr-top-webove-rezervace.webp 1280w, /files/r/1920/hdr-top-webove-rezervace.webp 1920w"/></a></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p><strong><a href="/produkty"><span class="text-highlight"><span style="font-family: var(--headings-font-family); font-style: var(--headings-text-italic); text-transform: var(--headings-text-transform); text-decoration: var(--headings-text-underline); caret-color: rgb(255, 0, 150);"><font color="#ff0096" size="3">VŠECHNY PRODUKTY</font></span></span></a></strong></p>
+<h1>Webové rezervace</h1>
+<p class="text-large">Online webový formulář na Vašich stránkách umožní Vašim hostům, aby si u Vás kdykoli rezervovali svůj pobyt. </p>
+<p class="text-large"><a href="#funkce"><strong><span class="text-highlight"><span style="font-family: var(--headings-font-family); font-style: var(--headings-text-italic); text-transform: var(--headings-text-transform); text-decoration: var(--headings-text-underline); caret-color: rgb(255, 0, 150);"><font color="#ff0096" size="3">ZJISTIT VÍCE →</font></span></span></strong></a></p>
+</div><div class="image-btn"><a class="btn btn-default" href="/vyzkouset-zdarma"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">VYZKOUŠET ZDARMA</span></a></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-gallery grid-sm-2"><div class="grid gallery-container" style="--gap:40px"><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Café Fara" decoding="async" src="/files/ref-cafe-fara-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Chata Hradečanka" decoding="async" src="/files/ref-chata-hradecanka-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Chuchle Arena Praha" decoding="async" src="/files/ref-chuchle-arena-praha-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo U Salzmannů" decoding="async" src="/files/ref-u-salzmannu-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Blue Orange Resort" decoding="async" src="/files/ref-blue-orange-resort-black.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><a class="image image-mask ratio-square image-width-stretch" href="/nasi-zakaznici"><img alt="Vaše logo" decoding="async" src="/files/ref-vase-2025.svg"/></a></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<Mezera />
+<PojdmeToProbrat />
+<Mezera />
+<div class="section height--low align--middle color--default section-has-background" id="funkce"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="container height--low color--auto container-width-boxed box--benefits"><div class="container-body flex flex--justify-start flex--wrap">
+<div class="flex__item flex__item--grow-1 grid-col-3"><div class="block block-image block-image--icon"><div class="flexcard flexcard-icon flexcard-horizontal flexcard-media-right valign-middle size-lg"><a class="flexcard-media" href="/produkty/webove-rezervace#aktualizace-dostupnosti-pokoju"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Aktualizace dostupnosti pokojů" decoding="async" loading="lazy" src="/files/produkt-aktualizace-dostupnosti-pokoju.svg"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h4>Aktualizace dostupnosti pokojů<span class="text-highlight">.</span></h4>
+</div><div class="image-btn"><a class="btn btn-inverse btn-sm" href="/produkty/webove-rezervace#aktualizace-dostupnosti-pokoju"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">To mě zajímá</span></a></div></div></div></div></div></div>
+<div class="flex__item flex__item--grow-1 grid-col-3"><div class="block block-image block-image--icon"><div class="flexcard flexcard-icon flexcard-horizontal flexcard-media-right valign-middle size-lg"><a class="flexcard-media" href="#dynamicke-ceny"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Dynamické ceny" decoding="async" loading="lazy" src="/files/produkt-spravne-prodejni-ceny.svg"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h4>Dynamické ceny<span class="text-highlight">.</span></h4>
+</div><div class="image-btn"><a class="btn btn-inverse btn-sm" href="#dynamicke-ceny"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">To mě zajímá</span></a></div></div></div></div></div></div>
+<div class="flex__item flex__item--grow-1 grid-col-3"><div class="block block-image block-image--icon"><div class="flexcard flexcard-icon flexcard-horizontal flexcard-media-right valign-middle size-lg"><a class="flexcard-media" href="/produkty/webove-rezervace#garance"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Garance" decoding="async" loading="lazy" src="/files/produkt-garance.svg"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h4>Garance<span class="text-highlight">.</span></h4>
+</div><div class="image-btn"><a class="btn btn-inverse btn-sm" href="/produkty/webove-rezervace#garance"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">To mě zajímá</span></a></div></div></div></div></div></div>
+<div class="flex__item flex__item--grow-1 grid-col-3"><div class="block block-image block-image--icon"><div class="flexcard flexcard-icon flexcard-horizontal flexcard-media-right valign-middle size-lg"><a class="flexcard-media" href="/produkty/webove-rezervace#evidence-rezervace"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Evidence rezervace" decoding="async" loading="lazy" src="/files/produkt-evidence-rezervace.svg"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h4>Evidence rezervace<span class="text-highlight">.</span></h4>
+</div><div class="image-btn"><a class="btn btn-inverse btn-sm" href="/produkty/webove-rezervace#evidence-rezervace"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">To mě zajímá</span></a></div></div></div></div></div></div>
+<div class="flex__item flex__item--grow-1 grid-col-3"><div class="block block-image block-image--icon"><div class="flexcard flexcard-icon flexcard-horizontal flexcard-media-right valign-middle size-lg"><a class="flexcard-media" href="/produkty/webove-rezervace#potvrzeni-rezervace"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Potvrzení rezervace" decoding="async" loading="lazy" src="/files/produkt-potvrzeni-rezervace.svg"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h4>Potvrzení rezervace<span class="text-highlight">.</span></h4>
+</div><div class="image-btn"><a class="btn btn-inverse btn-sm" href="/produkty/webove-rezervace#potvrzeni-rezervace"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">To mě zajímá</span></a></div></div></div></div></div></div>
+<div class="flex__item flex__item--grow-1 grid-col-3"><div class="block block-image block-image--icon"><div class="flexcard flexcard-icon flexcard-horizontal flexcard-media-right valign-middle size-lg"><a class="flexcard-media" href="#pobytove-balicky"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Pobytové balíčky" decoding="async" loading="lazy" src="/files/produkt-pobytove-balicky.svg"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h4>Pobytové balíčky<span class="text-highlight">.</span></h4>
+</div><div class="image-btn"><a class="btn btn-inverse btn-sm" href="#pobytove-balicky"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">To mě zajímá</span></a></div></div></div></div></div></div>
+</div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<KolikMeToBudeStat />
+<div class="section height--normal align--middle color--default section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image" id="aktualizace-dostupnosti-pokoju"><div class="flexcard flexcard-card flexcard-size--small flexcard-media-right valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Aktualizace dostupnosti pokojů" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/produkt-aktualizace-dostupnosti-pokoju.webp" srcset="/files/r/720/produkt-aktualizace-dostupnosti-pokoju.webp 720w, /files/r/1280/produkt-aktualizace-dostupnosti-pokoju.webp 1280w, /files/r/1920/produkt-aktualizace-dostupnosti-pokoju.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2>Aktualizace dostupnosti pokojů<span class="text-highlight">.</span></h2>
+<p>Webová rezervace hotelu je klíčovou součástí <a href="/produkty/hotelovy-system">moderního hotelového provozu</a>. Online webový formulář umístěný přímo na Vašich stránkách poskytuje Vašim hostům možnost rezervovat si pobyt u Vás kdykoli a odkudkoli.</p>
+<p>Díky této možnosti mohou hosté jednoduše a pohodlně vybrat termín a typ pokoje přímo podle svých preferencí a potřeb.</p>
+<p>Aktualizace dostupnosti pokojů online zabraňuje přebookování a zajišťuje, že kapacita hotelu je vždy správně naplánována. Tím se minimalizuje riziko, že byste přišli o příležitost prodat volné pokoje a optimalizuje se využití Vašich prostor pro maximalizaci příjmů.</p>
+<p>Tato efektivní a uživatelsky přívětivá služba zvyšuje pohodlí a spokojenost hostů, zatímco zároveň zjednodušuje Vaši provozní logistiku a pomáhá maximalizovat výnosy.</p>
+</div></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<Mezera />
+<div class="section height--normal align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image" id="dynamicke-ceny"><div class="flexcard flexcard-card flexcard-size--small flexcard-media-left valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Dynamické ceny" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/produkt-spravne-prodejni-ceny.webp" srcset="/files/r/720/produkt-spravne-prodejni-ceny.webp 720w, /files/r/1280/produkt-spravne-prodejni-ceny.webp 1280w, /files/r/1920/produkt-spravne-prodejni-ceny.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2>Dynamické ceny<span class="text-highlight">.</span></h2>
+<p>Webová rezervace hotelu prostřednictvím online webového formuláře je důležitou součástí moderního hotelového provozu, která zlepšuje pohodlí a dostupnost pro Vaše hosty. Jednou z klíčových výhod této služby je správné nastavení prodejních cen.</p>
+<p>Cenovou politiku nastavíte jednou správně ve Vašem <a href="/produkty/hotelovy-system">Property Management System (PMS)</a> a tyto informace se automaticky synchronizují s vaším webovým portálem v reálném čase. Díky tomu jsou Vaše prodejní ceny vždy aktuální a odpovídají současné nabídce a poptávce na trhu.</p>
+<p>Tento dynamický přístup k cenám umožňuje vašemu hotelu reagovat na změny na trhu a optimalizovat výnosy z ubytování. Ceny reflektují aktuální nabídku a poptávku, což Vám pomáhá maximalizovat výnosy a zůstat konkurenceschopní na trhu.</p>
+</div></div></div></div></div></div></div></div></div>
+<Mezera />
+<div class="section height--normal align--middle color--default section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image" id="garance"><div class="flexcard flexcard-card flexcard-size--small flexcard-media-right valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Garance" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/produkt-garance.webp" srcset="/files/r/720/produkt-garance.webp 720w, /files/r/1280/produkt-garance.webp 1280w, /files/r/1920/produkt-garance.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2>Garance<span class="text-highlight">.</span></h2>
+<p>Součástí webové rezervace systému Protel pomocí online formuláře je také garance, která zajišťuje dokončení rezervace a ochranu pro obě strany.</p>
+<p>Pro dokončení rezervace můžete vyžadovat platbu <a href="/napojeni/platebni-reseni-planet">přes napojenou platební bránu</a>. To znamená, že hosté budou muset provést platbu nebo zadat platební údaje jako záruku rezervace. Tyto informace jsou pak přeneseny do hotelového systému v bezpečné formě, chráněné proti zneužití.</p>
+<p>Tímto způsobem máte jistotu, že rezervace je potvrzena a chráněna proti nečekaným zrušením, zatímco Vaši hosté mohou mít jistotu, že jejich rezervace je zajištěna. To přispívá k důvěře mezi Vámi a vašimi hosty a zajišťuje plynulý proces rezervace.</p>
+</div></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<Mezera />
+<div class="section height--normal align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image" id="evidence-rezervace"><div class="flexcard flexcard-card flexcard-size--small flexcard-media-left valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Evidence rezervace" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/produkt-evidence-rezervace.webp" srcset="/files/r/720/produkt-evidence-rezervace.webp 720w, /files/r/1280/produkt-evidence-rezervace.webp 1280w, /files/r/1920/produkt-evidence-rezervace.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2>Evidence rezervace<span class="text-highlight">.</span></h2>
+<p>Jednou z klíčových výhod webové rezervace hotelu je efektivní evidence rezervací.</p>
+<p>Veškeré rezervace, stejně jako jejich případné změny, jsou okamžitě zaznamenány a viditelné v hotelovém systému Protel. To znamená, že jakmile host provede rezervaci nebo provede změnu v rezervaci, informace jsou ihned aktualizovány v systému.</p>
+<p>Tato rychlá a přesná evidence zajišťuje, že personál recepce má vždy aktuální přehled o dostupnosti pokojů a stavu rezervací. To napomáhá optimalizaci provozu a zvyšuje efektivitu obsluhy hostů.</p>
+</div></div></div></div></div></div></div></div></div>
+<Mezera />
+<div class="section height--normal align--middle color--default section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image" id="potvrzeni-rezervace"><div class="flexcard flexcard-card flexcard-size--small flexcard-media-right valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Potvrzení rezervace" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/produkt-potvrzeni-rezervace.webp" srcset="/files/r/720/produkt-potvrzeni-rezervace.webp 720w, /files/r/1280/produkt-potvrzeni-rezervace.webp 1280w, /files/r/1920/produkt-potvrzeni-rezervace.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2><span class="text-highlight"><font color="#000000"><span style="caret-color: rgb(0, 0, 0);">Potvrzení rezervace</span></font>.</span></h2>
+<p>Potvrzení rezervace je hostovi automaticky odesláno po dokončení rezervace. Toto potvrzení obsahuje důležité informace o jejich rezervaci, včetně data pobytu, typu pokoje a dalších podrobností. Díky potvrzení má host jistotu, že jeho rezervace byla úspěšně provedena a že má zajištěno své ubytování.</p>
+<p>Důležitou výhodou potvrzení rezervace je možnost pro hosta snadno spravovat svou rezervaci. Může zkontrolovat detaily svého pobytu, provést případné změny nebo zrušení rezervace prostřednictvím přístupu k potvrzení rezervace. To zvyšuje pohodlí pro hosty a umožňuje jim flexibilitu při plánování svého pobytu.</p>
+</div></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<Mezera />
+<div class="section height--normal align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image" id="pobytove-balicky"><div class="flexcard flexcard-card flexcard-size--small flexcard-media-left valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Pobytové balíčky" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/produkt-pobytove-balicky.webp" srcset="/files/r/720/produkt-pobytove-balicky.webp 720w, /files/r/1280/produkt-pobytove-balicky.webp 1280w, /files/r/1920/produkt-pobytove-balicky.webp 1920w"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2>Pobytové balíčky<span class="text-highlight">.</span></h2>
+<p>Webové rezervace v hotelu spolu s nabídkou pobytových balíčků vytvářejí pro hosty jednoduchý a efektivní způsob plánování jejich pobytu. Hosté mohou snadno vybírat z různých balíčků, které kombinují ubytování s doplňkovými službami nebo zážitky, jako jsou wellness procedury, kulturní aktivity nebo romantické večeře.</p>
+<p>Tento přístup nejenže zjednodušuje proces rezervace, ale také umožňuje hostům plánovat svůj pobyt dopředu a zajistit si dostupnost preferovaných služeb. Pro hotel znamená nabídka pobytových balíčků prostřednictvím webových rezervací efektivní způsob, jak zvýšit obsazenost, optimalizovat tržby a poskytovat hostům osobnější a přizpůsobený zážitek.</p>
+</div></div></div></div></div></div></div></div></div>
+<Mezera />
+<div class="section height--normal align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div class="flexcard flexcard-card flexcard-size--small flexcard-media-right valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><a class="image image-mask ratio-original" href="/produkty/webove-rezervace#kontaktni-formular" style="padding-bottom:100%"><img alt="" decoding="async" loading="lazy" src="/files/vyhoda-hoteloveho-systemu-protel.svg"/></a></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2><span class="text-highlight">"</span> Webová rezervace hotelu je klíčovou součástí každého moderního hotelového provozu. Protel je garancí dokončení úspěšné rezervace a bezpečnou ochranou pro Váš hotel i hosta.</h2>
+</div><div class="image-btn"><a class="btn btn-default btn-sm" href="/produkty/webove-rezervace#kontaktni-formular"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">SPOJTE SE S NÁMI</span></a></div></div></div></div></div></div></div></div></div>
+<ProtelVPraxi />
+<div class="section height--normal align--middle color--default col-gaps-bigger section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Webové rezervace od Protelu již využívají<span class="text-highlight">...</span></h2>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-4-12"><div class="block block-quote"><div class="has-icon left block-quote-figure"><div class="block-quote-image"><div class="image-wrapper"><div class="image image-mask ratio-square shape-circle"><img alt="Zuzana Georgiánová" decoding="async" loading="lazy" sizes="auto" src="/files/r/1280/zuzana-georgianova.webp" srcset="/files/r/720/zuzana-georgianova.webp 720w, /files/r/1280/zuzana-georgianova.webp 1280w, /files/r/1920/zuzana-georgianova.webp 1920w"/></div></div></div><i class="icon icon-quote-right"></i><blockquote class="block-quote-text">Protel je pro CPI Hotels vynikající volba. Jeho intuitivní rozhraní, spolehlivost a efektivita nám umožňují snadno řídit rezervace, spravovat hosty a sledovat statistiky. Integrace moderních technologií nám pomohla zlepšit naši guest journey a poskytovat personalizované služby.</blockquote><div class="block-quote-author"><span class="quote-decor">–</span> Zuzana Georgiánová <span class="quote-decor">–</span><span class="block-quote-info">CPI Hotels, Hotel Systems Specialist CPI Hotels</span></div></div></div></div> <div class="col col-5-12 grid-4-12"><div class="block block-quote"><div class="has-icon left block-quote-figure"><div class="block-quote-image"><div class="image-wrapper"><div class="image image-mask ratio-square shape-circle"><img alt="Miroslav Bukva" decoding="async" loading="lazy" sizes="auto" src="/files/r/1280/miroslav-bukva.webp" srcset="/files/r/720/miroslav-bukva.webp 720w, /files/r/1280/miroslav-bukva.webp 1280w, /files/r/1920/miroslav-bukva.webp 1920w"/></div></div></div><i class="icon icon-quote-right"></i><blockquote class="block-quote-text">Vybrat do hotelu vhodný software není jednoduché, protože různé typy hotelů mají odlišné potřeby. Pro velký hotel s konferenčním centrem je robustní řešení PMS PROTEL naprosto ideální. PROTEL je výborný jak z hlediska výkonu, tak ceny a důležitou samozřejmostí je velmi kvalitní podpora.</blockquote><div class="block-quote-author"><span class="quote-decor">–</span> Miroslav Bukva <span class="quote-decor">–</span><span class="block-quote-info">Aquapalace Hotel Prague, General Manager</span></div></div></div></div> <div class="col col-9-12 grid-4-12"><div class="block block-quote"><div class="has-icon left block-quote-figure"><div class="block-quote-image"><div class="image-wrapper"><div class="image image-mask ratio-square shape-circle"><img alt="Eliška Škubalová" decoding="async" loading="lazy" sizes="auto" src="/files/r/1280/eliska-skubalova.webp" srcset="/files/r/720/eliska-skubalova.webp 720w, /files/r/1280/eliska-skubalova.webp 1280w, /files/r/1920/eliska-skubalova.webp 1920w"/></div></div></div><i class="icon icon-quote-right"></i><blockquote class="block-quote-text">Protel v našem hotelu využíváme již mnoho let a za tu dobu nám byl vždy oporou v každodenním fungování hotelu. Velmi vstřícný support je velkým bonusem.</blockquote><div class="block-quote-author"><span class="quote-decor">–</span> Eliška Škubalová <span class="quote-decor">–</span><span class="block-quote-info">GRAND HOTEL BOHEMIA, Director of Sales</span></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:50px"></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div class="center"><a class="btn btn-inverse btn-sm" href="/nasi-zakaznici"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">NAŠI ZÁKAZNÍCI</span></a></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<Mezera />
+<DaleByVasMohloZajimat />
+<VyzkousetZdarma />
+<Novinky />
+<KontaktniFormular />
 </Base>
-
-<style>
-  .jump { display: flex; flex-wrap: wrap; gap: var(--space-2); justify-content: center; margin-bottom: var(--space-8); }
-  .jump__chip {
-    display: inline-flex; padding: var(--space-2) var(--space-4);
-    border: 1px solid var(--color-border); border-radius: var(--radius-full);
-    background: var(--color-bg-alt); color: var(--color-text);
-    font-size: var(--font-size-small); font-weight: var(--font-weight-semibold);
-    text-decoration: none; transition: border-color var(--duration-base) var(--easing);
-  }
-  .jump__chip:hover { border-color: var(--color-primary); color: var(--color-text-accent); }
-  .features { max-width: 800px; margin-inline: auto; display: flex; flex-direction: column; gap: var(--space-9); }
-  .feature { scroll-margin-top: var(--space-9); }
-  .feature > :global(* + *) { margin-top: var(--space-3); }
-  .feature__icon {
-    display: inline-flex; align-items: center; justify-content: center;
-    width: 56px; height: 56px; border-radius: var(--radius-md);
-    background: color-mix(in srgb, var(--color-primary) 10%, #fff); color: var(--color-primary);
-  }
-  .quoteband { margin: 0; max-width: 840px; margin-inline: auto; display: flex; flex-direction: column; align-items: center; gap: var(--space-4); text-align: center; }
-  .quoteband__mark { color: var(--color-text-on-dark); opacity: 0.7; }
-  .quoteband blockquote { margin: 0; }
-</style>
