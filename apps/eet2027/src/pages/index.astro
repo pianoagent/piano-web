@@ -155,6 +155,10 @@ const faqSchema = {
           { text: 'Bez stresu a pokut', icon: 'lucide:shield-check' },
         ]}>
     <Heading slot="title" as="h1" size="display" color="on-dark">EET se vrací. Buďte <em>o krok napřed</em></Heading>
+    <!-- Hlavni CTA vede do pruvodce vyberem pokladny, odber zustava ve formulari vpravo. -->
+    <Fragment slot="actions">
+      <Button href="#pruvodce" size="lg">Chci vyřešit EET</Button>
+    </Fragment>
 
     <div slot="media" class="hs">
       <p class="hs__eyebrow">Zůstaňte v obraze</p>
@@ -451,6 +455,11 @@ const faqSchema = {
   .herowrap :global(.section--bg-gradient) > :global(*) { position: relative; z-index: 1; }
   /* Na mobilu je text pres celou sirku, takze fotka nema kam ustoupit.
      Jde dolu pod text a hodne se stlumi, at perex zustane citelny. */
+  /* Sdileny Hero dava na mobilu media nahoru (pocita s obrazkem). Tady je v media formular
+     na odber, takze by nadpis i hlavni CTA do pruvodce spadly az pod nej. Text jde prvni. */
+  @media (max-width: 880px) {
+    .herowrap :global(.hero__inner--split .hero__media) { order: 0; }
+  }
   @media (max-width: 860px) {
     .herowrap :global(.section--bg-gradient)::before {
       opacity: .3;
