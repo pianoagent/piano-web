@@ -5,6 +5,7 @@
 import type { NavItem, NavLink } from '@piano/ui/config/nav';
 
 export const eetNav: NavItem[] = [
+  { label: 'Vybrat pokladnu', href: '/#pruvodce' },
   { label: 'Co se mění', href: '/#co-se-meni' },
   { label: 'Koho se týká', href: '/#koho' },
   { label: 'Jak se připravit', href: '/#priprava' },

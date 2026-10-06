@@ -1,0 +1,293 @@
+---
+/**
+ * Pruvodce vyberem pokladny: tri otazky -> doporuceny produkt -> poptavka.
+ * Data a logika jsou v src/config/pruvodce.ts. Vysledek se predvyplni do pole Zprava
+ * sdileneho LeadFormu (Databridge -> prospekt v Odoo), ktery se ukaze az po vyhodnoceni.
+ * Odber novinek (api/lead.php -> Ecomail) tim neni dotceny.
+ */
+import Section from '@piano/ui/components/Section.astro';
+import Heading from '@piano/ui/components/Heading.astro';
+import Text from '@piano/ui/components/Text.astro';
+import Button from '@piano/ui/components/Button.astro';
+import Icon from '@piano/ui/components/Icon.astro';
+import LeadForm from '@piano/ui/components/LeadForm.astro';
+import { typy, velikosti, potreby, produkty } from '../config/pruvodce';
+---
+
+<Section id="pruvodce" background="primary" space="lg" reveal={false}>
+  <div class="head-center">
+    <Text size="label" color="on-dark-muted" align="center">Výběr pokladny</Text>
+    <Heading as="h2" size="h2" align="center" color="on-dark">Jaká pokladna sedí <em>vašemu provozu</em></Heading>
+    <Text size="lead" color="on-dark-muted" align="center" balance>
+      Tři rychlé otázky a doporučíme vám konkrétní pokladnu pro váš provoz, včetně ceny.
+    </Text>
+  </div>
+
+  <form class="pv" data-pv novalidate>
+    <fieldset class="pv__step" data-pv-step="typ">
+      <legend class="pv__q"><span class="pv__num" aria-hidden="true">1</span>Co provozujete?</legend>
+      <p class="pv__field-err" id="pv-err-typ" data-pv-err-for="typ" hidden>Vyberte, co provozujete.</p>
+      <div class="pv__opts pv__opts--3">
+        {typy.map((t) => (
+          <label class="opt">
+            <input type="radio" name="typ" value={t.value} required />
+            <span class="opt__box">
+              {t.icon && <span class="opt__ico"><Icon name={t.icon} size="sm" /></span>}
+              {t.label}
+            </span>
+          </label>
+        ))}
+      </div>
+    </fieldset>
+
+    <fieldset class="pv__step" data-pv-step="velikost">
+      <legend class="pv__q"><span class="pv__num" aria-hidden="true">2</span>Jak velký je váš provoz?</legend>
+      <p class="pv__field-err" id="pv-err-velikost" data-pv-err-for="velikost" hidden>Vyberte velikost provozu.</p>
+      <div class="pv__opts pv__opts--2">
+        {velikosti.map((v) => (
+          <label class="opt">
+            <input type="radio" name="velikost" value={v.value} required />
+            <span class="opt__box">{v.label}</span>
+          </label>
+        ))}
+      </div>
+    </fieldset>
+
+    <fieldset class="pv__step">
+      <legend class="pv__q"><span class="pv__num" aria-hidden="true">3</span>Co od pokladny potřebujete?</legend>
+      <p class="pv__hint">Nepovinné. Zaškrtněte, co se vám hodí.</p>
+      <div class="pv__opts pv__opts--3">
+        {potreby.map((p) => (
+          <label class="opt opt--check">
+            <input type="checkbox" name="potreby" value={p.value} />
+            <span class="opt__box"><span class="opt__tick" aria-hidden="true"></span>{p.label}</span>
+          </label>
+        ))}
+      </div>
+    </fieldset>
+
+    <div class="pv__submit">
+      <Button type="submit" size="lg">Ukázat doporučení</Button>
+      <p class="pv__err" data-pv-err role="alert" hidden>Vyberte prosím, co provozujete a jak velký je provoz.</p>
+    </div>
+  </form>
+
+  <div class="pv-res" data-pv-result role="region" aria-label="Doporučená pokladna" hidden tabindex="-1">
+    {produkty.map((p) => (
+      <article class="pcard" data-product={p.id} hidden>
+        <span class="pcard__rec" data-rec><Icon name="lucide:sparkles" size="xs" /> Doporučeno pro váš provoz</span>
+        <span class="pcard__tag">{p.tag}</span>
+        <h3 class="pcard__name">{p.name}</h3>
+        <p class="pcard__sub">{p.sub}</p>
+        <ul class="pcard__feats">
+          {p.feats.map((f) => (
+            <li><span class="pcard__fico"><Icon name="lucide:check" size="sm" /></span>{f}</li>
+          ))}
+          {p.eet && <li><span class="pcard__fico"><Icon name="lucide:badge-check" size="sm" /></span>Připraveno na EET 2.0</li>}
+        </ul>
+        <div class="pcard__price">
+          <span class="pcard__price-main">{p.price}</span>
+          <span class="pcard__price-note">{p.priceNote}</span>
+        </div>
+        <Button href="#poptavka" full data-pv-cta>Chci nabídku na {p.name}</Button>
+      </article>
+    ))}
+
+    <div class="pv-res__alt">
+      <p class="pv-res__alt-label">Zajímá vás spíš:</p>
+      <div class="pv-res__alt-btns">
+        {produkty.map((p) => (
+          <button type="button" class="alt-btn" data-pv-switch={p.id}>{p.name}</button>
+        ))}
+      </div>
+      <button type="button" class="pv-res__again" data-pv-again>
+        <Icon name="lucide:rotate-ccw" size="xs" /> Projít znovu
+      </button>
+    </div>
+  </div>
+</Section>
+
+<div id="poptavka" data-pv-form hidden>
+  <LeadForm variant="full" background="alt"
+            title="Pošleme vám nabídku"
+            lead="Co jste vybrali v průvodci, jsme vložili do zprávy. Doplňte kontakt, ozveme se s nabídkou a poradíme, jak se v klidu připravit na EET 2.0."
+            message="Zpráva pro nás"
+            consentHref="/ochrana-udaju"
+            successUrl="/dekujeme-poptavka"
+            submitLabel="Chci nabídku" />
+</div>
+
+<style>
+  .head-center { max-width: 720px; margin: 0 auto var(--space-7); text-align: center; }
+  .head-center :global(h2) { margin-top: var(--space-2); }
+  .head-center :global(h2) + :global(p) { margin-top: var(--space-4); }
+
+  /* Formular pruvodce = bily panel na tmavem pasu */
+  .pv { max-width: 860px; margin: 0 auto; background: var(--color-bg); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); padding: var(--space-7) var(--space-6); display: flex; flex-direction: column; gap: var(--space-7); }
+  .pv__step { border: 0; padding: 0; margin: 0; min-width: 0; }
+  .pv__q { display: flex; align-items: center; gap: var(--space-3); padding: 0; font-size: var(--font-size-h3); font-weight: var(--font-weight-bold); color: var(--color-text); }
+  .pv__num { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: 28px; height: 28px; border-radius: var(--radius-full); background: var(--color-primary); color: var(--color-text-on-dark); font-size: var(--font-size-small); }
+  .pv__hint { margin-top: var(--space-2); font-size: var(--font-size-small); color: var(--color-text-muted); }
+  .pv__opts { display: grid; gap: var(--space-3); margin-top: var(--space-4); }
+  .pv__opts--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .pv__opts--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  @media (max-width: 720px) { .pv__opts--3 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 460px) {
+    .pv { padding: var(--space-6) var(--space-4); }
+    .pv__opts--3, .pv__opts--2 { grid-template-columns: 1fr; }
+  }
+  .pv__submit { display: flex; flex-direction: column; align-items: center; gap: var(--space-3); }
+  .pv__field-err { margin-top: var(--space-2); font-size: var(--font-size-small); font-weight: var(--font-weight-medium); color: var(--color-error); }
+  .pv__step--err .opt__box { border-color: var(--color-error); }
+  .pv__err { font-size: var(--font-size-small); font-weight: var(--font-weight-medium); color: var(--color-error); text-align: center; }
+
+  /* Volba (radio / checkbox) jako dlazdice */
+  .opt { position: relative; display: flex; cursor: pointer; }
+  .opt input { position: absolute; opacity: 0; width: 0; height: 0; }
+  .opt__box { display: flex; align-items: center; gap: var(--space-2); width: 100%; min-height: 48px; padding: var(--space-3) var(--space-4); font-size: var(--font-size-small); font-weight: var(--font-weight-medium); line-height: var(--line-height-tight); color: var(--color-text); background: var(--color-bg); border: 1.5px solid var(--color-border); border-radius: var(--radius-md); transition: var(--transition); }
+  .opt:hover .opt__box { border-color: var(--color-primary); }
+  .opt input:focus-visible + .opt__box { box-shadow: var(--shadow-focus); border-color: var(--color-primary); }
+  .opt input:checked + .opt__box { border-color: var(--color-primary); background: color-mix(in srgb, var(--color-primary) 8%, #fff); }
+  .opt__ico { display: inline-flex; flex-shrink: 0; color: var(--color-text-accent); }
+  .opt__tick { flex-shrink: 0; width: 18px; height: 18px; background: var(--color-bg); border: 1.5px solid var(--color-text-muted); border-radius: 5px; transition: var(--transition); }
+  .opt input:checked + .opt__box .opt__tick { border-color: var(--color-primary); background: var(--color-primary) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center / 12px 12px no-repeat; }
+
+  /* Vysledek */
+  .pv-res { max-width: 520px; margin: var(--space-8) auto 0; outline: none; }
+  .pcard { position: relative; display: flex; flex-direction: column; background: var(--color-bg); border: 2px solid var(--color-secondary-gold); border-radius: var(--radius-lg); padding: var(--space-7) var(--space-6) var(--space-6); box-shadow: var(--shadow-lg); }
+  .pcard__rec { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); display: inline-flex; align-items: center; gap: var(--space-1); white-space: nowrap; font-size: var(--font-size-caption); font-weight: var(--font-weight-semibold); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide); color: var(--color-primary-bg); background: var(--color-secondary-gold); padding: 4px var(--space-3); border-radius: var(--radius-full); box-shadow: var(--shadow-sm); }
+  .pcard[hidden] { display: none; }
+  .pcard:not(.is-recommended) { border-color: var(--color-border-strong); }
+  .pcard:not(.is-recommended) .pcard__rec { display: none; }
+  .pcard__tag { align-self: flex-start; font-size: var(--font-size-caption); font-weight: var(--font-weight-semibold); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide); color: var(--color-text-on-dark); background: var(--color-primary); padding: 4px var(--space-3); border-radius: var(--radius-full); }
+  .pcard__name { margin-top: var(--space-4); font-family: var(--font-sans); font-size: var(--font-size-h2); font-weight: var(--font-weight-bold); color: var(--color-text); }
+  .pcard__sub { margin-top: var(--space-1); font-size: var(--font-size-body); color: var(--color-text-muted); }
+  .pcard__feats { list-style: none; display: flex; flex-direction: column; gap: var(--space-3); margin: var(--space-5) 0 0; padding: 0; }
+  .pcard__feats li { display: flex; align-items: flex-start; gap: var(--space-3); font-size: var(--font-size-small); line-height: var(--line-height-body); color: var(--color-text); }
+  .pcard__fico { display: inline-flex; flex-shrink: 0; margin-top: 1px; color: var(--color-success); }
+  .pcard__price { margin: var(--space-5) 0; padding: var(--space-4) var(--space-5); background: var(--color-bg-alt); border-radius: var(--radius-md); }
+  .pcard__price-main { display: block; font-size: var(--font-size-h3); font-weight: var(--font-weight-bold); color: var(--color-text); }
+  .pcard__price-note { display: block; margin-top: 2px; font-size: var(--font-size-caption); color: var(--color-text-muted); }
+  /* Delsi nazev produktu se na mobilu do tlacitka nevejde na jeden radek. */
+  .pcard :global(.btn) { white-space: normal; text-align: center; }
+  @media (max-width: 460px) { .pcard { padding: var(--space-7) var(--space-4) var(--space-5); } }
+
+  .pv-res__alt { margin-top: var(--space-6); text-align: center; }
+  .pv-res__alt-label { font-size: var(--font-size-small); color: var(--color-text-on-dark-muted); }
+  .pv-res__alt-btns { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-2); margin-top: var(--space-3); }
+  .alt-btn { font-family: var(--font-sans); font-size: var(--font-size-small); font-weight: var(--font-weight-medium); color: var(--color-text-on-dark); background: transparent; border: 1px solid var(--color-border-on-dark); border-radius: var(--radius-full); padding: var(--space-2) var(--space-4); min-height: 44px; cursor: pointer; transition: var(--transition); }
+  .alt-btn:hover { border-color: var(--color-text-on-dark); }
+  .alt-btn:focus-visible, .pv-res__again:focus-visible { outline: none; box-shadow: var(--shadow-focus); }
+  .alt-btn[hidden] { display: none; }
+  .pv-res__again { display: inline-flex; align-items: center; gap: var(--space-1); margin-top: var(--space-5); font-family: var(--font-sans); font-size: var(--font-size-small); color: var(--color-text-on-dark-muted); background: none; border: 0; padding: var(--space-2); min-height: 44px; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+  .pv-res__again:hover { color: var(--color-text-on-dark); }
+</style>
+
+<script>
+  import { typy, velikosti, potreby, produkty, doporuc, type ProductId } from '../config/pruvodce';
+
+  const form = document.querySelector<HTMLFormElement>('[data-pv]');
+  const result = document.querySelector<HTMLElement>('[data-pv-result]');
+  const err = document.querySelector<HTMLElement>('[data-pv-err]');
+  const formWrap = document.querySelector<HTMLElement>('[data-pv-form]');
+  const cards = Array.from(document.querySelectorAll<HTMLElement>('[data-product]'));
+  const switches = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-pv-switch]'));
+  const message = formWrap?.querySelector<HTMLTextAreaElement>('textarea[name="message"]');
+
+  const labelOf = (list: { value: string; label: string }[], v: string) => list.find((o) => o.value === v)?.label ?? v;
+  const nameOf = (id: ProductId) => produkty.find((p) => p.id === id)?.name ?? id;
+
+  let answers = { typ: '', velikost: '', needs: [] as string[] };
+  let recommended: ProductId = 'hugo';
+
+  function show(id: ProductId) {
+    cards.forEach((c) => {
+      const on = c.dataset.product === id;
+      c.hidden = !on;
+      c.classList.toggle('is-recommended', on && id === recommended);
+    });
+    switches.forEach((b) => { b.hidden = b.dataset.pvSwitch === id; });
+
+    if (message) {
+      const lines = [
+        id === recommended
+          ? `Průvodce EET 2027: doporučeno ${nameOf(id)}.`
+          : `Průvodce EET 2027: zájem o ${nameOf(id)} (průvodce doporučil ${nameOf(recommended)}).`,
+        `Podnik: ${labelOf(typy, answers.typ)}. Velikost: ${labelOf(velikosti, answers.velikost)}.`,
+      ];
+      if (answers.needs.length) lines.push(`Potřebuje: ${answers.needs.map((n) => labelOf(potreby, n)).join(', ')}.`);
+      message.value = lines.join('\n');
+    }
+
+    // GTM: ktery produkt pruvodce doporucil a o ktery je zajem
+    const dl = (window as unknown as { dataLayer?: unknown[] }).dataLayer;
+    dl?.push({ event: 'pruvodce_vysledek', doporuceno: recommended, zajem: id, typ_podniku: answers.typ, velikost: answers.velikost });
+  }
+
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+    const typ = String(data.get('typ') ?? '');
+    const velikost = String(data.get('velikost') ?? '');
+    const missing = { typ: !typ, velikost: !velikost };
+    (Object.keys(missing) as (keyof typeof missing)[]).forEach((k) => {
+      form.querySelector(`[data-pv-step="${k}"]`)?.classList.toggle('pv__step--err', missing[k]);
+      const msg = form.querySelector<HTMLElement>(`[data-pv-err-for="${k}"]`);
+      if (msg) msg.hidden = !missing[k];
+      form.querySelectorAll<HTMLInputElement>(`input[name="${k}"]`).forEach((i) => {
+        if (missing[k]) { i.setAttribute('aria-invalid', 'true'); i.setAttribute('aria-describedby', `pv-err-${k}`); }
+        else { i.removeAttribute('aria-invalid'); i.removeAttribute('aria-describedby'); }
+      });
+    });
+    if (!typ || !velikost) {
+      if (err) err.hidden = false;
+      // Fokus i scroll na prvni nevyplneny krok, hlaska je primo pod jeho otazkou.
+      const first = form.querySelector<HTMLElement>(`[data-pv-step="${!typ ? 'typ' : 'velikost'}"]`);
+      first?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      first?.querySelector<HTMLInputElement>('input')?.focus({ preventScroll: true });
+      return;
+    }
+    if (err) err.hidden = true;
+
+    answers = { typ, velikost, needs: data.getAll('potreby').map(String) };
+    recommended = doporuc(typ, velikost, answers.needs);
+    show(recommended);
+
+    if (result) {
+      result.hidden = false;
+      result.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      result.focus({ preventScroll: true });
+    }
+    if (formWrap) formWrap.hidden = false;
+  });
+
+  // Kliknute tlacitko se schova, fokus proto prejde na vysledek, at se neztrati.
+  switches.forEach((b) => b.addEventListener('click', () => {
+    show(b.dataset.pvSwitch as ProductId);
+    result?.focus({ preventScroll: true });
+  }));
+
+  // Po oprave volby zmizi chybova hlaska daneho kroku.
+  form?.addEventListener('change', (e) => {
+    const name = (e.target as HTMLInputElement).name;
+    if (name !== 'typ' && name !== 'velikost') return;
+    form.querySelector(`[data-pv-step="${name}"]`)?.classList.remove('pv__step--err');
+    const msg = form.querySelector<HTMLElement>(`[data-pv-err-for="${name}"]`);
+    if (msg) msg.hidden = true;
+    form.querySelectorAll<HTMLInputElement>(`input[name="${name}"]`).forEach((i) => { i.removeAttribute('aria-invalid'); i.removeAttribute('aria-describedby'); });
+  });
+
+  document.querySelectorAll<HTMLAnchorElement>('[data-pv-cta]').forEach((a) => a.addEventListener('click', (e) => {
+    e.preventDefault();
+    formWrap?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    formWrap?.querySelector<HTMLInputElement>('input[name="name"]')?.focus({ preventScroll: true });
+  }));
+
+  document.querySelector('[data-pv-again]')?.addEventListener('click', () => {
+    form?.reset();
+    if (result) result.hidden = true;
+    if (formWrap) formWrap.hidden = true;
+    form?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    form?.querySelector<HTMLInputElement>('input[name="typ"]')?.focus({ preventScroll: true });
+  });
+</script>

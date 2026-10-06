@@ -7,11 +7,12 @@ const year = new Date().getFullYear();
 export const eetFooter = {
   brand: 'EET 2027',
   mark: false,
-  tagline: 'Prehledny pruvodce navratem EET. Plosne povinna je od 1. unora 2027, leden je pilotni provoz. Co se meni, koho se to tyka a jak se vcas pripravit.',
+  tagline: 'Přehledný průvodce návratem EET. Plošně povinná je od 1. února 2027, leden je pilotní provoz. Co se mění, koho se to týká a jak se včas připravit.',
   columns: [
     {
       heading: 'Informace',
       links: [
+        { label: 'Vybrat pokladnu', href: '/#pruvodce' },
         { label: 'Co se mění', href: '/#co-se-meni' },
         { label: 'Koho se týká', href: '/#koho' },
         { label: 'Jak se připravit', href: '/#priprava' },
