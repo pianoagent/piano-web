@@ -261,6 +261,18 @@ import { typy, velikosti, potreby, produkty } from '../config/pruvodce';
     if (formWrap) formWrap.hidden = false;
   });
 
+  // Start z hero karty: predvyplni typ podniku a posune rovnou na druhou otazku.
+  document.querySelectorAll<HTMLAnchorElement>('[data-pv-start]').forEach((a) => a.addEventListener('click', (e) => {
+    const radio = form?.querySelector<HTMLInputElement>(`input[name="typ"][value="${a.dataset.pvStart}"]`);
+    if (!form || !radio) return;
+    e.preventDefault();
+    radio.checked = true;
+    radio.dispatchEvent(new Event('change', { bubbles: true }));
+    const step2 = form.querySelector<HTMLElement>('[data-pv-step="velikost"]');
+    step2?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    step2?.querySelector<HTMLInputElement>('input')?.focus({ preventScroll: true });
+  }));
+
   // Kliknute tlacitko se schova, fokus proto prejde na vysledek, at se neztrati.
   switches.forEach((b) => b.addEventListener('click', () => {
     show(b.dataset.pvSwitch as ProductId);
