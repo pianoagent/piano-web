@@ -41,8 +41,10 @@ export const GRASON_STORE_ANDROID = 'https://play.google.com/store/apps/details?
 /** Hlavní CTA hlavičky per stránka: kde nedává smysl poptávka, vede rovnou
  *  na registraci produktu, u pracovníků na stažení appky. /stahnout/ pošle
  *  mobil do obchodu podle systému, desktop na banner na /pro-brigadniky/. */
-export const grasonFlexiCta: NavLink = { label: 'Zaregistrovat firmu', href: grasonFlexiRegister };
-export const grasonPlanCta: NavLink = { label: 'Vyzkoušet zdarma', href: grasonPlanRegister };
+export const grasonFlexiCta: NavLink = { label: 'Vyzkoušet 14 dní zdarma', href: grasonFlexiRegister };
+/** Jobs se zakládá přes účet ve Flexi, proto stejná registrace. */
+export const grasonJobsCta: NavLink = { label: 'Začít inzerovat', href: grasonFlexiRegister };
+export const grasonPlanCta: NavLink = { label: 'Vyzkoušet měsíc zdarma', href: grasonPlanRegister };
 export const grasonAppCta: NavLink = { label: 'Stáhnout aplikaci', href: '/stahnout/' };
 
 /** Sekundární „Přihlášení" vedle hlavního CTA (dropdown na rozhraní). */

@@ -16,7 +16,7 @@ import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import Img from '@piano/ui/components/Img.astro';
 import Faq from '@piano/ui/components/Faq.astro';
-import { grasonNav, grasonFlexiCta, grasonFooter, grasonLogin, grasonFlexiRegister } from '../config/nav';
+import { grasonNav, grasonJobsCta, grasonFooter, grasonLogin, grasonFlexiRegister } from '../config/nav';
 import { jobsFaqs } from '../config/faq';
 
 const steps = [
@@ -57,7 +57,7 @@ const jobsAddons = [
 
 <Base title="GrasonJobs: inzerce a nábor stálých zaměstnanců | Grason"
       description="GrasonJobs zveřejní inzerát na stálou pozici v mobilní aplikaci i na webu a osloví vhodné kandidáty notifikacemi. Balíčky Basic až Gold.">
-  <Header brand="Grason" logoSrc="/logos/grason_by_piano.svg" logoHeight="44px" homeHref="/" nav={grasonNav} cta={grasonFlexiCta} login={grasonLogin} />
+  <Header brand="Grason" logoSrc="/logos/grason_by_piano.svg" logoHeight="44px" homeHref="/" nav={grasonNav} cta={grasonJobsCta} login={grasonLogin} />
 
   <main class="pa-jobs">
   <Hero eyebrow="GrasonJobs" background="invert"
@@ -65,7 +65,7 @@ const jobsAddons = [
         usp={[{ text: 'Inzerát v appce i na webu', icon: 'lucide:megaphone' }, { text: 'Cílené oslovení kandidátů', icon: 'lucide:bell' }, { text: 'Placená propagace na sítích', icon: 'lucide:trending-up' }]}>
     <Heading slot="title" as="h1" size="display" color="on-dark">Nábor stálých lidí <span class="accent">na míru</span></Heading>
     <Fragment slot="actions">
-      <Button href={grasonFlexiRegister}>Zaregistrovat se a inzerovat</Button>
+      <Button href={grasonFlexiRegister}>Začít inzerovat</Button>
       <Button href="#jak" variant="secondary" onDark>Jak to funguje</Button>
     </Fragment>
     <figure slot="media" class="hero-figure">
@@ -88,7 +88,7 @@ const jobsAddons = [
         </li>
       ))}
     </ol>
-    <div class="sec-cta"><Button href={grasonFlexiRegister}>Zaregistrovat se a inzerovat</Button></div>
+    <div class="sec-cta"><Button href={grasonFlexiRegister}>Začít inzerovat</Button></div>
   </Section>
 
   <Section background="alt" space="lg">
@@ -123,7 +123,7 @@ const jobsAddons = [
     </div>
     <Text size="small" color="muted" align="center" class="jtable__note">Všechny ceny jsou bez DPH.</Text>
 
-    <div class="sec-cta"><Button href={grasonFlexiRegister}>Zaregistrovat se a inzerovat</Button></div>
+    <div class="sec-cta"><Button href={grasonFlexiRegister}>Začít inzerovat</Button></div>
   </PricingTable>
 
   <!-- INZERTNÍ PORTÁL -->
@@ -136,7 +136,7 @@ const jobsAddons = [
       </Text>
       <Text color="on-dark-muted" align="center">Máte otázky? Napište na <a class="portal__link" href="mailto:info@grason.cz">info@grason.cz</a> nebo volejte <a class="portal__link" href="tel:+420739877799">739 877 799</a>.</Text>
       <div class="portal__cta">
-        <Button href={grasonFlexiRegister}>Inzerujte ještě dnes</Button>
+        <Button href={grasonFlexiRegister}>Začít inzerovat</Button>
         <Button href="/nabidky-zamestnani/" variant="secondary" onDark>Prohlédnout portál</Button>
       </div>
     </div>
