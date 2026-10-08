@@ -39,18 +39,15 @@ const jobs = [
   { img: '/images/roles/bednak.webp', label: 'Bedňák' },
 ];
 
-/* Devět jmenovaných měst + zbytek, stejně jako live grason.cz.
-   Celkem 91 lokalit (grason-context.md). */
-const cities = ['Praha', 'Brno', 'Ostrava', 'Liberec', 'Olomouc', 'Přerov', 'Most', 'Plzeň', 'Ústí nad Labem'];
-
 /* Jen čísla doložená v contexty/. Show-up rate 97 % je v bázi vedený jako
    neověřený a bez kvalifikátoru „bez omluvy" tvrdí víc než zdroj, proto tady
-   není; celé znění zůstává ve FAQ, kde má kolem sebe kontext. */
+   není; celé znění zůstává ve FAQ, kde má kolem sebe kontext.
+   Počet lokalit (91) tu záměrně není: GrasonFlexi dnes běží jen v Praze
+   (feedback Grasonu 7. 10. 2026). */
 const stats = [
   { num: '5 500', lbl: 'ověřených brigádníků' },
-  { num: '91', lbl: 'míst po celé ČR' },
   { num: '220 000+', lbl: 'naplánovaných směn' },
-  { num: '4,75', lbl: 'průměrné hodnocení grasona' },
+  { num: '4,75', lbl: 'průměrné hodnocení od podniků' },
 ];
 
 const STORE_IOS = 'https://apps.apple.com/cz/app/grason/id1367384162';
@@ -59,13 +56,13 @@ const STORE_ANDROID = 'https://play.google.com/store/apps/details?id=com.thefunt
 const perks = [
   { icon: 'lucide:wallet', title: 'Mzdu si určujete vy', text: 'Při přihlašování uvidíte, jakou částku podnik preferuje. Je ale jen na vás, za kolik chcete pracovat.' },
   { icon: 'lucide:calendar-heart', title: 'Buďte pány svého času', text: 'Sami si naplánujete, kdy a jak často budete pracovat. Záleží jen na vás, kolik směn si vezmete.' },
-  { icon: 'lucide:banknote', title: 'Výplata ihned po směně', text: 'Žádné čekání na výplatní termín, peníze máte hned, jak odpracujete.' },
+  { icon: 'lucide:banknote', title: 'Víte předem, jak dostanete zaplaceno', text: 'Způsob výplaty vidíte u každé směny předem. Některé podniky platí hned po směně, jiné až převodem na účet.' },
 ];
 
 ---
 
 <Base title="Flexibilní práce pro brigádníky | Grason"
-      description="Vaše řešení pro flexibilní práci. Pracujte ještě dnes, směny tehdy a tam, kdy a kde zrovna můžete. Výplata ihned po směně.">
+      description="Brigády v Praze v gastru, skladech i obchodech. Pracujte ještě dnes, kdy zrovna můžete. Způsob výplaty vidíte u každé směny předem.">
   <Header brand="Grason" logoSrc="/logos/grason_logo.svg" logoHeight="28px" homeHref="/" nav={grasonNav} cta={grasonCta} login={grasonLogin} />
 
   <main class="pb">
@@ -117,7 +114,7 @@ const perks = [
   </Section>
 
   <!-- ČÍSLA -->
-  <StatsBand items={stats} background="alt" space="md" />
+  <StatsBand items={stats} columns={3} background="alt" space="md" />
 
   <!-- VÝHODY -->
   <Section background="default" decor="bottom" space="lg">
@@ -134,17 +131,14 @@ const perks = [
 
   <!-- MÍSTA -->
   <Section background="pink" decor="top" space="lg">
-    <div class="head head--center">
+    <div class="head head--center head--solo">
       <Text size="label" color="default" align="center">Kde pracovat</Text>
-      <Heading as="h2" size="h2" align="center">Pracujte <span class="accent">kdekoliv</span></Heading>
+      <Heading as="h2" size="h2" align="center">Pracujte <span class="accent">v Praze</span></Heading>
       <Text size="lead" color="muted" align="center" balance>
-        V pondělí v Praze, v úterý v Mostu, ve čtvrtek v Liberci. Pracujte tam, kde se vám to hodí.
+        Směny v gastru, skladech i obchodech v Praze. Vyberete si podnik i čas, který vám sedí.
       </Text>
+      <div class="head__cta"><Button href="#stahnout">Stáhnout aplikaci</Button></div>
     </div>
-    <ul class="cities">
-      {cities.map((c) => <li class="city">{c}</li>)}
-      <li class="city city--more">+ 82 dalších míst</li>
-    </ul>
   </Section>
 
   <!-- FAQ -->
@@ -198,6 +192,12 @@ const perks = [
   .head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-7); }
   .head--center { text-align: center; }
   .head > * + * { margin-top: var(--space-3); }
+  .head--solo { margin-bottom: 0; }
+  /* Na růžovém pásu by růžové primární CTA zaniklo, proto brandová tmavě modrá. */
+  .head__cta { display: flex; justify-content: center; padding-top: var(--space-3);
+    --btn-bg: var(--color-secondary);
+    --btn-bg-hover: color-mix(in srgb, var(--color-secondary) 85%, #000);
+    --btn-bg-active: color-mix(in srgb, var(--color-secondary) 75%, #000); }
 
   /* Steps */
   .steps { list-style: none; display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
@@ -213,11 +213,6 @@ const perks = [
   .jobs { list-style: none; display: flex; flex-wrap: wrap; gap: var(--space-4); justify-content: center; }
   .job { display: inline-flex; align-items: center; gap: var(--space-3); padding: var(--space-2) var(--space-5) var(--space-2) var(--space-3); background: var(--color-bg); border: 1px solid var(--pill-edge); border-radius: var(--radius-full); font-weight: var(--font-weight-medium); box-shadow: var(--shadow-sm); }
   .job__art { width: 32px; height: 32px; display: block; flex-shrink: 0; }
-
-  /* Města */
-  .cities { list-style: none; display: flex; flex-wrap: wrap; gap: var(--space-3); justify-content: center; }
-  .city { display: inline-flex; align-items: center; padding: var(--space-3) var(--space-5); background: var(--color-bg); border: 1px solid var(--pill-edge); border-radius: var(--radius-full); font-weight: var(--font-weight-medium); box-shadow: var(--shadow-sm); }
-  .city--more { background: transparent; box-shadow: none; color: var(--color-text-muted); }
 
   /* Perks */
   .perks { list-style: none; display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
