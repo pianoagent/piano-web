@@ -21,12 +21,6 @@ export interface Quote {
 /* Manažeři provozů, GrasonFlexi (brigádníci) */
 export const flexiQuotes: Quote[] = [
   {
-    initials: 'MS',
-    quote: 'Ke Grasonu nás dovedla zhoršující se situace na trhu práce a jejich inovativní přístup oproti ostatní konkurenci. Velkou výhodou je praktická a funkční aplikace a možnost operativního plánování směn 24/7. Také nám odpadá starost s prvotním výběrem kandidátů a inzercí.',
-    author: 'Martin Savkulič',
-    role: 'Manažer restaurace Pizza Nuova, Ambiente',
-  },
-  {
     /* Pozor: Foodora, ne DámeMarket. Přejmenování je vedené jako závazné
        v části 12 znalostní báze (známé rozpory). */
     initials: 'DS',
@@ -73,8 +67,8 @@ export const planQuotes: Quote[] = [
 
 /* Homepage: obě strany produktu, šest citací ve dvou řadách po třech */
 export const homeQuotes: Quote[] = [
-  flexiQuotes[0], flexiQuotes[1], flexiQuotes[2],
-  planQuotes[0], planQuotes[1], flexiQuotes[3],
+  planQuotes[2], flexiQuotes[0], flexiQuotes[1],
+  planQuotes[0], planQuotes[1], flexiQuotes[2],
 ];
 
 /* Pracovníci (grasoni). Doplněno do banky referencí 22. 9. 2026
