@@ -16,7 +16,7 @@ import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import Img from '@piano/ui/components/Img.astro';
 import Faq from '@piano/ui/components/Faq.astro';
-import { grasonNav, grasonCta, grasonFooter, grasonLogin, grasonPlanRegister } from '../../config/nav';
+import { grasonNav, grasonPlanCta, grasonFooter, grasonLogin, grasonPlanRegister } from '../../config/nav';
 import { planFaqs } from '../../config/faq';
 import { planQuotes } from '../../config/reference';
 import Testimonials from '@piano/ui/components/Testimonials.astro';
@@ -52,7 +52,7 @@ const moreFeatures = [
 
 <Base title="GrasonPlan, plánování směn vlastního týmu | Grason"
       description="GrasonPlan je moderní nástroj na řízení personálu: rozvrh na PC i v mobilu, úkoly, reporty pro účetní a docházka jako doplňkový modul. První měsíc zdarma.">
-  <Header brand="Grason" logoSrc="/logos/grason_logo.svg" logoHeight="28px" homeHref="/" nav={grasonNav} cta={grasonCta} login={grasonLogin} />
+  <Header brand="Grason" logoSrc="/logos/grason_logo.svg" logoHeight="28px" homeHref="/" nav={grasonNav} cta={grasonPlanCta} login={grasonLogin} />
 
   <main class="plan">
   <!-- HERO -->
@@ -61,7 +61,7 @@ const moreFeatures = [
     <Heading slot="title" as="h1" size="display" color="on-dark">Změňte způsob, jak <span class="accent">řídíte svůj tým</span></Heading>
     <Fragment slot="actions">
       <Button href={grasonPlanRegister}>Vyzkoušet zdarma</Button>
-      <Button href="#cenik" variant="secondary" onDark>Ukázat cenu</Button>
+      <Button href="#cenik" variant="secondary" onDark>Ukázat ceník</Button>
     </Fragment>
     <figure slot="media" class="hero-figure">
       <Img class="shot" src="/images/plan-kalendar.webp" alt="GrasonPlan, týdenní plán směn v kalendáři"

@@ -17,7 +17,7 @@ import Field from '@piano/ui/components/Field.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import Select from '../../components/Select.astro';
 import '../../styles/skeleton.css';
-import { grasonNav, grasonCta, grasonFooter, grasonLogin } from '../../config/nav';
+import { grasonNav, grasonAppCta, grasonFooter, grasonLogin } from '../../config/nav';
 import { JOBS_PATH } from '../../lib/jobs';
 
 /* Předvolby, které API přijímá (stejné jako na jobs.grason.cz). */
@@ -30,7 +30,7 @@ const dialCodes = [
 
 <Base title="Nabídka zaměstnání | Grason"
       description="Nabídka stálé práce v gastru přes GrasonJobs. Odpovězte na inzerát přímo z webu.">
-  <Header brand="Grason" logoSrc="/logos/grason_logo.svg" logoHeight="28px" homeHref="/" nav={grasonNav} cta={grasonCta} login={grasonLogin} />
+  <Header brand="Grason" logoSrc="/logos/grason_logo.svg" logoHeight="28px" homeHref="/" nav={grasonNav} cta={grasonAppCta} login={grasonLogin} />
 
   <main>
     <Section background="default" space="md" container="narrow">
