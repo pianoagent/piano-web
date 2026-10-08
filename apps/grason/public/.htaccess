@@ -1,6 +1,51 @@
+# Statický web: index.html má přednost před parkovací index.php od hostingu
+DirectoryIndex index.html index.php
+
 ErrorDocument 404 /404.html
 
-# Detail inzerátu /nabidky-zamestnani/{ID}-{slug}: statická stránka detail/
-# si inzerát načte z API podle ID v URL (stejné pravidlo je v _redirects).
 RewriteEngine On
-RewriteRule ^nabidky-zamestnani/[0-9]+-[^/]*/?$ nabidky-zamestnani/detail/index.html [L]
+
+# Hlavní doména je bez www (starý Nuxt web běžel na www.grason.cz)
+RewriteCond %{HTTP_HOST} ^www\.grason\.cz$ [NC]
+RewriteRule ^ https://grason.cz%{REQUEST_URI} [R=301,L]
+
+# Staré krátké odkazy grason.cz/f/<slug> převzal grsn.cz (záloha v 404.astro jen pro hosting bez .htaccess)
+RewriteRule ^f/(.+)$ https://www.grsn.cz/f/$1 [R=301,L]
+
+# Detail inzerátu /nabidky-zamestnani/{ID}-{slug} (bez slugu jen {ID}): statická
+# stránka detail/ si inzerát načte z API podle ID v URL (stejné pravidlo je v _redirects).
+RewriteRule ^nabidky-zamestnani/[0-9]+(-[^/]*)?/?$ nabidky-zamestnani/detail/index.html [L]
+
+# ── Cache statických assetů (efektivní doba platnosti mezipaměti) ──
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/webp              "access plus 1 year"
+  ExpiresByType image/avif              "access plus 1 year"
+  ExpiresByType image/png               "access plus 1 year"
+  ExpiresByType image/jpeg              "access plus 1 year"
+  ExpiresByType image/gif               "access plus 1 year"
+  ExpiresByType image/svg+xml           "access plus 1 year"
+  ExpiresByType image/x-icon            "access plus 1 year"
+  ExpiresByType video/mp4               "access plus 1 year"
+  ExpiresByType font/woff2              "access plus 1 year"
+  ExpiresByType font/woff               "access plus 1 year"
+  ExpiresByType text/css                "access plus 1 year"
+  ExpiresByType application/javascript  "access plus 1 year"
+  ExpiresByType text/javascript         "access plus 1 year"
+  ExpiresByType text/html               "access plus 0 seconds"
+</IfModule>
+
+<IfModule mod_headers.c>
+  # Hashované buildy (CSS/JS/fonty): neměnné, dlouhá cache
+  <FilesMatch "\.(css|js|mjs|woff2?|ttf|otf|eot)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  # Obrázky a videa: dlouhá cache, ale bez immutable (kdybychom soubor vyměnili)
+  <FilesMatch "\.(webp|avif|png|jpe?g|gif|svg|ico|mp4)$">
+    Header set Cache-Control "public, max-age=31536000"
+  </FilesMatch>
+  # HTML: vždy čerstvé
+  <FilesMatch "\.html$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
+</IfModule>

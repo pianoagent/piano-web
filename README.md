@@ -15,11 +15,11 @@ Nasazení není pro všechny weby stejné, pozor na to.
 | `piano` | piano.cz | GitHub Actions `deploy-piano.yml`, **FTP na Webglobe** |
 | `eet2027` | eet2027.cz | GitHub Actions `deploy-eet2027.yml`, **FTP na Webglobe** |
 | `pecosta` | pecosta.cz | GitHub Actions `deploy-pecosta.yml`, **FTP na Webglobe** |
+| `grason` | grason.cz | GitHub Actions `deploy-grason.yml`, **FTP na Webglobe** |
 | `protel`, `qerko`, `septim`, `savarin`, `harsys` | vlastní domény | Cloudflare Pages napojený na git |
-| `grason` | grason.cz | AWS Amplify (`apps/grason/amplify.yml`), zároveň má i Cloudflare projekt |
 | `hugo` | zatím nikde | prototyp; `site` i `wrangler.jsonc` už existují, ale web se nepublikuje. Živý Hugo běží na hugopos.eu / hugopos.cz mimo tohle repo |
 
-**Piano, eet2027 a pecosta tedy na produkci nejedou přes Cloudflare.** Všechny tři workflow spouští push do `main`, ale jsou **path filtrované** (`apps/<app>/**`, `packages/**`, `package*.json`, vlastní soubor workflow), takže merge, který sáhne jen na README, nenasadí nic. Všechny jdou spustit i ručně přes `workflow_dispatch`.
+**Piano, eet2027, pecosta a grason tedy na produkci nejedou přes Cloudflare.** Všechny čtyři workflow spouští push do `main`, ale jsou **path filtrované** (`apps/<app>/**`, `packages/**`, `package*.json`, vlastní soubor workflow), takže merge, který sáhne jen na README, nenasadí nic. Všechny jdou spustit i ručně přes `workflow_dispatch`.
 
 ## Kde si změnu prohlédnout
 

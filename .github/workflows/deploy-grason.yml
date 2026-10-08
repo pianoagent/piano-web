@@ -1,0 +1,64 @@
+name: Deploy grason.cz
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'apps/grason/**'
+      - 'packages/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/deploy-grason.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-grason
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Node
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      # After npm ci, which wipes node_modules. Without it every build regenerates all AVIF/WebP variants.
+      - name: Cache optimalizovaných obrázků
+        uses: actions/cache@v6
+        with:
+          path: apps/grason/node_modules/.astro/assets
+          key: astro-assets-grason-${{ hashFiles('apps/grason/src/assets/**', 'packages/ui/lib/images.ts') }}
+          restore-keys: astro-assets-grason-
+
+      - name: Typová kontrola (astro check)
+        working-directory: apps/grason
+        run: npx astro check
+
+      - name: Build grason.cz
+        run: npm run build:grason
+
+      - name: Deploy to FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
+        with:
+          server: ${{ secrets.GRASON_FTP_SERVER }}
+          username: ${{ secrets.GRASON_FTP_USERNAME }}
+          password: ${{ secrets.GRASON_FTP_PASSWORD }}
+          protocol: ${{ vars.GRASON_FTP_PROTOCOL || 'ftp' }}
+          local-dir: apps/grason/dist/
+          server-dir: ${{ vars.GRASON_FTP_SERVER_DIR || './' }}
+          # Cloudflare artefakty (worker/headers/routes) na tomhle hostingu nedávají smysl
+          exclude: |
+            _worker.js/**
+            _routes.json
+            _headers
+            _redirects
+            **/.DS_Store

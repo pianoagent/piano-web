@@ -31,6 +31,8 @@ export default defineConfig({
     '/hledam-praci': '/pro-brigadniky/',
     '/nejcastejsi-dotazy-pro-grasony': '/faq-grason/',
     '/ukraine': '/pro-brigadniky/',
+    // App Store support URL of the Flexi app (en-GB listing)
+    '/en/contact': '/kontakt/',
     // App short links: grsn.cz does the device detection (store / web)
     '/a': 'https://www.grsn.cz/a',
     '/b': 'https://www.grsn.cz/b',
