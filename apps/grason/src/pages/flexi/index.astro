@@ -114,6 +114,7 @@ const priceFeatures = [
         </li>
       ))}
     </ol>
+    <div class="sec-cta"><Button href={grasonFlexiRegister}>Zaregistrovat firmu zdarma</Button></div>
   </Section>
 
   <PricingTable id="cenik" background="alt" space="lg"
@@ -132,6 +133,21 @@ const priceFeatures = [
     items={flexiQuotes}
     titleHtml={'Co říkají <span class="accent">naši klienti</span>'} />
   <Faq items={flexiFaqs} title="Časté dotazy ke GrasonFlexi" background="default" />
+
+  <!-- CTA -->
+  <Section background="primary" decor="top" space="lg">
+    <div class="head head--center">
+      <Text size="label" color="on-dark-muted" align="center">Začněte s GrasonFlexi</Text>
+      <Heading as="h2" size="h2" align="center" color="on-dark">Vyzkoušejte GrasonFlexi 14 dní zdarma</Heading>
+      <Text size="lead" color="on-dark-muted" align="center" balance>
+        Nepotřebujete platební kartu a za pár minut máte vypsanou první směnu.
+      </Text>
+      <div class="cta-actions">
+        <Button href={grasonFlexiRegister}>Zaregistrovat firmu zdarma</Button>
+        <Button href="tel:+420739877799" variant="secondary" onDark>+420 739 877 799</Button>
+      </div>
+    </div>
+  </Section>
   </main>
 
   <Footer {...grasonFooter} />
@@ -153,6 +169,8 @@ const priceFeatures = [
   .hero-figure img { width: 100%; height: auto; display: block; filter: drop-shadow(0 24px 48px rgba(7, 7, 7, 0.22)); }
   .head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-7); }
   .head--center { text-align: center; }
+  .sec-cta { display: flex; justify-content: center; margin-top: var(--space-7); }
+  .cta-actions { display: flex; gap: var(--space-3); justify-content: center; flex-wrap: wrap; margin-top: var(--space-5); }
   .head > * + * { margin-top: var(--space-3); }
   .hero-list { list-style: none; display: flex; flex-wrap: wrap; gap: var(--space-5); justify-content: center; }
   .hero-list li { display: inline-flex; align-items: center; gap: var(--space-2); font-size: var(--font-size-small); color: var(--color-text); }
