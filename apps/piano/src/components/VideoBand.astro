@@ -1,0 +1,78 @@
+---
+/**
+ * VideoBand: video hned pod hero, po vzoru Huga (apps/hugo/src/components/landing/VideoBand.astro).
+ *
+ * Sekce nemá nadpis ani horní odsazení a má stejné pozadí jako
+ * <Hero background="primary">, takže video čte jako pokračování hero.
+ * Přehrávač YouTube (youtube-nocookie.com) se načte až po kliknutí,
+ * do té doby je tu jen náhled z i.ytimg.com a tlačítko.
+ *
+ *   id: ID videa na YouTube
+ *   title: název videa pro <iframe> a aria-label tlačítka
+ */
+interface Props {
+  id: string;
+  title: string;
+}
+const { id, title } = Astro.props;
+const thumb = `https://i.ytimg.com/vi/${id}/maxresdefault.jpg`;
+const thumbFallback = `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
+---
+
+<section class="video-band" aria-label="Video">
+  <div class="video-band__inner">
+    <div class="video-frame">
+      <button class="video-facade" type="button" data-video-id={id} data-video-title={title} aria-label={`Přehrát video: ${title}`}>
+        <img src={thumb} alt="" width="1280" height="720" loading="lazy" decoding="async"
+             onload={`this.onload=null;if(this.naturalWidth<200)this.src='${thumbFallback}'`} />
+        <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24"><polygon points="8.5 5.5 19 12 8.5 18.5" fill="currentColor"></polygon></svg></span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.video-facade').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const frame = document.createElement('iframe');
+      frame.src = `https://www.youtube-nocookie.com/embed/${btn.dataset.videoId}?autoplay=1&rel=0&modestbranding=1&playsinline=1`;
+      frame.title = btn.dataset.videoTitle || '';
+      frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      frame.allowFullscreen = true;
+      frame.referrerPolicy = 'strict-origin-when-cross-origin';
+      btn.replaceWith(frame);
+      frame.focus();
+    }, { once: true });
+  });
+</script>
+
+<style>
+  .video-band { background: var(--color-primary-bg); padding: 0 0 clamp(60px, 8vw, 90px); }
+  .video-band__inner { max-width: var(--container-max); margin: 0 auto; padding-inline: var(--container-pad); }
+  .video-frame {
+    position: relative; width: 100%; max-width: 1040px; margin: 0 auto; aspect-ratio: 16 / 9;
+    border-radius: var(--radius-lg); overflow: hidden; background: #000;
+    box-shadow: 0 30px 70px -35px rgba(0, 0, 0, 0.6);
+  }
+  .video-frame :global(iframe), .video-facade { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .video-facade { padding: 0; cursor: pointer; background: #000; }
+  .video-facade img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s ease, opacity .3s ease; }
+  .video-facade:hover img { transform: scale(1.02); opacity: .92; }
+  .video-play {
+    position: absolute; left: 50%; top: 50%; width: 92px; height: 92px; margin: -46px 0 0 -46px;
+    border-radius: 50%; background: #fff; color: var(--color-primary);
+    display: grid; place-items: center; line-height: 0;
+    box-shadow: 0 14px 30px -10px rgba(0, 0, 0, .45); transition: transform .2s ease;
+  }
+  .video-play svg { width: 38px; height: 38px; display: block; }
+  .video-facade:hover .video-play { transform: scale(1.08); }
+  .video-facade:focus-visible { outline: 4px solid #fff; outline-offset: -4px; }
+  @media (max-width: 650px) {
+    .video-play { width: 64px; height: 64px; margin: -32px 0 0 -32px; }
+    .video-play svg { width: 28px; height: 28px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .video-facade img, .video-play { transition: none; }
+    .video-facade:hover img, .video-facade:hover .video-play { transform: none; }
+  }
+</style>
