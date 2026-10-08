@@ -17,7 +17,7 @@ import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import Img from '@piano/ui/components/Img.astro';
 import Faq from '@piano/ui/components/Faq.astro';
-import { grasonNav, grasonCta, grasonFooter, grasonLogin } from '../config/nav';
+import { grasonNav, grasonAppCta, grasonFooter, grasonLogin, GRASON_STORE_IOS, GRASON_STORE_ANDROID } from '../config/nav';
 import { brigadniciFaqs } from '../config/faq';
 import { workerQuotes } from '../config/reference';
 
@@ -39,34 +39,35 @@ const jobs = [
   { img: '/images/roles/bednak.webp', label: 'Bedňák' },
 ];
 
-/* Devět jmenovaných měst + zbytek, stejně jako live grason.cz.
-   Celkem 91 lokalit (grason-context.md). */
-const cities = ['Praha', 'Brno', 'Ostrava', 'Liberec', 'Olomouc', 'Přerov', 'Most', 'Plzeň', 'Ústí nad Labem'];
-
 /* Jen čísla doložená v contexty/. Show-up rate 97 % je v bázi vedený jako
    neověřený a bez kvalifikátoru „bez omluvy" tvrdí víc než zdroj, proto tady
-   není; celé znění zůstává ve FAQ, kde má kolem sebe kontext. */
+   není; celé znění zůstává ve FAQ, kde má kolem sebe kontext.
+   Počet lokalit (91) tu záměrně není: GrasonFlexi dnes běží jen v Praze
+   (feedback Grasonu 7. 10. 2026). */
 const stats = [
   { num: '5 500', lbl: 'ověřených brigádníků' },
-  { num: '91', lbl: 'míst po celé ČR' },
   { num: '220 000+', lbl: 'naplánovaných směn' },
-  { num: '4,75', lbl: 'průměrné hodnocení grasona' },
+  { num: '4,75', lbl: 'průměrné hodnocení od podniků' },
 ];
 
-const STORE_IOS = 'https://apps.apple.com/cz/app/grason/id1367384162';
-const STORE_ANDROID = 'https://play.google.com/store/apps/details?id=com.thefuntasty.grason';
+/* Odznaky obchodů: originální assety Grasonu v české mutaci (černá kresba
+   na průhledném pozadí). Stejné v hero i v banneru dole. */
+const stores = [
+  { href: GRASON_STORE_IOS, img: '/images/badge-app-store.webp', label: 'Stáhnout Grason v App Store (otevře se v novém okně)' },
+  { href: GRASON_STORE_ANDROID, img: '/images/badge-google-play.webp', label: 'Stáhnout Grason na Google Play (otevře se v novém okně)' },
+];
 
 const perks = [
   { icon: 'lucide:wallet', title: 'Mzdu si určujete vy', text: 'Při přihlašování uvidíte, jakou částku podnik preferuje. Je ale jen na vás, za kolik chcete pracovat.' },
   { icon: 'lucide:calendar-heart', title: 'Buďte pány svého času', text: 'Sami si naplánujete, kdy a jak často budete pracovat. Záleží jen na vás, kolik směn si vezmete.' },
-  { icon: 'lucide:banknote', title: 'Výplata ihned po směně', text: 'Žádné čekání na výplatní termín, peníze máte hned, jak odpracujete.' },
+  { icon: 'lucide:banknote', title: 'Víte předem, jak dostanete zaplaceno', text: 'Způsob výplaty vidíte u každé směny předem. Některé podniky platí hned po směně, jiné až převodem na účet.' },
 ];
 
 ---
 
 <Base title="Flexibilní práce pro brigádníky | Grason"
-      description="Vaše řešení pro flexibilní práci. Pracujte ještě dnes, směny tehdy a tam, kdy a kde zrovna můžete. Výplata ihned po směně.">
-  <Header brand="Grason" logoSrc="/logos/grason_logo.svg" logoHeight="28px" homeHref="/" nav={grasonNav} cta={grasonCta} login={grasonLogin} />
+      description="Brigády v Praze v gastru, skladech i obchodech. Pracujte ještě dnes, kdy zrovna můžete. Způsob výplaty vidíte u každé směny předem.">
+  <Header brand="Grason" logoSrc="/logos/grason_by_piano.svg" logoHeight="44px" homeHref="/" nav={grasonNav} cta={{ ...grasonAppCta, href: '#stahnout' }} login={grasonLogin} />
 
   <main class="pb">
 
@@ -74,9 +75,13 @@ const perks = [
   <Hero eyebrow="Pro brigádníky" background="gradient"
         lead="Pracujte ještě dnes. Směny tehdy a tam, kdy a kde zrovna můžete. Sami si určíte, co, pro koho a za kolik budete dělat.">
     <Heading slot="title" as="h1" size="display" color="on-dark">Vaše řešení pro <span class="accent">flexibilní práci</span></Heading>
-    <Fragment slot="actions">
-      <Button href="/stahnout/">Stáhnout aplikaci</Button>
-    </Fragment>
+    <div slot="actions" class="store store--on-dark">
+      {stores.map((st) => (
+        <a class="store__badge" href={st.href} target="_blank" rel="noopener" aria-label={st.label}>
+          <Img src={st.img} alt="" width={180} sizes="180px" loading="eager" />
+        </a>
+      ))}
+    </div>
     <figure slot="media" class="hero-figure">
       <Img src="/images/hp-hero.webp" alt="Grason, aplikace s nabídkami směn pro brigádníky"
            width={560} sizes="(min-width: 881px) 560px, 100vw" loading="eager" fetchpriority="high" />
@@ -98,6 +103,7 @@ const perks = [
         </li>
       ))}
     </ol>
+    <div class="sec-cta"><Button href="#stahnout">Stáhnout aplikaci</Button></div>
   </Section>
 
   <!-- OBORY -->
@@ -117,7 +123,7 @@ const perks = [
   </Section>
 
   <!-- ČÍSLA -->
-  <StatsBand items={stats} background="alt" space="md" />
+  <StatsBand items={stats} columns={3} background="alt" space="md" />
 
   <!-- VÝHODY -->
   <Section background="default" decor="bottom" space="lg">
@@ -134,17 +140,14 @@ const perks = [
 
   <!-- MÍSTA -->
   <Section background="pink" decor="top" space="lg">
-    <div class="head head--center">
+    <div class="head head--center head--solo">
       <Text size="label" color="default" align="center">Kde pracovat</Text>
-      <Heading as="h2" size="h2" align="center">Pracujte <span class="accent">kdekoliv</span></Heading>
+      <Heading as="h2" size="h2" align="center">Pracujte <span class="accent">v Praze</span></Heading>
       <Text size="lead" color="muted" align="center" balance>
-        V pondělí v Praze, v úterý v Mostu, ve čtvrtek v Liberci. Pracujte tam, kde se vám to hodí.
+        Směny v gastru, skladech i obchodech v Praze. Vyberete si podnik i čas, který vám sedí.
       </Text>
+      <div class="head__cta"><Button href="#stahnout">Stáhnout aplikaci</Button></div>
     </div>
-    <ul class="cities">
-      {cities.map((c) => <li class="city">{c}</li>)}
-      <li class="city city--more">+ 82 dalších míst</li>
-    </ul>
   </Section>
 
   <!-- FAQ -->
@@ -160,24 +163,27 @@ const perks = [
     items={workerQuotes}
     decor="bottom"
     titleHtml={'Práce, <span class="accent">jak ji chcete žít</span>'} />
-  <!-- STÁHNOUT -->
-  <!-- Žlutý pás, ne navy: odznaky obchodů jsou černá kresba na průhledném
-       pozadí, na tmavém pruhu by zanikly. Live web to má stejně. -->
-  <Section id="stahnout" background="yellow" decor="top" space="lg">
-    <div class="head head--center">
-      <Text size="label" color="default" align="center">Mobilní aplikace</Text>
-      <Heading as="h2" size="h2" align="center">Mějte Grason <span class="accent">stále po ruce</span></Heading>
-      <Text size="lead" color="muted" align="center" balance>
-        Stáhněte si appku a přihlaste se na první směnu ještě dnes. iOS i Android, zdarma.
-      </Text>
-      <div class="store">
-        <a class="store__badge" href={STORE_IOS} target="_blank" rel="noopener" aria-label="Stáhnout Grason v App Store">
-          <Img src="/images/badge-app-store.webp" alt="" width={180} sizes="180px" loading="lazy" />
-        </a>
-        <a class="store__badge" href={STORE_ANDROID} target="_blank" rel="noopener" aria-label="Stáhnout Grason na Google Play">
-          <Img src="/images/badge-google-play.webp" alt="" width={180} sizes="180px" loading="lazy" />
-        </a>
+  <!-- STÁHNOUT: banner podle živého grason.cz (žlutá karta na tyrkysovém pásu,
+       vlevo text a odznaky obchodů, vpravo telefon s rolemi). Odznaky jsou černá
+       kresba na průhledném pozadí, na žluté karty čitelné. -->
+  <Section id="stahnout" background="cyan" space="lg">
+    <div class="appbanner">
+      <div class="appbanner__text">
+        <Text size="label" color="default">Mobilní aplikace</Text>
+        <Heading as="h2" size="h2">Mějte Grason <span class="accent">stále po ruce</span></Heading>
+        <Text size="lead" color="muted">S naší appkou si směny najdete odkudkoliv. iOS i Android, zdarma.</Text>
+        <div class="store store--start">
+          {stores.map((st) => (
+            <a class="store__badge" href={st.href} target="_blank" rel="noopener" aria-label={st.label}>
+              <Img src={st.img} alt="" width={180} sizes="180px" loading="lazy" />
+            </a>
+          ))}
+        </div>
       </div>
+      <figure class="appbanner__media">
+        <Img src="/images/app-mobil.webp" alt="Aplikace Grason s nabídkou směn: kuchař, skladník, číšník, barman, kurýr, pokladní"
+             width={560} sizes="(min-width: 881px) 560px, 100vw" loading="lazy" />
+      </figure>
     </div>
   </Section>
 
@@ -198,6 +204,13 @@ const perks = [
   .head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-7); }
   .head--center { text-align: center; }
   .head > * + * { margin-top: var(--space-3); }
+  .head--solo { margin-bottom: 0; }
+  .sec-cta { display: flex; justify-content: center; margin-top: var(--space-7); }
+  /* Na růžovém pásu by růžové primární CTA zaniklo, proto brandová tmavě modrá. */
+  .head__cta { display: flex; justify-content: center; padding-top: var(--space-3);
+    --btn-bg: var(--color-secondary);
+    --btn-bg-hover: color-mix(in srgb, var(--color-secondary) 85%, #000);
+    --btn-bg-active: color-mix(in srgb, var(--color-secondary) 75%, #000); }
 
   /* Steps */
   .steps { list-style: none; display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
@@ -214,11 +227,6 @@ const perks = [
   .job { display: inline-flex; align-items: center; gap: var(--space-3); padding: var(--space-2) var(--space-5) var(--space-2) var(--space-3); background: var(--color-bg); border: 1px solid var(--pill-edge); border-radius: var(--radius-full); font-weight: var(--font-weight-medium); box-shadow: var(--shadow-sm); }
   .job__art { width: 32px; height: 32px; display: block; flex-shrink: 0; }
 
-  /* Města */
-  .cities { list-style: none; display: flex; flex-wrap: wrap; gap: var(--space-3); justify-content: center; }
-  .city { display: inline-flex; align-items: center; padding: var(--space-3) var(--space-5); background: var(--color-bg); border: 1px solid var(--pill-edge); border-radius: var(--radius-full); font-weight: var(--font-weight-medium); box-shadow: var(--shadow-sm); }
-  .city--more { background: transparent; box-shadow: none; color: var(--color-text-muted); }
-
   /* Perks */
   .perks { list-style: none; display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
   .perk { padding: var(--space-6); background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); }
@@ -226,11 +234,35 @@ const perks = [
   .perk__icon { display: inline-flex; width: 56px; height: 56px; align-items: center; justify-content: center; border-radius: var(--radius-full); background: color-mix(in srgb, var(--color-secondary-azure) 16%, #fff); color: var(--color-text-accent); }
 
   /* Odznaky obchodů, originální assety Grasonu v české mutaci */
-  .store { display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap; margin-top: var(--space-6); }
+  .store { display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap; }
+  .store--start { justify-content: flex-start; margin-top: var(--space-6); }
+  /* Na tmavém hero by průhledný odznak s černou kresbou zanikl: bílý podklad. */
+  .store--on-dark { justify-content: flex-start; }
+  .store--on-dark .store__badge img { background: #fff; border-radius: 12px; }
+
+  /* Banner Stáhnout */
+  .appbanner { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: var(--space-7);
+    background-color: var(--color-bg-yellow); background-image: var(--band-texture, none); background-size: var(--band-texture-size, auto);
+    border-radius: var(--radius-lg); padding: var(--space-8) var(--space-8) 0; overflow: hidden; }
+  .appbanner__text { padding-bottom: var(--space-8); }
+  .appbanner__text > * + * { margin-top: var(--space-3); }
+  .appbanner__media { margin: 0; line-height: 0; align-self: end; }
+  .appbanner__media img { width: 100%; height: auto; display: block; }
+  @media (max-width: 880px) {
+    .appbanner { grid-template-columns: 1fr; padding: var(--space-6) var(--space-5) 0; gap: var(--space-5); }
+    .appbanner__text { padding-bottom: 0; }
+  }
   .store__badge { display: block; line-height: 0; border-radius: var(--radius-full); transition: var(--transition); }
   .store__badge img { width: 180px; height: auto; display: block; }
   .store__badge:hover { transform: translateY(-2px); }
+  .store__badge:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+  .store--on-dark .store__badge:focus-visible { outline-color: #fff; }
   @media (prefers-reduced-motion: reduce) { .store__badge:hover { transform: none; } }
+  /* Na úzkém displeji dva odznaky vedle sebe (2 × 180 px se nevejde). */
+  @media (max-width: 480px) {
+    .store { gap: var(--space-3); flex-wrap: nowrap; }
+    .store__badge img { width: 148px; }
+  }
 
   /* Reference */
 </style>

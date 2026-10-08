@@ -13,6 +13,7 @@ import Icon from '@piano/ui/components/Icon.astro';
 import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import Img from '@piano/ui/components/Img.astro';
+import VideoBand from '../components/VideoBand.astro';
 import { pianoLeadProofs } from '../config/leadProofs';
 
 const benefits = [
@@ -72,6 +73,9 @@ const compare = [
     <Img slot="media" src="/images/terminal-hero.webp" alt="Piano Terminál" width={334} height={620} sizes="334px"
          style="max-height: 620px; width: auto; margin-inline: auto; display: block;" loading="eager" fetchpriority="high" />
   </Hero>
+
+  <!-- Spot pod hero, po vzoru Huga -->
+  <VideoBand id="NAhoYfi1LmE" title="Piano Terminál, terminál, který umí víc než jen platby" />
 
   <USPGrid eyebrow="Vše v jednom zařízení" title="Co Piano Terminál umí navíc"
            items={benefits} columns={4} background="default" minItemWidth="220px" />

@@ -8,7 +8,8 @@ export default defineConfig({
   // Astro 7 defaults to 'jsx', which drops whitespace between inline elements
   compressHTML: true,
   integrations: [
-    sitemap(),
+    // Dekovaci stranky jsou noindex, do sitemapy nepatri.
+    sitemap({ filter: (page) => !page.includes('/dekujeme') }),
     icon({ iconDir: 'src/icons' }),
   ],
 });

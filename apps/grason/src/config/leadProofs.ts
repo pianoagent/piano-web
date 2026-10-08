@@ -6,7 +6,7 @@
  */
 export const grasonLeadProofs = [
   { icon: 'lucide:users', title: '5 500 brigádníků', text: 'Ověření pracovníci připraveni nastoupit.' },
-  { icon: 'lucide:map-pin', title: '91 míst v ČR', text: 'Praha, Brno, Ostrava i menší města.' },
+  { icon: 'lucide:star', title: 'Hodnocení 4,75', text: 'Průměrná známka, kterou brigádníkům dávají podniky.' },
   { icon: 'lucide:calendar-days', title: '220 000+ směn', text: 'Naplánovaných a obsazených.' },
   { icon: 'lucide:gift', title: 'Konzultace zdarma', text: 'Nezávazně a bez rizika.' },
 ];

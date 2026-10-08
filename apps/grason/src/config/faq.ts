@@ -5,8 +5,8 @@ export interface FaqItem { q: string; a: string; }
 
 export const flexiFaqs: FaqItem[] = [
   { q: 'Jak rychle obsadím směnu brigádníkem?', a: 'Brigádníky najdete na jedno kliknutí: jsou to ověření lidé, kteří se na vypsanou směnu sami přihlásí. Volnou směnu obsadíte i na poslední chvíli.' },
-  { q: 'Kdo je zaměstnavatel a jak je to s výplatou?', a: 'Zaměstnavatelem je vždy váš podnik, Grason lidi jen zprostředkuje. Výplatu provádíte vy z podkladů, které vám připravíme, takže brigádník má peníze rychle po směně.' },
-  { q: 'Pro jaké obory GrasonFlexi funguje?', a: 'Primárně gastro, ale i sklady a maloobchod. Databáze čítá 5 500 ověřených pracovníků napříč 91 místy v ČR.' },
+  { q: 'Kdo je zaměstnavatel a jak je to s výplatou?', a: 'Zaměstnavatelem je vždy váš podnik, Grason lidi jen zprostředkuje. Výplatu provádíte vy z podkladů, které vám připravíme, hotově po směně, nebo převodem na účet.' },
+  { q: 'Pro jaké obory GrasonFlexi funguje?', a: 'Primárně gastro, ale i sklady a maloobchod. V databázi je 5 500 ověřených pracovníků. Brigádníky aktuálně nabízíme jen v Praze.' },
   { q: 'A když brigádník nepřijde?', a: 'Průměrné hodnocení grasona je 4,75. Komu spadne hodnocení pod 3 hvězdičky, toho kontaktujeme, a pokud se výkon nezlepší, z aplikace ho vyloučíme. Kdo na směnu bez omluvy nedorazí, je vyloučen automaticky. Bez omluvy se na směnu nedostaví méně než 3 grasoni ze 100.' },
 ];
 
