@@ -17,24 +17,16 @@ import { grasonNav, grasonCta, grasonFooter, grasonLogin } from '../config/nav';
 
 const values = ['Spolehlivost', 'Respekt', 'Slušnost', 'Důvěryhodnost', 'Férovost'];
 
-/* Portréty jsou původní ČB fotky z grason-web-develop/assets/images/team,
-   mapování jméno -> soubor je z i18n starého webu (`page_about_team_people_*_id`),
-   ne z odhadu podle obličeje. Tereza Tiller má fotku taky, ale v aktuálním
-   seznamu týmu už není, proto tu chybí.
-   `photo` je volitelná: kdo ji nemá, dostane gradientní iniciály jako dřív. */
-const team = [
-  { initials: 'ZK', name: 'Zuzana Kočová', position: 'Customer Success Manager', color: 'pink', photo: '/images/team/zuzana-kocova.webp' },
-  { initials: 'KM', name: 'Karel Mařík', position: 'CEO, Partner', color: 'green', photo: '/images/team/karel-marik.webp' },
-  { initials: 'TJ', name: 'Tomáš Jiroušek', position: 'Partner', color: 'yellow', photo: '/images/team/tomas-jirousek.webp' },
-  { initials: 'KG', name: 'Kristýna Gottfrídová', position: 'Customer Success Manager', color: 'pink', photo: '/images/team/kristyna-gottfridova.webp' },
-  { initials: 'RV', name: 'Radim Vaculík', position: 'CTO', color: 'green', photo: '/images/team/radim-vaculik.webp' },
-  { initials: 'MU', name: 'Martin Urbánek', position: 'Sales Representative', color: 'yellow', photo: '/images/team/martin-urbanek.webp' },
-];
+/* Sekce „Náš tým" je dočasně skrytá (neaktuální, Kryštof 8. 10. 2026).
+   Portréty jsou v apps/grason/archiv/team/ (kromě kristyna-gottfridova.webp,
+   tu dál používají karty kontaktu na /kontakt a /plan), markup, data a CSS v git historii
+   (commit „grason: … dočasně bez sekce Náš tým"). Pro návrat vrátit fotky
+   do src/assets/images/team/ a obnovit sekci z historie. */
 ---
 
 <Base title="O Grasonu a naší misi | Grason"
       description="Tvoříme svět, kde lidé mohou pracovat kdykoliv a kdekoliv chtějí. Měníme práci k lepšímu, pro pracovníky i podniky.">
-  <Header brand="Grason" logoSrc="/logos/grason_logo.svg" logoHeight="28px" homeHref="/" nav={grasonNav} cta={grasonCta} login={grasonLogin} />
+  <Header brand="Grason" logoSrc="/logos/grason_by_piano.svg" logoHeight="44px" homeHref="/" nav={grasonNav} cta={grasonCta} login={grasonLogin} />
 
   <main>
 
@@ -82,25 +74,6 @@ const team = [
     </ul>
   </Section>
 
-  <!-- TÝM -->
-  <Section background="default" space="lg">
-    <div class="head head--center">
-      <Heading as="h2" size="h2" align="center">Náš tým</Heading>
-      <Text size="lead" color="muted" align="center">Lidé, kteří za Grasonem stojí.</Text>
-    </div>
-    <ul class="team">
-      {team.map((m) => (
-        <li class="member">
-          {m.photo
-            ? <Img class={`member__avatar member__avatar--photo member__avatar--${m.color}`} src={m.photo} alt="" width={96} sizes="96px" loading="lazy" />
-            : <span class={`member__avatar member__avatar--${m.color}`} aria-hidden="true">{m.initials}</span>}
-          <strong class="member__name">{m.name}</strong>
-          <span class="member__role">{m.position}</span>
-        </li>
-      ))}
-    </ul>
-  </Section>
-
   <!-- CTA -->
   <Section background="yellow" space="lg">
     <div class="head head--center">
@@ -134,20 +107,6 @@ const team = [
   .values { list-style: none; display: flex; flex-wrap: wrap; gap: var(--space-3); justify-content: center; }
   .value { display: inline-flex; align-items: center; gap: var(--space-2); padding: var(--space-3) var(--space-5); border-radius: var(--radius-full); background: rgba(255,255,255,0.06); border: 1px solid var(--color-border-on-dark); color: var(--color-text-on-dark); font-weight: var(--font-weight-medium); }
   .value__icon { color: var(--color-secondary-azure); }
-
-  /* Tým */
-  .team { list-style: none; display: grid; gap: var(--space-7) var(--space-5); grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); text-align: center; max-width: 920px; margin-inline: auto; }
-  .member { display: flex; flex-direction: column; align-items: center; gap: var(--space-2); }
-  .member__avatar { width: 96px; height: 96px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: var(--font-size-h3); font-weight: var(--font-weight-bold); color: #fff; box-shadow: var(--shadow-md); }
-  .member__avatar--pink { background: var(--member-grad-pink); }
-  .member__avatar--green { background: var(--member-grad-green); color: var(--color-text-on-azure); }
-  .member__avatar--yellow { background: var(--member-grad-yellow); color: var(--color-text-on-yellow); }
-  /* U fotky zůstává barevný gradient jako prstenec kolem, aby si tým udržel
-     barevné kódování i po výměně iniciál za portréty. */
-  /* display: block: bez toho <picture> obalující Img nechá pod fotkou mezeru na descender řádku. */
-  .member__avatar--photo { object-fit: cover; padding: 3px; display: block; }
-  .member__name { font-size: var(--font-size-lead); font-weight: var(--font-weight-bold); color: var(--color-secondary); }
-  .member__role { font-size: var(--font-size-small); color: var(--color-text-muted); }
 
   /* CTA */
   .cta-actions { display: flex; gap: var(--space-3); justify-content: center; flex-wrap: wrap; margin-top: var(--space-5); }
