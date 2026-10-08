@@ -1,0 +1,112 @@
+---
+/**
+ * TypewriterHeading: nadpis s pevným začátkem a psaným slovem (vzor veslo.io/cz).
+ *   <TypewriterHeading prefix="Piano vašemu podniku vyřeší" words={['pokladní systém', 'sklady']} />
+ *
+ * Server vyrenderuje první slovo, takže bez JS i při prefers-reduced-motion je
+ * nadpis celý. Psané slovo je pro čtečky skryté, výčet za prefixem čtou ze sr-only textu.
+ * Řádek se slovem drží výšku i prázdný (kurzor je inline-block), nic neposkakuje.
+ */
+import Heading from '@piano/ui/components/Heading.astro';
+
+interface Props {
+  prefix: string;
+  words: string[];
+  as?: 'h1' | 'h2';
+}
+
+const { prefix, words, as = 'h1' } = Astro.props;
+---
+
+<Heading as={as} size="display" class="twh">
+  {prefix}{' '}
+  <span class="tw" aria-hidden="true" data-typewriter={JSON.stringify(words)}><span class="tw__word">{words[0]}</span><span class="tw__cursor"></span></span>
+  <span class="tw-sr">{words.join(', ')}</span>
+</Heading>
+
+<style>
+  /* Stejná velikost jako dřív u slidů hero, ať se kompozice nemění. */
+  :global(.heading.heading--display.twh) { font-size: clamp(30px, 3.6vw, 46px); }
+
+  .tw {
+    display: block;
+    white-space: nowrap;
+    color: var(--color-text-accent);
+  }
+  .tw__cursor {
+    display: inline-block;
+    width: 0.07em;
+    height: 0.95em;
+    margin-left: 0.06em;
+    vertical-align: -0.12em;
+    background-color: currentColor;
+    animation: tw-blink 1s steps(1) infinite;
+  }
+  @keyframes tw-blink { 50% { opacity: 0; } }
+
+  .tw-sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tw__cursor { animation: none; }
+  }
+</style>
+
+<script>
+  /* Psaní ~60 ms na znak, slovo stojí 1,8 s, mazání 30 ms na znak.
+     Pauza: kurzor nad nadpisem, skrytý tab, nadpis mimo obrazovku. */
+  const TYPE = 60, ERASE = 30, HOLD = 1800, GAP = 300;
+
+  function initTypewriter(root: HTMLElement) {
+    const words: string[] = JSON.parse(root.dataset.typewriter || '[]');
+    const out = root.querySelector<HTMLElement>('.tw__word');
+    if (!out || words.length < 2) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    let w = 0;              // index slova
+    let len = words[0].length;
+    let erasing = false;
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    let hovered = false;
+    let visible = true;
+
+    const step = () => {
+      timer = undefined;
+      const word = words[w];
+      if (!erasing) {
+        if (len < word.length) { out.textContent = word.slice(0, ++len); return schedule(TYPE); }
+        erasing = true;
+        return schedule(HOLD);
+      }
+      if (len > 0) { out.textContent = word.slice(0, --len); return schedule(ERASE); }
+      erasing = false;
+      w = (w + 1) % words.length;
+      schedule(GAP);
+    };
+    const running = () => !hovered && visible && !document.hidden;
+    const schedule = (ms: number) => { if (running()) timer = setTimeout(step, ms); };
+    const pause = () => { if (timer) clearTimeout(timer); timer = undefined; };
+    const resume = () => { if (!timer && running()) timer = setTimeout(step, TYPE); };
+
+    const heading = root.closest<HTMLElement>('.heading') ?? root;
+    heading.addEventListener('mouseenter', () => { hovered = true; pause(); });
+    heading.addEventListener('mouseleave', () => { hovered = false; resume(); });
+    document.addEventListener('visibilitychange', () => (document.hidden ? pause() : resume()));
+    new IntersectionObserver(([e]) => { visible = e.isIntersecting; visible ? resume() : pause(); }).observe(heading);
+
+    // První slovo je vyrenderované, začíná se jeho podržením a smazáním.
+    erasing = true;
+    schedule(HOLD);
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-typewriter]').forEach(initTypewriter);
+</script>
