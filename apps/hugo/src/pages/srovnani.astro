@@ -1,0 +1,287 @@
+---
+// https://hugopos.eu/srovnani/, port 1:1 skriptem port-hugo.py (scrape 13. 10. 2026)
+import Base from '../layouts/Base.astro';
+import hugoAbUrl from '../scripts/hugo-ab.js?url';
+import '../styles/sub.css';
+import hugoI18nUrl from '../scripts/hugo-i18n.js?url';
+import hugoNavUrl from '../scripts/hugo-nav.js?url';
+---
+<Base
+  title={"Srovnání pokladen: Dotykačka, Storyous, KASA FIK, KiloMayo, SumUp"}
+  lang={"cs"}
+  description={"Fér srovnání pokladních systémů pro kavárny, bary a restaurace: Hugo, Dotykačka, Storyous, KASA FIK, KiloMayo a SumUp. Ceny, poplatky za karty, hardware a podmínky na jednom místě."}
+  ogDescription={"Ceny, poplatky za karty, hardware a podmínky šesti pokladen na jednom místě."}
+  image={"/assets/og/og-cs.png"}
+  imageAlt={"Srovnání pokladen: Dotykačka, Storyous, KASA FIK, KiloMayo, SumUp | Hugo"}
+  alternates={{ cs: '/srovnani/', en: '/en/compare/' }}
+>
+<Fragment slot="head">
+<script is:inline src={hugoAbUrl}></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300..700&family=Inter:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300..700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
+<script is:inline src={hugoI18nUrl} defer></script>
+<script is:inline src={hugoNavUrl} defer></script>
+</Fragment>
+<header class="nav">
+  <div class="container nav-inner">
+    <a href="/" class="brand"><img src="/assets/hugo-icon.svg" alt="" /><span>Hugo</span></a>
+    
+    <button class="nav-burger" type="button" aria-expanded="false" aria-controls="navLinks" aria-label="Menu"><span></span><span></span><span></span></button>
+    <nav class="nav-links" id="navLinks">
+      <a href="/#product">Produkt</a>
+      <a href="/jak-zacit/">Jak začít</a>
+      <a href="/srovnani/" class="is-on">Srovnání</a>
+      <a href="/cenik/">Ceník</a>
+      <a href="/#reference">Reference</a>
+    </nav>
+    <div class="nav-cta">
+      <div class="lang" id="langToggle"><a href="/srovnani/" hreflang="cs" lang="cs" data-lang-link class="is-on" aria-current="true">CZ</a><a href="/en/compare/" hreflang="en" lang="en" data-lang-link>EN</a></div>
+      <a href="https://admin.hugopos.eu/login?start=1" target="_blank" rel="noopener" class="btn btn-primary">Začít zdarma</a>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="phero">
+  <div class="container">
+    <span class="eyebrow">Hugo proti ostatním</span>
+    <h1>Šest pokladen, jedna tabulka. <span class="hl">Ceny, funkce a podmínky.</span></h1>
+    <p class="lead">Srovnání vybraných tarifů a funkcí pro gastro podle veřejných podkladů k 1. 10. 2026. Jednotlivé balíčky se liší; nejnižší paušál sám o sobě neurčuje celkové náklady. U každého systému uvádíme podmínky a níže i zdroje a metodiku.</p>
+    <div class="ctas">
+      <a href="/cenik/" class="btn btn-primary btn-lg">Ceník Huga <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+      <a href="#prechod" class="btn btn-ghost btn-lg">Jak probíhá přechod</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="tabulka">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow">Na jeden pohled</span>
+      <h2>Co platíš a co dostaneš. <em>Vedle sebe.</em></h2>
+      <p class="comparison-date">Stav srovnání: 1. 10. 2026. Ceny a podmínky se mohou měnit.</p>
+    </div>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col" class="is-hugo">Hugo</th>
+            <th scope="col">Dotykačka</th>
+            <th scope="col">Storyous</th>
+            <th scope="col">KASA FIK</th>
+            <th scope="col">KiloMayo</th>
+            <th scope="col">SumUp</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Základní tarif / měs. (samotný software)</th>
+            <td class="is-hugo">190 Kč<small>jeden tarif, všechno v ceně</small></td>
+            <td>425–502 Kč<small>SNADNO při roční platbě; čím větší obrat přes Dotypay, tím levnější</small></td>
+            <td>cenu ověř u dodavatele<small>veřejný ceník jsme k 1. 10. 2026 nenašli</small></td>
+            <td>297 Kč<small>LITE, max. 60 položek</small></td>
+            <td>cenu ověř u dodavatele<small>veřejný ceník jsme k 1. 10. 2026 nenašli</small></td>
+            <td>0 Kč<small>základní aplikace</small></td>
+          </tr>
+          <tr>
+            <th scope="row">Tarif se skladem a mapou stolů</th>
+            <td class="is-hugo">190 Kč<small>pořád ten samý tarif</small></td>
+            <td>858,50–1 012 Kč<small>NAPLNO při roční platbě, podle obratu kartou</small></td>
+            <td>ověř u dodavatele<small>údaj v podkladech k 1. 10. 2026 neuveden</small></td>
+            <td>849 Kč<small>PREMIUM; při roční platbě 721,65 Kč</small></td>
+            <td>ověř u dodavatele<small>údaj v podkladech k 1. 10. 2026 neuveden</small></td>
+            <td>1 199 Kč<small>POS Plus (mapa stolů)</small></td>
+          </tr>
+          <tr>
+            <th scope="row">Poplatek za kartu</th>
+            <td class="is-hugo">1,1 %<small>+ mezibankovní a asociační poplatek beze změny (MIF++)</small></td>
+            <td>0,79–0,99 % + MIF++<small>Dotypay, podle tarifu; pod ~35 tis. obratu min. 350 Kč/měs.</small></td>
+            <td>cenu ověř u dodavatele<small>sazbu jsme k 1. 10. 2026 ve veřejných podkladech nenašli</small></td>
+            <td>1,49 % + MIF++<small>KASA PAY; prémioví klienti individuálně od 0,69 %</small></td>
+            <td>sazbu jsme k 1. 10. 2026 ve veřejných podkladech nenašli</td>
+            <td>1,95 %<small>vč. všech poplatků; nebo 0,95 % s Platby Plus za 519 Kč/měs.</small></td>
+          </tr>
+          <tr>
+            <th scope="row">Hardware</th>
+            <td class="is-hugo">tvůj telefon 0 Kč<small>nebo terminál Hugo 4 900 Kč</small></td>
+            <td>od 6 990 Kč<small>jejich zařízení s Androidem</small></td>
+            <td>ověř u dodavatele<small>údaj v podkladech k 1. 10. 2026 neuveden</small></td>
+            <td>od 3 499 Kč<small>vlastní zařízení KASA</small></td>
+            <td>tvůj telefon nebo tablet</td>
+            <td>od 899 Kč<small>terminál; pokladna 9 599 Kč</small></td>
+          </tr>
+          <tr>
+            <th scope="row">Zařízení, obsluha, položky</th>
+            <td class="is-hugo">neomezeně</td>
+            <td>mobilní číšníci podle tarifu</td>
+            <td>ověř u dodavatele<small>údaj v podkladech k 1. 10. 2026 neuveden</small></td>
+            <td>položky omezené tarifem<small>60 / 500 / 10 000</small></td>
+            <td>ověř u dodavatele<small>údaj v podkladech k 1. 10. 2026 neuveden</small></td>
+            <td>podle tarifu</td>
+          </tr>
+          <tr>
+            <th scope="row">Závazek</th>
+            <td class="is-hugo">bez výpovědní lhůty, zrušíš kdykoli</td>
+            <td>měsíční nebo roční předplatné</td>
+            <td>individuálně</td>
+            <td>bez závazku</td>
+            <td>7 dní na zkoušku</td>
+            <td>bez smlouvy</td>
+          </tr>
+          <tr>
+            <th scope="row">Veřejná cena v podkladech k 1. 10. 2026</th>
+            <td class="is-hugo yes">ano</td>
+            <td class="yes">ano</td>
+            <td class="no">nenalezeno<small>k 1. 10. 2026</small></td>
+            <td class="yes">ano</td>
+            <td class="no">nenalezeno<small>k 1. 10. 2026</small></td>
+            <td class="yes">ano</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="tbl-hint">Tabulku posuň do strany, ať vidíš všechny pokladny.</p>
+    <p class="note">Stav podkladů k 1. 10. 2026, ceny bez DPH. Tabulka rozlišuje cenu softwaru, transakční poplatky a hardware; nejde o stejné balíčky ani pořadí podle celkových nákladů. <a href="/cenik/#srovnani">Modelová kavárna: 100 000 Kč měsíčně v kartách</a>. <a href="#metodika">Metodika, omezení a zdroje</a>.</p>
+  </div>
+</section>
+
+<section class="sec sec-alt" id="kdo">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow">Jedna po druhé</span>
+      <h2>V čem je kdo dobrý. <em>A co Hugo dělá jinak.</em></h2>
+    </div>
+    <div class="cards">
+      <article class="card">
+        <h3>Dotykačka <span class="tag">jednička na trhu</span></h3>
+        <ul class="pm">
+          <li class="p">Obří základna podniků, podpora nonstop</li>
+          <li class="p">Spousta napojení (účetnictví, e-shopy)</li>
+          <li class="m">Sklad až od tarifu NAPLNO</li>
+          <li class="m">Tarify, doplňky a cena licence podle obratu kartou</li>
+        </ul>
+        <p class="vs-hugo">Hugo: <b>jeden tarif i se skladem</b>, na telefonu, co už máš.</p>
+      </article>
+      <article class="card">
+        <h3>Storyous <span class="tag">dnes Teya</span></h3>
+        <ul class="pm">
+          <li class="p">Stavěná pro gastro, napojení na rozvozové platformy</li>
+          <li class="p">Docházka a objednávky přes QR u stolu</li>
+          <li class="m">Veřejný ceník jsme k 1. 10. 2026 nenašli; cenu ověř u dodavatele</li>
+          <li class="m">Veřejnou sazbu za karty jsme k 1. 10. 2026 nenašli</li>
+        </ul>
+        <p class="vs-hugo">Hugo: <b>všechny ceny na jedné stránce</b>, pro všechny stejné.</p>
+      </article>
+      <article class="card">
+        <h3>KASA FIK <span class="tag">vlastní hardware</span></h3>
+        <ul class="pm">
+          <li class="p">Nízká vstupní cena, bez závazku</li>
+          <li class="p">Řada vlastních zařízení</li>
+          <li class="m">Počet položek omezený tarifem (60 / 500 / 10 000)</li>
+          <li class="m">Sklad a mapa stolů až v tarifu PREMIUM</li>
+        </ul>
+        <p class="vs-hugo">Hugo: <b>neomezeně položek</b>, sklad i stoly za 190 Kč.</p>
+      </article>
+      <article class="card">
+        <h3>KiloMayo <span class="tag">mladá výzva</span></h3>
+        <ul class="pm">
+          <li class="p">Moderní appka na tvém telefonu nebo tabletu</li>
+          <li class="p">Analytika a věrnostní program pohromadě</li>
+          <li class="m">Veřejný ceník jsme k 1. 10. 2026 nenašli; cenu ověř u dodavatele</li>
+          <li class="m">Kratší historie na trhu</li>
+        </ul>
+        <p class="vs-hugo">Hugo: <b>stejně moderní přístup</b>, k tomu veřejná cena a vlastní terminál.</p>
+      </article>
+      <article class="card">
+        <h3>SumUp <span class="tag">hlavně terminál</span></h3>
+        <ul class="pm">
+          <li class="p">Průhledné ceny, bez smlouvy</li>
+          <li class="p">Levné terminály, základní appka zdarma</li>
+          <li class="m">1,95 % z karty, nebo měsíční poplatek za nižší sazbu</li>
+          <li class="m">Mapa stolů až v POS Plus za 1 199 Kč měsíčně</li>
+        </ul>
+        <p class="vs-hugo">Hugo: <b>gastro funkce v jednom tarifu</b>; u SumUp si vybereš základní aplikaci nebo POS Plus podle potřeb.</p>
+      </article>
+      <article class="card dark">
+        <h3>Hugo</h3>
+        <ul class="pm">
+          <li class="p">190 Kč měsíčně bez DPH, všechno v ceně</li>
+          <li class="p">Sklad, směny, objednávky u stolu, displej v kuchyni</li>
+          <li class="p">Spuštění za 5 minut, menu z fotky</li>
+          <li class="p">Bez výpovědní lhůty, 14 dní zdarma, peníze zpět</li>
+        </ul>
+        <p class="vs-hugo">Karty přijmeš <b>na Androidu</b> nebo na terminálu Hugo.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="vybirani">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow">Jak vybírat</span>
+      <h2>Šest otázek, které polož každé pokladně. <em>I té naší.</em></h2>
+      <p class="lead">Provozovatelé kaváren se ptají pořád na totéž. Tady je seznam a vedle každé otázky upřímná odpověď Huga.</p>
+    </div>
+    <ul class="checks">
+      <li><span class="ck">1</span><span><b>Dostane se částka do terminálu sama?</b><span class="t">Hugo: ano. Přepisování částek je recept na chyby.</span></span></li>
+      <li><span class="ck">2</span><span><b>Zvládne obsluha objednávku u stolu?</b><span class="t">Hugo: ano, z libovolného telefonu rovnou na displej v kuchyni.</span></span></li>
+      <li><span class="ck">3</span><span><b>Je sklad v ceně, nebo za příplatek?</b><span class="t">Hugo: v ceně, i s recepturami a inventurou.</span></span></li>
+      <li><span class="ck">4</span><span><b>Směny a obsluha?</b><span class="t">Hugo: v ceně, obsluhy neomezeně.</span></span></li>
+      <li><span class="ck">5</span><span><b>Reporty, ve kterých se vyznám?</b><span class="t">Hugo: tržby živě a export pro účetní.</span></span></li>
+      <li><span class="ck">6</span><span><b>Kolik to stojí celkem, i s hardwarem a doplňky?</b><span class="t">Hugo: 190 Kč měsíčně za software při přijímání karet s námi, k tomu poplatky za karty a případně hardware. <a href="/cenik/">Celý ceník</a>.</span></span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec sec-alt" id="prechod">
+  <div class="container">
+    <div class="cta-band">
+      <div>
+        <h2>Přecházíš odjinud? <em>Stěhování uděláme za tebe.</em></h2>
+        <p>Menu přeneseme, Hugo poběží vedle stávající pokladny a přepneš, až budeš chtít. Migrace je zdarma.</p>
+      </div>
+      <div style="display:flex; gap:12px; flex-wrap:wrap;">
+        <a href="mailto:hugo@piano.cz" class="btn btn-primary btn-lg">Domluvit migraci zdarma</a>
+        <a href="https://admin.hugopos.eu/login?start=1" target="_blank" rel="noopener" class="btn btn-ghost btn-lg" style="color:#fff; border-color:rgba(255,255,255,.3);">Vyzkoušet zdarma</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec comparison-methodology" id="metodika" aria-labelledby="methodology-title">
+  <div class="container">
+    <div class="sec-head"><h2 id="methodology-title">Jak jsme to spočítali.</h2></div>
+    <p class="comparison-intro">Náš právník slíbil jednu krátkou poznámku. Výsledek vidíš níž. A teď lidsky: každá hospoda má jiné účty. Proto ukazujeme, s čím jsme počítali, odkud máme ceny a co v součtu není. Ať si můžeš přepočítat svůj provoz – klidně ti vyjde líp někdo jiný. Ceníky se mění, tak je každý měsíc kontrolujeme.</p>
+    <p><b>Rozsah a zdroje.</b> <a href="/srovnani/#tabulka">Tabulka šesti systémů</a> srovnává vybrané měsíční paušály a gastro funkce podle oficiálních veřejných ceníků a produktových stránek k 1. 10. 2026. Balíčky nejsou totožné a tabulka nepokrývá celý trh. „Nenalezeno“ znamená, že údaj nebyl v podkladech pro toto srovnání nalezen; není to tvrzení, že dodavatel službu nenabízí nebo že cena nemůže být výhodnější.</p>
+    <p><b>Model, nikoli nabídka pro každý podnik.</b> <a href="/cenik/#srovnani">Modelová kavárna</a> počítá s jednou provozovnou, obratem 100 000 Kč měsíčně v kartách a 400 platbami po 250 Kč. Zahrnuje software a odhad poplatků za běžné spotřebitelské karty. Licence Dotykačky a KASA FIK jsou přepočtené z roční platby; SumUp POS Plus a Platby Plus jsou placené měsíčně. Nejde o nejlevnější možnou kombinaci všech nabídek. Hardware, další zařízení, individuální slevy, doplňky, zaváděcí akce a DPH do součtů nepatří. Roční pohled je 12 stejných měsíců, bez předpovědi cen.</p>
+    <p><b>Karty a MIF++.</b> Hugo účtuje 1,1 % bez pevného příplatku za transakci, navíc mezibankovní a asociační poplatky beze změny. V modelu pro Hugo, Dotypay a KASA PAY odhadujeme tyto dvě složky společně na 0,4 % obratu; nejde o garantovanou sazbu. SumUp má souhrnnou sazbu (blended); model používá 0,95 % s Platby Plus za 519 Kč měsíčně pro příslušné spotřebitelské karty. U jiných karet či online plateb mohou platit jiné sazby. Skutečný výsledek závisí na obratu, skladbě karet a smlouvě.</p>
+    <p><b>Kdy může vyjít lépe jiná varianta?</b> Pokud nepotřebuješ sklad a mapu stolů, základní aplikace SumUp má podle podkladů k 1. 10. 2026 paušál 0 Kč a sazbu 1,95 % za osobní platby. Při nízkém obratu může vyjít levněji než placený gastro tarif. Výsledek mohou změnit také roční předplatné, individuální nabídka nebo hardware, který už vlastníš. Proto z modelu nelze dovodit nejnižší cenu pro každého zákazníka.</p>
+    <p><b>Kontroly a opravy.</b> Veřejné podklady kontrolujeme na měsíční bázi. Datum stavu měníme až po ověření srovnávaných údajů; nejde o živý ceník dodavatelů. Před rozhodnutím si ověř aktuální nabídku přímo u nich. Našel jsi změnu nebo zastupuješ některý ze systémů? Napiš na <a href="mailto:hugo@piano.cz">hugo@piano.cz</a> s odkazem na podklad. Podnět ověříme a případnou nepřesnost opravíme.</p>
+    <h3>Oficiální zdroje pro ověření aktuální nabídky</h3>
+    <ul class="comparison-sources">
+      <li><a href="https://dotykacka.cz/cenik/">Dotykačka / Dotypay</a></li>
+      <li><a href="https://www.storyous.com/cs/faq">Storyous / Teya</a></li>
+      <li><a href="https://www.kasafik.cz/web/cs/cenik/">KASA FIK</a></li>
+      <li><a href="https://kilomayo.com/">KiloMayo</a></li>
+      <li><a href="https://www.sumup.com/cs-cz/ceny/">SumUp</a></li>
+    </ul>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="container foot-in">
+    <div>&copy; 2026 Hugo &middot; <span>český produkt od Piano</span> &middot; <a href="mailto:hugo@piano.cz">hugo@piano.cz</a></div>
+    <div class="links">
+      <a href="/">Domů</a>
+      <a href="/cenik/">Ceník</a>
+      <a href="/vseobecne-obchodni-podminky/">Obchodní podmínky</a>
+      <a href="https://piano.cz/gdpr/" target="_blank" rel="noopener">GDPR</a>
+    </div>
+  </div>
+</footer>
+</Base>

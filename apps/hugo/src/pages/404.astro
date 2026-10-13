@@ -1,0 +1,22 @@
+---
+// https://hugopos.eu/404.html, port 1:1 skriptem port-hugo.py (scrape 13. 10. 2026)
+import Base from '../layouts/Base.astro';
+import '../styles/404.css';
+---
+<Base
+  title={"Stránka nenalezena"}
+  lang={"cs"}
+  gtm={false}
+  noindex
+>
+<main>
+  <img src="/assets/hugo-icon.svg" alt="Hugo" width="64" height="64" />
+  <h1>Tahle stránka neexistuje</h1>
+  <p>Odkaz je možná starý nebo v něm je překlep. Všechno o pokladně Hugo najdeš na hlavní stránce.</p>
+  <div class="ctas">
+    <a class="btn primary" href="/">Na hlavní stránku</a>
+    <a class="btn" href="/cenik/">Ceník</a>
+  </div>
+  <p class="en" lang="en">Page not found. <a href="/en/">Go to the English homepage</a>.</p>
+</main>
+</Base>

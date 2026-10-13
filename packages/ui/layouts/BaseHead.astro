@@ -22,6 +22,7 @@ interface Props {
   locale?: string;
   alternates?: { lang: string; href: string }[];  // hreflang varianty (jazykové mutace)
   schemas?: object[];
+  ogDescription?: string;  // og:/twitter:description, když se liší od meta description
 }
 
 const {
@@ -35,6 +36,7 @@ const {
   locale = 'cs_CZ',
   alternates = [],
   schemas = [],
+  ogDescription = description,
 } = Astro.props;
 
 // build.format 'file' (Septim) dává pathname s .html (úvodní stránka /index.html); kanonická URL je bez přípony
@@ -55,7 +57,7 @@ const ogImage = image ? new URL(image, siteUrl).href : undefined;
 
 <meta property="og:type" content={type} />
 <meta property="og:title" content={fullTitle} />
-{description && <meta property="og:description" content={description} />}
+{ogDescription && <meta property="og:description" content={ogDescription} />}
 <meta property="og:url" content={canonical} />
 {ogImage && <meta property="og:image" content={ogImage} />}
 <meta property="og:site_name" content={siteName} />
@@ -63,7 +65,7 @@ const ogImage = image ? new URL(image, siteUrl).href : undefined;
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={fullTitle} />
-{description && <meta name="twitter:description" content={description} />}
+{ogDescription && <meta name="twitter:description" content={ogDescription} />}
 {ogImage && <meta name="twitter:image" content={ogImage} />}
 
 {schemas.map((s) => (
