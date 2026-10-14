@@ -5,6 +5,9 @@ ErrorDocument 404 /404.html
 Redirect 301 /ochrana-udaju /gdpr
 Redirect 301 /en/ochrana-udaju /en/gdpr
 
+# AVIF chodí od hostingu bez Content-Type
+AddType image/avif .avif
+
 # ── Cache statických assetů (efektivní doba platnosti mezipaměti) ──
 <IfModule mod_expires.c>
   ExpiresActive On

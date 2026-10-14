@@ -16,6 +16,9 @@ RewriteRule ^f/(.+)$ https://www.grsn.cz/f/$1 [R=301,L]
 # stránka detail/ si inzerát načte z API podle ID v URL (stejné pravidlo je v _redirects).
 RewriteRule ^nabidky-zamestnani/[0-9]+(-[^/]*)?/?$ nabidky-zamestnani/detail/index.html [L]
 
+# AVIF chodí od hostingu bez Content-Type
+AddType image/avif .avif
+
 # ── Cache statických assetů (efektivní doba platnosti mezipaměti) ──
 <IfModule mod_expires.c>
   ExpiresActive On
