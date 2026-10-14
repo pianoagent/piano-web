@@ -12,9 +12,10 @@ export interface Ad {
   slug: string;
   title: string | null;
   description: string;
+  createdAt: string;
   expiresAt: string;
   cover: string | null;
-  type: { name: string };
+  type: { id: number; name: string };
   category: { id: number; name: string };
   salary: { from: number; to: number; type: 'hourly' | 'daily' | 'task' | 'monthly' };
   business: {
@@ -22,8 +23,9 @@ export interface Ad {
     avatar: string | null;
     bio: string | null;
     rating: number | null;
+    webUrl: string | null;
     address: { name: string; latitude: number; longitude: number };
-    country: { currency: { sign: string } };
+    country: { code: string; currency: { code: string; sign: string } };
   };
 }
 
