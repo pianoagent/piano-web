@@ -1,3 +1,29 @@
 # Detail inzerátu /nabidky-zamestnani/{ID}-{slug}: statická stránka detail/
 # si inzerát načte z API podle ID v URL (stejné pravidlo je v .htaccess).
 /nabidky-zamestnani/:ad  /nabidky-zamestnani/detail/  200
+
+# Staré URL a krátké odkazy appek (stejná pravidla jsou v .htaccess)
+/obchodni-podminky  /flexi/obchodni-podminky/  301
+/ochrana-osobnich-udaju  /flexi/gdpr/  301
+/pravidla-ochrany-osobnich-udaju  /flexi/gdpr/  301
+/plan/ochrana-osobnich-udaju  /plan/gdpr/  301
+/plan/pravidla-ochrany-osobnich-udaju  /plan/gdpr/  301
+/nejcastejsi-dotazy-pracovnici  /faq-grason/  301
+/nejcastejsi-dotazy-podniky  /faq-companies/  301
+/volna-mista  /nabidky-zamestnani/  301
+/pravidla-souteze  /pro-brigadniky/  301
+/download  /stahnout/  301
+/pro-restaurace  /pro-firmy/  301
+/grason-plan  /plan/  301
+/cenik  /pro-firmy/  301
+/hledam-personal  /pro-firmy/  301
+/nejcastejsi-dotazy-pro-zamestnavatele  /faq-companies/  301
+/chci-pracovat  /pro-brigadniky/  301
+/hledam-praci  /pro-brigadniky/  301
+/nejcastejsi-dotazy-pro-grasony  /faq-grason/  301
+/ukraine  /pro-brigadniky/  301
+/en/contact  /kontakt/  301
+/a  https://www.grsn.cz/a  301
+/b  https://www.grsn.cz/b  301
+/m  https://www.grsn.cz/m  301
+/p  https://www.grsn.cz/p  301

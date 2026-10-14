@@ -9,6 +9,34 @@ RewriteEngine On
 RewriteCond %{HTTP_HOST} ^www\.grason\.cz$ [NC]
 RewriteRule ^ https://grason.cz%{REQUEST_URI} [R=301,L]
 
+# Staré URL (Nuxt web, odkazy z e-mailů a SMS grason-api, legacy redirecty grason-web,
+# App Store support URL /en/contact) a krátké odkazy appek (grsn.cz detekuje zařízení).
+# Stejná pravidla jsou v _redirects pro preview na Cloudflare Pages.
+RewriteRule ^obchodni-podminky/?$ /flexi/obchodni-podminky/ [R=301,L]
+RewriteRule ^ochrana-osobnich-udaju/?$ /flexi/gdpr/ [R=301,L]
+RewriteRule ^pravidla-ochrany-osobnich-udaju/?$ /flexi/gdpr/ [R=301,L]
+RewriteRule ^plan/ochrana-osobnich-udaju/?$ /plan/gdpr/ [R=301,L]
+RewriteRule ^plan/pravidla-ochrany-osobnich-udaju/?$ /plan/gdpr/ [R=301,L]
+RewriteRule ^nejcastejsi-dotazy-pracovnici/?$ /faq-grason/ [R=301,L]
+RewriteRule ^nejcastejsi-dotazy-podniky/?$ /faq-companies/ [R=301,L]
+RewriteRule ^volna-mista/?$ /nabidky-zamestnani/ [R=301,L]
+RewriteRule ^pravidla-souteze/?$ /pro-brigadniky/ [R=301,L]
+RewriteRule ^download/?$ /stahnout/ [R=301,L]
+RewriteRule ^pro-restaurace/?$ /pro-firmy/ [R=301,L]
+RewriteRule ^grason-plan/?$ /plan/ [R=301,L]
+RewriteRule ^cenik/?$ /pro-firmy/ [R=301,L]
+RewriteRule ^hledam-personal/?$ /pro-firmy/ [R=301,L]
+RewriteRule ^nejcastejsi-dotazy-pro-zamestnavatele/?$ /faq-companies/ [R=301,L]
+RewriteRule ^chci-pracovat/?$ /pro-brigadniky/ [R=301,L]
+RewriteRule ^hledam-praci/?$ /pro-brigadniky/ [R=301,L]
+RewriteRule ^nejcastejsi-dotazy-pro-grasony/?$ /faq-grason/ [R=301,L]
+RewriteRule ^ukraine/?$ /pro-brigadniky/ [R=301,L]
+RewriteRule ^en/contact/?$ /kontakt/ [R=301,L]
+RewriteRule ^a/?$ https://www.grsn.cz/a [R=301,L]
+RewriteRule ^b/?$ https://www.grsn.cz/b [R=301,L]
+RewriteRule ^m/?$ https://www.grsn.cz/m [R=301,L]
+RewriteRule ^p/?$ https://www.grsn.cz/p [R=301,L]
+
 # Staré krátké odkazy grason.cz/f/<slug> převzal grsn.cz (záloha v 404.astro jen pro hosting bez .htaccess)
 RewriteRule ^f/(.+)$ https://www.grsn.cz/f/$1 [R=301,L]
 
