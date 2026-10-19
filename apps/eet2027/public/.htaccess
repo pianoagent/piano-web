@@ -4,6 +4,9 @@ DirectoryIndex index.html index.php
 # Vlastní chybové stránky
 ErrorDocument 404 /404.html
 
+# AVIF chodí od hostingu bez Content-Type
+AddType image/avif .avif
+
 # ── Cache statických assetů (efektivní doba platnosti mezipaměti) ──
 <IfModule mod_expires.c>
   ExpiresActive On
