@@ -1,0 +1,124 @@
+# Automatická publikace článku z tabulky „Publikace článků".
+# PR s labelem `clanek` (zakládá ho rutina publikace-clanku) → kontrola → merge do main → deploy → main zpět do develop.
+# Pojistka: PR smí měnit jen obsah blogu (apps/*/src/content/blog/*.md + apps/*/src/assets/images/blog/*.webp),
+# jinak se nic nesloučí. Výjimka z pravidla „do main jen na výslovné zadání" platí jen pro tyto PR.
+name: Publikovat článek
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened, labeled]
+
+concurrency:
+  group: publikovat-clanek-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+  pull-requests: write
+  actions: write
+
+jobs:
+  kontrola-a-merge:
+    if: contains(github.event.pull_request.labels.*.name, 'clanek')
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PR: ${{ github.event.pull_request.number }}
+    outputs:
+      weby: ${{ steps.weby.outputs.weby }}
+    steps:
+      - name: Checkout (výsledek merge PR do main)
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Pojistka cest (jen obsah blogu)
+        run: node scripts/clanky/zpracuj-clanek.mjs cesty origin/main 2>&1 | tee -a kontrola.log; exit ${PIPESTATUS[0]}
+
+      - name: Dotčené weby
+        id: weby
+        run: |
+          weby=$(git diff --name-only origin/main...HEAD | sed -n 's#^apps/\([^/]*\)/.*#\1#p' | sort -u | tr '\n' ' ')
+          echo "Weby: $weby"
+          echo "weby=$weby" >> "$GITHUB_OUTPUT"
+
+      - name: Setup Node
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validace článků
+        run: node scripts/clanky/zpracuj-clanek.mjs validace 2>&1 | tee -a kontrola.log; exit ${PIPESTATUS[0]}
+
+      - name: Em-pomlčky (check-web)
+        run: |
+          soubory=$(git diff --name-only --diff-filter=ACM origin/main...HEAD | grep '\.md$' || true)
+          [ -z "$soubory" ] || node scripts/check-web.mjs $soubory 2>&1 | tee -a kontrola.log; exit ${PIPESTATUS[0]}
+
+      - name: Typová kontrola a build
+        run: |
+          for web in ${{ steps.weby.outputs.weby }}; do
+            echo "::group::$web"
+            (cd apps/$web && npx astro check) 2>&1 | tail -20 | tee -a kontrola.log; [ ${PIPESTATUS[0]} -eq 0 ] || exit 1
+            npm run build:$web 2>&1 | tail -20 | tee -a kontrola.log; [ ${PIPESTATUS[0]} -eq 0 ] || exit 1
+            echo "::endgroup::"
+          done
+
+      - name: Merge do main
+        run: gh pr merge "$PR" --merge --delete-branch
+
+      - name: Komentář při chybě
+        if: failure()
+        run: |
+          {
+            echo "### ✗ Článek se nepublikoval"
+            echo "Kontrola neprošla, nic se nenasadilo. Oprav Doc nebo řádek v tabulce a přepni stav na „Aktualizovat\"."
+            echo '```'
+            tail -40 kontrola.log 2>/dev/null || echo "(log není, viz běh Action)"
+            echo '```'
+            echo "[Běh Action](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})"
+          } > komentar.md
+          gh pr comment "$PR" --body-file komentar.md
+
+  deploy:
+    needs: kontrola-a-merge
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      # Merge přes GITHUB_TOKEN nespustí push-workflow deploy-<web>.yml, workflow_dispatch ano.
+      # Weby bez vlastního deploy workflow (Cloudflare Pages) se nasadí samy z pushe do main.
+      - name: Spustit deploy dotčených webů
+        run: |
+          for web in ${{ needs.kontrola-a-merge.outputs.weby }}; do
+            if gh workflow view "deploy-$web.yml" -R "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+              gh workflow run "deploy-$web.yml" -R "$GITHUB_REPOSITORY" --ref main && echo "Deploy $web spuštěn."
+            else
+              echo "deploy-$web.yml neexistuje, $web nasazuje Cloudflare Pages z main."
+            fi
+          done
+
+  main-do-develop:
+    needs: kontrola-a-merge
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: develop
+          fetch-depth: 0
+      - name: Merge main → develop
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898341+github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          if git merge --no-edit origin/main -m "Merge main do develop (článek z PR #${{ github.event.pull_request.number }})"; then
+            git push origin develop
+          else
+            git merge --abort
+            echo "::warning::main nejde automaticky sloučit do develop (konflikt). Článek je na produkci, develop sluč ručně."
+          fi

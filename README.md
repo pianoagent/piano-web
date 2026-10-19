@@ -5,6 +5,10 @@ Marketingové weby Piano, Astro se statickým výstupem (`output: 'static'`). Mo
 ## ⚠️ Větve / workflow
 - **`develop` = pracovní větev. Veškerá práce (vč. Cowork/AI vláken) jde sem.** Cloudflare z ní staví preview.
 - **`main` = produkce.** Do `main` se přímo nepushuje, jde tam jen merge z `develop` na výslovné zadání.
+  **Výjimka: článková PR s labelem `clanek`** (rutina publikace článků z Google Sheetu). Workflow
+  `publikovat-clanek.yml` je sloučí do `main` samo, ale jen když mění výhradně `apps/*/src/content/blog/*.md`
+  a `apps/*/src/assets/images/blog/*.webp` a projde `scripts/clanky/zpracuj-clanek.mjs validace`, check-web,
+  astro check a build. Pak spustí `deploy-<web>.yml` a sloučí `main` zpět do `develop`. Detail je v `RUNBOOK.md` v rootu složky Piano.
 - **Nikdy cherry-pick, vždy merge.** Cherry-pick obě větve rozjede: vzniknou stejné zprávy s jinými hashi a pak se nedá poznat, co na produkci opravdu je.
 
 ## Kde se web nasazuje
