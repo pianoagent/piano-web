@@ -20,10 +20,11 @@ Nasazení není pro všechny weby stejné, pozor na to.
 | `eet2027` | eet2027.cz | GitHub Actions `deploy-eet2027.yml`, **FTP na Webglobe** |
 | `pecosta` | pecosta.cz | GitHub Actions `deploy-pecosta.yml`, **FTP na Webglobe** |
 | `grason` | grason.cz | GitHub Actions `deploy-grason.yml`, **FTP na Webglobe** |
-| `protel`, `qerko`, `septim`, `savarin`, `harsys` | vlastní domény | Cloudflare Pages napojený na git |
+| `savarin` | savarin.cz | GitHub Actions `deploy-savarin.yml`, **FTP na Webglobe** |
+| `protel`, `qerko`, `septim`, `harsys` | vlastní domény | Cloudflare Pages napojený na git |
 | `hugo` | zatím nikde | kopie živého hugopos.eu 1:1 (stránky generuje `weby/podklady-migrace/port-hugo.py`); `site` i `wrangler.jsonc` už existují, ale web se nepublikuje. Živý Hugo běží na hugopos.eu / hugopos.cz mimo tohle repo (generuje ho Hugo tým) |
 
-**Piano, eet2027, pecosta a grason tedy na produkci nejedou přes Cloudflare.** Všechny čtyři workflow spouští push do `main`, ale jsou **path filtrované** (`apps/<app>/**`, `packages/**`, `package*.json`, vlastní soubor workflow), takže merge, který sáhne jen na README, nenasadí nic. Všechny jdou spustit i ručně přes `workflow_dispatch`.
+**Piano, eet2027, pecosta, grason a savarin tedy na produkci nejedou přes Cloudflare.** Všech pět workflow spouští push do `main`, ale jsou **path filtrované** (`apps/<app>/**`, `packages/**`, `package*.json`, vlastní soubor workflow), takže merge, který sáhne jen na README, nenasadí nic. Všechny jdou spustit i ručně přes `workflow_dispatch`.
 
 ## Kde si změnu prohlédnout
 
