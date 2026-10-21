@@ -12,6 +12,7 @@
  *   minItemWidth?: string   → min. šířka karty pro auto-fit (default "240px")
  *   background?:  "default" | "alt" | "invert" | "primary"   (default "default")
  *   space?:       "sm" | "md" | "lg"
+ *   id?:          string   → kotva pro odkazy
  *
  * Item = { icon?: string (název pro <Icon>), title: string, text?: string }
  */
@@ -33,6 +34,7 @@ interface Props {
   minItemWidth?: string;
   background?: 'default' | 'alt' | 'invert' | 'primary';
   space?: 'sm' | 'md' | 'lg';
+  id?: string;
 }
 
 const {
@@ -45,6 +47,7 @@ const {
   minItemWidth = '240px',
   background = 'default',
   space = 'md',
+  id,
 } = Astro.props;
 
 const onDark = background === 'invert' || background === 'primary';
@@ -64,7 +67,7 @@ const headFrom = align === 'center' ? 'reveal--from-top' : 'reveal--from-left';
 {/* reveal={false}: obsah si animuje USPGrid sám, hlavičku a karty zvlášť.
     Kdyby animoval i kontejner sekce, karty by se hýbaly dvakrát (posun
     kontejneru plus vlastní posun) a nájezd by byl přehnaný. */}
-<Section background={background} space={space} reveal={false}>
+<Section id={id} background={background} space={space} reveal={false}>
   {/* Režie podle role, ne podle pozice: nadpis přijde první, perex po něm.
       Směr kopíruje zarovnání, centrovaná hlavička spadne shora, levá přijede
       zleva. Obojí převzato z živého grason.cz. */}
