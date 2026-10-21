@@ -49,7 +49,7 @@ V **červnu 2025 Miton oznámil**, že na **podzim 2025 spustí nový nástroj**
 ## Doporučené nástroje, které jsou k dispozici:
 
 - [Septim](https://septim.cz/) – pokladní systém s recepturami a skladovým modulem
-- [Savarin](http://www.cominn.cz/) – řízení nákladů, menu a skladů
+- [Savarin](https://savarin.cz/) – řízení nákladů, menu a skladů
 - [Qerko](https://www.qerko.com/) – mobilní objednávky, platby, statistiky
 - [Protel](https://www.protelsystems.cz/) – systém pro hotelové provozy
 - Docházkové systémy třetích stran.
