@@ -126,13 +126,8 @@ export const SUPPORT_ENTRIES: SupportEntry[] = [
     href: 'https://pecosta.cz/kontakt/', external: true,
     mark: '/brand/pecosta.svg',
   },
-
-  // --- Skryté ---
   {
-    slug: 'savarin', title: 'Savarin', order: 120, published: false,
-    note: 'savarin.cz i cominn.cz jedou jen po HTTP, HTTPS má rozbitý certifikát '
-        + '(ověřeno 11. 9. 2026). Odkaz z piano.cz by hodil bezpečnostní varování. '
-        + 'Zapnout, až bude certifikát v pořádku.',
+    slug: 'savarin', title: 'Savarin', order: 120,
     summary: 'Pokladní systém, web a kontakt.',
     href: 'https://savarin.cz', external: true,
     mark: '/brand/savarin.svg',
