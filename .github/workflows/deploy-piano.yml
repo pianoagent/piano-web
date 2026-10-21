@@ -56,12 +56,12 @@ jobs:
       - name: Deploy to FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ${{ vars.FTP_PROTOCOL || 'ftp' }}
+          server: ${{ secrets.PIANO_FTP_SERVER }}
+          username: ${{ secrets.PIANO_FTP_USERNAME }}
+          password: ${{ secrets.PIANO_FTP_PASSWORD }}
+          protocol: ${{ vars.PIANO_FTP_PROTOCOL || 'ftp' }}
           local-dir: apps/piano/dist/
-          server-dir: ${{ vars.FTP_SERVER_DIR || './' }}
+          server-dir: ${{ vars.PIANO_FTP_SERVER_DIR || './' }}
           # _headers je jen pro Cloudflare Pages, na tomhle hostingu nedává smysl
           exclude: |
             _headers
