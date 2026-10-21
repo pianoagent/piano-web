@@ -1,106 +1,32 @@
 /* ============================================================
-   Hugo landing: A/B varianty podle velikosti podniku (port z hugopos.eu)
-     micro: food trucky, stanky, solo provozy (vychozi)
-     small: kavarna a bar
-     mid:   restaurace a vic pobocek
-   Volba se pamatuje v localStorage a jde nastavit ?v=micro|small|mid.
-   Staticke HTML obsahuje variantu micro, tenhle skript ji prepina.
+   Hugo Landing – audience variants
+   Three same-page versions targeted by venue size:
+     micro  – food trucks / stalls / solo (default; prerendered into the HTML)
+     small  – café & bar
+     mid    – restaurant & multi-venue chain
+   Which variant a visitor sees is decided by hugo-ab.js (HUGO-1860 A/B test:
+   random, persisted, measured). The switcher below is the internal preview only
+   (`?ab=1`); its choice lives in ?v= and is never written to the A/B assignment.
+   Copy comes from the page's #hugo-strings blob (Web/landing/i18n/runtime.mjs,
+   HUGO-1844): every variant defines every slot, so a switch never depends on a
+   base being restored. The page language is fixed by its URL.
    ============================================================ */
 (function () {
   'use strict';
 
-  var ARR = '<svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>';
   var ORDER = ['micro', 'small', 'mid'];
-  window.HUGO_LANG = document.documentElement.lang === 'en' ? 'en' : 'cs';
-
-  /* Texty hero pro kazdou variantu a jazyk (vcetne vychozi "small"), generovano ze zivého webu */
-  var VARIANTS = {
-    "micro": {
-      "cs": {
-        ".hero-eyebrow": "<span class=\"pip\">★</span> Pro food trucky, stánky a malé provozy &nbsp;·&nbsp; spustíš za 5 minut",
-        ".hero h1": "Pokladna, co se <span class=\"hl\">vejde do kapsy.</span> <em>Spustíš ji za 5 minut.</em>",
-        ".hero p.lead": "Žádné kabely, žádná smlouva a žádná instalace na týden. Stáhni appku, vyfoť ceník a přijímej karty hned na Androidu, který máš, nebo na terminálu Hugo. Jen 190 Kč měsíčně bez DPH, když platby přijímáš přes nás.",
-        ".hero-ctas .btn-primary": "Vyzkoušet zdarma <svg class=\"arr\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12h14M13 5l7 7-7 7\"/></svg>"
-      },
-      "en": {
-        ".hero-eyebrow": "<span class=\"pip\">★</span> For food trucks, stalls &amp; solo spots &nbsp;·&nbsp; live in 5 minutes",
-        ".hero h1": "A till that <span class=\"hl\">fits in your pocket.</span> <em>Live in 5 minutes.</em>",
-        ".hero p.lead": "No cables, no contract, and no week-long install. Download the app, snap your price list and take cards on the Android phone you own, or grab a genuinely modern terminal from us. Just 190 Kč a month excl. VAT when you take payments through us.",
-        ".hero-ctas .btn-primary": "Download free <svg class=\"arr\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12h14M13 5l7 7-7 7\"/></svg>"
-      }
-    },
-    "small": {
-      "cs": {
-        ".hero-eyebrow": "<span class=\"pip\">★</span> Pro kavárny, bary a restaurace, které nemají čas čekat na technika",
-        ".hero h1": "Pokladna, která <br/> <span class=\"hl\">nečeká na technika.</span> <em>Stačí telefon a pět minut.</em>",
-        ".hero p.lead": "Objednávky, menu, spropitné, DPH i účtenky v jedné appce na zařízení, které už máš. Kartu přijmeš na Androidu nebo na terminálu Hugo. Béžová krabice, smlouva na roky a zaškolovací den zůstávají u konkurence.",
-        ".hero-ctas .btn-primary": "Začít zdarma <svg class=\"arr\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12h14M13 5l7 7-7 7\"/></svg>"
-      },
-      "en": {
-        ".hero-eyebrow": "<span class=\"pip\">★</span> Made for Czech cafés, bars &amp; restaurants &nbsp;·&nbsp; ready for EET 2.0",
-        ".hero h1": "\n        One app runs <br>\n        <span class=\"hl\">the whole place.</span> <em>On the phone you own.</em>\n      ",
-        ".hero p.lead": "\n        Hugo is the modern cash register for cafés, bars and restaurants: orders, menu, tips and VAT in one app on the device you already have.\n        Take card payments on Android, or pair a genuinely modern terminal from us.\n        Either way you’re selling in 5 minutes.\n      ",
-        ".hero-ctas .btn-primary": "Start free\n          <svg class=\"arr\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12h14M13 5l7 7-7 7\"></path></svg>\n        "
-      }
-    },
-    "mid": {
-      "cs": {
-        ".hero-eyebrow": "<span class=\"pip\">★</span> Pro restaurace a více poboček &nbsp;·&nbsp; migrace zdarma",
-        ".hero h1": "Pokladna, která <span class=\"hl\">roste s tvou restaurací.</span> <em>I přes víc poboček.</em>",
-        ".hero p.lead": "Přejdi z Dotykačky nebo Storyous bez výpadku a bez týdenního stěhování jako ve středověku. Menu naimportujeme my. Reporty, foodcost, sklad a předpovědi Piano Brain pro všechny pobočky na jednom místě.",
-        ".hero-ctas .btn-primary": "Začít zdarma <svg class=\"arr\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12h14M13 5l7 7-7 7\"/></svg>"
-      },
-      "en": {
-        ".hero-eyebrow": "<span class=\"pip\">★</span> For restaurants &amp; multi-venue groups &nbsp;·&nbsp; free migration",
-        ".hero h1": "The POS that <span class=\"hl\">scales with your restaurant.</span> <em>Across every venue.</em>",
-        ".hero p.lead": "Switch from Dotykačka or Storyous with zero downtime, and none of that week-long, medieval migration. We import your menu. Reports, foodcost, stock and Piano Brain forecasts for every venue in one place.",
-        ".hero-ctas .btn-primary": "Start free\n          <svg class=\"arr\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12h14M13 5l7 7-7 7\"></path></svg>\n        "
-      }
-    }
+  var DEFAULT = 'micro';
+  var SLOTS = {
+    eyebrow: '.hero-eyebrow',
+    h1: '.hero h1',
+    lead: '.hero p.lead',
+    cta: '.hero-ctas .btn-primary'
   };
 
-  /* Piano Brain chat podle varianty (otazka -> odpoved psana po znacich) */
-  var CHAT = {
-    "micro": {
-      "cs": {
-        "q": "Jak vytáhnout víc z víkendu na trhu?",
-        "ph": "Co tě zajímá nebo chceš vědět?",
-        "a": "<p>O víkendu ti nejvíc vydělává <b>wrap s kuřecím</b> a <b>domácí limonáda</b>, spolu dělají skoro <b>40 %</b> tržby.</p><p>Wrap teď prodáváš za <b>119 Kč</b>, okolní stánky za <b>135–145 Kč</b>. Klidně jdi na <b>129 Kč</b>, přidá ti to kolem <b>+1 600 Kč</b> za víkend a nikdo si nevšimne.</p><p>A nachystej si o <b>pětinu víc</b> placek: minulé dva víkendy ti došly už kolem <b>14:00</b>.</p>"
-      },
-      "en": {
-        "q": "How do I get more out of a market weekend?",
-        "ph": "What would you like to know?",
-        "a": "<p>Your weekend earners are the <b>chicken wrap</b> and <b>homemade lemonade</b>, together almost <b>40%</b> of sales.</p><p>The wrap is <b>119 Kč</b>; nearby stalls charge <b>135–145 Kč</b>. Move to <b>129 Kč</b>, that adds about <b>+1,600 Kč</b> a weekend and no one blinks.</p><p>And prep <b>a fifth more</b> flatbreads: the last two weekends you sold out by <b>2pm</b>.</p>"
-      }
-    },
-    "small": {
-      "cs": {
-        "q": "Jak zvednout tržby ve slabých dnech?",
-        "ph": "Co tě zajímá nebo chceš vědět?",
-        "a": "<p>Nejslabší ti vychází <b>úterý a středa odpoledne</b>, kolem <b>2 900 Kč</b> za odpoledne, o třetinu míň než ve čtvrtek.</p><p>Zkus na ty dny spojit <b>kávu a zákusek za 99 Kč</b>. Podobná akce ti v pátek zvedla průměrnou útratu na účet o <b>14 %</b>.</p><p>Spropitné navíc roste tam, kde appka při placení sama nabídne dýško. Nech ji zapnutou u všech plateb a přidá ti to dalších pár stovek týdně.</p>"
-      },
-      "en": {
-        "q": "How do I lift sales on the slow days?",
-        "ph": "What would you like to know?",
-        "a": "<p>Your weak spot is <b>Tuesday and Wednesday afternoons</b>, around <b>2,900 Kč</b> each, a third below Thursday.</p><p>On those days try a <b>coffee + cake for 99 Kč</b> deal. A similar offer lifted your average ticket by <b>14%</b> on Fridays.</p><p>Tips also climb wherever the digital prompt runs: keep it on for every payment and it adds a few hundred a week.</p>"
-      }
-    },
-    "mid": {
-      "cs": {
-        "q": "Jak můžu zlepšit marži u poledního menu?",
-        "ph": "Co tě zajímá nebo chceš vědět?",
-        "a": "<p>U tvého poledního menu doporučuji zaměřit se na <b>kuřecí řízek s bramborovou kaší</b>, který teď prodáváš za <b>165 Kč</b>. Foodcost vychází kolem <b>82 Kč</b>, takže marže je jen něco přes <b>50 %</b>.</p><p>V okolí se přitom podobná jídla pohybují mezi <b>185–195 Kč</b>. Ideální krok je zvýšit cenu na <b>189 Kč</b> – tím se okamžitě posuneš na tržní úroveň a marže stoupne na <b>64 %</b>.</p><p>Zároveň můžeš brambory nahradit celerem, který působí prémiověji („domácí celerová kaše“), a tím snížíš foodcost o dalších <b>6 Kč</b> na porci a výsledná marže ti vyroste téměř na <b>70 %</b>.</p>"
-      },
-      "en": {
-        "q": "How can I improve the margin on my lunch menu?",
-        "ph": "What would you like to know?",
-        "a": "<p>On your lunch menu, focus on the <b>chicken schnitzel with mash</b> you sell for <b>165 Kč</b>. Foodcost runs around <b>82 Kč</b>, so the margin is only just over <b>50%</b>.</p><p>Nearby, similar dishes sit between <b>185–195 Kč</b>. The clean move is to raise it to <b>189 Kč</b>: that puts you at market level and lifts the margin to <b>64%</b>.</p><p>You can also swap the potato for celeriac, which reads more premium (“house celeriac mash”), cutting foodcost a further <b>6 Kč</b> per plate and pushing the margin to nearly <b>70%</b>.</p>"
-      }
-    }
-  };
+  function strings() { return window.HUGO_T || {}; }
 
   /* Typewriter that preserves <b>/<p> formatting and shows a caret */
-  function typeBrain(html, lang) {
+  function typeBrain(html) {
     var box = document.getElementById('bcA');
     if (!box) return;
     if (box._timer) { clearInterval(box._timer); box._timer = null; }
@@ -144,6 +70,10 @@
   window.__typeBrain = typeBrain;
 
   var brainSeen = false;
+  function chat() {
+    var c = strings().chat;
+    return c && c[window.HUGO_VARIANT];
+  }
   function ensureBrainObserver() {
     var sec = document.getElementById('brain');
     if (!sec || !('IntersectionObserver' in window)) { brainSeen = true; return; }
@@ -151,9 +81,8 @@
       entries.forEach(function (e) {
         if (e.isIntersecting) {
           brainSeen = true;
-          var v = window.HUGO_VARIANT, lang = window.HUGO_LANG || 'cs';
-          var ch = CHAT[v] && CHAT[v][lang];
-          if (ch) typeBrain(ch.a, lang);
+          var ch = chat();
+          if (ch) typeBrain(ch.a);
           io.disconnect();
         }
       });
@@ -161,36 +90,26 @@
     io.observe(sec);
   }
 
-  window.HUGO_VARIANT = (function () {
-    try {
-      var u = new URLSearchParams(location.search).get('v');
-      if (u && ORDER.indexOf(u) >= 0) return u;
-      var s = localStorage.getItem('hugo-variant');
-      if (s && ORDER.indexOf(s) >= 0) return s;
-    } catch (e) {}
-    return 'micro';
-  })();
+  if (ORDER.indexOf(window.HUGO_VARIANT) < 0) window.HUGO_VARIANT = DEFAULT;
 
-  /* Apply current variant's overrides on top of the i18n base */
-  window.__applyVariant = function (lang) {
-    lang = lang || window.HUGO_LANG || 'cs';
+  function applyVariant() {
     var v = window.HUGO_VARIANT;
-    var ov = VARIANTS[v] && VARIANTS[v][lang];
-    if (ov) {
-      Object.keys(ov).forEach(function (sel) {
-        var el = document.querySelector(sel);
-        if (el && el.innerHTML !== ov[sel]) el.innerHTML = ov[sel];
+    var copy = strings().variants && strings().variants[v];
+    if (copy) {
+      Object.keys(SLOTS).forEach(function (slot) {
+        var el = document.querySelector(SLOTS[slot]);
+        if (el && copy[slot] != null) el.innerHTML = copy[slot];
       });
     }
-    var ch = CHAT[v] && CHAT[v][lang];
+    var ch = chat();
     if (ch) {
       var q = document.getElementById('bcQ');
       var fld = document.getElementById('bcField');
       if (q) q.textContent = ch.q;
       if (fld) fld.setAttribute('placeholder', ch.ph);
-      if (brainSeen) typeBrain(ch.a, lang);
+      if (brainSeen) typeBrain(ch.a);
     }
-  };
+  }
 
   function syncSeg() {
     document.querySelectorAll('.ab-opt').forEach(function (b) {
@@ -201,32 +120,34 @@
   function selectVariant(v) {
     if (ORDER.indexOf(v) < 0) return;
     window.HUGO_VARIANT = v;
-    try { localStorage.setItem('hugo-variant', v); } catch (e) {}
     try {
       var url = new URL(location.href);
       url.searchParams.set('v', v);
       history.replaceState(null, '', url);
     } catch (e) {}
     syncSeg();
-    window.__applyVariant(window.HUGO_LANG);
+    applyVariant();
+    document.dispatchEvent(new CustomEvent('hugo:variant', { detail: v }));
   }
   window.selectHugoVariant = selectVariant;
 
+  function step(dir) {
+    var i = ORDER.indexOf(window.HUGO_VARIANT);
+    selectVariant(ORDER[(i + dir + ORDER.length) % ORDER.length]);
+  }
+
   function wire() {
+    /* Visitors in the A/B test must not switch arms; only the ?ab=1 preview may. */
+    if (!document.documentElement.classList.contains('ab-preview')) return;
     var eyebrow = document.querySelector('.hero-eyebrow');
     if (eyebrow) {
-      eyebrow.setAttribute('title', 'Klikni pro další verzi cílení');
-      eyebrow.addEventListener('click', function () {
-        var i = ORDER.indexOf(window.HUGO_VARIANT);
-        selectVariant(ORDER[(i + 1) % ORDER.length]);
-      });
+      if (strings().eyebrowTitle) eyebrow.setAttribute('title', strings().eyebrowTitle);
+      eyebrow.addEventListener('click', function () { step(1); });
     }
     document.querySelectorAll('.eb-arrow').forEach(function (a) {
       a.addEventListener('click', function (e) {
         e.stopPropagation();
-        var i = ORDER.indexOf(window.HUGO_VARIANT);
-        var dir = parseInt(a.dataset.dir, 10) || 1;
-        selectVariant(ORDER[(i + dir + ORDER.length) % ORDER.length]);
+        step(parseInt(a.dataset.dir, 10) || 1);
       });
     });
     var seg = document.getElementById('abSeg');
@@ -235,18 +156,16 @@
       if (b) selectVariant(b.dataset.v);
     });
     document.querySelectorAll('.ab-arrow').forEach(function (a) {
-      a.addEventListener('click', function () {
-        var i = ORDER.indexOf(window.HUGO_VARIANT);
-        var dir = parseInt(a.dataset.dir, 10) || 1;
-        selectVariant(ORDER[(i + dir + ORDER.length) % ORDER.length]);
-      });
+      a.addEventListener('click', function () { step(parseInt(a.dataset.dir, 10) || 1); });
     });
   }
 
   function boot() {
     syncSeg();
     ensureBrainObserver();
-    window.__applyVariant(window.HUGO_LANG || 'cs');
+    /* The prerendered HTML already shows micro; only a different choice rewrites it. */
+    if (window.HUGO_VARIANT !== DEFAULT) applyVariant();
+    document.documentElement.classList.remove('ab-pending');
     wire();
   }
 

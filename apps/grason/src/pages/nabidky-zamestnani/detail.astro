@@ -5,6 +5,8 @@
  * všechny cesty /nabidky-zamestnani/* (public/_redirects pro Cloudflare,
  * public/.htaccess pro Apache) a skript si ID vezme z URL a inzerát načte z API.
  * Hosting bez přepisu vrátí 404.astro, která sem přesměruje s ?ad=<cesta>.
+ * Canonical, description a JobPosting (Google for Jobs) proto nastavuje až skript,
+ * statické HTML canonical nemá, jinak by Google všechny inzeráty sloučil do jednoho.
  */
 import Base from '../../layouts/Base.astro';
 import Header from '@piano/ui/components/Header.astro';
@@ -28,7 +30,7 @@ const dialCodes = [
 ];
 ---
 
-<Base title="Nabídka zaměstnání | Grason"
+<Base title="Nabídka zaměstnání | Grason" canonical={false}
       description="Nabídka stálé práce v gastru přes GrasonJobs. Odpovězte na inzerát přímo z webu.">
   <Header brand="Grason" logoSrc="/logos/grason_by_piano.svg" logoHeight="44px" homeHref="/" nav={grasonNav} cta={grasonAppCta} login={grasonLogin} />
 
@@ -152,7 +154,11 @@ const dialCodes = [
   const path = new URLSearchParams(location.search).get('ad') ?? location.pathname;
   const id = path.slice(JOBS_PATH.length).match(/^(\d+)/)?.[1];
 
+  const EMPLOYMENT_TYPES: Record<number, string> = { 1: 'FULL_TIME', 2: 'PART_TIME' };
+  const SALARY_UNITS = { hourly: 'HOUR', daily: 'DAY', monthly: 'MONTH' };
+
   function unavailable(): void {
+    document.head.insertAdjacentHTML('beforeend', '<meta name="robots" content="noindex">');
     $('[data-skeleton]').hidden = true;
     status.textContent = 'Tento inzerát už není dostupný.';
     status.hidden = false;
@@ -164,6 +170,33 @@ const dialCodes = [
     const { latitude, longitude, name: address } = ad.business.address;
 
     document.title = `${title} | Grason`;
+    $<HTMLMetaElement>('meta[name="description"]').content = ad.description.replace(/\s+/g, ' ').slice(0, 160);
+    const canonical = Object.assign(document.createElement('link'), { rel: 'canonical', href: new URL(JOBS_PATH + ad.slug, import.meta.env.SITE).href });
+    const { from, to, type: salaryType } = ad.salary;
+    const jobPosting = {
+      '@context': 'https://schema.org',
+      '@type': 'JobPosting',
+      title: ad.title || ad.category.name,
+      description: ad.description,
+      identifier: { '@type': 'PropertyValue', name: 'Grason', value: String(ad.id) },
+      datePosted: ad.createdAt,
+      validThrough: ad.expiresAt,
+      employmentType: EMPLOYMENT_TYPES[ad.type.id],
+      directApply: true,
+      hiringOrganization: { '@type': 'Organization', name: ad.business.name, sameAs: ad.business.webUrl ?? undefined },
+      jobLocation: {
+        '@type': 'Place',
+        address: { '@type': 'PostalAddress', streetAddress: address, addressCountry: ad.business.country.code.toUpperCase() },
+        geo: { '@type': 'GeoCoordinates', latitude, longitude },
+      },
+      baseSalary: from > 0 && salaryType !== 'task' ? {
+        '@type': 'MonetaryAmount',
+        currency: ad.business.country.currency.code,
+        value: { '@type': 'QuantitativeValue', minValue: from, maxValue: to, unitText: SALARY_UNITS[salaryType] },
+      } : undefined,
+    };
+    const schema = Object.assign(document.createElement('script'), { type: 'application/ld+json', textContent: JSON.stringify(jobPosting) });
+    document.head.append(canonical, schema);
     if (location.pathname !== `${JOBS_PATH}${ad.slug}` || location.search) history.replaceState(null, '', url + location.hash);
 
     $('[data-title]').textContent = title;

@@ -1,8 +1,63 @@
 ---
+// Děkovací stránka po odeslání formuláře „Ozvi se mi“ (konverze v GTM = pageview /dekujeme).
+// Hlavička a patička z podstránek živého hugopos.eu, generuje port-hugo.py.
 import Base from '../layouts/Base.astro';
-import Dekujeme from '../components/Dekujeme.astro';
+import '../styles/sub.css';
+import hugoAbUrl from '../scripts/hugo-ab.js?url';
+import hugoI18nUrl from '../scripts/hugo-i18n.js?url';
+import hugoNavUrl from '../scripts/hugo-nav.js?url';
 ---
+<Base title={"Díky, brzy se ti ozveme"} lang="cs" noindex>
+<Fragment slot="head">
+<script is:inline src={hugoAbUrl}></script>
+<script is:inline src={hugoI18nUrl} defer></script>
+<script is:inline src={hugoNavUrl} defer></script>
+</Fragment>
+<header class="nav">
+  <div class="container nav-inner">
+    <a href="/" class="brand"><img src="/assets/hugo-icon.svg" alt="" /><span>Hugo</span></a>
+    
+    <button class="nav-burger" type="button" aria-expanded="false" aria-controls="navLinks" aria-label="Menu"><span></span><span></span><span></span></button>
+    <nav class="nav-links" id="navLinks">
+      <a href="/#product">Produkt</a>
+      <a href="/jak-zacit/">Jak začít</a>
+      <a href="/srovnani/">Srovnání</a>
+      <a href="/cenik/">Ceník</a>
+      <a href="/#reference">Reference</a>
+    </nav>
+    <div class="nav-cta">
+      <div class="lang" id="langToggle"><a href="/dekujeme/" hreflang="cs" lang="cs" data-lang-link class="is-on" aria-current="true">CZ</a><a href="/en/dekujeme/" hreflang="en" lang="en" data-lang-link>EN</a></div>
+      <a href="https://admin.hugopos.eu/login?start=1" target="_blank" rel="noopener" class="btn btn-primary">Začít zdarma</a>
+    </div>
+  </div>
+</header>
 
-<Base title="Díky, brzy se ti ozveme" lang="cs" noindex>
-  <Dekujeme lang="cs" />
+<main>
+<section class="phero">
+  <div class="container phero-grid">
+    <div class="phero-text">
+    <span class="eyebrow">Hotovo</span>
+    <h1>Díky, <span class="hl">brzy se ti ozveme.</span></h1>
+    <p class="lead">Ozve se ti člověk z Hugo týmu. Chceš začít rovnou? Stáhni appku.</p>
+    <p><a href="/">Zpět na hlavní stránku</a></p>
+    </div>
+    <div class="ctas">
+      <a href="https://apps.apple.com/cz/app/hugo-pos/id6766202332" target="_blank" rel="noopener" class="btn btn-primary btn-lg">App Store</a>
+      <a href="https://play.google.com/store/apps/details?id=com.piano.hugo" target="_blank" rel="noopener" class="btn btn-ghost btn-lg">Google Play</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="container foot-in">
+    <div>&copy; 2026 Hugo &middot; <span>český produkt od Piano</span> &middot; <a href="mailto:hugo@piano.cz">hugo@piano.cz</a></div>
+    <div class="links">
+      <a href="/">Domů</a>
+      <a href="/srovnani/">Srovnání</a>
+      <a href="/vseobecne-obchodni-podminky/">Obchodní podmínky</a>
+      <a href="https://piano.cz/gdpr/" target="_blank" rel="noopener">GDPR</a>
+    </div>
+  </div>
+</footer>
 </Base>

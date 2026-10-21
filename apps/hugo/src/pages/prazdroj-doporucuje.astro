@@ -1,0 +1,196 @@
+---
+// https://hugopos.eu/prazdroj-doporucuje/, port 1:1 skriptem port-hugo.py (scrape 13. 10. 2026)
+import Base from '../layouts/Base.astro';
+import '../styles/prazdroj.css';
+---
+<Base
+  title={"Plzeňský Prazdroj + Hugo: EET 2.0 v suchu"}
+  lang={"cs"}
+  description={"Speciální nabídka pro zákazníky Plzeňského Prazdroje. Pokladna Hugo: karty, účtenka i pokladna v jednom terminálu, spuštění za 5 minut, 0 Kč měsíčně do konce roku 2026, následně 190 Kč/měsíc, bez DPH; karty 1,1 % (MIF++)."}
+  ogDescription={"EET 2.0 v suchu - speciální nabídka pro zákazníky Plzeňského Prazdroje. 0 Kč měsíčně do konce roku 2026, následně 190 Kč/měsíc, bez DPH."}
+  themeColor={"#004B2A"}
+>
+<Fragment slot="head">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300..700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</Fragment>
+<div class="strip">
+  <div class="container strip-in">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.4 9.4 8 10 4.6-.6 8-5 8-10V6l-8-4z"/><polyline points="9 12 11 14 15 10"/></svg>
+    <span>Jste tu správně – tuhle pokladnu vám doporučuje Plzeňský Prazdroj.</span>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="container">
+    <h1 class="lockup">
+      <span class="partner-mark"><img class="mat-mark" src="/assets/partners/plzensky-prazdroj-logo.png" width="1080" height="1080" alt="Plzeňský Prazdroj" /></span>
+      <span class="plus" aria-hidden="true">+</span>
+      <span class="hugo"><img src="/assets/hugo-icon.svg" alt="" />Hugo</span>
+    </h1>
+
+    <p class="sub">EET 2.0 v suchu - speciální nabídka pro zákazníky Plzeňského Prazdroje.</p>
+
+    <div class="ctas">
+      <a class="btn btn-primary" href="https://admin.hugopos.eu/login?start=1&amp;partner=prazdroj" target="_blank" rel="noopener">
+        Registrovat
+        <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+      <a class="btn btn-ghost" href="#cena">Cena a podmínky</a>
+    </div>
+
+    <div class="facts">
+      <div class="fact"><div class="n">5 minut</div><div class="l">od stažení k první účtence</div></div>
+      <div class="fact"><div class="n">0 Kč</div><div class="l">měsíčně do konce roku 2026,<br />následně 190 Kč/měsíc, bez DPH</div></div>
+      <div class="fact"><div class="n">1,1&nbsp;% <span class="mif-n">(MIF++)<a class="mif-ref" href="#mif-note" aria-label="Vysvětlení MIF++">*</a></span></div><div class="l">z platby kartou</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="show">
+  <div class="container">
+    <div class="show-in">
+      <div class="show-img">
+        
+        <img src="/assets/eshop/terminal-in-use.jpg" alt="Terminál Hugo v provozu" />
+      </div>
+      <div class="show-txt">
+        <h2>Vaše první pokladna: karty, účtenky i menu v jednom</h2>
+        <ul class="show-list">
+          <li>
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></span>
+            <div><b>Platby kartou</b><span>Bezkontaktně přiložením karty, telefonu nebo hodinek.</span></div>
+          </li>
+          <li>
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h12v18l-3-2-3 2-3-2-3 2V2z"/><path d="M9 7h6M9 11h6"/></svg></span>
+            <div><b>Tisk účtenek</b><span>Papírová i digitální, bez další tiskárny.</span></div>
+          </li>
+          <li>
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9h4M7 13h4M15 9v8"/></svg></span>
+            <div><b>Pokladna a menu</b><span>Objednávky, spropitné, DPH i uzávěrka.</span></div>
+          </li>
+          <li>
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg></span>
+            <div><b>Nebo jen váš telefon</b><span>Na Androidu vezmete kartu i bez terminálu.</span></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="steps">
+  <div class="container">
+    <h2>Spuštění za pět minut</h2>
+    <p class="kicker">Bez technika, bez instalace, bez školení.</p>
+    <div class="rail">
+      <div class="step">
+        <div class="no">1</div>
+        <h3>Stáhnete aplikaci</h3>
+        <p>App Store nebo Google Play, na telefon či tablet, který už máte.</p>
+        <div class="t">1 minuta</div>
+      </div>
+      <div class="step">
+        <div class="no">2</div>
+        <h3>Nahrajete menu</h3>
+        <p>Položky a ceny si naklikáte. Kdykoli je můžete změnit.</p>
+        <div class="t">3 minuty</div>
+      </div>
+      <div class="step">
+        <div class="no">3</div>
+        <h3>Účtujete</h3>
+        <p>První objednávka, platba kartou a účtenka pro hosta.</p>
+        <div class="t">1 minuta</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bens">
+  <div class="container">
+    <h2>Proč to dává smysl</h2>
+    <div class="grid">
+      <div class="ben hl">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.4 9.4 8 10 4.6-.6 8-5 8-10V6l-8-4z"/><polyline points="9 12 11 14 15 10"/></svg></span>
+        <h3>Připraveno na EET 2.0</h3>
+        <p>Součást produktu, ne příplatkový modul na poslední chvíli.</p>
+      </div>
+      <div class="ben">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+        <h3>Jeden tarif</h3>
+        <p>Všechny funkce v ceně. Žádné moduly, žádné příplatkové verze.</p>
+      </div>
+      <div class="ben">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9 9 0 0 1 9 9"/><path d="M21 12a9 9 0 0 1-9 9"/><path d="M8 12h8"/></svg></span>
+        <h3>Sezónní režim</h3>
+        <p>Po sezóně pokladnu uspíte, na jaře probudíte. Data zůstanou.</p>
+      </div>
+      <div class="ben">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg></span>
+        <h3>Běží na vašem zařízení</h3>
+        <p>iOS i Android, telefon i tablet. Nemusíte nic kupovat.</p>
+      </div>
+      <div class="ben">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H7l-3 3V4z"/></svg></span>
+        <h3>Podpora česky</h3>
+        <p>Český produkt, česká firma.</p>
+      </div>
+      <div class="ben">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg></span>
+        <h3>Zrušíte kdykoli</h3>
+        <p>Bez smlouvy na dobu určitou a bez výpovědní lhůty.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="price" id="cena">
+  <div class="container">
+    <div class="price-in">
+      <div>
+        <span class="tag">Akční cena pro zákazníky Plzeňského Prazdroje do konce roku 2026</span>
+        <div class="amount">0 Kč<small>měsíčně za provozovnu do konce roku 2026</small></div>
+        <p class="follow-on">Následně 190 Kč/měsíc za provozovnu, bez DPH.</p>
+        <p class="rate"><b>Platby kartou 1,1&nbsp;% (MIF++)<a class="mif-ref" href="#mif-note" aria-label="Vysvětlení MIF++">*</a></b> z transakce, bez DPH.</p>
+      </div>
+      <ul class="price-notes">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><div><b>Jeden tarif</b> – všechny funkce, žádné příplatkové moduly.</div></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><div><b>Bez smlouvy na dobu určitou</b> – zrušíte kdykoli.</div></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><div><b>Přerušení na sezónu</b> – uspíte a zase probudíte.</div></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><div><b>Bez vstupních nákladů</b> – pokladnu si spustíte bez technika.</div></li>
+      </ul>
+      <p class="mif-note" id="mif-note" tabindex="-1">*Transparentní model zpoplatnění karetních transakcí, kdy se cena skládá ze tří oddělených složek: mezibankovního poplatku (MIF), poplatku karetní asociace a marže poskytovatele.</p>
+      <div class="price-cta">
+        <a class="btn btn-primary" href="https://admin.hugopos.eu/login?start=1&amp;partner=prazdroj" target="_blank" rel="noopener">
+          Registrovat
+          <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+        <p class="fine">Registrace je zdarma. Měsíční poplatek za pokladnu je do konce roku 2026 nulový; poplatky za platby kartou se účtují od první transakce.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="close">
+  <div class="container">
+    <h2>Začněte ještě dnes</h2>
+    <p>Účet si založíte za pár minut a pokladnu si nastavíte vlastním tempem.</p>
+    <a class="btn btn-primary" href="https://admin.hugopos.eu/login?start=1&amp;partner=prazdroj" target="_blank" rel="noopener">
+      Registrovat
+      <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="container foot">
+    <div>&copy; 2026 Hugo · český produkt od Piano · <a href="mailto:hugo@piano.cz">hugo@piano.cz</a></div>
+    <div class="foot-links">
+      <a href="/vseobecne-obchodni-podminky/">Obchodní podmínky</a>
+      <a href="https://piano.cz/gdpr/" target="_blank" rel="noopener">GDPR</a>
+      <a href="/">hugopos.eu</a>
+    </div>
+  </div>
+</footer>
+</Base>

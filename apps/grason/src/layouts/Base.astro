@@ -16,6 +16,7 @@ interface Props {
   image?: string;
   type?: 'website' | 'article';
   noindex?: boolean;
+  canonical?: boolean;
   schema?: object;
 }
 
@@ -28,6 +29,7 @@ const {
   image = '/og-default.jpg',
   type = 'website',
   noindex = false,
+  canonical = true,
   schema,
 } = Astro.props;
 
@@ -65,6 +67,7 @@ const schemas = [organizationSchema, ...(schema ? [schema] : [])];
       image={image}
       type={type}
       noindex={noindex}
+      canonical={canonical}
       siteName={SITE_NAME}
       siteUrl={SITE_URL}
       schemas={schemas}

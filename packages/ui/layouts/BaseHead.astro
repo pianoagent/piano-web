@@ -8,6 +8,8 @@
  *   description, image, type, noindex
  *   siteName    → název webu pro <title> a og:site_name
  *   siteUrl     → doména (https://…) pro canonical + absolutní OG
+ *   canonical   → false: stránka si canonical a og:url nastaví sama v JS
+ *                 (jedna statická stránka pro mnoho URL, např. detail inzerátu)
  *   locale      → og:locale (default "cs_CZ")
  *   schemas     → pole JSON-LD objektů (org + per stránka)
  */
@@ -17,11 +19,13 @@ interface Props {
   image?: string;
   type?: 'website' | 'article';
   noindex?: boolean;
+  canonical?: boolean;
   siteName?: string;
   siteUrl?: string;
   locale?: string;
   alternates?: { lang: string; href: string }[];  // hreflang varianty (jazykové mutace)
   schemas?: object[];
+  ogDescription?: string;  // og:/twitter:description, když se liší od meta description
 }
 
 const {
@@ -30,11 +34,13 @@ const {
   image,
   type = 'website',
   noindex = false,
+  canonical: hasCanonical = true,
   siteName = 'Piano',
   siteUrl = 'https://piano.cz',
   locale = 'cs_CZ',
   alternates = [],
   schemas = [],
+  ogDescription = description,
 } = Astro.props;
 
 // build.format 'file' (Septim) dává pathname s .html (úvodní stránka /index.html); kanonická URL je bez přípony
@@ -47,7 +53,7 @@ const ogImage = image ? new URL(image, siteUrl).href : undefined;
 
 <title>{fullTitle}</title>
 {description && <meta name="description" content={description} />}
-<link rel="canonical" href={canonical} />
+{hasCanonical && <link rel="canonical" href={canonical} />}
 {noindex && <meta name="robots" content="noindex, nofollow" />}
 {alternates.map((a) => (
   <link rel="alternate" hreflang={a.lang} href={a.href} />
@@ -55,15 +61,15 @@ const ogImage = image ? new URL(image, siteUrl).href : undefined;
 
 <meta property="og:type" content={type} />
 <meta property="og:title" content={fullTitle} />
-{description && <meta property="og:description" content={description} />}
-<meta property="og:url" content={canonical} />
+{ogDescription && <meta property="og:description" content={ogDescription} />}
+{hasCanonical && <meta property="og:url" content={canonical} />}
 {ogImage && <meta property="og:image" content={ogImage} />}
 <meta property="og:site_name" content={siteName} />
 <meta property="og:locale" content={locale} />
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={fullTitle} />
-{description && <meta name="twitter:description" content={description} />}
+{ogDescription && <meta name="twitter:description" content={ogDescription} />}
 {ogImage && <meta name="twitter:image" content={ogImage} />}
 
 {schemas.map((s) => (

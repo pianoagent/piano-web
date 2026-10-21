@@ -1,15 +1,16 @@
 # Hugo
 
-> Hugo je pokladna pro kavárny, bary a restaurace. Objednávky, menu, spropitné i účtenky v jedné appce na zařízení, které už máš. Kartu přijmeš na Androidu nebo na terminálu Hugo. Spustíš ji za 5 minut. Web: https://hugopos.eu (EN: https://hugopos.eu/en/).
+> Hugo je pokladna do mobilu pro stánky, food trucky a kavárny. Objednávky, menu, spropitné i účtenky v jedné appce na zařízení, které už máš. Kartu přijmeš na Androidu nebo na terminálu Hugo. Spustíš ji za 5 minut. Web: https://hugopos.eu (EN: https://hugopos.eu/en/).
 
 ## O Hugovi
 
-- Jeden tarif: 190 Kč měsíčně bez DPH místo 990 Kč, když platby kartou přijímáš přes Hugo. K tomu 0,9 % + 1 Kč (MIF++) z platby kartou.
-- Prvních 14 dní zdarma, bez smlouvy a výpovědní lhůty. Peníze z karet na účtu do 2 dnů.
+- Jeden tarif: 190 Kč měsíčně bez DPH, když platby kartou přijímáš přes Hugo. Poplatek Huga 1,1 % z platby kartou, poplatky bance a karetní asociaci (MIF++) se přeposílají beze změny. Ceník: https://hugopos.eu/cenik/
+- Prvních 14 dní zdarma, bez výpovědní lhůty. Peníze z karet na účtu do 2 dnů.
 - Běží na iPhonu, Androidu, tabletu i webu. Terminál Hugo all-in-one stojí 4 900 Kč bez DPH jednorázově.
 - Menu stačí vyfotit, změny se zadávají vlastními slovy. DPH, účtenky a EET 2.0 řeší Hugo automaticky.
 - Vestavěná inteligence Piano Brain radí, co uvařit, kdo má přijít na směnu a co objednat.
 - Přechod z Dotykačky nebo Storyous: menu přeneseme za tebe, obě pokladny můžou běžet vedle sebe.
+- Jak začít (tři kroky a video): https://hugopos.eu/jak-zacit/ · Srovnání s Dotykačkou, Storyous, KASA FIK, KiloMayo a SumUp: https://hugopos.eu/srovnani/
 - Kontakt: hugo@piano.cz. Obchodní podmínky: https://hugopos.eu/vseobecne-obchodni-podminky/
 
 ## Piano ekosystém

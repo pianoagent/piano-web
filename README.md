@@ -5,6 +5,10 @@ Marketingové weby Piano, Astro se statickým výstupem (`output: 'static'`). Mo
 ## ⚠️ Větve / workflow
 - **`develop` = pracovní větev. Veškerá práce (vč. Cowork/AI vláken) jde sem.** Cloudflare z ní staví preview.
 - **`main` = produkce.** Do `main` se přímo nepushuje, jde tam jen merge z `develop` na výslovné zadání.
+  **Výjimka: článková PR s labelem `clanek`** (rutina publikace článků z Google Sheetu). Workflow
+  `publikovat-clanek.yml` je sloučí do `main` samo, ale jen když mění výhradně `apps/*/src/content/blog/*.md`
+  a `apps/*/src/assets/images/blog/*.webp` a projde `scripts/clanky/zpracuj-clanek.mjs validace`, check-web,
+  astro check a build. Pak spustí `deploy-<web>.yml` a sloučí `main` zpět do `develop`. Detail je v `RUNBOOK.md` v rootu složky Piano.
 - **Nikdy cherry-pick, vždy merge.** Cherry-pick obě větve rozjede: vzniknou stejné zprávy s jinými hashi a pak se nedá poznat, co na produkci opravdu je.
 
 ## Kde se web nasazuje
@@ -16,10 +20,11 @@ Nasazení není pro všechny weby stejné, pozor na to.
 | `eet2027` | eet2027.cz | GitHub Actions `deploy-eet2027.yml`, **FTP na Webglobe** |
 | `pecosta` | pecosta.cz | GitHub Actions `deploy-pecosta.yml`, **FTP na Webglobe** |
 | `grason` | grason.cz | GitHub Actions `deploy-grason.yml`, **FTP na Webglobe** |
-| `protel`, `qerko`, `septim`, `savarin`, `harsys` | vlastní domény | Cloudflare Pages napojený na git |
-| `hugo` | zatím nikde | prototyp; `site` i `wrangler.jsonc` už existují, ale web se nepublikuje. Živý Hugo běží na hugopos.eu / hugopos.cz mimo tohle repo |
+| `savarin` | savarin.cz | GitHub Actions `deploy-savarin.yml`, **FTP na Webglobe** |
+| `protel`, `qerko`, `septim`, `harsys` | vlastní domény | Cloudflare Pages napojený na git |
+| `hugo` | zatím nikde | kopie živého hugopos.eu 1:1 (stránky generuje `weby/podklady-migrace/port-hugo.py`); `site` i `wrangler.jsonc` už existují, ale web se nepublikuje. Živý Hugo běží na hugopos.eu / hugopos.cz mimo tohle repo (generuje ho Hugo tým) |
 
-**Piano, eet2027, pecosta a grason tedy na produkci nejedou přes Cloudflare.** Všechny čtyři workflow spouští push do `main`, ale jsou **path filtrované** (`apps/<app>/**`, `packages/**`, `package*.json`, vlastní soubor workflow), takže merge, který sáhne jen na README, nenasadí nic. Všechny jdou spustit i ručně přes `workflow_dispatch`.
+**Piano, eet2027, pecosta, grason a savarin tedy na produkci nejedou přes Cloudflare.** Všech pět workflow spouští push do `main`, ale jsou **path filtrované** (`apps/<app>/**`, `packages/**`, `package*.json`, vlastní soubor workflow), takže merge, který sáhne jen na README, nenasadí nic. Všechny jdou spustit i ručně přes `workflow_dispatch`.
 
 ## Kde si změnu prohlédnout
 
@@ -38,7 +43,7 @@ Názvy Cloudflare projektů výše jsou ty skutečné, ověřené proti živým 
 ## Stack
 - **Astro 7**, statický generátor, obsah jako `.md`, sdílené komponenty a témata per web
 - **GitHub**, zdroj pravdy: vývoj na `develop`, produkce `main`
-- **Formuláře**, `LeadForm` posílá JSON z prohlížeče na Databridge `https://databridge.pianopos.cz/api/web-lead`, který podle hlavičky `Origin` pozná web a založí prospekt v Odoo (zdroj _Web, médium Webový formulář CZ). PHP na hostingu už není potřeba. Formuláře vždy volají produkční Databridge, který přijme jakýkoli origin, takže i odeslání z Cloudflare preview nebo lokálního dev serveru založí skutečný prospekt. Hugo (formulář „Ozvi se mi“ v `hugo.js`) posílá na stejný endpoint. Ostatní appky s `LeadForm` (harsys, protel, savarin, qerko, grason) posílají taky, v Odoo dostanou službu podle domény. První návštěva (URL s UTM a referrer) se ukládá do `sessionStorage['leadLanding']` v `BaseHead` a posílá se s formulářem.
+- **Formuláře**, `LeadForm` posílá JSON z prohlížeče na Databridge `https://databridge.pianopos.cz/api/web-lead`, který podle hlavičky `Origin` pozná web a založí prospekt v Odoo (zdroj _Web, médium Webový formulář CZ). PHP na hostingu už není potřeba. Formuláře vždy volají produkční Databridge, který přijme jakýkoli origin, takže i odeslání z Cloudflare preview nebo lokálního dev serveru založí skutečný prospekt. Hugo (formulář „Ozvi se mi“ v `hugo-waitlist.js`) posílá na stejný endpoint. Ostatní appky s `LeadForm` (harsys, protel, savarin, qerko, grason) posílají taky, v Odoo dostanou službu podle domény. První návštěva (URL s UTM a referrer) se ukládá do `sessionStorage['leadLanding']` v `BaseHead` a posílá se s formulářem.
 
 ## Septim: kopie živého webu 1:1
 `apps/septim` je od 24. 9. 2026 věrná kopie živého www.septim.cz (Solid Pixels), aby šel web přepnout bez přesměrování: **stejné URL** (bez lomítka a bez `.html`, `build.format: 'file'`), stejný obsah i vzhled. Předchozí redesign (nová IA) je v tagu `septim-redesign-2026-09` a větvi `septim-redesign`.

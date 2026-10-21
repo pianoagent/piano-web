@@ -2,8 +2,8 @@
 /**
  * 404: stránka nenalezena. Statický build vygeneruje dist/404.html,
  * Cloudflare Pages ji servíruje sám (a vypne tím SPA fallback na homepage).
- * Staré krátké odkazy grason.cz/f/<slug> mají libovolný slug, takže je nejde
- * vygenerovat jako redirect v astro.config.mjs: pošle je dál skript níže.
+ * Staré krátké odkazy grason.cz/f/<slug> přesměruje .htaccess (_redirects je
+ * nemá), na hostingu bez přepisu URL je pošle dál skript níže.
  * Stejně tak detail inzerátu /nabidky-zamestnani/{ID}-{slug} na hostingu bez
  * přepisu URL (_redirects, .htaccess): skript otevře stránku detailu a ta si
  * adresu v prohlížeči vrátí zpět.

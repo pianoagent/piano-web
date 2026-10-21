@@ -16,6 +16,7 @@ import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import LogoWall from '@piano/ui/components/LogoWall.astro';
 import Img from '@piano/ui/components/Img.astro';
+import TypewriterHeading from '../../components/TypewriterHeading.astro';
 import { locPath } from '../../i18n';
 import { pianoLeadProofsEn } from '../../config/leadProofs';
 
@@ -35,31 +36,8 @@ const novinky = [
   { logo: '/brand/terminal_logo.svg', alt: 'Piano Terminal', image: '/images/hero-terminal.webp', imageWidth: 217, text: 'A payment Terminal where the card payment is just the beginning. Guest data and payments to suppliers.', href: '/terminal' },
 ];
 
-// Hero: rotating message (title + lead + image change; CTA and USP stay)
-const heroSlides = [
-  {
-    eyebrow: 'Technology for restaurants and hotels',
-    title: 'Every key tool<br>for hospitality<br>under one roof',
-    lead: 'Piano is a well-tuned orchestra of tools that fine-tunes your operation, saves you time and grows your profit. Whether you run a restaurant, café, bistro, canteen or hotel, we have a solution for you.',
-    image: '/images/home-hero-dark.webp',
-    imageAlt: 'Piano POS, terminal and mobile app',
-  },
-  {
-    eyebrow: 'New: Piano Pilot',
-    title: 'Every insight<br>into your operation<br>in one app',
-    lead: 'Sales, inventory and AI recommendations in real time. With Pilot you have an overview of your business from anywhere, right from your phone.',
-    image: '/images/hero-pilot.webp',
-    imageAlt: 'Piano Pilot, the mobile app for operations',
-  },
-  {
-    eyebrow: 'New: Piano Terminal',
-    title: 'A terminal<br>where the payment<br>is just the start',
-    lead: 'Guest data and automatic payments to suppliers. We turn an ordinary payment terminal into a smart tool for your whole operation.',
-    image: '/images/hero-terminal.webp',
-    imageAlt: 'Piano Terminal, the payment terminal',
-  },
-];
-
+// Hero: fixed start of the headline and a typed word (pattern from veslo.io/cz). Mirrors the CS words.
+const heroWords = ['POS system', 'payment terminal', 'pay-at-table', 'staffing', 'marketing', 'ingredient purchasing', 'inventory', 'data and analytics'];
 const pains = [
   { icon: 'lucide:user-x', title: 'Staff shortages', text: 'Constantly hunting for new people is costly and exhausting. Quality staff are ever harder to find.' },
   { icon: 'lucide:clock', title: 'Losing customers', text: 'Long waits to order or pay mean lost revenue.' },
@@ -125,8 +103,12 @@ const faqSchema = {
       description="Piano provides technology for restaurants and hotels, from POS systems to staff management and marketing for your business."
       schema={faqSchema}>
 
-  <Hero background="warm" slides={heroSlides} carouselLabel="Switch message"
+  <Hero background="warm" eyebrow="Technology for restaurants and hotels"
+        lead="Piano is a well-tuned orchestra of tools that fine-tunes your operation, saves you time and grows your profit. Whether you run a restaurant, café, bistro, canteen or hotel, we have a solution for you."
         usp={[{ text: '6,000+ venues', icon: 'lucide:store' }, { text: 'CZK 36bn per year', icon: 'lucide:banknote' }, { text: '30 years of innovation', icon: 'lucide:calendar-check' }]}>
+    <TypewriterHeading slot="title" prefix="Piano handles your" words={heroWords} />
+    <Img slot="media" src="/images/home-hero-dark.webp" alt="Piano POS, terminal and mobile app"
+         width={560} height={576} sizes="(min-width: 881px) 560px, 100vw" loading="eager" fetchpriority="high" />
     <Fragment slot="actions">
       <Button href="#poptavka">Book a consultation</Button>
       <Button href="#ekosystem" variant="secondary">Explore the ecosystem</Button>

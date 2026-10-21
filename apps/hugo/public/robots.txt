@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://hugopos.eu/sitemap-index.xml
+Sitemap: https://hugopos.eu/sitemap.xml
