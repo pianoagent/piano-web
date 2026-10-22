@@ -11,12 +11,12 @@ import Heading from '@piano/ui/components/Heading.astro';
 import Text from '@piano/ui/components/Text.astro';
 import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
-import { savarinNav, savarinCta } from '../config/nav';
+import { savarinNav, savarinCta, savarinMobileCta, savarinFooter } from '../config/nav';
 ---
 
 <Base title="Stránka nenalezena | Savarin"
       description="Tuto stránku se nepodařilo najít. Vraťte se na úvod a podívejte se na restaurační a hotelový software Savarin." noindex>
-  <Header brand="Savarin" logoSrc="/logos/savarin_logo.svg" logoHeight="36px" homeHref="/" nav={savarinNav} cta={savarinCta} />
+  <Header brand="Savarin" logoSrc="/logos/savarin_by_piano.svg" logoHeight="44px" homeHref="/" nav={savarinNav} cta={savarinCta} mobileCta={savarinMobileCta} />
 
   <main>
     <Section background="default" space="lg" container="narrow">
@@ -35,7 +35,7 @@ import { savarinNav, savarinCta } from '../config/nav';
     </Section>
   </main>
 
-  <Footer currentId="savarin" legal={[{ label: 'Ochrana osobních údajů', href: '/ochrana-udaju' }]} logoSrc="/logos/savarin_by_piano.svg" logoAlt="Savarin by Piano" parentNote={{ text: 'Savarin je součástí skupiny Piano', href: 'https://piano.cz' }} />
+  <Footer {...savarinFooter} />
 </Base>
 
 <style>

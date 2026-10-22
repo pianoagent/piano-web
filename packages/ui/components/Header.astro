@@ -29,6 +29,7 @@ interface Props {
   homeHref?: string;    // odkaz loga (default "/")
   nav?: NavItem[];      // per-web navigace (default sdílená mainNav)
   cta?: NavLink;        // per-web hlavní CTA (default sdílená headerCta)
+  mobileCta?: NavLink;  // krátké CTA do lišty na mobilu (pod 1100 px), vedle burgeru; bez propu nic
   login?: NavItem;      // sekundární "Přihlášení" (dropdown vedle CTA)
   localeSwitch?: { href: string; label: string; title?: string };  // přepínač jazyků (volitelný)
   locale?: 'cs' | 'en';  // jazyk aria-labelů (default cs)
@@ -42,6 +43,7 @@ const {
   homeHref = '/',
   nav = mainNav,
   cta = headerCta,
+  mobileCta,
   login,
   localeSwitch,
   locale = 'cs',
@@ -195,6 +197,7 @@ const classes = ['header', transparent && 'header--transparent'].filter(Boolean)
         )
       )}
       <Button href={cta.href} variant="primary" size="sm" class="header__cta">{cta.label}</Button>
+      {mobileCta && <Button href={mobileCta.href} variant="primary" size="sm" class="header__cta-mobile">{mobileCta.label}</Button>}
       <button class="header__burger" aria-label={A.open} aria-expanded="false" aria-controls="mobile-drawer" data-burger>
         <span></span><span></span><span></span>
       </button>
@@ -286,6 +289,8 @@ const classes = ['header', transparent && 'header--transparent'].filter(Boolean)
     letter-spacing: var(--letter-spacing-tight);
   }
   .header__logo-img { height: var(--logo-h, 38px); width: auto; display: block; }
+  /* Mobilní CTA je jen pod 1100 px (viz responsive přepínač níž). */
+  .header__actions :global(.header__cta-mobile) { display: none; }
   /* Světlé logo se ukazuje jen na průhledné liště nad hero. Jakmile se lišta
      zpevní na bílou, vrací se tmavá varianta. */
   .header__logo-img--light { display: none; }
@@ -656,6 +661,8 @@ const classes = ['header', transparent && 'header--transparent'].filter(Boolean)
     .header__nav { display: none; }
     /* CTA je vykreslené přes komponentu Button → scoped selektor ho netrefí, proto :global */
     .header__actions :global(.header__cta) { display: none; }
+    /* 44 px = minimální dotykový cíl (Apple HIG, WCAG 2.5.5); btn--sm má jen 34 px */
+    .header__actions :global(.header__cta-mobile) { display: inline-flex; min-height: 44px; }
     .header__login { display: none; }
     .header__burger { display: flex; }
     /* hamburger zarovnat doprava (nav je skrytá, tak ji nahradí actions) */

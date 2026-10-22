@@ -16,7 +16,7 @@ import Icon from '@piano/ui/components/Icon.astro';
 import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import Img from '@piano/ui/components/Img.astro';
-import { savarinNav, savarinCta } from '../config/nav';
+import { savarinNav, savarinCta, savarinMobileCta, savarinFooter } from '../config/nav';
 import { savarinLeadProofs } from '../config/leadProofs';
 
 const funkce = [
@@ -31,7 +31,7 @@ const funkce = [
 
 <Base title="Sklady a kalkulace, HRMTZ a HRKALKUL | Savarin"
       description="Moduly HRMTZ a HRKALKUL: skladové hospodářství, evidence tržeb, inventury, deníky středisek a kalkulace jídel. Jádro systému Savarin.">
-  <Header brand="Savarin" logoSrc="/logos/savarin_logo.svg" logoHeight="36px" homeHref="/" nav={savarinNav} cta={savarinCta} />
+  <Header brand="Savarin" logoSrc="/logos/savarin_by_piano.svg" logoHeight="44px" homeHref="/" nav={savarinNav} cta={savarinCta} mobileCta={savarinMobileCta} />
 
   <main>
 
@@ -73,7 +73,7 @@ const funkce = [
 
   </main>
 
-  <Footer currentId="savarin" legal={[{ label: 'Ochrana osobních údajů', href: '/ochrana-udaju' }]} logoSrc="/logos/savarin_by_piano.svg" logoAlt="Savarin by Piano" parentNote={{ text: 'Savarin je součástí skupiny Piano', href: 'https://piano.cz' }} />
+  <Footer {...savarinFooter} />
 </Base>
 
 <style>

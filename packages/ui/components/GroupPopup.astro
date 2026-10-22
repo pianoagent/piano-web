@@ -1,0 +1,159 @@
+---
+/**
+ * GroupPopup: „<Značka> je teď součástí Piana"
+ *
+ * Jednorázové okno pro návštěvníky webu značky, která přešla pod skupinu Piano.
+ * Text vychází z prototypu weby/prototypy/piano-web-2026.html (brand modal),
+ * upravený pro samostatné weby značek: bez výčtu ostatních značek (pokladny se
+ * na webech pokladen navzájem neukazují) a bez tvrzení, která nejsou v bázi.
+ *
+ *   brand       → název značky v textu („Savarin")
+ *   logoSrc     → lockup „<značka> by piano" nahoře v okně
+ *   storageKey  → klíč v localStorage; okno se ukáže jednou na prohlížeč
+ *   pianoHref   → kam vede „Prozkoumat Piano" (nové okno)
+ *   delay       → prodleva před zobrazením v ms
+ *
+ * Nativní <dialog> + showModal(): Esc, focus a modalita řeší prohlížeč.
+ * Do dataLayer posílá { event: 'piano_popup', popup_brand, popup_action }
+ * s akcí view / continue / close / piano.
+ */
+import Button from './Button.astro';
+
+interface Props {
+  brand: string;
+  logoSrc: string;
+  logoAlt?: string;
+  storageKey: string;
+  pianoHref?: string;
+  delay?: number;
+}
+
+const {
+  brand,
+  logoSrc,
+  logoAlt = `${brand} by Piano`,
+  storageKey,
+  pianoHref = 'https://piano.cz',
+  delay = 1500,
+} = Astro.props;
+---
+
+<dialog class="gpop" data-nosnippet aria-labelledby="gpop-title" data-gpop data-key={storageKey} data-brand={brand} data-delay={delay}>
+  <button type="button" class="gpop__close" aria-label="Zavřít" data-gpop-close="close">×</button>
+  <img class="gpop__logo" src={logoSrc} alt={logoAlt} />
+  <p class="gpop__title" id="gpop-title">{brand} je teď součástí <span class="accent">Piana</span></p>
+  <p class="gpop__sub">Tato změna vám přináší spoustu výhod.</p>
+  <div class="gpop__body">
+    <p>{brand} funguje stejně jako dřív. Nově ale máte přístup ke všem klíčovým nástrojům pro váš provoz pod jednou střechou.</p>
+    <p>Piano vzniklo z jednoduchého přesvědčení: majitel restaurace, kavárny nebo hotelu si zaslouží jednoho partnera, ne pět dodavatelů, pět smluv, pět faktur a data, která si spolu nepovídají. Proto jsme spojili zavedené značky české gastrotechniky do jednoho propojeného ekosystému pro pohostinství.</p>
+    <p>Chceme podnikatelům přinést méně práce, lepší přehled a vyšší zisk.</p>
+  </div>
+  <div class="gpop__actions">
+    <Button type="button" variant="primary" data-gpop-close="continue">Pokračovat na {brand}</Button>
+    <Button href={pianoHref} variant="secondary" target="_blank" rel="noopener" data-gpop-close="piano">Prozkoumat Piano</Button>
+  </div>
+</dialog>
+
+<style>
+  .gpop {
+    /* base.css nuluje margin všem prvkům; dialog se centruje přes margin: auto */
+    margin: auto;
+    width: calc(100% - 2 * var(--space-5));
+    max-width: 540px;
+    max-height: calc(100dvh - 2 * var(--space-5));
+    overflow-y: auto;
+    padding: var(--space-7) var(--space-7) var(--space-6);
+    border: 0;
+    border-radius: var(--radius-lg);
+    background: var(--color-bg);
+    color: var(--color-text);
+    box-shadow: var(--shadow-lg);
+  }
+  .gpop::backdrop { background: rgba(20, 17, 24, 0.55); }
+  .gpop[open] { animation: gpop-in 250ms ease-out; }
+  .gpop[open]::backdrop { animation: gpop-fade 250ms ease-out; }
+  @keyframes gpop-in { from { opacity: 0; transform: translateY(16px); } }
+  @keyframes gpop-fade { from { opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) {
+    .gpop[open], .gpop[open]::backdrop { animation: none; }
+  }
+
+  .gpop__close {
+    position: absolute; top: var(--space-3); right: var(--space-3);
+    width: 44px; height: 44px;
+    display: grid; place-items: center;
+    background: none; border: 0; border-radius: var(--radius-full);
+    font-size: 26px; line-height: 1; color: var(--color-text-muted);
+    cursor: pointer;
+  }
+  .gpop__close:hover { color: var(--color-text); background: var(--color-bg-hover); }
+  .gpop__close:focus-visible { outline: none; box-shadow: var(--shadow-focus); }
+
+  .gpop__logo { display: block; height: 48px; width: auto; margin-bottom: var(--space-5); }
+  .gpop__title { font: var(--text-h2); margin: 0 0 var(--space-3); }
+  .gpop__sub { font-weight: var(--font-weight-semibold); margin: 0 0 var(--space-3); }
+  .gpop__body { font: var(--text-small); color: var(--color-text-muted); margin-bottom: var(--space-6); }
+  .gpop__body p { margin: 0 0 var(--space-3); }
+  .gpop__body p:last-child { margin-bottom: 0; }
+  .gpop__actions { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+
+  @media (max-width: 560px) {
+    .gpop { padding: var(--space-6) var(--space-5) var(--space-5); }
+    .gpop__logo { height: 40px; }
+    .gpop__actions { flex-direction: column; }
+    .gpop__actions :global(.btn) { width: 100%; }
+  }
+</style>
+
+<script>
+  const dlg = document.querySelector<HTMLDialogElement>('[data-gpop]');
+  if (dlg && typeof dlg.showModal === 'function') {
+    const key = dlg.dataset.key || 'piano_popup';
+    const brand = dlg.dataset.brand || '';
+    const w = window as unknown as { dataLayer?: object[] };
+    const track = (action: string) => {
+      w.dataLayer = w.dataLayer || [];
+      w.dataLayer.push({ event: 'piano_popup', popup_brand: brand, popup_action: action });
+    };
+
+    // Bez funkčního localStorage (soukromý režim, blokovaná data) okno
+    // radši neukazujeme vůbec, jinak by vyskočilo na každé stránce.
+    let seen = true;
+    try { seen = localStorage.getItem(key) === '1'; } catch { /* necháme seen = true */ }
+
+    if (!seen) {
+      const close = (action: string) => {
+        if (dlg.open) dlg.close();
+        track(action);
+      };
+      dlg.querySelectorAll<HTMLElement>('[data-gpop-close]').forEach((el) => {
+        el.addEventListener('click', () => close(el.dataset.gpopClose || 'close'));
+      });
+      // Klik na pozadí (backdrop) = klik přímo na <dialog> mimo obsah.
+      dlg.addEventListener('click', (e) => {
+        if (e.target !== dlg) return;
+        const r = dlg.getBoundingClientRect();
+        const inside = e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom;
+        if (!inside) close('close');
+      });
+      // Esc zavře dialog sám, jen zaznamenáme akci.
+      dlg.addEventListener('cancel', () => track('close'));
+
+      // Cookiebot (přes GTM) má vlastní lištu souhlasu. showModal() by ji
+      // zablokoval, takže počkáme, až ji návštěvník odklikne.
+      const cookieBarVisible = () => {
+        const cb = document.getElementById('CybotCookiebotDialog');
+        return !!cb && cb.offsetParent !== null && getComputedStyle(cb).visibility !== 'hidden';
+      };
+      const open = () => {
+        if (cookieBarVisible()) { setTimeout(open, 1000); return; }
+        // Neotevírat přes otevřený mobilní drawer.
+        if (document.body.style.overflow === 'hidden') return;
+        try { localStorage.setItem(key, '1'); } catch { /* nic */ }
+        dlg.showModal();
+        track('view');
+      };
+      setTimeout(open, Number(dlg.dataset.delay) || 1500);
+    }
+  }
+</script>

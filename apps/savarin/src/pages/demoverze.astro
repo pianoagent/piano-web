@@ -11,7 +11,7 @@ import Breadcrumb from '@piano/ui/components/Breadcrumb.astro';
 import Hero from '@piano/ui/components/Hero.astro';
 import Heading from '@piano/ui/components/Heading.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
-import { savarinNav, savarinCta } from '../config/nav';
+import { savarinNav, savarinCta, savarinMobileCta, savarinFooter } from '../config/nav';
 
 // Přehled obsahu demoverze: zobrazí se vedle formuláře (proofs LeadFormu).
 const obsah = [
@@ -34,7 +34,7 @@ const schema = {
 <Base title="Demoverze systému zdarma | Savarin"
       description="Vyžádejte si bezplatnou demoverzi Savarin (pokladna, sklady a kalkulace, recepce). Vyplňte údaje a demoverzi vám zašleme e-mailem."
       schema={schema}>
-  <Header brand="Savarin" logoSrc="/logos/savarin_logo.svg" logoHeight="36px" homeHref="/" nav={savarinNav} cta={savarinCta} />
+  <Header brand="Savarin" logoSrc="/logos/savarin_by_piano.svg" logoHeight="44px" homeHref="/" nav={savarinNav} cta={savarinCta} mobileCta={savarinMobileCta} />
 
   <main>
 
@@ -55,5 +55,5 @@ const schema = {
 
   </main>
 
-  <Footer currentId="savarin" legal={[{ label: 'Ochrana osobních údajů', href: '/ochrana-udaju' }]} logoSrc="/logos/savarin_by_piano.svg" logoAlt="Savarin by Piano" parentNote={{ text: 'Savarin je součástí skupiny Piano', href: 'https://piano.cz' }} />
+  <Footer {...savarinFooter} />
 </Base>

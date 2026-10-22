@@ -18,7 +18,7 @@ import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
 import Img from '@piano/ui/components/Img.astro';
-import { savarinNav, savarinCta } from '../config/nav';
+import { savarinNav, savarinCta, savarinMobileCta, savarinFooter } from '../config/nav';
 import { savarinLeadProofs } from '../config/leadProofs';
 
 const verze = [
@@ -69,7 +69,7 @@ const schema = {
 <Base title="Pokladní systém pro PC i POS | Savarin"
       description="Pokladní systém Savarin pro restaurace, hotelové restaurace i samoobslužný provoz. Dotykové ovládání, otevřené účty, denní uzávěrky a odpis zboží ze skladu."
       schema={schema}>
-  <Header brand="Savarin" logoSrc="/logos/savarin_logo.svg" logoHeight="36px" homeHref="/" nav={savarinNav} cta={savarinCta} />
+  <Header brand="Savarin" logoSrc="/logos/savarin_by_piano.svg" logoHeight="44px" homeHref="/" nav={savarinNav} cta={savarinCta} mobileCta={savarinMobileCta} />
 
   <main>
 
@@ -125,7 +125,7 @@ const schema = {
 
   </main>
 
-  <Footer currentId="savarin" legal={[{ label: 'Ochrana osobních údajů', href: '/ochrana-udaju' }]} logoSrc="/logos/savarin_by_piano.svg" logoAlt="Savarin by Piano" parentNote={{ text: 'Savarin je součástí skupiny Piano', href: 'https://piano.cz' }} />
+  <Footer {...savarinFooter} />
 </Base>
 
 <style>
