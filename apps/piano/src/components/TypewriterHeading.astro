@@ -28,10 +28,14 @@ const { prefix, words, as = 'h1' } = Astro.props;
   /* Stejná velikost jako dřív u slidů hero, ať se kompozice nemění. */
   :global(.heading.heading--display.twh) { font-size: clamp(30px, 3.6vw, 46px); }
 
+  /* Psané slovo je akcent nadpisu, proto PP Eiko jako <em> v Heading (BRAND.md). */
   .tw {
     display: block;
     white-space: nowrap;
     color: var(--color-text-accent);
+    font-family: var(--font-serif);
+    font-weight: var(--font-weight-regular);
+    letter-spacing: var(--letter-spacing-normal);
   }
   .tw__cursor {
     display: inline-block;
