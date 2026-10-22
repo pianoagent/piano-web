@@ -131,9 +131,9 @@
   --btn-radius:    var(--radius-full);
   --btn-clip:      none;
 
-  /* Odkaz „Savarin je součástí skupiny Piano" v patičce: --color-primary (indigo)
-     měl na navy patičce kontrast 1,09:1. Světlá modrošedá má 6,95:1. */
-  --footer-parent-color: var(--color-secondary-gold);
+  /* Akcent patičky (odkaz „součástí skupiny Piano", hover odkazů): --color-primary
+     (indigo) měl na navy patičce kontrast 1,09:1. Světlá modrošedá má 6,95:1. */
+  --footer-accent: var(--color-secondary-gold);
 
   /* ----- Formulářová pole: také jemně zaoblená ----- */
   --field-radius: 8px;
