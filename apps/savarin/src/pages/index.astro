@@ -17,8 +17,7 @@ import Button from '@piano/ui/components/Button.astro';
 import Icon from '@piano/ui/components/Icon.astro';
 import USPGrid from '@piano/ui/components/USPGrid.astro';
 import LeadForm from '@piano/ui/components/LeadForm.astro';
-import LogoWall from '@piano/ui/components/LogoWall.astro';
-import { savarinNav, savarinCta } from '../config/nav';
+import { savarinNav, savarinCta, savarinMobileCta, savarinFooter } from '../config/nav';
 
 
 const moduly = [
@@ -47,7 +46,7 @@ const leadProofs = [
 
 <Base title="Restaurační a hotelový systém | Savarin"
       description="Savarin je modulární software pro stravovací a ubytovací provozy: pokladna, mobilní pokladna, recepce, sklady a kalkulace. Vývoj, dodávka a servis od roku 1990.">
-  <Header brand="Savarin" logoSrc="/logos/savarin_logo.svg" logoHeight="36px" homeHref="/" nav={savarinNav} cta={savarinCta} />
+  <Header brand="Savarin" logoSrc="/logos/savarin_by_piano.svg" logoHeight="44px" homeHref="/" nav={savarinNav} cta={savarinCta} mobileCta={savarinMobileCta} />
 
   <main>
 
@@ -60,35 +59,46 @@ const leadProofs = [
       <Button href="#poptavka">Nezávazná poptávka</Button>
       <Button href="#moduly" variant="secondary" onDark>Prohlédnout moduly</Button>
     </Fragment>
+    <!-- Placeholder: CSS pokladní terminál s ukázkou rozhraní. Později nahradit
+         reálnou fotkou / screenshotem (src/assets/images/pokladna-hlavni.webp ap.). -->
     <div slot="media" class="hero-mock" aria-hidden="true">
-      <div class="pos">
-        <div class="pos__bar"><span></span><span></span><span></span></div>
-        <div class="pos__body">
-          <div class="pos__tables">
-            <span class="pos__t pos__t--busy">1</span>
-            <span class="pos__t pos__t--busy">2</span>
-            <span class="pos__t">3</span>
-            <span class="pos__t pos__t--busy">4</span>
-            <span class="pos__t">5</span>
-            <span class="pos__t">6</span>
-          </div>
-          <div class="receipt">
-            <div class="receipt__head">Stůl 4: účet</div>
-            <ul class="receipt__lines">
-              <li><span>2× Svíčková</span><span>318</span></li>
-              <li><span>3× Pivo 0,5</span><span>165</span></li>
-              <li><span>1× Káva</span><span>49</span></li>
-            </ul>
-            <div class="receipt__total"><span>Celkem</span><span>532 Kč</span></div>
+      <div class="term">
+        <div class="term__screen">
+          <div class="pos">
+            <div class="pos__bar"><span class="pos__app">Savarin</span><span>Stůl 4</span><span>12:30</span></div>
+            <div class="pos__body">
+              <div class="pos__tables">
+                <span class="pos__t pos__t--busy">1</span>
+                <span class="pos__t pos__t--busy">2</span>
+                <span class="pos__t">3</span>
+                <span class="pos__t pos__t--busy pos__t--active">4</span>
+                <span class="pos__t">5</span>
+                <span class="pos__t">6</span>
+              </div>
+              <div class="receipt">
+                <div class="receipt__head">Stůl 4: účet</div>
+                <ul class="receipt__lines">
+                  <li><span>2× Svíčková</span><span>318</span></li>
+                  <li><span>3× Pivo 0,5</span><span>165</span></li>
+                  <li><span>1× Káva</span><span>49</span></li>
+                </ul>
+                <div class="receipt__total"><span>Celkem</span><span>532 Kč</span></div>
+                <div class="receipt__pay">Zaplatit</div>
+              </div>
+            </div>
           </div>
         </div>
+        <div class="term__neck"></div>
+        <div class="term__base"></div>
       </div>
     </div>
   </Hero>
 
-  <!-- LOGA KLIENTŮ -->
+  {/* LOGA KLIENTŮ: zatím skryté. Tyhle reference patří jiným pokladnám skupiny Piano,
+       ne Savarinu. Vrátit (import LogoWall + blok níž), až budou loga zákazníků Savarinu.
   <LogoWall background="default" label="Důvěřují nám restaurace a hotely po celé ČR"
     logos={['ref-field-michelin-restaurant', 'ref-cafe-savoy', 'ref-kolkovna', 'ref-sasazu', 'ref-O2-arena', 'ref-clarion-hotel', 'ref-zatisi-group', 'ref-420-restaurant', 'ref-pizza-coloseum', 'ref-entree', 'ref-100-chuti-brna', 'ref-sisters-bistro']} />
+  */}
 
   <!-- MODULY -->
   <USPGrid id="moduly" eyebrow="Moduly systému" title="Jeden systém, který pokryje celý provoz"
@@ -169,18 +179,42 @@ const leadProofs = [
 
   </main>
 
-  <Footer currentId="savarin" legal={[{ label: 'Ochrana osobních údajů', href: '/ochrana-udaju' }]} logoSrc="/logos/savarin_by_piano.svg" logoAlt="Savarin by Piano" parentNote={{ text: 'Savarin je součástí skupiny Piano', href: 'https://piano.cz' }} />
+  <Footer {...savarinFooter} />
 </Base>
 
 <style>
-  /* Hero placeholder: POS / účtenka */
+  /* Hero placeholder: pokladní terminál (displej + stojan) s ukázkou rozhraní */
   .hero-mock { width: 100%; display: flex; justify-content: center; }
-  .pos {
-    width: 100%; max-width: 420px; background: var(--color-bg);
-    border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); overflow: hidden;
+  .term { width: 100%; max-width: 460px; display: flex; flex-direction: column; align-items: center; }
+  .term__screen {
+    position: relative; width: 100%; padding: 14px;
+    background: linear-gradient(160deg, #2a3442 0%, #11161d 100%);
+    border-radius: 18px;
+    box-shadow: var(--shadow-lg), inset 0 0 0 1px rgba(255, 255, 255, 0.08);
   }
-  .pos__bar { display: flex; gap: 6px; padding: var(--space-3) var(--space-4); background: var(--color-neutral-100); }
-  .pos__bar span { width: 10px; height: 10px; border-radius: 50%; background: var(--color-border-strong); }
+  /* jemný odlesk přes sklo */
+  .term__screen::after {
+    content: ''; position: absolute; inset: 14px; border-radius: 6px; pointer-events: none;
+    background: linear-gradient(125deg, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0) 38%);
+  }
+  .term__neck {
+    width: 22%; height: 34px;
+    background: linear-gradient(90deg, #1b222c, #3a4554 50%, #1b222c);
+    clip-path: polygon(18% 0, 82% 0, 100% 100%, 0 100%);
+  }
+  .term__base {
+    width: 46%; height: 12px; border-radius: 6px 6px 10px 10px;
+    background: linear-gradient(180deg, #3a4554, #151b23);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+  }
+  .pos { background: var(--color-bg); border-radius: 6px; overflow: hidden; }
+  .pos__bar {
+    display: flex; gap: var(--space-4); align-items: center;
+    padding: var(--space-2) var(--space-4);
+    background: var(--color-neutral-900); color: rgba(255, 255, 255, 0.72);
+    font-size: 12px; font-weight: var(--font-weight-semibold);
+  }
+  .pos__app { color: #fff; margin-right: auto; }
   .pos__body { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); padding: var(--space-5); }
   .pos__tables { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-3); align-content: start; }
   .pos__t {
@@ -189,6 +223,7 @@ const leadProofs = [
     background: var(--color-bg-alt); color: var(--color-text-muted); border: 1px solid var(--color-border);
   }
   .pos__t--busy { background: var(--color-primary); color: #fff; border-color: var(--color-primary); }
+  .pos__t--active { box-shadow: 0 0 0 3px var(--color-bg), 0 0 0 5px var(--convert); }
   .receipt { background: var(--color-bg-alt); border-radius: var(--radius-md); padding: var(--space-4); font-size: var(--font-size-small); }
   .receipt__head { font-weight: var(--font-weight-bold); margin-bottom: var(--space-3); color: var(--color-text); }
   .receipt__lines { list-style: none; display: flex; flex-direction: column; gap: var(--space-2); }
@@ -198,7 +233,16 @@ const leadProofs = [
     padding-top: var(--space-3); border-top: 1px dashed var(--color-border-strong);
     font-weight: var(--font-weight-bold); color: var(--color-text);
   }
-  @media (max-width: 480px) { .pos__body { grid-template-columns: 1fr; } }
+  .receipt__pay {
+    margin-top: var(--space-3); padding: var(--space-2); text-align: center;
+    background: var(--convert); color: #fff; border-radius: var(--radius-full);
+    font-size: 12px; font-weight: var(--font-weight-bold); text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  @media (max-width: 480px) {
+    .term__screen { padding: 10px; border-radius: 14px; }
+    .term__screen::after { inset: 10px; }
+    .pos__body { padding: var(--space-4); gap: var(--space-3); }
+  }
 
   /* Sdílená hlavička sekce */
   .head { max-width: 760px; margin-inline: auto; margin-bottom: var(--space-7); }

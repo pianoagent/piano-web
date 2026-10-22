@@ -10,10 +10,10 @@ import Footer from '@piano/ui/components/Footer.astro';
 import Section from '@piano/ui/components/Section.astro';
 import Hero from '@piano/ui/components/Hero.astro';
 import Heading from '@piano/ui/components/Heading.astro';
-import { savarinNav, savarinCta } from '../config/nav';
+import { savarinNav, savarinCta, savarinMobileCta, savarinFooter } from '../config/nav';
 ---
 <Base title="Ochrana osobních údajů | Savarin" description="Zásady zpracování osobních údajů z kontaktního formuláře na webu Savarin. Správcem je ComInn, s.r.o., IČO 47906499." noindex>
-  <Header brand="Savarin" logoSrc="/logos/savarin_logo.svg" logoHeight="36px" homeHref="/" nav={savarinNav} cta={savarinCta} />
+  <Header brand="Savarin" logoSrc="/logos/savarin_by_piano.svg" logoHeight="44px" homeHref="/" nav={savarinNav} cta={savarinCta} mobileCta={savarinMobileCta} />
   <main>
     <Hero eyebrow="Právní informace" background="alt" space="md">
       <Heading slot="title" as="h1" size="h1">Ochrana osobních údajů</Heading>
@@ -35,7 +35,7 @@ import { savarinNav, savarinCta } from '../config/nav';
       </div>
     </Section>
   </main>
-  <Footer currentId="savarin" legal={[{ label: 'Ochrana osobních údajů', href: '/ochrana-udaju' }]} logoSrc="/logos/savarin_by_piano.svg" logoAlt="Savarin by Piano" parentNote={{ text: 'Savarin je součástí skupiny Piano', href: 'https://piano.cz' }} />
+  <Footer {...savarinFooter} />
 </Base>
 <style>
   .legal { max-width: 760px; }
