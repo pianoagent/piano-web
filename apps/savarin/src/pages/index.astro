@@ -61,9 +61,11 @@ const leadProofs = [
     </Fragment>
     <!-- Placeholder: CSS pokladní terminál s ukázkou rozhraní. Později nahradit
          reálnou fotkou / screenshotem (src/assets/images/pokladna-hlavni.webp ap.). -->
-    <div slot="media" class="hero-mock" aria-hidden="true">
+    <div slot="media" class="hero-mock">
       <div class="term">
-        <div class="term__screen">
+        <!-- Štítek EET 2.0: jediná čitelná informace v mockupu, proto mimo aria-hidden -->
+        <p class="eet-badge"><Icon name="lucide:check" size="sm" class="eet-badge__icon" />Připraveno na EET 2.0</p>
+        <div class="term__screen" aria-hidden="true">
           <div class="pos">
             <div class="pos__bar"><span class="pos__app">Savarin</span><span>Stůl 4</span><span>12:30</span></div>
             <div class="pos__body">
@@ -88,8 +90,8 @@ const leadProofs = [
             </div>
           </div>
         </div>
-        <div class="term__neck"></div>
-        <div class="term__base"></div>
+        <div class="term__neck" aria-hidden="true"></div>
+        <div class="term__base" aria-hidden="true"></div>
       </div>
     </div>
   </Hero>
@@ -185,7 +187,20 @@ const leadProofs = [
 <style>
   /* Hero placeholder: pokladní terminál (displej + stojan) s ukázkou rozhraní */
   .hero-mock { width: 100%; display: flex; justify-content: center; }
-  .term { width: 100%; max-width: 460px; display: flex; flex-direction: column; align-items: center; }
+  .term { position: relative; width: 100%; max-width: 460px; display: flex; flex-direction: column; align-items: center; }
+  /* Štítek EET 2.0: přes pravý horní roh displeje, ať je vidět hned */
+  .eet-badge {
+    position: absolute; z-index: 1; top: -20px; right: -16px;
+    display: inline-flex; align-items: center; gap: var(--space-2);
+    margin: 0; padding: var(--space-2) var(--space-4) var(--space-2) var(--space-2);
+    background: #fff; color: var(--color-text);
+    border-radius: var(--radius-full); box-shadow: var(--shadow-md);
+    font-size: 16px; font-weight: var(--font-weight-bold); white-space: nowrap;
+  }
+  .eet-badge :global(.eet-badge__icon) {
+    width: 28px; height: 28px; padding: 5px; border-radius: 50%;
+    background: var(--color-success); color: #fff;
+  }
   .term__screen {
     position: relative; width: 100%; padding: 14px;
     background: linear-gradient(160deg, #2a3442 0%, #11161d 100%);
@@ -239,6 +254,7 @@ const leadProofs = [
     font-size: 12px; font-weight: var(--font-weight-bold); text-transform: uppercase; letter-spacing: 0.06em;
   }
   @media (max-width: 480px) {
+    .eet-badge { top: -16px; right: -4px; font-size: 14px; }
     .term__screen { padding: 10px; border-radius: 14px; }
     .term__screen::after { inset: 10px; }
     .pos__body { padding: var(--space-4); gap: var(--space-3); }
