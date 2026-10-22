@@ -15,7 +15,9 @@ export default defineConfig({
     service: { entrypoint: 'astro/assets/services/sharp' },
   },
   integrations: [
-    sitemap(),
+    // Ze sitemapy ven stránky s noindex (dekujeme, ochrana-udaju, 404), jinak je
+    // Search Console hlásí jako „odeslaná URL označená jako noindex".
+    sitemap({ filter: (page) => !/\/(dekujeme|ochrana-udaju|404)\/?$/.test(page) }),
     icon({ iconDir: 'src/icons' }),
   ],
 });
