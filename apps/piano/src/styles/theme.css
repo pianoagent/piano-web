@@ -12,6 +12,13 @@
   src: url("/fonts/borna-regular-webfont.woff2") format("woff2");
   font-weight: 400; font-style: normal; font-display: swap;
 }
+/* Medium (500) nesou nadpisy (--text-display, --text-h1..h3). Bez tohohle řezu
+   prohlížeč 500 nahradil Regularem a nadpisy vypadaly slabě. */
+@font-face {
+  font-family: "Borna";
+  src: url("/fonts/borna-medium-webfont.woff2") format("woff2");
+  font-weight: 500; font-style: normal; font-display: swap;
+}
 @font-face {
   font-family: "Borna";
   src: url("/fonts/borna-semibold-webfont.woff2") format("woff2");
