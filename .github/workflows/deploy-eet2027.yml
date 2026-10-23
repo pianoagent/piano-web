@@ -46,6 +46,10 @@ jobs:
       - name: Build eet2027.cz
         run: npm run build:eet2027
 
+      # Bez GTM web nesmí jít live (scripts/check-gtm.mjs)
+      - name: Kontrola měření (GTM)
+        run: node scripts/check-gtm.mjs apps/eet2027/dist
+
       - name: Vygenerovat Ecomail config (API klíč ze secrets)
         env:
           ECOMAIL_API_KEY: ${{ secrets.ECOMAIL_API_KEY }}

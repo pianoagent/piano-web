@@ -2,6 +2,15 @@
 
 Obecné informace o repu (větve, nasazení, stack) jsou v `README.md`.
 
+## Měření: bez GTM web nesmí jít live
+
+Každá stránka každého webu načítá GTM kontejner `GTM-NC3PW2KC` (GA4, Cookiebot a další tagy jdou přes něj). Snippet patří do layoutu webu: skript do `<head>` hned za `<meta charset>`, noscript na začátek `<body>`. Vzor je `apps/piano/src/layouts/Base.astro`.
+
+- **Pojistka:** krok „Kontrola měření (GTM)" (`node scripts/check-gtm.mjs apps/<web>/dist`) běží v každém `deploy-<web>.yml` mezi buildem a FTP. Když některé stránce GTM chybí, deploy spadne. Čistě přesměrovací stránky (meta refresh, `location.replace`) přeskakuje.
+- **Nový deploy workflow ten krok musí mít.** Stejně tak web, který se přepíná na produkční doménu přes Cloudflare (Cloudflare build kontrolu nespouští, ověř ji ručně stejným příkazem).
+- Stránka mimo layout (vlastní `<html>`) potřebuje GTM taky, pokud nejde o čisté přesměrování.
+- Poučení: nový pecosta.cz (26. 9. 2026) a grason.cz (8. 10. 2026) šly live bez GTM a GA4 je týdny skoro neviděla.
+
 ## Obrázky: vždy přes `Img.astro`
 
 Rastrové obrázky (webp/jpg/png) se optimalizují při buildu na AVIF + WebP se srcsetem. Aby to fungovalo, drž se tohoto:
