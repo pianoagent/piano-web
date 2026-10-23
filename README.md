@@ -24,6 +24,8 @@ Nasazení není pro všechny weby stejné, pozor na to.
 | `protel`, `qerko`, `septim`, `harsys` | vlastní domény | Cloudflare Pages napojený na git |
 | `hugo` | zatím nikde | kopie živého hugopos.eu 1:1 (stránky generuje `weby/podklady-migrace/port-hugo.py`); `site` i `wrangler.jsonc` už existují, ale web se nepublikuje. Živý Hugo běží na hugopos.eu / hugopos.cz mimo tohle repo (generuje ho Hugo tým) |
 
+Každý deploy workflow má po buildu krok **Kontrola měření (GTM)**, který deploy zastaví, když stránce chybí GTM `GTM-NC3PW2KC`. Bez GTM web nesmí jít live (detail v `CLAUDE.md`).
+
 **Piano, eet2027, pecosta, grason a savarin tedy na produkci nejedou přes Cloudflare.** Všech pět workflow spouští push do `main`, ale jsou **path filtrované** (`apps/<app>/**`, `packages/**`, `package*.json`, vlastní soubor workflow), takže merge, který sáhne jen na README, nenasadí nic. Všechny jdou spustit i ručně přes `workflow_dispatch`.
 
 ## Kde si změnu prohlédnout

@@ -46,6 +46,10 @@ jobs:
       - name: Build pecosta.cz
         run: npm run build:pecosta
 
+      # Bez GTM web nesmí jít live (scripts/check-gtm.mjs)
+      - name: Kontrola měření (GTM)
+        run: node scripts/check-gtm.mjs apps/pecosta/dist
+
       - name: Deploy to FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:

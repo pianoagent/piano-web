@@ -46,6 +46,10 @@ jobs:
       - name: Build savarin.cz
         run: npm run build:savarin
 
+      # Bez GTM web nesmí jít live (scripts/check-gtm.mjs)
+      - name: Kontrola měření (GTM)
+        run: node scripts/check-gtm.mjs apps/savarin/dist
+
       - name: Deploy to FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
