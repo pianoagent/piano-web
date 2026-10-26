@@ -79,22 +79,26 @@ const schema = {
 
     <div class="tables">
       <div class="tbl">
-        <h3 class="tbl__title">Odkup SW: sleva podle doby užívání</h3>
+        <h3 class="tbl__title">Odkup SW podle doby užívání</h3>
+        <div class="tbl__body">
         <table>
           <tbody>
             {odkup.map(([a, b]) => (<tr><td>{a}</td><td>{b}</td></tr>))}
           </tbody>
         </table>
         <p class="tbl__note">Vždy poměrně podle doby užívání.</p>
+        </div>
       </div>
       <div class="tbl">
         <h3 class="tbl__title">Multilicenční slevy: více instalací</h3>
+        <div class="tbl__body">
         <table>
           <tbody>
             {multilicence.map(([a, b]) => (<tr><td>{a}</td><td>{b}</td></tr>))}
           </tbody>
         </table>
         <p class="tbl__note">Sleva z ceny programů při objednávce více instalací systému.</p>
+        </div>
       </div>
     </div>
   </Section>
@@ -118,7 +122,11 @@ const schema = {
   .form-card__icon { display: inline-flex; color: var(--color-text-accent); }
 
   .tables { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-6); max-width: 900px; margin: var(--space-7) auto 0; }
-  .tbl__title { font-size: var(--font-size-h3); font-weight: var(--font-weight-semibold); margin-bottom: var(--space-3); }
+  /* Nadpis, tabulka a poznámka sdílejí řádky mřížky (subgrid), takže tabulky
+     začínají ve stejné výšce, i když se jeden nadpis zalomí na dva řádky. */
+  .tbl { display: grid; grid-row: span 2; grid-template-rows: subgrid; row-gap: 0; }
+  .tbl__title { font-size: var(--font-size-h3); font-weight: var(--font-weight-semibold); line-height: var(--line-height-snug, 1.25); margin-bottom: var(--space-3); align-self: end; }
+  .tbl__body { align-self: start; }
   .tbl table { width: 100%; border-collapse: collapse; }
   .tbl td { padding: var(--space-3) var(--space-4); border-bottom: 1px solid var(--color-border); }
   .tbl tr td:last-child { text-align: right; font-weight: var(--font-weight-bold); color: var(--color-secondary); white-space: nowrap; }
