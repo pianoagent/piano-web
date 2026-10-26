@@ -1,10 +1,11 @@
 ---
 // https://www.septim.cz/produkty/objednavkove-systemy (Solid Pixels), port 1:1 skriptem port-septim.py
-import DomluvitUkazku from '../../components/blocks/DomluvitUkazku.astro';
 import Base from '../../layouts/Base.astro';
+import BlokKolikZaplatim_ff1b from '../../components/blocks/BlokKolikZaplatim_ff1b.astro';
 import Mezera_4b78 from '../../components/blocks/Mezera_4b78.astro';
 import Blok30Let_9e65 from '../../components/blocks/Blok30Let_9e65.astro';
 import Mezera_fd86 from '../../components/blocks/Mezera_fd86.astro';
+import KontaktniFormular from '../../components/blocks/KontaktniFormular.astro';
 import Novinky from '../../components/blocks/Novinky.astro';
 ---
 <Base
@@ -32,6 +33,7 @@ import Novinky from '../../components/blocks/Novinky.astro';
 <div class="section height--normal align--middle color--default no-pb section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Respektované provozy, které využívají objednávkové systémy v systému Septim<span class="text-highlight">.</span></h2>
 </div></div></div>
 <div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-gallery grid-sm-2"><div><div><div><div class="grid gallery-container" style="--gap:40px"><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Kolkovna" decoding="async" loading="lazy" src="/files/ref-kolkovna.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Perfect Canteen" decoding="async" loading="lazy" src="/files/ref-perfect-canteen.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Pizza Coloseum" decoding="async" loading="lazy" src="/files/ref-pizza-coloseum.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Turnovská pivnice" decoding="async" loading="lazy" src="/files/ref-turnovska-pivnice.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Potrefená husa" decoding="async" loading="lazy" src="/files/ref-potrefena-husa.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><a class="image image-mask ratio-square image-width-stretch" href="/chci-septim"><img alt="Vaše logo" decoding="async" loading="lazy" src="/files/ref-vase.svg"/></a></div></div></div></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(240, 252, 255)"></div></div>
+<BlokKolikZaplatim_ff1b />
 <div class="section height--low align--middle color--default" id="pres-mobilni-telefon"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div><div><div><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div></div></div>
 <div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Jak fungují objednávkové systémy Septim<span class="text-highlight">.</span></h2>
 <p class="center">Funkce objednávkových systémů je v restauraci různá podle typu.</p>
@@ -68,6 +70,6 @@ import Novinky from '../../components/blocks/Novinky.astro';
 </div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
 <Blok30Let_9e65 />
 <Mezera_fd86 />
-<DomluvitUkazku />
+<KontaktniFormular />
 <Novinky />
 </Base>

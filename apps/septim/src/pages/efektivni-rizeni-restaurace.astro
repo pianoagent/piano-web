@@ -1,7 +1,7 @@
 ---
 // https://www.septim.cz/efektivni-rizeni-restaurace (Solid Pixels), port 1:1 skriptem port-septim.py
-import DomluvitUkazku from './../components/blocks/DomluvitUkazku.astro';
 import Base from './../layouts/Base.astro';
+import BlokKolikZaplatim_ff1b from './../components/blocks/BlokKolikZaplatim_ff1b.astro';
 import Blok30Let_9e65 from './../components/blocks/Blok30Let_9e65.astro';
 ---
 <Base
@@ -17,6 +17,7 @@ Na míru skvělým provozům<span class="text-highlight">.</span></h1>
 <div class="row-main"><div class="col col-2-12 grid-10-12"><div class="block block-inline"><p class="center text-large">Chceme podnikům v gastro segmentu zefektivnit podnikání. Proto pro ně vyvíjíme <a href="/pokladni-provozni-system-pro-restaurace">komplexní a moderní systém</a>, včetně <a href="/produkty/manazer">manažerské aplikace</a>. Jsme partnerem pro každého, kdo chce svou restauraci řídit efektivně. Pro všechny, kteří chtějí svým hostům připravit opravdu skvělý zážitek.</p>
 </div></div></div>
 <div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image no-pb"><div><div><div><div class="image image-mask ratio-original" style="padding-bottom:60.416666666666664%"><img alt="" decoding="async" sizes="(min-width:972px) 972px, (min-width:720px) 100.00vw, 100.00vw" src="/files/r/1280/chef-septim-light.webp" srcset="/files/r/720/chef-septim-light.webp 720w, /files/r/1280/chef-septim-light.webp 1280w, /files/r/1920/chef-septim-light.webp 1920w" width="1200" height="725"/></div></div></div></div></div></div></div></div></div>
+<BlokKolikZaplatim_ff1b />
 <div class="section height--low align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image offset-top no-edge-mobile block-image--light-blue mobile-order-reverse"><div><div><div><div class="flexcard flexcard-card flexcard-size--normal flexcard-media-right valign-center align-left flexcard-media--stretch"><div class="flexcard-media"><div class="image-wrapper"><a class="image image-mask ratio-original" href="/produkty/myseptim" style="padding-bottom:55.55555555555556%"><img alt="Celý Váš provoz po ruce. Odkudkoli!" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/banner-hp-myseptim.webp" srcset="/files/r/720/banner-hp-myseptim.webp 720w, /files/r/1280/banner-hp-myseptim.webp 1280w, /files/r/1920/banner-hp-myseptim.webp 1920w" width="1280" height="711"/></a></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2>Celý Váš provoz po ruce<span class="text-highlight">. Odkudkoli!</span></h2>
 <p>MySeptim je speciálně navržená aplikace pro majitele, manažery a provozní restauračních zařízení využívajících restaurační systém Septim. Poskytuje rychlý, přehledný a efektivní přístup k nejdůležitějším provozním ukazatelům. Díky přímému propojení s databází systému Septim máte veškerá klíčová data svého provozu vždy po ruce a odkudkoliv!</p>
 </div><div class="image-btn"><a class="btn btn-primary" href="/produkty/myseptim"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">Více o MySeptim</span></a></div></div></div></div></div></div></div></div></div></div></div></div>
@@ -51,5 +52,65 @@ Na míru skvělým provozům<span class="text-highlight">.</span></h1>
 <p>Milujete gastro a máte vztah k technologiím a IT? Kariéra v Septimu Vás zavede k jednomu z nejrespektovanějších dodavatelů softwaru restauracím v České republice a na Slovensku.</p>
 </div><div class="image-btn"><a class="btn btn-primary" href="/kariera"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">Více o kariéře v Septimu</span></a></div></div></div></div></div></div></div></div></div></div></div></div>
 <div class="section height--low align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div><div><div><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div></div></div></div></div>
-<DomluvitUkazku />
+<div class="section height--normal align--middle color--default section-width-narrow section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Máte dotaz? Napište nám<span class="text-highlight">.</span></h2>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:30px"></div></div></div></div>
+<div class="row-main"><div class="col col-4-12 grid-6-12">
+<form action="/api/lead.php" autocomplete="off" class="block block-form" data-lead-form="formular-field_form_2_4_0_0" id="formular-field_form_2_4_0_0" method="post">
+<div class="row">
+<div class="col col-1-12 grid-12-12">
+<div class="field field-form_input_email" id="field-wrapper-email">
+<div class="field-wrapper">
+<label for="field-email" id="label-email">
+            E-mail <span>*</span>
+</label>
+<input class="field-control" id="field-email" name="formular-field_form_2_4_0_0[email]" required="" type="email" value=""/>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col col-1-12 grid-12-12">
+<div class="field field-form_input_tel" id="field-wrapper-phone">
+<div class="field-wrapper">
+<label for="field-phone" id="label-phone">
+            Telefon
+          </label>
+<input class="field-control" id="field-phone" name="formular-field_form_2_4_0_0[phone]" type="tel" value=""/>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col col-1-12 grid-12-12">
+<div class="field field-form_textarea" id="field-wrapper-vase-zprava">
+<div class="field-wrapper">
+<label for="field-vase-zprava" id="label-vase-zprava">
+            Vaše zpráva
+          </label>
+<textarea class="field-control" id="field-vase-zprava" name="formular-field_form_2_4_0_0[vase-zprava]"></textarea>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col col-1-12 grid-12-12">
+<div class="block block-inline"><p>Vaše osobní údaje budou zpracovány podle <a href="/informace-o-zpracovani-osobnich-udaju-formular">Podmínek zpracování osobních údajů</a>.</p>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col col-1-12 grid-12-12">
+<div class="field field-form_button" id="field-wrapper-field_form_2_4_0_0">
+<div class="field-wrapper">
+<div class="center">
+<button class="btn btn-a btn-primary" id="field-field_form_2_4_0_0" name="formular-field_form_2_4_0_0[field_form_2_4_0_0]" type="submit" value="submit"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">Odeslat</span></button>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<input name="form_variant" type="hidden" value="formular-field_form_2_4_0_0"/><input name="page" type="hidden" value=""/><div aria-hidden="true" class="visually-hidden"><label>Web <input autocomplete="off" name="website" tabindex="-1" type="text"/></label></div></form>
+</div></div></div><div class="section-background" style="background-color:rgb(235, 252, 255)"></div></div>
 </Base>

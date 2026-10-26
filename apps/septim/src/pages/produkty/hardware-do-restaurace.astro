@@ -1,10 +1,11 @@
 ---
 // https://www.septim.cz/produkty/hardware-do-restaurace (Solid Pixels), port 1:1 skriptem port-septim.py
-import DomluvitUkazku from '../../components/blocks/DomluvitUkazku.astro';
 import Base from '../../layouts/Base.astro';
+import BlokKolikZaplatim_ff1b from '../../components/blocks/BlokKolikZaplatim_ff1b.astro';
 import Mezera_fd60 from '../../components/blocks/Mezera_fd60.astro';
 import Blok30Let_9e65 from '../../components/blocks/Blok30Let_9e65.astro';
 import Mezera_bb6d from '../../components/blocks/Mezera_bb6d.astro';
+import KontaktniFormular from '../../components/blocks/KontaktniFormular.astro';
 import Novinky from '../../components/blocks/Novinky.astro';
 ---
 <Base
@@ -25,6 +26,7 @@ import Novinky from '../../components/blocks/Novinky.astro';
 <div class="section height--normal align--middle color--default no-pb section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Respektované provozy, které využívají náš hardware v systému Septim<span class="text-highlight">.</span></h2>
 </div></div></div>
 <div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-gallery grid-sm-2"><div><div><div class="grid gallery-container" style="--gap:40px"><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Field" decoding="async" loading="lazy" src="/files/ref-field.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Ambiente" decoding="async" loading="lazy" src="/files/ref-ambiente.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo O2 arena" decoding="async" loading="lazy" src="/files/ref-02-arena.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Kolkovna" decoding="async" loading="lazy" src="/files/ref-kolkovna.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Zátiší Group" decoding="async" loading="lazy" src="/files/ref-zatisi-group.svg"/></div></div></div><div class="gallery-item grid-col-6"><div class="image-wrapper"><a class="image image-mask ratio-square image-width-stretch" href="/chci-septim"><img alt="Vaše logo" decoding="async" loading="lazy" src="/files/ref-vase.svg"/></a></div></div></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(240, 252, 255)"></div></div>
+<BlokKolikZaplatim_ff1b />
 <div class="section height--low align--middle color--default" id="pro-septim"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div><div><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div></div>
 <div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Hardware do restaurace Septim<span class="text-highlight">.</span></h2>
 </div></div></div>
@@ -116,6 +118,6 @@ import Novinky from '../../components/blocks/Novinky.astro';
 </div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
 <Blok30Let_9e65 />
 <Mezera_bb6d />
-<DomluvitUkazku />
+<KontaktniFormular />
 <Novinky />
 </Base>

@@ -1,11 +1,12 @@
 ---
 // https://www.septim.cz/partneri/protel (Solid Pixels), port 1:1 skriptem port-septim.py
-import DomluvitUkazku from '../../components/blocks/DomluvitUkazku.astro';
 import Base from '../../layouts/Base.astro';
+import BlokKolikZaplatim_ff1b from '../../components/blocks/BlokKolikZaplatim_ff1b.astro';
 import BlokDokonalyPrehledVMobilni_ffbc from '../../components/blocks/BlokDokonalyPrehledVMobilni_ffbc.astro';
 import Mezera_fd60 from '../../components/blocks/Mezera_fd60.astro';
 import Blok30Let_9e65 from '../../components/blocks/Blok30Let_9e65.astro';
 import Mezera_bb6d from '../../components/blocks/Mezera_bb6d.astro';
+import KontaktniFormular from '../../components/blocks/KontaktniFormular.astro';
 import Novinky from '../../components/blocks/Novinky.astro';
 ---
 <Base
@@ -25,6 +26,7 @@ import Novinky from '../../components/blocks/Novinky.astro';
 <div class="section height--normal align--middle color--default no-pb section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Respektované provozy, které využívají služby partnera Protel<span class="text-highlight">.</span></h2>
 </div></div></div>
 <div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-gallery grid-sm-2"><div><div><div class="grid gallery-container" style="--gap:75px"><div class="gallery-item grid-col-5"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Clarion Hotel" decoding="async" loading="lazy" src="/files/ref-clarion-hotel.svg"/></div></div></div><div class="gallery-item grid-col-5"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Old Town Hotels" decoding="async" loading="lazy" src="/files/ref-old-town-hotels.svg"/></div></div></div><div class="gallery-item grid-col-5"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Mamaison" decoding="async" loading="lazy" src="/files/ref-mamaison.svg"/></div></div></div><div class="gallery-item grid-col-5"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Vista" decoding="async" loading="lazy" src="/files/ref-vista.svg"/></div></div></div><div class="gallery-item grid-col-5"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt="Logo Buddha-Bar" decoding="async" loading="lazy" src="/files/ref-buddha-bar.svg"/></div></div></div></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(240, 252, 255)"></div></div>
+<BlokKolikZaplatim_ff1b />
 <BlokDokonalyPrehledVMobilni_ffbc />
 <div class="section height--low align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image block-image--3-1"><div><div><div class="flexcard flexcard-card flexcard-size--normal flexcard-media-left valign-middle align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Jaké jsou výhody spolupráce Septim a Protel" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/protel-vyhody.webp" srcset="/files/r/720/protel-vyhody.webp 720w, /files/r/1280/protel-vyhody.webp 1280w, /files/r/1920/protel-vyhody.webp 1920w" width="800" height="800"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h3 class="text-large">Jaké jsou výhody spolupráce Septim a Protel<span class="text-highlight">.</span></h3>
 <ul>
@@ -49,6 +51,6 @@ import Novinky from '../../components/blocks/Novinky.astro';
 </div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
 <Blok30Let_9e65 />
 <Mezera_bb6d />
-<DomluvitUkazku />
+<KontaktniFormular />
 <Novinky />
 </Base>
