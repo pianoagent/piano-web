@@ -1,15 +1,15 @@
-# Savarin — restaurační a hotelový systém
+# Savarin: pokladní systém pro restaurace a kavárny
 
-> Savarin je modulární software pro stravovací a ubytovací provozy. Vyvíjí, dodává a servisuje ho firma ComInn s.r.o. (Zlín) od roku 1990. Systém lze provozovat na samostatném PC i v síti s automatickými datovými přenosy mezi moduly.
+> Savarin je modulární software pro stravovací a ubytovací provozy. Vyvíjí, dodává a servisuje ho firma ComInn s.r.o. (Zlín) od roku 1990. Základem systému je Pokladna, na kterou lze kdykoli připojit Mobilního číšníka, Sklady a kalkulace a Recepci. Moduly si v síti automaticky předávají data. Software je připravený na EET 2.0.
 
 ## Pokladna
 
-Pokladní systém pracující na standardním PC s programovatelnou klávesnicí i na specializovaných POS s integrovanou klávesnicí; ovládat lze i přes dotykový display. Certifikovaný pro prodej na Slovensku (provoz PC/POS s fiskálním modulem) a připravený na povinné pokladní systémy v ČR.
+Pokladní systém pracující na standardním PC s programovatelnou klávesnicí i na specializovaných POS s dotykovým displejem. Připravený na EET 2.0.
 
 Verze nasazení:
-- Restaurační — účtování na stoly, vedení otevřených účtů.
-- Hotelová — spolupráce s modulem Recepce, „právo účtu“ pro připisování útraty ubytovaného hosta.
-- Samoobslužná — jídelny, stravovací linky, bufety a maloobchod; okamžité vystavení účtenky.
+- Restaurační: účtování na stoly, vedení otevřených účtů.
+- Hotelová: spolupráce s modulem Recepce, „právo účtu“ pro připisování útraty ubytovaného hosta.
+- Samoobslužná: jídelny, stravovací linky, bufety a maloobchod; okamžité vystavení účtenky.
 
 Odkaz: https://savarin.cz/pokladna
 
@@ -17,25 +17,33 @@ Odkaz: https://savarin.cz/pokladna
 
 Přenese objednávání a vyúčtování přímo ke stolu. Příjem objednávek i v off-line režimu, storna, přesun položek mezi účty, úhrada s volbou druhu platby a převodem na účet hosta v Recepci. Odkaz: https://savarin.cz/mobilni-pokladna
 
-## Pokladní komponenty
+## Sklady a kalkulace
 
-PC POS ET-700 Gladius, dotykové monitory ELO, termální tiskárna EPSON TM-T20, jehličková EPSON TM-U220, programovatelné klávesnice PCU a Tipro, mobilní zařízení Android. Odkaz: https://savarin.cz/pokladni-komponenty
+Kompletní skladová evidence, kalkulace výroby, příprava ceníků pro pokladní systém a automatické online odpisy prodeje z pokladen. Evidence tržeb, inventury, deníky středisek, kalkulace jídel se státními normami teplé kuchyně. Generuje podklady pro podvojné účetnictví (textový i databázový export). Odkaz: https://savarin.cz/sklady-a-kalkulace
 
 ## Recepce
 
-Komplexní agenda recepce: rezervace pokojů, středisek i služeb (jednotlivci i skupiny), ubytování, práce s účty, směnárna, statistické výkazy (domovní kniha, ubytovaní cizinci), řízení úklidu pokojů. Vazba na HRMTZ (odpis prodaného zboží) a modul SledujTU (zaúčtování telefonních hovorů). Odkaz: https://savarin.cz/recepce
+Komplexní agenda recepce: rezervace pokojů, středisek i služeb (jednotlivci i skupiny), ubytování, práce s účty, směnárna, statistické výkazy (domovní kniha, ubytovaní cizinci), řízení úklidu pokojů. Napojení na Sklady a kalkulace (odpis prodaného zboží) a modul SledujTU (zaúčtování telefonních hovorů). Odkaz: https://savarin.cz/recepce
 
-## Sklady a kalkulace (HRMTZ + HRKALKUL)
+## Pokladní komponenty
 
-Jádro systému: skladové hospodářství až 99 středisek, evidence tržeb, inventury, deníky středisek, kalkulace jídel se státními normami teplé kuchyně a komunikace s pokladnami. Generuje podklady pro podvojné účetnictví (textový i databázový export). Odkaz: https://savarin.cz/sklady-a-kalkulace
+POS terminály a dotykové monitory (PC POS ET-700 Gladius, monitory ELO), tiskárny (termální EPSON TM-T20, jehličková EPSON TM-U220), čtečky EAN a QR kódů, čtečky čipových karet, zákaznické displeje, programovatelné klávesnice PCU a Tipro, mobilní zařízení Android. Odkaz: https://savarin.cz/pokladni-komponenty
 
-## Služby a servis
+## Technické předpoklady
 
-Garance servisního zásahu do 24 hodin a hotline 24/7 pro smluvní zákazníky, školení a nové verze programů. Formy prodeje: přímý prodej, splátkový prodej a pronájem (měsíční nájem 4 % z ceny SW) s možností odkupu a multilicenčními slevami. Bezplatná demoverze. Odkazy: https://savarin.cz/servis · https://savarin.cz/cenik · https://savarin.cz/demoverze
+Windows 11 je plně garantovaný systém, na kterém se Savarin testuje. Na starších verzích Windows není plně funkční provoz garantovaný. Procesor kompatibilní s Windows 11 (doporučeno J6412 a výkonnější), paměť min. 4 GB (u větších instalací 8 GB), rozlišení min. 1366×768, pro Sklady a Recepci doporučeno 1920×1080. Odkaz: https://savarin.cz/technicke-predpoklady
+
+## Služby, servis a financování
+
+Garance servisního zásahu do 24 hodin a hotline 24/7 pro smluvní zákazníky, živý technik na telefonu, školení a nové verze programů minimálně 4× ročně. Formy prodeje: přímý a splátkový prodej, nebo platba za užívání (měsíčně 4 % z ceny SW) s možností odkupu a multilicenčními slevami. Bezplatná demoverze. Odkazy: https://savarin.cz/servis · https://savarin.cz/cenik · https://savarin.cz/demoverze
+
+## Aktuálně
+
+Novinky a nové verze: https://savarin.cz/aktualne
 
 ## Kontakt
 
-ComInn, s.r.o., Fügnerovo nábřeží 5476, 760 01 Zlín. IČO 47906499, DIČ CZ47906499. Telefon 577 925 145, e-mail obchod@cominn.cz. Odkaz: https://savarin.cz/kontakt
+ComInn, s.r.o., Fügnerovo nábřeží 5476, 760 01 Zlín. IČO 47906499, DIČ CZ47906499. Telefon 577 925 145, e-mail obchod@savarin.cz. Odkaz: https://savarin.cz/kontakt
 
 ## Odkazy
 

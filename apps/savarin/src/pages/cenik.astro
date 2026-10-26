@@ -1,6 +1,6 @@
 ---
 /**
- * Savarin: Ceník, pronájem a slevy. Obsah z legacy stránky
+ * Savarin: Ceník, formy prodeje a slevy. Obsah z legacy stránky
  * formy-prodeje-multilicencni-slevy. Sdílené komponenty @piano/ui.
  */
 import Base from '../layouts/Base.astro';
@@ -42,8 +42,8 @@ const schema = {
 };
 ---
 
-<Base title="Ceník pokladního systému: prodej i pronájem | Savarin"
-      description="Kolik stojí pokladní systém Savarin: přímý i splátkový prodej, pronájem softwaru s možností odkupu a multilicenční slevy. Pošlete poptávku, připravíme nabídku."
+<Base title="Ceník pokladny: prodej i platba za užívání | Savarin"
+      description="Kolik stojí pokladní systém Savarin: přímý i splátkový prodej, platba za užívání s možností odkupu a multilicenční slevy. Pošlete poptávku, připravíme nabídku."
       schema={schema}>
   <Header brand="Savarin" logoSrc="/logos/savarin_by_piano.svg" logoHeight="44px" homeHref="/" nav={savarinNav} cta={savarinCta} mobileCta={savarinMobileCta} />
 
@@ -52,8 +52,8 @@ const schema = {
   <Breadcrumb items={[{ label: 'Domů', href: '/' }, { label: 'Ceník' }]} />
 
   <Hero eyebrow="Ceník a formy prodeje" background="gradient"
-        lead="Systém je modulární, proto je cena závislá na konfiguraci (počet pokladen, pokojů, způsob komunikace s ústřednou). Cenovou nabídku zašleme na vyžádání podle vaší specifikace.">
-    <Heading slot="title" as="h1" size="display" color="on-dark">Přímý prodej, splátky, nebo <span class="accent">pronájem</span></Heading>
+        lead="Systém je modulární, proto je cena závislá na konfiguraci (základní parametry: počet pokladen, mobilních číšníků, rozsah vedení skladové evidence, u recepce počet pokojů). Cenovou nabídku zašleme na vyžádání podle vaší specifikace.">
+    <Heading slot="title" as="h1" size="display" color="on-dark">Přímý prodej nebo <span class="accent">platba za užívání</span></Heading>
     <Fragment slot="actions">
       <Button href="#poptavka">Chci cenovou nabídku</Button>
       <Button href="/demoverze" variant="secondary" onDark>Demoverze zdarma</Button>
@@ -69,23 +69,23 @@ const schema = {
       </article>
       <article class="form-card">
         <span class="form-card__icon"><Icon name="lucide:key-round" size="md" /></span>
-        <Heading as="h2" size="h3">Pronájem</Heading>
+        <Heading as="h2" size="h3">Platba za užívání</Heading>
         <Text size="small" color="muted">
-          Měsíční nájem činí 4 % z ceny SW (2 % nájemné + 2 % paušál za služby). Před instalací hradíte alespoň první tři nájmy.
-          U provozoven v nájmu eliminujete riziko nevyužitého systému po skončení nájmu.
+          Měsíční platba za užívání činí 4 % z ceny SW (2 % za užívání + 2 % paušál za služby). Před instalací hradíte alespoň první tři měsíční platby.
+          Pokud máte provozovnu v nájmu, nehrozí vám po jeho skončení nevyužitý systém.
         </Text>
       </article>
     </div>
 
     <div class="tables">
       <div class="tbl">
-        <h3 class="tbl__title">Odkup pronajatého SW: sleva dle doby pronájmu</h3>
+        <h3 class="tbl__title">Odkup SW: sleva podle doby užívání</h3>
         <table>
           <tbody>
             {odkup.map(([a, b]) => (<tr><td>{a}</td><td>{b}</td></tr>))}
           </tbody>
         </table>
-        <p class="tbl__note">Vždy poměrným způsobem dle trvání nájmu.</p>
+        <p class="tbl__note">Vždy poměrně podle doby užívání.</p>
       </div>
       <div class="tbl">
         <h3 class="tbl__title">Multilicenční slevy: více instalací</h3>

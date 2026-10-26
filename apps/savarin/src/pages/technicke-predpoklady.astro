@@ -18,9 +18,9 @@ import { savarinNav, savarinCta, savarinMobileCta, savarinFooter } from '../conf
 import { savarinLeadProofs } from '../config/leadProofs';
 
 const bloky = [
-  { icon: 'lucide:cpu', title: 'Počítač / POS', items: ['Procesor kompatibilní s Windows 10/11 (od Pentium 1.6 GHz)', 'Paměť min. 4 GB RAM', 'Pevný disk min. 30 GB volného místa, doporučujeme SSD'] },
-  { icon: 'lucide:monitor', title: 'Monitor a ovládání', items: ['Rozlišení 1024×768 a vyšší (lépe 1366×768)', 'Doporučen dotykový display (TouchScreen)', 'Případně programovatelná restaurační klávesnice'] },
-  { icon: 'lucide:app-window', title: 'Operační systém', items: ['Windows 10 nebo 11: jediný podporovaný OS pro nové instalace', 'WIN7 jen s výhradami; XP je už velké riziko', 'Modul Recepce lze provozovat na WIN7 i WIN10'] },
+  { icon: 'lucide:cpu', title: 'Počítač / POS', items: ['Procesor kompatibilní s Windows 11 (doporučujeme J6412 a výkonnější)', 'Paměť min. 4 GB, u větších instalací 8 GB', 'Pevný disk min. 30 GB volného místa, doporučujeme SSD'] },
+  { icon: 'lucide:monitor', title: 'Monitor a ovládání', items: ['Rozlišení minimálně 1366×768', 'Pro Sklady a Recepci doporučujeme monitor s rozlišením 1920×1080', 'Doporučen dotykový display (TouchScreen)', 'Případně programovatelná restaurační klávesnice'] },
+  { icon: 'lucide:app-window', title: 'Operační systém', items: ['Windows 11: plně garantovaný systém, na kterém Savarin kompletně testujeme', 'Na starších verzích Windows negarantujeme plně funkční provoz systému'] },
   { icon: 'lucide:printer', title: 'Tiskárny', items: ['Kancelář/sklad/recepce: libovolná tiskárna A4 (laser levnější provoz)', 'Pokladna pásková: jehličková (levná, hlučnější) nebo termální (tišší, rychlejší, kvalitnější)', 'Šířka tisku min. 40 znaků na řádek, české znaky'] },
   { icon: 'lucide:battery-charging', title: 'Záložní zdroj (UPS)', items: ['Cca 10–20 minut provozu po výpadku proudu', 'Zabrání ztrátě dat a umožní dotisk či uzavření otevřených účtů'] },
   { icon: 'lucide:network', title: 'Síť', items: ['Pro více počítačů doporučujeme samostatný server (Linux nebo Windows)', 'Menší propojení (sklad–kasa, sklad–kasa–recepce) zvládne síť Windows'] },
@@ -41,7 +41,7 @@ const schema = {
 ---
 
 <Base title="Technické předpoklady pro pokladní systém | Savarin"
-      description="Jaký počítač, monitor, tiskárnu, UPS a síť potřebuje Savarin (pokladna, recepce, sklady). Minimální i doporučená konfigurace pro Windows 10/11. Poradíme vám."
+      description="Jaký počítač, monitor, tiskárnu, UPS a síť potřebuje Savarin (pokladna, recepce, sklady). Minimální i doporučená konfigurace pro Windows 11. Rádi poradíme."
       schema={schema}>
   <Header brand="Savarin" logoSrc="/logos/savarin_by_piano.svg" logoHeight="44px" homeHref="/" nav={savarinNav} cta={savarinCta} mobileCta={savarinMobileCta} />
 
