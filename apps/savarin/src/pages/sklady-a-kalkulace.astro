@@ -1,6 +1,6 @@
 ---
 /**
- * Savarin: Sklady a kalkulace (HRMTZ + HRKALKUL).
+ * Savarin: Sklady a kalkulace.
  * Obsah z legacy stránky sklady-a-kalkulace (+ popis-programu).
  * Sdílené komponenty @piano/ui.
  */
@@ -30,14 +30,14 @@ const funkce = [
 ---
 
 <Base title="Skladový systém a kalkulace jídel pro gastro | Savarin"
-      description="Sklady a kalkulace Savarin (HRMTZ a HRKALKUL): skladové hospodářství, evidence tržeb, inventury, deníky středisek a kalkulace jídel. Vyžádejte si demoverzi.">
+      description="Sklady a kalkulace Savarin: kompletní skladová evidence, kalkulace výroby, ceníky pro pokladnu a automatické odpisy prodeje z pokladen. Vyžádejte si demoverzi.">
   <Header brand="Savarin" logoSrc="/logos/savarin_by_piano.svg" logoHeight="44px" homeHref="/" nav={savarinNav} cta={savarinCta} mobileCta={savarinMobileCta} />
 
   <main>
 
   <Hero eyebrow="Modul · Sklady a kalkulace" background="gradient"
-        lead="HRMTZ a HRKALKUL řeší evidenci skladového hospodářství, evidenci tržeb na střediscích, práci s recepturami jídel a komunikaci s pokladnami. Je to jádro celého systému.">
-    <Heading slot="title" as="h1" size="display" color="on-dark">Sklady a kalkulace: <span class="accent">jádro systému</span></Heading>
+        lead="Modul Sklady a kalkulace řeší evidenci skladového hospodářství, evidenci tržeb na střediscích, práci s recepturami jídel a komunikaci s pokladnami.">
+    <Heading slot="title" as="h1" size="display" color="on-dark">Sklady a kalkulace <span class="accent">napojené na pokladnu</span></Heading>
     <Fragment slot="actions">
       <Button href="#poptavka">Nezávazná poptávka</Button>
       <Button href="#funkce" variant="secondary" onDark>Co modul umí</Button>
@@ -47,8 +47,8 @@ const funkce = [
     </figure>
   </Hero>
 
-  <USPGrid id="funkce" eyebrow="HRMTZ + HRKALKUL" title="Od skladové karty po kalkulaci jídla"
-           lead="Kompletní skladová evidence až 99 středisek, příprava dat pro pokladní systém a odpis prodaného sortimentu z pokladen."
+  <USPGrid id="funkce" eyebrow="Sklady a kalkulace" title="Od skladové karty po kalkulaci jídla"
+           lead="Kompletní skladová evidence, kalkulace výroby, příprava ceníků pro pokladní systém a automatické online odpisy prodeje z pokladen."
            items={funkce} minItemWidth="300px" background="default" space="lg" />
 
   <!-- ÚČETNÍ VAZBY -->

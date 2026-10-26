@@ -42,6 +42,14 @@ const skupiny = [
     ],
   },
   {
+    icon: 'lucide:scan-barcode', title: 'Čtečky a zákaznické displeje',
+    items: [
+      'Čtečky EAN a QR kódů',
+      'Čtečky čipových karet',
+      'Zákaznické displeje',
+    ],
+  },
+  {
     icon: 'lucide:keyboard', title: 'Klávesnice',
     items: [
       'PCU: programovatelná tlačítková klávesnice, 111 kláves (cca 85 pro sortiment), čtečka magnetických karet',
@@ -103,7 +111,7 @@ const schema = {
   <Breadcrumb items={[{ label: 'Domů', href: '/' }, { label: 'Pokladna', href: '/pokladna' }, { label: 'Pokladní komponenty' }]} />
 
   <Hero eyebrow="Modul · Pokladní komponenty" background="gradient"
-        lead="Dodáváme a servisujeme kompletní pokladní techniku, od POS terminálů a dotykových monitorů po tiskárny a programovatelné klávesnice.">
+        lead="Dodáváme a servisujeme kompletní pokladní techniku, od POS terminálů a dotykových monitorů po tiskárny, čtečky EAN a QR, čtečky čipových karet a zákaznické displeje.">
     <Heading slot="title" as="h1" size="display" color="on-dark">Hardware <span class="accent">prověřený v provozu</span></Heading>
     <Fragment slot="actions">
       <Button href="#poptavka">Nezávazná poptávka</Button>

@@ -1,7 +1,7 @@
 ---
 /**
  * Savarin: Pokladna. Obsah z legacy stránky pokladna.
- * Mobilní pokladna, komponenty a technické předpoklady mají vlastní URL
+ * Mobilní číšník, komponenty a technické předpoklady mají vlastní URL
  * (viz /mobilni-pokladna, /pokladni-komponenty, /technicke-predpoklady).
  * Sdílené komponenty @piano/ui.
  */
@@ -33,11 +33,10 @@ const funkce = [
   'Otevřené účty, storna, převody položek mezi účty',
   'Kuchyňská tiskárna: objednávky rovnou na výdej',
   'Denní uzávěrky a odpis prodaného zboží ze skladu',
-  'Certifikováno pro provoz s fiskálním modulem na Slovensku',
 ];
 
 const souvisejici = [
-  { href: '/mobilni-pokladna', icon: 'lucide:smartphone', title: 'Mobilní pokladna', text: 'Mobilní číšník: objednávky a úhrady přímo u stolu.' },
+  { href: '/mobilni-pokladna', icon: 'lucide:smartphone', title: 'Mobilní číšník', text: 'Objednávky a úhrady přímo u stolu.' },
   { href: '/pokladni-komponenty', icon: 'lucide:keyboard', title: 'Pokladní komponenty', text: 'POS, dotykové monitory, tiskárny a klávesnice.' },
   { href: '/technicke-predpoklady', icon: 'lucide:cpu', title: 'Technické předpoklady', text: 'Jaký počítač, tiskárnu a síť pokladna potřebuje.' },
 ];
@@ -49,7 +48,7 @@ const schema = {
       '@type': 'SoftwareApplication',
       name: 'Pokladna Savarin',
       applicationCategory: 'BusinessApplication',
-      operatingSystem: 'Windows 10/11',
+      operatingSystem: 'Windows 11',
       description: 'Pokladní systém pro restaurace, hotelové restaurace i samoobslužný provoz. Ovládání přes PC, POS i dotykový display.',
       url: 'https://savarin.cz/pokladna',
       provider: { '@type': 'Organization', name: 'ComInn, s.r.o.', url: 'https://savarin.cz' },
@@ -76,7 +75,7 @@ const schema = {
   <Breadcrumb items={[{ label: 'Domů', href: '/' }, { label: 'Pokladna' }]} />
 
   <Hero eyebrow="Modul · Pokladna" background="gradient"
-        lead="Software, který běží na standardním PC s programovatelnou klávesnicí i na specializovaných POS s dotykovým displejem. Certifikovaný pro provoz s fiskálním modulem na Slovensku.">
+        lead="Software, který běží na standardním PC s programovatelnou klávesnicí i na specializovaných POS s dotykovým displejem.">
     <Heading slot="title" as="h1" size="display" color="on-dark">Pokladna Savarin pro <span class="accent">PC i POS</span></Heading>
     <Fragment slot="actions">
       <Button href="#poptavka">Nezávazná poptávka</Button>

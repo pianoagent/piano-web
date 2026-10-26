@@ -22,24 +22,24 @@ import { savarinNav, savarinCta, savarinMobileCta, savarinFooter } from '../conf
 
 const moduly = [
   { icon: 'lucide:monitor', title: 'Pokladna', text: 'Pokladní systém pro PC i POS: restaurační, hotelová a samoobslužná verze. Účtování na stoly, otevřené účty, dotykové ovládání.' },
-  { icon: 'lucide:smartphone', title: 'Mobilní pokladna', text: 'Mobilní číšník: objednávky, storna a úhrady přímo u stolu. Funguje i v off-line režimu mimo dosah sítě.' },
+  { icon: 'lucide:smartphone', title: 'Mobilní číšník', text: 'Objednávky, storna a úhrady přímo u stolu. Funguje i v off-line režimu mimo dosah sítě.' },
+  { icon: 'lucide:calculator', title: 'Sklady a kalkulace', text: 'Kompletní skladová evidence, kalkulace výroby, příprava ceníků pro pokladní systém a automatické online odpisy prodeje z pokladen.' },
   { icon: 'lucide:bed-double', title: 'Recepce', text: 'Komplexní agenda recepce: rezervace, ubytování hostů i skupin, účty, směnárna a statistické výkazy.' },
-  { icon: 'lucide:calculator', title: 'Sklady a kalkulace', text: 'HRMTZ a HRKALKUL: skladové hospodářství, evidence tržeb, receptury jídel a komunikace s pokladnami.' },
-  { icon: 'lucide:keyboard', title: 'Pokladní komponenty', text: 'POS terminály, dotykové monitory, termální i jehličkové tiskárny a programovatelné klávesnice.' },
+  { icon: 'lucide:keyboard', title: 'Pokladní komponenty', text: 'POS terminály, dotykové monitory, tiskárny, čtečky EAN a QR, čtečky čipových karet a zákaznické displeje.' },
   { icon: 'lucide:headset', title: 'Služby a servis', text: 'Nepřetržitý servis do 24 hodin, školení, nové verze i poradenství, na základě servisní smlouvy.' },
 ];
 
 const vyhody = [
   { icon: 'lucide:blocks', title: 'Modulární systém', text: 'Nasaďte jen to, co potřebujete, a rozšiřujte postupně po jednotlivých subsystémech.' },
   { icon: 'lucide:network', title: 'Provoz v síti', text: 'Automatické datové přenosy mezi moduly, pokladna, sklad i recepce spolu komunikují.' },
-  { icon: 'lucide:badge-check', title: 'Certifikace pro SK', text: 'Provoz PC/POS s fiskálním modulem na Slovensku; připraveno i na povinné pokladní systémy v ČR.' },
+  { icon: 'lucide:badge-check', title: 'Připraveno na EET 2.0', text: 'Software je připravený na EET 2.0, které platí od 1. 1. 2027.', eet: true },
   { icon: 'lucide:shield-check', title: 'Bezpečnost', text: 'Přístup chráněný heslem a oprávněními pro jednotlivé uživatele.' },
 ];
 
 const leadProofs = [
   { icon: 'lucide:headset', title: 'Servis do 24 h', text: 'Smluvním zákazníkům garantujeme termín servisního zásahu.' },
   { icon: 'lucide:calendar-check', title: 'Od roku 1990', text: 'Přes 30 let zkušeností s gastro a hotelovým provozem.' },
-  { icon: 'lucide:badge-check', title: 'Certifikováno pro SK', text: 'Provoz s fiskálním modulem i na Slovensku.' },
+  { icon: 'lucide:badge-check', title: 'Připraveno na EET 2.0', text: 'Software je připravený na EET 2.0, které platí od 1. 1. 2027.' },
   { icon: 'lucide:gift', title: 'Demoverze zdarma', text: 'Vyzkoušejte Savarin nezávazně před nákupem.' },
 ];
 ---
@@ -53,7 +53,7 @@ const leadProofs = [
   <!-- HERO: split: text vlevo, POS účtenka vpravo (placeholder) -->
   <Hero eyebrow="Restaurační a hotelový systém" background="gradient"
         lead="Savarin je modulární systém pro stravovací a ubytovací provozy: pokladna, recepce, sklady a kalkulace na jednom místě."
-        usp={[{ text: 'Na trhu od 1990', icon: 'lucide:calendar-check' }, { text: 'Podpora 24/7', icon: 'lucide:headset' }, { text: 'Až 99 středisek', icon: 'lucide:network' }]}>
+        usp={[{ text: 'Na trhu od 1990', icon: 'lucide:calendar-check' }, { text: 'Podpora 24/7', icon: 'lucide:headset' }, { text: 'Připraveno na EET 2.0', icon: 'lucide:badge-check' }]}>
     <Heading slot="title" as="h1" size="display" color="on-dark">Kompletní software pro váš gastro a hotelový provoz</Heading>
     <Fragment slot="actions">
       <Button href="#poptavka">Nezávazná poptávka</Button>
@@ -112,10 +112,10 @@ const leadProofs = [
     <div class="split">
       <div class="split__text">
         <Text size="label" color="accent">Modulární architektura</Text>
-        <Heading as="h2" size="h2">Nasaďte jen to, co potřebujete a <span class="accent">rozšiřujte postupně</span></Heading>
+        <Heading as="h2" size="h2">Začněte pokladnou a <span class="accent">přidávejte, co potřebujete</span></Heading>
         <Text size="lead" color="muted" balance>
-          Základem je modul <strong>HRMTZ a HRKALKUL</strong> (sklady a kalkulace), na který navazuje pokladna i recepce.
-          Systém běží na samostatném PC, ale v síti získáte maximální komfort a automatické datové přenosy mezi moduly.
+          Základem je <strong>Pokladna</strong>. Mobilního číšníka, Sklady a kalkulace nebo Recepci k ní připojíte kdykoli později, bez výměny systému.
+          Moduly si v síti automaticky předávají data, takže nic nepřepisujete ručně.
         </Text>
         <ul class="checklist">
           <li><Icon name="lucide:check" size="sm" class="hl-check" />Hotelová pokladna připíše útratu hosta na účet v Recepci</li>
@@ -123,14 +123,15 @@ const leadProofs = [
           <li><Icon name="lucide:check" size="sm" class="hl-check" />Podklady pro podvojné účetnictví (textový i databázový export)</li>
           <li><Icon name="lucide:check" size="sm" class="hl-check" />Modul SledujTU: zaúčtování telefonních hovorů hostům</li>
         </ul>
-        <div class="split__cta"><Button href="/sklady-a-kalkulace" variant="secondary">Více o jádru systému</Button></div>
+        <div class="split__cta"><Button href="/pokladna" variant="secondary">Více o pokladně</Button></div>
       </div>
-      <ul class="flow">
-        <li class="flow__node flow__node--core"><Icon name="lucide:calculator" size="md" /><span>HRMTZ + HRKALKUL<small>sklady a kalkulace</small></span></li>
-        <li class="flow__arr"><Icon name="lucide:arrow-down" size="sm" /></li>
-        <li class="flow__node"><Icon name="lucide:monitor" size="md" /><span>Pokladna<small>PC / POS</small></span></li>
-        <li class="flow__node"><Icon name="lucide:bed-double" size="md" /><span>Recepce<small>ubytování a účty</small></span></li>
-      </ul>
+      <ol class="flow">
+        <li class="flow__node flow__node--core"><span class="flow__num" aria-hidden="true">1</span><Icon name="lucide:monitor" size="md" /><span>Pokladna<small>základ systému, PC i POS</small></span></li>
+        <li class="flow__arr" aria-hidden="true"><Icon name="lucide:plus" size="sm" /><span>kdykoli přidáte</span></li>
+        <li class="flow__node"><span class="flow__num" aria-hidden="true">2</span><Icon name="lucide:smartphone" size="md" /><span>Mobilní číšník<small>objednávky a platby přímo u stolu</small></span></li>
+        <li class="flow__node"><span class="flow__num" aria-hidden="true">3</span><Icon name="lucide:calculator" size="md" /><span>Sklady a kalkulace<small>prodej se sám odepíše ze skladu</small></span></li>
+        <li class="flow__node"><span class="flow__num" aria-hidden="true">4</span><Icon name="lucide:bed-double" size="md" /><span>Recepce<small>útrata hosta rovnou na pokoj</small></span></li>
+      </ol>
     </div>
   </Section>
 
@@ -142,7 +143,7 @@ const leadProofs = [
     </div>
     <div class="vyhody">
       {vyhody.map((v) => (
-        <article class="vyhoda">
+        <article class:list={['vyhoda', v.eet && 'vyhoda--eet']}>
           <span class="vyhoda__icon"><Icon name={v.icon} size="md" /></span>
           <Heading as="h3" size="h3">{v.title}</Heading>
           <Text size="small" color="muted">{v.text}</Text>
@@ -164,11 +165,11 @@ const leadProofs = [
       </article>
       <article class="teaser">
         <span class="teaser__icon"><Icon name="lucide:hand-coins" size="md" /></span>
-        <Heading as="h3" size="h3" color="on-dark">Financování a pronájem</Heading>
+        <Heading as="h3" size="h3" color="on-dark">Financování</Heading>
         <Text color="on-dark-muted">
-          Kromě přímého a splátkového prodeje si software můžete i pronajmout, s možností pozdějšího odkupu a multilicenčními slevami.
+          Přímý i splátkový prodej, nebo platba za užívání s možností pozdějšího odkupu a multilicenčními slevami.
         </Text>
-        <a class="teaser__link" href="/cenik">Ceník a pronájem →</a>
+        <a class="teaser__link" href="/cenik">Ceník a financování →</a>
       </article>
     </div>
   </Section>
@@ -288,7 +289,17 @@ const leadProofs = [
   .flow__node--core { background: var(--color-primary); border-color: var(--color-primary); color: #fff; }
   .flow__node--core span, .flow__node--core span small { color: #fff; }
   .flow__node--core span small { color: rgba(255,255,255,0.8); }
-  .flow__arr { display: flex; justify-content: center; color: var(--color-border-strong); }
+  .flow__arr {
+    display: flex; justify-content: center; align-items: center; gap: var(--space-2);
+    color: var(--color-text-muted); font-size: var(--font-size-small);
+  }
+  /* pořadové číslo modulu (1 = základ) */
+  .flow__node .flow__num {
+    flex: none; width: 26px; height: 26px; border-radius: 50%;
+    display: grid; place-items: center; font-size: 13px; font-weight: var(--font-weight-bold);
+    background: var(--color-bg-alt); color: var(--color-text-muted); border: 1px solid var(--color-border);
+  }
+  .flow__node--core .flow__num { background: #fff; color: var(--color-primary); border-color: #fff; }
 
   /* Výhody */
   .vyhody { display: grid; gap: var(--space-5); grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
@@ -296,6 +307,12 @@ const leadProofs = [
   .vyhoda:hover { border-color: var(--color-primary); box-shadow: var(--shadow-sm); }
   .vyhoda > * + * { margin-top: var(--space-3); }
   .vyhoda__icon { display: inline-flex; color: var(--color-text-accent); }
+  /* Karta EET 2.0: zelený check jako štítek v hero, ať je hned vidět */
+  .vyhoda--eet { border-color: var(--color-success); }
+  .vyhoda--eet .vyhoda__icon {
+    width: 40px; height: 40px; border-radius: 50%; justify-content: center; align-items: center;
+    background: var(--color-success); color: #fff;
+  }
 
   /* Teasers (servis + financování) */
   .teasers { display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
