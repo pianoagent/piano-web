@@ -27,3 +27,13 @@
 /b  https://www.grsn.cz/b  301
 /m  https://www.grsn.cz/m  301
 /p  https://www.grsn.cz/p  301
+
+# Blog z WordPressu blog.grason.cz (stejná pravidla jsou v .htaccess)
+/blog/:y/:m/:d/:slug  /blog/:slug/  301
+/blog/hello-world  /blog/  301
+/blog/category/*  /blog/  301
+/blog/tag/*  /blog/  301
+/blog/author/*  /blog/  301
+/blog/page/*  /blog/  301
+/blog/feed  /blog/  301
+/blog/feed/*  /blog/  301
