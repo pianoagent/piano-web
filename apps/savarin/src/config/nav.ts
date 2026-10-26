@@ -14,10 +14,10 @@ export const savarinNav: NavItem[] = [
     href: '/#moduly',
     children: [
       { label: 'Pokladna', href: '/pokladna', description: 'Restaurační, hotelová a samoobslužná verze', icon: 'lucide:monitor' },
-      { label: 'Mobilní pokladna', href: '/mobilni-pokladna', description: 'Mobilní číšník: objednávky přímo u stolu', icon: 'lucide:smartphone' },
-      { label: 'Pokladní komponenty', href: '/pokladni-komponenty', description: 'POS, monitory, tiskárny, klávesnice', icon: 'lucide:keyboard' },
-      { label: 'Recepce', href: '/recepce', description: 'Rezervace, ubytování, účty a směnárna', icon: 'lucide:bed-double' },
+      { label: 'Mobilní číšník', href: '/mobilni-pokladna', description: 'Objednávky a úhrady přímo u stolu', icon: 'lucide:smartphone' },
       { label: 'Sklady a kalkulace', href: '/sklady-a-kalkulace', description: 'Skladová evidence, kalkulace a odpisy z pokladen', icon: 'lucide:calculator' },
+      { label: 'Recepce', href: '/recepce', description: 'Rezervace, ubytování, účty a směnárna', icon: 'lucide:bed-double' },
+      { label: 'Pokladní komponenty', href: '/pokladni-komponenty', description: 'POS, monitory, tiskárny, klávesnice', icon: 'lucide:keyboard' },
     ],
   },
   { label: 'Ceník', href: '/cenik' },
@@ -55,10 +55,10 @@ export const savarinFooter = {
       heading: 'Moduly',
       links: [
         { label: 'Pokladna', href: '/pokladna' },
-        { label: 'Mobilní pokladna', href: '/mobilni-pokladna' },
-        { label: 'Pokladní komponenty', href: '/pokladni-komponenty' },
-        { label: 'Recepce', href: '/recepce' },
+        { label: 'Mobilní číšník', href: '/mobilni-pokladna' },
         { label: 'Sklady a kalkulace', href: '/sklady-a-kalkulace' },
+        { label: 'Recepce', href: '/recepce' },
+        { label: 'Pokladní komponenty', href: '/pokladni-komponenty' },
       ] as NavLink[],
     },
     {

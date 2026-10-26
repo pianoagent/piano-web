@@ -1,6 +1,6 @@
 ---
 /**
- * Savarin: Mobilní pokladna (mobilní číšník). Obsah z legacy stránky mobilni-pokladna.
+ * Savarin: Mobilní číšník (mobilní pokladna). URL a meta title drží frázi „mobilní pokladna“ kvůli SEO. Obsah z legacy stránky mobilni-pokladna.
  * Sdílené komponenty @piano/ui.
  */
 import Base from '../layouts/Base.astro';
@@ -33,7 +33,7 @@ const schema = {
   '@graph': [
     {
       '@type': 'SoftwareApplication',
-      name: 'Mobilní pokladna Savarin (mobilní číšník)',
+      name: 'Mobilní číšník Savarin (mobilní pokladna)',
       applicationCategory: 'BusinessApplication',
       operatingSystem: 'Android 5.1+',
       description: 'Mobilní číšník Savarin: objednávky, storna a úhrady přímo u stolu, včetně off-line režimu. Bezdrátová komunikace se serverem pokladny.',
@@ -45,7 +45,7 @@ const schema = {
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Domů', item: 'https://savarin.cz/' },
         { '@type': 'ListItem', position: 2, name: 'Pokladna', item: 'https://savarin.cz/pokladna' },
-        { '@type': 'ListItem', position: 3, name: 'Mobilní pokladna', item: 'https://savarin.cz/mobilni-pokladna' },
+        { '@type': 'ListItem', position: 3, name: 'Mobilní číšník', item: 'https://savarin.cz/mobilni-pokladna' },
       ],
     },
   ],
@@ -53,15 +53,15 @@ const schema = {
 ---
 
 <Base title="Mobilní pokladna a mobilní číšník pro restaurace | Savarin"
-      description="Mobilní pokladna Savarin: objednávky, storna a úhrady přímo u stolu, offline režim mimo dosah sítě a převod na účet hosta v Recepci. Domluvte si ukázku."
+      description="Mobilní číšník Savarin: objednávky, storna a úhrady přímo u stolu, offline režim mimo dosah sítě a převod na účet hosta v Recepci. Domluvte si ukázku."
       schema={schema}>
   <Header brand="Savarin" logoSrc="/logos/savarin_by_piano.svg" logoHeight="44px" homeHref="/" nav={savarinNav} cta={savarinCta} mobileCta={savarinMobileCta} />
 
   <main>
 
-  <Breadcrumb items={[{ label: 'Domů', href: '/' }, { label: 'Pokladna', href: '/pokladna' }, { label: 'Mobilní pokladna' }]} />
+  <Breadcrumb items={[{ label: 'Domů', href: '/' }, { label: 'Pokladna', href: '/pokladna' }, { label: 'Mobilní číšník' }]} />
 
-  <Hero eyebrow="Modul · Mobilní pokladna" background="gradient"
+  <Hero eyebrow="Modul · Mobilní číšník" background="gradient"
         lead="Rozšíření pokladního systému o mobilní zařízení přenese objednávání i vyúčtování přímo k hostovi. Číšník nosí mobilní terminál, který bezdrátově komunikuje se serverem na pokladně.">
     <Heading slot="title" as="h1" size="display" color="on-dark">Pokladna, kterou <span class="accent">nosíte u stolu</span></Heading>
     <Fragment slot="actions">
@@ -73,7 +73,7 @@ const schema = {
     </figure>
   </Hero>
 
-  <USPGrid id="funkce" eyebrow="Funkce mobilní pokladny" title="Celá obsluha z dlaně"
+  <USPGrid id="funkce" eyebrow="Funkce mobilního číšníka" title="Celá obsluha z dlaně"
            lead="Akce provedené na mobilním terminálu jsou ihned předány serveru a zapsány do pokladny."
            items={funkce} minItemWidth="280px" background="default" space="lg" />
 
@@ -86,7 +86,7 @@ const schema = {
   </Section>
 
   <LeadForm proofs={savarinLeadProofs} id="poptavka" variant="full" message background="alt"
-            title="Zajímá vás mobilní pokladna?"
+            title="Zajímá vás mobilní číšník?"
             lead="Napište nám o svém provozu, doporučíme vhodná zařízení a připravíme cenovou nabídku. Rádi zašleme i demoverzi."
             successUrl="/dekujeme" />
 
