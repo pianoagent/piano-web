@@ -24,6 +24,7 @@ export const grasonNav: NavItem[] = [
     ],
   },
   { label: 'O nás', href: '/o-nas' },
+  { label: 'Blog', href: '/blog' },
   { label: 'Kontakt', href: '/kontakt' },
   pianoNavItem('grason'),
 ];
@@ -72,6 +73,7 @@ export const grasonFooter = {
         { label: 'Pro brigádníky', href: '/pro-brigadniky' },
         { label: 'Nabídky zaměstnání', href: '/nabidky-zamestnani' },
         { label: 'O nás', href: '/o-nas' },
+        { label: 'Blog', href: '/blog' },
         { label: 'Kontakt', href: '/kontakt' },
       ] as NavLink[],
     },

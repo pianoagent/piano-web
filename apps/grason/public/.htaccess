@@ -37,6 +37,12 @@ RewriteRule ^b/?$ https://www.grsn.cz/b [R=301,L]
 RewriteRule ^m/?$ https://www.grsn.cz/m [R=301,L]
 RewriteRule ^p/?$ https://www.grsn.cz/p [R=301,L]
 
+# Blog přenesený z WordPressu blog.grason.cz (subdoména přesměruje /<cesta> na grason.cz/blog/<cesta>):
+# datové permalinky na článek, archivy (kategorie, štítky, autor, stránkování, feed) na výpis.
+RewriteRule ^blog/\d{4}/\d{2}/\d{2}/([^/]+)/?$ /blog/$1/ [R=301,L]
+RewriteRule ^blog/hello-world/?$ /blog/ [R=301,L]
+RewriteRule ^blog/(category|tag|author|page|feed|wp-content|wp-admin|wp-login\.php|index\.php)(/.*)?$ /blog/ [R=301,L]
+
 # Staré krátké odkazy grason.cz/f/<slug> převzal grsn.cz (záloha v 404.astro jen pro hosting bez .htaccess)
 RewriteRule ^f/(.+)$ https://www.grsn.cz/f/$1 [R=301,L]
 

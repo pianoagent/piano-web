@@ -1,0 +1,68 @@
+---
+/**
+ * Blog: detail článku (grason.cz/blog/<slug>).
+ */
+import { getCollection } from 'astro:content';
+import { getImage } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import Header from '@piano/ui/components/Header.astro';
+import Footer from '@piano/ui/components/Footer.astro';
+import ArticleDetail from '@piano/ui/components/ArticleDetail.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import { findImage, optimizeHtmlImages } from '@piano/ui/lib/images';
+import { grasonNav, grasonCta, grasonFooter, grasonLogin } from '../../config/nav';
+import { slugForCategory } from '../../blog-categories';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+// Article body width: matches ArticleDetail's .prose { max-width: 720px }
+const content = await optimizeHtmlImages(post.rendered?.html ?? '', 720);
+
+const primaryCat = post.data.categories?.[0];
+const catSlug = primaryCat ? slugForCategory(primaryCat) : undefined;
+const crumbs = [
+  { label: 'Domů', href: '/' },
+  { label: 'Blog', href: '/blog' },
+  ...(primaryCat && catSlug ? [{ label: primaryCat, href: `/blog/kategorie/${catSlug}` }] : []),
+  { label: post.data.title },
+];
+
+// og:image / JSON-LD need an absolute URL; getImage produces an optimized JPG, unlike the plain <img> path.
+const blogImage = post.data.image ? findImage(post.data.image) : undefined;
+const ogImage = blogImage ? await getImage({ src: blogImage, width: 1200, format: 'jpg' }) : undefined;
+const ogImageUrl = ogImage ? new URL(ogImage.src, Astro.site).href : undefined;
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: post.data.title,
+  datePublished: post.data.pubDate.toISOString(),
+  ...(post.data.description ? { description: post.data.description } : {}),
+  ...(ogImageUrl ? { image: ogImageUrl } : {}),
+  author: { '@type': 'Organization', name: 'Grason' },
+};
+---
+
+<Base title={post.data.seoTitle ?? `${post.data.title} | Grason blog`} description={post.data.description} type="article" image={ogImageUrl} schema={articleSchema}>
+  <Header brand="Grason" logoSrc="/logos/grason_by_piano.svg" logoHeight="44px" homeHref="/" nav={grasonNav} cta={grasonCta} login={grasonLogin} />
+
+  <main>
+    <ArticleDetail
+      title={post.data.title}
+      description={post.data.description}
+      pubDate={post.data.pubDate}
+      image={post.data.image}
+      category={primaryCat}
+      categoryHref={catSlug ? `/blog/kategorie/${catSlug}` : undefined}
+      cta={{ label: 'Konzultace zdarma', href: '/kontakt' }}>
+      <Breadcrumb slot="breadcrumb" items={crumbs} />
+      <Fragment set:html={content} />
+    </ArticleDetail>
+  </main>
+
+  <Footer {...grasonFooter} />
+</Base>
