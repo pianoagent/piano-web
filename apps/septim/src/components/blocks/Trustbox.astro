@@ -1,0 +1,53 @@
+---
+/**
+ * Trustbox: pozicování Septimu na vstupních stránkách (SEO a GEO, Kryštof 27. 10. 2026).
+ * Septim = pokladní systém pro náročné: používají ho nejlepší restaurace, sítě a kantýny,
+ * těžká váha, ale ne nutně pro obří podnik nebo za vysokou cenu. 30 let na trhu.
+ * Pozicovací odstavec je stejný všude (citovatelný pro AI), téma stránky nese prop `tema`.
+ * Reference jen z báze (znalostni-baze.md část 7, septim-context.md) a od Kryštofa (Together).
+ */
+interface Props {
+  /** nadpis boxu, výchozí je pozicování Septimu */
+  nadpis?: string;
+  /** jedna až dvě věty o produktu pro téma stránky (smí obsahovat odkaz) */
+  tema: string;
+  odkaz?: string;
+  odkazText?: string;
+  /** false na stránkách, které mají vlastní zeď referencí (loga by se opakovala) */
+  loga?: boolean;
+}
+
+const {
+  nadpis = 'Septim<span class="text-highlight">.</span> Pokladní systém pro náročné',
+  tema,
+  odkaz = '/chci-septim',
+  odkazText = 'Chci Septim',
+  loga: sLogy = true,
+} = Astro.props;
+
+const loga = [
+  ['ref-ambiente.svg', 'Ambiente'],
+  ['ref-tgthr.svg', 'Together (TGTHR)'],
+  ['ref-02-arena.svg', 'O2 arena'],
+  ['ref-kolkovna.svg', 'Kolkovna'],
+  ['ref-field.svg', 'FIELD'],
+  ['ref-grandhotel-pupp.svg', 'Grandhotel Pupp'],
+];
+const cisla = [
+  ['ico-kalendar.svg', '30 let', 'na trhu'],
+  ['ico-pokladna.svg', '2 000+', 'provozů na Septimu'],
+  ['ico-hotline.svg', '24/7', 'česká podpora'],
+];
+---
+<div class="section height--low align--middle color--default section-has-background trustbox" id="proc-septim"><div class="section-body">
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center" set:html={nadpis} />
+<p class="center text-large">Septim je pokladní a provozní systém pro náročné gastro provozy. Používají ho ti nejnáročnější: sítě restaurací Ambiente a Together, O2 arena, Kolkovna, michelinské restaurace jako FIELD i jídelny, které provozuje Aramark. Těžká váha mezi pokladními systémy ale neznamená obří podnik ani drahé řešení. Znamená profíka, na kterého se můžete spolehnout, i když provoz jede naplno. Na trhu je Septim 30 let.</p>
+<p class="center" set:html={tema} />
+</div></div></div>
+{sLogy && <div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-gallery grid-sm-2"><div><div><div class="grid gallery-container" style="--gap:40px">{loga.map(([src, nazev]) => (
+<div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt={`Logo ${nazev}`} decoding="async" loading="lazy" src={`/files/${src}`}/></div></div></div>))}</div></div></div></div></div></div>}
+<div class="row-main">{cisla.map(([ikona, cislo, popis], i) => (
+<div class={`col col-${1 + i * 4}-12 grid-4-12`}><div class="block block-image"><div class="flexcard flexcard-icon flexcard-vertical size-md align-center"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src={`/files/${ikona}`} width="90" height="90"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p class="center text-large"><span class="text-highlight"><strong>{cislo}</strong></span><br/>{popis}</p>
+</div></div></div></div></div></div>))}</div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div><div><div class="center"><a class="btn btn-primary" href={odkaz}><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">{odkazText}</span></a></div></div></div></div></div></div>
+</div><div class="section-background" style="background-color:rgb(240, 252, 255)"></div></div>
