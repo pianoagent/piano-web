@@ -1,0 +1,122 @@
+---
+// /eet-pokladna: vstupní stránka EET pokladna (SEO, 27. 10. 2026). Na EET se prodává Septim a Hugo (Kryštof 27. 10. 2026). Fakta o EET 2.0 (termíny, rozsah, výjimky, pokuta) přebírá ze stránky /eet-2027 (dřív /eet-20). Hugo 190 Kč/měs. podle contexty/produkty/hugo-context.md.
+import Base from './../layouts/Base.astro';
+import PojdmeToProbrat from './../components/blocks/PojdmeToProbrat.astro';
+import Blok30Let_9e65 from './../components/blocks/Blok30Let_9e65.astro';
+import Mezera_bb6d from './../components/blocks/Mezera_bb6d.astro';
+import KontaktniFormularB from './../components/blocks/KontaktniFormularB.astro';
+
+const faq = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Existuje EET pokladna zdarma?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Levné pokladny a aplikace zdarma existují, vždy si ale ověřte, že skutečně umí online evidenci a elektronickou účtenku. Stávající zákazníci Septimu dostanou EET 2.0 bez příplatku jako součást svého systému."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Kolik stojí EET pokladna?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Stávající zákazníci Septimu za EET 2.0 nic navíc neplatí, jinak se cena řídí počtem pokladen a licencí, viz ceník. Hugo stojí 190 Kč měsíčně. Septim.Air bude dostupný v roce 2027, cenu zatím neuvádíme."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Potřebuji kvůli EET novou pokladnu?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Se Septimem ne, stačí pokladna i tiskárna, které máte. Moderní pokladní systémy zvládnou EET 2.0 aktualizací. U starších systémů jiných dodavatelů to může znamenat upgrade za příplatek nebo výměnu."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Můžu prodávat bez EET?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Jen ve výjimkách, například jako OSVČ v prvním pásmu paušální daně v režimu EET OFF, kde místo evidence platíte vyšší paušál. Ostatní, kdo přijímají platby při osobním kontaktu, musí od 1. února 2027 evidovat."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Přecházím z jiné pokladny. Stihnu to do února 2027?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ano, ale nenechávejte to na poslední chvíli. Na podzim bývají kapacity dodavatelů plné. Napište nám na obchod@septim.cz nebo zavolejte na +420 257 011 100 a pomůžeme vám s přechodem, instalací i zaškolením obsluhy."
+      }
+    }
+  ]
+};
+---
+<Base
+  title="EET pokladna pro restaurace, kavárny a bary | Septim"
+  description="Pokladna připravená na EET 2.0: Septim pro restaurace a sítě bez příplatku za EET, Septim.Air pro kavárny a bistra a Hugo pro nejmenší provozy."
+  path="/eet-pokladna"
+  image="/files/nahled-chci-septim.jpg"
+  schemas={[faq]}
+>
+<div class="section height--low align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-card flexcard-size--normal flexcard-media-right valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><a class="image image-mask ratio-original" href="#vyber" style="padding-bottom:66.66666666666667%"><img alt="EET pokladna Septim a mobilní číšník" decoding="async" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/hdr-septim-mobilni-cisnik.webp" srcset="/files/r/720/hdr-septim-mobilni-cisnik.webp 720w, /files/r/1280/hdr-septim-mobilni-cisnik.webp 1280w, /files/r/1920/hdr-septim-mobilni-cisnik.webp 1920w" width="1200" height="800"/></a></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h1>Pokladna připravená na EET 2027<span class="text-highlight">.</span></h1>
+<p class="text-large">EET se vrací a povinnost evidovat tržby platí od 1. února 2027. Pokladna (nebo kasa), která to umí, vám evidenci vyřeší na pozadí: vy markujete, systém odesílá.</p>
+</div><div class="image-btn"><a class="btn btn-primary" href="#vyber"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">Vybrat pokladnu</span></a></div></div></div></div></div></div></div></div></div></div></div>
+<div class="section height--low align--middle color--default section-has-background" id="vyber"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Kterou EET pokladnu vybrat<span class="text-highlight">?</span></h2>
+<p class="center">Podle velikosti a typu provozu. Všechny tři zvládnou EET 2.0.</p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-4-12"><div class="block block-box box box--default"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3>Septim pro restaurace, sítě a kantýny</h3>
+<p>EET 2.0 je součástí Septimu, bez příplatku a bez nové licence. Pokud máte Septim 4.1.40 nebo vyšší, platnou servisní smlouvu a pokladnu připojenou k našemu monitoringu, aktualizaci nasadíme za vás. Pokladna i tiskárna, které máte, stačí.</p>
+</div> <div class="block block-button"><div><div><div class="left"><a class="btn btn-default" href="/pokladni-system"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">Pokladní systém Septim</span></a></div></div></div></div></div></div></div></div> <div class="col col-5-12 grid-4-12"><div class="block block-box box box--default"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3>Septim.Air pro kavárny, bistra a bary</h3>
+<p>Online pokladna v cloudu, bez serveru. Evidenci tržeb řeší automaticky na pozadí: vy markujete, systém odesílá. Septim.Air bude dostupný v roce 2027. Potřebujete evidovat už od února? Ozvěte se, poradíme.</p>
+</div> <div class="block block-button"><div><div><div class="left"><a class="btn btn-default" href="/online-pokladna"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">Online pokladna</span></a></div></div></div></div></div></div></div></div> <div class="col col-9-12 grid-4-12"><div class="block block-box box box--default"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3>Hugo pro nejmenší provozy</h3>
+<p>Pokladna v telefonu ze skupiny Piano, připravená na EET 2027. Hodí se pro food trucky, malé kavárny a bary. Stojí 190 Kč měsíčně.</p>
+</div> <div class="block block-button"><div><div><div class="left"><a class="btn btn-default" href="https://hugopos.eu/" rel="noopener" target="_blank"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">Více o Hugovi</span></a></div></div></div></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(240, 252, 255)"></div></div>
+<div class="section height--low align--middle color--default section-width-narrow section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2>Co musíte do února 2027 udělat<span class="text-highlight">?</span></h2>
+<p>Se správnou pokladnou je to pár kroků. Uživatelům Septimu pošleme návod e-mailem.</p>
+<ol>
+<li>mít pokladnu, která umí EET 2.0</li>
+<li>od 1. listopadu 2026 si vygenerovat certifikát v portálu finanční správy DIS+</li>
+<li>certifikát nahrát do pokladny</li>
+<li>od 1. ledna 2027 běží zkušební provoz, od 1. února 2027 platí povinnost evidovat</li>
+</ol>
+</div> <div class="block block-button"><div><div><div class="left"><a class="btn btn-default" href="/eet-2027"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">Termíny a novinky EET 2027</span></a></div></div></div></div></div></div></div><div class="section-background" style="background-color:#ffffff"></div></div>
+<div class="section height--low align--middle color--default section-width-narrow section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2>Pozor na staré pokladny a aplikace zdarma<span class="text-highlight">.</span></h2>
+<p>Moderní pokladní systémy zvládnou EET 2.0 aktualizací. U starších systémů jiných dodavatelů to může znamenat upgrade za příplatek nebo výměnu. Levné pokladny a aplikace zdarma existují, vždy si ale ověřte, že skutečně umí online evidenci a elektronickou účtenku.</p>
+<p>Co přesně EET je a koho se týká, vysvětlujeme na stránce <a href="/eet">Co je EET</a>.</p>
+</div></div></div></div><div class="section-background" style="background-color:rgb(240, 252, 255)"></div></div>
+<div class="section height--low align--middle color--default section-width-narrow section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Časté otázky k EET pokladně<span class="text-highlight">.</span></h2>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><div><div><hr class="divider divider--normal divider--align-left"/></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p class="text-large"><span class="text-highlight"><b>Existuje EET pokladna zdarma?</b></span></p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-horizontal valign-middle size-sm"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/ico-check-barva.svg" width="90" height="90"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p>Levné pokladny a aplikace zdarma existují, vždy si ale ověřte, že skutečně umí online evidenci a elektronickou účtenku. Stávající zákazníci Septimu dostanou EET 2.0 bez příplatku jako součást svého systému.</p>
+</div></div></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><div><div><hr class="divider divider--normal divider--align-left"/></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p class="text-large"><span class="text-highlight"><b>Kolik stojí EET pokladna?</b></span></p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-horizontal valign-middle size-sm"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/ico-check-barva.svg" width="90" height="90"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p>Stávající zákazníci Septimu za EET 2.0 nic navíc neplatí, jinak se cena řídí počtem pokladen a licencí, viz <a href="/cenik">ceník</a>. Hugo stojí 190 Kč měsíčně. Septim.Air bude dostupný v roce 2027, cenu zatím neuvádíme.</p>
+</div></div></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><div><div><hr class="divider divider--normal divider--align-left"/></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p class="text-large"><span class="text-highlight"><b>Potřebuji kvůli EET novou pokladnu?</b></span></p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-horizontal valign-middle size-sm"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/ico-check-barva.svg" width="90" height="90"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p>Se Septimem ne, stačí pokladna i tiskárna, které máte. Moderní pokladní systémy zvládnou EET 2.0 aktualizací. U starších systémů jiných dodavatelů to může znamenat upgrade za příplatek nebo výměnu.</p>
+</div></div></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><div><div><hr class="divider divider--normal divider--align-left"/></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p class="text-large"><span class="text-highlight"><b>Můžu prodávat bez EET?</b></span></p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-horizontal valign-middle size-sm"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/ico-check-barva.svg" width="90" height="90"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p>Jen ve výjimkách, například jako OSVČ v prvním pásmu paušální daně v režimu EET OFF, kde místo evidence platíte vyšší paušál. Ostatní, kdo přijímají platby při osobním kontaktu, musí od 1. února 2027 evidovat.</p>
+</div></div></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><div><div><hr class="divider divider--normal divider--align-left"/></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p class="text-large"><span class="text-highlight"><b>Přecházím z jiné pokladny. Stihnu to do února 2027?</b></span></p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-horizontal valign-middle size-sm"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/ico-check-barva.svg" width="90" height="90"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p>Ano, ale nenechávejte to na poslední chvíli. Na podzim bývají kapacity dodavatelů plné. Napište nám na <a href="mailto:obchod@septim.cz">obchod@septim.cz</a> nebo zavolejte na <a href="tel:+420257011100">+420 257 011 100</a> a pomůžeme vám s přechodem, instalací i zaškolením obsluhy.</p>
+</div></div></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><div><div><hr class="divider divider--normal divider--align-left"/></div></div></div></div></div>
+</div><div class="section-background" style="background-color:#fff"></div></div>
+<PojdmeToProbrat />
+<Blok30Let_9e65 />
+<Mezera_bb6d />
+<KontaktniFormularB />
+</Base>

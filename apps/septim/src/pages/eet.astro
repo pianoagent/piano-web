@@ -1,0 +1,129 @@
+---
+// /eet: rozcestník tématu EET, „Co je EET" (SEO, 27. 10. 2026, podle keyword dashboardu SEO PRAKTICKY). Fakta o EET 2.0 (termíny, rozsah, výjimky, pokuta) přebírá ze stránky /eet-2027 (dřív /eet-20).
+import Base from './../layouts/Base.astro';
+import PojdmeToProbrat from './../components/blocks/PojdmeToProbrat.astro';
+import Blok30Let_9e65 from './../components/blocks/Blok30Let_9e65.astro';
+import Mezera_bb6d from './../components/blocks/Mezera_bb6d.astro';
+import KontaktniFormularB from './../components/blocks/KontaktniFormularB.astro';
+
+const faq = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Co je EET?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Elektronická evidence tržeb. Pokladna při každé platbě s osobním kontaktem odešle údaje o tržbě online finanční správě. Po zrušení na konci roku 2022 se vrací jako EET 2.0, zkušební provoz začíná 1. ledna 2027 a povinnost evidovat platí od 1. února 2027."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Co je EET 2.0?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nová, jednodušší podoba elektronické evidence tržeb. Funguje jen online, eviduje méně údajů, účtenku vydáváte jen na vyžádání a místo plošných kontrol nastupuje cílená analytika. Moderní pokladní systémy ji zvládnou aktualizací."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Jak EET funguje?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Od finanční správy získáte certifikát v portálu DIS+ (vydává je od 1. listopadu 2026) a nahrajete ho do pokladny. Pokladna pak údaje o tržbách odesílá sama na pozadí. Vy markujete jako dřív."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Koho se EET týká?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Prakticky každého, kdo přijímá platby při osobním kontaktu se zákazníkem: firem, OSVČ, živnostníků i řemeslníků bez ohledu na obor. Platby na dálku, například v e-shopu, se neevidují. Výjimku mají OSVČ v prvním pásmu paušálního režimu s příjmy do 1 milionu Kč ročně."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Jaká je pokuta za neevidování tržeb?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Až 500 000 Kč. Kdo přijímá platby při osobním kontaktu a nespadá pod výjimku, musí od 1. února 2027 evidovat."
+      }
+    }
+  ]
+};
+---
+<Base
+  title="Co je EET a EET 2.0: elektronická evidence tržeb | Septim"
+  description="Co je EET a EET 2.0, koho se týká, co se eviduje a od kdy platí. Elektronická evidence tržeb srozumitelně od Septimu, 30 let na trhu."
+  path="/eet"
+  image="/files/nahled-chci-septim.jpg"
+  schemas={[faq]}
+>
+<div class="section height--low align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-card flexcard-size--normal flexcard-media-right valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><a class="image image-mask ratio-original" href="#jak-funguje" style="padding-bottom:66.66666666666667%"><img alt="Obsluha markuje na pokladně Septim" decoding="async" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/hdr-reseni-restaurace.webp" srcset="/files/r/720/hdr-reseni-restaurace.webp 720w, /files/r/1280/hdr-reseni-restaurace.webp 1280w, /files/r/1920/hdr-reseni-restaurace.webp 1920w" width="1200" height="800"/></a></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h1>Co je EET a koho se týká<span class="text-highlight">?</span></h1>
+<p class="text-large">EET, celým názvem elektronická evidence tržeb, znamená, že pokladna posílá údaje o tržbách online finanční správě. Po zrušení v roce 2022 se vrací jako EET 2.0. Zkušební provoz začíná 1. ledna 2027, povinnost platí od 1. února 2027.</p>
+</div><div class="image-btn"><a class="btn btn-primary" href="#jak-funguje"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">Jak EET funguje</span></a></div></div></div></div></div></div></div></div></div></div></div>
+<div class="section height--low align--middle color--default section-width-narrow section-has-background" id="jak-funguje"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2>Jak EET funguje<span class="text-highlight">?</span></h2>
+<p>Když host zaplatí hotově, kartou, QR kódem nebo stravenkou, pokladna odešle údaje o tržbě online finanční správě. Děje se to na pozadí, obsluha markuje jako dřív.</p>
+<p>K tomu potřebujete dvě věci: pokladnu, která EET 2.0 umí, a certifikát. Finanční správa ho vydává od 1. listopadu 2026 v portálu DIS+, vy ho jen nahrajete do pokladny. Účtenku u EET 2.0 vydáváte jen tehdy, když o ni host požádá, a nic o EET se na ní netiskne.</p>
+<p>Se Septimem je EET 2.0 součástí systému, bez příplatku a bez nové licence. Aktualizaci nasadíme za vás.</p>
+</div></div></div></div><div class="section-background" style="background-color:#ffffff"></div></div>
+<div class="section height--low align--middle color--default section-width-narrow section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2>Na koho EET dopadá<span class="text-highlight">?</span></h2>
+<p>Na prakticky každého, kdo přijímá platby při osobním kontaktu se zákazníkem. Na oboru nezáleží a za neevidování hrozí pokuta až 500 000 Kč.</p>
+<ul>
+<li>Firmy, OSVČ, živnostníci i řemeslníci.</li>
+<li>Eviduje se hotovost, karta, QR kód i stravenky.</li>
+<li>Platby na dálku, například v e-shopu, se neevidují.</li>
+<li><strong>Výjimka:</strong> OSVČ v prvním pásmu paušálního režimu s příjmy do 1 milionu Kč ročně. V režimu EET OFF místo evidence platí vyšší paušál.</li>
+</ul>
+</div></div></div></div><div class="section-background" style="background-color:rgb(240, 252, 255)"></div></div>
+<div class="section height--low align--middle color--default section-width-narrow section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2>EET a EET 2.0: co je jinak<span class="text-highlight">?</span></h2>
+<p>První EET stát zrušil na konci roku 2022 kvůli administrativní zátěži. Od roku 2027 se vrací v jednodušší podobě.</p>
+<ul>
+<li><strong>účtenka:</strong> místo povinného tisku jen na vyžádání</li>
+<li><strong>co se eviduje:</strong> jen kontaktní platby</li>
+<li><strong>hardware:</strong> místo nového vybavení stačí pokladna, kterou máte, pokud EET 2.0 umí</li>
+<li><strong>data:</strong> minimum údajů místo rozsáhlého výběru</li>
+<li><strong>kontroly:</strong> cílená analytika místo plošných kontrol</li>
+</ul>
+</div> <div class="block block-button"><div><div><div class="left"><a class="btn btn-default" href="/eet-2027"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">Termíny a novinky EET 2027</span></a></div></div></div></div></div></div></div><div class="section-background" style="background-color:#ffffff"></div></div>
+<div class="section height--low align--middle color--default section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Co dál<span class="text-highlight">?</span></h2>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-4-12"><div class="block block-box box box--default"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-vertical size-md align-center"><a class="flexcard-media" href="/eet-2027"><div class="image-icon-wrapper"><div class="image-icon"><img alt="EET 2027: termíny a změny" decoding="async" loading="lazy" src="/files/modul-reporty-prehledy.svg" width="90" height="90"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h3><a href="/eet-2027">EET 2027: termíny a změny</a></h3>
+</div></div></div></div></div></div></div></div></div></div></div> <div class="col col-5-12 grid-4-12"><div class="block block-box box box--default"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-vertical size-md align-center"><a class="flexcard-media" href="/eet-pokladna"><div class="image-icon-wrapper"><div class="image-icon"><img alt="EET pokladna" decoding="async" loading="lazy" src="/files/ico-pokladna.svg" width="90" height="90"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h3><a href="/eet-pokladna">EET pokladna</a></h3>
+</div></div></div></div></div></div></div></div></div></div></div> <div class="col col-9-12 grid-4-12"><div class="block block-box box box--default"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-vertical size-md align-center"><a class="flexcard-media" href="/pokladni-system"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Pokladní systém Septim" decoding="async" loading="lazy" src="/files/ico-software-hardware.svg" width="90" height="90"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h3><a href="/pokladni-system">Pokladní systém Septim</a></h3>
+</div></div></div></div></div></div></div></div></div></div></div></div></div><div class="section-background" style="background-color:#ffffff"></div></div>
+<div class="section height--low align--middle color--default section-width-narrow section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Časté otázky k EET<span class="text-highlight">.</span></h2>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><div><div><hr class="divider divider--normal divider--align-left"/></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p class="text-large"><span class="text-highlight"><b>Co je EET?</b></span></p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-horizontal valign-middle size-sm"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/ico-check-barva.svg" width="90" height="90"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p>Elektronická evidence tržeb. Pokladna při každé platbě s osobním kontaktem odešle údaje o tržbě online finanční správě. Po zrušení na konci roku 2022 se vrací jako EET 2.0, zkušební provoz začíná 1. ledna 2027 a povinnost evidovat platí od 1. února 2027.</p>
+</div></div></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><div><div><hr class="divider divider--normal divider--align-left"/></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p class="text-large"><span class="text-highlight"><b>Co je EET 2.0?</b></span></p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-horizontal valign-middle size-sm"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/ico-check-barva.svg" width="90" height="90"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p>Nová, jednodušší podoba elektronické evidence tržeb. Funguje jen online, eviduje méně údajů, účtenku vydáváte jen na vyžádání a místo plošných kontrol nastupuje cílená analytika. Moderní pokladní systémy ji zvládnou aktualizací.</p>
+</div></div></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><div><div><hr class="divider divider--normal divider--align-left"/></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p class="text-large"><span class="text-highlight"><b>Jak EET funguje?</b></span></p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-horizontal valign-middle size-sm"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/ico-check-barva.svg" width="90" height="90"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p>Od finanční správy získáte certifikát v portálu DIS+ (vydává je od 1. listopadu 2026) a nahrajete ho do pokladny. Pokladna pak údaje o tržbách odesílá sama na pozadí. Vy markujete jako dřív.</p>
+</div></div></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><div><div><hr class="divider divider--normal divider--align-left"/></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p class="text-large"><span class="text-highlight"><b>Koho se EET týká?</b></span></p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-horizontal valign-middle size-sm"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/ico-check-barva.svg" width="90" height="90"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p>Prakticky každého, kdo přijímá platby při osobním kontaktu se zákazníkem: firem, OSVČ, živnostníků i řemeslníků bez ohledu na obor. Platby na dálku, například v e-shopu, se neevidují. Výjimku mají OSVČ v prvním pásmu paušálního režimu s příjmy do 1 milionu Kč ročně.</p>
+</div></div></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><div><div><hr class="divider divider--normal divider--align-left"/></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p class="text-large"><span class="text-highlight"><b>Jaká je pokuta za neevidování tržeb?</b></span></p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-horizontal valign-middle size-sm"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/ico-check-barva.svg" width="90" height="90"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p>Až 500 000 Kč. Kdo přijímá platby při osobním kontaktu a nespadá pod výjimku, musí od 1. února 2027 evidovat.</p>
+</div></div></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><div><div><hr class="divider divider--normal divider--align-left"/></div></div></div></div></div>
+</div><div class="section-background" style="background-color:#fff"></div></div>
+<PojdmeToProbrat />
+<Blok30Let_9e65 />
+<Mezera_bb6d />
+<KontaktniFormularB />
+</Base>

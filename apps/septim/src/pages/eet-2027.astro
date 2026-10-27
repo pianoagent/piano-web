@@ -1,21 +1,134 @@
 ---
-// https://www.septim.cz/eet-20 (Solid Pixels), port 1:1 skriptem port-septim.py
+// /eet-2027: návrat EET (SEO, 27. 10. 2026). Obsah 1:1 ze /eet-20 (port ze Solid Pixels),
+// stará URL přesměrovaná 301 v public/_redirects. Rozcestník tématu je /eet.
 import Base from './../layouts/Base.astro';
+
+const faq = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Mám Septim. Jsem na EET 2.0 připravený?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ano. Pokud máte Septim ve verzi 4.1.40 nebo vyšší, platnou servisní smlouvu a pokladnu připojenou k našemu monitoringu, získáte funkci EET 2.0 automaticky. Aktualizaci nasadíme za vás v dostatečném předstihu. Vy jen nahrajete certifikát od finanční správy."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Budu za EET 2.0 v Septimu něco platit?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ne. Žádný příplatek, žádná nová licence. EET je součástí vašeho stávajícího Septimu."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Potřebuji novou pokladnu nebo hardware?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Se Septimem ne. Stačí pokladna i tiskárna, které máte. Obecně platí, že moderní pokladní systémy zvládnou EET 2.0 aktualizací. U starších systémů jiných dodavatelů to může znamenat upgrade za příplatek nebo výměnu. Levné pokladny a aplikace zdarma existují, vždy si ale ověřte, že skutečně umí online evidenci a elektronickou účtenku."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Co musím udělat já?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nahrát do Septimu certifikát. Finanční správa ho začne vydávat 1. listopadu 2026 v portálu DIS+. Hned potom vám pošleme e-mailem jednoduchý návod, jak certifikát nahrát a případně upravit nastavení."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Jak zjistím, jakou verzi Septimu mám?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Zavolejte na helpdesk +420 257 011 101. Ověříme za vás verzi i připojení k monitoringu."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Co když podmínky nesplňuji?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ozvěte se nám na obchod@septim.cz nebo +420 257 011 100. Projdeme s vámi, co je potřeba, a pokladnu na EET připravíme."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Změní se něco na účtence?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Na účtence se nic o EET tisknout nebude, žádný kód jako v roce 2016. Text „nefiskální doklad“ z účtenek zmizí automaticky. Účtenku navíc vydáváte jen tehdy, když o ni host požádá."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Od kdy platí EET 2027?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Od 1. ledna 2027 běží zkušební režim. Povinnost evidovat tržby platí od 1. února 2027. Certifikáty vydává finanční správa od 1. listopadu 2026. Uživatelé Septimu nemusí nic instalovat ani nastavovat předem, návod na certifikát jim pošleme."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Nemám Septim. Stihnu se na EET připravit?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ano, ale nenechávejte to na poslední chvíli. Na podzim bývají kapacity dodavatelů plné. Napište nám na obchod@septim.cz nebo zavolejte na +420 257 011 100 a pomůžeme vám s přechodem, instalací i zaškolením obsluhy."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Koho se EET 2.0 týká? Platí i pro OSVČ, živnostníky a e-shopy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Týká se prakticky každého, kdo přijímá platby při osobním kontaktu se zákazníkem, tedy hotovost, kartu, QR kód i stravenky. Platí pro firmy, OSVČ, živnostníky i řemeslníky bez ohledu na obor. Platby na dálku, například v e-shopu, se neevidují. Výjimku mají OSVČ v prvním pásmu paušálního režimu s příjmy do 1 milionu Kč ročně."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "EET bylo zrušené. Proč se vrací a dá se evidenci vyhnout?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "První EET stát zrušil na konci roku 2022 kvůli administrativní zátěži. Od roku 2027 se vrací v jednodušší podobě: jen online, s menším rozsahem údajů a účtenkou na vyžádání. Vyhnout se dá jen výjimkami, například režimem EET OFF pro OSVČ v prvním pásmu paušální daně, kde místo evidence platíte vyšší paušál."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Co mi hrozí, když nebudu tržby evidovat?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pokuta až 500 000 Kč. Finanční správa navíc bude porovnávat tržby podnikatelů ve stejném oboru a regionu, takže výrazné odchylky samy přitáhnou pozornost kontrolorů."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Co se mění u spropitného a DPH na nealko?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Dobrovolné spropitné bude osvobozeno od daně i odvodů až do výše 7 % měsíčních tržeb. Zároveň klesá DPH u nealkoholických nápojů z 21 % na 12 %. Obojí v Septimu připravíme, abyste nemuseli nic nastavovat ručně. Osvobození spropitného má ale dopad na mzdy, dovolenou a nemocenskou vašich zaměstnanců, proto doporučujeme projít si to ještě letos s mzdovou účetní. Víc v článku EET je zpátky. Co to znamená."
+      }
+    }
+  ]
+};
 
 ---
 <Base
-  title="EET 2.0: se Septimem to zvládnete hladce | Septim"
-  description="EET se vrací. Klíčové novinky EET 2.0, srovnání s původní EET, aktuální dění a odpovědi na technické dotazy. Se Septimem to zvládnete hladce."
-  path="/eet-20"
+  title="EET 2027: od kdy platí a co se mění | Septim"
+  description="EET se vrací v roce 2027. Od kdy platí, co se mění proti původní EET, termíny a odpovědi na dotazy. Ověřte si připravenost se Septimem."
+  path="/eet-2027"
+  schemas={[faq]}
   bodyClass="use-header-transparent use-menu-primary-uppercase use-menu-secondary-uppercase use-headings-link-plain search-panel-hide-submit-label search-panel-hide-close-label search-panel-hide-open-label use-menu-bar use-header-fixed use-header-fixed-mobile use-header-priority"
   image="/files/nahled-chci-septim.jpg"
 >
-<div class="section height--high align--middle color--inverse section-width-boxed section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-5-12"><div class="block block-inline"><h1 class="h2-style">EET se vrací.<br/>
-Se Septimem to zvládnete hladce</h1>
+<div class="section height--high align--middle color--inverse section-width-boxed section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-5-12"><div class="block block-inline"><h1 class="h2-style">EET se vrací v roce 2027.<br/>
+Co se mění a od kdy platí</h1>
 </div></div></div>
 <div class="row-main"><div class="col col-1-12 grid-5-12"><div class="block block-inline">Ohlášený start EET 2.0 v roce 2027 vás nemusí trápit. Jako technologický partner zajistíme vše potřebné, stejně jako před lety. Získejte náskok a vyřešte evidenci tržeb jednou provždy.</div></div></div>
 <div class="row-main"><div class="col col-1-12 grid-3-12"><div class="block block-button"><div class="left"><a class="btn btn-default" href="/chci-septim#lead-form"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">Konzultace zdarma</span></a></div></div></div></div></div><div class="section-background container-fit container-fit--cover" style="background-color:#fff"><img alt="" decoding="async" sizes="(orientation: portrait) 380.40vw, 100vw" src="/files/r/1280/eet20-1.webp" srcset="/files/r/720/eet20-1.webp 720w, /files/r/1280/eet20-1.webp 1280w, /files/r/1920/eet20-1.webp 1920w" style="object-position:54% 24%" width="1280" height="596"/></div></div>
-<div class="section height--medium align--middle color--default section-width-boxed section-has-background" id="benefity"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Klíčové novinky EET 2.0</h2>
+<div class="section height--medium align--middle color--default section-width-boxed section-has-background" id="benefity"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Klíčové novinky EET 2027</h2>
 </div></div></div>
 <div class="row-main"><div class="col col-4-12 grid-6-12"><div class="block block-inline"><p class="center text-large">Změny, které vám zjednoduší podnikání.</p>
 </div></div></div>
@@ -31,7 +144,7 @@ z 21 % na 12 %.</p>
 <div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center"><strong><span class="text-highlight"><font color="#06038d"><span style="caret-color: rgb(6, 3, 141);">Modernizace prodeje</span></font></span></strong></h2>
 <p class="center">Konec povinného tisku účtenek a jednodušší evidence. </p>
 </div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
-<div class="section height--normal align--middle color--default section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">EET vs. EET 2.0, co se opravdu mění?</h2>
+<div class="section height--normal align--middle color--default section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Původní EET a EET 2027: co se opravdu mění?</h2>
 </div></div></div>
 <div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-spacer"><div class="block-spacer-element" style="--height:30px"></div></div></div></div>
 <div class="row-main"><div class="col col-1-12 grid-6-12"><div class="block block-box box box--default"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h3>EET</h3>
@@ -63,7 +176,7 @@ z 21 % na 12 %.</p>
 	Cílená analytika</li>
 </ul>
 </div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(235, 252, 255)"></div></div>
-<div class="section height--low align--middle color--default section--timeline"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline timeline-block"><h3 class="center">Aktuální dění kolem EET 2.0</h3>
+<div class="section height--low align--middle color--default section--timeline"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline timeline-block"><h3 class="center">Časová osa EET 2026 a 2027</h3>
 </div></div></div>
 <div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline">Únor 2026<br/>
 Zahájení připomínkového řízení</div></div></div>
@@ -83,6 +196,12 @@ Spuštění aplikace MOJE EET</div></div></div></div></div>
 Zahájení testovacího provozu EET 2.0</div></div></div>
 <div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline">Únor 2027<br/>
 Ostrý režim projektu</div></div></div></div></div>
+<div class="section height--low align--middle color--default section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Co dalšího k EET<span class="text-highlight">.</span></h2>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-4-12"><div class="block block-box box box--default"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-vertical size-md align-center"><a class="flexcard-media" href="/eet"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Co je EET" decoding="async" loading="lazy" src="/files/modul-datove-prehledy.svg" width="90" height="90"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h3><a href="/eet">Co je EET</a></h3>
+</div></div></div></div></div></div></div></div></div></div></div> <div class="col col-5-12 grid-4-12"><div class="block block-box box box--default"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-vertical size-md align-center"><a class="flexcard-media" href="/eet-pokladna"><div class="image-icon-wrapper"><div class="image-icon"><img alt="EET pokladna" decoding="async" loading="lazy" src="/files/ico-pokladna.svg" width="90" height="90"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h3><a href="/eet-pokladna">EET pokladna</a></h3>
+</div></div></div></div></div></div></div></div></div></div></div> <div class="col col-9-12 grid-4-12"><div class="block block-box box box--default"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-vertical size-md align-center"><a class="flexcard-media" href="/pokladni-system"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Pokladní systém Septim" decoding="async" loading="lazy" src="/files/ico-software-hardware.svg" width="90" height="90"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h3><a href="/pokladni-system">Pokladní systém Septim</a></h3>
+</div></div></div></div></div></div></div></div></div></div></div></div></div><div class="section-background" style="background-color:#ffffff"></div></div>
 <div class="section height--normal align--middle color--default" id="technicke-rady"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Často kladené dotazy</h2>
 </div></div></div>
 <div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><hr class="divider divider--normal divider--align-left"/></div></div></div>
@@ -109,7 +228,7 @@ Ostrý režim projektu</div></div></div></div></div>
 <div class="accordion"><div class="accordion__title"><span class="accordion__title-label">Změní se něco na účtence?</span><span class="accordion__title-arrow"><div class="cssicon cssicon--chevron cssicon--size-parent"></div></span></div><div class="container accordion__content"><div class="container-body">
 <div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline">Na účtence se nic o EET tisknout nebude, žádný kód jako v roce 2016. Text „nefiskální doklad“ z účtenek zmizí automaticky. Účtenku navíc vydáváte jen tehdy, když o ni host požádá.</div></div></div>
 </div></div></div>
-<div class="accordion"><div class="accordion__title"><span class="accordion__title-label">Od kdy EET 2.0 platí?</span><span class="accordion__title-arrow"><div class="cssicon cssicon--chevron cssicon--size-parent"></div></span></div><div class="container accordion__content"><div class="container-body">
+<div class="accordion"><div class="accordion__title"><span class="accordion__title-label">Od kdy platí EET 2027?</span><span class="accordion__title-arrow"><div class="cssicon cssicon--chevron cssicon--size-parent"></div></span></div><div class="container accordion__content"><div class="container-body">
 <div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline">Od 1. ledna 2027 běží zkušební režim. Povinnost evidovat tržby platí od 1. února 2027. Certifikáty vydává finanční správa od 1. listopadu 2026. Uživatelé Septimu nemusí nic instalovat ani nastavovat předem, návod na certifikát jim pošleme.</div></div></div>
 </div></div></div>
 <div class="accordion"><div class="accordion__title"><span class="accordion__title-label">Nemám Septim. Stihnu se na EET připravit?</span><span class="accordion__title-arrow"><div class="cssicon cssicon--chevron cssicon--size-parent"></div></span></div><div class="container accordion__content"><div class="container-body">
