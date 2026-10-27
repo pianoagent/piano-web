@@ -3,52 +3,120 @@
  * Trustbox: pozicování Septimu na vstupních stránkách (SEO a GEO, Kryštof 27. 10. 2026).
  * Septim = pokladní systém pro náročné: používají ho nejlepší restaurace, sítě a kantýny,
  * těžká váha, ale ne nutně pro obří podnik nebo za vysokou cenu. 30 let na trhu.
- * Každá stránka má vlastní sdělení pro své téma (nadpis, text, čísla), žádný společný odstavec.
- * Reference jen z báze (znalostni-baze.md část 7, septim-context.md) a od Kryštofa (Together).
+ * Vzhled podle vzoru SEO PRAKTICKY (výrazný panel): štítek „Proč…", nadpis, odstavec,
+ * řada čísel, mřížka karet s ikonami, dvě tlačítka. Každá stránka má vlastní obsah pro své téma.
+ * Reference jen z báze (znalostni-baze.md, septim-context.md) a od Kryštofa (Together).
  */
 interface Props {
-  /** nadpis s produktem a tématem stránky, smí obsahovat <span class="text-highlight"> */
+  /** štítek nad nadpisem, např. „Proč Septim pro hotely“ */
+  stitek: string;
+  /** nadpis pro téma stránky */
   nadpis: string;
   /** pozicovací odstavec pro téma stránky, smí obsahovat odkazy */
   text: string;
-  /** tři důkazy pro téma: [ikona z /files, číslo, popis] */
-  cisla?: [string, string, string][];
-  /** loga referencí; vypnout na stránkách s vlastní zdí referencí */
-  loga?: boolean;
+  /** 3 až 4 čísla: [číslo, popis] */
+  cisla: [string, string][];
+  /** 3 až 6 karet: [ikona z /files, titulek, text] */
+  karty: [string, string, string][];
   odkaz?: string;
   odkazText?: string;
 }
 
 const {
+  stitek,
   nadpis,
   text,
-  cisla = [
-    ['ico-kalendar.svg', '30 let', 'na trhu'],
-    ['ico-pokladna.svg', '2 000+', 'provozů na Septimu'],
-    ['ico-hotline.svg', '24/7', 'česká podpora'],
-  ],
-  loga: sLogy = false,
+  cisla,
+  karty,
   odkaz = '/chci-septim',
   odkazText = 'Chci Septim',
 } = Astro.props;
-
-const loga = [
-  ['ref-ambiente.svg', 'Ambiente'],
-  ['ref-tgthr.svg', 'Together (TGTHR)'],
-  ['ref-02-arena.svg', 'O2 arena'],
-  ['ref-kolkovna.svg', 'Kolkovna'],
-  ['ref-field.svg', 'FIELD'],
-  ['ref-grandhotel-pupp.svg', 'Grandhotel Pupp'],
-];
 ---
-<div class="section height--low align--middle color--default section-has-background trustbox" id="proc-septim"><div class="section-body">
-<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center" set:html={nadpis} />
-<p class="center text-large" set:html={text} />
-</div></div></div>
-{sLogy && <div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-gallery grid-sm-2"><div><div><div class="grid gallery-container" style="--gap:40px">{loga.map(([src, nazev]) => (
-<div class="gallery-item grid-col-6"><div class="image-wrapper"><div class="image image-mask ratio-square image-width-stretch"><img alt={`Logo ${nazev}`} decoding="async" loading="lazy" src={`/files/${src}`}/></div></div></div>))}</div></div></div></div></div></div>}
-<div class="row-main">{cisla.map(([ikona, cislo, popis], i) => (
-<div class={`col col-${1 + i * 4}-12 grid-4-12`}><div class="block block-image"><div class="flexcard flexcard-icon flexcard-vertical size-md align-center"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src={`/files/${ikona}`} width="90" height="90"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p class="center text-large"><span class="text-highlight"><strong>{cislo}</strong></span><br/>{popis}</p>
-</div></div></div></div></div></div>))}</div>
-<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-button"><div><div><div class="center"><a class="btn btn-primary" href={odkaz}><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">{odkazText}</span></a></div></div></div></div></div></div>
-</div><div class="section-background" style="background-color:rgb(240, 252, 255)"></div></div>
+<section class="trustbox" id="proc-septim" aria-labelledby="proc-septim-nadpis">
+  <div class="trustbox__panel">
+    <p class="trustbox__stitek">{stitek}</p>
+    <h2 class="trustbox__nadpis" id="proc-septim-nadpis" set:html={nadpis} />
+    <p class="trustbox__text" set:html={text} />
+    <dl class="trustbox__cisla">
+      {cisla.map(([cislo, popis]) => (
+        <div class="trustbox__cislo"><dt>{cislo}</dt><dd>{popis}</dd></div>
+      ))}
+    </dl>
+    <ul class="trustbox__karty">
+      {karty.map(([ikona, titulek, popis]) => (
+        <li class="trustbox__karta">
+          <span class="trustbox__ikona"><img alt="" decoding="async" loading="lazy" src={`/files/${ikona}`} width="32" height="32" /></span>
+          <div><h3>{titulek}</h3><p set:html={popis} /></div>
+        </li>
+      ))}
+    </ul>
+    <div class="trustbox__akce">
+      <a class="trustbox__btn trustbox__btn--primary" href={odkaz}>{odkazText}</a>
+      <a class="trustbox__btn trustbox__btn--secondary" href="tel:+420257011100">Zavolejte nám: +420 257 011 100</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .trustbox { padding: 48px 20px; }
+  .trustbox__panel {
+    max-width: 1220px; margin: 0 auto; padding: 56px 64px;
+    background: #f2f8fc; border-radius: 28px; color: #3a3f55;
+  }
+  .trustbox__stitek {
+    margin: 0 0 14px; font-size: 13px; font-weight: 700; letter-spacing: .14em;
+    text-transform: uppercase; color: #0073A6;
+  }
+  .trustbox__nadpis {
+    margin: 0 0 20px; font-size: clamp(28px, 3.2vw, 44px); line-height: 1.15; font-weight: 700;
+    color: #06038D; text-align: left;
+  }
+  .trustbox__text { margin: 0; max-width: 980px; font-size: 18px; line-height: 1.7; }
+  .trustbox__cisla {
+    display: grid; grid-template-columns: repeat(var(--n, 4), 1fr); gap: 24px;
+    margin: 36px 0; padding: 28px 0; border-top: 1px solid #d9e6ef; border-bottom: 1px solid #d9e6ef;
+  }
+  .trustbox__cisla { --n: 4; }
+  .trustbox__cisla:has(> :nth-child(3):last-child) { --n: 3; }
+  .trustbox__cislo dt { font-size: clamp(28px, 2.8vw, 40px); font-weight: 700; line-height: 1.1; color: #06038D; }
+  .trustbox__cislo dd { margin: 8px 0 0; font-size: 15px; line-height: 1.45; color: #5b6177; }
+  .trustbox__karty {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+    margin: 0 0 32px; padding: 0; list-style: none;
+  }
+  .trustbox__karta {
+    display: flex; gap: 18px; align-items: flex-start; margin: 0; padding: 26px 24px;
+    background: #fff; border: 1px solid #e1ebf2; border-radius: 18px;
+  }
+  .trustbox__karta::before { content: none; }
+  .trustbox__ikona {
+    flex: 0 0 52px; display: grid; place-items: center; width: 52px; height: 52px;
+    background: #e3f5fd; border-radius: 14px;
+  }
+  .trustbox__ikona img { width: 32px; height: 32px; }
+  .trustbox__karta h3 { margin: 2px 0 8px; font-size: 18px; line-height: 1.3; font-weight: 700; color: #06038D; }
+  .trustbox__karta p { margin: 0; font-size: 15px; line-height: 1.6; color: #5b6177; }
+  .trustbox__karta p :global(a), .trustbox__text :global(a) { color: #0073A6; text-decoration: underline; }
+  .trustbox__akce { display: flex; flex-wrap: wrap; gap: 14px; }
+  .trustbox__btn {
+    display: inline-flex; align-items: center; min-height: 52px; padding: 14px 28px;
+    border-radius: 14px; font-weight: 700; font-size: 16px; text-decoration: none;
+  }
+  .trustbox__btn--primary { background: #06038D; color: #fff; }
+  .trustbox__btn--primary:hover, .trustbox__btn--primary:focus-visible { background: #0073A6; color: #fff; }
+  .trustbox__btn--secondary { background: #fff; color: #06038D; border: 1px solid #c9d8e3; }
+  .trustbox__btn--secondary:hover, .trustbox__btn--secondary:focus-visible { border-color: #06038D; }
+
+  @media (max-width: 1100px) {
+    .trustbox__karty { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 760px) {
+    .trustbox { padding: 32px 16px; }
+    .trustbox__panel { padding: 32px 20px; border-radius: 20px; }
+    .trustbox__text { font-size: 16px; }
+    .trustbox__cisla { grid-template-columns: repeat(2, 1fr); gap: 20px; margin: 28px 0; padding: 22px 0; }
+    .trustbox__karty { grid-template-columns: 1fr; gap: 14px; }
+    .trustbox__karta { padding: 20px 18px; }
+    .trustbox__btn { width: 100%; justify-content: center; }
+  }
+</style>
