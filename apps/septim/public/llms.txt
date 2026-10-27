@@ -4,6 +4,9 @@
 
 ## Hlavní stránky
 
+- [Pokladní systém pro gastro](https://www.septim.cz/pokladni-system)
+- [Pokladna pro restauraci a gastro](https://www.septim.cz/pokladna)
+- [Online pokladna Septim.Air](https://www.septim.cz/online-pokladna)
 - [Pokladní systém pro restaurace](https://www.septim.cz/pokladni-provozni-system-pro-restaurace)
 - [Produkty a moduly](https://www.septim.cz/produkty)
 - [Ceník](https://www.septim.cz/cenik)

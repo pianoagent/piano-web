@@ -1,22 +1,96 @@
 ---
-// https://www.septim.cz/spolehlivy-pokladni-system (Solid Pixels), port 1:1 skriptem port-septim.py
+// /pokladni-system: rozcestník tématu Pokladní systém (SEO, 27. 10. 2026). Vzniklo ze /spolehlivy-pokladni-system
+// (port 1:1 ze Solid Pixels), stará URL přesměrovaná 301 v public/_redirects.
 import Base from './../layouts/Base.astro';
+
+const faq = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Co je pokladní systém?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Software a hardware, přes který obsluha markuje, tiskne účty a posílá objednávky do kuchyně. Říká se mu také POS systém. Dobrý pokladní systém k tomu hlídá sklad, počítá food cost a dává majiteli přehled, kolik podnik opravdu vydělává."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Jaký je rozdíl mezi pokladnou a pokladním systémem?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pokladna je zařízení na place, pokladní systém je celé řešení kolem ní: pokladny, tiskárny, mobilní číšníci, sklad a reporty propojené dohromady. Víc o zařízení samotném najdete na stránce Pokladna pro gastro."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Existuje pokladní systém zdarma?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Zdarma u nás dostanete nabídku a konzultaci. Samotný pokladní systém zdarma není, cenu skládáme podle počtu pokladen a licence, kterou váš provoz potřebuje. Aktuální ceny najdete v ceníku."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "V čem je Septim jiný než konkurence?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Konkurence často řeší jen základní vlastnosti pokladního systému. Ale v případě používání systému v opravdu šlapajícím provozu oceňují naši klienti pokročilou správu skladů, automatické naskladňování, správu cen, receptur a dalších drobností, které dělají z obyčejné restaurace výdělečný byznys."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Kdy mohu začít Septim používat?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Prakticky ihned! Záleží jak velký provoz máte, kolik pokladen budeme instalovat, jaké moduly potřebujete. Také je jiné startovat novou restauraci a přecházet za běhu z jiného systému. Vše s vámi projde náš zkušený Septim konzultant."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Jaký je první krok pro získání pokladního systému Septim?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Prvním krokem je dobrý plán! Zažádejte si o nabídku ZDARMA a my pro vás sestavíme dobře nastavený systém! Dobrý plán je pro dobře šlapající provoz totiž základ úspěchu!"
+      }
+    }
+  ]
+};
 
 ---
 <Base
-  title="Spolehlivý pokladní systém pro gastro | Septim"
-  description="Pokladní systém, na který se vždy spolehnete. Septim není jen pokladna, ale komplexní provozní systém pro restaurace, kavárny, bistra i hotely."
-  path="/spolehlivy-pokladni-system"
+  title="Pokladní systém (POS) pro gastro provozy | Septim"
+  description="Pokladní systém pro restaurace, kavárny, bistra, jídelny i hotely. Pokladna, sklad, receptury a reporty v jednom, 30 let na trhu, česká podpora 24/7."
+  path="/pokladni-system"
+  schemas={[faq]}
   bodyClass="use-header-transparent use-menu-primary-uppercase use-menu-secondary-uppercase use-headings-link-plain search-panel-hide-submit-label search-panel-hide-close-label search-panel-hide-open-label use-menu-bar use-header-fixed use-header-fixed-mobile use-header-priority"
   image="/files/nahled-asw-systems.jpg"
 >
-<div class="section height--low align--middle color--default section-width-boxed section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-card flexcard-size--normal flexcard-media-right valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><a class="image image-mask ratio-original" href="#jak-to-probiha" style="padding-bottom:56.73758865248227%"><img alt="Pokladní systém, na který se můžete spolehnout. Vždycky" decoding="async" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/spolehlivy-pokladni-system-mobilni-cisnik-tiskarna.webp" srcset="/files/r/720/spolehlivy-pokladni-system-mobilni-cisnik-tiskarna.webp 720w, /files/r/1280/spolehlivy-pokladni-system-mobilni-cisnik-tiskarna.webp 1280w, /files/r/1920/spolehlivy-pokladni-system-mobilni-cisnik-tiskarna.webp 1920w" width="1280" height="726"/></a></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h1><span class="text-highlight">Pokladní systém</span>, na který se můžete spolehnout. Vždycky<span class="text-highlight">.</span></h1>
+<div class="section height--low align--middle color--default section-width-boxed section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-card flexcard-size--normal flexcard-media-right valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><a class="image image-mask ratio-original" href="#jak-to-probiha" style="padding-bottom:56.73758865248227%"><img alt="Pokladní systém, na který se můžete spolehnout. Vždycky" decoding="async" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/spolehlivy-pokladni-system-mobilni-cisnik-tiskarna.webp" srcset="/files/r/720/spolehlivy-pokladni-system-mobilni-cisnik-tiskarna.webp 720w, /files/r/1280/spolehlivy-pokladni-system-mobilni-cisnik-tiskarna.webp 1280w, /files/r/1920/spolehlivy-pokladni-system-mobilni-cisnik-tiskarna.webp 1920w" width="1280" height="726"/></a></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h1><span class="text-highlight">Pokladní systém</span> pro gastro, na který se můžete spolehnout. Vždycky<span class="text-highlight">.</span></h1>
 <p class="text-large">Septim není jen pokladna, ale systém, který vašemu podniku vydělá peníze a dá přehled o tom, co se u vás děje.</p>
 </div><div class="image-btn"><a class="btn btn-primary" href="#jak-to-probiha"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">TO MĚ ZAJÍMÁ</span></a></div></div></div></div></div></div></div></div></div>
 <div class="row-main"><div class="col col-1-20 grid-3-20"><div class="block block-spacer"><div><div><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div> <div class="col col-4-20 grid-5-20"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-vertical size-md align-center"><a class="flexcard-media" href="#reseni"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" src="/files/podpora-cesky.svg" width="90" height="90"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p><font color="#00adef"><span style="caret-color: rgb(0, 173, 239);"><b>ČESKÁ PODPORA 24/7 </b></span></font></p>
 </div></div></div></div></div></div></div></div> <div class="col col-9-20 grid-4-20"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-vertical size-md align-center"><a class="flexcard-media" href="#reseni"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" src="/files/funkce-uzivatele-a-prava.svg" width="90" height="90"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p><span class="text-highlight"><strong>MANAŽERSKÉ FUNKCE</strong></span></p>
 </div></div></div></div></div></div></div></div> <div class="col col-13-20 grid-5-20"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-vertical size-md align-center"><a class="flexcard-media" href="#reseni"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" src="/files/tip-pana-septima.svg" width="100" height="100"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p><span class="text-highlight"><strong>SKLADOVÉ HOSPODÁŘSTVÍ</strong></span></p>
 </div></div></div></div></div></div></div></div> <div class="col col-18-20 grid-3-20"><div class="block block-spacer"><div><div><div class="block-spacer-element" style="--height:50px"></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
+<div class="section height--low align--middle color--default section-width-narrow section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2>Co je pokladní systém<span class="text-highlight">?</span></h2>
+<p>Pokladní systém je software a hardware, přes který obsluha markuje, tiskne účty a posílá objednávky do kuchyně. Říká se mu také POS systém. Tím ale jeho práce nekončí: dobrý pokladní systém hlídá sklad, počítá food cost a majiteli řekne, kolik podnik za den opravdu vydělal.</p>
+<p>Septim jde ještě dál. Pokladna, skladové hospodářství, receptury, věrnostní program i reporty běží v jednom systému, proto o něm mluvíme jako o provozním systému, ne jen pokladním. Rozdíl podrobně vysvětlujeme v článku <a href="/blog/pokladni-system-a-provozni-system-restaurace-rozdil">Pokladní systém a provozní systém restaurace</a>.</p>
+</div></div></div></div><div class="section-background" style="background-color:#ffffff"></div></div>
+<div class="section height--low align--middle color--default section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Jaký pokladní systém potřebujete<span class="text-highlight">?</span></h2>
+<p class="center">Septim nastavíme podle typu a velikosti provozu. Vyberte, co hledáte:</p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-4-12"><div class="block block-box box box--default"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-vertical size-md align-center"><a class="flexcard-media" href="/pokladni-provozni-system-pro-restaurace"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Pro restaurace" decoding="async" loading="lazy" src="/files/modul-pokladna.svg" width="90" height="90"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h3><a href="/pokladni-provozni-system-pro-restaurace">Pro restaurace</a></h3>
+</div></div></div></div></div></div></div></div></div></div> <div class="block block-box box box--default"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-vertical size-md align-center"><a class="flexcard-media" href="/pokladni-provozni-system-pro-jidelny"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Pro jídelny" decoding="async" loading="lazy" src="/files/modul-datove-prehledy.svg" width="90" height="90"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h3><a href="/pokladni-provozni-system-pro-jidelny">Pro jídelny</a></h3>
+</div></div></div></div></div></div></div></div></div></div> <div class="block block-box box box--default"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-vertical size-md align-center"><a class="flexcard-media" href="/online-pokladna"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Online pokladna" decoding="async" loading="lazy" src="/files/funkce-offline-rezim.svg" width="90" height="90"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h3><a href="/online-pokladna">Online pokladna</a></h3>
+</div></div></div></div></div></div></div></div></div></div></div> <div class="col col-5-12 grid-4-12"><div class="block block-box box box--default"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-vertical size-md align-center"><a class="flexcard-media" href="/pokladni-provozni-system-pro-sit-restauraci"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Pro síť restaurací" decoding="async" loading="lazy" src="/files/modul-manazer.svg" width="90" height="90"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h3><a href="/pokladni-provozni-system-pro-sit-restauraci">Pro síť restaurací</a></h3>
+</div></div></div></div></div></div></div></div></div></div> <div class="block block-box box box--default"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-vertical size-md align-center"><a class="flexcard-media" href="/pokladni-provozni-system-pro-hotely"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Pro hotely" decoding="async" loading="lazy" src="/files/modul-hotelovy-system-protel.svg" width="90" height="90"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h3><a href="/pokladni-provozni-system-pro-hotely">Pro hotely</a></h3>
+</div></div></div></div></div></div></div></div></div></div> <div class="block block-box box box--default"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-vertical size-md align-center"><a class="flexcard-media" href="/produkty/mobilni-cisnik-septim-go"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Mobilní pokladna" decoding="async" loading="lazy" src="/files/ico-mobilni-cisnik-konektivita.svg" width="90" height="90"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h3><a href="/produkty/mobilni-cisnik-septim-go">Mobilní pokladna</a></h3>
+</div></div></div></div></div></div></div></div></div></div></div> <div class="col col-9-12 grid-4-12"><div class="block block-box box box--default"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-vertical size-md align-center"><a class="flexcard-media" href="/pokladni-system-pro-kavarny-bistra-bary"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Pro kavárny, bistra a bary" decoding="async" loading="lazy" src="/files/funkce-markovani.svg" width="90" height="90"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h3><a href="/pokladni-system-pro-kavarny-bistra-bary">Pro kavárny, bistra a bary</a></h3>
+</div></div></div></div></div></div></div></div></div></div> <div class="block block-box box box--default"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-vertical size-md align-center"><a class="flexcard-media" href="/pokladna"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Pokladna" decoding="async" loading="lazy" src="/files/ico-pokladna.svg" width="90" height="90"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h3><a href="/pokladna">Pokladna</a></h3>
+</div></div></div></div></div></div></div></div></div></div> <div class="block block-box box box--default"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-vertical size-md align-center"><a class="flexcard-media" href="/produkty/hardware-do-restaurace"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Hardware" decoding="async" loading="lazy" src="/files/ico-software-hardware.svg" width="90" height="90"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h3><a href="/produkty/hardware-do-restaurace">Hardware</a></h3>
+</div></div></div></div></div></div></div></div></div></div></div></div></div><div class="section-background" style="background-color:#ffffff"></div></div>
 <div class="section height--low align--middle color--default section-width-boxed no-pb"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image no-pb" id="reseni"><div><div><div class="flexcard flexcard-card flexcard-size--normal flexcard-media-left valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><a class="image image-width-original" href="#mozek-provozu"><img alt="Septim je ideální pro malé, střední i ty největší" decoding="async" loading="lazy" src="/files/reseni-provozy.webp" width="1200" height="770"/></a></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2>Septim je ideální pro malé, střední i ty největší</h2>
 <p class="text-large">Ať už provozujete jakýkoliv typ provozu, máme řešení přímo pro vás!</p>
 <p class="text-large"><strong>✅ Kavárny a bistra<br/>
@@ -124,6 +198,21 @@ S pokladním systémem Septim jsme velice spokojeni. Je spolehlivý, srozumiteln
 Na začátku jsme dali do systému jen jeden vstup a od té doby si Septim vše počítá a hlídá sám. Jsme spolu od roku 2001.</blockquote><div class="block-quote-author"><span class="quote-decor">–</span> Michal Tůma <span class="quote-decor">–</span><span class="block-quote-info">KOLKOVNA Restaurants</span></div></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(255, 255, 255)"></div></div>
 <div class="section height--low align--middle color--default section-width-narrow section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Nejčastější dotazy</h2>
 </div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><div><div><hr class="divider divider--normal divider--align-left"/></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p class="text-large"><span class="text-highlight"><b>Co je pokladní systém?</b></span></p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-horizontal valign-middle size-sm"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/ico-check-barva.svg" width="90" height="90"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p>Software a hardware, přes který obsluha markuje, tiskne účty a posílá objednávky do kuchyně. Říká se mu také POS systém. Dobrý pokladní systém k tomu hlídá sklad, počítá food cost a dává majiteli přehled, kolik podnik opravdu vydělává.</p>
+</div></div></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><div><div><hr class="divider divider--normal divider--align-left"/></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p class="text-large"><span class="text-highlight"><b>Jaký je rozdíl mezi pokladnou a pokladním systémem?</b></span></p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-horizontal valign-middle size-sm"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/ico-check-barva.svg" width="90" height="90"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p>Pokladna je zařízení na place, pokladní systém je celé řešení kolem ní: pokladny, tiskárny, mobilní číšníci, sklad a reporty propojené dohromady. Víc o zařízení samotném najdete na stránce <a href="/pokladna">Pokladna pro gastro</a>.</p>
+</div></div></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><div><div><hr class="divider divider--normal divider--align-left"/></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p class="text-large"><span class="text-highlight"><b>Existuje pokladní systém zdarma?</b></span></p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-horizontal valign-middle size-sm"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/ico-check-barva.svg" width="90" height="90"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p>Zdarma u nás dostanete nabídku a konzultaci. Samotný pokladní systém zdarma není, cenu skládáme podle počtu pokladen a licence, kterou váš provoz potřebuje. Aktuální ceny najdete v <a href="/cenik">ceníku</a>.</p>
+</div></div></div></div></div></div></div></div></div>
 <div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><div><div><hr class="divider divider--normal divider--align-left"/></div></div></div></div></div>
 <div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p class="text-large"><span class="text-highlight"><b>V čem je Septim jiný než konkurence?</b></span></p>
 </div> <div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-horizontal valign-middle size-sm"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/ico-check-barva.svg" width="90" height="90"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p>Konkurence často řeší jen základní vlastnosti pokladního systému. Ale v případě používání systému v opravdu šlapajícím provozu oceňují naši klienti pokročilou správu skladů, automatické naskladňování, správu cen, receptur a dalších drobností, které dělají z obyčejné restaurace výdělečný byznys.</p>

@@ -1,0 +1,111 @@
+---
+// /online-pokladna: vstupní stránka tématu Online pokladna (SEO, 27. 10. 2026, podle keyword dashboardu SEO PRAKTICKY). Produkt Septim.Air, fakta z /produkty/septim-air-system-pro-kavarnu-bistro-bar.
+import Base from './../layouts/Base.astro';
+import PojdmeToProbrat from './../components/blocks/PojdmeToProbrat.astro';
+import Blok30Let_9e65 from './../components/blocks/Blok30Let_9e65.astro';
+import Mezera_bb6d from './../components/blocks/Mezera_bb6d.astro';
+import KontaktniFormularB from './../components/blocks/KontaktniFormularB.astro';
+
+const faq = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Co je online pokladna?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pokladna, která nepotřebuje v provozu vlastní server. Data jsou v cloudu a přehledy máte hned po ruce. Pokladnou může být pokladní terminál, tablet i telefon."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Funguje online pokladna bez internetu?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ano. Septim.Air má offline režim, takže vás výpadek internetu nezastaví a prodáváte dál."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Je online pokladna připravená na EET?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ano. Septim.Air splňuje požadavky EET 2.0. Evidenci tržeb řeší pokladna automaticky na pozadí: vy markujete, systém odesílá."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Můžu online pokladnu později rozšířit?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ano. Až podnik poroste, přejdete na větší verzi Septimu. Ovládání i pokladna, na kterou jste zvyklí, vám zůstanou."
+      }
+    }
+  ]
+};
+---
+<Base
+  title="Online pokladna v cloudu pro gastro | Septim"
+  description="Online pokladna Septim.Air běží v cloudu: bez serveru, s offline režimem, sklady, food costem a vyřešeným EET. Pro kavárny, bistra, bary i menší provozy."
+  path="/online-pokladna"
+  image="/files/nahled-septim-air.jpg"
+  schemas={[faq]}
+>
+<div class="section height--low align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-card flexcard-size--normal flexcard-media-right valign-center align-left"><div class="flexcard-media"><div class="image-wrapper"><a class="image image-mask ratio-original" href="#co-umi" style="padding-bottom:66.66666666666667%"><img alt="Online pokladna Septim.Air v kavárně" decoding="async" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/hdr-reseni-bistra-a-kavarny.webp" srcset="/files/r/720/hdr-reseni-bistra-a-kavarny.webp 720w, /files/r/1280/hdr-reseni-bistra-a-kavarny.webp 1280w, /files/r/1920/hdr-reseni-bistra-a-kavarny.webp 1920w" width="1200" height="800"/></a></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h1>Online pokladna v cloudu<span class="text-highlight">.</span></h1>
+<p class="text-large">Septim.Air je plně cloudová verze Septimu, systému, na kterém běží hvězdy českého gastra. Bez serveru a bez velkých jednorázových investic, spustíte ho během chvíle.</p>
+</div><div class="image-btn"><a class="btn btn-primary" href="#co-umi"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">Co umí Septim.Air</span></a></div></div></div></div></div></div></div></div></div></div></div>
+<div class="section height--low align--middle color--default"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image block-image--3-1" id="co-je"><div><div><div class="flexcard flexcard-card flexcard-size--normal flexcard-media-left valign-middle align-left"><div class="flexcard-media"><div class="image-wrapper"><div class="image image-mask ratio-original" style="padding-bottom:100%"><img alt="Logo Septim.Air" decoding="async" loading="lazy" sizes="(min-width:1390px) 695px, (min-width:720px) 50.00vw, 100.00vw" src="/files/r/1280/logo-septim-air.webp" srcset="/files/r/720/logo-septim-air.webp 720w, /files/r/1280/logo-septim-air.webp 1280w, /files/r/1920/logo-septim-air.webp 1920w" width="800" height="800"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h2 class="text-large">Co je online pokladna<span class="text-highlight">?</span></h2>
+<p>Online pokladna (říká se jí i cloudová) nepotřebuje v provozu vlastní server. Data jsou v cloudu, takže reporty a uzávěrky vidíte hned.</p>
+<p>Pokladnou může být nová pokladna, tablet, telefon nebo terminál s mobilním číšníkem, všechno propojené. Hodí se hlavně pro <a href="/pokladni-system-pro-kavarny-bistra-bary">kavárny, bistra a bary</a>. Pro velké restaurace a sítě je tu <a href="/pokladni-provozni-system-pro-sit-restauraci">Septim pro síť restaurací</a>.</p>
+</div></div></div></div></div></div></div></div></div></div></div>
+<div class="section height--low align--middle color--default section-width-narrow section-has-background" id="co-umi"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2>Co umí online pokladna Septim.Air<span class="text-highlight">?</span></h2>
+<p>Stavíme na 30 letech zkušeností v českých a slovenských restauracích. Septim.Air není jen pokladna, je to nástroj na řízení kuchyně i baru.</p>
+<ul>
+<li><strong>Offline režim:</strong> výpadek internetu vás nezastaví, prodáváte dál</li>
+<li><strong>Reporty a uzávěrky:</strong> přehledy hned po ruce</li>
+<li><strong>Rychlý start:</strong> bez serveru a bez starostí s hardwarem</li>
+<li><strong>Vyřešené EET:</strong> evidenci tržeb řeší pokladna automaticky na pozadí</li>
+<li><strong>Sklady a food cost:</strong> skladové hospodářství, kalkulace a přehled o marži na každém jídle</li>
+<li><strong>Platby kartou přes Piano Terminál:</strong> jednotná sazba pro všechny karty a bez fixního poplatku za transakci</li>
+<li><strong>Poroste s vámi:</strong> až podnik poroste, přejdete na větší verzi Septimu a ovládání vám zůstane</li>
+</ul>
+</div> <div class="block block-button"><div><div><div class="left"><a class="btn btn-default" href="/produkty/septim-air-system-pro-kavarnu-bistro-bar"><span aria-hidden="true" class="btn__icon"></span><span class="btn__label">Více o Septim.Air</span></a></div></div></div></div></div></div></div><div class="section-background" style="background-color:rgb(240, 252, 255)"></div></div>
+<div class="section height--low align--middle color--default section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Co dalšího vás může zajímat<span class="text-highlight">.</span></h2>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-4-12"><div class="block block-box box box--default"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-vertical size-md align-center"><a class="flexcard-media" href="/produkty/septim-air-system-pro-kavarnu-bistro-bar"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Septim.Air" decoding="async" loading="lazy" src="/files/funkce-offline-rezim.svg" width="90" height="90"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h3><a href="/produkty/septim-air-system-pro-kavarnu-bistro-bar">Septim.Air</a></h3>
+</div></div></div></div></div></div></div></div></div></div> <div class="block block-box box box--default"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-vertical size-md align-center"><a class="flexcard-media" href="/pokladna"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Pokladna" decoding="async" loading="lazy" src="/files/ico-pokladna.svg" width="90" height="90"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h3><a href="/pokladna">Pokladna</a></h3>
+</div></div></div></div></div></div></div></div></div></div></div> <div class="col col-5-12 grid-4-12"><div class="block block-box box box--default"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-vertical size-md align-center"><a class="flexcard-media" href="/pokladni-system-pro-kavarny-bistra-bary"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Pro kavárny, bistra a bary" decoding="async" loading="lazy" src="/files/funkce-markovani.svg" width="90" height="90"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h3><a href="/pokladni-system-pro-kavarny-bistra-bary">Pro kavárny, bistra a bary</a></h3>
+</div></div></div></div></div></div></div></div></div></div> <div class="block block-box box box--default"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-vertical size-md align-center"><a class="flexcard-media" href="/produkty/skladove-hospodarstvi"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Skladové hospodářství" decoding="async" loading="lazy" src="/files/modul-sklady.svg" width="90" height="90"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h3><a href="/produkty/skladove-hospodarstvi">Skladové hospodářství</a></h3>
+</div></div></div></div></div></div></div></div></div></div></div> <div class="col col-9-12 grid-4-12"><div class="block block-box box box--default"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-vertical size-md align-center"><a class="flexcard-media" href="/produkty/mobilni-cisnik-septim-go"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Mobilní pokladna" decoding="async" loading="lazy" src="/files/ico-mobilni-cisnik-konektivita.svg" width="90" height="90"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h3><a href="/produkty/mobilni-cisnik-septim-go">Mobilní pokladna</a></h3>
+</div></div></div></div></div></div></div></div></div></div> <div class="block block-box box box--default"><div class="row"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-vertical size-md align-center"><a class="flexcard-media" href="/pokladni-system"><div class="image-icon-wrapper"><div class="image-icon"><img alt="Celý pokladní systém" decoding="async" loading="lazy" src="/files/ico-software-hardware.svg" width="90" height="90"/></div></div></a><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><h3><a href="/pokladni-system">Celý pokladní systém</a></h3>
+</div></div></div></div></div></div></div></div></div></div></div></div></div><div class="section-background" style="background-color:#ffffff"></div></div>
+<div class="section height--low align--middle color--default section-width-narrow section-has-background"><div class="section-body"><div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><h2 class="center">Časté otázky k online pokladně<span class="text-highlight">.</span></h2>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><div><div><hr class="divider divider--normal divider--align-left"/></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p class="text-large"><span class="text-highlight"><b>Co je online pokladna?</b></span></p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-horizontal valign-middle size-sm"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/ico-check-barva.svg" width="90" height="90"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p>Pokladna, která nepotřebuje v provozu vlastní server. Data jsou v cloudu a přehledy máte hned po ruce. Pokladnou může být pokladní terminál, tablet i telefon.</p>
+</div></div></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><div><div><hr class="divider divider--normal divider--align-left"/></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p class="text-large"><span class="text-highlight"><b>Funguje online pokladna bez internetu?</b></span></p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-horizontal valign-middle size-sm"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/ico-check-barva.svg" width="90" height="90"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p>Ano. Septim.Air má offline režim, takže vás výpadek internetu nezastaví a prodáváte dál.</p>
+</div></div></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><div><div><hr class="divider divider--normal divider--align-left"/></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p class="text-large"><span class="text-highlight"><b>Je online pokladna připravená na EET?</b></span></p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-horizontal valign-middle size-sm"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/ico-check-barva.svg" width="90" height="90"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p>Ano. Septim.Air splňuje požadavky EET 2.0. Evidenci tržeb řeší pokladna automaticky na pozadí: vy markujete, systém odesílá.</p>
+</div></div></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><div><div><hr class="divider divider--normal divider--align-left"/></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-inline"><p class="text-large"><span class="text-highlight"><b>Můžu online pokladnu později rozšířit?</b></span></p>
+</div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-image"><div><div><div class="flexcard flexcard-icon flexcard-horizontal valign-middle size-sm"><div class="flexcard-media"><div class="image-icon-wrapper"><div class="image-icon"><img alt="" decoding="async" loading="lazy" src="/files/ico-check-barva.svg" width="90" height="90"/></div></div></div><div class="flexcard-content"><div class="flexcard-content-wrapper"><div class="text-block"><p>Ano. Až podnik poroste, přejdete na větší verzi Septimu. Ovládání i pokladna, na kterou jste zvyklí, vám zůstanou.</p>
+</div></div></div></div></div></div></div></div></div>
+<div class="row-main"><div class="col col-1-12 grid-12-12"><div class="block block-divider"><div><div><hr class="divider divider--normal divider--align-left"/></div></div></div></div></div>
+</div><div class="section-background" style="background-color:#fff"></div></div>
+<PojdmeToProbrat />
+<Blok30Let_9e65 />
+<Mezera_bb6d />
+<KontaktniFormularB />
+</Base>

@@ -31,6 +31,8 @@ interface Props {
   type?: 'website' | 'article';
   noindex?: boolean;
   locale?: Locale;
+  /** strukturovaná data stránky (JSON-LD), např. FAQPage */
+  schemas?: Record<string, unknown>[];
 }
 
 const {
@@ -42,6 +44,7 @@ const {
   type = 'website',
   noindex = false,
   locale = 'cs',
+  schemas = [],
 } = Astro.props;
 
 const organization = {
@@ -103,7 +106,7 @@ const clientUi = { sending: ui[locale]['form.sending'], error: ui[locale]['form.
       siteUrl={SITE_URL}
       locale={localeLabels[locale].og}
       alternates={alternates(path, locale)}
-      schemas={path === '/' ? [organization] : []}
+      schemas={path === '/' ? [organization, ...schemas] : schemas}
     />
     <meta name="google-site-verification" content="sXA3oQDjd_6LeL-dbDO4sq1VvMomhYdAWP4txNCZ7cY" />
     <meta property="fb:app_id" content="518936135263185" />
